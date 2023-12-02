@@ -1,0 +1,83 @@
+{
+  "name": "SurvivePinball",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "Pinball": {
+        "$path": "src/pinball/shared"
+      }
+    },
+
+    "ServerScriptService": {
+      "Pinball": {
+        "$path": "src/pinball/server"
+      }
+    },
+
+    "StarterPlayer": {
+      "StarterCharacterScripts": {
+        "Pinball": {
+          "$path": "src/pinball/character"
+        }
+      },
+      "StarterPlayerScripts": {
+        "Pinball": {
+          "$path": "src/pinball/client"
+        }
+      }
+    },
+
+    "Workspace": {
+      "$properties": {
+        "FilteringEnabled": true
+      },
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Color": [
+            0.38823,
+            0.37254,
+            0.38823
+          ],
+          "Locked": true,
+          "Position": [
+            0,
+            -10,
+            0
+          ],
+          "Size": [
+            512,
+            20,
+            512
+          ]
+        }
+      },
+      "PinballMachines": {
+        "$className": "Folder",
+        "Pinball": {
+          "$path": "src/pinball/workspace"
+        }
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0,
+          0,
+          0
+        ],
+        "Brightness": 2,
+        "GlobalShadows": true,
+        "Outlines": false,
+        "Technology": "Voxel"
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    }
+  }
+}
