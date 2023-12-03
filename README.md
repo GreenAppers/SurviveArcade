@@ -15,7 +15,7 @@ lune --version
 
 ## Build
 
-``bash
+```bash
 rojo build -o "SurvivePinball.rbxlx"
 ```
 
