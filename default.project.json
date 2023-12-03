@@ -6,6 +6,9 @@
     "ReplicatedStorage": {
       "Pinball": {
         "$path": "src/pinball/shared"
+      },
+      "PinballTables": {
+        "$path": "src/pinball/models"
       }
     },
 
@@ -28,39 +31,19 @@
       }
     },
 
+    "Teams": {
+      "$path": "src/teams"
+    },
+
     "Workspace": {
       "$properties": {
         "FilteringEnabled": true
       },
-      "Baseplate": {
-        "$className": "Part",
-        "$properties": {
-          "Anchored": true,
-          "Color": [
-            0.38823,
-            0.37254,
-            0.38823
-          ],
-          "Locked": true,
-          "Position": [
-            0,
-            -10,
-            0
-          ],
-          "Size": [
-            512,
-            20,
-            512
-          ]
-        }
-      },
       "PinballMachines": {
-        "$className": "Folder",
-        "Pinball": {
-          "$path": "src/pinball/workspace"
-        }
+        "$path": "src/pinball/workspace"
       }
     },
+
     "Lighting": {
       "$properties": {
         "Ambient": [
@@ -69,11 +52,13 @@
           0
         ],
         "Brightness": 2,
+        "ClockTime": 23.5,
         "GlobalShadows": true,
         "Outlines": false,
-        "Technology": "Voxel"
+        "Technology": "ShadowMap"
       }
     },
+
     "SoundService": {
       "$properties": {
         "RespectFilteringEnabled": true

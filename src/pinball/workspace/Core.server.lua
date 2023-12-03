@@ -1,4 +1,4 @@
-local pinballMachines = script.Parent.Parent
+local pinballMachines = script.Parent
 local newClaimEvent = pinballMachines.NewClaim
 local endClaimEvent = pinballMachines.EndClaim
 local newBallEvent = pinballMachines.NewBall
