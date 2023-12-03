@@ -2,48 +2,29 @@
   "name": "SurvivePinball",
   "tree": {
     "$className": "DataModel",
-
     "ReplicatedStorage": {
-      "Pinball": {
-        "$path": "src/pinball/shared"
-      },
-      "PinballTables": {
-        "$path": "src/pinball/models"
-      }
+      "$path": "src/ReplicatedStorage"
     },
-
     "ServerScriptService": {
-      "Pinball": {
-        "$path": "src/pinball/server"
-      }
+      "$path": "src/ServerScriptService"
     },
-
     "StarterPlayer": {
       "StarterCharacterScripts": {
-        "Pinball": {
-          "$path": "src/pinball/character"
-        }
+        "$path": "src/StarterPlayer/StarterCharacterScripts"
       },
       "StarterPlayerScripts": {
-        "Pinball": {
-          "$path": "src/pinball/client"
-        }
+        "$path": "src/StarterPlayer/StarterPlayerScripts"
       }
     },
-
     "Teams": {
-      "$path": "src/teams"
+      "$path": "src/Teams"
     },
-
     "Workspace": {
+      "$path": "src/Workspace",
       "$properties": {
         "FilteringEnabled": true
-      },
-      "PinballMachines": {
-        "$path": "src/pinball/workspace"
       }
     },
-
     "Lighting": {
       "$properties": {
         "Ambient": [
@@ -58,7 +39,6 @@
         "Technology": "ShadowMap"
       }
     },
-
     "SoundService": {
       "$properties": {
         "RespectFilteringEnabled": true
