@@ -1,5 +1,5 @@
-local pinballs = game.Workspace.PinballMachines
-local utils = require(game.ServerScriptService.Pinball.Utils)
+local pinballs = game.Workspace.PinballTables
+local utils = require(game.ServerScriptService.Utils)
 
 while true do
 	task.wait(1)

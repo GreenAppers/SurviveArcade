@@ -1,8 +1,8 @@
-local pinballMachines = workspace.PinballMachines
+local pinballTables = workspace.PinballTables
 local debouncePlayer = false
 
-workspace.PinballMachines.NewBall.OnClientEvent:Connect(function(pinballName, ballName)
-	local pinball = pinballMachines:FindFirstChild(pinballName)
+workspace.PinballTables.Events.NewBall.OnClientEvent:Connect(function(pinballName, ballName)
+	local pinball = pinballTables:FindFirstChild(pinballName)
 	if pinball == nil then
 		return
 	end
@@ -21,7 +21,7 @@ workspace.PinballMachines.NewBall.OnClientEvent:Connect(function(pinballName, ba
 	end)
 end)
 
-workspace.PinballMachines.BouncePlayer.OnClientEvent:Connect(function(position)
+workspace.PinballTables.Events.BouncePlayer.OnClientEvent:Connect(function(position)
 	local player = game.Players.LocalPlayer
 	local character = player.Character or player.CharacterAdded:Wait()
     local humanoid = character:FindFirstChild("HumanoidRootPart")

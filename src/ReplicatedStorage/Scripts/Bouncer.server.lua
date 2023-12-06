@@ -1,5 +1,5 @@
 local part = script.Parent
-local utils = require(game.ServerScriptService.Pinball.Utils)
+local utils = require(game.ServerScriptService.Utils)
 local pinball = utils.getParentPinball(part)
 
 part.Touched:Connect(function(hit)
@@ -14,7 +14,7 @@ part.Touched:Connect(function(hit)
 	end
 	if hit.Parent:FindFirstChild("Humanoid") then
 		local touchedPlayer = game.Players:GetPlayerFromCharacter(hit.Parent)		
-		workspace.PinballMachines.BouncePlayer:FireClient(touchedPlayer, part.Position)
+		workspace.PinballTables.Events.BouncePlayer:FireClient(touchedPlayer, part.Position)
 	end
 	task.wait(0.5)
 	part.Material = Enum.Material.Plastic

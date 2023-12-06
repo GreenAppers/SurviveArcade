@@ -1,15 +1,15 @@
-local pinballMachines = script.Parent
-local newClaimEvent = pinballMachines.NewClaim
-local endClaimEvent = pinballMachines.EndClaim
-local newBallEvent = pinballMachines.NewBall
-local utils = require(game.ServerScriptService.Pinball.Utils)
+local pinballTables = script.Parent.Parent
+local newClaimEvent = pinballTables.Events.NewClaim
+local endClaimEvent = pinballTables.Events.EndClaim
+local newBallEvent = pinballTables.Events.NewBall
+local utils = require(game.ServerScriptService.Utils)
 local ballNumber = 0
 
 function setupPinball(pinball, color, statorColor, baseColor, baseMaterial)
 	local parts = utils.getDescendentsWhichAre(pinball, "BasePart")
 	for _, part in pairs(parts) do
 		if part.name == "BallTemplate" then
-            local script = game.ReplicatedStorage.Pinball.Ball:Clone()
+            local script = game.ReplicatedStorage.Scripts.Ball:Clone()
             script.Parent = part
 			continue
 		end
@@ -22,16 +22,16 @@ function setupPinball(pinball, color, statorColor, baseColor, baseMaterial)
 			part.BrickColor = color
 		end
 		if part.Name == "Bouncer" then
-			local script = game.ReplicatedStorage.Pinball.Bouncer:Clone()
+			local script = game.ReplicatedStorage.Scripts.Bouncer:Clone()
 			script.Parent = part
         elseif part.Name == "Seat" then
-            local script = game.ReplicatedStorage.Pinball.Seat:Clone()
+            local script = game.ReplicatedStorage.Scripts.Seat:Clone()
             script.Parent = part
         elseif string.match(part.name, "Drain$") then
-            local script = game.ReplicatedStorage.Pinball.Drain:Clone()
+            local script = game.ReplicatedStorage.Scripts.Drain:Clone()
             script.Parent = part
 		elseif string.match(part.name, "Scorer[0-9]+$") then
-			local script = game.ReplicatedStorage.Pinball.Scorer:Clone()
+			local script = game.ReplicatedStorage.Scripts.Scorer:Clone()
 			script.Parent = part
 		end
 	end
@@ -39,7 +39,7 @@ function setupPinball(pinball, color, statorColor, baseColor, baseMaterial)
 	pinball.Baseplate.Material = baseMaterial
 end
 
-pinballMachines.Claim.Event:Connect(function(player, pinball, claimed)
+pinballTables.Events.Claim.Event:Connect(function(player, pinball, claimed)
 	local flipperLeft = pinball:FindFirstChild("FlipperLeft")
 	local flipperRight = pinball:FindFirstChild("FlipperRight")
 	local spinnerLeft = pinball:FindFirstChild("SpinnerLeft")
@@ -68,8 +68,8 @@ pinballMachines.Claim.Event:Connect(function(player, pinball, claimed)
 	newBallEvent:FireClient(player, pinball.Name, ball.Name)
 end)
 
-pinballMachines.FlipFlipper.OnServerEvent:Connect(function(player, pinballName, flipperName)
-	local pinball = pinballMachines:FindFirstChild(pinballName)
+pinballTables.Events.FlipFlipper.OnServerEvent:Connect(function(player, pinballName, flipperName)
+	local pinball = pinballTables:FindFirstChild(pinballName)
 	if pinball == nil then
 		return
 	end
@@ -98,7 +98,7 @@ setupPinball(pinball1,
 	Enum.Material.Glass)
 pinball1.Values:WaitForChild("PinballColor").Value = BrickColor.new("Cyan")
 pinball1.Values:WaitForChild("TeamName").Value = "Blue Team"
-pinball1.Parent = pinballMachines
+pinball1.Parent = pinballTables
 
 local pinball2 = pinballTemplate:Clone()
 pinball2.Name = "Pinball2"
@@ -112,7 +112,7 @@ setupPinball(pinball2,
 	Enum.Material.Glass)
 pinball2.Values:WaitForChild("PinballColor").Value = BrickColor.new("Lime green")
 pinball2.Values:WaitForChild("TeamName").Value = "Green Team"
-pinball2.Parent = pinballMachines
+pinball2.Parent = pinballTables
 
 local pinball3 = pinballTemplate:Clone()
 pinball3.Name = "Pinball3"
@@ -126,7 +126,7 @@ setupPinball(pinball3,
 	Enum.Material.Glass)
 pinball3.Values:WaitForChild("PinballColor").Value = BrickColor.new("Deep orange")
 pinball3.Values:WaitForChild("TeamName").Value = "Yellow Team"
-pinball3.Parent = pinballMachines
+pinball3.Parent = pinballTables
 
 local pinball4 = pinballTemplate:Clone()
 pinball4.Name = "Pinball4"
@@ -140,4 +140,4 @@ setupPinball(pinball4,
 	Enum.Material.Glass)
 pinball4.Values:WaitForChild("PinballColor").Value = BrickColor.new("Really red")
 pinball4.Values:WaitForChild("TeamName").Value = "Red Team"
-pinball4.Parent = pinballMachines
+pinball4.Parent = pinballTables

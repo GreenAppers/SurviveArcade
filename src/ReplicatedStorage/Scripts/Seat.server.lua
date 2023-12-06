@@ -1,5 +1,5 @@
 local seat = script.Parent
-local utils = require(game.ServerScriptService.Pinball.Utils)
+local utils = require(game.ServerScriptService.Utils)
 local pinball = utils.getParentPinball(seat)
 local values = pinball:FindFirstChild("Values")
 
@@ -12,7 +12,7 @@ seat:GetPropertyChangedSignal("Occupant"):Connect(function()
 		values.OwnerValue.Value = nil
 		player:FindFirstChild("PinballOwned").Value = nil
 		player.Team = game:GetService("Teams")["Unclaimed Team"]
-		pinball.Parent.Claim:Fire(player, pinball, false)
+		pinball.Parent.Events.Claim:Fire(player, pinball, false)
 		local leaderstats = player:FindFirstChild("leaderstats")
 		if leaderstats ~= nil then
 			local score = leaderstats:FindFirstChild("Score")
@@ -32,6 +32,6 @@ seat:GetPropertyChangedSignal("Occupant"):Connect(function()
 		--mainItems.OwnerDoor.Title.SurfaceGui.TextLabel.Text = tostring(values.OwnerValue.Value).."'s Tycoon"
 		player:FindFirstChild("PinballOwned").Value = pinball
 		player.Team = game:GetService("Teams")[values.TeamName.Value]
-		pinball.Parent.Claim:Fire(player, pinball, true)
+		pinball.Parent.Events.Claim:Fire(player, pinball, true)
 	end	
 end)

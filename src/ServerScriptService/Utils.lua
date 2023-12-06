@@ -21,7 +21,7 @@ end
 
 function utils.getParentPinball(instance)
 	while instance.Parent do
-		if instance.Parent.name == "PinballMachines" then
+		if instance.Parent.name == "PinballTables" then
 			return instance			
 		end
 		instance = instance.Parent

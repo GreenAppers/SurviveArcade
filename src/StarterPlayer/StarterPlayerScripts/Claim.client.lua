@@ -1,7 +1,7 @@
-local pinballMachines = workspace.PinballMachines
+local pinballTables = workspace.PinballTables
 
-workspace.PinballMachines.NewClaim.OnClientEvent:Connect(function(pinballName, ballName)
-	local pinball = pinballMachines:FindFirstChild(pinballName)
+workspace.PinballTables.Events.NewClaim.OnClientEvent:Connect(function(pinballName, ballName)
+	local pinball = pinballTables:FindFirstChild(pinballName)
 	if pinball == nil then
 		return
 	end
@@ -19,7 +19,7 @@ workspace.PinballMachines.NewClaim.OnClientEvent:Connect(function(pinballName, b
 	camera.CFrame = CFrame.lookAt(pos - look * .6, target)
 end)
 
-workspace.PinballMachines.EndClaim.OnClientEvent:Connect(function()
+workspace.PinballTables.Events.EndClaim.OnClientEvent:Connect(function()
 	local camera = workspace.CurrentCamera
 	camera.CameraType = Enum.CameraType.Custom
 end)

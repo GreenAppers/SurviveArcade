@@ -25,7 +25,7 @@ function flip(player, flipperName)
 		orientation = -1
 	end
 	rotor:ApplyAngularImpulse(rotor.CFrame.RightVector * orientation * 600000)
-	workspace.PinballMachines.FlipFlipper:FireServer(pinball.Name, flipperName)
+	workspace.PinballTables.Events.FlipFlipper:FireServer(pinball.Name, flipperName)
 end
 
 UserInputService.InputBegan:Connect(function(input, processed)

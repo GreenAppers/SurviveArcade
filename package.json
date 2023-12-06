@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rbxtsc",
-    "watch": "rbxtsc -w"
+    "build": "rojo build -o SurvivePinball.rbxlx",
+    "build-ts": "rbxtsc",
+    "watch-ts": "rbxtsc -w"
   },
   "devDependencies": {
     "@rbxts/compiler-types": "^2.2.0-types.0",

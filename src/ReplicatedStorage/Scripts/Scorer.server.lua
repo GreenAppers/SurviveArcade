@@ -1,5 +1,5 @@
 local part = script.Parent
-local utils = require(game.ServerScriptService.Pinball.Utils)
+local utils = require(game.ServerScriptService.Utils)
 local pinball = utils.getParentPinball(part)
 
 part.Touched:Connect(function(hit)

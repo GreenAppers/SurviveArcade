@@ -1,5 +1,5 @@
 local drain = script.Parent
-local utils = require(game.ServerScriptService.Pinball.Utils)
+local utils = require(game.ServerScriptService.Utils)
 local pinball = utils.getParentPinball(drain)
 local values = pinball:FindFirstChild("Values")
 
