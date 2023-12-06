@@ -2,20 +2,37 @@
 
 ## Setup
 
+First install [Roblox Studio](https://www.roblox.com/create), [Visual Studio Code](https://code.visualstudio.com/download), Git and clone this repo.
+
+### Install Rojo
+
 - Add [evaera.vscode-rojo](https://marketplace.visualstudio.com/items?itemName=evaera.vscode-rojo) extension to VSCode
 
 - VSCode > Command+Shift+P `Rojo: Open Menu`
 
 Use the menu to install Rojo and Roblox Studio Plugin. Then `Click to start live syncing`.
+
+### Install Lune
  
-```bash
+```console
 aftman add filiptibell/lune
 lune --version
 ```
 
+### Install roblox-ts on Node.js 18.17.0 with Node Version Manager:
+
+```console
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+echo ". ~/.nvm/nvm.sh" >> ~/.zprofile
+nvm install 18.17.0
+nvm use 18.17.0
+node --version
+npm install --global yarn roblox-ts
+```
+
 ## Build
 
-```bash
+```console
 rojo build -o "SurvivePinball.rbxlx"
 ```
 

@@ -30,7 +30,7 @@ function setupPinball(pinball, color, statorColor, baseColor, baseMaterial)
         elseif string.match(part.name, "Drain$") then
             local script = game.ReplicatedStorage.Pinball.Drain:Clone()
             script.Parent = part
-		elseif string.match(part.name, "Scorer$") then
+		elseif string.match(part.name, "Scorer[0-9]+$") then
 			local script = game.ReplicatedStorage.Pinball.Scorer:Clone()
 			script.Parent = part
 		end

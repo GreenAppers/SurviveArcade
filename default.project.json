@@ -1,5 +1,9 @@
 {
   "name": "SurvivePinball",
+  "globIgnorePaths": [
+    "**/package.json",
+    "**/tsconfig.json"
+  ],
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
@@ -20,19 +24,19 @@
       "$path": "src/Teams"
     },
     "Workspace": {
-      "$path": "src/Workspace",
       "$properties": {
         "FilteringEnabled": true
-      }
+      },
+      "$path": "src/Workspace"
     },
     "Lighting": {
       "$properties": {
         "Ambient": [
-          0,
-          0,
-          0
+          0.0,
+          0.0,
+          0.0
         ],
-        "Brightness": 2,
+        "Brightness": 2.0,
         "ClockTime": 23.5,
         "GlobalShadows": true,
         "Outlines": false,
