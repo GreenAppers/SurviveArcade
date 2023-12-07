@@ -7,27 +7,58 @@
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
-      "$path": "src/ReplicatedStorage"
+      "PinballTables": {
+        "$className": "Folder",
+        "Level1": {
+          "$path": "assets/ReplicatedStorage/PinballTables/Level1"
+        }
+      },
+      "rbxts_include": {
+        "$path": "include",
+        "node_modules": {
+          "$className": "Folder",
+          "@rbxts": {
+            "$path": "node_modules/@rbxts"
+          }
+        }
+      },
+      "Scripts": {
+        "$path": "out/ReplicatedStorage/Scripts"
+      }
     },
     "ServerScriptService": {
-      "$path": "src/ServerScriptService"
+      "$path": "out/ServerScriptService"
     },
     "StarterPlayer": {
       "StarterCharacterScripts": {
-        "$path": "src/StarterPlayer/StarterCharacterScripts"
+        "$path": "out/StarterPlayer/StarterCharacterScripts"
       },
       "StarterPlayerScripts": {
-        "$path": "src/StarterPlayer/StarterPlayerScripts"
+        "$path": "out/StarterPlayer/StarterPlayerScripts",
+        "TS": {
+          "$path": "out/StarterPlayer/StarterPlayerScripts"
+        }
       }
     },
     "Teams": {
-      "$path": "src/Teams"
+      "$path": "assets/Teams"
     },
     "Workspace": {
       "$properties": {
         "FilteringEnabled": true
       },
-      "$path": "src/Workspace"
+      "Map": {
+        "$path": "assets/Workspace/Map"
+      }, 
+      "PinballTables": {
+        "$className": "Folder",
+        "Events": {
+          "$path": "assets/Workspace/PinballTables/Events"
+        }, 
+        "Scripts": {
+          "$path": "out/Workspace/PinballTables/Scripts"
+        }
+      }
     },
     "Lighting": {
       "$properties": {
@@ -41,6 +72,12 @@
         "GlobalShadows": true,
         "Outlines": false,
         "Technology": "ShadowMap"
+      }
+    },
+    "HttpService": {
+      "$className": "HttpService",
+      "$properties": {
+        "HttpEnabled": true
       }
     },
     "SoundService": {

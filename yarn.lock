@@ -96,6 +96,100 @@
   resolved "https://registry.yarnpkg.com/@rbxts/compiler-types/-/compiler-types-2.2.0-types.0.tgz#cba7ff0cde0fa9ac18abb4251452814232d67a1e"
   integrity sha512-ycsIGfp49MypbRi4eEPCXTjbb2iLKL1/2GjRrFLuLJL74fCfVtbAXIo2LiZhPrgqIiBLomb4JN5Rcqv4304bzw==
 
+"@rbxts/luau-polyfill-internal@1.2.3-ts.0":
+  version "1.2.3-ts.0"
+  resolved "https://registry.yarnpkg.com/@rbxts/luau-polyfill-internal/-/luau-polyfill-internal-1.2.3-ts.0.tgz#01fec60c39e800d8b786d089648c54b1ecbf9606"
+  integrity sha512-LG1h4uf+MpMxu6RfOLowRe+NOs2SWXzCmYd49WvfR8ZKVUNHvT0BeVIL9rS9q//mTlz8BXDyl5EVIyjnKgsekA==
+
+"@rbxts/promise-forward@^1.0.4":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@rbxts/promise-forward/-/promise-forward-1.0.5.tgz#d7ca6f9617bf5eec20b7102e03ae434eed526312"
+  integrity sha512-FrL3pIQDbRD1hKsUNH1Fwwd5jOuqU0vzKQI4Xo96AqzizYc4fb6vDkUg9Iq+IFki6FVlFvPN+YnvkCxGMjJw4Q==
+
+"@rbxts/react-internal@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@rbxts/react-internal/-/react-internal-0.2.2.tgz#f22dff4725f5d5611553ef396d3138b775206d14"
+  integrity sha512-/34bcOntTzucAwMvo2OtSJT05zfH88kjR0UKyBcADbbZ71KgMKai2Q8ccKKt7IuoPJDzP14dCHd5pXL44M2rkw==
+  dependencies:
+    "@rbxts/luau-polyfill-internal" "1.2.3-ts.0"
+    "@rbxts/shared-internal" "^0.2.1"
+
+"@rbxts/react-reconciler-internal@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/react-reconciler-internal/-/react-reconciler-internal-0.2.1.tgz#f612f9ad3e6b946a5ecb84145a3ffcaef4ff4d9e"
+  integrity sha512-+1iF6id3YuhChfJguBFqzDtYvruGFhkLz9Wr8T0ekp7RlGe4l7d7KLUg5l8GRPj9FbmjQFc0UufBHWmKkrJ2qQ==
+  dependencies:
+    "@rbxts/luau-polyfill-internal" "1.2.3-ts.0"
+    "@rbxts/promise-forward" "^1.0.4"
+    "@rbxts/react-internal" "^0.2.2"
+    "@rbxts/scheduler-internal" "^0.2.1"
+    "@rbxts/shared-internal" "^0.2.1"
+
+"@rbxts/react-roblox@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@rbxts/react-roblox/-/react-roblox-0.1.2.tgz#6dec0c09a6910346c3d04f11b557e80bb51b2af1"
+  integrity sha512-74R0iemEWSgrE8f98JMfdQFSE+VpJTqo91aaZoBbskqHdeWX+kvVxjkiE5nMOkjIfptVHlZvD7P18hOTe2lwog==
+  dependencies:
+    "@rbxts/luau-polyfill-internal" "1.2.3-ts.0"
+    "@rbxts/react-internal" "^0.2.2"
+    "@rbxts/react-reconciler-internal" "^0.2.1"
+    "@rbxts/scheduler-internal" "^0.2.1"
+    "@rbxts/shared-internal" "^0.2.1"
+
+"@rbxts/react-roblox@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@rbxts/react-roblox/-/react-roblox-0.2.0.tgz#a4471617a024225678b96136c17fde761fadba88"
+  integrity sha512-HTdJ7HSVfkyH+ow78paMS4aVz4C87mXEDDeDeQxhw17xQOANFl3cnoSKJ8ldmNgjoSMEgh5KacdoxjRGoF8wZg==
+  dependencies:
+    "@rbxts/luau-polyfill-internal" "1.2.3-ts.0"
+    "@rbxts/react-internal" "^0.2.2"
+    "@rbxts/react-reconciler-internal" "^0.2.1"
+    "@rbxts/scheduler-internal" "^0.2.1"
+    "@rbxts/shared-internal" "^0.2.1"
+
+"@rbxts/ripple@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@rbxts/ripple/-/ripple-0.6.0.tgz#9e98381eae83168f068459171fbbd5c4aed0d74d"
+  integrity sha512-vbpkZIyWLE+XWQo+oC3gzdzuzq4qqPzaKmF2lWzULtuf89FYGPbx2jTz3Z1wC8qgLBTroJ3hVH3gS/5YmiH92A==
+
+"@rbxts/roact-compat-internal@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/roact-compat-internal/-/roact-compat-internal-0.3.1.tgz#0de935a65865eb0d5f329199f799db79d0b42737"
+  integrity sha512-euje2jF3S83VNMtNvrjDgO3XpMibyIYcstCKsvLfIDASfCArtltwQRnjk3ewq20b2hOfy4wneQ8iXu2Di7J8rw==
+  dependencies:
+    "@rbxts/luau-polyfill-internal" "1.2.3-ts.0"
+    "@rbxts/react-internal" "^0.2.2"
+    "@rbxts/react-roblox" "^0.1.2"
+    "@rbxts/shared-internal" "^0.2.1"
+
+"@rbxts/roact@npm:@rbxts/react-ts":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/react-ts/-/react-ts-1.0.1.tgz#e659c0be23544242e03d718e6dc5152998adf5fc"
+  integrity sha512-u/QsFkjWwEbr502xRfCNGjtMfOjqRiVGF5gb3Ox9Z94ymHPXniVsopmT582QpTZLuEcfB5TKvsvpFzFSQ14edg==
+  dependencies:
+    "@rbxts/react-internal" "^0.2.2"
+    "@rbxts/roact-compat-internal" "^0.3.1"
+
+"@rbxts/scheduler-internal@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/scheduler-internal/-/scheduler-internal-0.2.1.tgz#ca19075d0d66e1b1044287715409a7183e3f2d98"
+  integrity sha512-9CVi2ZJMH+T4blfDd0t7bScBLWi49eD99eJ3Ie/Cv3WxQ5iYsZLSeSxzut5Yzkb83cYGb/alUGM/gzx0B19KQw==
+  dependencies:
+    "@rbxts/luau-polyfill-internal" "1.2.3-ts.0"
+    "@rbxts/shared-internal" "^0.2.1"
+
+"@rbxts/services@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/services/-/services-1.5.1.tgz#4536a87932f28797507ed591f0061277c52ea77f"
+  integrity sha512-SRtfIjga0K4YYSXRpK+eH3kcTq7ZXo9OHOt0jszaOOoEOIJloMGlyuRPqesPHyhveh2AMXAZr3TYbRMSD+u+kQ==
+
+"@rbxts/shared-internal@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/shared-internal/-/shared-internal-0.2.1.tgz#8a6b277e85d7b8e027cc6be292889f3e8df3ef67"
+  integrity sha512-HWLFesx5u8NTyDMTNXEkskGT6nE5VLaEnnnq852ixiBtdfIdN/sGCgNnkwbHAq9P9cgX52V3EB5GdVeWcwJzkA==
+  dependencies:
+    "@rbxts/luau-polyfill-internal" "1.2.3-ts.0"
+
 "@rbxts/types@^1.0.736":
   version "1.0.736"
   resolved "https://registry.yarnpkg.com/@rbxts/types/-/types-1.0.736.tgz#a126e2868e80de4ca0f70e20e8aeedc2844ceb01"
@@ -458,6 +552,23 @@ eslint-plugin-roblox-ts@^0.0.36:
     "@types/node" "^20.8.0"
     "@typescript-eslint/experimental-utils" "^5.62.0"
     typescript "^5.2.2"
+
+eslint-plugin-simple-import-sort@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-simple-import-sort/-/eslint-plugin-simple-import-sort-10.0.0.tgz#cc4ceaa81ba73252427062705b64321946f61351"
+  integrity sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==
+
+eslint-plugin-unused-imports@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unused-imports/-/eslint-plugin-unused-imports-3.0.0.tgz#d25175b0072ff16a91892c3aa72a09ca3a9e69e7"
+  integrity sha512-sduiswLJfZHeeBJ+MQaG+xYzSWdRXoSw61DpU13mzWumCkR0ufD0HmO4kdNokjrkluMHpj/7PJeN35pgbhW3kw==
+  dependencies:
+    eslint-rule-composer "^0.3.0"
+
+eslint-rule-composer@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz#79320c927b0c5c0d3d3d2b76c8b4a488f25bbaf9"
+  integrity sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==
 
 eslint-scope@^5.1.1:
   version "5.1.1"

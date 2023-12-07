@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rojo build -o SurvivePinball.rbxlx",
+    "build": "yarn build-ts && yarn build-place",
+    "build-place": "rojo build -o SurvivePinball.rbxlx",
+    "sync": "rojo serve",
+    "syncback": "rojo syncback --input ./SurvivePinball.rbxlx 2>&1 | tee syncback.log",
     "build-ts": "rbxtsc",
     "watch-ts": "rbxtsc -w"
   },
@@ -17,7 +20,15 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-roblox-ts": "^0.0.36",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "prettier": "^3.1.0",
     "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "@rbxts/react-roblox": "^0.2.0",
+    "@rbxts/ripple": "^0.6.0",
+    "@rbxts/roact": "npm:@rbxts/react-ts",
+    "@rbxts/services": "^1.5.1"
   }
 }

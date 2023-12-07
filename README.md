@@ -2,11 +2,19 @@
 
 ## Setup
 
-First install [Roblox Studio](https://www.roblox.com/create), [Visual Studio Code](https://code.visualstudio.com/download), Git and clone this repo.
+First install [Roblox Studio](https://www.roblox.com/create), [Visual Studio Code](https://code.visualstudio.com/download), Git and git clone this repo.
+
+### Install VSCode Extensions
+
+- [Rojo](https://marketplace.visualstudio.com/items?itemName=evaera.vscode-rojo)
+- [Rojo UI](https://marketplace.visualstudio.com/items?itemName=muoshuu.rojo-ui)
+- [Rojo Explorer](https://marketplace.visualstudio.com/items?itemName=Meqolo.rojo-explorer)
+- [Selene](https://marketplace.visualstudio.com/items?itemName=Kampfkarren.selene-vscode)
+- [StyLua](https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.stylua)
+- [Roblox LSP](https://marketplace.visualstudio.com/items?itemName=Nightrains.robloxlsp)
+- [Roblox TS](https://marketplace.visualstudio.com/items?itemName=Roblox-TS.vscode-roblox-ts)
 
 ### Install Rojo
-
-- Add [evaera.vscode-rojo](https://marketplace.visualstudio.com/items?itemName=evaera.vscode-rojo) extension to VSCode
 
 - VSCode > Command+Shift+P `Rojo: Open Menu`
 
@@ -30,21 +38,43 @@ node --version
 npm install --global yarn roblox-ts
 ```
 
-## Build
+## Build `SurvivePinball.rbxlx`
 
 ```console
-rojo build -o "SurvivePinball.rbxlx"
+yarn && yarn build
 ```
 
 ## Studio
 
+- Install plugin https://www.roblox.com/library/3379119778/rbxts-object-to-tree
 - Open `SurvivePinball.rbxlx` in Roblox Studio and click Play to test.
 - Connect Rojo Studio Plugin to the `rojo serve` running in VS Code.
 
 ## Workflow
 
-- Develop scripts in VS Code
-- Develop Models in Studio
+- Develop scripts in VSCode
+- Develop Models in Roblox Studio
 - Drag `Level1` from `Replicated Storage > Pinball Tables` to `Workspace` when modeling. Drag back to play.
-- Save models to file-system as `.rbxmx` (Roblox Model XML) when done
 
+## Prepare Pull Request
+
+### Automatic
+
+- Save changes to `SurvivePinball.rbxlx`
+
+```console
+yarn syncback
+tools/rbxm2rbxmx.sh
+```
+
+### Manual
+
+- Save updated models to file-system as `.rbxmx` (Roblox Model XML)
+
+## Pull Request
+
+```console
+git checkout -b my-new-updates
+git commit -am "Updated game"
+git push origin my-new-updates
+```
