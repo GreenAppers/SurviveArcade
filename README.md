@@ -2,7 +2,7 @@
 
 ## Setup
 
-First install [Roblox Studio](https://www.roblox.com/create), [Visual Studio Code](https://code.visualstudio.com/download), Git and git clone this repo.
+Install [Roblox Studio](https://www.roblox.com/create), [Visual Studio Code](https://code.visualstudio.com/download), Git and git clone this repo.
 
 ### Install VSCode Extensions
 
@@ -23,7 +23,7 @@ Use the menu to install Rojo and Roblox Studio Plugin. Then `Click to start live
 ### Install Lune
  
 ```console
-aftman add filiptibell/lune
+aftman install
 lune --version
 ```
 
@@ -47,7 +47,8 @@ yarn && yarn build
 ## Studio
 
 - Install plugin https://www.roblox.com/library/3379119778/rbxts-object-to-tree
-- Open `SurvivePinball.rbxlx` in Roblox Studio and click Play to test.
+- Open `SurvivePinball.rbxlx` in Roblox Studio.
+- Click Play to test.
 - Connect Rojo Studio Plugin to the `rojo serve` running in VS Code.
 
 ## Workflow
@@ -64,7 +65,6 @@ yarn && yarn build
 
 ```console
 yarn syncback
-tools/rbxm2rbxmx.sh
 ```
 
 ### Manual
