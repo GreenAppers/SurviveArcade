@@ -97,7 +97,7 @@ setupPinball(
 	BrickColor.new("Pastel Blue"),
 	Enum.Material.Glass
 )
-pinball1:SetPrimaryPartCFrame(
+pinball1:PivotTo(
 	CFrame.new(Vector3.new(pinballPos.X, pinballPos.Y, pinballPos.Z))
 		* CFrame.fromOrientation(math.rad(15), math.rad(-90), math.rad(0))
 )
@@ -114,7 +114,7 @@ setupPinball(
 	BrickColor.new("Sand green"),
 	Enum.Material.Glass
 )
-pinball2:SetPrimaryPartCFrame(
+pinball2:PivotTo(
 	CFrame.new(Vector3.new(pinballPos.Z, pinballPos.Y, pinballPos.X))
 		* CFrame.fromOrientation(math.rad(15), math.rad(180), math.rad(0))
 )
@@ -131,7 +131,7 @@ setupPinball(
 	BrickColor.new("Cork"),
 	Enum.Material.Glass
 )
-pinball3:SetPrimaryPartCFrame(
+pinball3:PivotTo(
 	CFrame.new(Vector3.new(-pinballPos.X, pinballPos.Y, pinballPos.Z))
 		* CFrame.fromOrientation(math.rad(15), math.rad(90), math.rad(0))
 )
@@ -148,8 +148,8 @@ setupPinball(
 	BrickColor.new("Terra Cotta"),
 	Enum.Material.Glass
 )
-pinball4:SetPrimaryPartCFrame(
-	CFrame.new(Vector3.new(-pinballPos.Z, pinballPos.Y, -pinballPos.X))
+pinball4:PivotTo(
+		CFrame.new(Vector3.new(-pinballPos.Z, pinballPos.Y, -pinballPos.X))
 		* CFrame.fromOrientation(math.rad(15), math.rad(0), math.rad(0))
 )
 pinball4.Values:WaitForChild("PinballColor").Value = BrickColor.new("Really red")

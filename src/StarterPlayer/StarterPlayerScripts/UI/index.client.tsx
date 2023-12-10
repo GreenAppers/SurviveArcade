@@ -2,7 +2,7 @@ import { createPortal, createRoot } from "@rbxts/react-roblox";
 import Roact, { StrictMode } from "@rbxts/roact";
 import { Players } from "@rbxts/services";
 
-import { App } from "./components/app";
+import { App } from "./components/App";
 
 const root = createRoot(new Instance("Folder"));
 const target = Players.LocalPlayer.WaitForChild("PlayerGui");

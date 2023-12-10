@@ -1,6 +1,6 @@
 import Roact from "@rbxts/roact";
-
-import { Layer } from "./layer";
+import { Layer } from "./Layer";
+import { Status } from "./Status";
 
 export function App() {
   return (
@@ -9,7 +9,7 @@ export function App() {
         Size={new UDim2(0.2, 0, 0.2, 0)}
         Position={new UDim2(0.02, 0, 0.1, 0)}
       >
-        <textlabel Text={"whats up"} />
+        <Status />
       </frame>
     </Layer>
   );

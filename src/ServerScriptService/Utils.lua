@@ -1,8 +1,8 @@
 local utils = {}
 
 function utils.getDescendentsWhichAre(ancestor, className)
-	assert(typeof(ancestor) == "Instance")
-	assert(typeof(className) == "string")
+	assert(typeof(ancestor) == "Instance", "Expected Instance ancestor")
+	assert(typeof(className) == "string", "Expected string className")
 	local descendents = {}
 	for _, descendent in pairs(ancestor:GetDescendants()) do
 		if descendent:IsA(className) then
@@ -67,8 +67,9 @@ function utils.playSound(object, soundId)
 		sound:Play()
 		return
 	else
-		sound = Instance.new("Sound", object)
+		sound = Instance.new("Sound")
 		sound.SoundId = soundId
+		sound.Parent = object
 		sound:Play()
 	end
 end
