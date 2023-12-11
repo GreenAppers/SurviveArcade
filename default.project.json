@@ -19,6 +19,9 @@
           "$className": "Folder",
           "@rbxts": {
             "$path": "node_modules/@rbxts"
+          },
+          "@flamework": {
+            "$path": "node_modules/@flamework"
           }
         }
       },
@@ -46,12 +49,12 @@
       },
       "Map": {
         "$path": "assets/Workspace/Map"
-      }, 
+      },
       "PinballTables": {
         "$className": "Folder",
         "Events": {
           "$path": "assets/Workspace/PinballTables/Events"
-        }, 
+        },
         "Scripts": {
           "$path": "out/Workspace/PinballTables/Scripts"
         }
@@ -59,16 +62,20 @@
     },
     "Lighting": {
       "$properties": {
-        "Ambient": [
-          0.0,
-          0.0,
-          0.0
-        ],
+        "Technology": {
+          "Enum": 3
+        },
         "Brightness": 2.0,
-        "ClockTime": 23.5,
         "GlobalShadows": true,
-        "Outlines": false,
-        "Technology": "ShadowMap"
+        "Ambient": {
+          "Color3": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "ClockTime": 23.5,
+        "Outlines": false
       }
     },
     "HttpService": {

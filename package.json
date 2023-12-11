@@ -7,7 +7,7 @@
     "build": "yarn build-ts && yarn build-place",
     "build-place": "rojo build -o SurvivePinball.rbxlx",
     "sync": "rojo serve",
-    "syncback": "rojo-synback syncback --input ./SurvivePinball.rbxlx 2>&1 | tee syncback.log && tools/rbxm2rbxmx.sh",
+    "syncback": "rojo-syncback syncback --input ./SurvivePinball.rbxlx 2>&1 | tee syncback.log && tools/rbxm2rbxmx.sh",
     "build-ts": "rbxtsc",
     "watch-ts": "rbxtsc -w"
   },
@@ -23,9 +23,16 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "prettier": "^3.1.0",
-    "typescript": "^5.3.2"
+    "rbxts-transformer-flamework": "^1.0.0-beta.24",
+    "roblox-ts": "^2.2.0",
+    "typescript": "5.2.2"
   },
   "dependencies": {
+    "@flamework/components": "^1.0.0-beta.24",
+    "@flamework/core": "^1.0.0-beta.24",
+    "@flamework/networking": "^1.0.0-beta.24",
+    "@rbxts/profileservice": "^1.4.2",
+    "@rbxts/react-redux": "^0.1.0",
     "@rbxts/react-roblox": "^0.2.0",
     "@rbxts/ripple": "^0.6.0",
     "@rbxts/roact": "npm:@rbxts/react-ts",

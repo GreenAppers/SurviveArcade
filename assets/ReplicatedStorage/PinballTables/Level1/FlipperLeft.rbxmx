@@ -33,18 +33,18 @@
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>30.307465</X>
-          <Y>1.7407777</Y>
-          <Z>112.13164</Z>
-          <R00>0.0000000000000009553371</R00>
-          <R01>0.5735729</R01>
-          <R02>-0.8191464</R02>
-          <R10>0.9999933</R10>
-          <R11>-0.000000000000006764285</R11>
-          <R12>0.000000000000012757353</R12>
-          <R20>0.000000000000026645168</R20>
-          <R21>-0.8191518</R21>
-          <R22>-0.5735767</R22>
+          <X>27.149185</X>
+          <Y>0.667902</Y>
+          <Z>114.50557</Z>
+          <R00>-0.65603423</R00>
+          <R01>-0.00000000000016854791</R01>
+          <R02>-0.7547253</R02>
+          <R10>-0.0000000000005059008</R10>
+          <R11>0.99999523</R11>
+          <R12>0.00000000000027323318</R12>
+          <R20>0.7547286</R20>
+          <R21>0.00000000000055828774</R21>
+          <R22>-0.6560375</R22>
         </CFrame>
       </OptionalCoordinateFrame>
     </Properties>
@@ -203,18 +203,18 @@
         <BinaryString name="Tags"></BinaryString>
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
-            <X>31.626427</X>
-            <Y>0.6610181</Y>
-            <Z>84.25809</Z>
-            <R00>0.0000000040435926</R00>
-            <R01>-0.8191447</R01>
-            <R02>0.57357234</R02>
-            <R10>-0.9999914</R10>
-            <R11>-0.000000011031669</R11>
-            <R12>0.000000040433044</R12>
-            <R20>-0.000000049501104</R20>
-            <R21>-0.57357615</R21>
-            <R22>-0.819152</R22>
+            <X>27.149199</X>
+            <Y>1.3880888</Y>
+            <Z>114.50558</Z>
+            <R00>-0.65603423</R00>
+            <R01>-0.00000000000016854791</R01>
+            <R02>-0.7547253</R02>
+            <R10>-0.0000000000005059008</R10>
+            <R11>0.99999523</R11>
+            <R12>0.00000000000027323318</R12>
+            <R20>0.7547286</R20>
+            <R21>0.00000000000055828774</R21>
+            <R22>-0.6560375</R22>
           </CFrame>
         </OptionalCoordinateFrame>
       </Properties>
@@ -389,7 +389,7 @@
             <bool name="Enabled">true</bool>
             <bool name="LimitsEnabled">true</bool>
             <float name="LowerAngle">0</float>
-            <float name="MotorMaxAcceleration">INF</float>
+            <float name="MotorMaxAcceleration">500000</float>
             <float name="MotorMaxTorque">59741.52</float>
             <float name="Radius">0.21602632</float>
             <float name="Restitution">0</float>

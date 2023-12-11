@@ -9,8 +9,6 @@ function setupPinball(pinball, color, statorColor, baseColor, baseMaterial)
 	local parts = utils.getDescendentsWhichAre(pinball, "BasePart")
 	for _, part in pairs(parts) do
 		if part.name == "BallTemplate" then
-			local script = game.ReplicatedStorage.Scripts.Ball:Clone()
-			script.Parent = part
 			continue
 		end
 		if part.name == "Stator" then

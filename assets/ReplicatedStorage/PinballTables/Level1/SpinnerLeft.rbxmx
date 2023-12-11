@@ -33,18 +33,18 @@
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>77.35884</X>
-          <Y>10.602</Y>
-          <Z>88.58593</Z>
-          <R00>-0.99863136</R00>
-          <R01>0.000017429407</R01>
-          <R02>-0.05230105</R02>
-          <R10>0.000017453294</R10>
+          <X>76.85954</X>
+          <Y>12.632113</Y>
+          <Z>88.61182</Z>
+          <R00>-0.99863183</R00>
+          <R01>0.0000090420335</R01>
+          <R02>-0.052288458</R02>
+          <R10>0.0000090383155</R10>
           <R11>1</R11>
-          <R12>-0.0000000000000000000000000020279116</R12>
-          <R20>0.05230105</R20>
-          <R21>-0.0000009128256</R21>
-          <R22>-0.99863136</R22>
+          <R12>0.00000030707696</R12>
+          <R20>0.052285958</R20>
+          <R21>-0.0000001659295</R21>
+          <R22>-0.9986325</R22>
         </CFrame>
       </OptionalCoordinateFrame>
     </Properties>
@@ -922,7 +922,7 @@
             <bool name="Enabled">true</bool>
             <bool name="LimitsEnabled">false</bool>
             <float name="LowerAngle">-45</float>
-            <float name="MotorMaxAcceleration">INF</float>
+            <float name="MotorMaxAcceleration">500000</float>
             <float name="MotorMaxTorque">20000</float>
             <float name="Radius">0.15</float>
             <float name="Restitution">0</float>

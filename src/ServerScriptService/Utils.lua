@@ -22,7 +22,7 @@ end
 function utils.getParentPinball(instance)
 	while instance.Parent do
 		if instance.Parent.name == "PinballTables" then
-			return instance			
+			return instance
 		end
 		instance = instance.Parent
 	end
@@ -62,7 +62,7 @@ function utils.addScore(player, incrementValue)
 end
 
 function utils.playSound(object, soundId)
-	local sound = object:FindFirstChild("Sound") 
+	local sound = object:FindFirstChild("Sound")
 	if sound then
 		sound:Play()
 		return
