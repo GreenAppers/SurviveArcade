@@ -8,7 +8,8 @@
 		"project": "./tsconfig.json"
 	},
 	"ignorePatterns": [
-		"/out"
+		"/out",
+                "/types"
 	],
 	"plugins": [
 		"@typescript-eslint",
@@ -18,10 +19,11 @@
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:roblox-ts/recommended",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:roblox-ts/recommended"
 	],
 	"rules": {
-		"prettier/prettier": "warn"
+		"prettier/prettier": "warn",
+		"roblox-ts/lua-truthiness": "off"
 	}
 }

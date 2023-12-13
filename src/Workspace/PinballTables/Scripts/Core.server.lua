@@ -2,7 +2,7 @@ local pinballTables = script.Parent.Parent
 local newClaimEvent = pinballTables.Events.NewClaim
 local endClaimEvent = pinballTables.Events.EndClaim
 local newBallEvent = pinballTables.Events.NewBall
-local utils = require(game.ServerScriptService.Utils)
+local utils = require(game.ServerScriptService.utils)
 local ballNumber = 0
 
 function setupPinball(pinball, color, statorColor, baseColor, baseMaterial)
@@ -20,19 +20,6 @@ function setupPinball(pinball, color, statorColor, baseColor, baseMaterial)
 			part.Material = baseMaterial
 		else
 			part.BrickColor = color
-		end
-		if part.Name == "Bouncer" then
-			local script = game.ReplicatedStorage.Scripts.Bouncer:Clone()
-			script.Parent = part
-		elseif part.Name == "Seat" then
-			local script = game.ReplicatedStorage.Scripts.Seat:Clone()
-			script.Parent = part
-		elseif string.match(part.name, "Drain$") then
-			local script = game.ReplicatedStorage.Scripts.Drain:Clone()
-			script.Parent = part
-		elseif string.match(part.name, "Scorer[0-9]+$") then
-			local script = game.ReplicatedStorage.Scripts.Scorer:Clone()
-			script.Parent = part
 		end
 	end
 	pinball.Baseplate.BrickColor = baseColor

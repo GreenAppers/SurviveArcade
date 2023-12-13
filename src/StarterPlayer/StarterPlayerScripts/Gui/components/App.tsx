@@ -1,6 +1,6 @@
-import Roact from "@rbxts/roact";
-import { Layer } from "./Layer";
-import { Status } from "./Status";
+import Roact from "@rbxts/roact"
+import { Layer } from "./Layer"
+import { Status } from "./Status"
 
 export function App() {
   return (
@@ -12,5 +12,5 @@ export function App() {
         <Status />
       </frame>
     </Layer>
-  );
+  )
 }

@@ -49,10 +49,12 @@ yarn && yarn build
 - Install plugin https://www.roblox.com/library/3379119778/rbxts-object-to-tree
 - Open `SurvivePinball.rbxlx` in Roblox Studio.
 - Click Play to test.
-- Connect Rojo Studio Plugin to the `rojo serve` running in VS Code.
 
 ## Workflow
 
+- VSCode > NPM Scripts > Watch
+- VSCode > Command+Shift+P > Rojo Menu > Start
+- Studio > Plugins > Rojo > Connect to `rojo serve` running in VS Code.
 - Develop scripts in VSCode
 - Develop Models in Roblox Studio
 - Drag `Level1` from `Replicated Storage > Pinball Tables` to `Workspace` when modeling. Drag back to play.

@@ -1,5 +1,5 @@
-import { Flamework } from "@flamework/core";
+import { Flamework } from '@flamework/core'
 
-Flamework.addPaths("src/ServerScriptService/Components");
-
-Flamework.ignite();
+Flamework.addPaths('src/ServerScriptService/components')
+Flamework.addPaths('src/ServerScriptService/services')
+Flamework.ignite()

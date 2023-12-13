@@ -1,8 +1,8 @@
-import Roact from "@rbxts/roact";
+import Roact from "@rbxts/roact"
 
 interface LayerProps {
-  displayOrder?: number;
-  children?: Roact.Children;
+  displayOrder?: number
+  children?: Roact.Children
 }
 
 export function Layer({ displayOrder, children }: LayerProps) {
@@ -15,5 +15,5 @@ export function Layer({ displayOrder, children }: LayerProps) {
     >
       {children}
     </screengui>
-  );
+  )
 }

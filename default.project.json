@@ -25,8 +25,8 @@
           }
         }
       },
-      "Scripts": {
-        "$path": "out/ReplicatedStorage/Scripts"
+      "shared": {
+        "$path": "out/ReplicatedStorage/shared"
       }
     },
     "ServerScriptService": {
@@ -62,11 +62,6 @@
     },
     "Lighting": {
       "$properties": {
-        "Technology": {
-          "Enum": 3
-        },
-        "Brightness": 2.0,
-        "GlobalShadows": true,
         "Ambient": {
           "Color3": [
             0.0,
@@ -75,7 +70,12 @@
           ]
         },
         "ClockTime": 23.5,
-        "Outlines": false
+        "Technology": {
+          "Enum": 3
+        },
+        "Outlines": false,
+        "Brightness": 2.0,
+        "GlobalShadows": true
       }
     },
     "HttpService": {
