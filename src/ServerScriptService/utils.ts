@@ -29,25 +29,25 @@ export function forEveryPlayer(
   return events
 }
 
-export function isPinball(pinball: Instance) {
-  if (string.match(pinball.Name, '^Pinball[0-9]+$')[0]) {
+export function isArcadeTable(arcadeTable: Instance) {
+  if (string.match(arcadeTable.Name, '^Table[0-9]+$')[0]) {
     return true
   }
   return false
 }
 
-export function getParentPinball(instance: Instance) {
+export function getParentArcadeTable(instance: Instance) {
   while (instance.Parent) {
-    if (instance.Parent.Name === 'PinballTables') return instance
+    if (instance.Parent.Name === 'ArcadeTables') return instance
     instance = instance.Parent
   }
   return instance
 }
 
-export function getPinballOwner(instance: Instance) {
-  const pinball = getParentPinball(instance)
-  if (!pinball) return undefined
-  return store.getState().pinballTables[pinball?.Name ?? '']?.owner
+export function getArcadeTableOwner(instance: Instance) {
+  const arcadeTable = getParentArcadeTable(instance)
+  if (!arcadeTable) return undefined
+  return store.getState().arcadeTables[arcadeTable?.Name ?? '']?.owner
 }
 
 export function addScore(player: Player, incrementValue: number) {

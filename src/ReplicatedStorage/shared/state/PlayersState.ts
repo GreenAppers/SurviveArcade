@@ -4,6 +4,8 @@ export interface PlayerData {
   readonly score: PlayerScore
 }
 
+export type PlayerDataType = keyof PlayerData
+
 export interface PlayerScore {
   readonly score: number
   readonly highScore: number
@@ -12,7 +14,7 @@ export interface PlayerScore {
 export type PlayerScoreType = keyof PlayerScore
 
 export interface PlayersState {
-  readonly [player: string]: PlayerData | undefined
+  readonly [playerKey: string]: PlayerData | undefined
 }
 
 export const defaultPlayerData = {
@@ -25,8 +27,8 @@ export const defaultPlayerData = {
 const KEY_TEMPLATE = '%d'
 const initialState: PlayersState = {}
 
-export const getPlayer = (players: PlayersState, userID: number) =>
-  players[KEY_TEMPLATE.format(userID)]
+export const getPlayer = (state: PlayersState, userID: number) =>
+  state[KEY_TEMPLATE.format(userID)]
 
 export const playersSlice = createProducer(initialState, {
   loadPlayerData: (state, userID: number, data: PlayerData) => ({
@@ -40,12 +42,12 @@ export const playersSlice = createProducer(initialState, {
   }),
 
   addScore: (state, userID: number, amount: number) => {
-    const player = KEY_TEMPLATE.format(userID)
-    const scoreState = state[player]?.score
+    const playerKey = KEY_TEMPLATE.format(userID)
+    const scoreState = state[playerKey]?.score
     const newScore = (scoreState?.score || 0) + (amount || 0)
     return {
       ...state,
-      [player]: {
+      [playerKey]: {
         score: {
           ...scoreState,
           score: newScore,
@@ -56,11 +58,11 @@ export const playersSlice = createProducer(initialState, {
   },
 
   resetScore: (state, userID: number) => {
-    const player = KEY_TEMPLATE.format(userID)
-    const scoreState = state[player]?.score
+    const playerKey = KEY_TEMPLATE.format(userID)
+    const scoreState = state[playerKey]?.score
     return {
       ...state,
-      [player]: {
+      [playerKey]: {
         score: {
           ...scoreState,
           score: 0,

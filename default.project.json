@@ -1,5 +1,5 @@
 {
-  "name": "SurvivePinball",
+  "name": "SurviveArcade",
   "globIgnorePaths": [
     "**/package.json",
     "**/tsconfig.json"
@@ -7,10 +7,10 @@
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
-      "PinballTables": {
+      "ArcadeTables": {
         "$className": "Folder",
-        "Level1": {
-          "$path": "assets/ReplicatedStorage/PinballTables/Level1"
+        "Pinball1": {
+          "$path": "assets/ReplicatedStorage/ArcadeTables/Pinball1"
         }
       },
       "rbxts_include": {
@@ -50,13 +50,13 @@
       "Map": {
         "$path": "assets/Workspace/Map"
       },
-      "PinballTables": {
+      "ArcadeTables": {
         "$className": "Folder",
         "Events": {
-          "$path": "assets/Workspace/PinballTables/Events"
+          "$path": "assets/Workspace/ArcadeTables/Events"
         },
         "Scripts": {
-          "$path": "out/Workspace/PinballTables/Scripts"
+          "$path": "out/Workspace/ArcadeTables/Scripts"
         }
       }
     },

@@ -5,7 +5,7 @@ import { OnInit, Service } from '@flamework/core'
 // import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
 @Service()
-export class PinballClientService implements OnInit {
+export class ArcadeServerService implements OnInit {
   onInit() {
     /* 
     while true do

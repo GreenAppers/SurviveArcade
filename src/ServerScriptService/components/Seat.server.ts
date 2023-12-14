@@ -1,20 +1,20 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { store } from 'ServerScriptService/store'
-import { getParentPinball, getPinballOwner } from 'ServerScriptService/utils'
+import { getParentArcadeTable } from 'ServerScriptService/utils'
 
 @Component({ tag: 'Seat' })
 export class SeatComponent extends BaseComponent implements OnStart {
   onStart() {
     const seat = this.instance as Seat
-    const pinball = getParentPinball(this.instance)
+    const pinball = getParentArcadeTable(this.instance)
     seat.GetPropertyChangedSignal('Occupant').Connect(() => {
       //const owner = getPinballOwner(pinball)
       if (!seat.Occupant) {
         //if (!owner) return
         store
           .getActions()
-          .claimPinballTable(store.getState(), pinball.Name, undefined)
+          .claimArcadeTable(store.getState(), pinball.Name, undefined)
 
         /*
 		local player = values.OwnerValue.Value
@@ -41,7 +41,7 @@ export class SeatComponent extends BaseComponent implements OnStart {
       if (player)
         store
           .getActions()
-          .claimPinballTable(store.getState(), pinball.Name, player)
+          .claimArcadeTable(store.getState(), pinball.Name, player)
 
       /*if player and player:FindFirstChild("PinballOwned").Value == nil then
 		values.OwnerValue.Value = player

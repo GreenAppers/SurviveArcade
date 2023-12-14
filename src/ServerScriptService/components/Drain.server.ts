@@ -5,7 +5,6 @@ import { OnStart } from '@flamework/core'
 export class DrainComponent extends BaseComponent implements OnStart {
   onStart() {
     const drain = this.instance as BasePart
-    print(`Wow! I'm attached to ${this.instance.GetFullName()}`)
     drain.Touched?.Connect((part) => {
       if (part.Parent?.Name !== 'Balls') return
 

@@ -1,9 +1,11 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
+import { Players } from '@rbxts/services'
+import { Events } from 'ServerScriptService/network'
 import {
   addScore,
-  getParentPinball,
-  getPinballOwner,
+  getArcadeTableOwner,
+  getParentArcadeTable,
   playSound,
 } from 'ServerScriptService/utils'
 
@@ -11,15 +13,15 @@ import {
 export class BouncerComponent extends BaseComponent implements OnStart {
   onStart() {
     const part = this.instance as BasePart
-    const pinball = getParentPinball(this.instance)
-    print(`Wow! I'm attached to ${this.instance.GetFullName()}`)
+    const arcadeTable = getParentArcadeTable(this.instance)
+
     part.Touched?.Connect((hit) => {
       part.Material = Enum.Material.Neon
 
-      const player = getPinballOwner(pinball)
+      const player = getArcadeTableOwner(arcadeTable)
       if (player) addScore(player, 1000)
 
-      const audio = pinball.FindFirstChild('Audio') as
+      const audio = arcadeTable.FindFirstChild('Audio') as
         | { BouncerSound: Sound }
         | undefined
       if (audio) playSound(part, audio.BouncerSound.SoundId)
@@ -28,8 +30,9 @@ export class BouncerComponent extends BaseComponent implements OnStart {
         | Humanoid
         | undefined
       if (humanoid) {
-        //local touchedPlayer = game.Players:GetPlayerFromCharacter(hit.Parent)
-        //workspace.PinballTables.Events.BouncePlayer:FireClient(touchedPlayer, part.Position)
+        const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
+        if (touchedPlayer)
+          Events.playerBounce.fire(touchedPlayer, part.Position)
       }
 
       task.wait(0.5)

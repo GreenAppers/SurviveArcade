@@ -1,7 +1,7 @@
-local pinballTables = script.Parent.Parent
-local newClaimEvent = pinballTables.Events.NewClaim
-local endClaimEvent = pinballTables.Events.EndClaim
-local newBallEvent = pinballTables.Events.NewBall
+local arcadeTables = script.Parent.Parent
+local newClaimEvent = arcadeTables.Events.NewClaim
+local endClaimEvent = arcadeTables.Events.EndClaim
+local newBallEvent = arcadeTables.Events.NewBall
 local utils = require(game.ServerScriptService.utils)
 local ballNumber = 0
 
@@ -26,7 +26,7 @@ function setupPinball(pinball, color, statorColor, baseColor, baseMaterial)
 	pinball.Baseplate.Material = baseMaterial
 end
 
-pinballTables.Events.Claim.Event:Connect(function(player, pinball, claimed)
+arcadeTables.Events.Claim.Event:Connect(function(player, pinball, claimed)
 	local flipperLeft = pinball:FindFirstChild("FlipperLeft")
 	local flipperRight = pinball:FindFirstChild("FlipperRight")
 	local spinnerLeft = pinball:FindFirstChild("SpinnerLeft")
@@ -55,8 +55,8 @@ pinballTables.Events.Claim.Event:Connect(function(player, pinball, claimed)
 	newBallEvent:FireClient(player, pinball.Name, ball.Name)
 end)
 
-pinballTables.Events.FlipFlipper.OnServerEvent:Connect(function(player, pinballName, flipperName)
-	local pinball = pinballTables:FindFirstChild(pinballName)
+arcadeTables.Events.FlipFlipper.OnServerEvent:Connect(function(player, pinballName, flipperName)
+	local pinball = arcadeTables:FindFirstChild(pinballName)
 	if pinball == nil then
 		return
 	end
@@ -70,11 +70,11 @@ pinballTables.Events.FlipFlipper.OnServerEvent:Connect(function(player, pinballN
 	end
 end)
 
-local pinballTemplate = game.ReplicatedStorage.PinballTables.Level1
+local pinballTemplate = game.ReplicatedStorage.ArcadeTables.Pinball1
 local pinballPos = Vector3.new(192.306, 29.057, -0)
 
 local pinball1 = pinballTemplate:Clone()
-pinball1.Name = "Pinball1"
+pinball1.Name = "Table1"
 setupPinball(
 	pinball1,
 	BrickColor.new("Cyan"),
@@ -86,12 +86,11 @@ pinball1:PivotTo(
 	CFrame.new(Vector3.new(pinballPos.X, pinballPos.Y, pinballPos.Z))
 		* CFrame.fromOrientation(math.rad(15), math.rad(-90), math.rad(0))
 )
-pinball1.Values:WaitForChild("PinballColor").Value = BrickColor.new("Cyan")
 pinball1.Values:WaitForChild("TeamName").Value = "Blue Team"
-pinball1.Parent = pinballTables
+pinball1.Parent = arcadeTables
 
 local pinball2 = pinballTemplate:Clone()
-pinball2.Name = "Pinball2"
+pinball2.Name = "Table2"
 setupPinball(
 	pinball2,
 	BrickColor.new("Lime green"),
@@ -103,12 +102,11 @@ pinball2:PivotTo(
 	CFrame.new(Vector3.new(pinballPos.Z, pinballPos.Y, pinballPos.X))
 		* CFrame.fromOrientation(math.rad(15), math.rad(180), math.rad(0))
 )
-pinball2.Values:WaitForChild("PinballColor").Value = BrickColor.new("Lime green")
 pinball2.Values:WaitForChild("TeamName").Value = "Green Team"
-pinball2.Parent = pinballTables
+pinball2.Parent = arcadeTables
 
 local pinball3 = pinballTemplate:Clone()
-pinball3.Name = "Pinball3"
+pinball3.Name = "Table3"
 setupPinball(
 	pinball3,
 	BrickColor.new("Deep orange"),
@@ -120,12 +118,11 @@ pinball3:PivotTo(
 	CFrame.new(Vector3.new(-pinballPos.X, pinballPos.Y, pinballPos.Z))
 		* CFrame.fromOrientation(math.rad(15), math.rad(90), math.rad(0))
 )
-pinball3.Values:WaitForChild("PinballColor").Value = BrickColor.new("Deep orange")
 pinball3.Values:WaitForChild("TeamName").Value = "Yellow Team"
-pinball3.Parent = pinballTables
+pinball3.Parent = arcadeTables
 
 local pinball4 = pinballTemplate:Clone()
-pinball4.Name = "Pinball4"
+pinball4.Name = "Table4"
 setupPinball(
 	pinball4,
 	BrickColor.new("Really red"),
@@ -137,6 +134,5 @@ pinball4:PivotTo(
 		CFrame.new(Vector3.new(-pinballPos.Z, pinballPos.Y, -pinballPos.X))
 		* CFrame.fromOrientation(math.rad(15), math.rad(0), math.rad(0))
 )
-pinball4.Values:WaitForChild("PinballColor").Value = BrickColor.new("Really red")
 pinball4.Values:WaitForChild("TeamName").Value = "Red Team"
-pinball4.Parent = pinballTables
+pinball4.Parent = arcadeTables

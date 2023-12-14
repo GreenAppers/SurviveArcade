@@ -1,13 +1,13 @@
 {
-  "name": "SurvivePinball",
+  "name": "SurviveArcade",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "yarn compile && yarn build-place",
-    "build-place": "rojo build -o SurvivePinball.rbxlx",
+    "build-place": "rojo build -o SurviveArcade.rbxlx",
     "sync": "rojo serve",
-    "syncback": "rojo-syncback syncback --input ./SurvivePinball.rbxlx 2>&1 | tee syncback.log && tools/rbxm2rbxmx.sh",
+    "syncback": "rojo-syncback syncback --input ./SurviveArcade.rbxlx 2>&1 | tee syncback.log && tools/rbxm2rbxmx.sh",
     "compile": "rbxtsc",
     "watch": "rbxtsc -w"
   },
@@ -32,6 +32,7 @@
     "@flamework/components": "^1.0.0-beta.24",
     "@flamework/core": "^1.0.0-beta.24",
     "@flamework/networking": "^1.0.0-beta.24",
+    "@rbxts/object-utils": "^1.0.4",
     "@rbxts/profileservice": "^1.4.2",
     "@rbxts/react-reflex": "^0.2.0",
     "@rbxts/react-roblox": "^0.2.0",
