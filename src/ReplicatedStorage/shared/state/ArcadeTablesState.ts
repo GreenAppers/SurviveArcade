@@ -18,13 +18,13 @@ const initialState: ArcadeTablesState = {
 export type ArcadeTableName = keyof ArcadeTablesState
 
 export const arcadeTablesSlice = createProducer(initialState, {
-  claimArcadeTable: (state, name: ArcadeTableName, owner?: Player) => 
-    state[name]?.owner === owner
+  claimArcadeTable: (state, name: ArcadeTableName, owner?: Player) => {
+    const prevTable = state[name]
+    return !prevTable || prevTable.owner === owner || (owner && prevTable.owner)
       ? state
-      : state[name]
-        ? {
-            ...state,
-            [name]: { ...state[name], owner },
-          }
-        : state,
+      : {
+          ...state,
+          [name]: { ...prevTable, owner },
+        }
+  },
 })

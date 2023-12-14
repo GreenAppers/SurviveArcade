@@ -12,10 +12,8 @@ export class SeatComponent extends BaseComponent implements OnStart {
       //const owner = getPinballOwner(pinball)
       if (!seat.Occupant) {
         //if (!owner) return
-        store
-          .getActions()
-          .claimArcadeTable(store.getState(), pinball.Name, undefined)
-
+        store.claimArcadeTable(pinball.Name, undefined)
+        print('claimArcadeTable none', pinball.Name)
         /*
 		local player = values.OwnerValue.Value
 		values.OwnerValue.Value = nil
@@ -38,11 +36,8 @@ export class SeatComponent extends BaseComponent implements OnStart {
       const player = game
         .GetService('Players')
         .GetPlayerFromCharacter(character)
-      if (player)
-        store
-          .getActions()
-          .claimArcadeTable(store.getState(), pinball.Name, player)
-
+      if (player) store.claimArcadeTable(pinball.Name, player)
+      print('claimArcadeTable', pinball.Name, player)
       /*if player and player:FindFirstChild("PinballOwned").Value == nil then
 		values.OwnerValue.Value = player
 		--mainItems.OwnerDoor.Title.SurfaceGui.TextLabel.Text = tostring(values.OwnerValue.Value).."'s Tycoon"

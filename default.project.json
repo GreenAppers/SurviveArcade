@@ -44,21 +44,12 @@
       "$path": "assets/Teams"
     },
     "Workspace": {
-      "$properties": {
-        "FilteringEnabled": true
-      },
-      "Map": {
-        "$path": "assets/Workspace/Map"
-      },
-      "ArcadeTables": {
-        "$className": "Folder",
-        "Events": {
-          "$path": "assets/Workspace/ArcadeTables/Events"
-        }
-      }
+      "$path": "assets/Workspace"
     },
     "Lighting": {
       "$properties": {
+        "GlobalShadows": true,
+        "Brightness": 2.0,
         "Ambient": {
           "Color3": [
             0.0,
@@ -70,9 +61,7 @@
         "Technology": {
           "Enum": 3
         },
-        "Outlines": false,
-        "Brightness": 2.0,
-        "GlobalShadows": true
+        "Outlines": false
       }
     },
     "HttpService": {

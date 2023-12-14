@@ -1,13 +1,14 @@
-import { OnInit, Service } from '@flamework/core'
+import { Controller, OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { selectArcadeTableNameOwnedBy } from 'ReplicatedStorage/shared/state'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
-@Service()
-export class ArcadeClientService implements OnInit {
-  onInit() {
+@Controller({})
+export class ArcadeController implements OnStart {
+  onStart() {
     const player = Players.LocalPlayer
+    print('subscribing to client aracade state')
 
     // Adjust local player's camera on claim/unclaim.
     store.subscribe(
@@ -17,6 +18,7 @@ export class ArcadeClientService implements OnInit {
         if (arcadeTableName) {
           const arcadeTable =
             game.Workspace.ArcadeTables.FindFirstChild(arcadeTableName)
+          print('and thizzz one', arcadeTable)
           const baseplate = arcadeTable?.FindFirstChild('Baseplate') as
             | BasePart
             | undefined

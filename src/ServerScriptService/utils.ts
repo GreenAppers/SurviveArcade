@@ -50,12 +50,6 @@ export function getArcadeTableOwner(instance: Instance) {
   return store.getState().arcadeTables[arcadeTable?.Name ?? '']?.owner
 }
 
-export function addScore(player: Player, incrementValue: number) {
-  return store
-    .getActions()
-    .addScore(store.getState(), player.UserId, incrementValue)
-}
-
 export function playSound(object: Instance, soundId: string) {
   let sound = object.FindFirstChild('Sound') as Sound
   if (sound) {

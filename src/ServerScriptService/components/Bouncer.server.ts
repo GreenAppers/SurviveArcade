@@ -2,8 +2,8 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { Events } from 'ServerScriptService/network'
+import { store } from 'ServerScriptService/store'
 import {
-  addScore,
   getArcadeTableOwner,
   getParentArcadeTable,
   playSound,
@@ -19,12 +19,12 @@ export class BouncerComponent extends BaseComponent implements OnStart {
       part.Material = Enum.Material.Neon
 
       const player = getArcadeTableOwner(arcadeTable)
-      if (player) addScore(player, 1000)
+      if (player) store.addScore(player.UserId, 1000)
 
       const audio = arcadeTable.FindFirstChild('Audio') as
-        | { BouncerSound: Sound }
+        | { BouncerSound?: Sound }
         | undefined
-      if (audio) playSound(part, audio.BouncerSound.SoundId)
+      if (audio?.BouncerSound) playSound(part, audio.BouncerSound.SoundId)
 
       const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
         | Humanoid
