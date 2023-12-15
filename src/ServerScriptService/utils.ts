@@ -1,4 +1,5 @@
-import { Players } from '@rbxts/services'
+import { CollectionService, Players } from '@rbxts/services'
+import { ArcadeTableTag } from 'ReplicatedStorage/shared/tags'
 import { store } from 'ServerScriptService/store'
 
 type PlayerReceivingFunction = (player: Player) => unknown
@@ -30,22 +31,21 @@ export function forEveryPlayer(
 }
 
 export function isArcadeTable(arcadeTable: Instance) {
-  if (string.match(arcadeTable.Name, '^Table[0-9]+$')[0]) {
-    return true
-  }
-  return false
+  return CollectionService.HasTag(arcadeTable, ArcadeTableTag)
 }
 
-export function getParentArcadeTable(instance: Instance) {
-  while (instance.Parent) {
-    if (instance.Parent.Name === 'ArcadeTables') return instance as ArcadeTable
+export function getArcadeTableFromDescendent(instance: Instance) {
+  while (instance) {
+    if (CollectionService.HasTag(instance, ArcadeTableTag))
+      return instance as ArcadeTable
+    if (!instance.Parent) break
     instance = instance.Parent
   }
-  return instance as ArcadeTable
+  return undefined
 }
 
 export function getArcadeTableOwner(instance: Instance) {
-  const arcadeTable = getParentArcadeTable(instance)
+  const arcadeTable = getArcadeTableFromDescendent(instance)
   if (!arcadeTable?.Name) return undefined
   return store.getState().arcadeTables[arcadeTable.Name]?.owner
 }

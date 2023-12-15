@@ -1,7 +1,8 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
+import { BallTag } from 'ReplicatedStorage/shared/tags'
 
-@Component({ tag: 'Ball' })
+@Component({ tag: BallTag })
 export class BallComponent extends BaseComponent implements OnStart {
   onStart() {
     const ball = this.instance as BasePart

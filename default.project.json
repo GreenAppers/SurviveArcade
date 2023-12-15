@@ -48,8 +48,12 @@
     },
     "Lighting": {
       "$properties": {
-        "GlobalShadows": true,
+        "Technology": {
+          "Enum": 3
+        },
+        "Outlines": false,
         "Brightness": 2.0,
+        "GlobalShadows": true,
         "Ambient": {
           "Color3": [
             0.0,
@@ -57,11 +61,7 @@
             0.0
           ]
         },
-        "ClockTime": 23.5,
-        "Technology": {
-          "Enum": 3
-        },
-        "Outlines": false
+        "ClockTime": 23.5
       }
     },
     "HttpService": {

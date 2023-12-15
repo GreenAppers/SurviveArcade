@@ -1,17 +1,19 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
+import { ScorerTag } from 'ReplicatedStorage/shared/tags'
 import { store } from 'ServerScriptService/store'
 import {
+  getArcadeTableFromDescendent,
   getArcadeTableOwner,
-  getParentArcadeTable,
   playSound,
 } from 'ServerScriptService/utils'
 
-@Component({ tag: 'Scorer' })
+@Component({ tag: ScorerTag })
 export class ScorerComponent extends BaseComponent implements OnStart {
   onStart() {
     const part = this.instance as BasePart
-    const arcadeTable = getParentArcadeTable(this.instance)
+    const arcadeTable = getArcadeTableFromDescendent(this.instance)
+    if (!arcadeTable) throw error('Scorer has no ancestor ArcadeTable')
 
     part.Touched?.Connect((hit) => {
       part.Material = Enum.Material.Neon
