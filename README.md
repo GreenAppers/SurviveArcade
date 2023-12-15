@@ -1,4 +1,4 @@
-# SurviveArcade
+# SurviveArcade [![build](https://github.com/GreenAppers/SurviveArcade/actions/workflows/build.yml/badge.svg)](https://github.com/GreenAppers/SurviveArcade/actions/workflows/build.yml)
 
 ![thumbnail](./thumbnails/thumbnail1.jpg)
 
