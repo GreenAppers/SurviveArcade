@@ -1,5 +1,5 @@
 {
-  "name": "SurvivePinball",
+  "name": "SurviveArcade",
   "globIgnorePaths": [
     "**/package.json",
     "**/tsconfig.json"
@@ -7,10 +7,10 @@
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
-      "PinballTables": {
+      "ArcadeTables": {
         "$className": "Folder",
-        "Level1": {
-          "$path": "assets/ReplicatedStorage/PinballTables/Level1"
+        "Pinball1": {
+          "$path": "assets/ReplicatedStorage/ArcadeTables/Pinball1"
         }
       },
       "rbxts_include": {
@@ -25,8 +25,8 @@
           }
         }
       },
-      "Scripts": {
-        "$path": "out/ReplicatedStorage/Scripts"
+      "shared": {
+        "$path": "out/ReplicatedStorage/shared"
       }
     },
     "ServerScriptService": {
@@ -44,29 +44,12 @@
       "$path": "assets/Teams"
     },
     "Workspace": {
-      "$properties": {
-        "FilteringEnabled": true
-      },
-      "Map": {
-        "$path": "assets/Workspace/Map"
-      },
-      "PinballTables": {
-        "$className": "Folder",
-        "Events": {
-          "$path": "assets/Workspace/PinballTables/Events"
-        },
-        "Scripts": {
-          "$path": "out/Workspace/PinballTables/Scripts"
-        }
-      }
+      "$path": "assets/Workspace"
     },
     "Lighting": {
       "$properties": {
-        "Technology": {
-          "Enum": 3
-        },
-        "Brightness": 2.0,
         "GlobalShadows": true,
+        "Brightness": 2.0,
         "Ambient": {
           "Color3": [
             0.0,
@@ -75,6 +58,9 @@
           ]
         },
         "ClockTime": 23.5,
+        "Technology": {
+          "Enum": 3
+        },
         "Outlines": false
       }
     },

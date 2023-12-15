@@ -1,4 +1,4 @@
-# SurvivePinball
+# SurviveArcade
 
 ## Setup
 
@@ -38,7 +38,7 @@ node --version
 npm install --global yarn roblox-ts
 ```
 
-## Build `SurvivePinball.rbxlx`
+## Build `SurviveArcade.rbxlx`
 
 ```console
 yarn && yarn build
@@ -47,21 +47,23 @@ yarn && yarn build
 ## Studio
 
 - Install plugin https://www.roblox.com/library/3379119778/rbxts-object-to-tree
-- Open `SurvivePinball.rbxlx` in Roblox Studio.
+- Open `SurviveArcade.rbxlx` in Roblox Studio.
 - Click Play to test.
-- Connect Rojo Studio Plugin to the `rojo serve` running in VS Code.
 
 ## Workflow
 
+- VSCode > NPM Scripts > Watch
+- VSCode > Command+Shift+P > Rojo Menu > Start
+- Studio > Plugins > Rojo > Connect to `rojo serve` running in VS Code.
 - Develop scripts in VSCode
 - Develop Models in Roblox Studio
-- Drag `Level1` from `Replicated Storage > Pinball Tables` to `Workspace` when modeling. Drag back to play.
+- Drag `Level1` from `Replicated Storage > Arcade Tables` to `Workspace` when modeling. Drag back to play.
 
 ## Prepare Pull Request
 
 ### Automatic
 
-- Save changes to `SurvivePinball.rbxlx`
+- Save changes to `SurviveArcade.rbxlx`
 
 ```console
 yarn syncback
