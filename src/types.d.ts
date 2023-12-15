@@ -1,9 +1,18 @@
+interface ArcadeMap {
+  arcadeTableCFrames: Record<string, CFrame>
+}
+
 interface ArcadeTable extends Model {
+  Name: ArcadeTableName
   Baseplate: BasePart
   Values: Folder & {
     TeamName: StringValue
   }
 }
+
+type ArcadeTableName = 'Table1' | 'Table2' | 'Table3' | 'Table4'
+
+type ArcadeTableType = 'Pinball1'
 
 interface Flipper extends Model {
   Flipper: BasePart & {
@@ -26,6 +35,21 @@ interface Spinner extends Model {
     Spinner: BasePart
   }
 }
+
+interface Teams extends Instance {
+  'Blue Team': Team
+  'Green Team': Team
+  'Red Team': Team
+  'Unclaimed Team': Team
+  'Yellow Team': Team
+}
+
+type TeamName =
+  | 'Blue Team'
+  | 'Green Team'
+  | 'Red Team'
+  | 'Unclaimed Team'
+  | 'Yellow Team'
 
 interface Workspace extends Instance {
   ArcadeTables: Folder & {

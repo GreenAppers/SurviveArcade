@@ -38,16 +38,16 @@ export function isArcadeTable(arcadeTable: Instance) {
 
 export function getParentArcadeTable(instance: Instance) {
   while (instance.Parent) {
-    if (instance.Parent.Name === 'ArcadeTables') return instance
+    if (instance.Parent.Name === 'ArcadeTables') return instance as ArcadeTable
     instance = instance.Parent
   }
-  return instance
+  return instance as ArcadeTable
 }
 
 export function getArcadeTableOwner(instance: Instance) {
   const arcadeTable = getParentArcadeTable(instance)
-  if (!arcadeTable) return undefined
-  return store.getState().arcadeTables[arcadeTable?.Name ?? '']?.owner
+  if (!arcadeTable?.Name) return undefined
+  return store.getState().arcadeTables[arcadeTable.Name]?.owner
 }
 
 export function playSound(object: Instance, soundId: string) {

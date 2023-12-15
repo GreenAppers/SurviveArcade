@@ -8,6 +8,7 @@ export class SeatComponent extends BaseComponent implements OnStart {
   onStart() {
     const seat = this.instance as Seat
     const arcadeTable = getParentArcadeTable(this.instance)
+    if (!arcadeTable) return
 
     seat.GetPropertyChangedSignal('Occupant').Connect(() => {
       if (!seat.Occupant) {
