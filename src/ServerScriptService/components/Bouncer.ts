@@ -14,7 +14,6 @@ export class BouncerComponent extends BaseComponent implements OnStart {
   onStart() {
     const part = this.instance as BasePart
     const arcadeTable = getParentArcadeTable(this.instance)
-    if (!arcadeTable) return
 
     part.Touched?.Connect((hit) => {
       part.Material = Enum.Material.Neon

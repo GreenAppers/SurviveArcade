@@ -8,11 +8,10 @@ import {
 } from 'ServerScriptService/utils'
 
 @Component({ tag: 'Scorer' })
-export class MyComponent extends BaseComponent implements OnStart {
+export class ScorerComponent extends BaseComponent implements OnStart {
   onStart() {
     const part = this.instance as BasePart
     const arcadeTable = getParentArcadeTable(this.instance)
-    if (!arcadeTable) return
 
     part.Touched?.Connect((hit) => {
       part.Material = Enum.Material.Neon

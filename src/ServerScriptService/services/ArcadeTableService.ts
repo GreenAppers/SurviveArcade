@@ -2,6 +2,7 @@ import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Teams } from '@rbxts/services'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
+import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { playSound } from 'ServerScriptService/utils'
@@ -25,9 +26,17 @@ export class ArcadeTableService implements OnStart {
             continue
           this.onTableClaimed(tableName, arcadeTableState.owner)
           if (arcadeTableState.owner) {
-            this.onPlayerClaimed(arcadeTableState.owner, tableName)
+            this.onPlayerClaimed(
+              arcadeTableState.owner,
+              tableName,
+              arcadeTableState,
+            )
           } else if (previousArcadeTableState?.owner) {
-            this.onPlayerClaimed(previousArcadeTableState.owner, tableName)
+            this.onPlayerClaimed(
+              previousArcadeTableState.owner,
+              tableName,
+              arcadeTableState,
+            )
           }
         }
       },
@@ -63,14 +72,17 @@ export class ArcadeTableService implements OnStart {
     }
   }
 
-  onPlayerClaimed(player: Player, tableName?: string) {
+  onPlayerClaimed(
+    player: Player,
+    tableName?: string,
+    tableState?: ArcadeTableState,
+  ) {
+    player.Team = Teams[tableState?.teamName || 'Unclaimed Team']
     if (!tableName) {
       player.Team = Teams['Unclaimed Team']
       store.resetScore(player.UserId)
       return
     }
-    // mainItems.OwnerDoor.Title.SurfaceGui.TextLabel.Text = tostring(values.OwnerValue.Value).."'s Tycoon"
-    // player.Team = Teams[values.TeamName.Value]
   }
 
   onTableClaimed(tableName: string, player?: Player) {
@@ -100,7 +112,5 @@ export class ArcadeTableService implements OnStart {
     flipperLeft.Flipper.Rotor.SetNetworkOwner(player)
     flipperRight.Flipper.Rotor.SetNetworkOwner(player)
     spinnerLeft.Spinner.Spinner.SetNetworkOwner(player)
-    //newClaimEvent:FireClient(player, pinball.Name)
-    //newBallEvent:FireClient(player, pinball.Name, ball.Name)
   }
 }

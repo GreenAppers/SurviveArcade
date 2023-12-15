@@ -11,7 +11,6 @@ export class DrainComponent extends BaseComponent implements OnStart {
   onStart() {
     const drain = this.instance as BasePart
     const arcadeTable = getParentArcadeTable(this.instance)
-    if (!arcadeTable) return
 
     drain.Touched?.Connect((part) => {
       if (part.Parent?.Name !== 'Balls') return
