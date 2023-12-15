@@ -1,0 +1,22 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bahmutov/npm-install@v1
+      - uses: ok-nick/setup-aftman@v0.3.0
+
+      - name: Lint
+        run: yarn eslint 
+
+      - name: Build project
+        run: yarn build
