@@ -3,10 +3,12 @@ import { OnStart } from '@flamework/core'
 import { BallTag } from 'ReplicatedStorage/shared/tags'
 
 @Component({ tag: BallTag })
-export class BallComponent extends BaseComponent implements OnStart {
+export class BallComponent
+  extends BaseComponent<{}, BasePart>
+  implements OnStart
+{
   onStart() {
-    const ball = this.instance as BasePart
-    ball.Touched?.Connect((part) => {
+    this.instance.Touched?.Connect((part) => {
       const humanoid = part.Parent?.FindFirstChild('Humanoid') as
         | Humanoid
         | undefined

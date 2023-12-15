@@ -4,9 +4,12 @@ import { CollectionService } from '@rbxts/services'
 import { BallTag, BouncerTag } from 'ReplicatedStorage/shared/tags'
 
 @Component({ tag: BallTag })
-export class BallComponent extends BaseComponent implements OnStart {
+export class BallComponent
+  extends BaseComponent<{}, BasePart>
+  implements OnStart
+{
   onStart() {
-    const ball = this.instance as BasePart
+    const ball = this.instance
     ball.Touched?.Connect((part) => {
       if (CollectionService.HasTag(part, BouncerTag)) {
         ball.ApplyImpulse(ball.Position.sub(part.Position).mul(1000))

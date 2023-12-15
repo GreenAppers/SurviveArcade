@@ -5,9 +5,9 @@ import { store } from 'ServerScriptService/store'
 import { getArcadeTableFromDescendent } from 'ServerScriptService/utils'
 
 @Component({ tag: SeatTag })
-export class SeatComponent extends BaseComponent implements OnStart {
+export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
   onStart() {
-    const seat = this.instance as Seat
+    const seat = this.instance
     const arcadeTable = getArcadeTableFromDescendent(this.instance)
     if (!arcadeTable) throw error('Seat has no ancestor ArcadeTable')
 

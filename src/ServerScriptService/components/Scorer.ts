@@ -9,13 +9,16 @@ import {
 } from 'ServerScriptService/utils'
 
 @Component({ tag: ScorerTag })
-export class ScorerComponent extends BaseComponent implements OnStart {
+export class ScorerComponent
+  extends BaseComponent<{}, BasePart>
+  implements OnStart
+{
   onStart() {
-    const part = this.instance as BasePart
+    const part = this.instance
     const arcadeTable = getArcadeTableFromDescendent(this.instance)
     if (!arcadeTable) throw error('Scorer has no ancestor ArcadeTable')
 
-    part.Touched?.Connect((hit) => {
+    part.Touched?.Connect((_hit) => {
       part.Material = Enum.Material.Neon
 
       const player = getArcadeTableOwner(arcadeTable)

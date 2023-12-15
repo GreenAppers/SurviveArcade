@@ -11,9 +11,12 @@ import {
 } from 'ServerScriptService/utils'
 
 @Component({ tag: BouncerTag })
-export class BouncerComponent extends BaseComponent implements OnStart {
+export class BouncerComponent
+  extends BaseComponent<{}, BasePart>
+  implements OnStart
+{
   onStart() {
-    const part = this.instance as BasePart
+    const part = this.instance
     const arcadeTable = getArcadeTableFromDescendent(this.instance)
     if (!arcadeTable) throw error('Bouncer has no ancestor ArcadeTable')
 

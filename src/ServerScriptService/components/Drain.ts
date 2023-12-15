@@ -9,14 +9,16 @@ import {
 } from 'ServerScriptService/utils'
 
 @Component({ tag: DrainTag })
-export class DrainComponent extends BaseComponent implements OnStart {
+export class DrainComponent
+  extends BaseComponent<{}, BasePart>
+  implements OnStart
+{
   onStart() {
-    const drain = this.instance as BasePart
     const arcadeTable = getArcadeTableFromDescendent(this.instance)
     if (!arcadeTable) throw error('Drain has no ancestor ArcadeTable')
 
-    drain.Touched?.Connect((part) => {
-      if (!CollectionService.HasTag(BallTag)) return
+    this.instance.Touched?.Connect((part) => {
+      if (!CollectionService.HasTag(part, BallTag)) return
 
       const player = getArcadeTableOwner(arcadeTable)
       if (player) {
