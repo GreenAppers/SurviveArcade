@@ -15,7 +15,7 @@ const initialState: ArcadeTablesState = {
   Table4: { owner: undefined },
 }
 
-export type ArcadeTableName = keyof ArcadeTablesState
+export type ArcadeTableName = Extract<keyof ArcadeTablesState, string>
 
 export const arcadeTablesSlice = createProducer(initialState, {
   claimArcadeTable: (state, name: ArcadeTableName, owner?: Player) => {

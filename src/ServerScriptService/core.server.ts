@@ -33,52 +33,6 @@ function setupPinball(
   pinball.Baseplate.Material = baseMaterial
 }
 
-/*
-arcadeTables.Events.Claim.Event:Connect(function(player, pinball, claimed)
-	local flipperLeft = pinball:FindFirstChild("FlipperLeft")
-	local flipperRight = pinball:FindFirstChild("FlipperRight")
-	local spinnerLeft = pinball:FindFirstChild("SpinnerLeft")
-	if not claimed then
-		flipperLeft.Flipper.Rotor:SetNetworkOwner(nil)
-		flipperRight.Flipper.Rotor:SetNetworkOwner(nil)
-		spinnerLeft.Spinner.Spinner:SetNetworkOwner(nil)
-		endClaimEvent:FireClient(player)
-		return
-	end
-
-	ballNumber = ballNumber + 1
-	local balls = pinball:FindFirstChild("Balls")
-	local ballTemplate = pinball:FindFirstChild("BallTemplate")
-	local ball = ballTemplate:Clone()
-	ball.Name = "Ball" .. tostring(ballNumber)
-	ball.Transparency = 0
-	ball.CanCollide = true
-	ball.Anchored = false
-	ball.Parent = balls
-	ball:SetNetworkOwner(player)
-	flipperLeft.Flipper.Rotor:SetNetworkOwner(player)
-	flipperRight.Flipper.Rotor:SetNetworkOwner(player)
-	spinnerLeft.Spinner.Spinner:SetNetworkOwner(player)
-	newClaimEvent:FireClient(player, pinball.Name)
-	newBallEvent:FireClient(player, pinball.Name, ball.Name)
-end)
-
-arcadeTables.Events.FlipFlipper.OnServerEvent:Connect(function(player, pinballName, flipperName)
-	local pinball = arcadeTables:FindFirstChild(pinballName)
-	if pinball == nil then
-		return
-	end
-	local flipper = pinball:FindFirstChild(flipperName)
-	if flipper == nil then
-		return
-	end
-	local audio = pinball:FindFirstChild("Audio")
-	if audio ~= nil then
-		utils.playSound(flipper, audio.FlipperSound.SoundId)
-	end
-end)
-*/
-
 const pinballTemplate = ReplicatedStorage.ArcadeTables.Pinball1
 const pinballPos = new Vector3(192.306, 29.057, -0)
 

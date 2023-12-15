@@ -2,7 +2,7 @@ import { Networking } from '@flamework/networking'
 import { BroadcastAction } from '@rbxts/reflex'
 
 interface ServerEvents {
-  flipperFlip: (flipper: string) => void
+  flipperFlip: (tableName: string, flipper: string) => void
   start: () => void
 }
 

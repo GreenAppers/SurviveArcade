@@ -1,26 +1,27 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
+import { store } from 'ServerScriptService/store'
+import {
+  getArcadeTableOwner,
+  getParentArcadeTable,
+} from 'ServerScriptService/utils'
 
 @Component({ tag: 'Drain' })
 export class DrainComponent extends BaseComponent implements OnStart {
   onStart() {
     const drain = this.instance as BasePart
+    const arcadeTable = getParentArcadeTable(this.instance)
+
     drain.Touched?.Connect((part) => {
       if (part.Parent?.Name !== 'Balls') return
 
-      /*
-	if values.OwnerValue.Value ~= nil then
-		local player = values.OwnerValue.Value
-		player.Character.Humanoid.Health = 0
-		local leaderstats = player:FindFirstChild("leaderstats")
-		if leaderstats ~= nil then
-			local score = leaderstats:FindFirstChild("Score")
-			if score ~= nil then
-				score.Value = 0
-			end
-		end
-	end
-	*/
+      const player = getArcadeTableOwner(arcadeTable)
+      if (player) {
+        store.resetScore(player.UserId)
+        const character: (Model & { Humanoid?: Humanoid }) | undefined =
+          player.Character
+        if (character?.Humanoid) character.Humanoid.Health = 0
+      }
 
       task.wait(0.5)
       part.Destroy()
