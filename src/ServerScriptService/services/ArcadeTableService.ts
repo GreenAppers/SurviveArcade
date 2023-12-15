@@ -19,10 +19,7 @@ export class ArcadeTableService implements OnStart {
           arcadeTablesState,
         )) {
           const previousArcadeTableState = previousArcadeTablesState[tableName]
-          if (
-            arcadeTableState.owner === previousArcadeTableState?.owner ||
-            !typeIs(tableName, 'string')
-          )
+          if (arcadeTableState.owner === previousArcadeTableState?.owner)
             continue
           this.onTableClaimed(tableName, arcadeTableState.owner)
           if (arcadeTableState.owner) {
@@ -32,11 +29,7 @@ export class ArcadeTableService implements OnStart {
               arcadeTableState,
             )
           } else if (previousArcadeTableState?.owner) {
-            this.onPlayerClaimed(
-              previousArcadeTableState.owner,
-              tableName,
-              arcadeTableState,
-            )
+            this.onPlayerClaimed(previousArcadeTableState.owner)
           }
         }
       },

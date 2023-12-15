@@ -1,5 +1,7 @@
 # SurviveArcade
 
+![thumbnail](./thumbnails/thumbnail1.jpg)
+
 ## Setup
 
 Install [Roblox Studio](https://www.roblox.com/create), [Visual Studio Code](https://code.visualstudio.com/download), Git and git clone this repo.
