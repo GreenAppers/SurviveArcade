@@ -1,6 +1,6 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { SeatTag } from 'ReplicatedStorage/shared/tags'
+import { SeatTag } from 'ReplicatedStorage/shared/constants/tags'
 import { store } from 'ServerScriptService/store'
 import { getArcadeTableFromDescendent } from 'ServerScriptService/utils'
 

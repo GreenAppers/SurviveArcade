@@ -83,3 +83,16 @@ git checkout -b my-new-updates
 git commit -am "Updated game"
 git push origin my-new-updates
 ```
+
+## Credits
+
+- [Roblox](https://www.roblox.com)
+- [Roblox Studio](https://www.roblox.com/create)
+- [roblox-ts](https://github.com/roblox-ts/roblox-ts)
+- [Rojo](https://github.com/rojo-rbx/rojo) by [LPGhatguy](https://github.com/LPGhatguy)
+- [Reflex](https://github.com/littensy/reflex) by [littensy](https://github.com/littensy)
+- [Slither](https://github.com/littensy/slither) by [littensy](https://github.com/)
+- [Roblox-TS-Template](https://github.com/MonzterDev/Roblox-TS-Template) by [MonzterDev](https://github.com/MonzterDev)
+- [marble-game-rblx](https://github.com/mandrillxx/marble-game-rblx/tree/main)
+- [roblox-ts Discord](https://discord.roblox-ts.com/)
+- [Roblox OSS Discord](https://discord.gg/Qm3JNyEc32)

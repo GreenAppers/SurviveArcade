@@ -1,7 +1,7 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { CollectionService } from '@rbxts/services'
-import { BallTag, BouncerTag } from 'ReplicatedStorage/shared/tags'
+import { BallTag, BouncerTag } from 'ReplicatedStorage/shared/constants/tags'
 
 @Component({ tag: BallTag })
 export class BallComponent

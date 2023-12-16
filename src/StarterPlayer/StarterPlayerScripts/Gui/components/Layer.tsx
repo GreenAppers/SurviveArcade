@@ -1,17 +1,21 @@
 import Roact from '@rbxts/roact'
+import { IS_EDIT } from 'ReplicatedStorage/shared/constants/core'
 
-interface LayerProps {
+import { Group } from './Group'
+
+interface LayerProps extends Roact.PropsWithChildren {
   displayOrder?: number
-  children?: Roact.Children
 }
 
 export function Layer({ displayOrder, children }: LayerProps) {
-  return (
+  return IS_EDIT ? (
+    <Group zIndex={displayOrder}>{children}</Group>
+  ) : (
     <screengui
+      ResetOnSpawn={false}
       DisplayOrder={displayOrder}
       IgnoreGuiInset
-      ResetOnSpawn={false}
-      ZIndexBehavior={Enum.ZIndexBehavior.Sibling}
+      ZIndexBehavior="Sibling"
     >
       {children}
     </screengui>

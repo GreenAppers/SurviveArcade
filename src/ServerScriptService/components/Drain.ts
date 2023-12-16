@@ -1,7 +1,7 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { CollectionService } from '@rbxts/services'
-import { BallTag, DrainTag } from 'ReplicatedStorage/shared/tags'
+import { BallTag, DrainTag } from 'ReplicatedStorage/shared/constants/tags'
 import { store } from 'ServerScriptService/store'
 import {
   getArcadeTableFromDescendent,

@@ -6,10 +6,11 @@
   "scripts": {
     "build": "yarn compile && yarn build-place",
     "build-place": "rojo build -o SurviveArcade.rbxlx",
+    "compile": "rbxtsc",
     "lint": "yarn eslint src && yarn prettier --check src",
     "sync": "rojo serve",
     "syncback": "rojo-syncback syncback --input ./SurviveArcade.rbxlx 2>&1 | tee syncback.log && tools/rbxm2rbxmx.sh && rm -rf node_modules && yarn",
-    "compile": "rbxtsc",
+    "tarmac": "tarmac sync --target roblox",
     "watch": "rbxtsc -w"
   },
   "devDependencies": {
@@ -24,6 +25,8 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",
     "prettier": "^3.1.0",
+    "rbxts-transform-debug": "^2.2.0",
+    "rbxts-transform-env": "^2.2.0",
     "rbxts-transformer-flamework": "^1.0.0-beta.24",
     "roblox-ts": "^2.2.0",
     "typescript": "5.2.2"

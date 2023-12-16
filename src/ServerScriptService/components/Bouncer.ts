@@ -1,7 +1,7 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
-import { BouncerTag } from 'ReplicatedStorage/shared/tags'
+import { BouncerTag } from 'ReplicatedStorage/shared/constants/tags'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import {

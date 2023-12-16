@@ -1,5 +1,5 @@
 import { CollectionService, Players } from '@rbxts/services'
-import { ArcadeTableTag } from 'ReplicatedStorage/shared/tags'
+import { ArcadeTableTag } from 'ReplicatedStorage/shared/constants/tags'
 import { store } from 'ServerScriptService/store'
 
 type PlayerReceivingFunction = (player: Player) => unknown
