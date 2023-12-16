@@ -1,7 +1,10 @@
 import Object from '@rbxts/object-utils'
 import { CombineStates } from '@rbxts/reflex'
-import { arcadeTablesSlice } from './ArcadeTablesState'
-import { getPlayer, playersSlice } from './PlayersState'
+import { arcadeTablesSlice } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import {
+  getPlayer,
+  playersSlice,
+} from 'ReplicatedStorage/shared/state/PlayersState'
 
 export type SharedState = CombineStates<typeof slices>
 

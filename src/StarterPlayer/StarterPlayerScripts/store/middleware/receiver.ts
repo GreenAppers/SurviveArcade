@@ -1,4 +1,4 @@
-import { ProducerMiddleware, createBroadcastReceiver } from '@rbxts/reflex'
+import { createBroadcastReceiver, ProducerMiddleware } from '@rbxts/reflex'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
 
 export function receiverMiddleware(): ProducerMiddleware {

@@ -6,15 +6,15 @@
   "scripts": {
     "build": "yarn compile && yarn build-place",
     "build-place": "rojo build -o SurviveArcade.rbxlx",
+    "lint": "yarn eslint src && yarn prettier --check src",
     "sync": "rojo serve",
-    "syncback": "rojo-syncback syncback --input ./SurviveArcade.rbxlx 2>&1 | tee syncback.log && tools/rbxm2rbxmx.sh",
+    "syncback": "rojo-syncback syncback --input ./SurviveArcade.rbxlx 2>&1 | tee syncback.log && tools/rbxm2rbxmx.sh && rm -rf node_modules && yarn",
     "compile": "rbxtsc",
     "watch": "rbxtsc -w"
   },
   "devDependencies": {
     "@rbxts/compiler-types": "^2.2.0-types.0",
     "@rbxts/types": "^1.0.736",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "eslint": "^8.55.0",
@@ -32,7 +32,9 @@
     "@flamework/components": "^1.0.0-beta.24",
     "@flamework/core": "^1.0.0-beta.24",
     "@flamework/networking": "^1.0.0-beta.24",
+    "@rbxts/flipper": "^2.0.1",
     "@rbxts/object-utils": "^1.0.4",
+    "@rbxts/pretty-react-hooks": "^0.3.3",
     "@rbxts/profileservice": "^1.4.2",
     "@rbxts/react-reflex": "^0.2.0",
     "@rbxts/react-roblox": "^0.2.0",

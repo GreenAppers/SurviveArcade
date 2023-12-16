@@ -2,8 +2,8 @@ import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { ReplicatedStorage, Workspace } from '@rbxts/services'
 import {
-  ArcadeTableState,
   ArcadeTablesState,
+  ArcadeTableState,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre } from 'ServerScriptService/utils'

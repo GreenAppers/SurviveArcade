@@ -1,6 +1,6 @@
-import { InferState, combineProducers } from '@rbxts/reflex'
+import { combineProducers, InferState } from '@rbxts/reflex'
 import { slices } from 'ReplicatedStorage/shared/state'
-import { broadcasterMiddleware } from './middleware/broadcaster'
+import { broadcasterMiddleware } from 'ServerScriptService/store/middleware/broadcaster'
 
 export type RootState = InferState<typeof store>
 

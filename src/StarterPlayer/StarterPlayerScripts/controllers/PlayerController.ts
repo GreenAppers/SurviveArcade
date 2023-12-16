@@ -1,8 +1,11 @@
 import { Controller, OnStart } from '@flamework/core'
 import { Players, UserInputService } from '@rbxts/services'
+import { ArcadeController } from 'StarterPlayer/StarterPlayerScripts/controllers/ArcadeController'
 
 @Controller({})
 export class PlayerController implements OnStart {
+  constructor(private arcadeController: ArcadeController) {}
+
   onStart() {
     const runSpeed = 32
     const walkSpeed = 16
@@ -12,8 +15,7 @@ export class PlayerController implements OnStart {
         const player = Players.LocalPlayer
         const humanoid = (<PlayerCharacter>player.Character)?.Humanoid
         const camera = game.Workspace.CurrentCamera
-        const owned = player.FindFirstChild('PinballOwned') as ObjectValue
-        if (!owned?.Value) {
+        if (!this.arcadeController.myArcadeTableName) {
           if (humanoid) humanoid.WalkSpeed = runSpeed
           if (camera) camera.FieldOfView = 60
         }

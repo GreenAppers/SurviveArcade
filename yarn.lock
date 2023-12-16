@@ -281,6 +281,11 @@
   resolved "https://registry.yarnpkg.com/@rbxts/compiler-types/-/compiler-types-2.2.0-types.0.tgz#cba7ff0cde0fa9ac18abb4251452814232d67a1e"
   integrity sha512-ycsIGfp49MypbRi4eEPCXTjbb2iLKL1/2GjRrFLuLJL74fCfVtbAXIo2LiZhPrgqIiBLomb4JN5Rcqv4304bzw==
 
+"@rbxts/flipper@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/flipper/-/flipper-2.0.1.tgz#25bd840441055da419c234a9d045309e40ac3ad2"
+  integrity sha512-kxb5AZizP05XSmo3waS/QkcfNMD5b6HX4gGwyHOyBow260R5MIT4L/ZUPLvleXXyb9b67X4NVmHoac1tPXOLNA==
+
 "@rbxts/luau-polyfill-internal@1.2.3-ts.0":
   version "1.2.3-ts.0"
   resolved "https://registry.yarnpkg.com/@rbxts/luau-polyfill-internal/-/luau-polyfill-internal-1.2.3-ts.0.tgz#01fec60c39e800d8b786d089648c54b1ecbf9606"
@@ -295,6 +300,14 @@
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@rbxts/object-utils/-/object-utils-1.0.4.tgz#c53d80f89e75c401365446be63fa1396bc2cffe7"
   integrity sha512-dLLhf022ipV+9i910sOE7kl9losKHoon0WgeerHqVMQA5EYsLUsVT2AxhJuhk8MiDn5oJ2GiFofE/LadY9TpJQ==
+
+"@rbxts/pretty-react-hooks@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@rbxts/pretty-react-hooks/-/pretty-react-hooks-0.3.3.tgz#ae1940f4bcdbbe79909445bcc27b58b20f0d6768"
+  integrity sha512-vcphO7E7pPl/3qmaVquKwnDvAhaPy62wwP0MIUskddpMH3++wk3bZvZq/nXGxlwV+fqQyvhl59yTHBNzik1A8g==
+  dependencies:
+    "@rbxts/services" "^1.5.1"
+    "@rbxts/set-timeout" "^1.1.2"
 
 "@rbxts/profileservice@^1.4.2":
   version "1.4.2"
@@ -392,6 +405,13 @@
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@rbxts/services/-/services-1.5.1.tgz#4536a87932f28797507ed591f0061277c52ea77f"
   integrity sha512-SRtfIjga0K4YYSXRpK+eH3kcTq7ZXo9OHOt0jszaOOoEOIJloMGlyuRPqesPHyhveh2AMXAZr3TYbRMSD+u+kQ==
+
+"@rbxts/set-timeout@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@rbxts/set-timeout/-/set-timeout-1.1.2.tgz#2adc9d4b5dcb54ca4332eb7ec8d19793932dbd40"
+  integrity sha512-P/A0IiH9wuZdSJYr4Us0MDFm61nvIFR0acfKFHLkcOsgvIgELC90Up9ugiSsaMEHRIcIcO5UjE39LuS3xTzQHw==
+  dependencies:
+    "@rbxts/services" "^1.5.1"
 
 "@rbxts/shared-internal@^0.2.1":
   version "0.2.1"

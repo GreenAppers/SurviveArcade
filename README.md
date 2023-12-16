@@ -48,7 +48,8 @@ yarn && yarn build
 
 ## Studio
 
-- Install plugin https://www.roblox.com/library/3379119778/rbxts-object-to-tree
+- Install [Hoarcekat](https://create.roblox.com/marketplace/asset/4621580428/Hoarcekat) plugin
+- Install [rbxts-object-to-tree](https://www.roblox.com/library/3379119778/rbxts-object-to-tree) plugin
 - Open `SurviveArcade.rbxlx` in Roblox Studio.
 - Click Play to test.
 

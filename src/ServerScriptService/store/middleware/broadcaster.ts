@@ -1,4 +1,4 @@
-import { ProducerMiddleware, createBroadcaster } from '@rbxts/reflex'
+import { createBroadcaster, ProducerMiddleware } from '@rbxts/reflex'
 import { slices } from 'ReplicatedStorage/shared/state'
 import { Events } from 'ServerScriptService/network'
 

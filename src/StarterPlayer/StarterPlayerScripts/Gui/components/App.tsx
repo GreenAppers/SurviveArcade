@@ -1,6 +1,6 @@
-import Roact from "@rbxts/roact"
-import { Layer } from "./Layer"
-import { Status } from "./Status"
+import Roact from '@rbxts/roact'
+import { Layer } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Layer'
+import { Status } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Status'
 
 export function App() {
   return (

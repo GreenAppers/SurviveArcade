@@ -4,8 +4,8 @@ import { Profile } from '@rbxts/profileservice/globals'
 import { Players, RunService } from '@rbxts/services'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import {
-  PlayerData,
   defaultPlayerData,
+  PlayerData,
 } from 'ReplicatedStorage/shared/state/PlayersState'
 import { store } from 'ServerScriptService/store'
 import { forEveryPlayer } from 'ServerScriptService/utils'
