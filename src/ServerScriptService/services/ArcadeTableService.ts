@@ -1,11 +1,11 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Teams } from '@rbxts/services'
+import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
-import { playSound } from 'ServerScriptService/utils'
 
 @Service()
 export class ArcadeTableService implements OnStart {
@@ -45,7 +45,7 @@ export class ArcadeTableService implements OnStart {
         arcadeTable?.FindFirstChild('Audio')
       )
       if (flipper && audio?.FlipperSound)
-        playSound(flipper, audio.FlipperSound.SoundId)
+        playSoundId(flipper, audio.FlipperSound.SoundId)
     })
   }
 

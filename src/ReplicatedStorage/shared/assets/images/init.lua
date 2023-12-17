@@ -2,6 +2,7 @@
 return {
 	images = {
 		gui = {
+			alert_dismiss = "rbxassetid://15654814151",
 			blur = "rbxassetid://15647717080",
 			button_glow_top = "rbxassetid://15653047065",
 			vignette = "rbxassetid://15647717200",

@@ -4,6 +4,8 @@ import Roact, { StrictMode } from '@rbxts/roact'
 import { Players } from '@rbxts/services'
 import { App } from 'StarterPlayer/StarterPlayerScripts/Gui/components/App'
 
+import { RootProvider } from '../Gui/providers/RootProvider'
+
 @Controller({})
 export class GuiController implements OnStart {
   private playerGui = Players.LocalPlayer.WaitForChild('PlayerGui')
@@ -13,7 +15,9 @@ export class GuiController implements OnStart {
     this.root.render(
       createPortal(
         <StrictMode>
-          <App key="app" />
+          <RootProvider key="root-provider">
+            <App key="app" />
+          </RootProvider>
         </StrictMode>,
         this.playerGui,
       ),

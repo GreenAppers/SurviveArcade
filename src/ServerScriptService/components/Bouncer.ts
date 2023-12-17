@@ -1,13 +1,13 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
+import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { BouncerTag } from 'ReplicatedStorage/shared/constants/tags'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import {
   getArcadeTableFromDescendent,
   getArcadeTableOwner,
-  playSound,
 } from 'ServerScriptService/utils'
 
 @Component({ tag: BouncerTag })
@@ -29,7 +29,7 @@ export class BouncerComponent
       const audio = arcadeTable.FindFirstChild('Audio') as
         | { BouncerSound?: Sound }
         | undefined
-      if (audio?.BouncerSound) playSound(part, audio.BouncerSound.SoundId)
+      if (audio?.BouncerSound) playSoundId(part, audio.BouncerSound.SoundId)
 
       const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
         | Humanoid

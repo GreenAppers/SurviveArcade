@@ -49,15 +49,3 @@ export function getArcadeTableOwner(instance: Instance) {
   if (!arcadeTable?.Name) return undefined
   return store.getState().arcadeTables[arcadeTable.Name]?.owner
 }
-
-export function playSound(object: Instance, soundId: string) {
-  let sound = object.FindFirstChild('Sound') as Sound
-  if (sound) {
-    sound.Play()
-  } else {
-    sound = new Instance('Sound')
-    sound.SoundId = soundId
-    sound.Parent = object
-    sound.Play()
-  }
-}

@@ -6,6 +6,8 @@ import {
   playersSlice,
 } from 'ReplicatedStorage/shared/state/PlayersState'
 
+import { USER_ID } from '../constants/core'
+
 export type SharedState = CombineStates<typeof slices>
 
 export const slices = {
@@ -26,3 +28,9 @@ export const selectPlayersState = () => (state: SharedState) => state.players
 
 export const selectPlayerState = (userID: number) => (state: SharedState) =>
   getPlayer(state.players, userID)
+
+export const selectLocalPlayerState = () => (state: SharedState) =>
+  getPlayer(state.players, USER_ID)
+
+export const selectLocalPlayerScore = () => (state: SharedState) =>
+  getPlayer(state.players, USER_ID)?.score?.score

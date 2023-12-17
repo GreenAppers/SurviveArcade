@@ -1,11 +1,11 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
+import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { ScorerTag } from 'ReplicatedStorage/shared/constants/tags'
 import { store } from 'ServerScriptService/store'
 import {
   getArcadeTableFromDescendent,
   getArcadeTableOwner,
-  playSound,
 } from 'ServerScriptService/utils'
 
 @Component({ tag: ScorerTag })
@@ -27,7 +27,7 @@ export class ScorerComponent
       const audio = arcadeTable.FindFirstChild('Audio') as
         | { ScorerSound?: Sound }
         | undefined
-      if (audio?.ScorerSound) playSound(part, audio.ScorerSound.SoundId)
+      if (audio?.ScorerSound) playSoundId(part, audio.ScorerSound.SoundId)
 
       task.wait(0.5)
       part.Material = Enum.Material.Plastic
