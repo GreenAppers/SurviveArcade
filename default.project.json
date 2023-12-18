@@ -13,6 +13,9 @@
           "$path": "assets/ReplicatedStorage/ArcadeTables/Pinball1"
         }
       },
+      "Maps": {
+        "$path": "assets/ReplicatedStorage/Maps"
+      },
       "rbxts_include": {
         "$path": "include",
         "node_modules": {
@@ -51,9 +54,6 @@
         "Technology": {
           "Enum": 3
         },
-        "Outlines": false,
-        "Brightness": 2.0,
-        "GlobalShadows": true,
         "Ambient": {
           "Color3": [
             0.0,
@@ -61,7 +61,10 @@
             0.0
           ]
         },
-        "ClockTime": 23.5
+        "ClockTime": 23.5,
+        "Brightness": 2.0,
+        "GlobalShadows": true,
+        "Outlines": false
       }
     },
     "HttpService": {

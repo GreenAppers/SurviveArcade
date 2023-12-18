@@ -1,5 +1,5 @@
 interface ArcadeMap {
-  arcadeTableCFrames: Record<string, CFrame>
+  getArcadeTableCFrame: (name: ArcadeTableName) => CFrame
 }
 
 interface ArcadeTable extends Model {
@@ -27,6 +27,14 @@ interface PlayerCharacter extends Model {
 interface ReplicatedStorage extends Instance {
   ArcadeTables: Folder & {
     Pinball1: ArcadeTable
+  }
+  Maps: Folder & {
+    [mapName: string]: Folder & {
+      Table1?: Model
+      Table2?: Model
+      Table3?: Model
+      Table4?: Model
+    }
   }
 }
 
@@ -57,5 +65,11 @@ interface Workspace extends Instance {
     Table2?: ArcadeTable
     Table3?: ArcadeTable
     Table4?: ArcadeTable
+  }
+  Map?: Folder & {
+    Table1?: Model
+    Table2?: Model
+    Table3?: Model
+    Table4?: Model
   }
 }

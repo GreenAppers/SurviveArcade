@@ -11,22 +11,54 @@ import { getDescendentsWhichAre } from 'ServerScriptService/utils'
 @Service()
 export class MapService implements OnStart {
   maps: Record<string, ArcadeMap> = {
-    map1: {
-      arcadeTableCFrames: {
-        Table1: new CFrame(new Vector3(192.306, 29.057, 0)).mul(
-          CFrame.fromOrientation(math.rad(15), math.rad(-90), math.rad(0)),
-        ),
-        Table2: new CFrame(new Vector3(0, 29.057, 192.306)).mul(
-          CFrame.fromOrientation(math.rad(15), math.rad(180), math.rad(0)),
-        ),
-        Table3: new CFrame(new Vector3(-192.306, 29.057, 0)).mul(
-          CFrame.fromOrientation(math.rad(15), math.rad(90), math.rad(0)),
-        ),
-        Table4: new CFrame(new Vector3(0, 29.057, -192.306)).mul(
-          CFrame.fromOrientation(math.rad(15), math.rad(0), math.rad(0)),
-        ),
+    Map1: {
+      getArcadeTableCFrame: (name) => {
+        switch (name) {
+          case 'Table1':
+            return new CFrame(new Vector3(192.306, 29.057, 0)).mul(
+              CFrame.fromOrientation(math.rad(15), math.rad(-90), math.rad(0)),
+            )
+          case 'Table2':
+            return new CFrame(new Vector3(0, 29.057, 192.306)).mul(
+              CFrame.fromOrientation(math.rad(15), math.rad(180), math.rad(0)),
+            )
+          case 'Table3':
+            return new CFrame(new Vector3(-192.306, 29.057, 0)).mul(
+              CFrame.fromOrientation(math.rad(15), math.rad(90), math.rad(0)),
+            )
+          case 'Table4':
+            return new CFrame(new Vector3(0, 29.057, -192.306)).mul(
+              CFrame.fromOrientation(math.rad(15), math.rad(0), math.rad(0)),
+            )
+        }
       },
     },
+    Map2: {
+      getArcadeTableCFrame: (name) => {
+        const tableOffsetCFrame = new CFrame(
+          0.0001983642578125,
+          62.376220703125,
+          1.47723388671875,
+          -1,
+          4.170123176893553e-13,
+          -3.212539262387182e-11,
+          -8.717467719909777e-12,
+          0.9659258127212524,
+          -0.25881898403167725,
+          -3.092281986027956e-11,
+          -0.258819043636322,
+          -0.9659256935119629,
+        )
+        const tablePart = game.Workspace.Map?.[name]?.PrimaryPart
+        if (!tablePart) return new CFrame()
+        return tablePart.CFrame.ToWorldSpace(tableOffsetCFrame)
+      },
+    },
+  }
+
+  clearMap() {
+    Workspace.ArcadeTables.ClearAllChildren()
+    Workspace.Map?.Destroy()
   }
 
   loadArcadeTableTemplate(name: ArcadeTableType, tableName: ArcadeTableName) {
@@ -59,14 +91,23 @@ export class MapService implements OnStart {
     }
     arcadeTable.Baseplate.BrickColor = state.baseColor
     arcadeTable.Baseplate.Material = state.baseMaterial
-    arcadeTable.PivotTo(map.arcadeTableCFrames[tableName])
+    arcadeTable.PivotTo(map.getArcadeTableCFrame(tableName))
     arcadeTable.Parent = Workspace.ArcadeTables
     return arcadeTable
   }
 
   loadMapWithState(mapName: string, arcadeTablesState: ArcadeTablesState) {
+    this.clearMap()
     const map = this.maps[mapName]
     if (!map) return
+
+    const mapModelTemplate = ReplicatedStorage.Maps[mapName]
+    if (!mapModelTemplate) return
+
+    const mapModel = mapModelTemplate.Clone()
+    mapModel.Name = 'Map'
+    mapModel.Parent = Workspace
+
     for (const [tableName, state] of Object.entries(arcadeTablesState)) {
       this.loadArcadeTable(map, tableName, state)
     }
@@ -77,6 +118,6 @@ export class MapService implements OnStart {
   }
 
   onStart() {
-    this.loadMap('map1')
+    this.loadMap('Map2')
   }
 }

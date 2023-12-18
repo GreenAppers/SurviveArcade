@@ -1,6 +1,6 @@
 import { useSelector } from '@rbxts/react-reflex'
 import Roact from '@rbxts/roact'
-import { selectLocalPlayerScore } from 'ReplicatedStorage/shared/state'
+import { selectLocalPlayerScoreState } from 'ReplicatedStorage/shared/state'
 import { formatInteger } from 'StarterPlayer/StarterPlayerScripts/utils'
 
 import { useDefined, useRem } from '../hooks'
@@ -9,8 +9,9 @@ import { StatsCard } from './StatsCard'
 
 export function Stats() {
   const rem = useRem()
-  const currentScore = useSelector(selectLocalPlayerScore())
-  const score = useDefined<string | number>(currentScore, 'N/A')
+  const currentScore = useSelector(selectLocalPlayerScoreState())
+  const score = useDefined<string | number>(currentScore?.score, 'N/A')
+  const highScore = useDefined<string | number>(currentScore?.highScore, 'N/A')
 
   return (
     <Group>
@@ -27,6 +28,17 @@ export function Stats() {
         VerticalAlignment="Bottom"
         Padding={new UDim(0, rem(1))}
         SortOrder="LayoutOrder"
+      />
+
+      <StatsCard
+        key="highScore"
+        emoji="🏆"
+        label="High Score"
+        value={`${formatInteger(highScore)}`}
+        primary={Color3.fromRGB(255, 203, 80)}
+        secondary={Color3.fromRGB(255, 150, 79)}
+        enabled={highScore !== undefined}
+        order={0}
       />
 
       <StatsCard
