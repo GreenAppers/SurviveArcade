@@ -7,11 +7,13 @@ import {
 } from 'ReplicatedStorage/shared/state/PlayersState'
 
 import { USER_ID } from '../constants/core'
+import { gameSlice } from './GameState'
 
 export type SharedState = CombineStates<typeof slices>
 
 export const slices = {
   arcadeTables: arcadeTablesSlice,
+  game: gameSlice,
   players: playersSlice,
 }
 
@@ -23,6 +25,8 @@ export const selectArcadeTableNameOwnedBy =
     Object.entries(state.arcadeTables).find(
       ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
     )?.[0] as ArcadeTableName | undefined
+
+export const selectGameState = () => (state: SharedState) => state.game
 
 export const selectPlayersState = () => (state: SharedState) => state.players
 

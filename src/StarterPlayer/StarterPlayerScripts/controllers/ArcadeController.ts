@@ -3,6 +3,7 @@ import { Players, UserInputService } from '@rbxts/services'
 import { selectArcadeTableNameOwnedBy } from 'ReplicatedStorage/shared/state'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
+import { sendAlert } from '../alerts'
 
 @Controller({})
 export class ArcadeController implements OnStart {
@@ -65,11 +66,18 @@ export class ArcadeController implements OnStart {
     )
   }
 
+  startMyRespawnHandler(player: Player) {
+    player.CharacterAdded.Connect(() => {
+      sendAlert({ message: 'Get the high score.  But beware of the rats!' })
+    })
+  }
+
   onStart() {
     const player = Players.LocalPlayer
     this.startArcadeTableControlsHandler(player)
     this.startMyBounceHandler(player)
     this.startMyClaimHandler(player)
+    this.startMyRespawnHandler(player)
   }
 
   flipFlipper(player: Player, flipperName: string) {

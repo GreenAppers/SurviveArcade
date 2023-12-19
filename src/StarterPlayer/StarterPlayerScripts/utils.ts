@@ -8,3 +8,9 @@ export function formatInteger(value: unknown) {
     .reverse()
     .gsub('^,', '')[0]
 }
+
+export function formatDuration(value: number) {
+  const minutes = math.floor(value / 60)
+  const seconds = math.floor(value % 60)
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+}

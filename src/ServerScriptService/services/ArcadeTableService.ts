@@ -52,17 +52,6 @@ export class ArcadeTableService implements OnStart {
   onStart() {
     this.startArcadeTablesClaimedSubscription()
     this.startArcadeTablesControlEventHandler()
-
-    // Increase players' score for each second owning an arcade table.
-    const arcadeTablesSelector = selectArcadeTablesState()
-    for (;;) {
-      task.wait(1)
-      const arcadeTablesState = arcadeTablesSelector(store.getState())
-      for (const arcadeTableState of Object.values(arcadeTablesState)) {
-        if (arcadeTableState.owner)
-          store.addScore(arcadeTableState.owner.UserId, 10)
-      }
-    }
   }
 
   onPlayerClaimed(
