@@ -3,7 +3,7 @@ import Roact from '@rbxts/roact'
 import { selectGameState } from 'ReplicatedStorage/shared/state'
 import { formatDuration } from 'StarterPlayer/StarterPlayerScripts/utils'
 
-import { useDefined, useRem } from '../hooks'
+import { useRem } from '../hooks'
 import { Group } from './Group'
 import { StatsCard } from './StatsCard'
 

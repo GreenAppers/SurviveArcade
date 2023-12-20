@@ -3,7 +3,7 @@ interface ArcadeMap {
 }
 
 interface ArcadeTable extends Model {
-  Name: ArcadeTableName
+  Name: ArcadeTableName | ArcadeTableNextName
   Baseplate: BasePart
   Values: Folder & {
     TeamName: StringValue
@@ -11,6 +11,12 @@ interface ArcadeTable extends Model {
 }
 
 type ArcadeTableName = 'Table1' | 'Table2' | 'Table3' | 'Table4'
+
+type ArcadeTableNextName =
+  | 'Table1Next'
+  | 'Table2Next'
+  | 'Table3Next'
+  | 'Table4Next'
 
 type ArcadeTableType = 'Pinball1'
 
@@ -65,6 +71,10 @@ interface Workspace extends Instance {
     Table2?: ArcadeTable
     Table3?: ArcadeTable
     Table4?: ArcadeTable
+    Table1Next?: ArcadeTable
+    Table2Next?: ArcadeTable
+    Table3Next?: ArcadeTable
+    Table4Next?: ArcadeTable
   }
   Map?: Folder & {
     Table1?: Model

@@ -1,7 +1,8 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { CollectionService } from '@rbxts/services'
+import { CollectionService, Players } from '@rbxts/services'
 import { BallTag, DrainTag } from 'ReplicatedStorage/shared/constants/tags'
+import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import {
   getArcadeTableFromDescendent,
@@ -13,23 +14,43 @@ export class DrainComponent
   extends BaseComponent<{}, BasePart>
   implements OnStart
 {
+  constructor(private mapService: MapService) {
+    super()
+  }
+
   onStart() {
     const arcadeTable = getArcadeTableFromDescendent(this.instance)
     if (!arcadeTable) throw error('Drain has no ancestor ArcadeTable')
 
-    this.instance.Touched?.Connect((part) => {
-      if (!CollectionService.HasTag(part, BallTag)) return
-
-      const player = getArcadeTableOwner(arcadeTable)
-      if (player) {
-        store.resetScore(player.UserId)
-        const character: (Model & { Humanoid?: Humanoid }) | undefined =
-          player.Character
-        if (character?.Humanoid) character.Humanoid.Health = 0
+    this.instance.Touched?.Connect((hit) => {
+      if (CollectionService.HasTag(hit, BallTag)) {
+        this.handleBallTouched(arcadeTable, hit)
+        return
       }
 
-      task.wait(0.5)
-      part.Destroy()
+      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
+        | Humanoid
+        | undefined
+      if (humanoid) {
+        const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
+        if (touchedPlayer) this.handlePlayerTouched(arcadeTable, touchedPlayer)
+      }
     })
+  }
+
+  handleBallTouched(arcadeTable: ArcadeTable, part: BasePart) {
+    const player = getArcadeTableOwner(arcadeTable)
+    if (player) {
+      store.resetScore(player.UserId)
+      const character: (Model & { Humanoid?: Humanoid }) | undefined =
+        player.Character
+      if (character?.Humanoid) character.Humanoid.Health = 0
+    }
+    task.wait(0.5)
+    part.Destroy()
+  }
+
+  handlePlayerTouched(arcadeTable: ArcadeTable, _player: Player) {
+    this.mapService.chainNextTable(arcadeTable.Name)
   }
 }

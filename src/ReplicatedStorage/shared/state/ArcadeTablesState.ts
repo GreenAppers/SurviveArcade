@@ -11,7 +11,75 @@ export interface ArcadeTableState {
 }
 
 export type ArcadeTablesState = {
-  readonly [arcadeTableName in ArcadeTableName]: ArcadeTableState
+  readonly [arcadeTableName in ArcadeTableName | ArcadeTableNextName]:
+    | ArcadeTableState
+    | undefined
+}
+
+export const isArcadeTableName = (
+  tableName: ArcadeTableName | ArcadeTableNextName,
+): ArcadeTableName | undefined => {
+  switch (tableName) {
+    case 'Table1':
+    case 'Table2':
+    case 'Table3':
+    case 'Table4':
+      return tableName
+    default:
+      return undefined
+  }
+}
+
+export const isArcadeTableNextName = (
+  tableName: ArcadeTableName | ArcadeTableNextName,
+): ArcadeTableNextName | undefined => {
+  switch (tableName) {
+    case 'Table1Next':
+    case 'Table2Next':
+    case 'Table3Next':
+    case 'Table4Next':
+      return tableName
+    default:
+      return undefined
+  }
+}
+
+export const baseArcadeTableName = (
+  tableName: ArcadeTableName | ArcadeTableNextName,
+): ArcadeTableName => {
+  switch (tableName) {
+    case 'Table1':
+    case 'Table1Next':
+      return 'Table1'
+    case 'Table2':
+    case 'Table2Next':
+      return 'Table2'
+    case 'Table3':
+    case 'Table3Next':
+      return 'Table3'
+    case 'Table4':
+    case 'Table4Next':
+      return 'Table4'
+  }
+}
+
+export const nextArcadeTableName = (
+  tableName: ArcadeTableName | ArcadeTableNextName,
+): ArcadeTableNextName => {
+  switch (tableName) {
+    case 'Table1':
+    case 'Table1Next':
+      return 'Table1Next'
+    case 'Table2':
+    case 'Table2Next':
+      return 'Table2Next'
+    case 'Table3':
+    case 'Table3Next':
+      return 'Table3Next'
+    case 'Table4':
+    case 'Table4Next':
+      return 'Table4Next'
+  }
 }
 
 const initialState: ArcadeTablesState = {
@@ -51,11 +119,18 @@ const initialState: ArcadeTablesState = {
     baseColor: new BrickColor('Terra Cotta'),
     baseMaterial: Enum.Material.Glass,
   },
+  Table1Next: undefined,
+  Table2Next: undefined,
+  Table3Next: undefined,
+  Table4Next: undefined,
 }
 
 export const arcadeTablesSlice = createProducer(initialState, {
-  claimArcadeTable: (state, name: ArcadeTableName, owner?: Player) => {
-    if (!name) return state
+  claimArcadeTable: (
+    state,
+    name: ArcadeTableName | ArcadeTableNextName,
+    owner?: Player,
+  ) => {
     const prevTable = state[name]
     return !prevTable || prevTable.owner === owner || (owner && prevTable.owner)
       ? state
@@ -63,5 +138,21 @@ export const arcadeTablesSlice = createProducer(initialState, {
           ...state,
           [name]: { ...prevTable, owner },
         }
+  },
+
+  extendArcadeTable: (state, name: ArcadeTableName | ArcadeTableNextName) => {
+    const nextName = nextArcadeTableName(name)
+    if (isArcadeTableName(name)) {
+      const nextTable = state[nextName]
+      return nextTable
+        ? state
+        : { ...state, [nextName]: { ...initialState[name] } }
+    }
+    const baseName = baseArcadeTableName(name)
+    return {
+      ...state,
+      [baseName]: state[name] || { ...initialState[baseName] },
+      [nextName]: { ...initialState[baseName] },
+    }
   },
 })

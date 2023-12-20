@@ -4,6 +4,9 @@ import { ReplicatedStorage, Workspace } from '@rbxts/services'
 import {
   ArcadeTablesState,
   ArcadeTableState,
+  baseArcadeTableName,
+  isArcadeTableNextName,
+  nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre } from 'ServerScriptService/utils'
@@ -75,6 +78,19 @@ export class MapService implements OnStart {
   ) {
     if (!state.tableType) return
     const arcadeTable = this.loadArcadeTableTemplate(state.tableType, tableName)
+    this.setupArcadeTable(
+      arcadeTable,
+      state,
+      map.getArcadeTableCFrame(tableName),
+    )
+    return arcadeTable
+  }
+
+  setupArcadeTable(
+    arcadeTable: ArcadeTable,
+    state: ArcadeTableState,
+    cframe: CFrame,
+  ) {
     const parts = getDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     for (const part of parts) {
       if (part.Name === 'BallTemplate') continue
@@ -91,9 +107,18 @@ export class MapService implements OnStart {
     }
     arcadeTable.Baseplate.BrickColor = state.baseColor
     arcadeTable.Baseplate.Material = state.baseMaterial
-    arcadeTable.PivotTo(map.getArcadeTableCFrame(tableName))
+    arcadeTable.PivotTo(cframe)
     arcadeTable.Parent = Workspace.ArcadeTables
-    return arcadeTable
+  }
+
+  setupNextArcadeTable(arcadeTable: ArcadeTable, cframe: CFrame) {
+    const parts = <BasePart[]>getDescendentsWhichAre(arcadeTable, 'BasePart')
+    for (const part of parts) {
+      if (part.Transparency === 1) continue
+      part.Material = Enum.Material.ForceField
+    }
+    arcadeTable.PivotTo(cframe)
+    arcadeTable.Parent = Workspace.ArcadeTables
   }
 
   loadMapWithState(mapName: string, arcadeTablesState: ArcadeTablesState) {
@@ -109,7 +134,13 @@ export class MapService implements OnStart {
     mapModel.Parent = Workspace
 
     for (const [tableName, state] of Object.entries(arcadeTablesState)) {
-      this.loadArcadeTable(map, tableName, state)
+      switch (tableName) {
+        case 'Table1':
+        case 'Table2':
+        case 'Table3':
+        case 'Table4':
+          this.loadArcadeTable(map, tableName, state)
+      }
     }
   }
 
@@ -119,5 +150,48 @@ export class MapService implements OnStart {
 
   onStart() {
     this.loadMap('Map2')
+  }
+
+  chainNextTable(name: ArcadeTableName | ArcadeTableNextName) {
+    const isNextName = isArcadeTableNextName(name)
+    const arcadeTableBaseName = baseArcadeTableName(name)
+    const arcadeTableNextName = nextArcadeTableName(name)
+    const state = store.getState().arcadeTables[arcadeTableBaseName]
+    let arcadeTable = game.Workspace.ArcadeTables?.[arcadeTableBaseName]
+    let arcadeTableNext = <ArcadeTable | undefined>(
+      game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableNextName)
+    )
+    if (!arcadeTable || !state?.tableType) return
+    store.extendArcadeTable(name)
+    if (isNextName && arcadeTableNext) {
+      arcadeTable?.Destroy()
+      arcadeTable = arcadeTableNext
+      arcadeTable.Name = arcadeTableBaseName
+      arcadeTableNext = undefined
+    }
+    const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
+    if (arcadeTableNext || !arcadeTableCF) return
+    arcadeTableNext = this.loadArcadeTableTemplate(
+      state.tableType,
+      arcadeTableBaseName,
+    )
+    arcadeTableNext.Name = arcadeTableNextName
+    const nextArcadeTableCF = arcadeTableCF.ToWorldSpace(
+      new CFrame(
+        0,
+        17.329776763916016,
+        -255.9019775390625,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1.881351963106681e-8,
+        0,
+        4.927848351599096e-9,
+        0.9999998807907104,
+      ),
+    )
+    this.setupArcadeTable(arcadeTableNext, state, nextArcadeTableCF)
   }
 }
