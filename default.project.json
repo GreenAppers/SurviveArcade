@@ -51,10 +51,11 @@
     },
     "Lighting": {
       "$properties": {
+        "ClockTime": 23.5,
         "Technology": {
           "Enum": 3
         },
-        "ClockTime": 23.5,
+        "Outlines": false,
         "Ambient": {
           "Color3": [
             0.0,
@@ -62,7 +63,6 @@
             0.0
           ]
         },
-        "Outlines": false,
         "Brightness": 2.0,
         "GlobalShadows": true
       }
