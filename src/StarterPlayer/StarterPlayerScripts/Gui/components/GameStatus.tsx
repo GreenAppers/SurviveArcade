@@ -6,6 +6,7 @@ import { formatDuration } from 'StarterPlayer/StarterPlayerScripts/utils'
 import { useRem } from '../hooks'
 import { Group } from './Group'
 import { StatsCard } from './StatsCard'
+import { palette } from 'ReplicatedStorage/shared/constants/palette'
 
 export function GameStatus() {
   const rem = useRem()
@@ -31,8 +32,8 @@ export function GameStatus() {
         emoji="⏰"
         label="Remaining"
         value={`${formatDuration(gameState.roundRemaining)}`}
-        primary={Color3.fromRGB(181, 64, 64)}
-        secondary={Color3.fromRGB(150, 59, 84)}
+        primary={palette.red}
+        secondary={palette.orange}
         enabled={gameState.roundRemaining !== undefined}
         order={1}
       />

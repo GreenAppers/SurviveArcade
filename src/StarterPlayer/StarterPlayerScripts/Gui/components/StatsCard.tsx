@@ -38,8 +38,8 @@ export function StatsCard({
   enabled,
   order,
 }: StatsCardProps) {
-  const primaryDark = primary.Lerp(palette.crust, 0.75)
-  const secondaryDark = secondary.Lerp(palette.crust, 0.75)
+  const primaryDark = primary.Lerp(palette.eerie, 0.75)
+  const secondaryDark = secondary.Lerp(palette.eerie, 0.75)
 
   const rem = useRem()
   const [transparency, transparencyMotion] = useMotion(1)

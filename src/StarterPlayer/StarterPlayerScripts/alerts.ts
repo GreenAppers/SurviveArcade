@@ -8,7 +8,7 @@ const defaultAlert: Alert = {
   id: 0,
   emoji: '✅',
   message: 'Alert',
-  color: palette.green,
+  color: palette.blue,
   duration: 5,
   visible: true,
 }

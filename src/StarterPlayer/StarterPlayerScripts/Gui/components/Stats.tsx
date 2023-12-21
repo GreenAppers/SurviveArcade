@@ -6,6 +6,7 @@ import { formatInteger } from 'StarterPlayer/StarterPlayerScripts/utils'
 import { useDefined, useRem } from '../hooks'
 import { Group } from './Group'
 import { StatsCard } from './StatsCard'
+import { palette } from 'ReplicatedStorage/shared/constants/palette'
 
 export function Stats() {
   const rem = useRem()
@@ -35,8 +36,8 @@ export function Stats() {
         emoji="🏆"
         label="High Score"
         value={`${formatInteger(highScore)}`}
-        primary={Color3.fromRGB(255, 203, 80)}
-        secondary={Color3.fromRGB(255, 150, 79)}
+        primary={palette.yellow}
+        secondary={palette.orange}
         enabled={highScore !== undefined}
         order={0}
       />
@@ -46,8 +47,8 @@ export function Stats() {
         emoji="💯"
         label="Score"
         value={`${formatInteger(score)}`}
-        primary={Color3.fromRGB(181, 64, 64)}
-        secondary={Color3.fromRGB(150, 59, 84)}
+        primary={palette.pink}
+        secondary={palette.red}
         enabled={currentScore !== undefined}
         order={1}
       />

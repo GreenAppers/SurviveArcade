@@ -1,0 +1,59 @@
+environments:
+  - label: beta
+    targetNamePrefix: environmentLabel
+    targetAccess: public
+    targetOverrides:
+      icon: assets/marketing/game_icon_beta.png
+      thumbnails: [assets/marketing/game_thumbnail_beta.png]
+      places:
+        start:
+          configuration:
+            name: Survive Arcade DEV 🚧
+            description: |
+              This is a development build of Survive Arcade. Your feedback is appreciated ❤️
+
+              🚧  Proceed with caution: You may encounter bugs, data resets, and instability.
+              🔥  Take a look at upcoming features before they're shipped to production.
+            maxPlayerCount: 50
+  - label: production
+    branches: [main]
+    targetAccess: public
+
+target:
+  experience:
+    icon: assets/marketing/game_icon.png
+    thumbnails: [assets/marketing/game_thumbnail.png]
+    socialLinks:
+      - title: "📌・@GreenAppers"
+        url: https://twitter.com/GreenAppers
+    configuration:
+      playableDevices: [computer, console, phone, tablet]
+      privateServers:
+        price: 10
+      enableStudioAccessToApis: true
+      avatarType: playerChoice
+      avatarAnimationType: playerChoice
+    spatialVoice:
+      enabled: true
+    places:
+      start:
+        file: SurviveArcade.rbxlx
+        configuration:
+          name: Survive Arcade 🎮
+          description: |
+            Get the high score.  But beware of the rats!
+          maxPlayerCount: 25
+    assets:
+      - assets/sounds/*
+    badges:
+      score-100000:
+        name: 🚀 100,000 Score
+        description: You're breaking records! Hit a score of 100,000.
+        icon: assets/badges/score_100000.png
+        enabled: true
+    products:
+      tron-morph:
+        price: 375
+        name: 🤖 Tron morph
+        description: Buy extra health in style!
+        icon: assets/marketing/game_icon.png

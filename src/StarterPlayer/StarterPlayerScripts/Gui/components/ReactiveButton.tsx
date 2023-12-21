@@ -12,6 +12,7 @@ import { useButtonAnimation } from '../hooks/useButtonAnimation'
 import { useButtonState } from '../hooks/useButtonState'
 import { Button } from './Button'
 import { Frame } from './Frame'
+import { palette } from 'ReplicatedStorage/shared/constants/palette'
 
 interface ReactiveButtonProps extends Roact.PropsWithChildren {
   onClick?: () => void
@@ -52,7 +53,7 @@ export function ReactiveButton({
   size,
   position,
   anchorPoint,
-  backgroundColor = Color3.fromRGB(255, 255, 255),
+  backgroundColor = palette.white,
   backgroundTransparency = 0,
   cornerRadius,
   layoutOrder,

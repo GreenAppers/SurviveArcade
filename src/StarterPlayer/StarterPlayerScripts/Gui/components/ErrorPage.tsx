@@ -28,7 +28,7 @@ export function ErrorPage({ message }: ErrorPageProps) {
     <Layer>
       <Frame
         key="background"
-        backgroundColor={palette.crust}
+        backgroundColor={palette.eerie}
         size={new UDim2(1, 0, 1, 0)}
       >
         <uilistlayout
@@ -139,7 +139,7 @@ export function ErrorPage({ message }: ErrorPageProps) {
           onClick={async () =>
             TeleportService.TeleportToPlaceInstance(game.PlaceId, game.JobId)
           }
-          overlayGradient={new ColorSequence(palette.blue, palette.mauve)}
+          overlayGradient={new ColorSequence(palette.blue, palette.pink)}
           size={new UDim2(0, rem(12), 0, rem(5))}
           layoutOrder={index++}
         >
