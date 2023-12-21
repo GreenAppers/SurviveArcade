@@ -1,0 +1,57 @@
+name: Release Beta
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "README.md"
+
+concurrency:
+  group: beta_environment
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bahmutov/npm-install@v1
+      - uses: ok-nick/setup-aftman@v0.3.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build project
+        run: yarn build
+
+      - name: Upload place artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: place
+          path: SurviveArcade.rbxlx
+
+      - name: Clone state
+        uses: actions/checkout@v2
+        with:
+          path: state
+          repository: GreenAppers/state
+          token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+
+      - name: Deploy game
+        run: |
+          cp state/SurviveArcade/.mantle-state.yml .
+          mantle deploy --environment beta
+          cp .mantle-state.yml state/SurviveArcade
+        env:
+          ROBLOSECURITY: ${{ secrets.ROBLOSECURITY }}
+
+      - name: Update state if changed
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+        with:
+          source-directory: 'state'
+          destination-github-username: 'GreenAppers'
+          destination-repository-name: 'state'
+          user-email: GreenAppers@gmail.com
+          target-branch: main
