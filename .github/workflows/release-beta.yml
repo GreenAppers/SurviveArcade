@@ -15,9 +15,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: bahmutov/npm-install@v1
-      - uses: ok-nick/setup-aftman@v0.3.0
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Clone state
+        uses: actions/checkout@v2
+        with:
+          path: state
+          repository: GreenAppers/state
+          token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
+
+      - name: Setup Node.JS
+        uses: bahmutov/npm-install@v1
+
+      - name: Setup Aftman
+        uses: ok-nick/setup-aftman@v0.3.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -30,13 +42,6 @@ jobs:
           name: place
           path: SurviveArcade.rbxlx
 
-      - name: Clone state
-        uses: actions/checkout@v2
-        with:
-          path: state
-          repository: GreenAppers/state
-          token: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
-
       - name: Deploy game
         run: |
           cp state/SurviveArcade/.mantle-state.yml .
@@ -47,6 +52,7 @@ jobs:
 
       - name: Update state if changed
         uses: cpina/github-action-push-to-another-repository@main
+        if: always()
         env:
           API_TOKEN_GITHUB: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
         with:
