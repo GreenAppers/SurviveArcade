@@ -1,4 +1,6 @@
+import Object from '@rbxts/object-utils'
 import { createProducer } from '@rbxts/reflex'
+import { mapProperties } from '../utils/object'
 
 export interface PlayerData {
   readonly score: PlayerScore
@@ -56,6 +58,12 @@ export const playersSlice = createProducer(initialState, {
       },
     }
   },
+
+  resetScores: (state) =>
+    mapProperties(state, (playerState) => ({
+      ...playerState,
+      score: { ...defaultPlayerData.score },
+    })),
 
   resetScore: (state, userID: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)

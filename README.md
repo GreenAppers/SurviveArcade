@@ -2,6 +2,8 @@
 
 ![thumbnail](./assets/marketing/github_logo.jpg)
 
+Join [the Experience (BETA)](https://www.roblox.com/games/15699266223)!
+
 ## Setup
 
 Install [Roblox Studio](https://www.roblox.com/create), [Visual Studio Code](https://code.visualstudio.com/download), Git and git clone this repo.

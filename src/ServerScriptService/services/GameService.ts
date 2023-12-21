@@ -6,11 +6,17 @@ import {
 } from 'ReplicatedStorage/shared/state'
 import { store } from 'ServerScriptService/store'
 
+import { MapService } from './MapService'
+
 @Service()
 export class GameService implements OnStart {
+  constructor(private mapService: MapService) {}
+
   changeRound() {
     print('Changing round')
     store.startNewRound()
+    store.resetScores()
+    this.mapService.loadMap('Map2')
   }
 
   onStart() {
