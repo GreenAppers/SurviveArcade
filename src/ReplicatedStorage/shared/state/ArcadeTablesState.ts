@@ -8,6 +8,7 @@ export interface ArcadeTableState {
   readonly baseColor: BrickColor
   readonly baseMaterial: Enum.Material
   readonly statorColor: BrickColor
+  readonly unmaterialized?: boolean
 }
 
 export type ArcadeTablesState = {
@@ -140,19 +141,36 @@ export const arcadeTablesSlice = createProducer(initialState, {
         }
   },
 
+  materializeArcadeTable: (
+    state,
+    name: ArcadeTableName | ArcadeTableNextName,
+  ) =>
+    state[name]?.unmaterialized
+      ? {
+          ...state,
+          [name]: { ...state[name], unmaterialized: false },
+        }
+      : state,
+
   extendArcadeTable: (state, name: ArcadeTableName | ArcadeTableNextName) => {
     const nextName = nextArcadeTableName(name)
     if (isArcadeTableName(name)) {
       const nextTable = state[nextName]
       return nextTable
         ? state
-        : { ...state, [nextName]: { ...initialState[name] } }
+        : {
+            ...state,
+            [nextName]: { ...initialState[name], unmaterialized: true },
+          }
     }
     const baseName = baseArcadeTableName(name)
     return {
       ...state,
-      [baseName]: state[name] || { ...initialState[baseName] },
-      [nextName]: { ...initialState[baseName] },
+      [baseName]: state[name] || {
+        ...initialState[baseName],
+        unmaterialized: true,
+      },
+      [nextName]: { ...initialState[baseName], unmaterialized: true },
     }
   },
 })

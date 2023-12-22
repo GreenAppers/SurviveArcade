@@ -89,15 +89,15 @@ export class MapService implements OnStart {
   setupArcadeTable(
     arcadeTable: ArcadeTable,
     state: ArcadeTableState,
-    cframe: CFrame,
+    cframe?: CFrame,
   ) {
     const parts = getDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     for (const part of parts) {
       if (part.Name === 'BallTemplate') continue
-      if (part.Name === 'Stator') {
-        part.BrickColor = state.statorColor
-      } else if (part.Name === 'Baseplate') {
+      if (part.Name === 'Baseplate') {
         arcadeTable.PrimaryPart = part
+      } else if (part.Name === 'Stator') {
+        part.BrickColor = state.statorColor
       } else if (string.match(part.Name, '^Floor*')[0]) {
         part.BrickColor = state.baseColor
         part.Material = state.baseMaterial
@@ -107,13 +107,14 @@ export class MapService implements OnStart {
     }
     arcadeTable.Baseplate.BrickColor = state.baseColor
     arcadeTable.Baseplate.Material = state.baseMaterial
-    arcadeTable.PivotTo(cframe)
+    if (cframe) arcadeTable.PivotTo(cframe)
     arcadeTable.Parent = Workspace.ArcadeTables
   }
 
   setupNextArcadeTable(arcadeTable: ArcadeTable, cframe: CFrame) {
     const parts = <BasePart[]>getDescendentsWhichAre(arcadeTable, 'BasePart')
     for (const part of parts) {
+      if (part.Name === 'Baseplate') arcadeTable.PrimaryPart = part
       if (part.Transparency === 1) continue
       part.Material = Enum.Material.ForceField
     }
@@ -150,6 +151,27 @@ export class MapService implements OnStart {
 
   onStart() {
     this.loadMap('Map2')
+  }
+
+  materializeTable(name: ArcadeTableName | ArcadeTableNextName) {
+    const state = store.getState().arcadeTables[name]
+    let arcadeTable = game.Workspace.ArcadeTables?.[name]
+    const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
+    if (
+      state?.unmaterialized &&
+      state.tableType &&
+      arcadeTable &&
+      arcadeTableCF
+    ) {
+      store.materializeArcadeTable(name)
+      arcadeTable?.Destroy()
+      arcadeTable = this.loadArcadeTableTemplate(
+        state.tableType,
+        baseArcadeTableName(name),
+      )
+      arcadeTable.Name = name
+      this.setupArcadeTable(arcadeTable, state, arcadeTableCF)
+    }
   }
 
   chainNextTable(name: ArcadeTableName | ArcadeTableNextName) {
@@ -192,6 +214,6 @@ export class MapService implements OnStart {
         0.9999998807907104,
       ),
     )
-    this.setupArcadeTable(arcadeTableNext, state, nextArcadeTableCF)
+    this.setupNextArcadeTable(arcadeTableNext, nextArcadeTableCF)
   }
 }
