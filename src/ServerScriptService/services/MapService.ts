@@ -174,6 +174,29 @@ export class MapService implements OnStart {
     }
   }
 
+  /*
+  materializeBackbox(name: ArcadeTableName | ArcadeTableNextName) {
+    const arcadeTable = game.Workspace.ArcadeTables?.[name]
+    const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
+    if (!arcadeTableCF) return
+    const arcadeTableBackboxCF = arcadeTableCF.ToWorldSpace(
+      new CFrame(
+        -0.0383758544921875,
+        56.76768493652344,
+        -129.17710876464844,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+      ),
+    )
+  } */
+
   chainNextTable(name: ArcadeTableName | ArcadeTableNextName) {
     const isNextName = isArcadeTableNextName(name)
     const arcadeTableBaseName = baseArcadeTableName(name)

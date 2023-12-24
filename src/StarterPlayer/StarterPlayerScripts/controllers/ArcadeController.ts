@@ -58,10 +58,12 @@ export class ArcadeController implements OnStart {
         if (camera && baseplate && seat) {
           const pos = seat.CFrame.Position.add(new Vector3(0, 60, 0))
           const forward = baseplate.CFrame.Position.sub(seat.CFrame.Position)
-          const target = baseplate.CFrame.Position.sub(forward.mul(0.4))
+          const target = baseplate.CFrame.Position.sub(forward.mul(0.4)).add(
+            new Vector3(0, 20, 0),
+          )
           const look = target.sub(pos)
           camera.CameraType = Enum.CameraType.Scriptable
-          camera.CFrame = new CFrame(pos.sub(look.mul(0.6)), target)
+          camera.CFrame = new CFrame(pos.sub(look), target)
         }
       },
     )
