@@ -5,6 +5,7 @@ interface ArcadeMap {
 interface ArcadeTable extends Model {
   Name: ArcadeTableName | ArcadeTableNextName
   Baseplate: BasePart
+  NextBaseplate: BasePart
   Values: Folder & {
     TeamName: StringValue
   }
@@ -77,9 +78,17 @@ interface Workspace extends Instance {
     Table4Next?: ArcadeTable
   }
   Map?: Folder & {
-    Table1?: Model
-    Table2?: Model
-    Table3?: Model
-    Table4?: Model
+    Table1?: Model & {
+      Baseplate: BasePart
+    }
+    Table2?: Model & {
+      Baseplate: BasePart
+    }
+    Table3?: Model & {
+      Baseplate: BasePart
+    }
+    Table4?: Model & {
+      Baseplate: BasePart
+    }
   }
 }

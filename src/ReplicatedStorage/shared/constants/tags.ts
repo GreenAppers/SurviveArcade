@@ -1,5 +1,6 @@
 export const ArcadeTableTag = 'ArcadeTable'
 export const BallTag = 'Ball'
+export const BarrierTag = 'Barrier'
 export const BouncerTag = 'Bouncer'
 export const DrainTag = 'Drain'
 export const MaterializerTag = 'Materializer'

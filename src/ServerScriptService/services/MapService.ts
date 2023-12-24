@@ -38,23 +38,7 @@ export class MapService implements OnStart {
     },
     Map2: {
       getArcadeTableCFrame: (name) => {
-        const tableOffsetCFrame = new CFrame(
-          0.0001983642578125,
-          62.376220703125,
-          1.47723388671875,
-          -1,
-          4.170123176893553e-13,
-          -3.212539262387182e-11,
-          -8.717467719909777e-12,
-          0.9659258127212524,
-          -0.25881898403167725,
-          -3.092281986027956e-11,
-          -0.258819043636322,
-          -0.9659256935119629,
-        )
-        const tablePart = game.Workspace.Map?.[name]?.PrimaryPart
-        if (!tablePart) return new CFrame()
-        return tablePart.CFrame.ToWorldSpace(tableOffsetCFrame)
+        return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
       },
     },
   }
@@ -174,29 +158,6 @@ export class MapService implements OnStart {
     }
   }
 
-  /*
-  materializeBackbox(name: ArcadeTableName | ArcadeTableNextName) {
-    const arcadeTable = game.Workspace.ArcadeTables?.[name]
-    const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
-    if (!arcadeTableCF) return
-    const arcadeTableBackboxCF = arcadeTableCF.ToWorldSpace(
-      new CFrame(
-        -0.0383758544921875,
-        56.76768493652344,
-        -129.17710876464844,
-        1,
-        0,
-        0,
-        0,
-        1,
-        0,
-        0,
-        0,
-        1,
-      ),
-    )
-  } */
-
   chainNextTable(name: ArcadeTableName | ArcadeTableNextName) {
     const isNextName = isArcadeTableNextName(name)
     const arcadeTableBaseName = baseArcadeTableName(name)
@@ -214,29 +175,13 @@ export class MapService implements OnStart {
       arcadeTable.Name = arcadeTableBaseName
       arcadeTableNext = undefined
     }
-    const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
-    if (arcadeTableNext || !arcadeTableCF) return
+    const nextArcadeTableCF = arcadeTable?.NextBaseplate?.CFrame
+    if (arcadeTableNext || !nextArcadeTableCF) return
     arcadeTableNext = this.loadArcadeTableTemplate(
       state.tableType,
       arcadeTableBaseName,
     )
     arcadeTableNext.Name = arcadeTableNextName
-    const nextArcadeTableCF = arcadeTableCF.ToWorldSpace(
-      new CFrame(
-        0,
-        17.329776763916016,
-        -255.9019775390625,
-        1,
-        0,
-        0,
-        0,
-        1,
-        1.881351963106681e-8,
-        0,
-        4.927848351599096e-9,
-        0.9999998807907104,
-      ),
-    )
     this.setupNextArcadeTable(arcadeTableNext, nextArcadeTableCF)
   }
 }
