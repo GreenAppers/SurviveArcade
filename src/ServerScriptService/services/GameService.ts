@@ -16,7 +16,7 @@ export class GameService implements OnStart {
     print('Changing round')
     store.startNewRound()
     store.resetScores()
-    this.mapService.loadMap('Map2')
+    this.mapService.loadMap('Map1')
   }
 
   onStart() {

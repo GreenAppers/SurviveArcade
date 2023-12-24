@@ -26,11 +26,11 @@
         <R21>0</R21>
         <R22>0</R22>
       </CoordinateFrame>
-      <bool name="CanCollide">false</bool>
+      <bool name="CanCollide">true</bool>
       <bool name="CanQuery">true</bool>
       <bool name="CanTouch">true</bool>
-      <bool name="CastShadow">true</bool>
-      <string name="CollisionGroup">Default</string>
+      <bool name="CastShadow">false</bool>
+      <string name="CollisionGroup">Barrier</string>
       <int name="CollisionGroupId">0</int>
       <Color3uint8 name="Color3uint8">307180</Color3uint8>
       <PhysicalProperties name="CustomPhysicalProperties">
@@ -49,7 +49,7 @@
       <token name="LeftSurfaceInput">0</token>
       <bool name="Locked">false</bool>
       <bool name="Massless">false</bool>
-      <token name="Material">256</token>
+      <token name="Material">1584</token>
       <string name="MaterialVariantSerialized"></string>
       <CoordinateFrame name="PivotOffset">
         <X>0</X>

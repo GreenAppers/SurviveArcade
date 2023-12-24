@@ -16,28 +16,6 @@ export class MapService implements OnStart {
   maps: Record<string, ArcadeMap> = {
     Map1: {
       getArcadeTableCFrame: (name) => {
-        switch (name) {
-          case 'Table1':
-            return new CFrame(new Vector3(192.306, 29.057, 0)).mul(
-              CFrame.fromOrientation(math.rad(15), math.rad(-90), math.rad(0)),
-            )
-          case 'Table2':
-            return new CFrame(new Vector3(0, 29.057, 192.306)).mul(
-              CFrame.fromOrientation(math.rad(15), math.rad(180), math.rad(0)),
-            )
-          case 'Table3':
-            return new CFrame(new Vector3(-192.306, 29.057, 0)).mul(
-              CFrame.fromOrientation(math.rad(15), math.rad(90), math.rad(0)),
-            )
-          case 'Table4':
-            return new CFrame(new Vector3(0, 29.057, -192.306)).mul(
-              CFrame.fromOrientation(math.rad(15), math.rad(0), math.rad(0)),
-            )
-        }
-      },
-    },
-    Map2: {
-      getArcadeTableCFrame: (name) => {
         return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
       },
     },
@@ -134,7 +112,7 @@ export class MapService implements OnStart {
   }
 
   onStart() {
-    this.loadMap('Map2')
+    this.loadMap('Map1')
   }
 
   materializeTable(name: ArcadeTableName | ArcadeTableNextName) {
