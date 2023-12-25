@@ -2,7 +2,9 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { BarrierTag } from 'ReplicatedStorage/shared/constants/tags'
-import { sendAlert } from '../alerts'
+import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
+import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
+import { getArcadeTableStateFromDescendent } from 'StarterPlayer/StarterPlayerScripts/utils'
 
 @Component({ tag: BarrierTag })
 export class BarrierComponent
@@ -12,6 +14,9 @@ export class BarrierComponent
   debounce = false
 
   onStart() {
+    const arcadeTable = getArcadeTableFromDescendent(this.instance)
+    if (!arcadeTable) throw error('Drain has no ancestor ArcadeTable')
+
     this.instance.Touched?.Connect((hit) => {
       if (this.debounce) return
       const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
@@ -21,7 +26,10 @@ export class BarrierComponent
       const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
       if (touchedPlayer?.UserId === Players.LocalPlayer.UserId) {
         this.debounce = true
-        sendAlert({ message: 'Complete the table first' })
+        sendAlert({
+          message: `Score ${getArcadeTableStateFromDescendent(this.instance)
+            ?.scoreToWin} to defeat the barrier.`,
+        })
         task.wait(5)
         this.debounce = false
       }

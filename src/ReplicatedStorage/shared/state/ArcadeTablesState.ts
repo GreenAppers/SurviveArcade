@@ -1,5 +1,11 @@
 import { createProducer } from '@rbxts/reflex'
 
+export enum ArcadeTableStatus {
+  Unmaterialized,
+  Active,
+  Won,
+}
+
 export interface ArcadeTableState {
   readonly owner?: Player
   readonly tableType?: ArcadeTableType
@@ -8,7 +14,8 @@ export interface ArcadeTableState {
   readonly baseColor: BrickColor
   readonly baseMaterial: Enum.Material
   readonly statorColor: BrickColor
-  readonly unmaterialized?: boolean
+  readonly scoreToWin: number
+  readonly status: ArcadeTableStatus
 }
 
 export type ArcadeTablesState = {
@@ -17,7 +24,7 @@ export type ArcadeTablesState = {
     | undefined
 }
 
-export const isArcadeTableName = (
+export const isArcadeTableBaseName = (
   tableName: ArcadeTableName | ArcadeTableNextName,
 ): ArcadeTableName | undefined => {
   switch (tableName) {
@@ -83,6 +90,8 @@ export const nextArcadeTableName = (
   }
 }
 
+const initialScoreToWin = 50000
+
 const initialState: ArcadeTablesState = {
   Table1: {
     owner: undefined,
@@ -92,6 +101,8 @@ const initialState: ArcadeTablesState = {
     statorColor: new BrickColor('Electric blue'),
     baseColor: new BrickColor('Pastel Blue'),
     baseMaterial: Enum.Material.Glass,
+    scoreToWin: initialScoreToWin,
+    status: ArcadeTableStatus.Active,
   },
   Table2: {
     owner: undefined,
@@ -101,6 +112,8 @@ const initialState: ArcadeTablesState = {
     statorColor: new BrickColor('Forest green'),
     baseColor: new BrickColor('Sand green'),
     baseMaterial: Enum.Material.Glass,
+    scoreToWin: initialScoreToWin,
+    status: ArcadeTableStatus.Active,
   },
   Table3: {
     owner: undefined,
@@ -110,6 +123,8 @@ const initialState: ArcadeTablesState = {
     statorColor: new BrickColor('Neon orange'),
     baseColor: new BrickColor('Cork'),
     baseMaterial: Enum.Material.Glass,
+    scoreToWin: initialScoreToWin,
+    status: ArcadeTableStatus.Active,
   },
   Table4: {
     owner: undefined,
@@ -119,6 +134,8 @@ const initialState: ArcadeTablesState = {
     statorColor: new BrickColor('Crimson'),
     baseColor: new BrickColor('Terra Cotta'),
     baseMaterial: Enum.Material.Glass,
+    scoreToWin: initialScoreToWin,
+    status: ArcadeTableStatus.Active,
   },
   Table1Next: undefined,
   Table2Next: undefined,
@@ -141,36 +158,47 @@ export const arcadeTablesSlice = createProducer(initialState, {
         }
   },
 
-  materializeArcadeTable: (
+  updateArcadeTableStatus: (
     state,
     name: ArcadeTableName | ArcadeTableNextName,
+    status: ArcadeTableStatus,
   ) =>
-    state[name]?.unmaterialized
+    state[name]?.status !== status
       ? {
           ...state,
-          [name]: { ...state[name], unmaterialized: false },
+          [name]: { ...state[name], status },
         }
       : state,
 
   extendArcadeTable: (state, name: ArcadeTableName | ArcadeTableNextName) => {
     const nextName = nextArcadeTableName(name)
-    if (isArcadeTableName(name)) {
+    if (isArcadeTableBaseName(name)) {
+      // We're extending the inital table.
       const nextTable = state[nextName]
       return nextTable
         ? state
         : {
             ...state,
-            [nextName]: { ...initialState[name], unmaterialized: true },
+            [nextName]: {
+              ...initialState[name],
+              scoreToWin: (state[name]?.scoreToWin || initialScoreToWin) * 2,
+              status: ArcadeTableStatus.Unmaterialized,
+            },
           }
-    }
-    const baseName = baseArcadeTableName(name)
-    return {
-      ...state,
-      [baseName]: state[name] || {
-        ...initialState[baseName],
-        unmaterialized: true,
-      },
-      [nextName]: { ...initialState[baseName], unmaterialized: true },
+    } else {
+      // We're extending the current "next" table.
+      const baseName = baseArcadeTableName(name)
+      return {
+        ...state,
+        // Replace the base table with the current next table.
+        [baseName]: state[name] || { ...initialState[baseName] },
+        // Create a new next table.
+        [nextName]: {
+          ...initialState[baseName],
+          scoreToWin: (state[name]?.scoreToWin || initialScoreToWin) * 2,
+          status: ArcadeTableStatus.Unmaterialized,
+        },
+      }
     }
   },
 })

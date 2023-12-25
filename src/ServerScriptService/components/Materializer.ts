@@ -2,8 +2,8 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { MaterializerTag } from 'ReplicatedStorage/shared/constants/tags'
+import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { MapService } from 'ServerScriptService/services/MapService'
-import { getArcadeTableFromDescendent } from 'ServerScriptService/utils'
 
 @Component({ tag: MaterializerTag })
 export class MaterializerComponent

@@ -33,6 +33,9 @@ export const selectPlayersState = () => (state: SharedState) => state.players
 export const selectPlayerState = (userID: number) => (state: SharedState) =>
   getPlayer(state.players, userID)
 
+export const selectPlayerScore = (userID: number) => (state: SharedState) =>
+  getPlayer(state.players, userID)?.score
+
 export const selectLocalPlayerState = () => (state: SharedState) =>
   getPlayer(state.players, USER_ID)
 

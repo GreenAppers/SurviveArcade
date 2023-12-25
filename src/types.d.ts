@@ -3,8 +3,10 @@ interface ArcadeMap {
 }
 
 interface ArcadeTable extends Model {
-  Name: ArcadeTableName | ArcadeTableNextName
+  Backbox?: Model
+  Barrier?: BasePart
   Baseplate: BasePart
+  Name: ArcadeTableName | ArcadeTableNextName
   NextBaseplate: BasePart
   Values: Folder & {
     TeamName: StringValue

@@ -3,12 +3,10 @@ import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { BouncerTag } from 'ReplicatedStorage/shared/constants/tags'
+import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
-import {
-  getArcadeTableFromDescendent,
-  getArcadeTableOwner,
-} from 'ServerScriptService/utils'
+import { getArcadeTableOwner } from 'ServerScriptService/utils'
 
 @Component({ tag: BouncerTag })
 export class BouncerComponent

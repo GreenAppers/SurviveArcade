@@ -4,6 +4,7 @@ import { ReplicatedStorage, Workspace } from '@rbxts/services'
 import {
   ArcadeTablesState,
   ArcadeTableState,
+  ArcadeTableStatus,
   baseArcadeTableName,
   isArcadeTableNextName,
   nextArcadeTableName,
@@ -120,12 +121,12 @@ export class MapService implements OnStart {
     let arcadeTable = game.Workspace.ArcadeTables?.[name]
     const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
     if (
-      state?.unmaterialized &&
+      state?.status === ArcadeTableStatus.Unmaterialized &&
       state.tableType &&
       arcadeTable &&
       arcadeTableCF
     ) {
-      store.materializeArcadeTable(name)
+      store.updateArcadeTableStatus(name, ArcadeTableStatus.Active)
       arcadeTable?.Destroy()
       arcadeTable = this.loadArcadeTableTemplate(
         state.tableType,

@@ -2,12 +2,10 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { CollectionService, Players } from '@rbxts/services'
 import { BallTag, DrainTag } from 'ReplicatedStorage/shared/constants/tags'
+import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
-import {
-  getArcadeTableFromDescendent,
-  getArcadeTableOwner,
-} from 'ServerScriptService/utils'
+import { getArcadeTableOwner } from 'ServerScriptService/utils'
 
 @Component({ tag: DrainTag })
 export class DrainComponent

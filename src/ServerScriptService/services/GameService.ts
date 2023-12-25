@@ -3,10 +3,11 @@ import Object from '@rbxts/object-utils'
 import {
   selectArcadeTablesState,
   selectGameState,
+  selectPlayerScore,
 } from 'ReplicatedStorage/shared/state'
+import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
-
-import { MapService } from './MapService'
 
 @Service()
 export class GameService implements OnStart {
@@ -35,11 +36,29 @@ export class GameService implements OnStart {
       if (remaining <= 0) this.changeRound()
       else store.setRoundRemaining(remaining)
 
-      // Increase players' score for each second owning an arcade table.
       const arcadeTablesState = arcadeTablesSelector(state)
-      for (const arcadeTableState of Object.values(arcadeTablesState)) {
-        if (arcadeTableState.owner)
-          store.addScore(arcadeTableState.owner.UserId, 10)
+      for (const [name, arcadeTableState] of Object.entries(
+        arcadeTablesState,
+      )) {
+        if (arcadeTableState.owner) {
+          // Increase players' score for each second owning an arcade table.
+          const userId = arcadeTableState.owner.UserId
+          const newState = store.addScore(userId, 10)
+          if (arcadeTableState.status !== ArcadeTableStatus.Active) continue
+
+          // Trigger winning sequence when threshhold score exceeded.
+          const userScoreSelector = selectPlayerScore(userId)
+          const score = userScoreSelector(newState)?.score || 0
+          if (score > arcadeTableState.scoreToWin) {
+            const arcadeTable = game.Workspace.ArcadeTables[name]
+            if (arcadeTable) {
+              arcadeTable.Barrier?.Destroy()
+              arcadeTable.Backbox?.Destroy()
+            }
+            store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
+            this.mapService.chainNextTable(name)
+          }
+        }
       }
     }
   }

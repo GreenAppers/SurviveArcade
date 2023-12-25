@@ -1,8 +1,8 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { SeatTag } from 'ReplicatedStorage/shared/constants/tags'
+import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { store } from 'ServerScriptService/store'
-import { getArcadeTableFromDescendent } from 'ServerScriptService/utils'
 
 @Component({ tag: SeatTag })
 export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {

@@ -1,6 +1,5 @@
-import Object from '@rbxts/object-utils'
 import { createProducer } from '@rbxts/reflex'
-import { mapProperties } from '../utils/object'
+import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
 
 export interface PlayerData {
   readonly score: PlayerScore
