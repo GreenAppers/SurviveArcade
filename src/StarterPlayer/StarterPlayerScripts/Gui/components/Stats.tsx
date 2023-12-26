@@ -1,12 +1,12 @@
 import { useSelector } from '@rbxts/react-reflex'
 import Roact from '@rbxts/roact'
+import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectLocalPlayerScoreState } from 'ReplicatedStorage/shared/state'
 import { formatInteger } from 'StarterPlayer/StarterPlayerScripts/utils'
 
 import { useDefined, useRem } from '../hooks'
 import { Group } from './Group'
 import { StatsCard } from './StatsCard'
-import { palette } from 'ReplicatedStorage/shared/constants/palette'
 
 export function Stats() {
   const rem = useRem()

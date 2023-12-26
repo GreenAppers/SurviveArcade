@@ -1,4 +1,4 @@
-import { Players } from '@rbxts/services'
+import { CollectionService, Players } from '@rbxts/services'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { store } from 'ServerScriptService/store'
 
@@ -13,6 +13,16 @@ export function getDescendentsWhichAre(
   const descendents = []
   for (const descendent of ancestor.GetDescendants()) {
     if (descendent.IsA(className)) descendents.push(descendent)
+  }
+  return descendents
+}
+
+export function getDescendentsWithTag(ancestor: Instance, tagName: string) {
+  assert(typeOf(ancestor) === 'Instance', 'Expected Instance ancestor')
+  const descendents = []
+  for (const descendent of ancestor.GetDescendants()) {
+    if (CollectionService.HasTag(descendent, tagName))
+      descendents.push(descendent)
   }
   return descendents
 }

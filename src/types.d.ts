@@ -3,14 +3,16 @@ interface ArcadeMap {
 }
 
 interface ArcadeTable extends Model {
-  Backbox?: Model
+  Backbox?: Model & {
+    Frame: Model & {
+      Explosion?: ParticleEmitter
+    }
+  }
+  Balls: Folder
   Barrier?: BasePart
   Baseplate: BasePart
   Name: ArcadeTableName | ArcadeTableNextName
   NextBaseplate: BasePart
-  Values: Folder & {
-    TeamName: StringValue
-  }
 }
 
 type ArcadeTableName = 'Table1' | 'Table2' | 'Table3' | 'Table4'

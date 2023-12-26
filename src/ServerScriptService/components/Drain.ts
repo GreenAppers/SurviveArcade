@@ -2,6 +2,7 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { CollectionService, Players } from '@rbxts/services'
 import { BallTag, DrainTag } from 'ReplicatedStorage/shared/constants/tags'
+import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
@@ -42,13 +43,16 @@ export class DrainComponent
       store.resetScore(player.UserId)
       const character: (Model & { Humanoid?: Humanoid }) | undefined =
         player.Character
-      if (character?.Humanoid) character.Humanoid.Health = 0
+      const state = store.getState().arcadeTables[arcadeTable.Name]
+      if (state?.status === ArcadeTableStatus.Active && character?.Humanoid) {
+        character.Humanoid.Health = 0
+      }
     }
     task.wait(0.5)
     part.Destroy()
   }
 
   handlePlayerTouched(arcadeTable: ArcadeTable, _player: Player) {
-    this.mapService.chainNextTable(arcadeTable.Name)
+    this.mapService.materializeTable(arcadeTable.Name)
   }
 }

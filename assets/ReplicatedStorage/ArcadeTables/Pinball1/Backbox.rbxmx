@@ -1,7 +1,7 @@
 <roblox version="4">
   <Item class="Model" referent="0">
     <Properties>
-      <string name="Name">Monster</string>
+      <string name="Name">Backbox</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
@@ -241,8 +241,103 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
+      <Item class="Decal" referent="3">
+        <Properties>
+          <string name="Name">Decal</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <Color3 name="Color3">
+            <R>1</R>
+            <G>1</G>
+            <B>1</B>
+          </Color3>
+          <bool name="DefinesCapabilities">false</bool>
+          <token name="Face">5</token>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <Content name="Texture">
+            <url>http://www.roblox.com/asset/?id=264479850</url>
+          </Content>
+          <float name="Transparency">0</float>
+          <int name="ZIndex">1</int>
+        </Properties>
+      </Item>
+      <Item class="ParticleEmitter" referent="4">
+        <Properties>
+          <string name="Name">Explosion</string>
+          <Vector3 name="Acceleration">
+            <X>0</X>
+            <Y>-50</Y>
+            <Z>0</Z>
+          </Vector3>
+          <BinaryString name="AttributesSerialize">AQAAAAkAAABFbWl0Q291bnQGAAAAAABAn0A=</BinaryString>
+          <float name="Brightness">1</float>
+          <ColorSequence name="Color">0 1 0.639216 0.345098 0 0.25 1 0.392157 0.113725 0 0.5 0.501961 0.207843 0 0 0.625 0.12549 0.12549 0.12549 0 1 0.12549 0.12549 0.12549 0 </ColorSequence>
+          <bool name="DefinesCapabilities">false</bool>
+          <float name="Drag">0</float>
+          <token name="EmissionDirection">1</token>
+          <bool name="Enabled">false</bool>
+          <NumberRange name="FlipbookFramerate">1 1 </NumberRange>
+          <string name="FlipbookIncompatible">Particle texture must be 1024 by 1024 to use flipbooks.</string>
+          <token name="FlipbookLayout">0</token>
+          <token name="FlipbookMode">0</token>
+          <bool name="FlipbookStartRandom">false</bool>
+          <NumberRange name="Lifetime">0 5 </NumberRange>
+          <float name="LightEmission">0.5</float>
+          <float name="LightInfluence">1</float>
+          <bool name="LockedToPart">false</bool>
+          <token name="Orientation">0</token>
+          <float name="Rate">100000000000000000000000000000</float>
+          <NumberRange name="RotSpeed">-150 150 </NumberRange>
+          <NumberRange name="Rotation">-180 180 </NumberRange>
+          <token name="Shape">0</token>
+          <token name="ShapeInOut">0</token>
+          <float name="ShapePartial">1</float>
+          <token name="ShapeStyle">0</token>
+          <NumberSequence name="Size">0 10 0 0.0287026 10 0 0.0298507 0 0 0.108 2.75 0.25 1 9 1 </NumberSequence>
+          <int64 name="SourceAssetId">-1</int64>
+          <NumberRange name="Speed">0 85 </NumberRange>
+          <Vector2 name="SpreadAngle">
+            <X>65</X>
+            <Y>65</Y>
+          </Vector2>
+          <NumberSequence name="Squash">0 0 0 1 0 0 </NumberSequence>
+          <BinaryString name="Tags"></BinaryString>
+          <Content name="Texture">
+            <url>rbxassetid://2446898316</url>
+          </Content>
+          <float name="TimeScale">1</float>
+          <NumberSequence name="Transparency">0 1 0 0.025 0 0 0.25 0 0 1 1 0 </NumberSequence>
+          <float name="VelocityInheritance">0</float>
+          <bool name="WindAffectsDrag">false</bool>
+          <float name="ZOffset">0</float>
+        </Properties>
+      </Item>
+      <Item class="Attachment" referent="5">
+        <Properties>
+          <string name="Name">Attachment</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <CoordinateFrame name="CFrame">
+            <X>0</X>
+            <Y>3.1999998</Y>
+            <Z>0</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <bool name="DefinesCapabilities">false</bool>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <bool name="Visible">false</bool>
+        </Properties>
+      </Item>
     </Item>
-    <Item class="UnionOperation" referent="3">
+    <Item class="UnionOperation" referent="6">
       <Properties>
         <string name="Name">Union</string>
         <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -360,7 +455,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Decal" referent="4">
+      <Item class="Decal" referent="7">
         <Properties>
           <string name="Name">Decal</string>
           <BinaryString name="AttributesSerialize"></BinaryString>

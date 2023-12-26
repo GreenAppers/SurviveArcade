@@ -1,5 +1,6 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
+import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTablesState,
   selectGameState,
@@ -8,6 +9,7 @@ import {
 import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
+import { getDescendentsWithTag } from 'ServerScriptService/utils'
 
 @Service()
 export class GameService implements OnStart {
@@ -50,12 +52,25 @@ export class GameService implements OnStart {
           const userScoreSelector = selectPlayerScore(userId)
           const score = userScoreSelector(newState)?.score || 0
           if (score > arcadeTableState.scoreToWin) {
+            store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
             const arcadeTable = game.Workspace.ArcadeTables[name]
             if (arcadeTable) {
+              if (arcadeTable.Backbox) {
+                arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)
+                for (const descendent of arcadeTable.Backbox.GetDescendants()) {
+                  if (descendent.IsA('BasePart')) {
+                    descendent.Transparency = 1
+                  } else if (descendent.IsA('Decal')) {
+                    descendent.Transparency = 1
+                  }
+                }
+              }
               arcadeTable.Barrier?.Destroy()
+              const balls = getDescendentsWithTag(arcadeTable.Balls, BallTag)
+              for (const ball of balls) ball.Destroy()
+              task.wait(3)
               arcadeTable.Backbox?.Destroy()
             }
-            store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
             this.mapService.chainNextTable(name)
           }
         }

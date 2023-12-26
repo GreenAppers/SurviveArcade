@@ -90,7 +90,7 @@ export const nextArcadeTableName = (
   }
 }
 
-const initialScoreToWin = 50000
+const initialScoreToWin = 10000
 
 const initialState: ArcadeTablesState = {
   Table1: {

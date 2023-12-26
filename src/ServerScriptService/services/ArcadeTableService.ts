@@ -89,6 +89,10 @@ export class ArcadeTableService implements OnStart {
       ball.CanCollide = true
       ball.Anchored = false
       ball.Parent = balls
+      const sparks = <ParticleEmitter | undefined>ball.FindFirstChild('Sparks')
+      const light = <PointLight | undefined>ball.FindFirstChild('Light')
+      if (sparks) sparks.Enabled = true
+      if (light) light.Enabled = true
       ball.SetNetworkOwner(player)
     }
     flipperLeft.Flipper.Rotor.SetNetworkOwner(player)

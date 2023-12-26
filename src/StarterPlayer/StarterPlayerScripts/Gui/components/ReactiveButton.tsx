@@ -6,13 +6,13 @@ import {
   playButtonDown,
   playButtonUp,
 } from 'ReplicatedStorage/shared/assets'
+import { palette } from 'ReplicatedStorage/shared/constants/palette'
 
 import { useMotion, useRem } from '../hooks'
 import { useButtonAnimation } from '../hooks/useButtonAnimation'
 import { useButtonState } from '../hooks/useButtonState'
 import { Button } from './Button'
 import { Frame } from './Frame'
-import { palette } from 'ReplicatedStorage/shared/constants/palette'
 
 interface ReactiveButtonProps extends Roact.PropsWithChildren {
   onClick?: () => void

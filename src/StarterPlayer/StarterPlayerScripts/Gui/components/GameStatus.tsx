@@ -1,12 +1,11 @@
 import { useSelector } from '@rbxts/react-reflex'
 import Roact from '@rbxts/roact'
-import { selectGameState } from 'ReplicatedStorage/shared/state'
-import { formatDuration } from 'StarterPlayer/StarterPlayerScripts/utils'
-
-import { useRem } from '../hooks'
-import { Group } from './Group'
-import { StatsCard } from './StatsCard'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
+import { selectGameState } from 'ReplicatedStorage/shared/state'
+import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
+import { StatsCard } from 'StarterPlayer/StarterPlayerScripts/Gui/components/StatsCard'
+import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
+import { formatDuration } from 'StarterPlayer/StarterPlayerScripts/utils'
 
 export function GameStatus() {
   const rem = useRem()
