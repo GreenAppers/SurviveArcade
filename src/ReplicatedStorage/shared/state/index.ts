@@ -41,3 +41,14 @@ export const selectLocalPlayerState = () => (state: SharedState) =>
 
 export const selectLocalPlayerScoreState = () => (state: SharedState) =>
   getPlayer(state.players, USER_ID)?.score
+
+export const selectLocalPlayerArcadeTableStatus = () => {
+  const localPlayerArcadeTableNameSelector =
+    selectArcadeTableNameOwnedBy(USER_ID)
+  return (state: SharedState) => {
+    const localPlayerArcadeTableName = localPlayerArcadeTableNameSelector(state)
+    return localPlayerArcadeTableName
+      ? state.arcadeTables[localPlayerArcadeTableName]?.status
+      : undefined
+  }
+}

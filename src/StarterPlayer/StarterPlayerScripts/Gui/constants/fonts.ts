@@ -1,8 +1,14 @@
 export const fonts = {
   inter: {
-    regular: new Font('rbxassetid://12187365364'),
-    medium: new Font('rbxassetid://12187365364', Enum.FontWeight.Medium),
-    bold: new Font('rbxassetid://12187365364', Enum.FontWeight.Bold),
+    regular: new Font('rbxasset://fonts/families/LuckiestGuy.json'),
+    medium: new Font(
+      'rbxasset://fonts/families/LuckiestGuy.json',
+      Enum.FontWeight.Medium,
+    ),
+    bold: new Font(
+      'rbxasset://fonts/families/LuckiestGuy.json',
+      Enum.FontWeight.Bold,
+    ),
   },
   robotoMono: {
     regular: Font.fromEnum(Enum.Font.RobotoMono),

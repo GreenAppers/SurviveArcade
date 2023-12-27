@@ -3,7 +3,10 @@ import Object from '@rbxts/object-utils'
 import { Teams } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
-import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import {
+  ArcadeTableState,
+  ArcadeTableStatus,
+} from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 
@@ -19,7 +22,10 @@ export class ArcadeTableService implements OnStart {
           arcadeTablesState,
         )) {
           const previousArcadeTableState = previousArcadeTablesState[tableName]
-          if (arcadeTableState.owner === previousArcadeTableState?.owner)
+          if (
+            arcadeTableState.status === ArcadeTableStatus.Won ||
+            arcadeTableState.owner === previousArcadeTableState?.owner
+          )
             continue
           this.onTableClaimed(tableName, arcadeTableState.owner)
           if (arcadeTableState.owner) {

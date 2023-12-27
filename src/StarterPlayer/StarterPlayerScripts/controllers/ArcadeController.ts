@@ -1,6 +1,10 @@
 import { Controller, OnStart } from '@flamework/core'
 import { Players, UserInputService } from '@rbxts/services'
-import { selectArcadeTableNameOwnedBy } from 'ReplicatedStorage/shared/state'
+import {
+  selectArcadeTableNameOwnedBy,
+  selectLocalPlayerArcadeTableStatus,
+} from 'ReplicatedStorage/shared/state'
+import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
@@ -48,6 +52,10 @@ export class ArcadeController implements OnStart {
           if (camera) camera.CameraType = Enum.CameraType.Custom
           return
         }
+        const aracdeTableState = store.getState().arcadeTables[arcadeTableName]
+        sendAlert({
+          message: `Score ${aracdeTableState?.scoreToWin} to win.`,
+        })
         const arcadeTable =
           game.Workspace.ArcadeTables.FindFirstChild(arcadeTableName)
         const baseplate = arcadeTable?.FindFirstChild('Baseplate') as
@@ -69,6 +77,18 @@ export class ArcadeController implements OnStart {
     )
   }
 
+  startMyWinHandler() {
+    store.subscribe(
+      selectLocalPlayerArcadeTableStatus(),
+      (arcadeTableStatus) => {
+        if (arcadeTableStatus !== ArcadeTableStatus.Won) return
+        sendAlert({
+          message: `You defeated the barrier!  Now you can ascend the stairs!`,
+        })
+      },
+    )
+  }
+
   startMyRespawnHandler(player: Player) {
     player.CharacterAdded.Connect(() => {
       sendAlert({ message: 'Get the high score.  But beware of the rats!' })
@@ -81,6 +101,7 @@ export class ArcadeController implements OnStart {
     this.startMyBounceHandler(player)
     this.startMyClaimHandler(player)
     this.startMyRespawnHandler(player)
+    this.startMyWinHandler()
   }
 
   flipFlipper(player: Player, flipperName: string) {

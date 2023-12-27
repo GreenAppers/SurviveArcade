@@ -126,14 +126,14 @@ export class MapService implements OnStart {
       arcadeTable &&
       arcadeTableCF
     ) {
+      const baseName = baseArcadeTableName(name)
       store.updateArcadeTableStatus(name, ArcadeTableStatus.Active)
       arcadeTable?.Destroy()
-      arcadeTable = this.loadArcadeTableTemplate(
-        state.tableType,
-        baseArcadeTableName(name),
-      )
+      arcadeTable = this.loadArcadeTableTemplate(state.tableType, baseName)
       arcadeTable.Name = name
       this.setupArcadeTable(arcadeTable, state, arcadeTableCF)
+      const isNextName = isArcadeTableNextName(name)
+      if (isNextName) game.Workspace.ArcadeTables?.[baseName]?.Destroy()
     }
   }
 
@@ -142,11 +142,13 @@ export class MapService implements OnStart {
     const arcadeTableBaseName = baseArcadeTableName(name)
     const arcadeTableNextName = nextArcadeTableName(name)
     const state = store.getState().arcadeTables[arcadeTableBaseName]
-    let arcadeTable = game.Workspace.ArcadeTables?.[arcadeTableBaseName]
+    let arcadeTable = <ArcadeTable | undefined>(
+      game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableBaseName)
+    )
     let arcadeTableNext = <ArcadeTable | undefined>(
       game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableNextName)
     )
-    if (!arcadeTable || !state?.tableType) return
+    if (!state?.tableType) return
     store.extendArcadeTable(name)
     if (isNextName && arcadeTableNext) {
       arcadeTable?.Destroy()
