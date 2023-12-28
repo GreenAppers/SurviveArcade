@@ -693,136 +693,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Sound" referent="10">
-        <Properties>
-          <string name="Name">Sound</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <bool name="DefinesCapabilities">false</bool>
-          <NumberRange name="LoopRegion">0 60000 </NumberRange>
-          <bool name="Looped">false</bool>
-          <bool name="PlayOnRemove">false</bool>
-          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-          <bool name="PlaybackRegionsEnabled">false</bool>
-          <float name="PlaybackSpeed">1</float>
-          <bool name="Playing">false</bool>
-          <float name="xmlRead_MaxDistance_3">144503.8</float>
-          <float name="EmitterSize">144.5038</float>
-          <token name="RollOffMode">0</token>
-          <Ref name="SoundGroup">null</Ref>
-          <Content name="SoundId">
-            <url>rbxassetid://5082861770</url>
-          </Content>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <double name="TimePosition">0</double>
-          <float name="Volume">1</float>
-        </Properties>
-      </Item>
-      <Item class="Sound" referent="11">
-        <Properties>
-          <string name="Name">Sound2</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <bool name="DefinesCapabilities">false</bool>
-          <NumberRange name="LoopRegion">0 60000 </NumberRange>
-          <bool name="Looped">false</bool>
-          <bool name="PlayOnRemove">false</bool>
-          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-          <bool name="PlaybackRegionsEnabled">false</bool>
-          <float name="PlaybackSpeed">1</float>
-          <bool name="Playing">false</bool>
-          <float name="xmlRead_MaxDistance_3">144503.8</float>
-          <float name="EmitterSize">144.5038</float>
-          <token name="RollOffMode">0</token>
-          <Ref name="SoundGroup">null</Ref>
-          <Content name="SoundId">
-            <url>rbxassetid://3287180820</url>
-          </Content>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <double name="TimePosition">0</double>
-          <float name="Volume">1</float>
-        </Properties>
-      </Item>
-      <Item class="ClickDetector" referent="12">
-        <Properties>
-          <string name="Name">ClickDetector</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <Content name="CursorIcon">
-            <null>
-            </null>
-          </Content>
-          <bool name="DefinesCapabilities">false</bool>
-          <float name="MaxActivationDistance">462.41217</float>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-        </Properties>
-      </Item>
-      <Item class="ClickDetector" referent="13">
-        <Properties>
-          <string name="Name">ClickDetector</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <Content name="CursorIcon">
-            <null>
-            </null>
-          </Content>
-          <bool name="DefinesCapabilities">false</bool>
-          <float name="MaxActivationDistance">144.5038</float>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-        </Properties>
-      </Item>
-      <Item class="Script" referent="14">
-        <Properties>
-          <string name="Name">Play</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <bool name="DefinesCapabilities">false</bool>
-          <bool name="Disabled">false</bool>
-          <Content name="LinkedSource">
-            <null>
-            </null>
-          </Content>
-          <token name="RunContext">0</token>
-          <string name="Source"><![CDATA[Brick = script.Parent
-Sound = Brick.Sound2
-
-function onClicked()
-Sound:Play()
-end
-
-script.Parent.ClickDetector.MouseClick:connect(onClicked)
-]]></string>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-        </Properties>
-      </Item>
-      <Item class="Script" referent="15">
-        <Properties>
-          <string name="Name">Play</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <bool name="DefinesCapabilities">false</bool>
-          <bool name="Disabled">false</bool>
-          <Content name="LinkedSource">
-            <null>
-            </null>
-          </Content>
-          <token name="RunContext">0</token>
-          <string name="Source"><![CDATA[Brick = script.Parent
-Sound = Brick.Sound
-
-function onClicked()
-	wait(3.709)
-Sound:Play()
-wait(90)
-Sound:Stop()
-end
-
-script.Parent.ClickDetector.MouseClick:connect(onClicked)
-]]></string>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-        </Properties>
-      </Item>
-      <Item class="Weld" referent="16">
+      <Item class="Weld" referent="10">
         <Properties>
           <string name="Name">Weld</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -863,7 +734,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)
         </Properties>
       </Item>
     </Item>
-    <Item class="Model" referent="17">
+    <Item class="Model" referent="11">
       <Properties>
         <string name="Name">StartButton</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
@@ -912,7 +783,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)
           </CFrame>
         </OptionalCoordinateFrame>
       </Properties>
-      <Item class="Part" referent="18">
+      <Item class="Part" referent="12">
         <Properties>
           <string name="Name">Part</string>
           <bool name="Anchored">true</bool>
@@ -1009,7 +880,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)
           </Vector3>
         </Properties>
       </Item>
-      <Item class="Part" referent="19">
+      <Item class="Part" referent="13">
         <Properties>
           <string name="Name">Button</string>
           <bool name="Anchored">true</bool>
@@ -1105,69 +976,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="ClickDetector" referent="20">
-          <Properties>
-            <string name="Name">ClickDetector</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
-            <Content name="CursorIcon">
-              <null>
-              </null>
-            </Content>
-            <bool name="DefinesCapabilities">false</bool>
-            <float name="MaxActivationDistance">462.41217</float>
-            <int64 name="SourceAssetId">-1</int64>
-            <BinaryString name="Tags"></BinaryString>
-          </Properties>
-        </Item>
-        <Item class="Script" referent="21">
-          <Properties>
-            <string name="Name">Script</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
-            <bool name="DefinesCapabilities">false</bool>
-            <bool name="Disabled">false</bool>
-            <Content name="LinkedSource">
-              <null>
-              </null>
-            </Content>
-            <token name="RunContext">0</token>
-            <string name="Source">Brick = script.Parent
-Sound = Brick.Sound
-
-function onClicked()
-Sound:Play()
-end
-
-script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
-            <int64 name="SourceAssetId">-1</int64>
-            <BinaryString name="Tags"></BinaryString>
-          </Properties>
-        </Item>
-        <Item class="Sound" referent="22">
-          <Properties>
-            <string name="Name">Sound</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
-            <bool name="DefinesCapabilities">false</bool>
-            <NumberRange name="LoopRegion">0 60000 </NumberRange>
-            <bool name="Looped">false</bool>
-            <bool name="PlayOnRemove">false</bool>
-            <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-            <bool name="PlaybackRegionsEnabled">false</bool>
-            <float name="PlaybackSpeed">1</float>
-            <bool name="Playing">false</bool>
-            <float name="xmlRead_MaxDistance_3">144503.8</float>
-            <float name="EmitterSize">144.5038</float>
-            <token name="RollOffMode">0</token>
-            <Ref name="SoundGroup">null</Ref>
-            <Content name="SoundId">
-              <url>rbxassetid://5082861202</url>
-            </Content>
-            <int64 name="SourceAssetId">-1</int64>
-            <BinaryString name="Tags"></BinaryString>
-            <double name="TimePosition">0</double>
-            <float name="Volume">1</float>
-          </Properties>
-        </Item>
-        <Item class="Script" referent="23">
+        <Item class="Script" referent="14">
           <Properties>
             <string name="Name">flash</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1191,7 +1000,7 @@ end</string>
         </Item>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="24">
+    <Item class="TrussPart" referent="15">
       <Properties>
         <string name="Name">Truss1</string>
         <bool name="Anchored">true</bool>
@@ -1286,7 +1095,7 @@ end</string>
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="25">
+      <Item class="Attachment" referent="16">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1311,7 +1120,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="Part" referent="26">
+    <Item class="Part" referent="17">
       <Properties>
         <string name="Name">Leg1</string>
         <bool name="Anchored">true</bool>
@@ -1407,7 +1216,7 @@ end</string>
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Weld" referent="27">
+      <Item class="Weld" referent="18">
         <Properties>
           <string name="Name">Weld</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1442,13 +1251,13 @@ end</string>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">1</Ref>
-          <Ref name="Part1">26</Ref>
+          <Ref name="Part1">17</Ref>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="28">
+    <Item class="TrussPart" referent="19">
       <Properties>
         <string name="Name">Truss2</string>
         <bool name="Anchored">true</bool>
@@ -1543,7 +1352,7 @@ end</string>
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="29">
+      <Item class="Attachment" referent="20">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1568,7 +1377,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="30">
+    <Item class="TrussPart" referent="21">
       <Properties>
         <string name="Name">Truss3</string>
         <bool name="Anchored">true</bool>
@@ -1663,7 +1472,7 @@ end</string>
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="31">
+      <Item class="Attachment" referent="22">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1688,7 +1497,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="32">
+    <Item class="TrussPart" referent="23">
       <Properties>
         <string name="Name">Truss4</string>
         <bool name="Anchored">true</bool>
@@ -1783,7 +1592,7 @@ end</string>
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="33">
+      <Item class="Attachment" referent="24">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1808,7 +1617,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="Part" referent="34">
+    <Item class="Part" referent="25">
       <Properties>
         <string name="Name">Baseplate</string>
         <bool name="Anchored">true</bool>
