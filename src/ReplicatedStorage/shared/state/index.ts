@@ -1,6 +1,8 @@
-import Object from '@rbxts/object-utils'
 import { CombineStates } from '@rbxts/reflex'
-import { arcadeTablesSlice } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import {
+  arcadeTablesSlice,
+  findArcadeTableNameOwnedBy,
+} from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import {
   getPlayer,
   playersSlice,
@@ -22,9 +24,7 @@ export const selectArcadeTablesState = () => (state: SharedState) =>
 
 export const selectArcadeTableNameOwnedBy =
   (userId: number) => (state: SharedState) =>
-    Object.entries(state.arcadeTables).find(
-      ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
-    )?.[0] as ArcadeTableName | undefined
+    findArcadeTableNameOwnedBy(state.arcadeTables, userId)
 
 export const selectGameState = () => (state: SharedState) => state.game
 
@@ -35,6 +35,10 @@ export const selectPlayerState = (userID: number) => (state: SharedState) =>
 
 export const selectPlayerScore = (userID: number) => (state: SharedState) =>
   getPlayer(state.players, userID)?.score
+
+export const selectPlayerGuideEnabled =
+  (userID: number) => (state: SharedState) =>
+    getPlayer(state.players, userID)?.guide
 
 export const selectLocalPlayerState = () => (state: SharedState) =>
   getPlayer(state.players, USER_ID)

@@ -1,16 +1,21 @@
 import { useSelector } from '@rbxts/react-reflex'
 import Roact from '@rbxts/roact'
+import { USER_ID } from 'ReplicatedStorage/shared/constants/core'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
-import { selectLocalPlayerScoreState } from 'ReplicatedStorage/shared/state'
+import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
+import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
+import { StatsCard } from 'StarterPlayer/StarterPlayerScripts/Gui/components/StatsCard'
+import {
+  useDefined,
+  useRem,
+} from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
+import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 import { formatInteger } from 'StarterPlayer/StarterPlayerScripts/utils'
-
-import { useDefined, useRem } from '../hooks'
-import { Group } from './Group'
-import { StatsCard } from './StatsCard'
 
 export function Stats() {
   const rem = useRem()
-  const currentScore = useSelector(selectLocalPlayerScoreState())
+  const playerState = useSelector(selectLocalPlayerState())
+  const currentScore = playerState?.score
   const score = useDefined<string | number>(currentScore?.score, 'N/A')
   const highScore = useDefined<string | number>(currentScore?.highScore, 'N/A')
 
@@ -32,6 +37,18 @@ export function Stats() {
       />
 
       <StatsCard
+        key="guide"
+        emoji="➡️"
+        label="Guide"
+        value={playerState?.guide ? 'On' : 'Off'}
+        primary={palette.green}
+        secondary={palette.brown}
+        enabled={true}
+        order={0}
+        onClick={() => store.toggleGuide(USER_ID)}
+      />
+
+      <StatsCard
         key="highScore"
         emoji="🏆"
         label="High Score"
@@ -39,7 +56,7 @@ export function Stats() {
         primary={palette.yellow}
         secondary={palette.orange}
         enabled={highScore !== undefined}
-        order={0}
+        order={1}
       />
 
       <StatsCard
@@ -50,7 +67,7 @@ export function Stats() {
         primary={palette.pink}
         secondary={palette.red}
         enabled={currentScore !== undefined}
-        order={1}
+        order={2}
       />
     </Group>
   )

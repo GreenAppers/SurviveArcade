@@ -27,6 +27,17 @@ export function getDescendentsWithTag(ancestor: Instance, tagName: string) {
   return descendents
 }
 
+export function setNetworkOwner(ancestor: Instance, player?: Player) {
+  for (const descendent of ancestor.GetDescendants()) {
+    if (descendent.IsA('BasePart') && descendent.CanSetNetworkOwnership()[0]) {
+      descendent.SetNetworkOwner(player)
+    }
+  }
+  if (ancestor.IsA('BasePart') && ancestor.CanSetNetworkOwnership()[0]) {
+    ancestor.SetNetworkOwner(player)
+  }
+}
+
 export function forEveryPlayer(
   joinFunc: PlayerReceivingFunction,
   leaveFunc?: PlayerReceivingFunction,

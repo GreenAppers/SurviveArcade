@@ -9,6 +9,7 @@ import {
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
+import { setNetworkOwner } from 'ServerScriptService/utils'
 
 @Service()
 export class ArcadeTableService implements OnStart {
@@ -79,9 +80,9 @@ export class ArcadeTableService implements OnStart {
     const flipperRight = <Flipper>arcadeTable?.FindFirstChild('FlipperRight')
     const spinnerLeft = <Spinner>arcadeTable?.FindFirstChild('SpinnerLeft')
     if (!player) {
-      flipperLeft.Flipper.Rotor.SetNetworkOwner(undefined)
-      flipperRight.Flipper.Rotor.SetNetworkOwner(undefined)
-      spinnerLeft.Spinner.Spinner.SetNetworkOwner(undefined)
+      setNetworkOwner(flipperLeft, undefined)
+      setNetworkOwner(flipperRight, undefined)
+      setNetworkOwner(spinnerLeft, undefined)
       return
     }
 
@@ -99,10 +100,10 @@ export class ArcadeTableService implements OnStart {
       const light = <PointLight | undefined>ball.FindFirstChild('Light')
       if (sparks) sparks.Enabled = true
       if (light) light.Enabled = true
-      ball.SetNetworkOwner(player)
+      setNetworkOwner(ball, player)
     }
-    flipperLeft.Flipper.Rotor.SetNetworkOwner(player)
-    flipperRight.Flipper.Rotor.SetNetworkOwner(player)
-    spinnerLeft.Spinner.Spinner.SetNetworkOwner(player)
+    setNetworkOwner(flipperLeft, player)
+    setNetworkOwner(flipperRight, player)
+    setNetworkOwner(spinnerLeft, player)
   }
 }

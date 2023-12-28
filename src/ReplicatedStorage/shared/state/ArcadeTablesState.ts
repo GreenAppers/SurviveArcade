@@ -1,3 +1,4 @@
+import Object from '@rbxts/object-utils'
 import { createProducer } from '@rbxts/reflex'
 
 export enum ArcadeTableStatus {
@@ -89,6 +90,14 @@ export const nextArcadeTableName = (
       return 'Table4Next'
   }
 }
+
+export const findArcadeTableNameOwnedBy = (
+  arcadeTablesState: ArcadeTablesState,
+  userId: number,
+) =>
+  Object.entries(arcadeTablesState).find(
+    ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
+  )?.[0] as ArcadeTableName | undefined
 
 const initialScoreToWin = 10000
 
@@ -201,4 +210,6 @@ export const arcadeTablesSlice = createProducer(initialState, {
       }
     }
   },
+
+  resetArcadeTables: () => ({ ...initialState }),
 })

@@ -13,6 +13,9 @@ interface ArcadeTable extends Model {
   Baseplate: BasePart
   Name: ArcadeTableName | ArcadeTableNextName
   NextBaseplate: BasePart
+  Seat: Seat & {
+    Attachment: Attachment
+  }
 }
 
 type ArcadeTableName = 'Table1' | 'Table2' | 'Table3' | 'Table4'

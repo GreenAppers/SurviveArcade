@@ -1,14 +1,19 @@
 import { Controller, OnStart } from '@flamework/core'
+import Object from '@rbxts/object-utils'
 import { Players, UserInputService } from '@rbxts/services'
 import {
   selectArcadeTableNameOwnedBy,
+  selectArcadeTablesState,
   selectLocalPlayerArcadeTableStatus,
+  selectPlayerGuideEnabled,
 } from 'ReplicatedStorage/shared/state'
-import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import {
+  ArcadeTablesState,
+  ArcadeTableStatus,
+} from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
-
-import { sendAlert } from '../alerts'
 
 @Controller({})
 export class ArcadeController implements OnStart {
@@ -53,6 +58,7 @@ export class ArcadeController implements OnStart {
           return
         }
         const aracdeTableState = store.getState().arcadeTables[arcadeTableName]
+        if (aracdeTableState?.status !== ArcadeTableStatus.Active) return
         sendAlert({
           message: `Score ${aracdeTableState?.scoreToWin} to win.`,
         })
@@ -90,8 +96,29 @@ export class ArcadeController implements OnStart {
   }
 
   startMyRespawnHandler(player: Player) {
+    const aracdeTablesSelector = selectArcadeTablesState()
+    const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     player.CharacterAdded.Connect(() => {
       sendAlert({ message: 'Get the high score.  But beware of the rats!' })
+      const state = store.getState()
+      this.refreshBeams(
+        aracdeTablesSelector(state),
+        playerGuideEnabledSelector(state),
+      )
+    })
+  }
+
+  startMyGuideHandler(player: Player) {
+    const arcadeTablesSelector = selectArcadeTablesState()
+    const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
+    store.subscribe(arcadeTablesSelector, (arcadeTablesState) => {
+      this.refreshBeams(
+        arcadeTablesState,
+        playerGuideEnabledSelector(store.getState()),
+      )
+    })
+    store.subscribe(playerGuideEnabledSelector, (guideEnabled) => {
+      this.refreshBeams(arcadeTablesSelector(store.getState()), guideEnabled)
     })
   }
 
@@ -101,6 +128,7 @@ export class ArcadeController implements OnStart {
     this.startMyBounceHandler(player)
     this.startMyClaimHandler(player)
     this.startMyRespawnHandler(player)
+    this.startMyGuideHandler(player)
     this.startMyWinHandler()
   }
 
@@ -119,5 +147,42 @@ export class ArcadeController implements OnStart {
       rotor.CFrame.RightVector.mul(orientation * 600000),
     )
     Events.flipperFlip.fire(arcadeTable.Name, flipperName)
+  }
+
+  refreshBeams(arcadeTablesState: ArcadeTablesState, guideEnabled?: boolean) {
+    const localPlayer = Players.LocalPlayer
+    const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
+    if (!playerCharacter) return
+
+    // Clear old beams
+    for (const instance of playerCharacter.GetChildren()) {
+      if (instance.IsA('Beam')) instance.Destroy()
+    }
+
+    // Check if player has guide enabled.
+    if (!guideEnabled) return
+
+    // Find the local player's RootRigAttachment.
+    const humanoidRootPart = playerCharacter.WaitForChild('HumanoidRootPart')
+    if (!playerCharacter || !humanoidRootPart) return
+    const rootRigAttachment = <Attachment | undefined>(
+      humanoidRootPart.FindFirstChild('RootRigAttachment')
+    )
+    if (!rootRigAttachment) return
+
+    // Create new beams
+    for (const [aracdeTableName, aracdeTableState] of Object.entries(
+      arcadeTablesState,
+    )) {
+      if (aracdeTableState?.status !== ArcadeTableStatus.Active) continue
+      const seatAttachment =
+        game.Workspace.ArcadeTables[aracdeTableName]?.Seat?.Attachment
+      if (!seatAttachment) continue
+      const beam = new Instance('Beam')
+      beam.Name = 'Beam'
+      beam.Attachment0 = rootRigAttachment
+      beam.Attachment1 = seatAttachment
+      beam.Parent = playerCharacter
+    }
   }
 }

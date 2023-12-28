@@ -41,7 +41,7 @@ export function ErrorPage({ message }: ErrorPageProps) {
 
         <Text
           key="icon"
-          text="🐍"
+          text="🤖⁉️"
           textSize={rem(5)}
           size={new UDim2(0, rem(5), 0, rem(5))}
           layoutOrder={index++}
@@ -50,7 +50,7 @@ export function ErrorPage({ message }: ErrorPageProps) {
         <Text
           key="title"
           font={fonts.inter.bold}
-          text="Oh Noes!"
+          text="System malfunction"
           textColor={palette.text}
           textSize={rem(3)}
           textAutoResize="XY"

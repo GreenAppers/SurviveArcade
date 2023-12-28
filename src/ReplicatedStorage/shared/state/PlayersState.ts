@@ -2,6 +2,7 @@ import { createProducer } from '@rbxts/reflex'
 import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
 
 export interface PlayerData {
+  readonly guide: boolean
   readonly score: PlayerScore
 }
 
@@ -19,6 +20,7 @@ export interface PlayersState {
 }
 
 export const defaultPlayerData = {
+  guide: true,
   score: {
     score: 0,
     highScore: 0,
@@ -44,15 +46,34 @@ export const playersSlice = createProducer(initialState, {
 
   addScore: (state, userID: number, amount: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
-    const scoreState = state[playerKey]?.score
+    const playerState = state[playerKey]
+    const scoreState = playerState?.score
     const newScore = (scoreState?.score || 0) + (amount || 0)
     return {
       ...state,
       [playerKey]: {
+        ...(playerState ?? defaultPlayerData),
         score: {
           ...scoreState,
           score: newScore,
           highScore: math.max(scoreState?.highScore || 0, newScore),
+        },
+      },
+    }
+  },
+
+  resetScore: (state, userID: number) => {
+    const playerKey = KEY_TEMPLATE.format(userID)
+    const playerState = state[playerKey]
+    const scoreState = playerState?.score
+    return {
+      ...state,
+      [playerKey]: {
+        ...(playerState ?? defaultPlayerData),
+        score: {
+          ...scoreState,
+          score: 0,
+          highScore: scoreState?.highScore || 0,
         },
       },
     }
@@ -64,17 +85,14 @@ export const playersSlice = createProducer(initialState, {
       score: { ...defaultPlayerData.score },
     })),
 
-  resetScore: (state, userID: number) => {
+  toggleGuide: (state, userID: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
-    const scoreState = state[playerKey]?.score
+    const playerState = state[playerKey]
     return {
       ...state,
       [playerKey]: {
-        score: {
-          ...scoreState,
-          score: 0,
-          highScore: scoreState?.highScore || 0,
-        },
+        ...(playerState ?? defaultPlayerData),
+        guide: !playerState?.guide,
       },
     }
   },
