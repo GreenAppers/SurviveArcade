@@ -180,6 +180,14 @@ export class ArcadeController implements OnStart {
       if (!seatAttachment) continue
       const beam = new Instance('Beam')
       beam.Name = 'Beam'
+      beam.Texture = 'rbxassetid://956427083'
+      beam.TextureMode = Enum.TextureMode.Wrap
+      beam.TextureLength = 3
+      beam.TextureSpeed = 4
+      beam.FaceCamera = true
+      beam.Transparency = new NumberSequence(0.1)
+      beam.Width0 = 1.5
+      beam.Width1 = 1.5
       beam.Attachment0 = rootRigAttachment
       beam.Attachment1 = seatAttachment
       beam.Parent = playerCharacter
