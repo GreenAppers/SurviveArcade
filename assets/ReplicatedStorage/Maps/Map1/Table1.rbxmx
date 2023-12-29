@@ -964,7 +964,7 @@
             <Z>4.321696</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
+          <BinaryString name="Tags">Qmxpbms=</BinaryString>
           <float name="TopParamA">-0.5</float>
           <float name="TopParamB">0.5</float>
           <token name="TopSurface">0</token>
@@ -976,31 +976,9 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="Script" referent="14">
-          <Properties>
-            <string name="Name">flash</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
-            <bool name="DefinesCapabilities">false</bool>
-            <bool name="Disabled">false</bool>
-            <Content name="LinkedSource">
-              <null>
-              </null>
-            </Content>
-            <token name="RunContext">0</token>
-            <string name="Source">Light = script.Parent
-while true do
-Light.Transparency = 0
-wait(0.3)
-Light.Transparency = 0.8
-wait(1.1)
-end</string>
-            <int64 name="SourceAssetId">-1</int64>
-            <BinaryString name="Tags"></BinaryString>
-          </Properties>
-        </Item>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="15">
+    <Item class="TrussPart" referent="14">
       <Properties>
         <string name="Name">Truss1</string>
         <bool name="Anchored">true</bool>
@@ -1095,7 +1073,7 @@ end</string>
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="16">
+      <Item class="Attachment" referent="15">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1120,7 +1098,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="Part" referent="17">
+    <Item class="Part" referent="16">
       <Properties>
         <string name="Name">Leg1</string>
         <bool name="Anchored">true</bool>
@@ -1216,7 +1194,7 @@ end</string>
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Weld" referent="18">
+      <Item class="Weld" referent="17">
         <Properties>
           <string name="Name">Weld</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1251,13 +1229,13 @@ end</string>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">1</Ref>
-          <Ref name="Part1">17</Ref>
+          <Ref name="Part1">16</Ref>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="19">
+    <Item class="TrussPart" referent="18">
       <Properties>
         <string name="Name">Truss2</string>
         <bool name="Anchored">true</bool>
@@ -1352,7 +1330,7 @@ end</string>
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="20">
+      <Item class="Attachment" referent="19">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1377,7 +1355,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="21">
+    <Item class="TrussPart" referent="20">
       <Properties>
         <string name="Name">Truss3</string>
         <bool name="Anchored">true</bool>
@@ -1472,7 +1450,7 @@ end</string>
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="22">
+      <Item class="Attachment" referent="21">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1497,7 +1475,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="23">
+    <Item class="TrussPart" referent="22">
       <Properties>
         <string name="Name">Truss4</string>
         <bool name="Anchored">true</bool>
@@ -1592,7 +1570,7 @@ end</string>
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="24">
+      <Item class="Attachment" referent="23">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1617,7 +1595,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="Part" referent="25">
+    <Item class="Part" referent="24">
       <Properties>
         <string name="Name">Baseplate</string>
         <bool name="Anchored">true</bool>

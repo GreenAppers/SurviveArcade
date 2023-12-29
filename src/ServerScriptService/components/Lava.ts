@@ -1,9 +1,9 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
+import { LavaTag } from 'ReplicatedStorage/shared/constants/tags'
 
-@Component({ tag: BallTag })
-export class BallComponent
+@Component({ tag: LavaTag })
+export class LavaComponent
   extends BaseComponent<{}, BasePart>
   implements OnStart
 {
