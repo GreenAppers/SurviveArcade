@@ -9,6 +9,7 @@ import {
   isArcadeTableNextName,
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre } from 'ServerScriptService/utils'
 
@@ -116,7 +117,10 @@ export class MapService implements OnStart {
     this.loadMap('Map1')
   }
 
-  materializeTable(name: ArcadeTableName | ArcadeTableNextName) {
+  materializeTable(
+    name: ArcadeTableName | ArcadeTableNextName,
+    player: Player,
+  ) {
     const state = store.getState().arcadeTables[name]
     let arcadeTable = game.Workspace.ArcadeTables?.[name]
     const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
@@ -134,6 +138,7 @@ export class MapService implements OnStart {
       this.setupArcadeTable(arcadeTable, state, arcadeTableCF)
       const isNextName = isArcadeTableNextName(name)
       if (isNextName) game.Workspace.ArcadeTables?.[baseName]?.Destroy()
+      Events.arcadeTableMaterialize.fire(player, name)
     }
   }
 

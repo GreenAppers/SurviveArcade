@@ -52,7 +52,7 @@ export class DrainComponent
     part.Destroy()
   }
 
-  handlePlayerTouched(arcadeTable: ArcadeTable, _player: Player) {
-    this.mapService.materializeTable(arcadeTable.Name)
+  handlePlayerTouched(arcadeTable: ArcadeTable, player: Player) {
+    this.mapService.materializeTable(arcadeTable.Name, player)
   }
 }

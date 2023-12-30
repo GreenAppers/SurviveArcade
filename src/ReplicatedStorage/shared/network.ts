@@ -9,6 +9,9 @@ interface ServerEvents {
 interface ServerFunctions {}
 
 interface ClientEvents {
+  arcadeTableMaterialize: (
+    arcadeTableName: ArcadeTableName | ArcadeTableNextName,
+  ) => void
   dispatch: (actions: Array<BroadcastAction>) => void
   playerBounce: (position: Vector3) => void
   start: () => void

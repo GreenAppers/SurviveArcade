@@ -27,7 +27,7 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
         .GetPlayerFromCharacter(character)
       if (player) {
         store.claimArcadeTable(arcadeTable.Name, player)
-        this.mapService.materializeTable(arcadeTable.Name)
+        this.mapService.materializeTable(arcadeTable.Name, player)
       }
     })
   }

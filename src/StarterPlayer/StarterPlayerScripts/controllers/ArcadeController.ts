@@ -1,6 +1,6 @@
 import { Controller, OnStart } from '@flamework/core'
-import Object from '@rbxts/object-utils'
 import { Players, UserInputService } from '@rbxts/services'
+import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import {
   selectArcadeTableNameOwnedBy,
   selectArcadeTablesState,
@@ -11,6 +11,7 @@ import {
   ArcadeTablesState,
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { nearestArcadeTable } from 'ReplicatedStorage/shared/utils/arcade'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
@@ -83,6 +84,23 @@ export class ArcadeController implements OnStart {
     )
   }
 
+  startMyMaterializeHandler() {
+    let debounce = false
+    Events.arcadeTableMaterialize.connect((arcadeTableName) => {
+      const arcadeTable = game.Workspace.ArcadeTables[arcadeTableName]
+      if (arcadeTable && !debounce) {
+        debounce = true
+        const audio = <Folder & { MaterializeSound?: Sound }>(
+          arcadeTable?.FindFirstChild('Audio')
+        )
+        if (audio?.MaterializeSound)
+          playSoundId(arcadeTable, audio.MaterializeSound.SoundId)
+        task.wait(0.5)
+        debounce = false
+      }
+    })
+  }
+
   startMyWinHandler() {
     store.subscribe(
       selectLocalPlayerArcadeTableStatus(),
@@ -127,9 +145,20 @@ export class ArcadeController implements OnStart {
     this.startArcadeTableControlsHandler(player)
     this.startMyBounceHandler(player)
     this.startMyClaimHandler(player)
+    this.startMyMaterializeHandler()
     this.startMyRespawnHandler(player)
     this.startMyGuideHandler(player)
     this.startMyWinHandler()
+
+    const arcadeTablesSelector = selectArcadeTablesState()
+    const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
+    while (task.wait(1)) {
+      const state = store.getState()
+      this.refreshBeams(
+        arcadeTablesSelector(state),
+        playerGuideEnabledSelector(state),
+      )
+    }
   }
 
   flipFlipper(player: Player, flipperName: string) {
@@ -152,45 +181,53 @@ export class ArcadeController implements OnStart {
   refreshBeams(arcadeTablesState: ArcadeTablesState, guideEnabled?: boolean) {
     const localPlayer = Players.LocalPlayer
     const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
-    if (!playerCharacter) return
+    const humanoid = playerCharacter?.Humanoid
+    if (!playerCharacter || !humanoid) return
 
     // Clear old beams
     for (const instance of playerCharacter.GetChildren()) {
       if (instance.IsA('Beam')) instance.Destroy()
     }
 
-    // Check if player has guide enabled.
-    if (!guideEnabled) return
+    // Check if player is alive and has guide enabled.
+    if (!guideEnabled || !humanoid.Health || humanoid.Sit) return
 
     // Find the local player's RootRigAttachment.
-    const humanoidRootPart = playerCharacter.WaitForChild('HumanoidRootPart')
+    const humanoidRootPart = <BasePart | undefined>(
+      playerCharacter.WaitForChild('HumanoidRootPart')
+    )
     if (!playerCharacter || !humanoidRootPart) return
     const rootRigAttachment = <Attachment | undefined>(
       humanoidRootPart.FindFirstChild('RootRigAttachment')
     )
     if (!rootRigAttachment) return
 
-    // Create new beams
-    for (const [aracdeTableName, aracdeTableState] of Object.entries(
+    // Find nearest Arcade Table
+    const arcadeTableName = nearestArcadeTable(
+      humanoidRootPart.Position,
       arcadeTablesState,
-    )) {
-      if (aracdeTableState?.status !== ArcadeTableStatus.Active) continue
-      const seatAttachment =
-        game.Workspace.ArcadeTables[aracdeTableName]?.Seat?.Attachment
-      if (!seatAttachment) continue
-      const beam = new Instance('Beam')
-      beam.Name = 'Beam'
-      beam.Texture = 'rbxassetid://956427083'
-      beam.TextureMode = Enum.TextureMode.Wrap
-      beam.TextureLength = 3
-      beam.TextureSpeed = 4
-      beam.FaceCamera = true
-      beam.Transparency = new NumberSequence(0.1)
-      beam.Width0 = 1.5
-      beam.Width1 = 1.5
-      beam.Attachment0 = rootRigAttachment
-      beam.Attachment1 = seatAttachment
-      beam.Parent = playerCharacter
-    }
+      localPlayer?.Team?.Name === 'Unclaimed Team'
+        ? undefined
+        : localPlayer?.Team?.Name,
+    )
+    if (!arcadeTableName) return
+
+    // Create new beam
+    const seatAttachment =
+      game.Workspace.ArcadeTables[arcadeTableName]?.Seat?.Attachment
+    if (!seatAttachment) return
+    const beam = new Instance('Beam')
+    beam.Name = 'Beam'
+    beam.Texture = 'rbxassetid://956427083'
+    beam.TextureMode = Enum.TextureMode.Wrap
+    beam.TextureLength = 3
+    beam.TextureSpeed = 4
+    beam.FaceCamera = true
+    beam.Transparency = new NumberSequence(0.1)
+    beam.Width0 = 1.5
+    beam.Width1 = 1.5
+    beam.Attachment0 = rootRigAttachment
+    beam.Attachment1 = seatAttachment
+    beam.Parent = playerCharacter
   }
 }
