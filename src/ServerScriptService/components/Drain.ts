@@ -1,6 +1,6 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { CollectionService, Players } from '@rbxts/services'
+import { CollectionService } from '@rbxts/services'
 import { BallTag, DrainTag } from 'ReplicatedStorage/shared/constants/tags'
 import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
@@ -26,21 +26,12 @@ export class DrainComponent
         this.handleBallTouched(arcadeTable, hit)
         return
       }
-
-      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
-        | Humanoid
-        | undefined
-      if (humanoid) {
-        const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
-        if (touchedPlayer) this.handlePlayerTouched(arcadeTable, touchedPlayer)
-      }
     })
   }
 
   handleBallTouched(arcadeTable: ArcadeTable, part: BasePart) {
     const player = getArcadeTableOwner(arcadeTable)
     if (player) {
-      store.resetScore(player.UserId)
       const character: (Model & { Humanoid?: Humanoid }) | undefined =
         player.Character
       const state = store.getState().arcadeTables[arcadeTable.Name]
@@ -50,9 +41,5 @@ export class DrainComponent
     }
     task.wait(0.5)
     part.Destroy()
-  }
-
-  handlePlayerTouched(arcadeTable: ArcadeTable, player: Player) {
-    this.mapService.materializeTable(arcadeTable.Name, player)
   }
 }

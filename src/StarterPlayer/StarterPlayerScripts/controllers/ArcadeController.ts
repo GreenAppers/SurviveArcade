@@ -18,15 +18,30 @@ import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
 @Controller({})
 export class ArcadeController implements OnStart {
+  fullForceKeypress = 0
   myArcadeTableName = ''
 
   startArcadeTableControlsHandler(player: Player) {
     UserInputService.InputBegan.Connect((input, _processed) => {
       if (input.UserInputType === Enum.UserInputType.Keyboard) {
-        if (input.KeyCode === Enum.KeyCode.A) {
-          this.flipFlipper(player, 'FlipperLeft')
-        } else if (input.KeyCode === Enum.KeyCode.D) {
-          this.flipFlipper(player, 'FlipperRight')
+        let flip = ''
+        if (input.KeyCode === Enum.KeyCode.A) flip = 'FlipperLeft'
+        else if (input.KeyCode === Enum.KeyCode.D) flip = 'FlipperRight'
+        if (flip) {
+          let force = 1
+          if (this.fullForceKeypress) {
+            const startTick = tick()
+            let keyHeldDownFor = 0
+            while (
+              keyHeldDownFor < this.fullForceKeypress &&
+              UserInputService.IsKeyDown(input.KeyCode)
+            ) {
+              keyHeldDownFor = tick() - startTick
+              task.wait()
+            }
+            force = math.max(1, keyHeldDownFor / this.fullForceKeypress)
+          }
+          this.flipFlipper(player, flip, force)
         }
       }
     })
@@ -161,8 +176,9 @@ export class ArcadeController implements OnStart {
     }
   }
 
-  flipFlipper(player: Player, flipperName: string) {
+  flipFlipper(player: Player, flipperName: string, force: number) {
     if (!(<PlayerCharacter>player.Character)?.Humanoid?.Sit) return
+    // print('flip', flipperName, force)
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
       this.myArcadeTableName,
     )
@@ -173,7 +189,7 @@ export class ArcadeController implements OnStart {
     if (!rotor) return
     const orientation = flipperName === 'FlipperRight' ? -1 : 1
     rotor.ApplyAngularImpulse(
-      rotor.CFrame.RightVector.mul(orientation * 600000),
+      rotor.CFrame.RightVector.mul(orientation * 600000 * force),
     )
     Events.flipperFlip.fire(arcadeTable.Name, flipperName)
   }

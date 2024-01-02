@@ -1,6 +1,5 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
-import { Teams } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import {
@@ -62,17 +61,10 @@ export class ArcadeTableService implements OnStart {
   }
 
   onPlayerClaimed(
-    player: Player,
-    tableName?: string,
-    tableState?: ArcadeTableState,
-  ) {
-    player.Team = Teams[tableState?.teamName || 'Unclaimed Team']
-    if (!tableName) {
-      player.Team = Teams['Unclaimed Team']
-      store.resetScore(player.UserId)
-      return
-    }
-  }
+    _player: Player,
+    _tableName?: string,
+    _tableState?: ArcadeTableState,
+  ) {}
 
   onTableClaimed(tableName: string, player?: Player) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)

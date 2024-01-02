@@ -181,6 +181,8 @@ export const arcadeTablesSlice = createProducer(initialState, {
 
   extendArcadeTable: (state, name: ArcadeTableName | ArcadeTableNextName) => {
     const nextName = nextArcadeTableName(name)
+    const lastScoreToWin = state[name]?.scoreToWin || initialScoreToWin
+    const nextScoreToWin = lastScoreToWin * 3
     if (isArcadeTableBaseName(name)) {
       // We're extending the inital table.
       const nextTable = state[nextName]
@@ -190,7 +192,7 @@ export const arcadeTablesSlice = createProducer(initialState, {
             ...state,
             [nextName]: {
               ...initialState[name],
-              scoreToWin: (state[name]?.scoreToWin || initialScoreToWin) * 2,
+              scoreToWin: nextScoreToWin,
               status: ArcadeTableStatus.Unmaterialized,
             },
           }
@@ -204,7 +206,7 @@ export const arcadeTablesSlice = createProducer(initialState, {
         // Create a new next table.
         [nextName]: {
           ...initialState[baseName],
-          scoreToWin: (state[name]?.scoreToWin || initialScoreToWin) * 2,
+          scoreToWin: nextScoreToWin,
           status: ArcadeTableStatus.Unmaterialized,
         },
       }

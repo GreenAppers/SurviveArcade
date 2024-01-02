@@ -69,7 +69,7 @@ export class GameService implements OnStart {
               arcadeTable.Barrier?.Destroy()
               const balls = getDescendentsWithTag(arcadeTable.Balls, BallTag)
               for (const ball of balls) ball.Destroy()
-              task.wait(3)
+              task.wait(2.2)
               arcadeTable.Backbox?.Destroy()
             }
             this.mapService.chainNextTable(name)
