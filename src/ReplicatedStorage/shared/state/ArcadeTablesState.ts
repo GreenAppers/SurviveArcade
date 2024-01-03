@@ -99,7 +99,14 @@ export const findArcadeTableNameOwnedBy = (
     ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
   )?.[0] as ArcadeTableName | undefined
 
-const initialScoreToWin = 10000
+export const arcadeTableNames: ArcadeTableName[] = [
+  'Table1',
+  'Table2',
+  'Table3',
+  'Table4',
+]
+
+export const initialScoreToWin = 10000
 
 const initialState: ArcadeTablesState = {
   Table1: {
@@ -210,6 +217,15 @@ export const arcadeTablesSlice = createProducer(initialState, {
           status: ArcadeTableStatus.Unmaterialized,
         },
       }
+    }
+  },
+
+  resetArcadeTable: (state, name: ArcadeTableName) => {
+    const nextName = nextArcadeTableName(name)
+    return {
+      ...state,
+      [name]: { ...initialState[name] },
+      [nextName]: initialState[nextName],
     }
   },
 

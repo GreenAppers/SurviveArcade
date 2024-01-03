@@ -197,7 +197,9 @@ export class ArcadeController implements OnStart {
   refreshBeams(arcadeTablesState: ArcadeTablesState, guideEnabled?: boolean) {
     const localPlayer = Players.LocalPlayer
     const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
-    const humanoid = playerCharacter?.Humanoid
+    const humanoid = <Humanoid | undefined>(
+      playerCharacter?.FindFirstChild('Humanoid')
+    )
     if (!playerCharacter || !humanoid) return
 
     // Clear old beams

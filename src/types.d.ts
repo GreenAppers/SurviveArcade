@@ -13,6 +13,7 @@ interface ArcadeTable extends Model {
   Baseplate: BasePart
   Name: ArcadeTableName | ArcadeTableNextName
   NextBaseplate: BasePart
+  PlayZone: BasePart
   Seat: Seat & {
     Attachment: Attachment
   }

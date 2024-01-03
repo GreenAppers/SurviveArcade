@@ -1,6 +1,7 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { ReplicatedStorage, Workspace } from '@rbxts/services'
+import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTablesState,
   ArcadeTableState,
@@ -22,6 +23,7 @@ export class MapService implements OnStart {
       },
     },
   }
+  currentMap = ''
 
   clearMap() {
     Workspace.ArcadeTables.ClearAllChildren()
@@ -94,6 +96,7 @@ export class MapService implements OnStart {
     const mapModelTemplate = ReplicatedStorage.Maps[mapName]
     if (!mapModelTemplate) return
 
+    this.currentMap = mapName
     const mapModel = mapModelTemplate.Clone()
     mapModel.Name = 'Map'
     mapModel.Parent = Workspace
@@ -115,6 +118,31 @@ export class MapService implements OnStart {
 
   onStart() {
     this.loadMap('Map1')
+  }
+
+  resetTable(name: ArcadeTableName) {
+    const arcadeTablesState = selectArcadeTablesState()(store.getState())
+    const arcadeTableState = arcadeTablesState[name]
+    const nextTableState = arcadeTablesState[nextArcadeTableName(name)]
+    let arcadeTable = <ArcadeTable>(
+      game.Workspace.ArcadeTables?.FindFirstChild(name)
+    )
+    const nextArcadeTable = <ArcadeTable>(
+      game.Workspace.ArcadeTables?.FindFirstChild(nextArcadeTableName(name))
+    )
+    arcadeTable?.Destroy()
+    nextArcadeTable?.Destroy()
+    store.resetArcadeTable(name)
+    const oldState = arcadeTableState || nextTableState
+    const tableType = arcadeTableState?.tableType || nextTableState?.tableType
+    if (!tableType || !oldState) return
+    arcadeTable = this.loadArcadeTableTemplate(tableType, name)
+    arcadeTable.Name = name
+    this.setupArcadeTable(
+      arcadeTable,
+      oldState,
+      this.maps[this.currentMap]?.getArcadeTableCFrame(name),
+    )
   }
 
   materializeTable(

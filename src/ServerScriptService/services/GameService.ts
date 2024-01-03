@@ -1,12 +1,19 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
+import { Players } from '@rbxts/services'
 import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTablesState,
+  selectArcadeTableState,
   selectGameState,
   selectPlayerScore,
 } from 'ReplicatedStorage/shared/state'
-import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import {
+  arcadeTableNames,
+  ArcadeTableStatus,
+  initialScoreToWin,
+  nextArcadeTableName,
+} from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWithTag } from 'ServerScriptService/utils'
@@ -48,13 +55,13 @@ export class GameService implements OnStart {
           const userId = arcadeTableState.owner.UserId
           const newState = store.addScore(userId, 10)
           if (arcadeTableState.status !== ArcadeTableStatus.Active) continue
+          const arcadeTable = game.Workspace.ArcadeTables[name]
 
           // Trigger winning sequence when threshhold score exceeded.
           const userScoreSelector = selectPlayerScore(userId)
           const score = userScoreSelector(newState)?.score || 0
           if (score > arcadeTableState.scoreToWin) {
             store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
-            const arcadeTable = game.Workspace.ArcadeTables[name]
             if (arcadeTable) {
               if (arcadeTable.Backbox) {
                 arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)
@@ -76,6 +83,66 @@ export class GameService implements OnStart {
           }
         }
       }
+
+      this.restoreUnusedTables()
     }
   }
+
+  restoreUnusedTables() {
+    const playerHumanoidRootParts = Players.GetPlayers().map((x) =>
+      playerHumanoidRootPart(x),
+    )
+    const state = store.getState()
+    for (const arcadeTableName of arcadeTableNames) {
+      const arcadeTableState = selectArcadeTableState(arcadeTableName)(state)
+      if (
+        arcadeTableState?.status === ArcadeTableStatus.Active &&
+        arcadeTableState?.scoreToWin === initialScoreToWin
+      )
+        continue
+      const arcadeTable = <ArcadeTable>(
+        game.Workspace.ArcadeTables.FindFirstChild(arcadeTableName)
+      )
+      const nextArcadeTable = <ArcadeTable>(
+        game.Workspace.ArcadeTables.FindFirstChild(
+          nextArcadeTableName(arcadeTableName),
+        )
+      )
+      let foundPlayerInPlayZone = false
+      for (const playerHumanoidRootPart of playerHumanoidRootParts) {
+        if (!playerHumanoidRootPart) continue
+        if (
+          (arcadeTable &&
+            isWithinBox(
+              arcadeTable.PlayZone,
+              playerHumanoidRootPart.Position,
+            )) ||
+          (nextArcadeTable &&
+            isWithinBox(
+              nextArcadeTable.PlayZone,
+              playerHumanoidRootPart.Position,
+            ))
+        ) {
+          foundPlayerInPlayZone = true
+          break
+        }
+      }
+      if (foundPlayerInPlayZone) continue
+      this.mapService.resetTable(arcadeTableName)
+    }
+  }
+}
+
+export function playerHumanoidRootPart(player: Player) {
+  const character = <PlayerCharacter | undefined>player?.Character
+  return <BasePart | undefined>character?.WaitForChild('HumanoidRootPart')
+}
+
+export function isWithinBox(brick: BasePart, position: Vector3) {
+  const v3 = brick.CFrame.PointToObjectSpace(position)
+  return (
+    math.abs(v3.X) <= brick.Size.X / 2 &&
+    math.abs(v3.Y) <= brick.Size.Y / 2 &&
+    math.abs(v3.Z) <= brick.Size.Z / 2
+  )
 }
