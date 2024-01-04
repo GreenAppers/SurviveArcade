@@ -10,6 +10,7 @@ import {
   isArcadeTableNextName,
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { animateBuildingIn } from 'ServerScriptService/buildin'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre } from 'ServerScriptService/utils'
@@ -167,6 +168,11 @@ export class MapService implements OnStart {
       const isNextName = isArcadeTableNextName(name)
       if (isNextName) game.Workspace.ArcadeTables?.[baseName]?.Destroy()
       Events.arcadeTableMaterialize.fire(player, name)
+      if (arcadeTable.Backbox)
+        animateBuildingIn(
+          arcadeTable.Backbox,
+          new TweenInfo(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
+        )?.Wait()
     }
   }
 
