@@ -189,7 +189,7 @@ export const arcadeTablesSlice = createProducer(initialState, {
   extendArcadeTable: (state, name: ArcadeTableName | ArcadeTableNextName) => {
     const nextName = nextArcadeTableName(name)
     const lastScoreToWin = state[name]?.scoreToWin || initialScoreToWin
-    const nextScoreToWin = lastScoreToWin * 3
+    const nextScoreToWin = lastScoreToWin // * 3
     if (isArcadeTableBaseName(name)) {
       // We're extending the inital table.
       const nextTable = state[nextName]

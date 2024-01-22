@@ -11,6 +11,11 @@ export interface PlayerScore {
 }
 
 export interface PlayerState extends PlayerData {
+  readonly gravityUp: Vector3
+  readonly groundArcadeTableName:
+    | ArcadeTableName
+    | ArcadeTableNextName
+    | undefined
   readonly score: PlayerScore
 }
 
@@ -28,6 +33,8 @@ export const defaultPlayerData = {
 
 export const defaultPlayerState = {
   ...defaultPlayerData,
+  gravityUp: new Vector3(0, 1, 0),
+  groundArcadeTableName: undefined,
   score: {
     score: 0,
     highScore: 0,
@@ -72,7 +79,7 @@ export const playersSlice = createProducer(initialState, {
     return {
       ...state,
       [playerKey]: {
-        ...(playerState ?? defaultPlayerData),
+        ...(playerState ?? defaultPlayerState),
         score: {
           ...scoreState,
           score: newScore,
@@ -104,6 +111,33 @@ export const playersSlice = createProducer(initialState, {
       ...playerState,
       score: { ...defaultPlayerState.score },
     })),
+
+  updateGround: (
+    state,
+    playerGround: Array<{
+      userID: number
+      gravityUp: Vector3 | undefined
+      groundArcadeTableName: ArcadeTableName | ArcadeTableNextName | undefined
+    }>,
+  ) => {
+    let newState: { [playerKey: string]: PlayerState | undefined } | undefined
+    for (const { userID, gravityUp, groundArcadeTableName } of playerGround) {
+      const playerKey = KEY_TEMPLATE.format(userID)
+      const playerState = state[playerKey]
+      if (
+        !playerState ||
+        playerState.groundArcadeTableName === groundArcadeTableName
+      )
+        continue
+      if (!newState) newState = { ...state }
+      newState[playerKey] = {
+        ...playerState,
+        gravityUp: gravityUp || defaultPlayerState.gravityUp,
+        groundArcadeTableName: groundArcadeTableName,
+      }
+    }
+    return newState || state
+  },
 
   toggleGuide: (state, userID: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
