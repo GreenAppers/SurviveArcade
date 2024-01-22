@@ -74,6 +74,7 @@ export class GameService implements OnStart {
                 }
               }
               arcadeTable.Barrier?.Destroy()
+              arcadeTable.Box.UpperWall?.Destroy()
               const balls = getDescendentsWithTag(arcadeTable.Balls, BallTag)
               for (const ball of balls) ball.Destroy()
               task.wait(2.2)
@@ -84,52 +85,59 @@ export class GameService implements OnStart {
         }
       }
 
-      this.restoreUnusedTables()
+      this.trackArcadeTablePlayZones()
     }
   }
 
-  restoreUnusedTables() {
-    const playerHumanoidRootParts = Players.GetPlayers().map((x) =>
-      playerHumanoidRootPart(x),
-    )
+  trackArcadeTablePlayZones() {
+    const players = Players.GetPlayers().map((x) => ({
+      userID: x.UserId,
+      gravityUp: <Vector3 | undefined>undefined,
+      groundArcadeTableName: <
+        ArcadeTableName | ArcadeTableNextName | undefined
+      >undefined,
+      humanoidRootPart: playerHumanoidRootPart(x),
+    }))
     const state = store.getState()
     for (const arcadeTableName of arcadeTableNames) {
+      const nextTableName = nextArcadeTableName(arcadeTableName)
       const arcadeTableState = selectArcadeTableState(arcadeTableName)(state)
-      if (
-        arcadeTableState?.status === ArcadeTableStatus.Active &&
-        arcadeTableState?.scoreToWin === initialScoreToWin
-      )
-        continue
       const arcadeTable = <ArcadeTable>(
         game.Workspace.ArcadeTables.FindFirstChild(arcadeTableName)
       )
       const nextArcadeTable = <ArcadeTable>(
-        game.Workspace.ArcadeTables.FindFirstChild(
-          nextArcadeTableName(arcadeTableName),
-        )
+        game.Workspace.ArcadeTables.FindFirstChild(nextTableName)
       )
       let foundPlayerInPlayZone = false
-      for (const playerHumanoidRootPart of playerHumanoidRootParts) {
-        if (!playerHumanoidRootPart) continue
+      for (const player of players) {
+        if (player.groundArcadeTableName || !player.humanoidRootPart) continue
         if (
-          (arcadeTable &&
-            isWithinBox(
-              arcadeTable.PlayZone,
-              playerHumanoidRootPart.Position,
-            )) ||
-          (nextArcadeTable &&
-            isWithinBox(
-              nextArcadeTable.PlayZone,
-              playerHumanoidRootPart.Position,
-            ))
+          arcadeTable &&
+          isWithinBox(arcadeTable.PlayZone, player.humanoidRootPart.Position)
         ) {
+          player.gravityUp = arcadeTable.Baseplate.CFrame.UpVector
+          player.groundArcadeTableName = arcadeTableName
           foundPlayerInPlayZone = true
-          break
+        } else if (
+          nextArcadeTable &&
+          isWithinBox(
+            nextArcadeTable.PlayZone,
+            player.humanoidRootPart.Position,
+          )
+        ) {
+          player.gravityUp = nextArcadeTable.Baseplate.CFrame.UpVector
+          player.groundArcadeTableName = nextTableName
+          foundPlayerInPlayZone = true
         }
       }
-      if (foundPlayerInPlayZone) continue
-      this.mapService.resetTable(arcadeTableName)
+      const isInitialTable =
+        arcadeTableState?.status === ArcadeTableStatus.Active &&
+        arcadeTableState?.scoreToWin === initialScoreToWin
+      if (!foundPlayerInPlayZone && !isInitialTable) {
+        this.mapService.resetTable(arcadeTableName)
+      }
     }
+    store.updateGround(players)
   }
 }
 

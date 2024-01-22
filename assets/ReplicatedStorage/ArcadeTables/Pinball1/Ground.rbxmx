@@ -1,7 +1,7 @@
 <roblox version="4">
   <Item class="Part" referent="0">
     <Properties>
-      <string name="Name">NextBaseplate</string>
+      <string name="Name">Ground</string>
       <bool name="Anchored">true</bool>
       <BinaryString name="AttributesSerialize">AQAAAA8AAABSb2pvRXh0ZXJuYWxSZWYCIgAAACJlYzBiY2ZlMzEzNjlmMWQ0OGY0ZGU2YWRjZTgyYzIxNiI=</BinaryString>
       <float name="BackParamA">-0.5</float>
@@ -13,16 +13,16 @@
       <token name="BottomSurface">0</token>
       <token name="BottomSurfaceInput">0</token>
       <CoordinateFrame name="CFrame">
-        <X>343.49295</X>
-        <Y>90.32854</Y>
-        <Z>131.264</Z>
+        <X>120.226265</X>
+        <Y>-33.856888</Y>
+        <Z>130.98038</Z>
         <R00>0</R00>
-        <R01>-0.7071068</R01>
-        <R02>-0.7071068</R02>
+        <R01>0.25885275</R01>
+        <R02>0.9659168</R02>
         <R10>0</R10>
-        <R11>0.7071068</R11>
-        <R12>-0.7071068</R12>
-        <R20>1</R20>
+        <R11>0.9659168</R11>
+        <R12>-0.25885275</R12>
+        <R20>-1</R20>
         <R21>0</R21>
         <R22>0</R22>
       </CoordinateFrame>
@@ -49,7 +49,7 @@
       <token name="LeftSurfaceInput">0</token>
       <bool name="Locked">false</bool>
       <bool name="Massless">false</bool>
-      <token name="Material">256</token>
+      <token name="Material">1568</token>
       <string name="MaterialVariantSerialized"></string>
       <CoordinateFrame name="PivotOffset">
         <X>0</X>

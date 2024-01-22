@@ -83,17 +83,21 @@ export class ArcadeController implements OnStart {
         const baseplate = arcadeTable?.FindFirstChild('Baseplate') as
           | BasePart
           | undefined
+        const ground = arcadeTable?.FindFirstChild('Ground') as
+          | BasePart
+          | undefined
         const seat = arcadeTable?.FindFirstChild('Seat') as BasePart | undefined
         const camera = game.Workspace.CurrentCamera
         if (camera && baseplate && seat) {
-          const pos = seat.CFrame.Position.add(new Vector3(0, 60, 0))
+          const up = ground?.CFrame.UpVector.Unit || new Vector3(0, 1, 0)
+          const pos = seat.CFrame.Position.add(up.mul(60))
           const forward = baseplate.CFrame.Position.sub(seat.CFrame.Position)
           const target = baseplate.CFrame.Position.sub(forward.mul(0.4)).add(
-            new Vector3(0, 20, 0),
+            up.mul(20),
           )
           const look = target.sub(pos)
           camera.CameraType = Enum.CameraType.Scriptable
-          camera.CFrame = new CFrame(pos.sub(look), target)
+          camera.CFrame = CFrame.lookAt(pos.sub(look), target, up)
         }
       },
     )

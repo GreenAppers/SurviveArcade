@@ -99,3 +99,4 @@ mantle deploy --environment beta
 - [Reflex](https://github.com/littensy/reflex) by [littensy](https://github.com/littensy)
 - [Slither](https://github.com/littensy/slither) by [littensy](https://github.com/)
 - [Roblox-TS-Template](https://github.com/MonzterDev/Roblox-TS-Template) by [MonzterDev](https://github.com/MonzterDev)
+- [Gravity Controller](https://devforum.roblox.com/t/wall-stickgravity-controller/432598/404) by [Ego Moose](https://github.com/EgoMoose)

@@ -10,7 +10,11 @@ interface ArcadeTable extends Model {
   }
   Balls: Folder
   Barrier?: BasePart
+  Box: Folder & {
+    UpperWall?: BasePart
+  }
   Baseplate: BasePart
+  Ground: BasePart
   Name: ArcadeTableName | ArcadeTableNextName
   NextBaseplate: BasePart
   PlayZone: BasePart
@@ -85,7 +89,8 @@ interface Workspace extends Instance {
     Table3Next?: ArcadeTable
     Table4Next?: ArcadeTable
   }
-  Map?: Folder & {
+  Map: Folder & {
+    Baseplate: BasePart
     Table1?: Model & {
       Baseplate: BasePart
     }

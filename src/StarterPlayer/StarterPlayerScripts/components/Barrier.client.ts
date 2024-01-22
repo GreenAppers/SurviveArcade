@@ -15,7 +15,7 @@ export class BarrierComponent
 
   onStart() {
     const arcadeTable = getArcadeTableFromDescendent(this.instance)
-    if (!arcadeTable) throw error('Drain has no ancestor ArcadeTable')
+    if (!arcadeTable) throw error('Barrier has no ancestor ArcadeTable')
 
     this.instance.Touched?.Connect((hit) => {
       if (this.debounce) return

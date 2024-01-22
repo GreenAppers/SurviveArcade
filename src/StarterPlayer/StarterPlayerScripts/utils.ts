@@ -1,6 +1,17 @@
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
+export function forEveryPlayerCharacterAdded(
+  player: Player,
+  addedFunc: (character: PlayerCharacter) => void,
+): RBXScriptConnection {
+  const connection = player.CharacterAdded.Connect((character) =>
+    addedFunc(<PlayerCharacter>character),
+  )
+  if (player.Character) addedFunc(<PlayerCharacter>player.Character)
+  return connection
+}
+
 /**
  * Reformat a number to a string with a thousands separator.
  */

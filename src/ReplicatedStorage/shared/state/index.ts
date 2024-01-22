@@ -50,6 +50,10 @@ export const selectLocalPlayerState = () => (state: SharedState) =>
 export const selectLocalPlayerScoreState = () => (state: SharedState) =>
   getPlayer(state.players, USER_ID)?.score
 
+export const selectLocalPlayerGroundArcadeTableName =
+  () => (state: SharedState) =>
+    getPlayer(state.players, USER_ID)?.groundArcadeTableName
+
 export const selectLocalPlayerArcadeTableStatus = () => {
   const localPlayerArcadeTableNameSelector =
     selectArcadeTableNameOwnedBy(USER_ID)
