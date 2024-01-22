@@ -1,5 +1,6 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
+import { Workspace } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import {
@@ -80,6 +81,7 @@ export class ArcadeTableService implements OnStart {
 
     const balls = arcadeTable?.FindFirstChild('Balls')
     const ballTemplate = arcadeTable?.FindFirstChild('BallTemplate')
+    const ground = <BasePart>arcadeTable?.FindFirstChild('Ground')
     const ball = <BasePart>ballTemplate?.Clone()
     if (ball) {
       this.ballNumber = this.ballNumber + 1
@@ -90,8 +92,16 @@ export class ArcadeTableService implements OnStart {
       ball.Parent = balls
       const sparks = <ParticleEmitter | undefined>ball.FindFirstChild('Sparks')
       const light = <PointLight | undefined>ball.FindFirstChild('Light')
+      const gravity = <VectorForce | undefined>(
+        ball.FindFirstChild('VectorForce')
+      )
       if (sparks) sparks.Enabled = true
       if (light) light.Enabled = true
+      if (gravity && ground) {
+        gravity.Force = new Vector3(0, 1, 0)
+          .sub(ground.CFrame.UpVector.Unit)
+          .mul(Workspace.Gravity * ball.Mass)
+      }
       setNetworkOwner(ball, player)
     }
     setNetworkOwner(flipperLeft, player)
