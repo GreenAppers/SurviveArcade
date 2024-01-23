@@ -47,6 +47,9 @@ export const selectPlayerGuideEnabled =
 export const selectLocalPlayerState = () => (state: SharedState) =>
   getPlayer(state.players, USER_ID)
 
+export const selectLocalPlayerMusicEnabled = () => (state: SharedState) =>
+  getPlayer(state.players, USER_ID)?.music
+
 export const selectLocalPlayerScoreState = () => (state: SharedState) =>
   getPlayer(state.players, USER_ID)?.score
 

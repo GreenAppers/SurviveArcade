@@ -3,6 +3,7 @@ import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
 
 export interface PlayerData {
   readonly guide: boolean
+  readonly music: boolean
 }
 
 export interface PlayerScore {
@@ -29,6 +30,7 @@ export interface PlayersState {
 
 export const defaultPlayerData = {
   guide: true,
+  music: true,
 }
 
 export const defaultPlayerState = {
@@ -46,6 +48,7 @@ const initialState: PlayersState = {}
 
 export const getPlayerData = (state: PlayerState): PlayerData => ({
   guide: state.guide,
+  music: state.music,
 })
 
 export const getPlayer = (state: PlayersState, userID: number) =>

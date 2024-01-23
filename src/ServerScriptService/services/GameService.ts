@@ -1,6 +1,7 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Players } from '@rbxts/services'
+import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
 import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTablesState,
@@ -64,6 +65,11 @@ export class GameService implements OnStart {
             store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
             if (arcadeTable) {
               if (arcadeTable.Backbox) {
+                const audio = arcadeTable.FindFirstChild('Audio') as
+                  | { WinSound?: Sound }
+                  | undefined
+                if (audio?.WinSound)
+                  playSoundId(arcadeTable.Backbox, audio.WinSound.SoundId)
                 arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)
                 for (const descendent of arcadeTable.Backbox.GetDescendants()) {
                   if (descendent.IsA('BasePart')) {

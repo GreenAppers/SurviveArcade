@@ -1,5 +1,6 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
+import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
 import { SeatTag } from 'ReplicatedStorage/shared/constants/tags'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { MapService } from 'ServerScriptService/services/MapService'
@@ -29,6 +30,10 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
         store.claimArcadeTable(arcadeTable.Name, player)
         this.mapService.materializeTable(arcadeTable.Name, player)
       }
+      const audio = arcadeTable.FindFirstChild('Audio') as
+        | { SeatSound?: Sound }
+        | undefined
+      if (audio?.SeatSound) playSoundId(seat, audio.SeatSound.SoundId)
     })
   }
 }
