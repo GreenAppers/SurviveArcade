@@ -216,7 +216,7 @@ export class ArcadeController implements OnStart {
 
     // Find the local player's RootRigAttachment.
     const humanoidRootPart = <BasePart | undefined>(
-      playerCharacter.WaitForChild('HumanoidRootPart')
+      playerCharacter.FindFirstChild('HumanoidRootPart')
     )
     if (!playerCharacter || !humanoidRootPart) return
     const rootRigAttachment = <Attachment | undefined>(

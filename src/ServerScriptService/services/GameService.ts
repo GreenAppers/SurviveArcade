@@ -143,7 +143,7 @@ export class GameService implements OnStart {
 
 export function playerHumanoidRootPart(player: Player) {
   const character = <PlayerCharacter | undefined>player?.Character
-  return <BasePart | undefined>character?.WaitForChild('HumanoidRootPart')
+  return <BasePart | undefined>character?.FindFirstChild('HumanoidRootPart')
 }
 
 export function isWithinBox(brick: BasePart, position: Vector3) {
