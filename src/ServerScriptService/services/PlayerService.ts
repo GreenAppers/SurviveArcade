@@ -80,16 +80,16 @@ export class PlayerService implements OnInit {
     score.Value = 0
     score.Parent = leaderstats
 
-    const highScore = new Instance('IntValue')
-    highScore.Name = 'High'
-    highScore.Value = 0
-    highScore.Parent = leaderstats
+    const loops = new Instance('IntValue')
+    loops.Name = 'Loops'
+    loops.Value = 0
+    loops.Parent = leaderstats
 
     const unsubscribe = store.subscribe(
       selectPlayerState(player.UserId),
       (playerData) => {
-        score.Value = playerData?.score?.score ?? 0
-        highScore.Value = playerData?.score?.highScore ?? 0
+        score.Value = playerData?.score?.highScore ?? 0
+        loops.Value = playerData?.score?.loops ?? 0
       },
     )
     return unsubscribe

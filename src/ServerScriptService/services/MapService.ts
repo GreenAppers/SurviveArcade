@@ -173,6 +173,7 @@ export class MapService implements OnStart {
           arcadeTable.Backbox,
           new TweenInfo(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
         )?.Wait()
+      if ((state?.sequence || 0) % 8 === 0) store.addLoops(player.UserId, 1)
     }
   }
 
@@ -180,7 +181,8 @@ export class MapService implements OnStart {
     const isNextName = isArcadeTableNextName(name)
     const arcadeTableBaseName = baseArcadeTableName(name)
     const arcadeTableNextName = nextArcadeTableName(name)
-    const state = store.getState().arcadeTables[arcadeTableBaseName]
+    const arcadeTablesState = store.getState().arcadeTables
+    const state = arcadeTablesState[arcadeTableBaseName]
     let arcadeTable = <ArcadeTable | undefined>(
       game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableBaseName)
     )
@@ -189,6 +191,7 @@ export class MapService implements OnStart {
     )
     if (!state?.tableType) return
     store.extendArcadeTable(name)
+
     if (isNextName && arcadeTableNext) {
       arcadeTable?.Destroy()
       arcadeTable = arcadeTableNext

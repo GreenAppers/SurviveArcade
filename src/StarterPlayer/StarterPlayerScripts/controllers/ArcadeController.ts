@@ -1,17 +1,23 @@
 import { Controller, OnStart } from '@flamework/core'
 import { Players, UserInputService } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
+import { USER_NAME } from 'ReplicatedStorage/shared/constants/core'
 import {
   selectArcadeTableNameOwnedBy,
   selectArcadeTablesState,
   selectLocalPlayerArcadeTableStatus,
+  selectLocalPlayerLoops,
   selectPlayerGuideEnabled,
 } from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTablesState,
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
-import { nearestArcadeTable } from 'ReplicatedStorage/shared/utils/arcade'
+import {
+  nearestArcadeTable,
+  nearestCabinet,
+  nearestCabinetTruss,
+} from 'ReplicatedStorage/shared/utils/arcade'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
@@ -120,6 +126,14 @@ export class ArcadeController implements OnStart {
     })
   }
 
+  startMyLoopHandler() {
+    store.subscribe(selectLocalPlayerLoops(), () => {
+      sendAlert({
+        message: `${USER_NAME} looped!`,
+      })
+    })
+  }
+
   startMyWinHandler() {
     store.subscribe(
       selectLocalPlayerArcadeTableStatus(),
@@ -167,6 +181,7 @@ export class ArcadeController implements OnStart {
     this.startMyMaterializeHandler()
     this.startMyRespawnHandler(player)
     this.startMyGuideHandler(player)
+    this.startMyLoopHandler()
     this.startMyWinHandler()
 
     const arcadeTablesSelector = selectArcadeTablesState()
@@ -213,6 +228,10 @@ export class ArcadeController implements OnStart {
 
     // Check if player is alive and has guide enabled.
     if (!guideEnabled || !humanoid.Health || humanoid.Sit) return
+    const localPlayerTeamName =
+      localPlayer?.Team?.Name === 'Unclaimed Team'
+        ? undefined
+        : localPlayer?.Team?.Name
 
     // Find the local player's RootRigAttachment.
     const humanoidRootPart = <BasePart | undefined>(
@@ -224,20 +243,36 @@ export class ArcadeController implements OnStart {
     )
     if (!rootRigAttachment) return
 
-    // Find nearest Arcade Table
-    const arcadeTableName = nearestArcadeTable(
-      humanoidRootPart.Position,
-      arcadeTablesState,
-      localPlayer?.Team?.Name === 'Unclaimed Team'
-        ? undefined
-        : localPlayer?.Team?.Name,
-    )
-    if (!arcadeTableName) return
+    let targetAttachment
+    if (rootRigAttachment.WorldPosition.Y < 10) {
+      // Find nearest Cabinet
+      const arcadeTableName = nearestCabinet(
+        humanoidRootPart.Position,
+        arcadeTablesState,
+        localPlayerTeamName,
+      )
+      if (!arcadeTableName) return
+      // Find nearest truss
+      const trussName = nearestCabinetTruss(
+        humanoidRootPart.Position,
+        arcadeTableName,
+      )
+      targetAttachment =
+        game.Workspace.Map[arcadeTableName]?.[trussName]?.Attachment
+    } else {
+      // Find nearest Arcade Table
+      const arcadeTableName = nearestArcadeTable(
+        humanoidRootPart.Position,
+        arcadeTablesState,
+        localPlayerTeamName,
+      )
+      if (!arcadeTableName) return
+      targetAttachment =
+        game.Workspace.ArcadeTables[arcadeTableName]?.Seat?.Attachment
+    }
 
     // Create new beam
-    const seatAttachment =
-      game.Workspace.ArcadeTables[arcadeTableName]?.Seat?.Attachment
-    if (!seatAttachment) return
+    if (!targetAttachment) return
     const beam = new Instance('Beam')
     beam.Name = 'Beam'
     beam.Texture = 'rbxassetid://956427083'
@@ -249,7 +284,7 @@ export class ArcadeController implements OnStart {
     beam.Width0 = 1.5
     beam.Width1 = 1.5
     beam.Attachment0 = rootRigAttachment
-    beam.Attachment1 = seatAttachment
+    beam.Attachment1 = targetAttachment
     beam.Parent = playerCharacter
   }
 }

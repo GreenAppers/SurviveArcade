@@ -33,6 +33,20 @@ type ArcadeTableNextName =
 
 type ArcadeTableType = 'Pinball1'
 
+interface Cabinet extends Model {
+  Baseplate: BasePart
+  Truss1: CabinetTruss
+  Truss2: CabinetTruss
+  Truss3: CabinetTruss
+  Truss4: CabinetTruss
+}
+
+interface CabinetTruss extends TrussPart {
+  Attachment: Attachment
+}
+
+type CabinetTrussName = 'Truss1' | 'Truss2' | 'Truss3' | 'Truss4'
+
 interface Flipper extends Model {
   Flipper: BasePart & {
     Rotor: BasePart
@@ -91,17 +105,9 @@ interface Workspace extends Instance {
   }
   Map: Folder & {
     Baseplate: BasePart
-    Table1?: Model & {
-      Baseplate: BasePart
-    }
-    Table2?: Model & {
-      Baseplate: BasePart
-    }
-    Table3?: Model & {
-      Baseplate: BasePart
-    }
-    Table4?: Model & {
-      Baseplate: BasePart
-    }
+    Table1?: Cabinet
+    Table2?: Cabinet
+    Table3?: Cabinet
+    Table4?: Cabinet
   }
 }

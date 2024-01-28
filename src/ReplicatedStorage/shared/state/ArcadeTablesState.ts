@@ -17,6 +17,7 @@ export interface ArcadeTableState {
   readonly statorColor: BrickColor
   readonly scoreToWin: number
   readonly status: ArcadeTableStatus
+  readonly sequence: number
 }
 
 export type ArcadeTablesState = {
@@ -119,6 +120,7 @@ const initialState: ArcadeTablesState = {
     baseMaterial: Enum.Material.Glass,
     scoreToWin: initialScoreToWin,
     status: ArcadeTableStatus.Active,
+    sequence: 0,
   },
   Table2: {
     owner: undefined,
@@ -130,6 +132,7 @@ const initialState: ArcadeTablesState = {
     baseMaterial: Enum.Material.Glass,
     scoreToWin: initialScoreToWin,
     status: ArcadeTableStatus.Active,
+    sequence: 0,
   },
   Table3: {
     owner: undefined,
@@ -141,6 +144,7 @@ const initialState: ArcadeTablesState = {
     baseMaterial: Enum.Material.Glass,
     scoreToWin: initialScoreToWin,
     status: ArcadeTableStatus.Active,
+    sequence: 0,
   },
   Table4: {
     owner: undefined,
@@ -152,6 +156,7 @@ const initialState: ArcadeTablesState = {
     baseMaterial: Enum.Material.Glass,
     scoreToWin: initialScoreToWin,
     status: ArcadeTableStatus.Active,
+    sequence: 0,
   },
   Table1Next: undefined,
   Table2Next: undefined,
@@ -188,8 +193,11 @@ export const arcadeTablesSlice = createProducer(initialState, {
 
   extendArcadeTable: (state, name: ArcadeTableName | ArcadeTableNextName) => {
     const nextName = nextArcadeTableName(name)
-    const lastScoreToWin = state[name]?.scoreToWin || initialScoreToWin
+    const lastState = state[name]
+    const lastScoreToWin = lastState?.scoreToWin || initialScoreToWin
     const nextScoreToWin = lastScoreToWin + initialScoreToWin // * 3
+    const lastSequence = lastState?.sequence || 0
+    const nextSequence = lastSequence + 1
     if (isArcadeTableBaseName(name)) {
       // We're extending the inital table.
       const nextTable = state[nextName]
@@ -200,6 +208,7 @@ export const arcadeTablesSlice = createProducer(initialState, {
             [nextName]: {
               ...initialState[name],
               scoreToWin: nextScoreToWin,
+              sequence: nextSequence,
               status: ArcadeTableStatus.Unmaterialized,
             },
           }
@@ -214,6 +223,7 @@ export const arcadeTablesSlice = createProducer(initialState, {
         [nextName]: {
           ...initialState[baseName],
           scoreToWin: nextScoreToWin,
+          sequence: nextSequence,
           status: ArcadeTableStatus.Unmaterialized,
         },
       }

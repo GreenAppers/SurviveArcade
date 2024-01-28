@@ -1,5 +1,9 @@
 import Object from '@rbxts/object-utils'
 import { CollectionService } from '@rbxts/services'
+import {
+  ARCADE_TABLE_NAMES,
+  TRUSS_NAMES,
+} from 'ReplicatedStorage/shared/constants/core'
 import { ArcadeTableTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   ArcadeTablesState,
@@ -40,4 +44,43 @@ export function nearestArcadeTable(
     }
   }
   return nearestArcadeTableName
+}
+
+export function nearestCabinet(
+  position: Vector3,
+  arcadeTablesState?: ArcadeTablesState,
+  teamName?: string,
+) {
+  let nearestDistance = math.huge
+  let nearestArcadeTableName: ArcadeTableName | undefined
+  for (const name of ARCADE_TABLE_NAMES) {
+    if (teamName && arcadeTablesState?.[name]?.teamName !== teamName) continue
+    const cabinet = game.Workspace.Map[name]
+    if (!cabinet) continue
+    const distance = position.sub(cabinet.Baseplate.Position).Magnitude
+    if (distance < nearestDistance) {
+      nearestArcadeTableName = name
+      nearestDistance = distance
+    }
+  }
+  return nearestArcadeTableName
+}
+
+export function nearestCabinetTruss(
+  position: Vector3,
+  arcadeTableName: ArcadeTableName,
+): CabinetTrussName {
+  const cabinet = game.Workspace.Map[arcadeTableName]
+  if (!cabinet) return 'Truss2'
+  let nearestDistance = math.huge
+  let nearestCabinetTrussName: CabinetTrussName | undefined
+  for (const name of TRUSS_NAMES) {
+    const trussAttachment = cabinet[name].Attachment
+    const distance = position.sub(trussAttachment.WorldPosition).Magnitude
+    if (distance < nearestDistance) {
+      nearestCabinetTrussName = name
+      nearestDistance = distance
+    }
+  }
+  return nearestCabinetTrussName || 'Truss2'
 }

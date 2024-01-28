@@ -9,6 +9,7 @@ export interface PlayerData {
 export interface PlayerScore {
   readonly score: number
   readonly highScore: number
+  readonly loops: number
 }
 
 export interface PlayerState extends PlayerData {
@@ -40,6 +41,7 @@ export const defaultPlayerState = {
   score: {
     score: 0,
     highScore: 0,
+    loops: 0,
   },
 }
 
@@ -74,6 +76,24 @@ export const playersSlice = createProducer(initialState, {
     [KEY_TEMPLATE.format(userID)]: undefined,
   }),
 
+  addLoops: (state, userID: number, amount: number) => {
+    const playerKey = KEY_TEMPLATE.format(userID)
+    const playerState = state[playerKey]
+    const scoreState = playerState?.score
+    return {
+      ...state,
+      [playerKey]: {
+        ...(playerState ?? defaultPlayerState),
+        score: {
+          ...scoreState,
+          score: scoreState?.score || 0,
+          highScore: scoreState?.highScore || 0,
+          loops: (scoreState?.loops || 0) + (amount || 0),
+        },
+      },
+    }
+  },
+
   addScore: (state, userID: number, amount: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
@@ -87,6 +107,7 @@ export const playersSlice = createProducer(initialState, {
           ...scoreState,
           score: newScore,
           highScore: math.max(scoreState?.highScore || 0, newScore),
+          loops: scoreState?.loops || 0,
         },
       },
     }
@@ -104,6 +125,7 @@ export const playersSlice = createProducer(initialState, {
           ...scoreState,
           score: 0,
           highScore: scoreState?.highScore || 0,
+          loops: scoreState?.loops || 0,
         },
       },
     }
