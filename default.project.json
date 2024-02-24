@@ -50,22 +50,10 @@
       "$path": "assets/Workspace"
     },
     "Lighting": {
-      "$properties": {
-        "ClockTime": 23.5,
-        "Technology": {
-          "Enum": 3
-        },
-        "Outlines": false,
-        "Ambient": {
-          "Color3": [
-            0.0,
-            0.0,
-            0.0
-          ]
-        },
-        "Brightness": 2.0,
-        "GlobalShadows": true
-      }
+      "$path": "assets/Lighting"
+    },
+    "MaterialService": {
+      "$path": "assets/MaterialService"
     },
     "HttpService": {
       "$className": "HttpService",
