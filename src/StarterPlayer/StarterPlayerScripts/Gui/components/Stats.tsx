@@ -15,9 +15,9 @@ import { formatInteger } from 'StarterPlayer/StarterPlayerScripts/utils'
 export function Stats() {
   const rem = useRem()
   const playerState = useSelector(selectLocalPlayerState())
-  const currentScore = playerState?.score
-  const score = useDefined<string | number>(currentScore?.score, 'N/A')
-  const highScore = useDefined<string | number>(currentScore?.highScore, 'N/A')
+  const score = useDefined<string | number>(playerState?.score, 'N/A')
+  const currentTable = playerState?.arcade?.[playerState?.tableType]
+  const highScore = useDefined<string | number>(currentTable?.highScore, 'N/A')
 
   return (
     <Group>
@@ -40,7 +40,7 @@ export function Stats() {
         key="guide"
         emoji="➡️"
         label="Guide"
-        value={playerState?.guide ? 'On' : 'Off'}
+        value={playerState?.settings?.guide ? 'On' : 'Off'}
         primary={palette.green}
         secondary={palette.brown}
         enabled={true}
@@ -66,7 +66,7 @@ export function Stats() {
         value={`${formatInteger(score)}`}
         primary={palette.pink}
         secondary={palette.red}
-        enabled={currentScore !== undefined}
+        enabled={currentTable !== undefined}
         order={2}
       />
     </Group>

@@ -1,5 +1,10 @@
 import Object from '@rbxts/object-utils'
 import { createProducer } from '@rbxts/reflex'
+import {
+  ARCADE_TABLE_NAMES,
+  ARCADE_TABLE_NEXT_NAMES,
+  ARCADE_TABLE_TYPES,
+} from 'ReplicatedStorage/shared/constants/core'
 
 export enum ArcadeTableStatus {
   Unmaterialized,
@@ -9,8 +14,9 @@ export enum ArcadeTableStatus {
 
 export interface ArcadeTableState {
   readonly owner?: Player
-  readonly tableType?: ArcadeTableType
   readonly teamName?: TeamName
+  readonly tableMap: ArcadeTableMap
+  readonly tableType: ArcadeTableType
   readonly color: BrickColor
   readonly baseColor: BrickColor
   readonly baseMaterial: Enum.Material
@@ -30,10 +36,10 @@ export const isArcadeTableBaseName = (
   tableName: ArcadeTableName | ArcadeTableNextName,
 ): ArcadeTableName | undefined => {
   switch (tableName) {
-    case 'Table1':
-    case 'Table2':
-    case 'Table3':
-    case 'Table4':
+    case ARCADE_TABLE_NAMES[0]:
+    case ARCADE_TABLE_NAMES[1]:
+    case ARCADE_TABLE_NAMES[2]:
+    case ARCADE_TABLE_NAMES[3]:
       return tableName
     default:
       return undefined
@@ -44,10 +50,10 @@ export const isArcadeTableNextName = (
   tableName: ArcadeTableName | ArcadeTableNextName,
 ): ArcadeTableNextName | undefined => {
   switch (tableName) {
-    case 'Table1Next':
-    case 'Table2Next':
-    case 'Table3Next':
-    case 'Table4Next':
+    case ARCADE_TABLE_NEXT_NAMES[0]:
+    case ARCADE_TABLE_NEXT_NAMES[1]:
+    case ARCADE_TABLE_NEXT_NAMES[2]:
+    case ARCADE_TABLE_NEXT_NAMES[3]:
       return tableName
     default:
       return undefined
@@ -100,20 +106,14 @@ export const findArcadeTableNameOwnedBy = (
     ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
   )?.[0] as ArcadeTableName | undefined
 
-export const arcadeTableNames: ArcadeTableName[] = [
-  'Table1',
-  'Table2',
-  'Table3',
-  'Table4',
-]
-
 export const initialScoreToWin = 10000
 
 const initialState: ArcadeTablesState = {
   Table1: {
     owner: undefined,
-    tableType: 'Pinball1',
     teamName: 'Blue Team',
+    tableMap: 'Pinball1',
+    tableType: ARCADE_TABLE_TYPES.Pinball,
     color: new BrickColor('Cyan'),
     statorColor: new BrickColor('Electric blue'),
     baseColor: new BrickColor('Pastel Blue'),
@@ -124,8 +124,9 @@ const initialState: ArcadeTablesState = {
   },
   Table2: {
     owner: undefined,
-    tableType: 'Pinball1',
     teamName: 'Green Team',
+    tableMap: 'Pinball1',
+    tableType: ARCADE_TABLE_TYPES.Pinball,
     color: new BrickColor('Lime green'),
     statorColor: new BrickColor('Forest green'),
     baseColor: new BrickColor('Sand green'),
@@ -136,8 +137,9 @@ const initialState: ArcadeTablesState = {
   },
   Table3: {
     owner: undefined,
-    tableType: 'Pinball1',
     teamName: 'Yellow Team',
+    tableMap: 'Pinball1',
+    tableType: ARCADE_TABLE_TYPES.Pinball,
     color: new BrickColor('Deep orange'),
     statorColor: new BrickColor('Neon orange'),
     baseColor: new BrickColor('Cork'),
@@ -148,8 +150,9 @@ const initialState: ArcadeTablesState = {
   },
   Table4: {
     owner: undefined,
-    tableType: 'Pinball1',
     teamName: 'Red Team',
+    tableMap: 'Pinball1',
+    tableType: ARCADE_TABLE_TYPES.Pinball,
     color: new BrickColor('Really red'),
     statorColor: new BrickColor('Crimson'),
     baseColor: new BrickColor('Terra Cotta'),

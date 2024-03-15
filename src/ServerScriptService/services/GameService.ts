@@ -2,6 +2,7 @@ import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Players } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
+import { ARCADE_TABLE_NAMES } from 'ReplicatedStorage/shared/constants/core'
 import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTablesState,
@@ -10,7 +11,6 @@ import {
   selectPlayerScore,
 } from 'ReplicatedStorage/shared/state'
 import {
-  arcadeTableNames,
   ArcadeTableStatus,
   initialScoreToWin,
   nextArcadeTableName,
@@ -60,7 +60,7 @@ export class GameService implements OnStart {
 
           // Trigger winning sequence when threshhold score exceeded.
           const userScoreSelector = selectPlayerScore(userId)
-          const score = userScoreSelector(newState)?.score || 0
+          const score = userScoreSelector(newState)
           if (score > arcadeTableState.scoreToWin) {
             store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
             if (arcadeTable) {
@@ -105,7 +105,7 @@ export class GameService implements OnStart {
       humanoidRootPart: playerHumanoidRootPart(x),
     }))
     const state = store.getState()
-    for (const arcadeTableName of arcadeTableNames) {
+    for (const arcadeTableName of ARCADE_TABLE_NAMES) {
       const nextTableName = nextArcadeTableName(arcadeTableName)
       const arcadeTableState = selectArcadeTableState(arcadeTableName)(state)
       const arcadeTable = <ArcadeTable>(

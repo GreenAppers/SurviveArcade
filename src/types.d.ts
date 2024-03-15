@@ -23,6 +23,8 @@ interface ArcadeTable extends Model {
   }
 }
 
+type ArcadeTableType = 'Pinball' | 'AirHockey' | 'Foosball'
+
 type ArcadeTableName = 'Table1' | 'Table2' | 'Table3' | 'Table4'
 
 type ArcadeTableNextName =
@@ -31,7 +33,7 @@ type ArcadeTableNextName =
   | 'Table3Next'
   | 'Table4Next'
 
-type ArcadeTableType = 'Pinball1'
+type ArcadeTableMap = 'Pinball1'
 
 interface Cabinet extends Model {
   Baseplate: BasePart
@@ -91,6 +93,8 @@ type TeamName =
   | 'Red Team'
   | 'Unclaimed Team'
   | 'Yellow Team'
+
+type TycoonType = 'Elf' | 'Human'
 
 interface Workspace extends Instance {
   ArcadeTables: Folder & {

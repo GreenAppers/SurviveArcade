@@ -31,7 +31,7 @@ export class MapService implements OnStart {
     Workspace.Map?.Destroy()
   }
 
-  loadArcadeTableTemplate(name: ArcadeTableType, tableName: ArcadeTableName) {
+  loadArcadeTableTemplate(name: ArcadeTableMap, tableName: ArcadeTableName) {
     const arcadeTableTemplate = ReplicatedStorage.ArcadeTables[name]
     const arcadeTable = arcadeTableTemplate.Clone()
     arcadeTable.Name = tableName
@@ -43,8 +43,8 @@ export class MapService implements OnStart {
     tableName: ArcadeTableName,
     state: ArcadeTableState,
   ) {
-    if (!state.tableType) return
-    const arcadeTable = this.loadArcadeTableTemplate(state.tableType, tableName)
+    if (!state.tableMap) return
+    const arcadeTable = this.loadArcadeTableTemplate(state.tableMap, tableName)
     this.setupArcadeTable(
       arcadeTable,
       state,
@@ -135,9 +135,9 @@ export class MapService implements OnStart {
     nextArcadeTable?.Destroy()
     store.resetArcadeTable(name)
     const oldState = arcadeTableState || nextTableState
-    const tableType = arcadeTableState?.tableType || nextTableState?.tableType
-    if (!tableType || !oldState) return
-    arcadeTable = this.loadArcadeTableTemplate(tableType, name)
+    const tableMap = arcadeTableState?.tableMap || nextTableState?.tableMap
+    if (!tableMap || !oldState) return
+    arcadeTable = this.loadArcadeTableTemplate(tableMap, name)
     arcadeTable.Name = name
     this.setupArcadeTable(
       arcadeTable,
@@ -155,14 +155,14 @@ export class MapService implements OnStart {
     const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
     if (
       state?.status === ArcadeTableStatus.Unmaterialized &&
-      state.tableType &&
+      state.tableMap &&
       arcadeTable &&
       arcadeTableCF
     ) {
       const baseName = baseArcadeTableName(name)
       store.updateArcadeTableStatus(name, ArcadeTableStatus.Active)
       arcadeTable?.Destroy()
-      arcadeTable = this.loadArcadeTableTemplate(state.tableType, baseName)
+      arcadeTable = this.loadArcadeTableTemplate(state.tableMap, baseName)
       arcadeTable.Name = name
       this.setupArcadeTable(arcadeTable, state, arcadeTableCF)
       const isNextName = isArcadeTableNextName(name)
@@ -189,7 +189,7 @@ export class MapService implements OnStart {
     let arcadeTableNext = <ArcadeTable | undefined>(
       game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableNextName)
     )
-    if (!state?.tableType) return
+    if (!state?.tableMap) return
     store.extendArcadeTable(name)
 
     if (isNextName && arcadeTableNext) {
@@ -201,7 +201,7 @@ export class MapService implements OnStart {
     const nextArcadeTableCF = arcadeTable?.NextBaseplate?.CFrame
     if (arcadeTableNext || !nextArcadeTableCF) return
     arcadeTableNext = this.loadArcadeTableTemplate(
-      state.tableType,
+      state.tableMap,
       arcadeTableBaseName,
     )
     arcadeTableNext.Name = arcadeTableNextName

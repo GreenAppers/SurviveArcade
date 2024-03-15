@@ -38,23 +38,20 @@ export const selectPlayerState = (userID: number) => (state: SharedState) =>
   getPlayer(state.players, userID)
 
 export const selectPlayerScore = (userID: number) => (state: SharedState) =>
-  getPlayer(state.players, userID)?.score
+  getPlayer(state.players, userID)?.score || 0
 
 export const selectPlayerGuideEnabled =
   (userID: number) => (state: SharedState) =>
-    getPlayer(state.players, userID)?.guide
+    getPlayer(state.players, userID)?.settings?.guide
 
 export const selectLocalPlayerState = () => (state: SharedState) =>
   getPlayer(state.players, USER_ID)
 
 export const selectLocalPlayerMusicEnabled = () => (state: SharedState) =>
-  getPlayer(state.players, USER_ID)?.music
-
-export const selectLocalPlayerScoreState = () => (state: SharedState) =>
-  getPlayer(state.players, USER_ID)?.score
+  getPlayer(state.players, USER_ID)?.settings?.music
 
 export const selectLocalPlayerLoops = () => (state: SharedState) =>
-  getPlayer(state.players, USER_ID)?.score?.loops || 0
+  getPlayer(state.players, USER_ID)?.completed?.loops || 0
 
 export const selectLocalPlayerGroundArcadeTableName =
   () => (state: SharedState) =>

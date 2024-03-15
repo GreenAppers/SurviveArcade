@@ -10,6 +10,14 @@ export const USER_NAME = Players.LocalPlayer
   ? Players.LocalPlayer.Name
   : '(server)'
 
+export const ARCADE_TABLE_TYPES: {
+  [name in ArcadeTableType]: ArcadeTableType
+} = {
+  Pinball: 'Pinball',
+  AirHockey: 'AirHockey',
+  Foosball: 'Foosball',
+}
+
 export const ARCADE_TABLE_NAMES: ArcadeTableName[] = [
   'Table1',
   'Table2',
@@ -17,18 +25,16 @@ export const ARCADE_TABLE_NAMES: ArcadeTableName[] = [
   'Table4',
 ]
 
-export const EXTENDED_ARCADE_TABLE_NAMES: Array<
-  ArcadeTableName | ArcadeTableNextName
-> = [
-  'Table1',
+export const ARCADE_TABLE_NEXT_NAMES: ArcadeTableNextName[] = [
   'Table1Next',
-  'Table2',
   'Table2Next',
-  'Table3',
   'Table3Next',
-  'Table4',
   'Table4Next',
 ]
+
+export const EXTENDED_ARCADE_TABLE_NAMES: Array<
+  ArcadeTableName | ArcadeTableNextName
+> = [...ARCADE_TABLE_NAMES, ...ARCADE_TABLE_NEXT_NAMES]
 
 export const TRUSS_NAMES: CabinetTrussName[] = [
   'Truss1',
@@ -36,3 +42,10 @@ export const TRUSS_NAMES: CabinetTrussName[] = [
   'Truss3',
   'Truss4',
 ]
+
+export const TYCOON_TYPES: {
+  [name in TycoonType]: TycoonType
+} = {
+  Elf: 'Elf',
+  Human: 'Human',
+}

@@ -1,59 +1,131 @@
 import { createProducer } from '@rbxts/reflex'
+import { ARCADE_TABLE_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
 
-export interface PlayerData {
+export enum PlayerScale {
+  Elf,
+  Human,
+  Tycoon,
+  Omniverse,
+}
+
+export interface PlayerSettings {
   readonly guide: boolean
   readonly music: boolean
 }
 
-export interface PlayerScore {
-  readonly score: number
-  readonly highScore: number
-  readonly loops: number
+export interface PlayerTycoon {
+  readonly name: string
+  readonly buttons: {
+    readonly [buttonName: string]: boolean
+  }
 }
 
-export interface PlayerState extends PlayerData {
+export interface PlayerCompleted {
+  readonly loops: number
+  readonly tables: number
+}
+
+export interface PlayerArcade {
+  readonly level: number
+  readonly highScore: number
+  readonly completed: PlayerCompleted
+}
+
+export interface PlayerData {
+  readonly tickets: number
+  readonly dollars: number
+  readonly levity: number
+  readonly settings: PlayerSettings
+  readonly arcade: {
+    readonly [tableType in ArcadeTableType]: PlayerArcade
+  }
+  readonly tycoon: {
+    readonly [tycoonType in TycoonType]: PlayerTycoon
+  }
+  readonly completed: PlayerCompleted
+}
+
+export interface PlayerState {
   readonly gravityUp: Vector3
   readonly groundArcadeTableName:
     | ArcadeTableName
     | ArcadeTableNextName
     | undefined
-  readonly score: PlayerScore
+  readonly scale: PlayerScale
+  readonly score: number
+  readonly tableType: ArcadeTableType
 }
+
+export interface Player extends PlayerData, PlayerState {}
 
 export type PlayerDataType = keyof PlayerData
 export type PlayerStateType = keyof PlayerState
-export type PlayerScoreType = keyof PlayerScore
 
-export interface PlayersState {
-  readonly [playerKey: string]: PlayerState | undefined
+export interface Players {
+  readonly [playerKey: string]: Player | undefined
 }
 
-export const defaultPlayerData = {
+export const defaultPlayerSettings: PlayerSettings = {
   guide: true,
   music: true,
-}
+} as const
 
-export const defaultPlayerState = {
-  ...defaultPlayerData,
+export const defaultPlayerCompleted: PlayerCompleted = {
+  loops: 0,
+  tables: 0,
+} as const
+
+export const defaultPlayerArcade: PlayerArcade = {
+  level: 0,
+  highScore: 0,
+  completed: defaultPlayerCompleted,
+} as const
+
+export const defaultPlayerData: PlayerData = {
+  tickets: 0,
+  dollars: 0,
+  levity: 0,
+  settings: defaultPlayerSettings,
+  arcade: {
+    Pinball: defaultPlayerArcade,
+    AirHockey: defaultPlayerArcade,
+    Foosball: defaultPlayerArcade,
+  },
+  tycoon: {
+    Elf: {
+      name: 'Elf',
+      buttons: {},
+    },
+    Human: {
+      name: 'Human',
+      buttons: {},
+    },
+  },
+  completed: defaultPlayerCompleted,
+} as const
+
+export const defaultPlayerState: PlayerState = {
   gravityUp: new Vector3(0, 1, 0),
   groundArcadeTableName: undefined,
-  score: {
-    score: 0,
-    highScore: 0,
-    loops: 0,
-  },
-}
+  scale: PlayerScale.Elf,
+  score: 0,
+  tableType: ARCADE_TABLE_TYPES.Pinball,
+} as const
+
+export const defaultPlayer = {
+  ...defaultPlayerData,
+  ...defaultPlayerState,
+} as const
 
 const KEY_TEMPLATE = '%d'
-const initialState: PlayersState = {}
+const initialState: Players = {}
 
-export const getPlayerData = (state: PlayerState): PlayerData => ({
-  guide: state.guide,
-  music: state.music,
+export const getPlayerData = (state: Player): PlayerData => ({
+  ...state,
 })
 
-export const getPlayer = (state: PlayersState, userID: number) =>
+export const getPlayer = (state: Players, userID: number) =>
   state[KEY_TEMPLATE.format(userID)]
 
 export const playersSlice = createProducer(initialState, {
@@ -63,10 +135,10 @@ export const playersSlice = createProducer(initialState, {
     return {
       ...state,
       [playerKey]: {
-        ...defaultPlayerState,
+        ...defaultPlayer,
         ...playerState,
         ...data,
-        score: { ...defaultPlayerState.score, ...playerState?.score },
+        ...defaultPlayerState,
       },
     }
   },
@@ -79,16 +151,26 @@ export const playersSlice = createProducer(initialState, {
   addLoops: (state, userID: number, amount: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
-    const scoreState = playerState?.score
+    if (!playerState) return state
+    const completed = playerState.completed
+    const tableState = playerState.arcade[playerState.tableType]
     return {
       ...state,
       [playerKey]: {
-        ...(playerState ?? defaultPlayerState),
-        score: {
-          ...scoreState,
-          score: scoreState?.score || 0,
-          highScore: scoreState?.highScore || 0,
-          loops: (scoreState?.loops || 0) + (amount || 0),
+        ...playerState,
+        completed: {
+          ...completed,
+          loops: (completed?.loops || 0) + (amount || 0),
+        },
+        arcade: {
+          ...playerState.arcade,
+          [playerState.tableType]: {
+            ...table,
+            completed: {
+              ...tableState.completed,
+              loops: (tableState.completed.loops || 0) + (amount || 0),
+            },
+          },
         },
       },
     }
@@ -97,17 +179,20 @@ export const playersSlice = createProducer(initialState, {
   addScore: (state, userID: number, amount: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
-    const scoreState = playerState?.score
-    const newScore = (scoreState?.score || 0) + (amount || 0)
+    if (!playerState) return state
+    const newScore = (playerState?.score || 0) + (amount || 0)
+    const tableState = playerState.arcade[playerState.tableType]
     return {
       ...state,
       [playerKey]: {
-        ...(playerState ?? defaultPlayerState),
-        score: {
-          ...scoreState,
-          score: newScore,
-          highScore: math.max(scoreState?.highScore || 0, newScore),
-          loops: scoreState?.loops || 0,
+        ...playerState,
+        score: newScore,
+        arcade: {
+          ...playerState.arcade,
+          [playerState.tableType]: {
+            ...table,
+            highScore: math.max(tableState?.highScore || 0, newScore),
+          },
         },
       },
     }
@@ -116,17 +201,12 @@ export const playersSlice = createProducer(initialState, {
   resetScore: (state, userID: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
-    const scoreState = playerState?.score
+    if (!playerState) return state
     return {
       ...state,
       [playerKey]: {
-        ...(playerState ?? defaultPlayerState),
-        score: {
-          ...scoreState,
-          score: 0,
-          highScore: scoreState?.highScore || 0,
-          loops: scoreState?.loops || 0,
-        },
+        ...playerState,
+        score: 0,
       },
     }
   },
@@ -134,7 +214,7 @@ export const playersSlice = createProducer(initialState, {
   resetScores: (state) =>
     mapProperties(state, (playerState) => ({
       ...playerState,
-      score: { ...defaultPlayerState.score },
+      score: 0,
     })),
 
   updateGround: (
@@ -145,7 +225,7 @@ export const playersSlice = createProducer(initialState, {
       groundArcadeTableName: ArcadeTableName | ArcadeTableNextName | undefined
     }>,
   ) => {
-    let newState: { [playerKey: string]: PlayerState | undefined } | undefined
+    let newState: { [playerKey: string]: Player | undefined } | undefined
     for (const { userID, gravityUp, groundArcadeTableName } of playerGround) {
       const playerKey = KEY_TEMPLATE.format(userID)
       const playerState = state[playerKey]
@@ -167,11 +247,15 @@ export const playersSlice = createProducer(initialState, {
   toggleGuide: (state, userID: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
+    if (!playerState) return state
     return {
       ...state,
       [playerKey]: {
-        ...(playerState ?? defaultPlayerState),
-        guide: !playerState?.guide,
+        ...playerState,
+        settings: {
+          ...playerState.settings,
+          guide: !playerState.settings.guide,
+        },
       },
     }
   },

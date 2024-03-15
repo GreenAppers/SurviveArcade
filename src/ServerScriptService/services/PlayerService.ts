@@ -75,21 +75,27 @@ export class PlayerService implements OnInit {
     leaderstats.Name = 'leaderstats'
     leaderstats.Parent = player
 
-    const score = new Instance('IntValue')
-    score.Name = 'Score'
-    score.Value = 0
-    score.Parent = leaderstats
+    const tickets = new Instance('IntValue')
+    tickets.Name = 'Tickets'
+    tickets.Value = 0
+    tickets.Parent = leaderstats
 
-    const loops = new Instance('IntValue')
-    loops.Name = 'Loops'
-    loops.Value = 0
-    loops.Parent = leaderstats
+    const dollars = new Instance('IntValue')
+    dollars.Name = 'Dollars'
+    dollars.Value = 0
+    dollars.Parent = leaderstats
+
+    const levity = new Instance('IntValue')
+    levity.Name = 'Levity'
+    levity.Value = 0
+    levity.Parent = leaderstats
 
     const unsubscribe = store.subscribe(
       selectPlayerState(player.UserId),
       (playerData) => {
-        score.Value = playerData?.score?.highScore ?? 0
-        loops.Value = playerData?.score?.loops ?? 0
+        tickets.Value = playerData?.tickets ?? 0
+        dollars.Value = playerData?.dollars ?? 0
+        levity.Value = playerData?.levity ?? 0
       },
     )
     return unsubscribe
