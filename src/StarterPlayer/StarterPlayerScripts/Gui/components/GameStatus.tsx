@@ -25,17 +25,18 @@ export function GameStatus() {
         HorizontalAlignment="Center"
         Padding={new UDim(0, rem(1))}
       />
-
-      <StatsCard
-        key="remaining"
-        emoji="⏰"
-        label="Remaining"
-        value={`${formatDuration(gameState.roundRemaining)}`}
-        primary={palette.red}
-        secondary={palette.orange}
-        enabled={gameState.roundRemaining !== undefined}
-        order={1}
-      />
+      {gameState.roundActive && (
+        <StatsCard
+          key="remaining"
+          emoji="⏰"
+          label="Remaining"
+          value={`${formatDuration(gameState.roundRemaining)}`}
+          primary={palette.red}
+          secondary={palette.orange}
+          enabled={gameState.roundRemaining !== undefined}
+          order={1}
+        />
+      )}
     </Group>
   )
 }

@@ -40,12 +40,14 @@ export class GameService implements OnStart {
       const state = store.getState()
       const gameState = gameSelector(state)
 
-      // Update seconds remaining until starting a new round
-      const remaining =
-        gameState.roundLength -
-        (DateTime.now().UnixTimestamp - gameState.roundStarted.UnixTimestamp)
-      if (remaining <= 0) this.changeRound()
-      else store.setRoundRemaining(remaining)
+      if (gameState.roundActive) {
+        // Update seconds remaining until starting a new round
+        const remaining =
+          gameState.roundLength -
+          (DateTime.now().UnixTimestamp - gameState.roundStarted.UnixTimestamp)
+        if (remaining <= 0) this.changeRound()
+        else store.setRoundRemaining(remaining)
+      }
 
       const arcadeTablesState = arcadeTablesSelector(state)
       for (const [name, arcadeTableState] of Object.entries(

@@ -2,7 +2,10 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players, Teams } from '@rbxts/services'
 import { JoinTeamTag } from 'ReplicatedStorage/shared/constants/tags'
-import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
+import {
+  selectArcadeTableState,
+  selectGameState,
+} from 'ReplicatedStorage/shared/state'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { store } from 'ServerScriptService/store'
 
@@ -23,8 +26,12 @@ export class JoinTeamComponent
       if (humanoid) {
         const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
         if (touchedPlayer) {
-          const tableState = arcadeTableSelector(store.getState())
-          touchedPlayer.Team = Teams[tableState?.teamName || 'Unclaimed Team']
+          const state = store.getState()
+          const tableState = arcadeTableSelector(state)
+          const gameState = selectGameState()(state)
+          if (gameState.teamsActive) {
+            touchedPlayer.Team = Teams[tableState?.teamName || 'Unclaimed Team']
+          }
         }
       }
     })
