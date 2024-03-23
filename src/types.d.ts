@@ -1,5 +1,7 @@
 interface ArcadeMap {
   getArcadeTableCFrame: (name: ArcadeTableName) => CFrame
+  getTycoonCFrame: (name: TycoonName) => CFrame
+  getTycoonType: () => TycoonType
 }
 
 interface ArcadeTable extends Model {
@@ -73,6 +75,11 @@ interface ReplicatedStorage extends Instance {
       Table4?: Model
     }
   }
+  Tycoons: Folder & {
+    Elf: Tycoon
+    Human: Tycoon
+    Omniverse: Tycoon
+  }
 }
 
 interface Spinner extends Model {
@@ -96,7 +103,13 @@ type TeamName =
   | 'Unclaimed Team'
   | 'Yellow Team'
 
-type TycoonType = 'Elf' | 'Human'
+interface Tycoon extends Model {
+  Baseplate: BasePart
+}
+
+type TycoonName = 'Tycoon1' | 'Tycoon2' | 'Tycoon3' | 'Tycoon4'
+
+type TycoonType = 'Elf' | 'Human' | 'Omniverse'
 
 interface Workspace extends Instance {
   ArcadeTables: Folder & {
@@ -115,5 +128,15 @@ interface Workspace extends Instance {
     Table2?: Cabinet
     Table3?: Cabinet
     Table4?: Cabinet
+    Tycoon1?: BasePart
+    Tycoon2?: BasePart
+    Tycoon3?: BasePart
+    Tycoon4?: BasePart
+  }
+  Tycoons: Folder & {
+    Tycoon1?: Tycoon
+    Tycoon2?: Tycoon
+    Tycoon3?: Tycoon
+    Tycoon4?: Tycoon
   }
 }

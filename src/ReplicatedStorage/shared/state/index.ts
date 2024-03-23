@@ -1,15 +1,15 @@
 import { CombineStates } from '@rbxts/reflex'
+import { USER_ID } from 'ReplicatedStorage/shared/constants/core'
 import {
   arcadeTablesSlice,
   findArcadeTableNameOwnedBy,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { gameSlice } from 'ReplicatedStorage/shared/state/GameState'
 import {
   getPlayer,
   playersSlice,
 } from 'ReplicatedStorage/shared/state/PlayersState'
-
-import { USER_ID } from '../constants/core'
-import { gameSlice } from './GameState'
+import { tycoonsSlice } from 'ReplicatedStorage/shared/state/TycoonState'
 
 export type SharedState = CombineStates<typeof slices>
 
@@ -17,6 +17,7 @@ export const slices = {
   arcadeTables: arcadeTablesSlice,
   game: gameSlice,
   players: playersSlice,
+  tycoons: tycoonsSlice,
 }
 
 export const selectArcadeTablesState = () => (state: SharedState) =>
@@ -70,3 +71,5 @@ export const selectLocalPlayerArcadeTableStatus = () => {
       : undefined
   }
 }
+
+export const selectTycoonsState = () => (state: SharedState) => state.tycoons

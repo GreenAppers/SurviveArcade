@@ -1,6 +1,7 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { ReplicatedStorage, Workspace } from '@rbxts/services'
+import { TYCOON_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTablesState,
@@ -21,6 +22,12 @@ export class MapService implements OnStart {
     Map1: {
       getArcadeTableCFrame: (name) => {
         return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
+      },
+      getTycoonCFrame: (name) => {
+        return game.Workspace.Map?.[name]?.CFrame || new CFrame()
+      },
+      getTycoonType: () => {
+        return TYCOON_TYPES.Elf
       },
     },
   }
