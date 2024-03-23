@@ -36,6 +36,13 @@ export const EXTENDED_ARCADE_TABLE_NAMES: Array<
   ArcadeTableName | ArcadeTableNextName
 > = [...ARCADE_TABLE_NAMES, ...ARCADE_TABLE_NEXT_NAMES]
 
+export const DIFFICULTY_TYPES: {
+  [name in Difficulty]: Difficulty
+} = {
+  peaceful: 'peaceful',
+  normal: 'normal',
+}
+
 export const TRUSS_NAMES: CabinetTrussName[] = [
   'Truss1',
   'Truss2',

@@ -1,6 +1,9 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
+import { DIFFICULTY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { ZombieTag } from 'ReplicatedStorage/shared/constants/tags'
+import { selectDifficulty } from 'ReplicatedStorage/shared/state'
+import { store } from 'ServerScriptService/store'
 
 // Adapted from code --[[ By: Brutez. ]]--
 @Component({ tag: ZombieTag })
@@ -308,6 +311,19 @@ export class ZombieComponent
     }
   }
 
+  respawn() {
+    if (
+      !this.respawndant ||
+      selectDifficulty()(store.getState()) === DIFFICULTY_TYPES.peaceful
+    )
+      return
+    const respawndant = this.respawndant.Clone()
+    // respawndant.MakeJoints()
+    //respawndant.FindFirstChild('Head')?.MakeJoints()
+    //respawndant.FindFirstChild('Torso')?.MakeJoints()
+    respawndant.Parent = this.instance.Parent
+  }
+
   onStart() {
     this.respawndant = this.instance.Clone()
     this.knife = <BasePart | undefined>this.instance.FindFirstChild('Knife')
@@ -321,14 +337,17 @@ export class ZombieComponent
       }
     }
     if (this.humanoid) {
+      store.subscribe(selectDifficulty(), (difficulty) => {
+        if (difficulty === DIFFICULTY_TYPES.peaceful) {
+          this.humanoid?.TakeDamage(math.huge)
+        } else if (this.humanoid?.Health === 0) {
+          this.respawn()
+        }
+      })
       this.humanoid.Died.Connect(() => {
         if (!this.respawndant) return
         wait(0.1)
-        const respawndant = this.respawndant.Clone()
-        // respawndant.MakeJoints()
-        //respawndant.FindFirstChild('Head')?.MakeJoints()
-        //respawndant.FindFirstChild('Torso')?.MakeJoints()
-        respawndant.Parent = this.instance.Parent
+        this.respawn()
         //this.instance.remove()
       })
     }

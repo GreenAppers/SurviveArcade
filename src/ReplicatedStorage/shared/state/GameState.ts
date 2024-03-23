@@ -1,6 +1,8 @@
 import { createProducer } from '@rbxts/reflex'
+import { DIFFICULTY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 
 export interface GameState {
+  readonly difficulty: Difficulty
   readonly roundActive: boolean
   readonly roundLength: number
   readonly roundRemaining: number
@@ -9,6 +11,7 @@ export interface GameState {
 }
 
 const initialState: GameState = {
+  difficulty: DIFFICULTY_TYPES.normal,
   roundActive: false,
   roundLength: 600,
   roundRemaining: 600,
@@ -17,6 +20,10 @@ const initialState: GameState = {
 }
 
 export const gameSlice = createProducer(initialState, {
+  setDifficulty: (state, difficulty: Difficulty) => ({
+    ...state,
+    difficulty,
+  }),
   startNewRound: (state) => ({
     ...state,
     roundRemaining: state.roundLength,

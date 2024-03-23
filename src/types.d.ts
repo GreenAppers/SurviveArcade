@@ -49,6 +49,8 @@ interface CabinetTruss extends TrussPart {
 
 type CabinetTrussName = 'Truss1' | 'Truss2' | 'Truss3' | 'Truss4'
 
+type Difficulty = 'peaceful' | 'normal'
+
 interface Flipper extends Model {
   Flipper: BasePart & {
     Rotor: BasePart

@@ -30,6 +30,9 @@ export const selectArcadeTableNameOwnedBy =
   (userId: number) => (state: SharedState) =>
     findArcadeTableNameOwnedBy(state.arcadeTables, userId)
 
+export const selectDifficulty = () => (state: SharedState) =>
+  state.game.difficulty
+
 export const selectGameState = () => (state: SharedState) => state.game
 
 export const selectPlayersState = () => (state: SharedState) => state.players
