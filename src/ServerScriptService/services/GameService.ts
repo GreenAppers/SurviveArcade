@@ -28,7 +28,7 @@ export class GameService implements OnStart {
     store.startNewRound()
     store.resetArcadeTables()
     store.resetScores()
-    this.mapService.loadMap('Map1')
+    this.mapService.loadMap('ElfMap')
   }
 
   onStart() {

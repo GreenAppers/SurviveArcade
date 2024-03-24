@@ -14,7 +14,7 @@ environments:
 
               🚧  Proceed with caution: You may encounter bugs, data resets, and instability.
               🔥  Take a look at upcoming features before they're shipped to production.
-            maxPlayerCount: 50
+            maxPlayerCount: 8
   - label: production
     branches: [main]
     targetAccess: public
@@ -39,6 +39,13 @@ target:
           name: Survive Arcade 🎮
           description: |
             Get the high score.  But beware of the rats!
+          maxPlayerCount: 8
+      human:
+        file: SurviveArcade.rbxlx
+        configuration:
+          name: Survive Arcade 🎮
+          description: |
+            Get the high score.  But beware of the humans!
           maxPlayerCount: 8
     assets:
       - assets/sounds/*

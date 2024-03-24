@@ -17,25 +17,25 @@ import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre } from 'ServerScriptService/utils'
 
 export interface MapAPI {
-  getArcadeTableCFrame: (name: ArcadeTableName) => CFrame
-  getTycoonCFrame: (name: TycoonName) => CFrame
-  getTycoonType: () => TycoonType
+  scale: TycoonType
 }
 
+export function getArcadeTableCFrame(name: ArcadeTableName) {
+  return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
+}
+
+export function getTycoonCFrame(name: TycoonName) {
+  return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
+}
 
 @Service()
 export class MapService implements OnStart {
   maps: Record<string, MapAPI> = {
-    Map1: {
-      getArcadeTableCFrame: (name) => {
-        return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
-      },
-      getTycoonCFrame: (name) => {
-        return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
-      },
-      getTycoonType: () => {
-        return TYCOON_TYPES.Elf
-      },
+    ElfMap: {
+      scale: TYCOON_TYPES.Elf,
+    },
+    HumanMap: {
+      scale: TYCOON_TYPES.Human,
     },
   }
   currentMap = ''
@@ -66,13 +66,15 @@ export class MapService implements OnStart {
     mapModel.Name = 'Map'
     mapModel.Parent = Workspace
 
-    for (const [tableName, state] of Object.entries(arcadeTablesState)) {
-      switch (tableName) {
-        case 'Table1':
-        case 'Table2':
-        case 'Table3':
-        case 'Table4':
-          this.loadArcadeTable(map, tableName, state)
+    if (this.maps?.[mapName]?.scale === TYCOON_TYPES.Elf) {
+      for (const [tableName, state] of Object.entries(arcadeTablesState)) {
+        switch (tableName) {
+          case 'Table1':
+          case 'Table2':
+          case 'Table3':
+          case 'Table4':
+            this.loadArcadeTable(map, tableName, state)
+        }
       }
     }
   }
@@ -84,11 +86,7 @@ export class MapService implements OnStart {
   ) {
     if (!state.tableMap) return
     const arcadeTable = this.loadArcadeTableTemplate(state.tableMap, tableName)
-    this.setupArcadeTable(
-      arcadeTable,
-      state,
-      mapAPI.getArcadeTableCFrame(tableName),
-    )
+    this.setupArcadeTable(arcadeTable, state, getArcadeTableCFrame(tableName))
     return arcadeTable
   }
 
@@ -136,7 +134,7 @@ export class MapService implements OnStart {
   }
 
   onStart() {
-    this.loadMap('Map1')
+    this.loadMap('ElfMap')
   }
 
   resetTable(name: ArcadeTableName) {
@@ -157,11 +155,7 @@ export class MapService implements OnStart {
     if (!tableMap || !oldState) return
     arcadeTable = this.loadArcadeTableTemplate(tableMap, name)
     arcadeTable.Name = name
-    this.setupArcadeTable(
-      arcadeTable,
-      oldState,
-      this.maps[this.currentMap]?.getArcadeTableCFrame(name),
-    )
+    this.setupArcadeTable(arcadeTable, oldState, getArcadeTableCFrame(name))
   }
 
   materializeTable(

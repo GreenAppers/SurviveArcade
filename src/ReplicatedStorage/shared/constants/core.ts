@@ -5,6 +5,14 @@ export const IS_PROD = $NODE_ENV === 'production'
 export const IS_CANARY = $NODE_ENV === 'canary'
 export const IS_EDIT = RunService.IsStudio() && !RunService.IsRunning()
 
+export const START_PLACE_ID = IS_PROD ? 0 : 0
+export const HUMAN_PLACE_ID = IS_PROD ? 0 : 0
+export const OMNIVERSE_PLACE_ID = IS_PROD ? 0 : 0
+
+export const IS_HUMAN_PLACE = game.PlaceId === HUMAN_PLACE_ID
+export const IS_OMNIVERSE_PLACE = game.PlaceId === OMNIVERSE_PLACE_ID
+export const IS_START_PLACE = !IS_HUMAN_PLACE && !IS_OMNIVERSE_PLACE
+
 export const USER_ID = Players.LocalPlayer ? Players.LocalPlayer.UserId : 0
 export const USER_NAME = Players.LocalPlayer
   ? Players.LocalPlayer.Name

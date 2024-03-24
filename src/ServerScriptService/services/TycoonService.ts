@@ -6,7 +6,10 @@ import {
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
 import { TycoonState } from 'ReplicatedStorage/shared/state/TycoonState'
-import { MapService } from 'ServerScriptService/services/MapService'
+import {
+  getTycoonCFrame,
+  MapService,
+} from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre } from 'ServerScriptService/utils'
 
@@ -16,8 +19,8 @@ export class TycoonService implements OnStart {
 
   loadTycoon(tycoonName: TycoonName, state: TycoonState) {
     const map = this.mapService.getMap()
-    const tycoon = this.loadTycoonTemplate(map.getTycoonType(), tycoonName)
-    this.setupTycoon(tycoon, state, map.getTycoonCFrame(tycoonName))
+    const tycoon = this.loadTycoonTemplate(map.scale, tycoonName)
+    this.setupTycoon(tycoon, state, getTycoonCFrame(tycoonName))
     return tycoon
   }
 
