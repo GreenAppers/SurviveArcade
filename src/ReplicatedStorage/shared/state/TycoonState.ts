@@ -6,7 +6,7 @@ export interface TycoonState {
 }
 
 export type TycoonsState = {
-  readonly [tycoonName in TycoonName]: TycoonState | undefined
+  readonly [tycoonName in TycoonName]: TycoonState
 }
 
 export const findTycoonNameOwnedBy = (

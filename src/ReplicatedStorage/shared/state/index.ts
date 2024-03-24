@@ -73,3 +73,7 @@ export const selectLocalPlayerArcadeTableStatus = () => {
 }
 
 export const selectTycoonsState = () => (state: SharedState) => state.tycoons
+
+export const selectTycoonState =
+  (tycoonName: TycoonName) => (state: SharedState) =>
+    state.tycoons[tycoonName]

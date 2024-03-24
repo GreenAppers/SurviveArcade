@@ -1,9 +1,3 @@
-interface ArcadeMap {
-  getArcadeTableCFrame: (name: ArcadeTableName) => CFrame
-  getTycoonCFrame: (name: TycoonName) => CFrame
-  getTycoonType: () => TycoonType
-}
-
 interface ArcadeTable extends Model {
   Backbox?: Model & {
     Frame: Model & {
@@ -59,6 +53,18 @@ interface Flipper extends Model {
   }
 }
 
+interface ArcadeMap {
+  Baseplate: BasePart
+  Table1?: Cabinet
+  Table2?: Cabinet
+  Table3?: Cabinet
+  Table4?: Cabinet
+  Tycoon1?: TycoonPlot
+  Tycoon2?: TycoonPlot
+  Tycoon3?: TycoonPlot
+  Tycoon4?: TycoonPlot
+}
+
 interface PlayerCharacter extends Model {
   Humanoid: Humanoid
 }
@@ -68,12 +74,7 @@ interface ReplicatedStorage extends Instance {
     Pinball1: ArcadeTable
   }
   Maps: Folder & {
-    [mapName: string]: Folder & {
-      Table1?: Model
-      Table2?: Model
-      Table3?: Model
-      Table4?: Model
-    }
+    [mapName: string]: Folder & ArcadeMap
   }
   Tycoons: Folder & {
     Elf: Tycoon
@@ -105,11 +106,17 @@ type TeamName =
 
 interface Tycoon extends Model {
   Baseplate: BasePart
+  Name: TycoonName
 }
 
 type TycoonName = 'Tycoon1' | 'Tycoon2' | 'Tycoon3' | 'Tycoon4'
 
 type TycoonType = 'Elf' | 'Human' | 'Omniverse'
+
+interface TycoonPlot extends Model {
+  Baseplate: BasePart
+  Name: TycoonName
+}
 
 interface Workspace extends Instance {
   ArcadeTables: Folder & {
@@ -122,17 +129,7 @@ interface Workspace extends Instance {
     Table3Next?: ArcadeTable
     Table4Next?: ArcadeTable
   }
-  Map: Folder & {
-    Baseplate: BasePart
-    Table1?: Cabinet
-    Table2?: Cabinet
-    Table3?: Cabinet
-    Table4?: Cabinet
-    Tycoon1?: BasePart
-    Tycoon2?: BasePart
-    Tycoon3?: BasePart
-    Tycoon4?: BasePart
-  }
+  Map: Folder & ArcadeMap
   Tycoons: Folder & {
     Tycoon1?: Tycoon
     Tycoon2?: Tycoon

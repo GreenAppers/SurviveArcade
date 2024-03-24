@@ -16,15 +16,22 @@ import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre } from 'ServerScriptService/utils'
 
+export interface MapAPI {
+  getArcadeTableCFrame: (name: ArcadeTableName) => CFrame
+  getTycoonCFrame: (name: TycoonName) => CFrame
+  getTycoonType: () => TycoonType
+}
+
+
 @Service()
 export class MapService implements OnStart {
-  maps: Record<string, ArcadeMap> = {
+  maps: Record<string, MapAPI> = {
     Map1: {
       getArcadeTableCFrame: (name) => {
         return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
       },
       getTycoonCFrame: (name) => {
-        return game.Workspace.Map?.[name]?.CFrame || new CFrame()
+        return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
       },
       getTycoonType: () => {
         return TYCOON_TYPES.Elf
@@ -33,20 +40,45 @@ export class MapService implements OnStart {
   }
   currentMap = ''
 
+  getMap() {
+    return this.maps[this.currentMap]
+  }
+
   clearMap() {
     Workspace.ArcadeTables.ClearAllChildren()
     Workspace.Map?.Destroy()
   }
 
-  loadArcadeTableTemplate(name: ArcadeTableMap, tableName: ArcadeTableName) {
-    const arcadeTableTemplate = ReplicatedStorage.ArcadeTables[name]
-    const arcadeTable = arcadeTableTemplate.Clone()
-    arcadeTable.Name = tableName
-    return arcadeTable
+  loadMap(mapName: string) {
+    this.loadMapWithState(mapName, store.getState().arcadeTables)
+  }
+
+  loadMapWithState(mapName: string, arcadeTablesState: ArcadeTablesState) {
+    this.clearMap()
+    const map = this.maps[mapName]
+    if (!map) return
+
+    const mapModelTemplate = ReplicatedStorage.Maps[mapName]
+    if (!mapModelTemplate) return
+
+    this.currentMap = mapName
+    const mapModel = mapModelTemplate.Clone()
+    mapModel.Name = 'Map'
+    mapModel.Parent = Workspace
+
+    for (const [tableName, state] of Object.entries(arcadeTablesState)) {
+      switch (tableName) {
+        case 'Table1':
+        case 'Table2':
+        case 'Table3':
+        case 'Table4':
+          this.loadArcadeTable(map, tableName, state)
+      }
+    }
   }
 
   loadArcadeTable(
-    map: ArcadeMap,
+    mapAPI: MapAPI,
     tableName: ArcadeTableName,
     state: ArcadeTableState,
   ) {
@@ -55,8 +87,15 @@ export class MapService implements OnStart {
     this.setupArcadeTable(
       arcadeTable,
       state,
-      map.getArcadeTableCFrame(tableName),
+      mapAPI.getArcadeTableCFrame(tableName),
     )
+    return arcadeTable
+  }
+
+  loadArcadeTableTemplate(name: ArcadeTableMap, tableName: ArcadeTableName) {
+    const arcadeTableTemplate = ReplicatedStorage.ArcadeTables[name]
+    const arcadeTable = arcadeTableTemplate.Clone()
+    arcadeTable.Name = tableName
     return arcadeTable
   }
 
@@ -94,34 +133,6 @@ export class MapService implements OnStart {
     }
     arcadeTable.PivotTo(cframe)
     arcadeTable.Parent = Workspace.ArcadeTables
-  }
-
-  loadMapWithState(mapName: string, arcadeTablesState: ArcadeTablesState) {
-    this.clearMap()
-    const map = this.maps[mapName]
-    if (!map) return
-
-    const mapModelTemplate = ReplicatedStorage.Maps[mapName]
-    if (!mapModelTemplate) return
-
-    this.currentMap = mapName
-    const mapModel = mapModelTemplate.Clone()
-    mapModel.Name = 'Map'
-    mapModel.Parent = Workspace
-
-    for (const [tableName, state] of Object.entries(arcadeTablesState)) {
-      switch (tableName) {
-        case 'Table1':
-        case 'Table2':
-        case 'Table3':
-        case 'Table4':
-          this.loadArcadeTable(map, tableName, state)
-      }
-    }
-  }
-
-  loadMap(mapName: string) {
-    this.loadMapWithState(mapName, store.getState().arcadeTables)
   }
 
   onStart() {

@@ -1,13 +1,9 @@
 import { createProducer } from '@rbxts/reflex'
-import { ARCADE_TABLE_TYPES } from 'ReplicatedStorage/shared/constants/core'
+import {
+  ARCADE_TABLE_TYPES,
+  TYCOON_TYPES,
+} from 'ReplicatedStorage/shared/constants/core'
 import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
-
-export enum PlayerScale {
-  Elf,
-  Human,
-  Tycoon,
-  Omniverse,
-}
 
 export interface PlayerSettings {
   readonly guide: boolean
@@ -52,7 +48,7 @@ export interface PlayerState {
     | ArcadeTableName
     | ArcadeTableNextName
     | undefined
-  readonly scale: PlayerScale
+  readonly scale: TycoonType
   readonly score: number
   readonly tableType: ArcadeTableType
 }
@@ -101,6 +97,10 @@ export const defaultPlayerData: PlayerData = {
       name: 'Human',
       buttons: {},
     },
+    Omniverse: {
+      name: 'Omniverse',
+      buttons: {},
+    },
   },
   completed: defaultPlayerCompleted,
 } as const
@@ -108,7 +108,7 @@ export const defaultPlayerData: PlayerData = {
 export const defaultPlayerState: PlayerState = {
   gravityUp: new Vector3(0, 1, 0),
   groundArcadeTableName: undefined,
-  scale: PlayerScale.Elf,
+  scale: TYCOON_TYPES.Elf,
   score: 0,
   tableType: ARCADE_TABLE_TYPES.Pinball,
 } as const

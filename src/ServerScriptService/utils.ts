@@ -1,5 +1,6 @@
 import { CollectionService, Players } from '@rbxts/services'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
+import { getTycoonFromDescendent } from 'ReplicatedStorage/shared/utils/tycoon'
 import { store } from 'ServerScriptService/store'
 
 type PlayerReceivingFunction = (player: Player) => unknown
@@ -59,4 +60,14 @@ export function getArcadeTableStateFromDescendent(instance: Instance) {
 
 export function getArcadeTableOwner(instance: Instance) {
   return getArcadeTableStateFromDescendent(instance)?.owner
+}
+
+export function getTycoonStateFromDescendent(instance: Instance) {
+  const tycoon = getTycoonFromDescendent(instance)
+  if (!tycoon?.Name) return undefined
+  return store.getState().tycoons[tycoon.Name]
+}
+
+export function getTycoonOwner(instance: Instance) {
+  return getTycoonStateFromDescendent(instance)?.owner
 }

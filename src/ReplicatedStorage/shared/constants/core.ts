@@ -55,4 +55,5 @@ export const TYCOON_TYPES: {
 } = {
   Elf: 'Elf',
   Human: 'Human',
+  Omniverse: 'Omniverse',
 }
