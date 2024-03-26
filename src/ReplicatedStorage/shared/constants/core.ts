@@ -5,9 +5,9 @@ export const IS_PROD = $NODE_ENV === 'production'
 export const IS_CANARY = $NODE_ENV === 'canary'
 export const IS_EDIT = RunService.IsStudio() && !RunService.IsRunning()
 
-export const START_PLACE_ID = IS_PROD ? 0 : 0
-export const HUMAN_PLACE_ID = IS_PROD ? 0 : 0
-export const OMNIVERSE_PLACE_ID = IS_PROD ? 0 : 0
+export const START_PLACE_ID = IS_PROD ? -1 : 15699266223
+export const HUMAN_PLACE_ID = IS_PROD ? -1 : 16860946152
+export const OMNIVERSE_PLACE_ID = IS_PROD ? -1 : -1
 
 export const IS_HUMAN_PLACE = game.PlaceId === HUMAN_PLACE_ID
 export const IS_OMNIVERSE_PLACE = game.PlaceId === OMNIVERSE_PLACE_ID

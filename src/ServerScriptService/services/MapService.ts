@@ -1,7 +1,11 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { ReplicatedStorage, Workspace } from '@rbxts/services'
-import { TYCOON_TYPES } from 'ReplicatedStorage/shared/constants/core'
+import {
+  IS_HUMAN_PLACE,
+  IS_START_PLACE,
+  TYCOON_TYPES,
+} from 'ReplicatedStorage/shared/constants/core'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTablesState,
@@ -134,7 +138,8 @@ export class MapService implements OnStart {
   }
 
   onStart() {
-    this.loadMap('ElfMap')
+    if (IS_START_PLACE) this.loadMap('ElfMap')
+    else if (IS_HUMAN_PLACE) this.loadMap('HumanMap')
   }
 
   resetTable(name: ArcadeTableName) {
