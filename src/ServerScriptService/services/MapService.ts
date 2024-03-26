@@ -1,4 +1,5 @@
 import { OnStart, Service } from '@flamework/core'
+import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { ReplicatedStorage, Workspace } from '@rbxts/services'
 import {
@@ -44,6 +45,8 @@ export class MapService implements OnStart {
   }
   currentMap = ''
 
+  constructor(private readonly logger: Logger) {}
+
   getMap() {
     return this.maps[this.currentMap]
   }
@@ -54,6 +57,7 @@ export class MapService implements OnStart {
   }
 
   loadMap(mapName: string) {
+    this.logger.Info(`Loading map ${mapName}`)
     this.loadMapWithState(mapName, store.getState().arcadeTables)
   }
 
@@ -70,7 +74,7 @@ export class MapService implements OnStart {
     mapModel.Name = 'Map'
     mapModel.Parent = Workspace
 
-    if (this.maps?.[mapName]?.scale === TYCOON_TYPES.Elf) {
+    if (map.scale === TYCOON_TYPES.Elf) {
       for (const [tableName, state] of Object.entries(arcadeTablesState)) {
         switch (tableName) {
           case 'Table1':

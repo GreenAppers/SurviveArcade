@@ -30,6 +30,18 @@ const initialState: TycoonsState = {
   Tycoon4: {
     owner: undefined,
   },
+  Tycoon5: {
+    owner: undefined,
+  },
+  Tycoon6: {
+    owner: undefined,
+  },
+  Tycoon7: {
+    owner: undefined,
+  },
+  Tycoon8: {
+    owner: undefined,
+  },
 }
 
 export const tycoonsSlice = createProducer(initialState, {

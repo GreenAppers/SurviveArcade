@@ -63,6 +63,10 @@ interface ArcadeMap {
   Tycoon2?: TycoonPlot
   Tycoon3?: TycoonPlot
   Tycoon4?: TycoonPlot
+  Tycoon5?: TycoonPlot
+  Tycoon6?: TycoonPlot
+  Tycoon7?: TycoonPlot
+  Tycoon8?: TycoonPlot
 }
 
 interface PlayerCharacter extends Model {
@@ -109,7 +113,15 @@ interface Tycoon extends Model {
   Name: TycoonName
 }
 
-type TycoonName = 'Tycoon1' | 'Tycoon2' | 'Tycoon3' | 'Tycoon4'
+type TycoonName =
+  | 'Tycoon1'
+  | 'Tycoon2'
+  | 'Tycoon3'
+  | 'Tycoon4'
+  | 'Tycoon5'
+  | 'Tycoon6'
+  | 'Tycoon7'
+  | 'Tycoon8'
 
 type TycoonType = 'Elf' | 'Human' | 'Omniverse'
 
@@ -135,5 +147,9 @@ interface Workspace extends Instance {
     Tycoon2?: Tycoon
     Tycoon3?: Tycoon
     Tycoon4?: Tycoon
+    Tycoon5?: Tycoon
+    Tycoon6?: Tycoon
+    Tycoon7?: Tycoon
+    Tycoon8?: Tycoon
   }
 }
