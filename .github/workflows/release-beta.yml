@@ -30,17 +30,7 @@ jobs:
         run: yarn build
 
       - name: Deploy start Place to Roblox
-        uses: filiptibell/roblox-place-publish-action@v2.1
-        with:
-          api-key: ${{ secrets.ROBLOX_API_KEY }}
-          universe-id: 5423515099
-          place-id: 15699266223
-          path: SurviveArcade.rbxlx
+        run: rbxcloud experience publish -f SurviveArcade.rbxlx -p 15699266223 -u 5423515099 -t published -a ${{ secrets.ROBLOX_API_KEY }}
 
       - name: Deploy human Place to Roblox
-        uses: filiptibell/roblox-place-publish-action@v2.1
-        with:
-          api-key: ${{ secrets.ROBLOX_API_KEY }}
-          universe-id: 5423515099
-          place-id: 16860946152
-          path: SurviveArcade.rbxlx
+        run: rbxcloud experience publish -f SurviveArcade.rbxlx -p 16860946152 -u 5423515099 -t published -a ${{ secrets.ROBLOX_API_KEY }}
