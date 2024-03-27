@@ -14,8 +14,8 @@
       <token name="BottomSurfaceInput">0</token>
       <CoordinateFrame name="CFrame">
         <X>-0.0040990724</X>
-        <Y>117.834305</Y>
-        <Z>27.577446</Z>
+        <Y>127.326935</Y>
+        <Z>-27.675316</Z>
         <R00>0</R00>
         <R01>0</R01>
         <R02>-1</R02>
@@ -78,8 +78,8 @@
       </Vector3>
       <token name="shape">1</token>
       <Vector3 name="size">
-        <X>0.20380394</X>
-        <Y>7.0123067</Y>
+        <X>1.327236</X>
+        <Y>25.997566</Y>
         <Z>54.735355</Z>
       </Vector3>
       <int64 name="SourceAssetId">-1</int64>
@@ -88,12 +88,32 @@
       <float name="TopParamB">0.5</float>
       <token name="TopSurface">0</token>
       <token name="TopSurfaceInput">0</token>
-      <float name="Transparency">1</float>
+      <float name="Transparency">0</float>
       <Vector3 name="Velocity">
         <X>0</X>
         <Y>0</Y>
         <Z>0</Z>
       </Vector3>
     </Properties>
+    <Item class="Decal" referent="1">
+      <Properties>
+        <string name="Name">Decal</string>
+        <BinaryString name="AttributesSerialize"></BinaryString>
+        <Color3 name="Color3">
+          <R>1</R>
+          <G>1</G>
+          <B>1</B>
+        </Color3>
+        <bool name="DefinesCapabilities">false</bool>
+        <token name="Face">0</token>
+        <int64 name="SourceAssetId">-1</int64>
+        <BinaryString name="Tags"></BinaryString>
+        <Content name="Texture">
+          <url>rbxassetid://16876689586</url>
+        </Content>
+        <float name="Transparency">0</float>
+        <int name="ZIndex">1</int>
+      </Properties>
+    </Item>
   </Item>
 </roblox>

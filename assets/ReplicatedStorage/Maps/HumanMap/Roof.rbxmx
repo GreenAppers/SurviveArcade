@@ -1,7 +1,7 @@
 <roblox version="4">
   <Item class="Part" referent="0">
     <Properties>
-      <string name="Name">MapWallBack</string>
+      <string name="Name">Roof</string>
       <bool name="Anchored">true</bool>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <float name="BackParamA">-0.5</float>
@@ -13,16 +13,16 @@
       <token name="BottomSurface">0</token>
       <token name="BottomSurfaceInput">0</token>
       <CoordinateFrame name="CFrame">
-        <X>-0.0040990724</X>
-        <Y>127.29974</Y>
-        <Z>27.949165</Z>
+        <X>-0.030597687</X>
+        <Y>140.11937</Y>
+        <Z>0.23754501</Z>
         <R00>0</R00>
         <R01>0</R01>
-        <R02>-1</R02>
+        <R02>1</R02>
         <R10>0</R10>
         <R11>1</R11>
         <R12>0</R12>
-        <R20>1</R20>
+        <R20>-1</R20>
         <R21>0</R21>
         <R22>0</R22>
       </CoordinateFrame>
@@ -78,9 +78,9 @@
       </Vector3>
       <token name="shape">1</token>
       <Vector3 name="size">
-        <X>0.94724077</X>
-        <Y>25.943184</Y>
-        <Z>54.735355</Z>
+        <X>54.41552</X>
+        <Y>0.55389035</Y>
+        <Z>54.581432</Z>
       </Vector3>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>
@@ -105,11 +105,11 @@
           <B>1</B>
         </Color3>
         <bool name="DefinesCapabilities">false</bool>
-        <token name="Face">3</token>
+        <token name="Face">4</token>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <Content name="Texture">
-          <url>rbxassetid://16876690427</url>
+          <url>rbxassetid://16876688716</url>
         </Content>
         <float name="Transparency">0</float>
         <int name="ZIndex">1</int>
