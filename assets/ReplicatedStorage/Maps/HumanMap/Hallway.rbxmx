@@ -1,7 +1,7 @@
 <roblox version="4">
   <Item class="Part" referent="0">
     <Properties>
-      <string name="Name">MapWallBack</string>
+      <string name="Name">Hallway</string>
       <bool name="Anchored">true</bool>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <float name="BackParamA">-0.5</float>
@@ -13,9 +13,9 @@
       <token name="BottomSurface">0</token>
       <token name="BottomSurfaceInput">0</token>
       <CoordinateFrame name="CFrame">
-        <X>-0.7526741</X>
-        <Y>119.923195</Y>
-        <Z>47.88049</Z>
+        <X>0</X>
+        <Y>113.71895</Y>
+        <Z>0</Z>
         <R00>0</R00>
         <R01>0</R01>
         <R02>-1</R02>
@@ -32,7 +32,7 @@
       <bool name="CastShadow">false</bool>
       <string name="CollisionGroup">Default</string>
       <int name="CollisionGroupId">0</int>
-      <Color3uint8 name="Color3uint8">16777215</Color3uint8>
+      <Color3uint8 name="Color3uint8">5987689</Color3uint8>
       <PhysicalProperties name="CustomPhysicalProperties">
         <CustomPhysics>false</CustomPhysics>
       </PhysicalProperties>
@@ -49,8 +49,8 @@
       <token name="LeftSurfaceInput">0</token>
       <bool name="Locked">true</bool>
       <bool name="Massless">false</bool>
-      <token name="Material">256</token>
-      <string name="MaterialVariantSerialized"></string>
+      <token name="Material">1568</token>
+      <string name="MaterialVariantSerialized">ArcadeCarpetHuman</string>
       <CoordinateFrame name="PivotOffset">
         <X>0</X>
         <Y>0</Y>
@@ -78,9 +78,9 @@
       </Vector3>
       <token name="shape">1</token>
       <Vector3 name="size">
-        <X>0.94724077</X>
-        <Y>42.78855</Y>
-        <Z>94.887924</Z>
+        <X>96.35555</X>
+        <Y>0.94</Y>
+        <Z>96.35555</Z>
       </Vector3>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>
@@ -95,25 +95,5 @@
         <Z>0</Z>
       </Vector3>
     </Properties>
-    <Item class="Decal" referent="1">
-      <Properties>
-        <string name="Name">Decal</string>
-        <BinaryString name="AttributesSerialize"></BinaryString>
-        <Color3 name="Color3">
-          <R>1</R>
-          <G>1</G>
-          <B>1</B>
-        </Color3>
-        <bool name="DefinesCapabilities">false</bool>
-        <token name="Face">3</token>
-        <int64 name="SourceAssetId">-1</int64>
-        <BinaryString name="Tags"></BinaryString>
-        <Content name="Texture">
-          <url>rbxassetid://16876690427</url>
-        </Content>
-        <float name="Transparency">0</float>
-        <int name="ZIndex">1</int>
-      </Properties>
-    </Item>
   </Item>
 </roblox>
