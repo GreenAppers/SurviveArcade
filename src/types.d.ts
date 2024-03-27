@@ -79,7 +79,11 @@ interface ReplicatedStorage extends Instance {
     Pinball1: ArcadeTable
   }
   Guis: Folder & {
-    LoadingGui: ScreenGui
+    LoadingGui: ScreenGui & {
+      MainFrame: Frame & {
+        Title: TextLabel
+      }
+    }
   }
   Maps: Folder & {
     [mapName: string]: Folder & ArcadeMap

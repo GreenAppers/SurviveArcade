@@ -29,7 +29,7 @@ export class PlayerController implements OnStart {
         const humanoid = (<PlayerCharacter>player.Character)?.Humanoid
         const camera = game.Workspace.CurrentCamera
         if (!this.arcadeController.myArcadeTableName) {
-          if (humanoid) humanoid.WalkSpeed = runSpeed
+          if (humanoid && humanoid.WalkSpeed > 0) humanoid.WalkSpeed = runSpeed
           if (camera) camera.FieldOfView = 60
         }
       }
@@ -40,7 +40,7 @@ export class PlayerController implements OnStart {
         const player = Players.LocalPlayer
         const humanoid = (<PlayerCharacter>player.Character)?.Humanoid
         const camera = game.Workspace.CurrentCamera
-        if (humanoid) humanoid.WalkSpeed = walkSpeed
+        if (humanoid && humanoid.WalkSpeed > 0) humanoid.WalkSpeed = walkSpeed
         if (camera) camera.FieldOfView = 70
       }
     })

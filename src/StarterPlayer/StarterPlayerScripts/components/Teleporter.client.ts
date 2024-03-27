@@ -26,12 +26,15 @@ export class TeleporterComponent
         this.debounce = true
 
         let placeId = 0
+        let message = ''
         switch (this.attributes.Destination) {
           case 'ElfMap':
             placeId = START_PLACE_ID
+            message = 'Returning home...'
             break
           case 'HumanMap':
             placeId = HUMAN_PLACE_ID
+            message = 'Growing humanity...'
             break
         }
         if (placeId) {
@@ -46,10 +49,11 @@ export class TeleporterComponent
           if (playerGui) {
             const gui = ReplicatedStorage.Guis.LoadingGui.Clone()
             gui.Parent = playerGui
+            gui.MainFrame.Title.Text = message
             TeleportService.SetTeleportGui(gui)
           }
 
-          TeleportService.TeleportAsync(placeId, [touchedPlayer])
+          TeleportService.Teleport(placeId, Players.LocalPlayer)
         }
 
         task.wait(5)
