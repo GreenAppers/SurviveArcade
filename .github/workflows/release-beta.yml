@@ -29,12 +29,6 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - name: Upload place artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: place
-          path: SurviveArcade.rbxlx
-
       - name: Deploy start Place to Roblox
         uses: tenx29/save-to-roblox@v1
         with:
@@ -42,7 +36,7 @@ jobs:
           universe-id: 5423515099
           place-id: 15699266223
           place-file: SurviveArcade.rbxlx
-          version-type: Saved
+          version-type: Published
 
       - name: Deploy human Place to Roblox
         uses: tenx29/save-to-roblox@v1
@@ -51,4 +45,4 @@ jobs:
           universe-id: 5423515099
           place-id: 16860946152
           place-file: SurviveArcade.rbxlx
-          version-type: Saved
+          version-type: Published
