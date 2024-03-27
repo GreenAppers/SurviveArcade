@@ -12,6 +12,8 @@ export class TeleporterComponent
   extends BaseComponent<{ Destination?: string }, BasePart>
   implements OnStart
 {
+  debouncePlayer = new Map<number, boolean>()
+
   onStart() {
     this.instance.Touched?.Connect((hit) => {
       const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
@@ -20,6 +22,9 @@ export class TeleporterComponent
       if (humanoid) {
         const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
         if (touchedPlayer) {
+          if (this.debouncePlayer.get(touchedPlayer.UserId)) return
+          this.debouncePlayer.set(touchedPlayer.UserId, true)
+
           let placeId = 0
           switch (this.attributes.Destination) {
             case 'ElfMap':
@@ -32,6 +37,9 @@ export class TeleporterComponent
           if (placeId) {
             TeleportService.TeleportAsync(placeId, [touchedPlayer])
           }
+
+          wait(2)
+          this.debouncePlayer.delete(touchedPlayer.UserId)
         }
       }
     })

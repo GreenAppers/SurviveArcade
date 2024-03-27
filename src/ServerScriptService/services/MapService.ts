@@ -1,7 +1,7 @@
 import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
-import { ReplicatedStorage, Workspace } from '@rbxts/services'
+import { Lighting, ReplicatedStorage, Workspace } from '@rbxts/services'
 import {
   IS_HUMAN_PLACE,
   IS_START_PLACE,
@@ -73,6 +73,10 @@ export class MapService implements OnStart {
     const mapModel = mapModelTemplate.Clone()
     mapModel.Name = 'Map'
     mapModel.Parent = Workspace
+
+    const existingSkybox = Lighting.FindFirstChild('Skybox')
+    existingSkybox?.Destroy()
+    if (mapModel?.Skybox) mapModel.Skybox.Parent = Lighting
 
     if (map.scale === TYCOON_TYPES.Elf) {
       for (const [tableName, state] of Object.entries(arcadeTablesState)) {

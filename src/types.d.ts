@@ -55,6 +55,7 @@ interface Flipper extends Model {
 
 interface ArcadeMap {
   Baseplate: BasePart
+  Skybox?: Sky
   Table1?: Cabinet
   Table2?: Cabinet
   Table3?: Cabinet
