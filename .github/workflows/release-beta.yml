@@ -30,19 +30,17 @@ jobs:
         run: yarn build
 
       - name: Deploy start Place to Roblox
-        uses: tenx29/save-to-roblox@v1
+        uses: filiptibell/roblox-place-publish-action@v2.1
         with:
           api-key: ${{ secrets.ROBLOX_API_KEY }}
           universe-id: 5423515099
           place-id: 15699266223
-          place-file: SurviveArcade.rbxlx
-          version-type: Published
+          path: SurviveArcade.rbxlx
 
       - name: Deploy human Place to Roblox
-        uses: tenx29/save-to-roblox@v1
+        uses: filiptibell/roblox-place-publish-action@v2.1
         with:
           api-key: ${{ secrets.ROBLOX_API_KEY }}
           universe-id: 5423515099
           place-id: 16860946152
-          place-file: SurviveArcade.rbxlx
-          version-type: Published
+          path: SurviveArcade.rbxlx
