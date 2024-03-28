@@ -100,3 +100,6 @@ mantle deploy --environment beta
 - [Slither](https://github.com/littensy/slither) by [littensy](https://github.com/)
 - [Roblox-TS-Template](https://github.com/MonzterDev/Roblox-TS-Template) by [MonzterDev](https://github.com/MonzterDev)
 - [Gravity Controller](https://devforum.roblox.com/t/wall-stickgravity-controller/432598/404) by [Ego Moose](https://github.com/EgoMoose)
+- [Skybox AI][https://skybox.blockadelabs.com/] by [Blockade Labs](https://www.blockadelabs.com/)
+- Image and narrative generation by [Together AI](https://www.together.ai/) and [https://www.bing.com/images/create](Microsoft Designer)
+- Roblox community for models, plugins, tutorials, and help!
