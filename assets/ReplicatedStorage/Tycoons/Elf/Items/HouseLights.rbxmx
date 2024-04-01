@@ -34,8 +34,8 @@
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>-478.12656</X>
-          <Y>58.61212</Y>
-          <Z>-79.27459</Z>
+          <Y>58.61211</Y>
+          <Z>-61.206894</Z>
           <R00>0.00000004252674</R00>
           <R01>-0.000000029802322</R01>
           <R02>0.9999994</R02>
@@ -148,7 +148,7 @@
         <Properties>
           <string name="Name">PointLight</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
-          <float name="Brightness">10</float>
+          <float name="Brightness">3</float>
           <Color3 name="Color">
             <R>1</R>
             <G>1</G>
@@ -263,7 +263,7 @@
         <Properties>
           <string name="Name">PointLight</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
-          <float name="Brightness">1</float>
+          <float name="Brightness">3</float>
           <Color3 name="Color">
             <R>1</R>
             <G>1</G>
@@ -292,18 +292,18 @@
         <token name="BottomSurface">4</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>-473.68777</X>
-          <Y>73.34908</Y>
-          <Z>-62.584522</Z>
-          <R00>0.00000004252674</R00>
-          <R01>-0.000000029802322</R01>
-          <R02>0.9999994</R02>
-          <R10>-0.0000006618051</R10>
-          <R11>-0.9999994</R11>
-          <R12>-0.000000029802322</R12>
-          <R20>1</R20>
-          <R21>-0.00000066180553</R21>
-          <R22>-0.00000004252685</R22>
+          <X>-482.56534</X>
+          <Y>43.87513</Y>
+          <Z>-26.44915</Z>
+          <R00>0</R00>
+          <R01>0</R01>
+          <R02>1</R02>
+          <R10>0</R10>
+          <R11>1</R11>
+          <R12>0</R12>
+          <R20>-1</R20>
+          <R21>0</R21>
+          <R22>0</R22>
         </CoordinateFrame>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
@@ -378,7 +378,7 @@
         <Properties>
           <string name="Name">PointLight</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
-          <float name="Brightness">10</float>
+          <float name="Brightness">3</float>
           <Color3 name="Color">
             <R>1</R>
             <G>1</G>
