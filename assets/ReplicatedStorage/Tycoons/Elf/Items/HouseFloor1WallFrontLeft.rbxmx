@@ -33,16 +33,16 @@
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>-436.57904</X>
-          <Y>20.793095</Y>
-          <Z>-18.37362</Z>
+          <X>-437.11163</X>
+          <Y>32.3341</Y>
+          <Z>-18.018513</Z>
           <R00>0</R00>
-          <R01>1</R01>
-          <R02>0</R02>
+          <R01>0</R01>
+          <R02>1</R02>
           <R10>0</R10>
-          <R11>0</R11>
-          <R12>1</R12>
-          <R20>1</R20>
+          <R11>1</R11>
+          <R12>0</R12>
+          <R20>-1</R20>
           <R21>0</R21>
           <R22>0</R22>
         </CFrame>
@@ -224,46 +224,6 @@
           <BinaryString name="Tags"></BinaryString>
         </Properties>
       </Item>
-      <Item class="ManualWeld" referent="6">
-        <Properties>
-          <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize">AQAAABQAAABSb2pvRXh0ZXJuYWxSZWZQcm9wcwIsAAAAeyJQYXJ0MSI6ImUwMDNkYjE3NmQyNTdmYmYzZDQ4ZWQwMzIyYmZhMTI5In0=</BinaryString>
-          <CoordinateFrame name="C0">
-            <X>-8.700139</X>
-            <Y>-0.8877691</Y>
-            <Z>13.494087</Z>
-            <R00>1</R00>
-            <R01>0</R01>
-            <R02>0</R02>
-            <R10>0</R10>
-            <R11>1</R11>
-            <R12>0</R12>
-            <R20>0</R20>
-            <R21>0</R21>
-            <R22>1</R22>
-          </CoordinateFrame>
-          <CoordinateFrame name="C1">
-            <X>-26.002687</X>
-            <Y>-0.8699557</Y>
-            <Z>-12.251216</Z>
-            <R00>1</R00>
-            <R01>0</R01>
-            <R02>0</R02>
-            <R10>0</R10>
-            <R11>1</R11>
-            <R12>0</R12>
-            <R20>0</R20>
-            <R21>0</R21>
-            <R22>1</R22>
-          </CoordinateFrame>
-          <bool name="DefinesCapabilities">false</bool>
-          <bool name="Enabled">true</bool>
-          <Ref name="Part0">1</Ref>
-          <Ref name="Part1">null</Ref>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-        </Properties>
-      </Item>
     </Item>
     <Item class="Part" referent="5">
       <Properties>
@@ -361,48 +321,8 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="ManualWeld" referent="7">
-        <Properties>
-          <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize">AQAAABQAAABSb2pvRXh0ZXJuYWxSZWZQcm9wcwIsAAAAeyJQYXJ0MSI6ImUwMDNkYjE3NmQyNTdmYmYzZDQ4ZWQwMzIyYmZhMTI5In0=</BinaryString>
-          <CoordinateFrame name="C0">
-            <X>-13.49409</X>
-            <Y>-0.8877691</Y>
-            <Z>2.3081963</Z>
-            <R00>1</R00>
-            <R01>0</R01>
-            <R02>0</R02>
-            <R10>0</R10>
-            <R11>1</R11>
-            <R12>0</R12>
-            <R20>0</R20>
-            <R21>0</R21>
-            <R22>1</R22>
-          </CoordinateFrame>
-          <CoordinateFrame name="C1">
-            <X>-8.6024275</X>
-            <Y>-0.8699557</Y>
-            <Z>-12.25122</Z>
-            <R00>1</R00>
-            <R01>0</R01>
-            <R02>0</R02>
-            <R10>0</R10>
-            <R11>1</R11>
-            <R12>0</R12>
-            <R20>0</R20>
-            <R21>0</R21>
-            <R22>1</R22>
-          </CoordinateFrame>
-          <bool name="DefinesCapabilities">false</bool>
-          <bool name="Enabled">true</bool>
-          <Ref name="Part0">5</Ref>
-          <Ref name="Part1">null</Ref>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-        </Properties>
-      </Item>
     </Item>
-    <Item class="Part" referent="8">
+    <Item class="Part" referent="6">
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
@@ -596,7 +516,7 @@
         </Vector3>
       </Properties>
     </Item>
-    <Item class="Part" referent="9">
+    <Item class="Part" referent="7">
       <Properties>
         <string name="Name">Smooth Block Model</string>
         <bool name="Anchored">true</bool>
@@ -692,7 +612,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="CylinderMesh" referent="10">
+      <Item class="CylinderMesh" referent="8">
         <Properties>
           <string name="Name">Mesh</string>
           <BinaryString name="AttributesSerialize"></BinaryString>

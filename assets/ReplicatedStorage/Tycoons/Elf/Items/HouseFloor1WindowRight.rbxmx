@@ -34,7 +34,7 @@
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>-481.23392</X>
-          <Y>21.796295</Y>
+          <Y>21.796299</Y>
           <Z>-132.04626</Z>
           <R00>0</R00>
           <R01>-1</R01>
@@ -1304,7 +1304,7 @@
           <CFrame>
             <X>-481.23392</X>
             <Y>21.796299</Y>
-            <Z>-131.48697</Z>
+            <Z>-131.48698</Z>
             <R00>0</R00>
             <R01>-1</R01>
             <R02>0</R02>
@@ -2367,86 +2367,6 @@
           </Vector3>
         </Properties>
       </Item>
-    </Item>
-    <Item class="ManualWeld" referent="30">
-      <Properties>
-        <string name="Name">Part-to-Part Strong Joint</string>
-        <BinaryString name="AttributesSerialize">AQAAABQAAABSb2pvRXh0ZXJuYWxSZWZQcm9wcwIsAAAAeyJQYXJ0MSI6IjIwZTRlZGIxNjcxZmYxYjg3MGQ1MzZjZTA3NzdhNGM4In0=</BinaryString>
-        <CoordinateFrame name="C0">
-          <X>-1.0830784</X>
-          <Y>-7.839</Y>
-          <Z>-0.8877691</Z>
-          <R00>0</R00>
-          <R01>0</R01>
-          <R02>-1</R02>
-          <R10>0</R10>
-          <R11>1</R11>
-          <R12>0</R12>
-          <R20>1</R20>
-          <R21>0</R21>
-          <R22>0</R22>
-        </CoordinateFrame>
-        <CoordinateFrame name="C1">
-          <X>13.411415</X>
-          <Y>-0.55642706</Y>
-          <Z>-10.324723</Z>
-          <R00>0</R00>
-          <R01>0</R01>
-          <R02>-1</R02>
-          <R10>1</R10>
-          <R11>0</R11>
-          <R12>0</R12>
-          <R20>0</R20>
-          <R21>-1</R21>
-          <R22>0</R22>
-        </CoordinateFrame>
-        <bool name="DefinesCapabilities">false</bool>
-        <bool name="Enabled">true</bool>
-        <Ref name="Part0">14</Ref>
-        <Ref name="Part1">null</Ref>
-        <int64 name="SourceAssetId">-1</int64>
-        <BinaryString name="Tags"></BinaryString>
-      </Properties>
-    </Item>
-    <Item class="ManualWeld" referent="31">
-      <Properties>
-        <string name="Name">Part-to-Part Strong Joint</string>
-        <BinaryString name="AttributesSerialize">AQAAABQAAABSb2pvRXh0ZXJuYWxSZWZQcm9wcwIsAAAAeyJQYXJ0MCI6IjIwZTRlZGIxNjcxZmYxYjg3MGQ1MzZjZTA3NzdhNGM4In0=</BinaryString>
-        <CoordinateFrame name="C0">
-          <X>13.378676</X>
-          <Y>-0.8877691</Y>
-          <Z>27.343287</Z>
-          <R00>0</R00>
-          <R01>0</R01>
-          <R02>1</R02>
-          <R10>0</R10>
-          <R11>1</R11>
-          <R12>0</R12>
-          <R20>-1</R20>
-          <R21>0</R21>
-          <R22>0</R22>
-        </CoordinateFrame>
-        <CoordinateFrame name="C1">
-          <X>-1.1158072</X>
-          <Y>-45.507</Y>
-          <Z>-0.10055405</Z>
-          <R00>0</R00>
-          <R01>0</R01>
-          <R02>1</R02>
-          <R10>1</R10>
-          <R11>0</R11>
-          <R12>0</R12>
-          <R20>0</R20>
-          <R21>1</R21>
-          <R22>0</R22>
-        </CoordinateFrame>
-        <bool name="DefinesCapabilities">false</bool>
-        <bool name="Enabled">true</bool>
-        <Ref name="Part0">null</Ref>
-        <Ref name="Part1">5</Ref>
-        <int64 name="SourceAssetId">-1</int64>
-        <BinaryString name="Tags"></BinaryString>
-      </Properties>
     </Item>
   </Item>
   <SharedStrings>
