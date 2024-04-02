@@ -287,7 +287,7 @@ export class ZombieComponent
         this.humanoid.DisplayDistanceType =
           Enum.HumanoidDisplayDistanceType.None
         this.humanoid.HealthDisplayDistance = 0
-        this.humanoid.Name = 'Zombie'
+        this.humanoid.Name = 'Humanoid'
         this.humanoid.NameDisplayDistance = 0
         this.humanoid.NameOcclusion = Enum.NameOcclusion.EnemyOcclusion
         this.humanoid.AutoJumpEnabled = true

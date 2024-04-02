@@ -633,7 +633,7 @@
     </Item>
     <Item class="Humanoid" referent="9">
       <Properties>
-        <string name="Name">Zombie</string>
+        <string name="Name">Humanoid</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
         <bool name="AutoJumpEnabled">true</bool>
         <bool name="AutoRotate">true</bool>
@@ -1266,15 +1266,15 @@
           <X>34.80699</X>
           <Y>1.7003517</Y>
           <Z>-153.9833</Z>
-          <R00>-0.0000000000020818902</R00>
-          <R01>-0.0000000012995612</R01>
-          <R02>1.0000058</R02>
-          <R10>-0.000000000087386244</R10>
+          <R00>0</R00>
+          <R01>0</R01>
+          <R02>1</R02>
+          <R10>0</R10>
           <R11>1</R11>
-          <R12>0.000000000475775</R12>
-          <R20>-1.0000058</R20>
-          <R21>0.00000000000027601998</R21>
-          <R22>0.0000000000020818902</R22>
+          <R12>0</R12>
+          <R20>-1</R20>
+          <R21>0</R21>
+          <R22>0</R22>
         </CoordinateFrame>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>

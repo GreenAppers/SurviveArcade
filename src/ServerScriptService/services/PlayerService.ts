@@ -76,17 +76,17 @@ export class PlayerService implements OnInit {
     leaderstats.Parent = player
 
     const tickets = new Instance('IntValue')
-    tickets.Name = 'Tickets'
+    tickets.Name = '🎟️ Tickets'
     tickets.Value = 0
     tickets.Parent = leaderstats
 
     const dollars = new Instance('IntValue')
-    dollars.Name = 'Dollars'
+    dollars.Name = '💵 Dollars'
     dollars.Value = 0
     dollars.Parent = leaderstats
 
     const levity = new Instance('IntValue')
-    levity.Name = 'Levity'
+    levity.Name = '✨ Levity'
     levity.Value = 0
     levity.Parent = leaderstats
 
