@@ -37,7 +37,7 @@
           <G>0.3019608</G>
           <B>0.5921569</B>
         </Color3>
-        <float name="BackgroundTransparency">0</float>
+        <float name="BackgroundTransparency">0.2</float>
         <Color3 name="BorderColor3">
           <R>0</R>
           <G>0</G>
@@ -85,7 +85,7 @@
       </Properties>
       <Item class="Frame" referent="2">
         <Properties>
-          <string name="Name">Frame</string>
+          <string name="Name">CharacterFrame</string>
           <bool name="Active">false</bool>
           <Vector2 name="AnchorPoint">
             <X>0</X>
@@ -2408,7 +2408,7 @@
       </Item>
       <Item class="Frame" referent="60">
         <Properties>
-          <string name="Name">Frame</string>
+          <string name="Name">TextFrame</string>
           <bool name="Active">false</bool>
           <Vector2 name="AnchorPoint">
             <X>0</X>
@@ -2557,7 +2557,7 @@
             <float name="TextStrokeTransparency">0</float>
             <float name="TextTransparency">0</float>
             <token name="TextTruncate">0</token>
-            <bool name="TextWrapped">false</bool>
+            <bool name="TextWrapped">true</bool>
             <token name="TextXAlignment">0</token>
             <token name="TextYAlignment">0</token>
             <bool name="Visible">true</bool>
