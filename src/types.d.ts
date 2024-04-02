@@ -50,7 +50,15 @@ type Difficulty = 'peaceful' | 'normal'
 interface DialogGui extends ScreenGui {
   Frame: Frame & {
     CharacterFrame: Frame & {
-      ViewportFrame: ViewportFrame
+      ViewportFrame: ViewportFrame & {
+        Wizard: Model & {
+          Humanoid: Humanoid & {
+            Animator: Animator
+          }
+          Talk: Animation
+        }
+        WizardBackdrop: BasePart
+      }
     }
     TextFrame: Frame & {
       TextLabel: TextLabel
