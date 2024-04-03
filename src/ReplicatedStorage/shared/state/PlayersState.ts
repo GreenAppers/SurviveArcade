@@ -148,6 +148,19 @@ export const playersSlice = createProducer(initialState, {
     [KEY_TEMPLATE.format(userID)]: undefined,
   }),
 
+  addDollars: (state, userID: number, amount: number) => {
+    const playerKey = KEY_TEMPLATE.format(userID)
+    const playerState = state[playerKey]
+    if (!playerState) return state
+    return { 
+      ...state,
+      [playerKey]: {
+        ...playerState,
+        dollars: playerState.dollars + (amount || 0),
+      },
+    }
+  },
+
   addLoops: (state, userID: number, amount: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]

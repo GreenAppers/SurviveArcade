@@ -4,9 +4,15 @@ import {
   ProximityPromptService,
   ReplicatedStorage,
 } from '@rbxts/services'
+import { selectTycoonsState } from 'ReplicatedStorage/shared/state'
+import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
+import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
+import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
 @Controller()
 export class ProximityController implements OnStart {
+  tycoonsSelector = selectTycoonsState()
+
   onStart() {
     ProximityPromptService.PromptTriggered.Connect(
       (proximityPrompt, player) => {
@@ -19,9 +25,24 @@ export class ProximityController implements OnStart {
             proximityPrompt,
             `Hello ${player.Name}, I see that you have learned to communicate.`,
           )
+        } else if (proximityPrompt.ObjectText === 'Coin') {
+          this.onCoin()
         }
       },
     )
+  }
+
+  onCoin() {
+    if (
+      !findTycoonNameOwnedBy(
+        this.tycoonsSelector(store.getState()),
+        Players.LocalPlayer.UserId,
+      )
+    ) {
+      sendAlert({
+        message: `Claim a tycoon first!`,
+      })
+    }
   }
 
   onPhoneCall(
@@ -36,7 +57,8 @@ export class ProximityController implements OnStart {
     textLabel.MaxVisibleGraphemes = 0
     dialogGui.Parent = Players.LocalPlayer.FindFirstChild('PlayerGui')
 
-    const wizard = dialogGui.Frame.CharacterFrame.ViewportFrame.WorldModel.Wizard
+    const wizard =
+      dialogGui.Frame.CharacterFrame.ViewportFrame.WorldModel.Wizard
     const animator = wizard.Humanoid.Animator
     const wizardTalk = animator.LoadAnimation(wizard.Talk)
     wizardTalk.Play()
