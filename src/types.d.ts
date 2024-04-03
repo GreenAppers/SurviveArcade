@@ -51,13 +51,15 @@ interface DialogGui extends ScreenGui {
   Frame: Frame & {
     CharacterFrame: Frame & {
       ViewportFrame: ViewportFrame & {
-        Wizard: Model & {
-          Humanoid: Humanoid & {
-            Animator: Animator
+        WorldModel: WorldModel & {
+          Wizard: Model & {
+            Humanoid: Humanoid & {
+              Animator: Animator
+            }
+            Talk: Animation
           }
-          Talk: Animation
+          WizardBackdrop: BasePart
         }
-        WizardBackdrop: BasePart
       }
     }
     TextFrame: Frame & {

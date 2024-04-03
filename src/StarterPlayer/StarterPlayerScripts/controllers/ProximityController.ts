@@ -11,7 +11,10 @@ export class ProximityController implements OnStart {
     ProximityPromptService.PromptTriggered.Connect(
       (proximityPrompt, player) => {
         if (player.UserId !== Players.LocalPlayer.UserId) return
-        if (proximityPrompt.ObjectText === 'Phone') {
+        if (
+          proximityPrompt.ObjectText === 'Phone' ||
+          proximityPrompt.ObjectText === 'Communicator'
+        ) {
           this.onPhoneCall(
             proximityPrompt,
             `Hello ${player.Name}, I see that you have learned to communicate.`,
@@ -33,7 +36,7 @@ export class ProximityController implements OnStart {
     textLabel.MaxVisibleGraphemes = 0
     dialogGui.Parent = Players.LocalPlayer.FindFirstChild('PlayerGui')
 
-    const wizard = dialogGui.Frame.CharacterFrame.ViewportFrame.Wizard
+    const wizard = dialogGui.Frame.CharacterFrame.ViewportFrame.WorldModel.Wizard
     const animator = wizard.Humanoid.Animator
     const wizardTalk = animator.LoadAnimation(wizard.Talk)
     wizardTalk.Play()
@@ -41,10 +44,13 @@ export class ProximityController implements OnStart {
     let index = 0
     for (const [_first, _last] of utf8.graphemes(displayText)) {
       index += 1
+      if (wizard.PrimaryPart)
+        wizard.PrimaryPart.Anchored = !wizard.PrimaryPart.Anchored
       textLabel.MaxVisibleGraphemes = index
       task.wait(delayBetweenChars)
     }
 
+    wizardTalk.Stop()
     task.wait(2)
     dialogGui.Destroy()
     proximityPrompt.Enabled = true
