@@ -44,8 +44,9 @@ export function forEveryPlayer(
   leaveFunc?: PlayerReceivingFunction,
 ): Array<RBXScriptConnection> {
   const events: Array<RBXScriptConnection> = []
+  const spawnJoinFunc = (player: Player) => task.spawn(() => joinFunc(player))
 
-  Players.GetPlayers().forEach(joinFunc)
+  Players.GetPlayers().forEach(spawnJoinFunc)
   events.push(Players.PlayerAdded.Connect(joinFunc))
   if (leaveFunc) events.push(Players.PlayerRemoving.Connect(leaveFunc))
 

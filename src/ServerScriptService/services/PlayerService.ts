@@ -7,6 +7,7 @@ import {
   defaultPlayerData,
   getPlayerData,
   PlayerData,
+  PlayerState,
 } from 'ReplicatedStorage/shared/state/PlayersState'
 import { store } from 'ServerScriptService/store'
 import { forEveryPlayer } from 'ServerScriptService/utils'
@@ -44,24 +45,34 @@ export class PlayerService implements OnInit {
     const profile = this.profileStore.LoadProfileAsync(profileKey)
     if (!profile) return player.Kick()
 
+    profile.AddUserId(userId)
+    profile.Reconcile()
     profile.ListenToRelease(() => {
       this.profiles.delete(player)
       store.closePlayerData(player.UserId)
       player.Kick()
     })
-    profile.AddUserId(userId)
-    profile.Reconcile()
+
+    if (!player.IsDescendantOf(Players)) {
+      profile.Release()
+      return
+    }
+
     this.profiles.set(player, profile)
-    store.loadPlayerData(player.UserId, profile.Data)
+    const state = store.loadPlayerData(player.UserId, profile.Data)
+    const playerSelector = selectPlayerState(player.UserId)
+
     const unsubscribePlayerData = store.subscribe(
-      selectPlayerState(player.UserId),
+      playerSelector,
       (playerState) => {
         if (playerState) profile.Data = getPlayerData(playerState)
       },
     )
-
-    const unsubscribeLeaderstats = this.createLeaderstats(player)
-    this.createRespawn(player)
+    const unsubscribeLeaderstats = this.createLeaderstatsHandler(
+      player,
+      playerSelector(state),
+    )
+    this.createRespawnHandler(player)
 
     Players.PlayerRemoving.Connect((player) => {
       if (player !== player) return
@@ -70,24 +81,24 @@ export class PlayerService implements OnInit {
     })
   }
 
-  private createLeaderstats(player: Player) {
+  private createLeaderstatsHandler(player: Player, playerState?: PlayerState) {
     const leaderstats = new Instance('Folder')
     leaderstats.Name = 'leaderstats'
     leaderstats.Parent = player
 
     const tickets = new Instance('IntValue')
     tickets.Name = '🎟️ Tickets'
-    tickets.Value = 0
+    tickets.Value = playerState?.tickets ?? 0
     tickets.Parent = leaderstats
 
     const dollars = new Instance('IntValue')
     dollars.Name = '💵 Dollars'
-    dollars.Value = 0
+    dollars.Value = playerState?.dollars ?? 0
     dollars.Parent = leaderstats
 
     const levity = new Instance('IntValue')
     levity.Name = '✨ Levity'
-    levity.Value = 0
+    levity.Value = playerState?.levity ?? 0
     levity.Parent = leaderstats
 
     const unsubscribe = store.subscribe(
@@ -101,7 +112,7 @@ export class PlayerService implements OnInit {
     return unsubscribe
   }
 
-  private createRespawn(player: Player) {
+  private createRespawnHandler(player: Player) {
     player.CharacterAdded.Connect(() => {
       store.resetScore(player.UserId)
       if (player.Team) player.Team = Teams['Unclaimed Team']

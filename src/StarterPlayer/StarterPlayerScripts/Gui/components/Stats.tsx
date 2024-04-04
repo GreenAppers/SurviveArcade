@@ -37,18 +37,6 @@ export function Stats() {
       />
 
       <StatsCard
-        key="guide"
-        emoji="➡️"
-        label="Guide"
-        value={playerState?.settings?.guide ? 'On' : 'Off'}
-        primary={palette.green}
-        secondary={palette.brown}
-        enabled={true}
-        order={0}
-        onClick={() => store.toggleGuide(USER_ID)}
-      />
-
-      <StatsCard
         key="highScore"
         emoji="🏆"
         label="High Score"
@@ -68,6 +56,18 @@ export function Stats() {
         secondary={palette.red}
         enabled={currentTable !== undefined}
         order={2}
+      />
+
+      <StatsCard
+        key="guide"
+        emoji="➡️"
+        label="Guide"
+        value={playerState?.settings?.guide ? 'On' : 'Off'}
+        primary={palette.green}
+        secondary={palette.brown}
+        enabled={true}
+        order={0}
+        onClick={() => store.toggleGuide(USER_ID)}
       />
     </Group>
   )

@@ -42,7 +42,7 @@ export interface PlayerData {
   readonly completed: PlayerCompleted
 }
 
-export interface PlayerState {
+export interface PlayerDetail {
   readonly gravityUp: Vector3
   readonly groundArcadeTableName:
     | ArcadeTableName
@@ -53,13 +53,13 @@ export interface PlayerState {
   readonly tableType: ArcadeTableType
 }
 
-export interface Player extends PlayerData, PlayerState {}
+export interface PlayerState extends PlayerData, PlayerDetail {}
 
 export type PlayerDataType = keyof PlayerData
-export type PlayerStateType = keyof PlayerState
+export type PlayerDetailType = keyof PlayerDetail
 
 export interface Players {
-  readonly [playerKey: string]: Player | undefined
+  readonly [playerKey: string]: PlayerState | undefined
 }
 
 export const defaultPlayerSettings: PlayerSettings = {
@@ -105,7 +105,7 @@ export const defaultPlayerData: PlayerData = {
   completed: defaultPlayerCompleted,
 } as const
 
-export const defaultPlayerState: PlayerState = {
+export const defaultPlayerState: PlayerDetail = {
   gravityUp: new Vector3(0, 1, 0),
   groundArcadeTableName: undefined,
   scale: TYCOON_TYPES.Elf,
@@ -121,7 +121,7 @@ export const defaultPlayer = {
 const KEY_TEMPLATE = '%d'
 const initialState: Players = {}
 
-export const getPlayerData = (state: Player): PlayerData => ({
+export const getPlayerData = (state: PlayerState): PlayerData => ({
   ...state,
 })
 
@@ -152,7 +152,7 @@ export const playersSlice = createProducer(initialState, {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
-    return { 
+    return {
       ...state,
       [playerKey]: {
         ...playerState,
@@ -238,7 +238,7 @@ export const playersSlice = createProducer(initialState, {
       groundArcadeTableName: ArcadeTableName | ArcadeTableNextName | undefined
     }>,
   ) => {
-    let newState: { [playerKey: string]: Player | undefined } | undefined
+    let newState: { [playerKey: string]: PlayerState | undefined } | undefined
     for (const { userID, gravityUp, groundArcadeTableName } of playerGround) {
       const playerKey = KEY_TEMPLATE.format(userID)
       const playerState = state[playerKey]
