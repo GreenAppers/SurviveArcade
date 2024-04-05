@@ -143,7 +143,7 @@ export const playersSlice = createProducer(initialState, {
       [playerKey]: {
         ...defaultPlayerState,
         ...playerState,
-        // ...data,
+        ...data,
         ...defaultPlayerDetail,
       },
     }
