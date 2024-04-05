@@ -39,7 +39,7 @@ export class PlayerService implements OnInit {
 
   private handlePlayerLeft(player: Player) {
     const profile = this.profiles.get(player.UserId)
-    this.logger.Info(`Player left {@player} {@profile}`, player, profile)
+    this.logger.Info(`Player left {@player} {@profile}`, player, profile?.Data)
     profile?.Release()
   }
 
@@ -64,7 +64,7 @@ export class PlayerService implements OnInit {
       return
     }
 
-    this.logger.Info(`Player loaded ${userId}: {@profile}`, profile)
+    this.logger.Info(`Player loaded ${userId}: {@profile}`, profile.Data)
     this.profiles.set(player.UserId, profile)
     const state = store.loadPlayerData(player.UserId, profile.Data)
     const playerSelector = selectPlayerState(player.UserId)
