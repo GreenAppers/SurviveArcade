@@ -1,4 +1,5 @@
 import { OnInit, Service } from '@flamework/core'
+import { Logger } from '@rbxts/log'
 import ProfileService from '@rbxts/profileservice'
 import { Profile } from '@rbxts/profileservice/globals'
 import { Players, RunService, Teams } from '@rbxts/services'
@@ -23,6 +24,8 @@ export class PlayerService implements OnInit {
   )
   private profiles = new Map<number, Profile<PlayerData>>()
 
+  constructor(private readonly logger: Logger) {}
+
   onInit() {
     forEveryPlayer(
       (player) => this.handlePlayerJoined(player),
@@ -36,13 +39,13 @@ export class PlayerService implements OnInit {
 
   private handlePlayerLeft(player: Player) {
     const profile = this.profiles.get(player.UserId)
-    print('playerLeft', player, profile)
+    this.logger.Info(`playerLeft {@player} {@profile}`, player, profile)
     profile?.Release()
   }
 
   private handlePlayerJoined(player: Player) {
     const userId = player.UserId
-    print('playerJoined', userId)
+    this.logger.Info(`playerJoined ${userId}`)
     const profileKey = KEY_TEMPLATE.format(userId)
     const profile = this.profileStore.LoadProfileAsync(profileKey)
     if (!profile) return player.Kick()
@@ -50,7 +53,7 @@ export class PlayerService implements OnInit {
     profile.AddUserId(userId)
     profile.Reconcile()
     profile.ListenToRelease(() => {
-      print('releasing profile', player.UserId)
+      this.logger.Info(`releasing profile ${player.UserId}`)
       this.profiles.delete(player.UserId)
       store.closePlayerData(player.UserId)
       player.Kick()
@@ -61,7 +64,7 @@ export class PlayerService implements OnInit {
       return
     }
 
-    print('playerLoaded', userId)
+    this.logger.Info(`playerLoaded ${userId}`)
     this.profiles.set(player.UserId, profile)
     const state = store.loadPlayerData(player.UserId, profile.Data)
     const playerSelector = selectPlayerState(player.UserId)
@@ -69,7 +72,7 @@ export class PlayerService implements OnInit {
     const unsubscribePlayerData = store.subscribe(
       playerSelector,
       (playerState) => {
-        print('updating player data', playerState)
+        this.logger.Info(`updating player data {@playerState}`, playerState)
         if (playerState) profile.Data = getPlayerData(playerState)
       },
     )
@@ -81,7 +84,7 @@ export class PlayerService implements OnInit {
 
     Players.PlayerRemoving.Connect((playerLeft) => {
       if (playerLeft.UserId !== player.UserId) return
-      print('removing player', player.UserId)
+      this.logger.Info(`removing player ${player.UserId}`)
       unsubscribePlayerData()
       unsubscribeLeaderstats()
     })

@@ -1,4 +1,5 @@
 import { OnStart, Service } from '@flamework/core'
+import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { Players } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
@@ -21,10 +22,13 @@ import { getDescendentsWithTag } from 'ServerScriptService/utils'
 
 @Service()
 export class GameService implements OnStart {
-  constructor(private mapService: MapService) {}
+  constructor(
+    private mapService: MapService,
+    private readonly logger: Logger,
+  ) {}
 
   changeRound() {
-    print('Changing round')
+    this.logger.Info('Changing round')
     store.startNewRound()
     store.resetArcadeTables()
     store.resetScores()
