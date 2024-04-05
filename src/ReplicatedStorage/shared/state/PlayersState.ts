@@ -105,7 +105,7 @@ export const defaultPlayerData: PlayerData = {
   completed: defaultPlayerCompleted,
 } as const
 
-export const defaultPlayerState: PlayerDetail = {
+export const defaultPlayerDetail: PlayerDetail = {
   gravityUp: new Vector3(0, 1, 0),
   groundArcadeTableName: undefined,
   scale: TYCOON_TYPES.Elf,
@@ -113,9 +113,9 @@ export const defaultPlayerState: PlayerDetail = {
   tableType: ARCADE_TABLE_TYPES.Pinball,
 } as const
 
-export const defaultPlayer = {
+export const defaultPlayerState = {
   ...defaultPlayerData,
-  ...defaultPlayerState,
+  ...defaultPlayerDetail,
 } as const
 
 const KEY_TEMPLATE = '%d'
@@ -135,10 +135,10 @@ export const playersSlice = createProducer(initialState, {
     return {
       ...state,
       [playerKey]: {
-        ...defaultPlayer,
+        ...defaultPlayerState,
         ...playerState,
         ...data,
-        ...defaultPlayerState,
+        ...defaultPlayerDetail,
       },
     }
   },
@@ -178,7 +178,7 @@ export const playersSlice = createProducer(initialState, {
         arcade: {
           ...playerState.arcade,
           [playerState.tableType]: {
-            ...table,
+            ...tableState,
             completed: {
               ...tableState.completed,
               loops: (tableState.completed.loops || 0) + (amount || 0),
@@ -203,7 +203,7 @@ export const playersSlice = createProducer(initialState, {
         arcade: {
           ...playerState.arcade,
           [playerState.tableType]: {
-            ...table,
+            ...tableState,
             highScore: math.max(tableState?.highScore || 0, newScore),
           },
         },
@@ -250,7 +250,7 @@ export const playersSlice = createProducer(initialState, {
       if (!newState) newState = { ...state }
       newState[playerKey] = {
         ...playerState,
-        gravityUp: gravityUp || defaultPlayerState.gravityUp,
+        gravityUp: gravityUp || defaultPlayerDetail.gravityUp,
         groundArcadeTableName: groundArcadeTableName,
       }
     }
