@@ -21,7 +21,7 @@ export class PlayerService implements OnInit {
     DataStoreName,
     defaultPlayerData,
   )
-  private profiles = new Map<Player, Profile<PlayerData>>()
+  private profiles = new Map<number, Profile<PlayerData>>()
 
   onInit() {
     forEveryPlayer(
@@ -31,16 +31,18 @@ export class PlayerService implements OnInit {
   }
 
   public getProfile(player: Player) {
-    return this.profiles.get(player)
+    return this.profiles.get(player.UserId)
   }
 
   private handlePlayerLeft(player: Player) {
-    const profile = this.profiles.get(player)
+    const profile = this.profiles.get(player.UserId)
+    print('playerLeft', player, profile)
     profile?.Release()
   }
 
   private handlePlayerJoined(player: Player) {
     const userId = player.UserId
+    print('playerJoined', userId)
     const profileKey = KEY_TEMPLATE.format(userId)
     const profile = this.profileStore.LoadProfileAsync(profileKey)
     if (!profile) return player.Kick()
@@ -48,7 +50,8 @@ export class PlayerService implements OnInit {
     profile.AddUserId(userId)
     profile.Reconcile()
     profile.ListenToRelease(() => {
-      this.profiles.delete(player)
+      print('releasing profile', player.UserId)
+      this.profiles.delete(player.UserId)
       store.closePlayerData(player.UserId)
       player.Kick()
     })
@@ -58,13 +61,15 @@ export class PlayerService implements OnInit {
       return
     }
 
-    this.profiles.set(player, profile)
+    print('playerLoaded', userId)
+    this.profiles.set(player.UserId, profile)
     const state = store.loadPlayerData(player.UserId, profile.Data)
     const playerSelector = selectPlayerState(player.UserId)
 
     const unsubscribePlayerData = store.subscribe(
       playerSelector,
       (playerState) => {
+        print('updating player data', playerState)
         if (playerState) profile.Data = getPlayerData(playerState)
       },
     )
@@ -74,8 +79,9 @@ export class PlayerService implements OnInit {
     )
     this.createRespawnHandler(player)
 
-    Players.PlayerRemoving.Connect((player) => {
-      if (player !== player) return
+    Players.PlayerRemoving.Connect((playerLeft) => {
+      if (playerLeft.UserId !== player.UserId) return
+      print('removing player', player.UserId)
       unsubscribePlayerData()
       unsubscribeLeaderstats()
     })
