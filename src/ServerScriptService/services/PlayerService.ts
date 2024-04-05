@@ -39,13 +39,13 @@ export class PlayerService implements OnInit {
 
   private handlePlayerLeft(player: Player) {
     const profile = this.profiles.get(player.UserId)
-    this.logger.Info(`playerLeft {@player} {@profile}`, player, profile)
+    this.logger.Info(`Player left {@player} {@profile}`, player, profile)
     profile?.Release()
   }
 
   private handlePlayerJoined(player: Player) {
     const userId = player.UserId
-    this.logger.Info(`playerJoined ${userId}`)
+    this.logger.Info(`Player joined ${userId}`)
     const profileKey = KEY_TEMPLATE.format(userId)
     const profile = this.profileStore.LoadProfileAsync(profileKey)
     if (!profile) return player.Kick()
@@ -64,7 +64,7 @@ export class PlayerService implements OnInit {
       return
     }
 
-    this.logger.Info(`playerLoaded ${userId}`)
+    this.logger.Info(`Player loaded ${userId}: {@profile}`, profile)
     this.profiles.set(player.UserId, profile)
     const state = store.loadPlayerData(player.UserId, profile.Data)
     const playerSelector = selectPlayerState(player.UserId)
