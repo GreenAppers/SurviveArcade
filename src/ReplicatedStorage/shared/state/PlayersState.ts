@@ -122,7 +122,13 @@ const KEY_TEMPLATE = '%d'
 const initialState: Players = {}
 
 export const getPlayerData = (state: PlayerState): PlayerData => ({
-  ...state,
+  tickets: state.tickets,
+  dollars: state.dollars,
+  levity: state.levity,
+  settings: state.settings,
+  arcade: state.arcade,
+  tycoon: state.tycoon,
+  completed: state.completed,
 })
 
 export const getPlayer = (state: Players, userID: number) =>

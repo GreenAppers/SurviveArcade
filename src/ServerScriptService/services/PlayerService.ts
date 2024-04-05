@@ -72,7 +72,10 @@ export class PlayerService implements OnInit {
     const unsubscribePlayerData = store.subscribe(
       playerSelector,
       (playerState) => {
-        this.logger.Info(`updating player data {@playerState}`, playerState)
+        this.logger.Info(
+          `updating player data {@playerState}`,
+          playerState ? getPlayerData(playerState) : undefined,
+        )
         if (playerState) profile.Data = getPlayerData(playerState)
       },
     )
