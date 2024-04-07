@@ -99,6 +99,9 @@ interface ReplicatedStorage extends Instance {
   ArcadeTables: Folder & {
     Pinball1: ArcadeTable
   }
+  Common: Folder & {
+    Beam: Beam
+  }
   Guis: Folder & {
     DialogGui: DialogGui
     LoadingGui: ScreenGui & {
@@ -108,11 +111,7 @@ interface ReplicatedStorage extends Instance {
     }
   }
   Maps: Folder & {
-    ElfMap: Folder & ArcadeMap
-    HumanMap: Folder & ArcadeMap
-    Common: Folder & {
-      Beam: Beam
-    }
+    [mapName: string]: Folder & ArcadeMap
   }
   Tycoons: Folder & {
     Elf: Tycoon

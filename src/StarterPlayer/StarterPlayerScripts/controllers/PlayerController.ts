@@ -1,6 +1,11 @@
 import { Controller, OnStart } from '@flamework/core'
 import { DeviceType } from '@rbxts/device'
-import { Players, ReplicatedStorage, StarterGui, UserInputService } from '@rbxts/services'
+import {
+  Players,
+  ReplicatedStorage,
+  StarterGui,
+  UserInputService,
+} from '@rbxts/services'
 import { USER_DEVICE } from 'ReplicatedStorage/shared/constants/core'
 import {
   selectArcadeTablesState,
@@ -83,7 +88,7 @@ export class PlayerController implements OnStart {
   startMyRespawnHandler(player: Player) {
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     const handleRespawn = (playerCharacter: Model) => {
-      const beam = ReplicatedStorage.Maps.Common.Beam.Clone()
+      const beam = ReplicatedStorage.Common.Beam.Clone()
       beam.Parent = playerCharacter
       sendAlert({
         emoji: '👼',
