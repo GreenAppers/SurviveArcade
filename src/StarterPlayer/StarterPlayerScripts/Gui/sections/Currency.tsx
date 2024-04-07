@@ -1,0 +1,85 @@
+import { useSelector } from '@rbxts/react-reflex'
+import Roact, { useMemo } from '@rbxts/roact'
+import { palette } from 'ReplicatedStorage/shared/constants/palette'
+import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
+import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
+import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
+import {
+  useDefined,
+  useRem,
+} from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
+import { abbreviator } from 'StarterPlayer/StarterPlayerScripts/utils'
+
+export function Currency() {
+  const rem = useRem()
+  const playerState = useSelector(selectLocalPlayerState())
+  const dollars = useDefined<string | number>(playerState?.dollars, 'N/A')
+  const tickets = useDefined<string | number>(playerState?.tickets, 'N/A')
+  const levity = useDefined<string | number>(playerState?.levity, 'N/A')
+  const dollarsFormatted = useMemo(
+    () =>
+      typeIs(dollars, 'string') ? dollars : abbreviator.numberToString(dollars),
+    [dollars],
+  )
+  const ticketsFormatted = useMemo(
+    () =>
+      typeIs(tickets, 'string') ? tickets : abbreviator.numberToString(tickets),
+    [tickets],
+  )
+  const levityFormatted = useMemo(
+    () =>
+      typeIs(levity, 'string') ? levity : abbreviator.numberToString(levity),
+    [levity],
+  )
+
+  return (
+    <Group
+      position={new UDim2(1, 0, 0.5, 0)}
+      anchorPoint={new Vector2(1.0, 0.5)}
+      automaticSize={Enum.AutomaticSize.X}
+      size={new UDim2(0, 0, 0, 0)}
+    >
+      <uilistlayout
+        key="layout"
+        FillDirection="Vertical"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Center"
+        Padding={new UDim(0, rem(1))}
+        SortOrder="LayoutOrder"
+      />
+
+      <CardItem
+        key="tickets"
+        emoji="🎟️"
+        label="Tickets"
+        value={ticketsFormatted}
+        primary={palette.pink}
+        secondary={palette.red}
+        enabled={tickets !== undefined}
+        order={1}
+      />
+
+      <CardItem
+        key="dollars"
+        emoji="💵"
+        label="Dollars"
+        value={dollarsFormatted}
+        primary={palette.green}
+        secondary={palette.brown}
+        enabled={dollars !== undefined}
+        order={2}
+      />
+
+      <CardItem
+        key="levity"
+        emoji="✨"
+        label="Levity "
+        value={levityFormatted}
+        primary={palette.yellow}
+        secondary={palette.orange}
+        enabled={true}
+        order={3}
+      />
+    </Group>
+  )
+}
