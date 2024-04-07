@@ -4,10 +4,8 @@ import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { USER_NAME } from 'ReplicatedStorage/shared/constants/core'
 import {
   selectArcadeTableNameOwnedBy,
-  selectArcadeTablesState,
   selectLocalPlayerArcadeTableStatus,
   selectLocalPlayerLoops,
-  selectPlayerGuideEnabled,
 } from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTablesState,
@@ -26,6 +24,16 @@ import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 export class ArcadeController implements OnStart {
   fullForceKeypress = 0
   myArcadeTableName = ''
+
+  onStart() {
+    const player = Players.LocalPlayer
+    this.startArcadeTableControlsHandler(player)
+    this.startMyArcadeTableBounceHandler(player)
+    this.startMyArcadeTableClaimHandler(player)
+    this.startMyArcadeTableMaterializeHandler()
+    this.startMyArcadeTableLoopHandler()
+    this.startMyArcadeTableWinHandler()
+  }
 
   startArcadeTableControlsHandler(player: Player) {
     UserInputService.InputBegan.Connect((input, _processed) => {
@@ -53,7 +61,7 @@ export class ArcadeController implements OnStart {
     })
   }
 
-  startMyBounceHandler(player: Player) {
+  startMyArcadeTableBounceHandler(player: Player) {
     let debouncePlayer = false
     // Local player was bounced by a Bouncer.
     Events.playerBounce.connect((position) => {
@@ -68,7 +76,7 @@ export class ArcadeController implements OnStart {
     })
   }
 
-  startMyClaimHandler(player: Player) {
+  startMyArcadeTableClaimHandler(player: Player) {
     // Adjust local player's camera on claim/unclaim.
     store.subscribe(
       selectArcadeTableNameOwnedBy(player.UserId),
@@ -82,6 +90,7 @@ export class ArcadeController implements OnStart {
         const aracdeTableState = store.getState().arcadeTables[arcadeTableName]
         if (aracdeTableState?.status !== ArcadeTableStatus.Active) return
         sendAlert({
+          emoji: '🕹️',
           message: `Score ${aracdeTableState?.scoreToWin} to win.`,
         })
         const arcadeTable =
@@ -109,7 +118,7 @@ export class ArcadeController implements OnStart {
     )
   }
 
-  startMyMaterializeHandler() {
+  startMyArcadeTableMaterializeHandler() {
     let debounce = false
     Events.arcadeTableMaterialize.connect((arcadeTableName) => {
       const arcadeTable = game.Workspace.ArcadeTables[arcadeTableName]
@@ -126,73 +135,26 @@ export class ArcadeController implements OnStart {
     })
   }
 
-  startMyLoopHandler() {
+  startMyArcadeTableLoopHandler() {
     store.subscribe(selectLocalPlayerLoops(), () => {
       sendAlert({
+        emoji: '🔄',
         message: `${USER_NAME} looped!`,
       })
     })
   }
 
-  startMyWinHandler() {
+  startMyArcadeTableWinHandler() {
     store.subscribe(
       selectLocalPlayerArcadeTableStatus(),
       (arcadeTableStatus) => {
         if (arcadeTableStatus !== ArcadeTableStatus.Won) return
         sendAlert({
+          emoji: '🏆',
           message: `You defeated the barrier!  Now you can ascend the stairs!`,
         })
       },
     )
-  }
-
-  startMyRespawnHandler(player: Player) {
-    const aracdeTablesSelector = selectArcadeTablesState()
-    const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
-    player.CharacterAdded.Connect(() => {
-      sendAlert({ message: 'Get the high score.  But beware of the rats!' })
-      const state = store.getState()
-      this.refreshBeams(
-        aracdeTablesSelector(state),
-        playerGuideEnabledSelector(state),
-      )
-    })
-  }
-
-  startMyGuideHandler(player: Player) {
-    const arcadeTablesSelector = selectArcadeTablesState()
-    const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
-    store.subscribe(arcadeTablesSelector, (arcadeTablesState) => {
-      this.refreshBeams(
-        arcadeTablesState,
-        playerGuideEnabledSelector(store.getState()),
-      )
-    })
-    store.subscribe(playerGuideEnabledSelector, (guideEnabled) => {
-      this.refreshBeams(arcadeTablesSelector(store.getState()), guideEnabled)
-    })
-  }
-
-  onStart() {
-    const player = Players.LocalPlayer
-    this.startArcadeTableControlsHandler(player)
-    this.startMyBounceHandler(player)
-    this.startMyClaimHandler(player)
-    this.startMyMaterializeHandler()
-    this.startMyRespawnHandler(player)
-    this.startMyGuideHandler(player)
-    this.startMyLoopHandler()
-    this.startMyWinHandler()
-
-    const arcadeTablesSelector = selectArcadeTablesState()
-    const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
-    while (task.wait(1)) {
-      const state = store.getState()
-      this.refreshBeams(
-        arcadeTablesSelector(state),
-        playerGuideEnabledSelector(state),
-      )
-    }
   }
 
   flipFlipper(player: Player, flipperName: string, force: number) {
@@ -216,15 +178,14 @@ export class ArcadeController implements OnStart {
   refreshBeams(arcadeTablesState: ArcadeTablesState, guideEnabled?: boolean) {
     const localPlayer = Players.LocalPlayer
     const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
+    const beam = playerCharacter?.FindFirstChild('Beam') as Beam | undefined
     const humanoid = <Humanoid | undefined>(
       playerCharacter?.FindFirstChild('Humanoid')
     )
-    if (!playerCharacter || !humanoid) return
+    if (!playerCharacter || !humanoid || !beam) return
 
-    // Clear old beams
-    for (const instance of playerCharacter.GetChildren()) {
-      if (instance.IsA('Beam')) instance.Destroy()
-    }
+    // Clear old beam
+    beam.Enabled = false
 
     // Check if player is alive and has guide enabled.
     if (!guideEnabled || !humanoid.Health || humanoid.Sit) return
@@ -271,20 +232,9 @@ export class ArcadeController implements OnStart {
         game.Workspace.ArcadeTables[arcadeTableName]?.Seat?.Attachment
     }
 
-    // Create new beam
     if (!targetAttachment) return
-    const beam = new Instance('Beam')
-    beam.Name = 'Beam'
-    beam.Texture = 'rbxassetid://956427083'
-    beam.TextureMode = Enum.TextureMode.Wrap
-    beam.TextureLength = 3
-    beam.TextureSpeed = 4
-    beam.FaceCamera = true
-    beam.Transparency = new NumberSequence(0.1)
-    beam.Width0 = 1.5
-    beam.Width1 = 1.5
     beam.Attachment0 = rootRigAttachment
     beam.Attachment1 = targetAttachment
-    beam.Parent = playerCharacter
+    beam.Enabled = true
   }
 }

@@ -27,6 +27,7 @@ export class BarrierComponent
       if (touchedPlayer?.UserId === Players.LocalPlayer.UserId) {
         this.debounce = true
         sendAlert({
+          emoji: '🚧',
           message: `Score ${getArcadeTableStateFromDescendent(this.instance)
             ?.scoreToWin} to defeat the barrier.`,
         })

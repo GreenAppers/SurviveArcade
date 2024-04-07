@@ -6,7 +6,7 @@ import { Alert, AlertScope } from './store/AlertState'
 
 const defaultAlert: Alert = {
   id: 0,
-  emoji: '✅',
+  emoji: '☑️',
   message: 'Alert',
   color: palette.blue,
   duration: 3,
