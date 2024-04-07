@@ -108,7 +108,11 @@ interface ReplicatedStorage extends Instance {
     }
   }
   Maps: Folder & {
-    [mapName: string]: Folder & ArcadeMap
+    ElfMap: Folder & ArcadeMap
+    HumanMap: Folder & ArcadeMap
+    Common: Folder & {
+      Beam: Beam
+    }
   }
   Tycoons: Folder & {
     Elf: Tycoon
