@@ -39,21 +39,20 @@ export class PlayerService implements OnInit {
 
   private handlePlayerLeft(player: Player) {
     const profile = this.profiles.get(player.UserId)
-    this.logger.Info(`Player left {@player} {@profile}`, player, profile?.Data)
+    this.logger.Info(`Player left ${player.UserId}`)
     profile?.Release()
   }
 
   private handlePlayerJoined(player: Player) {
-    const userId = player.UserId
-    this.logger.Info(`Player joined ${userId}`)
-    const profileKey = KEY_TEMPLATE.format(userId)
+    this.logger.Info(`Player joined ${player.UserId}`)
+    const profileKey = KEY_TEMPLATE.format(player.UserId)
     const profile = this.profileStore.LoadProfileAsync(profileKey)
     if (!profile) return player.Kick()
 
-    profile.AddUserId(userId)
+    profile.AddUserId(player.UserId)
     profile.Reconcile()
     profile.ListenToRelease(() => {
-      this.logger.Info(`releasing profile ${player.UserId}`)
+      this.logger.Info(`Releasing profile ${player.UserId}`)
       this.profiles.delete(player.UserId)
       store.closePlayerData(player.UserId)
       player.Kick()
@@ -64,7 +63,7 @@ export class PlayerService implements OnInit {
       return
     }
 
-    this.logger.Info(`Player loaded ${userId}: {@profile}`, profile.Data)
+    this.logger.Info(`Player loaded ${player.UserId}`)
     this.profiles.set(player.UserId, profile)
     const state = store.loadPlayerData(player.UserId, profile.Data)
     const playerSelector = selectPlayerState(player.UserId)
@@ -72,10 +71,6 @@ export class PlayerService implements OnInit {
     const unsubscribePlayerData = store.subscribe(
       playerSelector,
       (playerState) => {
-        this.logger.Info(
-          `updating player data {@playerState}`,
-          playerState ? getPlayerData(playerState) : undefined,
-        )
         if (playerState) profile.Data = getPlayerData(playerState)
       },
     )
@@ -87,7 +82,6 @@ export class PlayerService implements OnInit {
 
     Players.PlayerRemoving.Connect((playerLeft) => {
       if (playerLeft.UserId !== player.UserId) return
-      this.logger.Info(`removing player ${player.UserId}`)
       unsubscribePlayerData()
       unsubscribeLeaderstats()
     })

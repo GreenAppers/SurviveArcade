@@ -2,8 +2,8 @@ import { useSelector } from '@rbxts/react-reflex'
 import Roact from '@rbxts/roact'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectGameState } from 'ReplicatedStorage/shared/state'
+import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
 import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
-import { StatsCard } from 'StarterPlayer/StarterPlayerScripts/Gui/components/StatsCard'
 import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 import { formatDuration } from 'StarterPlayer/StarterPlayerScripts/utils'
 
@@ -26,7 +26,7 @@ export function GameStatus() {
         Padding={new UDim(0, rem(1))}
       />
       {gameState.roundActive && (
-        <StatsCard
+        <CardItem
           key="remaining"
           emoji="⏰"
           label="Remaining"

@@ -3,16 +3,15 @@ import Roact from '@rbxts/roact'
 import { USER_ID } from 'ReplicatedStorage/shared/constants/core'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
+import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
 import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
-import { StatsCard } from 'StarterPlayer/StarterPlayerScripts/Gui/components/StatsCard'
 import {
   useDefined,
   useRem,
 } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
-import { formatInteger } from 'StarterPlayer/StarterPlayerScripts/utils'
 
-export function Stats() {
+export function Settings() {
   const rem = useRem()
   const playerState = useSelector(selectLocalPlayerState())
   const score = useDefined<string | number>(playerState?.score, 'N/A')
@@ -36,37 +35,15 @@ export function Stats() {
         SortOrder="LayoutOrder"
       />
 
-      <StatsCard
-        key="highScore"
-        emoji="🏆"
-        label="High Score"
-        value={`${formatInteger(highScore)}`}
-        primary={palette.yellow}
-        secondary={palette.orange}
-        enabled={highScore !== undefined}
-        order={1}
-      />
-
-      <StatsCard
-        key="score"
-        emoji="💯"
-        label="Score"
-        value={`${formatInteger(score)}`}
-        primary={palette.pink}
-        secondary={palette.red}
-        enabled={currentTable !== undefined}
-        order={2}
-      />
-
-      <StatsCard
+      <CardItem
         key="guide"
         emoji="➡️"
         label="Guide"
         value={playerState?.settings?.guide ? 'On' : 'Off'}
-        primary={palette.green}
-        secondary={palette.brown}
+        primary={palette.blue}
+        secondary={palette.sky}
         enabled={true}
-        order={0}
+        order={2}
         onClick={() => store.toggleGuide(USER_ID)}
       />
     </Group>

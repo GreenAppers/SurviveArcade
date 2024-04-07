@@ -11,7 +11,7 @@ import { ReactiveButton } from './ReactiveButton'
 import { Shadow } from './Shadow'
 import { Text } from './Text'
 
-interface StatsCardProps {
+interface CardItemProps {
   readonly onClick?: () => void
   readonly emoji: string
   readonly label: string
@@ -28,7 +28,7 @@ const CARD_HEIGHT = 4
 const CARD_EMOJI_WIDTH = 2
 const CARD_CANVAS_MARGIN = 3
 
-export function StatsCard({
+export function CardItem({
   onClick,
   emoji,
   label,
@@ -37,7 +37,7 @@ export function StatsCard({
   secondary,
   enabled,
   order,
-}: StatsCardProps) {
+}: CardItemProps) {
   const primaryDark = primary.Lerp(palette.eerie, 0.75)
   const secondaryDark = secondary.Lerp(palette.eerie, 0.75)
 

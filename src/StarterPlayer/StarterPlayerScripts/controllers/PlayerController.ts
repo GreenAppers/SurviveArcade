@@ -1,5 +1,7 @@
 import { Controller, OnStart } from '@flamework/core'
-import { Players, UserInputService } from '@rbxts/services'
+import { DeviceType } from '@rbxts/device'
+import { Players, StarterGui, UserInputService } from '@rbxts/services'
+import { USER_DEVICE } from 'ReplicatedStorage/shared/constants/core'
 import {
   selectLocalPlayerGroundArcadeTableName,
   selectLocalPlayerState,
@@ -15,13 +17,16 @@ import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts
 @Controller({})
 export class PlayerController implements OnStart {
   gravityController: GravityController | undefined
+  isDesktop = USER_DEVICE === DeviceType.Desktop
   isSeated = false
+  runSpeed = 32
+  walkSpeed = 16
 
   constructor(private arcadeController: ArcadeController) {}
 
   onStart() {
-    const runSpeed = 32
-    const walkSpeed = 16
+    if (this.isDesktop)
+      StarterGui.SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
 
     UserInputService.InputBegan.Connect((inputObject) => {
       if (inputObject.KeyCode === Enum.KeyCode.LeftShift) {
@@ -29,9 +34,18 @@ export class PlayerController implements OnStart {
         const humanoid = (<PlayerCharacter>player.Character)?.Humanoid
         const camera = game.Workspace.CurrentCamera
         if (!this.arcadeController.myArcadeTableName) {
-          if (humanoid && humanoid.WalkSpeed > 0) humanoid.WalkSpeed = runSpeed
+          if (humanoid && humanoid.WalkSpeed > 0)
+            humanoid.WalkSpeed = this.runSpeed
           if (camera) camera.FieldOfView = 60
         }
+      } else if (inputObject.KeyCode === Enum.KeyCode.Tab && this.isDesktop) {
+        const playerListEnabled = StarterGui.GetCoreGuiEnabled(
+          Enum.CoreGuiType.PlayerList,
+        )
+        StarterGui.SetCoreGuiEnabled(
+          Enum.CoreGuiType.PlayerList,
+          !playerListEnabled,
+        )
       }
     })
 
@@ -40,7 +54,8 @@ export class PlayerController implements OnStart {
         const player = Players.LocalPlayer
         const humanoid = (<PlayerCharacter>player.Character)?.Humanoid
         const camera = game.Workspace.CurrentCamera
-        if (humanoid && humanoid.WalkSpeed > 0) humanoid.WalkSpeed = walkSpeed
+        if (humanoid && humanoid.WalkSpeed > 0)
+          humanoid.WalkSpeed = this.walkSpeed
         if (camera) camera.FieldOfView = 70
       }
     })

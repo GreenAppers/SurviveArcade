@@ -90,15 +90,15 @@ export const defaultPlayerData: PlayerData = {
   },
   tycoon: {
     Elf: {
-      name: 'Elf',
+      name: TYCOON_TYPES.Elf,
       buttons: {},
     },
     Human: {
-      name: 'Human',
+      name: TYCOON_TYPES.Human,
       buttons: {},
     },
     Omniverse: {
-      name: 'Omniverse',
+      name: TYCOON_TYPES.Omniverse,
       buttons: {},
     },
   },

@@ -1,3 +1,4 @@
+import { Device } from '@rbxts/device'
 import { Players, RunService } from '@rbxts/services'
 import { $NODE_ENV } from 'rbxts-transform-env'
 
@@ -17,6 +18,8 @@ export const USER_ID = Players.LocalPlayer ? Players.LocalPlayer.UserId : 0
 export const USER_NAME = Players.LocalPlayer
   ? Players.LocalPlayer.Name
   : '(server)'
+
+export const USER_DEVICE = Device.GetPlatformType()
 
 export const ARCADE_TABLE_TYPES: {
   [name in ArcadeTableType]: ArcadeTableType

@@ -21,6 +21,7 @@ export interface ArcadeTableState {
   readonly baseColor: BrickColor
   readonly baseMaterial: Enum.Material
   readonly statorColor: BrickColor
+  readonly scoreStart: number
   readonly scoreToWin: number
   readonly status: ArcadeTableStatus
   readonly sequence: number
@@ -118,6 +119,7 @@ const initialState: ArcadeTablesState = {
     statorColor: new BrickColor('Electric blue'),
     baseColor: new BrickColor('Pastel Blue'),
     baseMaterial: Enum.Material.Glass,
+    scoreStart: 0,
     scoreToWin: initialScoreToWin,
     status: ArcadeTableStatus.Active,
     sequence: 0,
@@ -131,6 +133,7 @@ const initialState: ArcadeTablesState = {
     statorColor: new BrickColor('Forest green'),
     baseColor: new BrickColor('Sand green'),
     baseMaterial: Enum.Material.Glass,
+    scoreStart: 0,
     scoreToWin: initialScoreToWin,
     status: ArcadeTableStatus.Active,
     sequence: 0,
@@ -144,6 +147,7 @@ const initialState: ArcadeTablesState = {
     statorColor: new BrickColor('Neon orange'),
     baseColor: new BrickColor('Cork'),
     baseMaterial: Enum.Material.Glass,
+    scoreStart: 0,
     scoreToWin: initialScoreToWin,
     status: ArcadeTableStatus.Active,
     sequence: 0,
@@ -157,6 +161,7 @@ const initialState: ArcadeTablesState = {
     statorColor: new BrickColor('Crimson'),
     baseColor: new BrickColor('Terra Cotta'),
     baseMaterial: Enum.Material.Glass,
+    scoreStart: 0,
     scoreToWin: initialScoreToWin,
     status: ArcadeTableStatus.Active,
     sequence: 0,

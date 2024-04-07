@@ -2,7 +2,7 @@ import { Controller, OnStart } from '@flamework/core'
 import { createPortal, createRoot } from '@rbxts/react-roblox'
 import Roact, { StrictMode } from '@rbxts/roact'
 import { Players } from '@rbxts/services'
-import { App } from 'StarterPlayer/StarterPlayerScripts/Gui/components/App'
+import { App } from 'StarterPlayer/StarterPlayerScripts/Gui/pages/App'
 
 import { RootProvider } from '../Gui/providers/RootProvider'
 
