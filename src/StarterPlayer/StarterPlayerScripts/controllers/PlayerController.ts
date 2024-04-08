@@ -1,6 +1,5 @@
 import { Controller, OnStart } from '@flamework/core'
 import { DeviceType } from '@rbxts/device'
-import Object from '@rbxts/object-utils'
 import {
   Players,
   ReplicatedStorage,
@@ -160,11 +159,12 @@ export class PlayerController implements OnStart {
     store.subscribe(
       selectPlayerState(player.UserId),
       (playerData, previousPlayerData) => {
-        if (playerData?.levity !== previousPlayerData?.levity)
+        if (!playerData || !previousPlayerData) return
+        if (playerData.levity !== previousPlayerData.levity)
           this.playCollectionAnimation(CURRENCY_EMOJIS.Levity)
-        if (playerData?.dollars !== previousPlayerData?.dollars)
+        if (playerData.dollars !== previousPlayerData.dollars)
           this.playCollectionAnimation(CURRENCY_EMOJIS.Dollars)
-        if (playerData?.tickets !== previousPlayerData?.tickets)
+        if (playerData.tickets !== previousPlayerData.tickets)
           this.playCollectionAnimation(CURRENCY_EMOJIS.Tickets)
       },
     )

@@ -1,6 +1,9 @@
 import { useSelector } from '@rbxts/react-reflex'
 import Roact, { useMemo } from '@rbxts/roact'
-import { CURRENCY_EMOJIS, CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
+import {
+  CURRENCY_EMOJIS,
+  CURRENCY_TYPES,
+} from 'ReplicatedStorage/shared/constants/core'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
 import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
