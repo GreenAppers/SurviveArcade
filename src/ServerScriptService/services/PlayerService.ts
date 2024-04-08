@@ -3,6 +3,10 @@ import { Logger } from '@rbxts/log'
 import ProfileService from '@rbxts/profileservice'
 import { Profile } from '@rbxts/profileservice/globals'
 import { Players, RunService, Teams } from '@rbxts/services'
+import {
+  CURRENCY_EMOJIS,
+  CURRENCY_TYPES,
+} from 'ReplicatedStorage/shared/constants/core'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import {
   defaultPlayerData,
@@ -93,17 +97,17 @@ export class PlayerService implements OnInit {
     leaderstats.Parent = player
 
     const tickets = new Instance('IntValue')
-    tickets.Name = '🎟️ Tickets'
+    tickets.Name = `${CURRENCY_EMOJIS.Tickets} ${CURRENCY_TYPES.Tickets}`
     tickets.Value = playerState?.tickets ?? 0
     tickets.Parent = leaderstats
 
     const dollars = new Instance('IntValue')
-    dollars.Name = '💵 Dollars'
+    dollars.Name = `${CURRENCY_EMOJIS.Dollars} ${CURRENCY_TYPES.Dollars}`
     dollars.Value = playerState?.dollars ?? 0
     dollars.Parent = leaderstats
 
     const levity = new Instance('IntValue')
-    levity.Name = '✨ Levity'
+    levity.Name = `${CURRENCY_EMOJIS.Levity} ${CURRENCY_TYPES.Levity}`
     levity.Value = playerState?.levity ?? 0
     levity.Parent = leaderstats
 

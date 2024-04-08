@@ -1,5 +1,6 @@
 import { useSelector } from '@rbxts/react-reflex'
 import Roact, { useMemo } from '@rbxts/roact'
+import { CURRENCY_EMOJIS, CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
 import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
@@ -50,8 +51,8 @@ export function Currency() {
 
       <CardItem
         key="tickets"
-        emoji="🎟️"
-        label="Tickets"
+        emoji={CURRENCY_EMOJIS.Tickets}
+        label={CURRENCY_TYPES.Tickets}
         value={ticketsFormatted}
         primary={palette.pink}
         secondary={palette.red}
@@ -61,8 +62,8 @@ export function Currency() {
 
       <CardItem
         key="dollars"
-        emoji="💵"
-        label="Dollars"
+        emoji={CURRENCY_EMOJIS.Dollars}
+        label={CURRENCY_TYPES.Dollars}
         value={dollarsFormatted}
         primary={palette.green}
         secondary={palette.brown}
@@ -72,8 +73,8 @@ export function Currency() {
 
       <CardItem
         key="levity"
-        emoji="✨"
-        label="Levity "
+        emoji={CURRENCY_EMOJIS.Levity}
+        label={CURRENCY_TYPES.Levity}
         value={levityFormatted}
         primary={palette.yellow}
         secondary={palette.orange}

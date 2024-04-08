@@ -47,6 +47,22 @@ export const EXTENDED_ARCADE_TABLE_NAMES: Array<
   ArcadeTableName | ArcadeTableNextName
 > = [...ARCADE_TABLE_NAMES, ...ARCADE_TABLE_NEXT_NAMES]
 
+export const CURRENCY_TYPES: {
+  [name in Currency]: Currency
+} = {
+  Dollars: 'Dollars',
+  Levity: 'Levity',
+  Tickets: 'Tickets',
+}
+
+export const CURRENCY_EMOJIS: {
+  [name in Currency]: string
+} = {
+  Dollars: '💵',
+  Levity: '✨',
+  Tickets: '🎟️',
+}
+
 export const DIFFICULTY_TYPES: {
   [name in Difficulty]: Difficulty
 } = {

@@ -1,17 +1,23 @@
 import { Controller, OnStart } from '@flamework/core'
 import { DeviceType } from '@rbxts/device'
+import Object from '@rbxts/object-utils'
 import {
   Players,
   ReplicatedStorage,
   StarterGui,
+  TweenService,
   UserInputService,
 } from '@rbxts/services'
-import { USER_DEVICE } from 'ReplicatedStorage/shared/constants/core'
+import {
+  CURRENCY_EMOJIS,
+  USER_DEVICE,
+} from 'ReplicatedStorage/shared/constants/core'
 import {
   selectArcadeTablesState,
   selectLocalPlayerGroundArcadeTableName,
   selectLocalPlayerState,
   selectPlayerGuideEnabled,
+  selectPlayerState,
 } from 'ReplicatedStorage/shared/state'
 import {
   GravityController,
@@ -24,6 +30,7 @@ import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts
 
 @Controller({})
 export class PlayerController implements OnStart {
+  collectionPlaying = false
   gravityController: GravityController | undefined
   isDesktop = USER_DEVICE === DeviceType.Desktop
   isSeated = false
@@ -35,11 +42,13 @@ export class PlayerController implements OnStart {
   onStart() {
     if (this.isDesktop)
       StarterGui.SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
-    this.startInputHandling()
+
     const player = Players.LocalPlayer
+    this.startInputHandling()
     this.startMyRespawnHandler(player)
     this.startMyGuideHandler(player)
     this.prepareGravityController(player)
+    this.startCollectionAnimation(player)
 
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     while (task.wait(1)) {
@@ -145,6 +154,42 @@ export class PlayerController implements OnStart {
       return localPlayerState?.gravityUp || oldGravityUp
     }
     this.gravityController = gravityController
+  }
+
+  startCollectionAnimation(player: Player) {
+    store.subscribe(
+      selectPlayerState(player.UserId),
+      (playerData, previousPlayerData) => {
+        if (playerData?.levity !== previousPlayerData?.levity)
+          this.playCollectionAnimation(CURRENCY_EMOJIS.Levity)
+        if (playerData?.dollars !== previousPlayerData?.dollars)
+          this.playCollectionAnimation(CURRENCY_EMOJIS.Dollars)
+        if (playerData?.tickets !== previousPlayerData?.tickets)
+          this.playCollectionAnimation(CURRENCY_EMOJIS.Tickets)
+      },
+    )
+  }
+
+  playCollectionAnimation(text?: string) {
+    const collectGui = Players.LocalPlayer.FindFirstChild(
+      'PlayerGui',
+    )?.FindFirstChild('CollectGui') as CollectGui | undefined
+    if (!collectGui) return
+    if (this.collectionPlaying) return
+    this.collectionPlaying = true
+    const tweenInfo = new TweenInfo(0.8, Enum.EasingStyle.Linear)
+    ;(collectGui.Frame.GetChildren() as TextLabel[]).forEach((child) => {
+      if (text) child.Text = text
+      child.Position = child.GetAttribute('StartPosition') as UDim2
+      const tween = TweenService.Create(child, tweenInfo, {
+        Position: new UDim2(1.0, 0, 0.5, 0),
+      })
+      tween.Play()
+    })
+    collectGui.Enabled = true
+    wait(0.7)
+    collectGui.Enabled = false
+    this.collectionPlaying = false
   }
 
   refreshBeams(guideEnabled?: boolean) {

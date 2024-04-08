@@ -9,6 +9,8 @@ const defaultAlert: Alert = {
   emoji: '☑️',
   message: 'Alert',
   color: palette.blue,
+  colorSecondary: palette.indigo,
+  colorMessage: palette.text,
   duration: 3,
   visible: true,
 }

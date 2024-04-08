@@ -45,7 +45,15 @@ interface CabinetTruss extends TrussPart {
 
 type CabinetTrussName = 'Truss1' | 'Truss2' | 'Truss3' | 'Truss4'
 
+type Currency = 'Dollars' | 'Levity' | 'Tickets'
+
 type Difficulty = 'peaceful' | 'normal'
+
+interface CollectGui extends ScreenGui {
+  Frame: Frame & {
+    [labelName: string]: TextLabel
+  }
+}
 
 interface DialogGui extends ScreenGui {
   Frame: Frame & {
@@ -124,6 +132,10 @@ interface Spinner extends Model {
   Spinner: BasePart & {
     Spinner: BasePart
   }
+}
+
+interface StarterGui extends Instance {
+  CollectGui: CollectGui
 }
 
 interface Teams extends Instance {
