@@ -1,8 +1,5 @@
 import { createProducer } from '@rbxts/reflex'
-import {
-  ARCADE_TABLE_TYPES,
-  TYCOON_TYPES,
-} from 'ReplicatedStorage/shared/constants/core'
+import { TYCOON_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
 
 export interface PlayerSettings {
@@ -50,7 +47,6 @@ export interface PlayerDetail {
     | undefined
   readonly scale: TycoonType
   readonly score: number
-  readonly tableType: ArcadeTableType
 }
 
 export interface PlayerState extends PlayerData, PlayerDetail {}
@@ -110,7 +106,6 @@ export const defaultPlayerDetail: PlayerDetail = {
   groundArcadeTableName: undefined,
   scale: TYCOON_TYPES.Elf,
   score: 0,
-  tableType: ARCADE_TABLE_TYPES.Pinball,
 } as const
 
 export const defaultPlayerState = {
@@ -167,12 +162,17 @@ export const playersSlice = createProducer(initialState, {
     }
   },
 
-  addLoops: (state, userID: number, amount: number) => {
+  addLoops: (
+    state,
+    userID: number,
+    tableType: ArcadeTableType,
+    amount: number,
+  ) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
     const completed = playerState.completed
-    const tableState = playerState.arcade[playerState.tableType]
+    const tableState = playerState.arcade[tableType]
     return {
       ...state,
       [playerKey]: {
@@ -183,7 +183,7 @@ export const playersSlice = createProducer(initialState, {
         },
         arcade: {
           ...playerState.arcade,
-          [playerState.tableType]: {
+          [tableType]: {
             ...tableState,
             completed: {
               ...tableState.completed,
@@ -195,12 +195,17 @@ export const playersSlice = createProducer(initialState, {
     }
   },
 
-  addScore: (state, userID: number, amount: number) => {
+  addScore: (
+    state,
+    userID: number,
+    tableType: ArcadeTableType,
+    amount: number,
+  ) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
     const newScore = (playerState?.score || 0) + (amount || 0)
-    const tableState = playerState.arcade[playerState.tableType]
+    const tableState = playerState.arcade[tableType]
     return {
       ...state,
       [playerKey]: {
@@ -208,7 +213,7 @@ export const playersSlice = createProducer(initialState, {
         score: newScore,
         arcade: {
           ...playerState.arcade,
-          [playerState.tableType]: {
+          [tableType]: {
             ...tableState,
             highScore: math.max(tableState?.highScore || 0, newScore),
           },

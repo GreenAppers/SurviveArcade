@@ -27,6 +27,10 @@ export class GameService implements OnStart {
     private readonly logger: Logger,
   ) {}
 
+  addScore(userId: number, tableType: ArcadeTableType, amount: number) {
+    return store.addScore(userId, tableType, amount)
+  }
+
   changeRound() {
     this.logger.Info('Changing round')
     store.startNewRound()
@@ -60,7 +64,7 @@ export class GameService implements OnStart {
         if (arcadeTableState.owner) {
           // Increase players' score for each second owning an arcade table.
           const userId = arcadeTableState.owner.UserId
-          const newState = store.addScore(userId, 10)
+          const newState = this.addScore(userId, arcadeTableState.tableType, 10)
           if (arcadeTableState.status !== ArcadeTableStatus.Active) continue
           const arcadeTable = game.Workspace.ArcadeTables[name]
 

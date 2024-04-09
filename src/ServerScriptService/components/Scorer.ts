@@ -2,25 +2,38 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { ScorerTag } from 'ReplicatedStorage/shared/constants/tags'
-import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
-import { store } from 'ServerScriptService/store'
-import { getArcadeTableOwner } from 'ServerScriptService/utils'
+import { GameService } from 'ServerScriptService/services/GameService'
+import {
+  getArcadeTableAndStateFromDescendent,
+  getArcadeTableOwner,
+} from 'ServerScriptService/utils'
 
 @Component({ tag: ScorerTag })
 export class ScorerComponent
   extends BaseComponent<{}, BasePart>
   implements OnStart
 {
+  constructor(private gameService: GameService) {
+    super()
+  }
+
   onStart() {
     const part = this.instance
-    const arcadeTable = getArcadeTableFromDescendent(this.instance)
-    if (!arcadeTable) throw error('Scorer has no ancestor ArcadeTable')
+    const [arcadeTable, arcadeTableState] =
+      getArcadeTableAndStateFromDescendent(this.instance)
+    if (!arcadeTable || !arcadeTableState)
+      throw error('Scorer has no ancestor ArcadeTable')
 
     part.Touched?.Connect((_hit) => {
       part.Material = Enum.Material.Neon
 
       const player = getArcadeTableOwner(arcadeTable)
-      if (player) store.addScore(player.UserId, 1000)
+      if (player)
+        this.gameService.addScore(
+          player.UserId,
+          arcadeTableState.tableType,
+          1000,
+        )
 
       const audio = arcadeTable.FindFirstChild('Audio') as
         | { ScorerSound?: Sound }

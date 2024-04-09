@@ -176,29 +176,30 @@ export class MapService implements OnStart {
     player: Player,
   ) {
     const state = store.getState().arcadeTables[name]
-    let arcadeTable = game.Workspace.ArcadeTables?.[name]
-    const arcadeTableCF = arcadeTable?.PrimaryPart?.CFrame
+    const unmaterializedArcadeTable = game.Workspace.ArcadeTables?.[name]
+    const arcadeTableCF = unmaterializedArcadeTable?.PrimaryPart?.CFrame
     if (
       state?.status === ArcadeTableStatus.Unmaterialized &&
       state.tableMap &&
-      arcadeTable &&
+      unmaterializedArcadeTable &&
       arcadeTableCF
     ) {
       const baseName = baseArcadeTableName(name)
       store.updateArcadeTableStatus(name, ArcadeTableStatus.Active)
-      arcadeTable?.Destroy()
-      arcadeTable = this.loadArcadeTableTemplate(state.tableMap, baseName)
+      const arcadeTable = this.loadArcadeTableTemplate(state.tableMap, baseName)
       arcadeTable.Name = name
       this.setupArcadeTable(arcadeTable, state, arcadeTableCF)
       const isNextName = isArcadeTableNextName(name)
       if (isNextName) game.Workspace.ArcadeTables?.[baseName]?.Destroy()
+      if (unmaterializedArcadeTable) unmaterializedArcadeTable.Destroy()
       Events.arcadeTableMaterialize.fire(player, name)
       if (arcadeTable.Backbox)
         animateBuildingIn(
           arcadeTable.Backbox,
           new TweenInfo(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
         )?.Wait()
-      if ((state?.sequence || 0) % 8 === 0) store.addLoops(player.UserId, 1)
+      if ((state?.sequence || 0) % 8 === 0)
+        store.addLoops(player.UserId, state.tableType, 1)
     }
   }
 

@@ -20,7 +20,13 @@
         "$path": "assets/ReplicatedStorage/Guis"
       },
       "Maps": {
-        "$path": "assets/ReplicatedStorage/Maps"
+        "$className": "Folder",
+        "ElfMap": {
+          "$path": "assets/ReplicatedStorage/Maps/ElfMap"
+        },
+        "HumanMap": {
+          "$path": "assets/ReplicatedStorage/Maps/HumanMap"
+        }
       },
       "Tycoons": {
         "$className": "Folder",

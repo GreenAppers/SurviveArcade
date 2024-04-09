@@ -39,6 +39,13 @@ export function getArcadeTableStateFromDescendent(instance: Instance) {
   return store.getState().arcadeTables[arcadeTable.Name]
 }
 
+export function getArcadeTableAndStateFromDescendent(instance: Instance) {
+  const arcadeTable = getArcadeTableFromDescendent(instance)
+  if (!arcadeTable?.Name) return [undefined, undefined]
+  const state = store.getState().arcadeTables[arcadeTable.Name]
+  return [arcadeTable, state]
+}
+
 export function getArcadeTableOwner(instance: Instance) {
   return getArcadeTableStateFromDescendent(instance)?.owner
 }

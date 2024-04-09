@@ -3,26 +3,39 @@ import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { BouncerTag } from 'ReplicatedStorage/shared/constants/tags'
-import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { Events } from 'ServerScriptService/network'
-import { store } from 'ServerScriptService/store'
-import { getArcadeTableOwner } from 'ServerScriptService/utils'
+import { GameService } from 'ServerScriptService/services/GameService'
+import {
+  getArcadeTableAndStateFromDescendent,
+  getArcadeTableOwner,
+} from 'ServerScriptService/utils'
 
 @Component({ tag: BouncerTag })
 export class BouncerComponent
   extends BaseComponent<{}, BasePart>
   implements OnStart
 {
+  constructor(private gameService: GameService) {
+    super()
+  }
+
   onStart() {
     const part = this.instance
-    const arcadeTable = getArcadeTableFromDescendent(this.instance)
-    if (!arcadeTable) throw error('Bouncer has no ancestor ArcadeTable')
+    const [arcadeTable, arcadeTableState] =
+      getArcadeTableAndStateFromDescendent(this.instance)
+    if (!arcadeTable || !arcadeTableState)
+      throw error('Bouncer has no ancestor ArcadeTable')
 
     part.Touched?.Connect((hit) => {
       part.Material = Enum.Material.Neon
 
       const player = getArcadeTableOwner(arcadeTable)
-      if (player) store.addScore(player.UserId, 1000)
+      if (player)
+        this.gameService.addScore(
+          player.UserId,
+          arcadeTableState.tableType,
+          1000,
+        )
 
       const audio = arcadeTable.FindFirstChild('Audio') as
         | { BouncerSound?: Sound }

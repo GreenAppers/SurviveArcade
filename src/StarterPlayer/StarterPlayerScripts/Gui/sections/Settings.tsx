@@ -5,18 +5,12 @@ import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
 import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
 import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
-import {
-  useDefined,
-  useRem,
-} from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
+import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
 export function Settings() {
   const rem = useRem()
   const playerState = useSelector(selectLocalPlayerState())
-  const score = useDefined<string | number>(playerState?.score, 'N/A')
-  const currentTable = playerState?.arcade?.[playerState?.tableType]
-  const highScore = useDefined<string | number>(currentTable?.highScore, 'N/A')
 
   return (
     <Group>
