@@ -2,11 +2,13 @@ import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Workspace } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
+import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTableState,
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { abbreviator } from 'ReplicatedStorage/shared/utils/math'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { setNetworkOwner } from 'ServerScriptService/utils'
@@ -14,6 +16,7 @@ import { setNetworkOwner } from 'ServerScriptService/utils'
 @Service()
 export class ArcadeTableService implements OnStart {
   ballNumber = 1
+  scoreboardCharacters = 14
 
   startArcadeTablesClaimedSubscription() {
     store.subscribe(
@@ -23,6 +26,8 @@ export class ArcadeTableService implements OnStart {
           arcadeTablesState,
         )) {
           const previousArcadeTableState = previousArcadeTablesState[tableName]
+          if (arcadeTableState.score !== previousArcadeTableState?.score)
+            this.onTableScoreChanged(tableName, arcadeTableState)
           if (
             arcadeTableState.status === ArcadeTableStatus.Won ||
             arcadeTableState.owner === previousArcadeTableState?.owner
@@ -107,5 +112,50 @@ export class ArcadeTableService implements OnStart {
     setNetworkOwner(flipperLeft, player)
     setNetworkOwner(flipperRight, player)
     setNetworkOwner(spinnerLeft, player)
+  }
+
+  onTableScoreChanged(tableName: string, arcadeTableState: ArcadeTableState) {
+    // Find the scoreboard on the arcade table.
+    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
+      tableName,
+    ) as ArcadeTable
+    if (!arcadeTable?.Backbox) return
+    const surfaceGuiFrame = arcadeTable.Backbox.Scoreboard.SurfaceGui.Frame
+    if (!surfaceGuiFrame) return
+
+    // Determine the name and score to display on the scoreboard.
+    const score = abbreviator.numberToString(arcadeTableState.score)
+    const nameCharacters = this.scoreboardCharacters - score.size() - 1
+    let name = arcadeTableState.owner?.Name || ''
+    if (name.size() > nameCharacters) name = name.sub(0, nameCharacters)
+    else name = name += ' '.rep(nameCharacters - name.size())
+    const text = `${name} ${score}`.upper()
+    print('y0 text', text, text.size())
+    const scale = 10
+
+    const maxWidth = digitalFont.maxWidth * scale
+    // Update the scoreboard with the new name and score.
+    for (let i = 0; i < this.scoreboardCharacters; i++) {
+      const character = text.sub(i + 1, i + 1)
+      const glyph = digitalFont.glyphs[character] || digitalFont.glyphs[' ']
+      const frame = surfaceGuiFrame.FindFirstChild(
+        `Glyph${i < 10 ? '0' : ''}${i}`,
+      ) as Sprite | undefined
+      if (!glyph || !frame) continue
+      //    frame.Size = new UDim2(0, maxWidth, 0, glyph.height * scale)
+      const label = frame.ImageLabel
+      label.ImageRectOffset = new Vector2(glyph.x, glyph.y)
+      label.ImageRectSize = new Vector2(glyph.width, glyph.height)
+      //      label.Size = new UDim2(0, 1, 0, 1)
+      /* label.Position = new UDim2(
+        0,
+        maxWidth - prevWidth + glyph.xoffset * scale,
+        0,
+        glyph.yoffset * scale,
+      )
+      prevWidth = glyph.width * scale
+      label.Size = new UDim2(0, prevWidth, 0, glyph.height * scale)*/
+      print(`${label} -> ${character}`)
+    }
   }
 }

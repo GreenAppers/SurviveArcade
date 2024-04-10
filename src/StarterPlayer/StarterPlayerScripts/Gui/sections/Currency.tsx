@@ -6,13 +6,13 @@ import {
 } from 'ReplicatedStorage/shared/constants/core'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
+import { abbreviator } from 'ReplicatedStorage/shared/utils/math'
 import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
 import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
 import {
   useDefined,
   useRem,
 } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
-import { abbreviator } from 'StarterPlayer/StarterPlayerScripts/utils'
 
 export function Currency() {
   const rem = useRem()

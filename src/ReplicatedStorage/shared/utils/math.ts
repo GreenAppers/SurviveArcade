@@ -1,3 +1,8 @@
+import Abbreviator from '@rbxts/abbreviate'
+
+export const abbreviator = new Abbreviator()
+abbreviator.setSetting('stripTrailingZeroes', true)
+
 export function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t
 }

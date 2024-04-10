@@ -1,6 +1,7 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { CollectionService } from '@rbxts/services'
+import { DIFFICULTY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { BallTag, DrainTag } from 'ReplicatedStorage/shared/constants/tags'
 import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
@@ -34,8 +35,13 @@ export class DrainComponent
     if (player) {
       const character: (Model & { Humanoid?: Humanoid }) | undefined =
         player.Character
-      const state = store.getState().arcadeTables[arcadeTable.Name]
-      if (state?.status === ArcadeTableStatus.Active && character?.Humanoid) {
+      const state = store.getState()
+      const tableState = state.arcadeTables[arcadeTable.Name]
+      if (
+        tableState?.status === ArcadeTableStatus.Active &&
+        character?.Humanoid &&
+        state.game.difficulty !== DIFFICULTY_TYPES.peaceful
+      ) {
         character.Humanoid.Health = 0
       }
     }

@@ -1,9 +1,5 @@
-import Abbreviator from '@rbxts/abbreviate'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
-
-export const abbreviator = new Abbreviator()
-abbreviator.setSetting('stripTrailingZeroes', true)
 
 export function forEveryPlayerCharacterAdded(
   player: Player,

@@ -1,9 +1,52 @@
-interface ArcadeTable extends Model {
-  Backbox?: Model & {
-    Frame: Model & {
-      Explosion?: ParticleEmitter
+interface SpriteGeometry {
+  x: number
+  y: number
+  width: number
+  height: number
+  xoffset: number
+  yoffset: number
+  xadvance: number
+  page: number
+  chnl: number
+}
+
+interface SpriteSheet {
+  maxWidth: number
+  glyphs: Record<string, SpriteGeometry>
+}
+
+interface Sprite extends Frame {
+  ImageLabel: ImageLabel
+}
+
+interface ArcadeTableBackbox extends Model {
+  Frame: {
+    Explosion?: ParticleEmitter
+  }
+  Scoreboard: BasePart & {
+    SurfaceGui: SurfaceGui & {
+      Frame: Frame & {
+        Glyph00: Sprite
+        Glyph01: Sprite
+        Glyph02: Sprite
+        Glyph03: Sprite
+        Glyph04: Sprite
+        Glyph05: Sprite
+        Glyph06: Sprite
+        Glyph07: Sprite
+        Glyph08: Sprite
+        Glyph09: Sprite
+        Glyph10: Sprite
+        Glyph11: Sprite
+        Glyph12: Sprite
+        Glyph13: Sprite
+      }
     }
   }
+}
+
+interface ArcadeTable extends Model {
+  Backbox?: ArcadeTableBackbox
   Balls: Folder
   Barrier?: BasePart
   Box: Folder & {

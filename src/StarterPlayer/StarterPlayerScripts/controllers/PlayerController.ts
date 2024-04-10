@@ -47,7 +47,7 @@ export class PlayerController implements OnStart {
     this.startMyRespawnHandler(player)
     this.startMyGuideHandler(player)
     this.prepareGravityController(player)
-    this.startCollectionAnimation(player)
+    this.startCollectionAnimator(player)
 
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     while (task.wait(1)) {
@@ -155,7 +155,7 @@ export class PlayerController implements OnStart {
     this.gravityController = gravityController
   }
 
-  startCollectionAnimation(player: Player) {
+  startCollectionAnimator(player: Player) {
     store.subscribe(
       selectPlayerState(player.UserId),
       (playerData, previousPlayerData) => {

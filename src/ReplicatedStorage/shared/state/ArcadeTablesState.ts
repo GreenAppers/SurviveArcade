@@ -116,7 +116,7 @@ export const findArcadeTableNameOwnedBy = (
     ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
   )?.[0] as ArcadeTableName | undefined
 
-export const initialScoreToWin = 10000
+export const initialScoreToWin = 100000
 
 export const defaultArcadeTableArcadTable: ArcadeTableArcadeTable = {
   highScore: 0,
