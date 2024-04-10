@@ -124,7 +124,7 @@ export class PlayerService implements OnInit {
 
   private createRespawnHandler(player: Player) {
     player.CharacterAdded.Connect(() => {
-      store.resetScore(player.UserId)
+      store.resetPlayerScore(player.UserId)
       if (player.Team) player.Team = Teams['Unclaimed Team']
     })
   }

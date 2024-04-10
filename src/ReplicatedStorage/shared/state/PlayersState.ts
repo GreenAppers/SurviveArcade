@@ -19,7 +19,7 @@ export interface PlayerCompleted {
   readonly tables: number
 }
 
-export interface PlayerArcade {
+export interface PlayerArcadeTable {
   readonly level: number
   readonly highScore: number
   readonly completed: PlayerCompleted
@@ -30,8 +30,8 @@ export interface PlayerData {
   readonly dollars: number
   readonly levity: number
   readonly settings: PlayerSettings
-  readonly arcade: {
-    readonly [tableType in ArcadeTableType]: PlayerArcade
+  readonly arcadeTable: {
+    readonly [tableType in ArcadeTableType]: PlayerArcadeTable
   }
   readonly tycoon: {
     readonly [tycoonType in TycoonType]: PlayerTycoon
@@ -68,7 +68,7 @@ export const defaultPlayerCompleted: PlayerCompleted = {
   tables: 0,
 } as const
 
-export const defaultPlayerArcade: PlayerArcade = {
+export const defaultPlayerArcadeTable: PlayerArcadeTable = {
   level: 0,
   highScore: 0,
   completed: defaultPlayerCompleted,
@@ -79,10 +79,10 @@ export const defaultPlayerData: PlayerData = {
   dollars: 0,
   levity: 0,
   settings: defaultPlayerSettings,
-  arcade: {
-    Pinball: defaultPlayerArcade,
-    AirHockey: defaultPlayerArcade,
-    Foosball: defaultPlayerArcade,
+  arcadeTable: {
+    Pinball: defaultPlayerArcadeTable,
+    AirHockey: defaultPlayerArcadeTable,
+    Foosball: defaultPlayerArcadeTable,
   },
   tycoon: {
     Elf: {
@@ -121,7 +121,7 @@ export const getPlayerData = (state: PlayerState): PlayerData => ({
   dollars: state.dollars,
   levity: state.levity,
   settings: state.settings,
-  arcade: state.arcade,
+  arcadeTable: state.arcadeTable,
   tycoon: state.tycoon,
   completed: state.completed,
 })
@@ -162,7 +162,7 @@ export const playersSlice = createProducer(initialState, {
     }
   },
 
-  addLoops: (
+  addPlayerLoops: (
     state,
     userID: number,
     tableType: ArcadeTableType,
@@ -172,7 +172,7 @@ export const playersSlice = createProducer(initialState, {
     const playerState = state[playerKey]
     if (!playerState) return state
     const completed = playerState.completed
-    const tableState = playerState.arcade[tableType]
+    const tableState = playerState.arcadeTable[tableType]
     return {
       ...state,
       [playerKey]: {
@@ -182,7 +182,7 @@ export const playersSlice = createProducer(initialState, {
           loops: (completed?.loops || 0) + (amount || 0),
         },
         arcade: {
-          ...playerState.arcade,
+          ...playerState.arcadeTable,
           [tableType]: {
             ...tableState,
             completed: {
@@ -195,7 +195,7 @@ export const playersSlice = createProducer(initialState, {
     }
   },
 
-  addScore: (
+  addPlayerScore: (
     state,
     userID: number,
     tableType: ArcadeTableType,
@@ -205,14 +205,14 @@ export const playersSlice = createProducer(initialState, {
     const playerState = state[playerKey]
     if (!playerState) return state
     const newScore = (playerState?.score || 0) + (amount || 0)
-    const tableState = playerState.arcade[tableType]
+    const tableState = playerState.arcadeTable[tableType]
     return {
       ...state,
       [playerKey]: {
         ...playerState,
         score: newScore,
         arcade: {
-          ...playerState.arcade,
+          ...playerState.arcadeTable,
           [tableType]: {
             ...tableState,
             highScore: math.max(tableState?.highScore || 0, newScore),
@@ -222,7 +222,7 @@ export const playersSlice = createProducer(initialState, {
     }
   },
 
-  resetScore: (state, userID: number) => {
+  resetPlayerScore: (state, userID: number) => {
     const playerKey = KEY_TEMPLATE.format(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
@@ -235,7 +235,7 @@ export const playersSlice = createProducer(initialState, {
     }
   },
 
-  resetScores: (state) =>
+  resetPlayerScores: (state) =>
     mapProperties(state, (playerState) => ({
       ...playerState,
       score: 0,

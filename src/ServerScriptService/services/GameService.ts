@@ -27,15 +27,21 @@ export class GameService implements OnStart {
     private readonly logger: Logger,
   ) {}
 
-  addScore(userId: number, tableType: ArcadeTableType, amount: number) {
-    return store.addScore(userId, tableType, amount)
+  addScore(
+    userId: number,
+    tableName: ArcadeTableName,
+    tableType: ArcadeTableType,
+    amount: number,
+  ) {
+    store.addArcadeTableScore(tableName, amount)
+    return store.addPlayerScore(userId, tableType, amount)
   }
 
   changeRound() {
     this.logger.Info('Changing round')
     store.startNewRound()
     store.resetArcadeTables()
-    store.resetScores()
+    store.resetPlayerScores()
     this.mapService.loadMap('ElfMap')
   }
 
@@ -64,40 +70,21 @@ export class GameService implements OnStart {
         if (arcadeTableState.owner) {
           // Increase players' score for each second owning an arcade table.
           const userId = arcadeTableState.owner.UserId
-          const newState = this.addScore(userId, arcadeTableState.tableType, 10)
+          const newState = this.addScore(
+            userId,
+            arcadeTableState.tableName,
+            arcadeTableState.tableType,
+            10,
+          )
+
           if (arcadeTableState.status !== ArcadeTableStatus.Active) continue
           const arcadeTable = game.Workspace.ArcadeTables[name]
 
           // Trigger winning sequence when threshhold score exceeded.
           const userScoreSelector = selectPlayerScore(userId)
           const score = userScoreSelector(newState)
-          if (score > arcadeTableState.scoreToWin) {
-            store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
-            if (arcadeTable) {
-              if (arcadeTable.Backbox) {
-                const audio = arcadeTable.FindFirstChild('Audio') as
-                  | { WinSound?: Sound }
-                  | undefined
-                if (audio?.WinSound)
-                  playSoundId(arcadeTable.Backbox, audio.WinSound.SoundId)
-                arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)
-                for (const descendent of arcadeTable.Backbox.GetDescendants()) {
-                  if (descendent.IsA('BasePart')) {
-                    descendent.Transparency = 1
-                  } else if (descendent.IsA('Decal')) {
-                    descendent.Transparency = 1
-                  }
-                }
-              }
-              arcadeTable.Barrier?.Destroy()
-              arcadeTable.Box.UpperWall?.Destroy()
-              const balls = getDescendentsWithTag(arcadeTable.Balls, BallTag)
-              for (const ball of balls) ball.Destroy()
-              task.wait(2.2)
-              arcadeTable.Backbox?.Destroy()
-            }
-            this.mapService.chainNextTable(name)
-          }
+          if (score > arcadeTableState.scoreToWin)
+            this.handleArcadeTableWon(name, arcadeTable)
         }
       }
 
@@ -154,6 +141,37 @@ export class GameService implements OnStart {
       }
     }
     store.updateGround(players)
+  }
+
+  handleArcadeTableWon(
+    name: ArcadeTableName | ArcadeTableNextName,
+    arcadeTable: ArcadeTable | undefined,
+  ) {
+    store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
+    if (arcadeTable) {
+      if (arcadeTable.Backbox) {
+        const audio = arcadeTable.FindFirstChild('Audio') as
+          | { WinSound?: Sound }
+          | undefined
+        if (audio?.WinSound)
+          playSoundId(arcadeTable.Backbox, audio.WinSound.SoundId)
+        arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)
+        for (const descendent of arcadeTable.Backbox.GetDescendants()) {
+          if (descendent.IsA('BasePart')) {
+            descendent.Transparency = 1
+          } else if (descendent.IsA('Decal')) {
+            descendent.Transparency = 1
+          }
+        }
+      }
+      arcadeTable.Barrier?.Destroy()
+      arcadeTable.Box.UpperWall?.Destroy()
+      const balls = getDescendentsWithTag(arcadeTable.Balls, BallTag)
+      for (const ball of balls) ball.Destroy()
+      task.wait(2.2)
+      arcadeTable.Backbox?.Destroy()
+    }
+    this.mapService.chainNextTable(name)
   }
 }
 

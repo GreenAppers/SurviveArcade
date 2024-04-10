@@ -12,17 +12,26 @@ export enum ArcadeTableStatus {
   Won,
 }
 
+export interface ArcadeTableArcadeTable {
+  highScore: number
+}
+
 export interface ArcadeTableState {
   readonly owner?: Player
-  readonly teamName?: TeamName
+  readonly tableName: ArcadeTableName
   readonly tableMap: ArcadeTableMap
   readonly tableType: ArcadeTableType
+  readonly teamName?: TeamName
   readonly color: BrickColor
   readonly baseColor: BrickColor
   readonly baseMaterial: Enum.Material
   readonly statorColor: BrickColor
+  readonly score: number
   readonly scoreStart: number
   readonly scoreToWin: number
+  readonly arcadeTable: {
+    readonly [tableType in ArcadeTableType]: ArcadeTableArcadeTable
+  }
   readonly status: ArcadeTableStatus
   readonly sequence: number
 }
@@ -109,62 +118,68 @@ export const findArcadeTableNameOwnedBy = (
 
 export const initialScoreToWin = 10000
 
+export const defaultArcadeTableArcadTable: ArcadeTableArcadeTable = {
+  highScore: 0,
+}
+
+export const defaultArcadeTableState = {
+  owner: undefined,
+  score: 0,
+  scoreStart: 0,
+  scoreToWin: initialScoreToWin,
+  arcadeTable: {
+    Pinball: defaultArcadeTableArcadTable,
+    Foosball: defaultArcadeTableArcadTable,
+    AirHockey: defaultArcadeTableArcadTable,
+  },
+  status: ArcadeTableStatus.Active,
+  sequence: 0,
+}
+
 const initialState: ArcadeTablesState = {
   Table1: {
-    owner: undefined,
-    teamName: 'Blue Team',
+    ...defaultArcadeTableState,
+    tableName: 'Table1',
     tableMap: 'Pinball1',
     tableType: ARCADE_TABLE_TYPES.Pinball,
+    teamName: 'Blue Team',
     color: new BrickColor('Cyan'),
     statorColor: new BrickColor('Electric blue'),
     baseColor: new BrickColor('Pastel Blue'),
     baseMaterial: Enum.Material.Glass,
-    scoreStart: 0,
-    scoreToWin: initialScoreToWin,
-    status: ArcadeTableStatus.Active,
-    sequence: 0,
   },
   Table2: {
-    owner: undefined,
-    teamName: 'Green Team',
+    ...defaultArcadeTableState,
+    tableName: 'Table2',
     tableMap: 'Pinball1',
     tableType: ARCADE_TABLE_TYPES.Pinball,
+    teamName: 'Green Team',
     color: new BrickColor('Lime green'),
     statorColor: new BrickColor('Forest green'),
     baseColor: new BrickColor('Sand green'),
     baseMaterial: Enum.Material.Glass,
-    scoreStart: 0,
-    scoreToWin: initialScoreToWin,
-    status: ArcadeTableStatus.Active,
-    sequence: 0,
   },
   Table3: {
-    owner: undefined,
-    teamName: 'Yellow Team',
+    ...defaultArcadeTableState,
+    tableName: 'Table3',
     tableMap: 'Pinball1',
     tableType: ARCADE_TABLE_TYPES.Pinball,
+    teamName: 'Yellow Team',
     color: new BrickColor('Deep orange'),
     statorColor: new BrickColor('Neon orange'),
     baseColor: new BrickColor('Cork'),
     baseMaterial: Enum.Material.Glass,
-    scoreStart: 0,
-    scoreToWin: initialScoreToWin,
-    status: ArcadeTableStatus.Active,
-    sequence: 0,
   },
   Table4: {
-    owner: undefined,
-    teamName: 'Red Team',
+    ...defaultArcadeTableState,
+    tableName: 'Table4',
     tableMap: 'Pinball1',
     tableType: ARCADE_TABLE_TYPES.Pinball,
+    teamName: 'Red Team',
     color: new BrickColor('Really red'),
     statorColor: new BrickColor('Crimson'),
     baseColor: new BrickColor('Terra Cotta'),
     baseMaterial: Enum.Material.Glass,
-    scoreStart: 0,
-    scoreToWin: initialScoreToWin,
-    status: ArcadeTableStatus.Active,
-    sequence: 0,
   },
   Table1Next: undefined,
   Table2Next: undefined,
@@ -183,7 +198,7 @@ export const arcadeTablesSlice = createProducer(initialState, {
       ? state
       : {
           ...state,
-          [name]: { ...prevTable, owner },
+          [name]: { ...prevTable, owner, score: 0 },
         }
   },
 
@@ -248,4 +263,25 @@ export const arcadeTablesSlice = createProducer(initialState, {
   },
 
   resetArcadeTables: () => ({ ...initialState }),
+
+  addArcadeTableScore: (state, name: ArcadeTableName, amount: number) => {
+    const lastState = state[name]
+    if (!lastState) return state
+    const tableState = lastState.arcadeTable[lastState.tableType]
+    const newScore = (lastState?.score || 0) + (amount || 0)
+    return {
+      ...state,
+      [name]: {
+        ...lastState,
+        score: newScore,
+        arcadeTable: {
+          ...lastState.arcadeTable,
+          [lastState.tableType]: {
+            ...tableState,
+            highScore: math.max(tableState?.highScore || 0, newScore),
+          },
+        },
+      },
+    }
+  },
 })

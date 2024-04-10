@@ -33,6 +33,7 @@ export class BouncerComponent
       if (player)
         this.gameService.addScore(
           player.UserId,
+          arcadeTableState.tableName,
           arcadeTableState.tableType,
           1000,
         )

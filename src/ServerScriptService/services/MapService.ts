@@ -199,7 +199,7 @@ export class MapService implements OnStart {
           new TweenInfo(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
         )?.Wait()
       if ((state?.sequence || 0) % 8 === 0)
-        store.addLoops(player.UserId, state.tableType, 1)
+        store.addPlayerLoops(player.UserId, state.tableType, 1)
     }
   }
 
