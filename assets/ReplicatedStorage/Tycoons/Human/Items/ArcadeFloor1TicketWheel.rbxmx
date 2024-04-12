@@ -292,31 +292,6 @@
       </Item>
       <Item class="Sound" referent="5">
         <Properties>
-          <string name="Name">SpinMusic</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <bool name="DefinesCapabilities">false</bool>
-          <NumberRange name="LoopRegion">0 60000 </NumberRange>
-          <bool name="Looped">true</bool>
-          <bool name="PlayOnRemove">false</bool>
-          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-          <bool name="PlaybackRegionsEnabled">false</bool>
-          <float name="PlaybackSpeed">1</float>
-          <bool name="Playing">false</bool>
-          <float name="xmlRead_MaxDistance_3">88760.84</float>
-          <float name="EmitterSize">88.76084</float>
-          <token name="RollOffMode">0</token>
-          <Ref name="SoundGroup">null</Ref>
-          <Content name="SoundId">
-            <url>rbxassetid://836055492</url>
-          </Content>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <double name="TimePosition">0</double>
-          <float name="Volume">0.5</float>
-        </Properties>
-      </Item>
-      <Item class="Sound" referent="6">
-        <Properties>
           <string name="Name">SpinStop</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
           <bool name="DefinesCapabilities">false</bool>
@@ -340,7 +315,7 @@
           <float name="Volume">0.5</float>
         </Properties>
       </Item>
-      <Item class="Sound" referent="7">
+      <Item class="Sound" referent="6">
         <Properties>
           <string name="Name">JackpotBell</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -365,7 +340,7 @@
           <float name="Volume">0.5</float>
         </Properties>
       </Item>
-      <Item class="Decal" referent="8">
+      <Item class="Decal" referent="7">
         <Properties>
           <string name="Name">Decal</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -383,6 +358,31 @@
           </Content>
           <float name="Transparency">0</float>
           <int name="ZIndex">1</int>
+        </Properties>
+      </Item>
+      <Item class="Sound" referent="8">
+        <Properties>
+          <string name="Name">SpinMusic</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="DefinesCapabilities">false</bool>
+          <NumberRange name="LoopRegion">0 60000 </NumberRange>
+          <bool name="Looped">false</bool>
+          <bool name="PlayOnRemove">false</bool>
+          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
+          <bool name="PlaybackRegionsEnabled">false</bool>
+          <float name="PlaybackSpeed">1</float>
+          <bool name="Playing">false</bool>
+          <float name="xmlRead_MaxDistance_3">10000</float>
+          <float name="EmitterSize">10</float>
+          <token name="RollOffMode">0</token>
+          <Ref name="SoundGroup">null</Ref>
+          <Content name="SoundId">
+            <url>rbxassetid://7013564109</url>
+          </Content>
+          <int64 name="SourceAssetId">7013564109</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <double name="TimePosition">0</double>
+          <float name="Volume">0.5</float>
         </Properties>
       </Item>
     </Item>

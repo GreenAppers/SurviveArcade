@@ -321,72 +321,8 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Sound" referent="6">
-        <Properties>
-          <string name="Name">Siren</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <bool name="DefinesCapabilities">false</bool>
-          <NumberRange name="LoopRegion">0 60000 </NumberRange>
-          <bool name="Looped">false</bool>
-          <bool name="PlayOnRemove">false</bool>
-          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-          <bool name="PlaybackRegionsEnabled">false</bool>
-          <float name="PlaybackSpeed">5</float>
-          <bool name="Playing">false</bool>
-          <float name="xmlRead_MaxDistance_3">300</float>
-          <float name="EmitterSize">10</float>
-          <token name="RollOffMode">0</token>
-          <Ref name="SoundGroup">null</Ref>
-          <Content name="SoundId">
-            <url>rbxassetid://281007850</url>
-          </Content>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <double name="TimePosition">0</double>
-          <float name="Volume">10</float>
-        </Properties>
-        <Item class="EqualizerSoundEffect" referent="7">
-          <Properties>
-            <string name="Name">EqualizerSoundEffect</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
-            <bool name="DefinesCapabilities">false</bool>
-            <bool name="Enabled">true</bool>
-            <float name="HighGain">10</float>
-            <float name="LowGain">-80</float>
-            <float name="MidGain">0</float>
-            <int name="Priority">0</int>
-            <int64 name="SourceAssetId">-1</int64>
-            <BinaryString name="Tags"></BinaryString>
-          </Properties>
-        </Item>
-      </Item>
-      <Item class="Sound" referent="8">
-        <Properties>
-          <string name="Name">Sound</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <bool name="DefinesCapabilities">false</bool>
-          <NumberRange name="LoopRegion">0 60000 </NumberRange>
-          <bool name="Looped">true</bool>
-          <bool name="PlayOnRemove">false</bool>
-          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-          <bool name="PlaybackRegionsEnabled">false</bool>
-          <float name="PlaybackSpeed">1</float>
-          <bool name="Playing">false</bool>
-          <float name="xmlRead_MaxDistance_3">300</float>
-          <float name="EmitterSize">10</float>
-          <token name="RollOffMode">0</token>
-          <Ref name="SoundGroup">null</Ref>
-          <Content name="SoundId">
-            <url>rbxassetid://227682498</url>
-          </Content>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <double name="TimePosition">0</double>
-          <float name="Volume">5</float>
-        </Properties>
-      </Item>
     </Item>
-    <Item class="Model" referent="9">
+    <Item class="Model" referent="6">
       <Properties>
         <string name="Name">Misc</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
@@ -553,7 +489,7 @@
           </Vector3>
         </Properties>
       </Item>
-      <Item class="UnionOperation" referent="10">
+      <Item class="UnionOperation" referent="7">
         <Properties>
           <string name="Name">Housing</string>
           <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -670,7 +606,7 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="Attachment" referent="11">
+        <Item class="Attachment" referent="8">
           <Properties>
             <string name="Name">Attachment1</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -695,7 +631,7 @@
           </Properties>
         </Item>
       </Item>
-      <Item class="Script" referent="12">
+      <Item class="Script" referent="9">
         <Properties>
           <string name="Name">qPerfectionWeld</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -951,7 +887,7 @@ end
           <BinaryString name="Tags"></BinaryString>
         </Properties>
       </Item>
-      <Item class="UnionOperation" referent="13">
+      <Item class="UnionOperation" referent="10">
         <Properties>
           <string name="Name">Shroud</string>
           <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -1069,7 +1005,7 @@ end
           </Vector3>
         </Properties>
       </Item>
-      <Item class="UnionOperation" referent="14">
+      <Item class="UnionOperation" referent="11">
         <Properties>
           <string name="Name">Camera Shelf</string>
           <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -1186,7 +1122,7 @@ end
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="Attachment" referent="15">
+        <Item class="Attachment" referent="12">
           <Properties>
             <string name="Name">Attachment1</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1211,7 +1147,7 @@ end
           </Properties>
         </Item>
       </Item>
-      <Item class="UnionOperation" referent="16">
+      <Item class="UnionOperation" referent="13">
         <Properties>
           <string name="Name">Illuminator</string>
           <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -1328,7 +1264,7 @@ end
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="SurfaceLight" referent="17">
+        <Item class="SurfaceLight" referent="14">
           <Properties>
             <string name="Name">SurfaceLight</string>
             <float name="Angle">30</float>
@@ -1347,7 +1283,7 @@ end
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
-          <Item class="Script" referent="18">
+          <Item class="Script" referent="15">
             <Properties>
               <string name="Name">Script</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1372,7 +1308,7 @@ end</string>
           </Item>
         </Item>
       </Item>
-      <Item class="Model" referent="19">
+      <Item class="Model" referent="16">
         <Properties>
           <string name="Name">Lens</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1421,7 +1357,7 @@ end</string>
             </CFrame>
           </OptionalCoordinateFrame>
         </Properties>
-        <Item class="UnionOperation" referent="20">
+        <Item class="UnionOperation" referent="17">
           <Properties>
             <string name="Name">Body</string>
             <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -1544,7 +1480,7 @@ end</string>
             </Vector3>
           </Properties>
         </Item>
-        <Item class="Part" referent="21">
+        <Item class="Part" referent="18">
           <Properties>
             <string name="Name">Glass</string>
             <bool name="Anchored">false</bool>
@@ -1646,7 +1582,7 @@ end</string>
             </Vector3>
           </Properties>
         </Item>
-        <Item class="Part" referent="22">
+        <Item class="Part" referent="19">
           <Properties>
             <string name="Name">Glass</string>
             <bool name="Anchored">false</bool>
@@ -1748,7 +1684,7 @@ end</string>
             </Vector3>
           </Properties>
         </Item>
-        <Item class="Part" referent="23">
+        <Item class="Part" referent="20">
           <Properties>
             <string name="Name">Glass</string>
             <bool name="Anchored">false</bool>
@@ -1850,7 +1786,7 @@ end</string>
             </Vector3>
           </Properties>
         </Item>
-        <Item class="Part" referent="24">
+        <Item class="Part" referent="21">
           <Properties>
             <string name="Name">Glass</string>
             <bool name="Anchored">false</bool>
@@ -1952,7 +1888,7 @@ end</string>
             </Vector3>
           </Properties>
         </Item>
-        <Item class="Part" referent="25">
+        <Item class="Part" referent="22">
           <Properties>
             <string name="Name">Glass</string>
             <bool name="Anchored">false</bool>
@@ -2054,7 +1990,7 @@ end</string>
             </Vector3>
           </Properties>
         </Item>
-        <Item class="Part" referent="26">
+        <Item class="Part" referent="23">
           <Properties>
             <string name="Name">Glass</string>
             <bool name="Anchored">false</bool>
@@ -2158,7 +2094,7 @@ end</string>
         </Item>
       </Item>
     </Item>
-    <Item class="Model" referent="27">
+    <Item class="Model" referent="24">
       <Properties>
         <string name="Name">Body</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2207,7 +2143,7 @@ end</string>
           </CFrame>
         </OptionalCoordinateFrame>
       </Properties>
-      <Item class="UnionOperation" referent="28">
+      <Item class="UnionOperation" referent="25">
         <Properties>
           <string name="Name">Pan</string>
           <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -2324,7 +2260,7 @@ end</string>
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="Attachment" referent="29">
+        <Item class="Attachment" referent="26">
           <Properties>
             <string name="Name">Attachment0</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2348,15 +2284,15 @@ end</string>
             <bool name="Visible">false</bool>
           </Properties>
         </Item>
-        <Item class="HingeConstraint" referent="30">
+        <Item class="HingeConstraint" referent="27">
           <Properties>
             <string name="Name">HingeConstraint</string>
             <token name="ActuatorType">1</token>
             <float name="AngularResponsiveness">45</float>
             <float name="AngularSpeed">0</float>
             <float name="AngularVelocity">0</float>
-            <Ref name="Attachment0">29</Ref>
-            <Ref name="Attachment1">31</Ref>
+            <Ref name="Attachment0">26</Ref>
+            <Ref name="Attachment1">28</Ref>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <int name="Color">1009</int>
             <bool name="DefinesCapabilities">false</bool>
@@ -2377,7 +2313,7 @@ end</string>
           </Properties>
         </Item>
       </Item>
-      <Item class="UnionOperation" referent="32">
+      <Item class="UnionOperation" referent="29">
         <Properties>
           <string name="Name">Tilt</string>
           <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -2494,7 +2430,7 @@ end</string>
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="Attachment" referent="33">
+        <Item class="Attachment" referent="30">
           <Properties>
             <string name="Name">Attachment0</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2518,15 +2454,15 @@ end</string>
             <bool name="Visible">false</bool>
           </Properties>
         </Item>
-        <Item class="HingeConstraint" referent="34">
+        <Item class="HingeConstraint" referent="31">
           <Properties>
             <string name="Name">HingeConstraint</string>
             <token name="ActuatorType">1</token>
             <float name="AngularResponsiveness">45</float>
             <float name="AngularSpeed">0</float>
             <float name="AngularVelocity">0</float>
-            <Ref name="Attachment0">33</Ref>
-            <Ref name="Attachment1">15</Ref>
+            <Ref name="Attachment0">30</Ref>
+            <Ref name="Attachment1">12</Ref>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <int name="Color">1009</int>
             <bool name="DefinesCapabilities">false</bool>
@@ -2546,7 +2482,7 @@ end</string>
             <bool name="Visible">false</bool>
           </Properties>
         </Item>
-        <Item class="Attachment" referent="31">
+        <Item class="Attachment" referent="28">
           <Properties>
             <string name="Name">Attachment1</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2571,7 +2507,7 @@ end</string>
           </Properties>
         </Item>
       </Item>
-      <Item class="UnionOperation" referent="35">
+      <Item class="UnionOperation" referent="32">
         <Properties>
           <string name="Name">Wiper</string>
           <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -2688,7 +2624,7 @@ end</string>
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="Attachment" referent="36">
+        <Item class="Attachment" referent="33">
           <Properties>
             <string name="Name">Attachment0</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2712,15 +2648,15 @@ end</string>
             <bool name="Visible">false</bool>
           </Properties>
         </Item>
-        <Item class="HingeConstraint" referent="37">
+        <Item class="HingeConstraint" referent="34">
           <Properties>
             <string name="Name">HingeConstraint</string>
             <token name="ActuatorType">2</token>
             <float name="AngularResponsiveness">45</float>
             <float name="AngularSpeed">3</float>
             <float name="AngularVelocity">0</float>
-            <Ref name="Attachment0">36</Ref>
-            <Ref name="Attachment1">11</Ref>
+            <Ref name="Attachment0">33</Ref>
+            <Ref name="Attachment1">8</Ref>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <int name="Color">1009</int>
             <bool name="DefinesCapabilities">false</bool>
@@ -2739,7 +2675,7 @@ end</string>
             <float name="UpperAngle">45</float>
             <bool name="Visible">false</bool>
           </Properties>
-          <Item class="Script" referent="38">
+          <Item class="Script" referent="35">
             <Properties>
               <string name="Name">Script</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2768,7 +2704,7 @@ end</string>
         </Item>
       </Item>
     </Item>
-    <Item class="Folder" referent="39">
+    <Item class="Folder" referent="36">
       <Properties>
         <string name="Name">PresetVal</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2776,7 +2712,7 @@ end</string>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
       </Properties>
-      <Item class="StringValue" referent="40">
+      <Item class="StringValue" referent="37">
         <Properties>
           <string name="Name">P</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2786,7 +2722,7 @@ end</string>
           <string name="Value">n</string>
         </Properties>
       </Item>
-      <Item class="StringValue" referent="41">
+      <Item class="StringValue" referent="38">
         <Properties>
           <string name="Name">T</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2797,7 +2733,7 @@ end</string>
         </Properties>
       </Item>
     </Item>
-    <Item class="BoolValue" referent="42">
+    <Item class="BoolValue" referent="39">
       <Properties>
         <string name="Name">Light</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2807,7 +2743,7 @@ end</string>
         <bool name="Value">false</bool>
       </Properties>
     </Item>
-    <Item class="BoolValue" referent="43">
+    <Item class="BoolValue" referent="40">
       <Properties>
         <string name="Name">Wipe</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2817,7 +2753,7 @@ end</string>
         <bool name="Value">false</bool>
       </Properties>
     </Item>
-    <Item class="Script" referent="44">
+    <Item class="Script" referent="41">
       <Properties>
         <string name="Name">PTCalibration</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
@@ -2880,7 +2816,7 @@ script.Parent.Body.Tilt.HingeConstraint.ActuatorType = 1</string>
         <BinaryString name="Tags"></BinaryString>
       </Properties>
     </Item>
-    <Item class="Camera" referent="45">
+    <Item class="Camera" referent="42">
       <Properties>
         <string name="Name">ThumbnailCamera</string>
         <BinaryString name="AttributesSerialize"></BinaryString>

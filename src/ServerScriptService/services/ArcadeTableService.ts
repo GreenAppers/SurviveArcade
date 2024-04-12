@@ -9,6 +9,7 @@ import {
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { abbreviator } from 'ReplicatedStorage/shared/utils/math'
+import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { setNetworkOwner } from 'ServerScriptService/utils'
@@ -41,7 +42,11 @@ export class ArcadeTableService implements OnStart {
               arcadeTableState,
             )
           } else if (previousArcadeTableState?.owner) {
-            this.onPlayerClaimed(previousArcadeTableState.owner)
+            this.onPlayerClaimEnded(
+              previousArcadeTableState.owner,
+              tableName,
+              arcadeTableState,
+            )
           }
         }
       },
@@ -68,9 +73,17 @@ export class ArcadeTableService implements OnStart {
 
   onPlayerClaimed(
     _player: Player,
-    _tableName?: string,
-    _tableState?: ArcadeTableState,
+    _tableName: string,
+    _tableState: ArcadeTableState,
   ) {}
+
+  onPlayerClaimEnded(
+    player: Player,
+    _tableName: string,
+    tableState: ArcadeTableState,
+  ) {
+    print('Player claim ended ', player, tableState.score)
+  }
 
   onTableClaimed(tableName: string, player?: Player) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
@@ -130,32 +143,11 @@ export class ArcadeTableService implements OnStart {
     if (name.size() > nameCharacters) name = name.sub(0, nameCharacters)
     else name = name += ' '.rep(nameCharacters - name.size())
     const text = `${name} ${score}`.upper()
-    print('y0 text', text, text.size())
-    const scale = 10
 
-    const maxWidth = digitalFont.maxWidth * scale
-    // Update the scoreboard with the new name and score.
-    for (let i = 0; i < this.scoreboardCharacters; i++) {
-      const character = text.sub(i + 1, i + 1)
-      const glyph = digitalFont.glyphs[character] || digitalFont.glyphs[' ']
-      const frame = surfaceGuiFrame.FindFirstChild(
-        `Glyph${i < 10 ? '0' : ''}${i}`,
-      ) as Sprite | undefined
-      if (!glyph || !frame) continue
-      //    frame.Size = new UDim2(0, maxWidth, 0, glyph.height * scale)
-      const label = frame.ImageLabel
-      label.ImageRectOffset = new Vector2(glyph.x, glyph.y)
-      label.ImageRectSize = new Vector2(glyph.width, glyph.height)
-      //      label.Size = new UDim2(0, 1, 0, 1)
-      /* label.Position = new UDim2(
-        0,
-        maxWidth - prevWidth + glyph.xoffset * scale,
-        0,
-        glyph.yoffset * scale,
-      )
-      prevWidth = glyph.width * scale
-      label.Size = new UDim2(0, prevWidth, 0, glyph.height * scale)*/
-      print(`${label} -> ${character}`)
-    }
+    // Render the text on the scoreboard.
+    renderGlyphs(text, digitalFont, surfaceGuiFrame, {
+      existingGlyphsLength: this.scoreboardCharacters,
+      textScaled: true,
+    })
   }
 }

@@ -1,5 +1,6 @@
 export const digitalFont: SpriteSheet = {
   maxWidth: 46,
+  maxHeight: 68,
   glyphs: {
     ' ': {
       x: 0,

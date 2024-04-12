@@ -11,6 +11,7 @@ interface SpriteGeometry {
 }
 
 interface SpriteSheet {
+  maxHeight: number
   maxWidth: number
   glyphs: Record<string, SpriteGeometry>
 }
