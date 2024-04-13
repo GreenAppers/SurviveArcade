@@ -176,16 +176,16 @@ export class PlayerController implements OnStart {
       selectPlayerState(player.UserId),
       (playerData, previousPlayerData) => {
         if (!playerData || !previousPlayerData) return
-        if (playerData.levity !== previousPlayerData.levity)
+        if (playerData.levity > previousPlayerData.levity)
           this.playCollectionAnimation(
             CURRENCY_EMOJIS.Levity,
             game.Workspace.CurrentCamera
               ? calculateRem(game.Workspace.CurrentCamera.ViewportSize) * 8
               : 0,
           )
-        if (playerData.dollars !== previousPlayerData.dollars)
+        if (playerData.dollars > previousPlayerData.dollars)
           this.playCollectionAnimation(CURRENCY_EMOJIS.Dollars)
-        if (playerData.tickets !== previousPlayerData.tickets) {
+        if (playerData.tickets > previousPlayerData.tickets) {
           sendAlert({
             emoji: '🎟️',
             message: `You won ${
@@ -225,7 +225,10 @@ export class PlayerController implements OnStart {
     this.collectionPlaying = false
   }
 
-  playDialogAnimation(displayText: string, delayBetweenChars = 0.05) {
+  playDialogAnimation(
+    displayText: string,
+    delayBetweenChars = 2.4 / displayText.size(),
+  ) {
     const dialogGui = ReplicatedStorage.Guis.DialogGui.Clone()
     const textLabel = dialogGui.Frame.TextFrame.TextLabel
     textLabel.Text = displayText
@@ -291,7 +294,7 @@ export class PlayerController implements OnStart {
     let status = ''
     let targetAttachment
     if (!tycoonName) {
-      status = 'Claim a tycoon'
+      status = 'Claim tycoon'
       targetAttachment = this.tycoonController.findTycoonTarget(
         tycoonsState,
         humanoidRootPart,
@@ -300,7 +303,7 @@ export class PlayerController implements OnStart {
       // } else if (false) {
       //   status = 'Build your tycoon'
     } else if ((playerState?.dollars ?? 0) <= 0) {
-      status = 'Find coins'
+      status = 'Collect coins'
       targetAttachment = this.arcadeController.findCoinTarget(
         humanoidRootPart.Position,
       )

@@ -144,7 +144,7 @@ export function addPlayerCurrency(
     ...state,
     [playerKey]: {
       ...playerState,
-      [currency]: playerState[currency] + (amount || 0),
+      [currency]: math.max(0, playerState[currency] + (amount || 0)),
     },
   }
 }
@@ -193,6 +193,7 @@ export const playersSlice = createProducer(initialState, {
       ...state,
       [playerKey]: {
         ...playerState,
+        levity: math.max(0, playerState.levity + 1),
         completed: {
           ...completed,
           loops: (completed?.loops || 0) + (amount || 0),

@@ -39,7 +39,7 @@ export class ProximityController implements OnStart {
       )
     ) {
       sendAlert({
-        emoji: '🛄',
+        emoji: '🏗️',
         message: `Claim a tycoon first!`,
       })
     }

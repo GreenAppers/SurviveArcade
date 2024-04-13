@@ -3,11 +3,16 @@ import Object from '@rbxts/object-utils'
 import { Workspace } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
-import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
+import {
+  selectArcadeTablesState,
+  selectPlayerState,
+  selectTycoonsState,
+} from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTableState,
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
 import { abbreviator } from 'ReplicatedStorage/shared/utils/math'
 import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 import { Events } from 'ServerScriptService/network'
@@ -18,6 +23,22 @@ import { setNetworkOwner } from 'ServerScriptService/utils'
 export class ArcadeTableService implements OnStart {
   ballNumber = 1
   scoreboardCharacters = 14
+
+  claimArcadeTable(
+    tableName: ArcadeTableName | ArcadeTableNextName,
+    player?: Player,
+  ) {
+    if (!player) return store.claimArcadeTable(tableName, undefined)
+    const state = store.getState()
+    const tableCost = 1
+    if (
+      !findTycoonNameOwnedBy(selectTycoonsState()(state), player.UserId) ||
+      (selectPlayerState(player.UserId)(state)?.dollars ?? 0) < tableCost
+    )
+      return undefined
+    store.addDollars(player.UserId, -tableCost)
+    return store.claimArcadeTable(tableName, player)
+  }
 
   startArcadeTablesClaimedSubscription() {
     store.subscribe(
@@ -131,6 +152,8 @@ export class ArcadeTableService implements OnStart {
   }
 
   onTableScoreChanged(tableName: string, arcadeTableState: ArcadeTableState) {
+    // print('score state')
+    // print(store.getState().arcadeTables)
     // Find the scoreboard on the arcade table.
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
       tableName,
