@@ -175,35 +175,12 @@ export class ArcadeController implements OnStart {
     Events.flipperFlip.fire(arcadeTable.Name, flipperName)
   }
 
-  refreshBeams(arcadeTablesState: ArcadeTablesState, guideEnabled?: boolean) {
-    const localPlayer = Players.LocalPlayer
-    const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
-    const beam = playerCharacter?.FindFirstChild('Beam') as Beam | undefined
-    const humanoid = <Humanoid | undefined>(
-      playerCharacter?.FindFirstChild('Humanoid')
-    )
-    if (!playerCharacter || !humanoid || !beam) return
-
-    // Clear old beam
-    beam.Enabled = false
-
-    // Check if player is alive and has guide enabled.
-    if (!guideEnabled || !humanoid.Health || humanoid.Sit) return
-    const localPlayerTeamName =
-      localPlayer?.Team?.Name === 'Unclaimed Team'
-        ? undefined
-        : localPlayer?.Team?.Name
-
-    // Find the local player's RootRigAttachment.
-    const humanoidRootPart = <BasePart | undefined>(
-      playerCharacter.FindFirstChild('HumanoidRootPart')
-    )
-    if (!playerCharacter || !humanoidRootPart) return
-    const rootRigAttachment = <Attachment | undefined>(
-      humanoidRootPart.FindFirstChild('RootRigAttachment')
-    )
-    if (!rootRigAttachment) return
-
+  refreshGuideTarget(
+    arcadeTablesState: ArcadeTablesState,
+    humanoidRootPart: BasePart,
+    rootRigAttachment: Attachment,
+    localPlayerTeamName?: string,
+  ): Attachment | undefined {
     let targetAttachment
     if (rootRigAttachment.WorldPosition.Y < 10) {
       // Find nearest Cabinet
@@ -212,7 +189,7 @@ export class ArcadeController implements OnStart {
         arcadeTablesState,
         localPlayerTeamName,
       )
-      if (!arcadeTableName) return
+      if (!arcadeTableName) return undefined
       // Find nearest truss
       const trussName = nearestCabinetTruss(
         humanoidRootPart.Position,
@@ -227,14 +204,10 @@ export class ArcadeController implements OnStart {
         arcadeTablesState,
         localPlayerTeamName,
       )
-      if (!arcadeTableName) return
+      if (!arcadeTableName) return undefined
       targetAttachment =
         game.Workspace.ArcadeTables[arcadeTableName]?.Seat?.Attachment
     }
-
-    if (!targetAttachment) return
-    beam.Attachment0 = rootRigAttachment
-    beam.Attachment1 = targetAttachment
-    beam.Enabled = true
+    return targetAttachment
   }
 }

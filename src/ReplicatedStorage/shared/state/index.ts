@@ -6,7 +6,7 @@ import {
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { gameSlice } from 'ReplicatedStorage/shared/state/GameState'
 import {
-  getPlayer,
+  getPlayerState,
   playersSlice,
 } from 'ReplicatedStorage/shared/state/PlayersState'
 import { tycoonsSlice } from 'ReplicatedStorage/shared/state/TycoonState'
@@ -39,27 +39,27 @@ export const selectGameState = () => (state: SharedState) => state.game
 export const selectPlayersState = () => (state: SharedState) => state.players
 
 export const selectPlayerState = (userID: number) => (state: SharedState) =>
-  getPlayer(state.players, userID)
+  getPlayerState(state.players, userID)
 
 export const selectPlayerScore = (userID: number) => (state: SharedState) =>
-  getPlayer(state.players, userID)?.score || 0
+  getPlayerState(state.players, userID)?.score || 0
 
 export const selectPlayerGuideEnabled =
   (userID: number) => (state: SharedState) =>
-    getPlayer(state.players, userID)?.settings?.guide
+    getPlayerState(state.players, userID)?.settings?.guide
 
 export const selectLocalPlayerState = () => (state: SharedState) =>
-  getPlayer(state.players, USER_ID)
+  getPlayerState(state.players, USER_ID)
 
 export const selectLocalPlayerMusicEnabled = () => (state: SharedState) =>
-  getPlayer(state.players, USER_ID)?.settings?.music
+  getPlayerState(state.players, USER_ID)?.settings?.music
 
 export const selectLocalPlayerLoops = () => (state: SharedState) =>
-  getPlayer(state.players, USER_ID)?.completed?.loops || 0
+  getPlayerState(state.players, USER_ID)?.completed?.loops || 0
 
 export const selectLocalPlayerGroundArcadeTableName =
   () => (state: SharedState) =>
-    getPlayer(state.players, USER_ID)?.groundArcadeTableName
+    getPlayerState(state.players, USER_ID)?.groundArcadeTableName
 
 export const selectLocalPlayerArcadeTableStatus = () => {
   const localPlayerArcadeTableNameSelector =

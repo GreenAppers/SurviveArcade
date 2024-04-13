@@ -126,8 +126,10 @@ export const getPlayerData = (state: PlayerState): PlayerData => ({
   completed: state.completed,
 })
 
-export const getPlayer = (state: Players, userID: number) =>
-  state[KEY_TEMPLATE.format(userID)]
+const getPlayerKey = (userID: number) => KEY_TEMPLATE.format(userID)
+
+export const getPlayerState = (state: Players, userID: number) =>
+  state[getPlayerKey(userID)]
 
 export function addPlayerCurrency(
   state: Players,
@@ -135,7 +137,7 @@ export function addPlayerCurrency(
   currency: 'dollars' | 'levity' | 'tickets',
   amount: number,
 ) {
-  const playerKey = KEY_TEMPLATE.format(userID)
+  const playerKey = getPlayerKey(userID)
   const playerState = state[playerKey]
   if (!playerState) return state
   return {
@@ -149,7 +151,7 @@ export function addPlayerCurrency(
 
 export const playersSlice = createProducer(initialState, {
   loadPlayerData: (state, userID: number, data: PlayerData) => {
-    const playerKey = KEY_TEMPLATE.format(userID)
+    const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
     return {
       ...state,
@@ -164,7 +166,7 @@ export const playersSlice = createProducer(initialState, {
 
   closePlayerData: (state, userID: number) => ({
     ...state,
-    [KEY_TEMPLATE.format(userID)]: undefined,
+    [getPlayerKey(userID)]: undefined,
   }),
 
   addDollars: (state, userID: number, amount: number) =>
@@ -182,7 +184,7 @@ export const playersSlice = createProducer(initialState, {
     tableType: ArcadeTableType,
     amount: number,
   ) => {
-    const playerKey = KEY_TEMPLATE.format(userID)
+    const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
     const completed = playerState.completed
@@ -215,7 +217,7 @@ export const playersSlice = createProducer(initialState, {
     tableType: ArcadeTableType,
     amount: number,
   ) => {
-    const playerKey = KEY_TEMPLATE.format(userID)
+    const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
     const newScore = (playerState?.score || 0) + (amount || 0)
@@ -237,7 +239,7 @@ export const playersSlice = createProducer(initialState, {
   },
 
   resetPlayerScore: (state, userID: number) => {
-    const playerKey = KEY_TEMPLATE.format(userID)
+    const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
     return {
@@ -265,7 +267,7 @@ export const playersSlice = createProducer(initialState, {
   ) => {
     let newState: { [playerKey: string]: PlayerState | undefined } | undefined
     for (const { userID, gravityUp, groundArcadeTableName } of playerGround) {
-      const playerKey = KEY_TEMPLATE.format(userID)
+      const playerKey = getPlayerKey(userID)
       const playerState = state[playerKey]
       if (
         !playerState ||
@@ -283,7 +285,7 @@ export const playersSlice = createProducer(initialState, {
   },
 
   toggleGuide: (state, userID: number) => {
-    const playerKey = KEY_TEMPLATE.format(userID)
+    const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
     return {

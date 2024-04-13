@@ -6,11 +6,15 @@ import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
 import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
 import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
 import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
-import { store } from 'StarterPlayer/StarterPlayerScripts/store'
+import {
+  selectGuideText,
+  store,
+} from 'StarterPlayer/StarterPlayerScripts/store'
 
 export function Settings() {
   const rem = useRem()
   const playerState = useSelector(selectLocalPlayerState())
+  const guideText = useSelector(selectGuideText)
 
   return (
     <Group>
@@ -33,7 +37,9 @@ export function Settings() {
         key="guide"
         emoji="➡️"
         label="Guide"
-        value={playerState?.settings?.guide ? 'On' : 'Off'}
+        value={
+          playerState?.settings?.guide ? (guideText ? guideText : 'On') : 'Off'
+        }
         primary={palette.blue}
         secondary={palette.sky}
         enabled={true}

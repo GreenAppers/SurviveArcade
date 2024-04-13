@@ -1,9 +1,11 @@
 import { combineProducers, createSelector, InferState } from '@rbxts/reflex'
 import { slices } from 'ReplicatedStorage/shared/state'
+import { alertSlice } from 'StarterPlayer/StarterPlayerScripts/store/AlertState'
+import {
+  MenuPage,
+  menuSlice,
+} from 'StarterPlayer/StarterPlayerScripts/store/MenuState'
 import { receiverMiddleware } from 'StarterPlayer/StarterPlayerScripts/store/middleware/receiver'
-
-import { alertSlice } from './AlertState'
-import { MenuPage, menuSlice } from './MenuState'
 
 export type RootStore = typeof store
 export type RootState = InferState<RootStore>
@@ -48,6 +50,10 @@ export const selectMenuTransition = (state: RootState) => {
 
 export const selectMusicEnabled = (state: RootState) => {
   return state.menu.music
+}
+
+export const selectGuideText = (state: RootState) => {
+  return state.menu.guideText
 }
 
 export function createStore() {

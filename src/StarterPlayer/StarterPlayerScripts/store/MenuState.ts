@@ -1,6 +1,7 @@
 import { createProducer } from '@rbxts/reflex'
 
 export interface MenuState {
+  readonly guideText: string
   readonly page: MenuPage
   readonly open: boolean
   readonly music: boolean
@@ -15,6 +16,7 @@ export type MenuPage = 'support' | 'home'
 export const MENU_PAGES: readonly MenuPage[] = ['support', 'home'] as const
 
 const initialState: MenuState = {
+  guideText: 'Welcome to the arcade!',
   page: 'home',
   open: true,
   music: true,
@@ -25,6 +27,11 @@ const initialState: MenuState = {
 }
 
 export const menuSlice = createProducer(initialState, {
+  setGuideText: (state, guideText: string) => ({
+    ...state,
+    guideText,
+  }),
+
   setMenuPage: (state, page: MenuPage) => ({
     ...state,
     page,

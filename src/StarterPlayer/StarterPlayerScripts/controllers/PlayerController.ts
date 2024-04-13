@@ -17,7 +17,9 @@ import {
   selectLocalPlayerState,
   selectPlayerGuideEnabled,
   selectPlayerState,
+  selectTycoonsState,
 } from 'ReplicatedStorage/shared/state'
+import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
 import {
   GravityController,
   gravityControllerClass,
@@ -211,9 +213,61 @@ export class PlayerController implements OnStart {
   }
 
   refreshBeams(guideEnabled?: boolean) {
-    this.arcadeController.refreshBeams(
-      selectArcadeTablesState()(store.getState()),
-      guideEnabled,
+    const localPlayer = Players.LocalPlayer
+    const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
+    const beam = playerCharacter?.FindFirstChild('Beam') as Beam | undefined
+    const humanoid = <Humanoid | undefined>(
+      playerCharacter?.FindFirstChild('Humanoid')
     )
+    if (!playerCharacter || !humanoid || !beam) return
+
+    // Clear old beam
+    beam.Enabled = false
+
+    // Check if player is alive and has guide enabled.
+    if (!guideEnabled || !humanoid.Health || humanoid.Sit) return
+    const localPlayerTeamName =
+      localPlayer?.Team?.Name === 'Unclaimed Team'
+        ? undefined
+        : localPlayer?.Team?.Name
+
+    // Find the local player's RootRigAttachment.
+    const humanoidRootPart = <BasePart | undefined>(
+      playerCharacter.FindFirstChild('HumanoidRootPart')
+    )
+    if (!playerCharacter || !humanoidRootPart) return
+    const rootRigAttachment = <Attachment | undefined>(
+      humanoidRootPart.FindFirstChild('RootRigAttachment')
+    )
+    if (!rootRigAttachment) return
+
+    // Check player state
+    const state = store.getState()
+    const playerState = selectPlayerState(localPlayer.UserId)(state)
+    const tycoonsState = selectTycoonsState()(state)
+    const tycoonName = findTycoonNameOwnedBy(tycoonsState, localPlayer.UserId)
+
+    // Plan next action
+    let status = ''
+    let targetAttachment
+    if (!tycoonName) {
+      status = 'Claim a tycoon'
+    } else if ((playerState?.dollars ?? 0) <= 0) {
+      status = 'Collect cash'
+    } else {
+      status = 'Win tickets'
+      targetAttachment = this.arcadeController.refreshGuideTarget(
+        selectArcadeTablesState()(store.getState()),
+        humanoidRootPart,
+        rootRigAttachment,
+        localPlayerTeamName,
+      )
+    }
+
+    if (status !== '') store.setGuideText(status)
+    if (!targetAttachment) return
+    beam.Attachment0 = rootRigAttachment
+    beam.Attachment1 = targetAttachment
+    beam.Enabled = true
   }
 }
