@@ -11,7 +11,7 @@ const defaultAlert: Alert = {
   color: palette.blue,
   colorSecondary: palette.indigo,
   colorMessage: palette.text,
-  duration: 3,
+  duration: 1.2,
   visible: true,
 }
 

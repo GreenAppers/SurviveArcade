@@ -24,6 +24,7 @@ import {
 } from 'ReplicatedStorage/shared/utils/gravity'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { ArcadeController } from 'StarterPlayer/StarterPlayerScripts/controllers/ArcadeController'
+import { calculateRem } from 'StarterPlayer/StarterPlayerScripts/fonts'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts/utils'
 
@@ -161,16 +162,33 @@ export class PlayerController implements OnStart {
       (playerData, previousPlayerData) => {
         if (!playerData || !previousPlayerData) return
         if (playerData.levity !== previousPlayerData.levity)
-          this.playCollectionAnimation(CURRENCY_EMOJIS.Levity)
+          this.playCollectionAnimation(
+            CURRENCY_EMOJIS.Levity,
+            game.Workspace.CurrentCamera
+              ? calculateRem(game.Workspace.CurrentCamera.ViewportSize) * 8
+              : 0,
+          )
         if (playerData.dollars !== previousPlayerData.dollars)
           this.playCollectionAnimation(CURRENCY_EMOJIS.Dollars)
-        if (playerData.tickets !== previousPlayerData.tickets)
-          this.playCollectionAnimation(CURRENCY_EMOJIS.Tickets)
+        if (playerData.tickets !== previousPlayerData.tickets) {
+          sendAlert({
+            emoji: '🎟️',
+            message: `You won ${
+              playerData.tickets - previousPlayerData.tickets
+            } tickets!`,
+          })
+          this.playCollectionAnimation(
+            CURRENCY_EMOJIS.Tickets,
+            game.Workspace.CurrentCamera
+              ? -calculateRem(game.Workspace.CurrentCamera.ViewportSize) * 8
+              : 0,
+          )
+        }
       },
     )
   }
 
-  playCollectionAnimation(text?: string) {
+  playCollectionAnimation(text?: string, yOffset = 0) {
     const collectGui = Players.LocalPlayer.FindFirstChild(
       'PlayerGui',
     )?.FindFirstChild('CollectGui') as CollectGui | undefined
@@ -182,7 +200,7 @@ export class PlayerController implements OnStart {
       if (text) child.Text = text
       child.Position = child.GetAttribute('StartPosition') as UDim2
       const tween = TweenService.Create(child, tweenInfo, {
-        Position: new UDim2(1.0, 0, 0.5, 0),
+        Position: new UDim2(1.0, 0, 0.5, yOffset),
       })
       tween.Play()
     })

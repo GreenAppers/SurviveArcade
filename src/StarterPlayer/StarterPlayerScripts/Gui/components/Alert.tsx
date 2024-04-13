@@ -6,19 +6,22 @@ import { images, playSound, sounds } from 'ReplicatedStorage/shared/assets'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { brightenIfDark, darken } from 'ReplicatedStorage/shared/utils/color'
 import { mapStrict } from 'ReplicatedStorage/shared/utils/math'
-
-import { dismissAlert, selectAlertIndex, selectIsMenuOpen } from '../../store'
-import { Alert } from '../../store/AlertState'
-import { fonts } from '../constants/fonts'
-import { springs } from '../constants/springs'
-import { useMotion, useRem } from '../hooks'
-import { AlertTimer } from './AlertTimer'
-import { Frame } from './Frame'
-import { Image } from './Image'
-import { Outline } from './Outline'
-import { ReactiveButton } from './ReactiveButton'
-import { Shadow } from './Shadow'
-import { Text } from './Text'
+import { fonts } from 'StarterPlayer/StarterPlayerScripts/fonts'
+import { AlertTimer } from 'StarterPlayer/StarterPlayerScripts/Gui/components/AlertTimer'
+import { Frame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
+import { Image } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Image'
+import { Outline } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Outline'
+import { ReactiveButton } from 'StarterPlayer/StarterPlayerScripts/Gui/components/ReactiveButton'
+import { Shadow } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Shadow'
+import { Text } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Text'
+import { springs } from 'StarterPlayer/StarterPlayerScripts/Gui/constants/springs'
+import { useMotion, useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
+import {
+  dismissAlert,
+  selectAlertIndex,
+  selectIsMenuOpen,
+} from 'StarterPlayer/StarterPlayerScripts/store'
+import { Alert } from 'StarterPlayer/StarterPlayerScripts/store/AlertState'
 
 interface AlertProps {
   readonly alert: Alert

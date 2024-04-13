@@ -1,6 +1,6 @@
 import { useCallback, useContext } from '@rbxts/roact'
-
-import { DEFAULT_REM, RemContext } from '../providers/RemProvider'
+import { DEFAULT_REM } from 'StarterPlayer/StarterPlayerScripts/fonts'
+import { RemContext } from 'StarterPlayer/StarterPlayerScripts/Gui/providers/RemProvider'
 
 export interface RemOptions {
   minimum?: number

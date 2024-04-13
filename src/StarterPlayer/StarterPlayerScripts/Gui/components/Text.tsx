@@ -1,8 +1,7 @@
 import Roact from '@rbxts/roact'
-
-import { fonts } from '../constants/fonts'
-import { useRem } from '../hooks'
-import { FrameProps } from './Frame'
+import { fonts } from 'StarterPlayer/StarterPlayerScripts/fonts'
+import { FrameProps } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
+import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 
 export interface TextProps<T extends Instance = TextLabel>
   extends FrameProps<T> {

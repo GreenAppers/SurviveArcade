@@ -1,15 +1,14 @@
 import Roact, { useEffect, useMemo } from '@rbxts/roact'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
-
-import { useMotion, useRem } from '..//hooks'
-import { fonts } from '../constants/fonts'
-import { springs } from '../constants/springs'
-import { CanvasOrFrame } from './CanvasOrFrame'
-import { Frame } from './Frame'
-import { Group } from './Group'
-import { ReactiveButton } from './ReactiveButton'
-import { Shadow } from './Shadow'
-import { Text } from './Text'
+import { fonts } from 'StarterPlayer/StarterPlayerScripts/fonts'
+import { CanvasOrFrame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CanvasOrFrame'
+import { Frame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
+import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
+import { ReactiveButton } from 'StarterPlayer/StarterPlayerScripts/Gui/components/ReactiveButton'
+import { Shadow } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Shadow'
+import { Text } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Text'
+import { springs } from 'StarterPlayer/StarterPlayerScripts/Gui/constants/springs'
+import { useMotion, useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 
 interface CardItemProps {
   readonly onClick?: () => void

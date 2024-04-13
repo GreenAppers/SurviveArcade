@@ -129,6 +129,24 @@ export const getPlayerData = (state: PlayerState): PlayerData => ({
 export const getPlayer = (state: Players, userID: number) =>
   state[KEY_TEMPLATE.format(userID)]
 
+export function addPlayerCurrency(
+  state: Players,
+  userID: number,
+  currency: 'dollars' | 'levity' | 'tickets',
+  amount: number,
+) {
+  const playerKey = KEY_TEMPLATE.format(userID)
+  const playerState = state[playerKey]
+  if (!playerState) return state
+  return {
+    ...state,
+    [playerKey]: {
+      ...playerState,
+      [currency]: playerState[currency] + (amount || 0),
+    },
+  }
+}
+
 export const playersSlice = createProducer(initialState, {
   loadPlayerData: (state, userID: number, data: PlayerData) => {
     const playerKey = KEY_TEMPLATE.format(userID)
@@ -149,18 +167,14 @@ export const playersSlice = createProducer(initialState, {
     [KEY_TEMPLATE.format(userID)]: undefined,
   }),
 
-  addDollars: (state, userID: number, amount: number) => {
-    const playerKey = KEY_TEMPLATE.format(userID)
-    const playerState = state[playerKey]
-    if (!playerState) return state
-    return {
-      ...state,
-      [playerKey]: {
-        ...playerState,
-        dollars: playerState.dollars + (amount || 0),
-      },
-    }
-  },
+  addDollars: (state, userID: number, amount: number) =>
+    addPlayerCurrency(state, userID, 'dollars', amount),
+
+  addLevity: (state, userID: number, amount: number) =>
+    addPlayerCurrency(state, userID, 'levity', amount),
+
+  addTickets: (state, userID: number, amount: number) =>
+    addPlayerCurrency(state, userID, 'tickets', amount),
 
   addPlayerLoops: (
     state,

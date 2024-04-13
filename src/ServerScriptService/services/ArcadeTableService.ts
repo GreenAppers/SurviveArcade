@@ -46,6 +46,7 @@ export class ArcadeTableService implements OnStart {
               previousArcadeTableState.owner,
               tableName,
               arcadeTableState,
+              previousArcadeTableState,
             )
           }
         }
@@ -80,9 +81,11 @@ export class ArcadeTableService implements OnStart {
   onPlayerClaimEnded(
     player: Player,
     _tableName: string,
-    tableState: ArcadeTableState,
+    _tableState: ArcadeTableState,
+    previousTableState: ArcadeTableState,
   ) {
-    print('Player claim ended ', player, tableState.score)
+    const payout = math.floor(previousTableState.score / 1000)
+    if (payout >= 1) store.addTickets(player.UserId, payout)
   }
 
   onTableClaimed(tableName: string, player?: Player) {

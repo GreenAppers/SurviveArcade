@@ -90,7 +90,7 @@ export class ArcadeController implements OnStart {
         const aracdeTableState = store.getState().arcadeTables[arcadeTableName]
         if (aracdeTableState?.status !== ArcadeTableStatus.Active) return
         sendAlert({
-          emoji: '🕹️',
+          emoji: '🏁',
           message: `Score ${aracdeTableState?.scoreToWin} to win.`,
         })
         const arcadeTable =
