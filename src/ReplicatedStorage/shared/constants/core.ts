@@ -77,6 +77,17 @@ export const TRUSS_NAMES: CabinetTrussName[] = [
   'Truss4',
 ]
 
+export const TYCOON_NAMES: TycoonName[] = [
+  'Tycoon1',
+  'Tycoon2',
+  'Tycoon3',
+  'Tycoon4',
+  'Tycoon5',
+  'Tycoon6',
+  'Tycoon7',
+  'Tycoon8',
+]
+
 export const TYCOON_TYPES: {
   [name in TycoonType]: TycoonType
 } = {

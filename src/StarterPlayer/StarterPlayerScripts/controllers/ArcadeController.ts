@@ -175,7 +175,11 @@ export class ArcadeController implements OnStart {
     Events.flipperFlip.fire(arcadeTable.Name, flipperName)
   }
 
-  refreshGuideTarget(
+  findCoinTarget(_position: Vector3) {
+    return game.Workspace.Map.ChangeMachine.Wedge.Attachment
+  }
+
+  findTableTarget(
     arcadeTablesState: ArcadeTablesState,
     humanoidRootPart: BasePart,
     rootRigAttachment: Attachment,

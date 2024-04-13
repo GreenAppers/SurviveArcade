@@ -1,17 +1,16 @@
 import { Controller, OnStart } from '@flamework/core'
-import {
-  Players,
-  ProximityPromptService,
-  ReplicatedStorage,
-} from '@rbxts/services'
+import { Players, ProximityPromptService } from '@rbxts/services'
 import { selectTycoonsState } from 'ReplicatedStorage/shared/state'
 import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
+import { PlayerController } from 'StarterPlayer/StarterPlayerScripts/controllers/PlayerController'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
 @Controller()
 export class ProximityController implements OnStart {
   tycoonsSelector = selectTycoonsState()
+
+  constructor(private playerController: PlayerController) {}
 
   onStart() {
     ProximityPromptService.PromptTriggered.Connect(
@@ -46,36 +45,9 @@ export class ProximityController implements OnStart {
     }
   }
 
-  onPhoneCall(
-    proximityPrompt: ProximityPrompt,
-    displayText: string,
-    delayBetweenChars = 0.05,
-  ) {
+  onPhoneCall(proximityPrompt: ProximityPrompt, displayText: string) {
     proximityPrompt.Enabled = false
-    const dialogGui = ReplicatedStorage.Guis.DialogGui.Clone()
-    const textLabel = dialogGui.Frame.TextFrame.TextLabel
-    textLabel.Text = displayText
-    textLabel.MaxVisibleGraphemes = 0
-    dialogGui.Parent = Players.LocalPlayer.FindFirstChild('PlayerGui')
-
-    const wizard =
-      dialogGui.Frame.CharacterFrame.ViewportFrame.WorldModel.Wizard
-    const animator = wizard.Humanoid.Animator
-    const wizardTalk = animator.LoadAnimation(wizard.Talk)
-    wizardTalk.Play()
-
-    let index = 0
-    for (const [_first, _last] of utf8.graphemes(displayText)) {
-      index += 1
-      if (wizard.PrimaryPart)
-        wizard.PrimaryPart.Anchored = !wizard.PrimaryPart.Anchored
-      textLabel.MaxVisibleGraphemes = index
-      task.wait(delayBetweenChars)
-    }
-
-    wizardTalk.Stop()
-    task.wait(2)
-    dialogGui.Destroy()
+    this.playerController.playDialogAnimation(displayText)
     proximityPrompt.Enabled = true
   }
 }

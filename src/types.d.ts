@@ -126,8 +126,16 @@ interface Flipper extends Model {
   }
 }
 
+interface ChangeMachine extends Model {
+  Coin: MeshPart
+  Wedge: WedgePart & {
+    Attachment: Attachment
+  }
+}
+
 interface ArcadeMap {
   Baseplate: BasePart
+  ChangeMachine: ChangeMachine
   Skybox?: Sky
   Table1?: Cabinet
   Table2?: Cabinet
@@ -214,8 +222,15 @@ type TycoonName =
 
 type TycoonType = 'Elf' | 'Human' | 'Omniverse'
 
+interface TycoonButton extends BasePart {
+  Attachment: Attachment
+}
+
 interface TycoonPlot extends Model {
   Baseplate: BasePart
+  ClaimTycoon: Model & {
+    Button: TycoonButton
+  }
   Name: TycoonName
 }
 

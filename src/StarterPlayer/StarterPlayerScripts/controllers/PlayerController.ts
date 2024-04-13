@@ -26,6 +26,7 @@ import {
 } from 'ReplicatedStorage/shared/utils/gravity'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { ArcadeController } from 'StarterPlayer/StarterPlayerScripts/controllers/ArcadeController'
+import { TycoonController } from 'StarterPlayer/StarterPlayerScripts/controllers/TycoonController'
 import { calculateRem } from 'StarterPlayer/StarterPlayerScripts/fonts'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts/utils'
@@ -33,13 +34,17 @@ import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts
 @Controller({})
 export class PlayerController implements OnStart {
   collectionPlaying = false
+  firstRespawn = true
   gravityController: GravityController | undefined
   isDesktop = USER_DEVICE === DeviceType.Desktop
   isSeated = false
   runSpeed = 32
   walkSpeed = 16
 
-  constructor(private arcadeController: ArcadeController) {}
+  constructor(
+    private arcadeController: ArcadeController,
+    private tycoonController: TycoonController,
+  ) {}
 
   onStart() {
     if (this.isDesktop)
@@ -101,10 +106,18 @@ export class PlayerController implements OnStart {
     const handleRespawn = (playerCharacter: Model) => {
       const beam = ReplicatedStorage.Common.Beam.Clone()
       beam.Parent = playerCharacter
-      sendAlert({
-        emoji: '👼',
-        message: 'Get the high score.  But beware of the rats!',
-      })
+
+      if (this.firstRespawn) {
+        this.firstRespawn = false
+        this.playDialogAnimation(
+          `Welcome ${player.Name}.  The veil between arcades grows thin.  You must find the way to the high score.  But beware of the rats!`,
+        )
+      } else {
+        sendAlert({
+          emoji: '👼',
+          message: 'Get the high score.  But beware of the rats!',
+        })
+      }
       const state = store.getState()
       this.refreshBeams(playerGuideEnabledSelector(state))
     }
@@ -212,6 +225,33 @@ export class PlayerController implements OnStart {
     this.collectionPlaying = false
   }
 
+  playDialogAnimation(displayText: string, delayBetweenChars = 0.05) {
+    const dialogGui = ReplicatedStorage.Guis.DialogGui.Clone()
+    const textLabel = dialogGui.Frame.TextFrame.TextLabel
+    textLabel.Text = displayText
+    textLabel.MaxVisibleGraphemes = 0
+    dialogGui.Parent = Players.LocalPlayer.FindFirstChild('PlayerGui')
+
+    const wizard =
+      dialogGui.Frame.CharacterFrame.ViewportFrame.WorldModel.Wizard
+    const animator = wizard.Humanoid.Animator
+    const wizardTalk = animator.LoadAnimation(wizard.Talk)
+    wizardTalk.Play()
+
+    let index = 0
+    for (const [_first, _last] of utf8.graphemes(displayText)) {
+      index += 1
+      if (wizard.PrimaryPart)
+        wizard.PrimaryPart.Anchored = !wizard.PrimaryPart.Anchored
+      textLabel.MaxVisibleGraphemes = index
+      task.wait(delayBetweenChars)
+    }
+
+    wizardTalk.Stop()
+    task.wait(2)
+    dialogGui.Destroy()
+  }
+
   refreshBeams(guideEnabled?: boolean) {
     const localPlayer = Players.LocalPlayer
     const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
@@ -252,12 +292,22 @@ export class PlayerController implements OnStart {
     let targetAttachment
     if (!tycoonName) {
       status = 'Claim a tycoon'
+      targetAttachment = this.tycoonController.findTycoonTarget(
+        tycoonsState,
+        humanoidRootPart,
+        rootRigAttachment,
+      )
+      // } else if (false) {
+      //   status = 'Build your tycoon'
     } else if ((playerState?.dollars ?? 0) <= 0) {
-      status = 'Collect cash'
+      status = 'Find coins'
+      targetAttachment = this.arcadeController.findCoinTarget(
+        humanoidRootPart.Position,
+      )
     } else {
       status = 'Win tickets'
-      targetAttachment = this.arcadeController.refreshGuideTarget(
-        selectArcadeTablesState()(store.getState()),
+      targetAttachment = this.arcadeController.findTableTarget(
+        selectArcadeTablesState()(state),
         humanoidRootPart,
         rootRigAttachment,
         localPlayerTeamName,
