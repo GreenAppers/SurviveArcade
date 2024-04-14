@@ -88,7 +88,7 @@ export const findArcadeTableNameOwnedBy = (
     ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
   )?.[0] as ArcadeTableName | undefined
 
-export const initialScoreToWin = 50000
+export const initialScoreToWin = 10000
 
 export const defaultArcadeTableArcadeTable: ArcadeTableArcadeTable = {
   highScore: 0,
@@ -182,10 +182,12 @@ export const arcadeTablesSlice = createProducer(initialState, {
 
   extendArcadeTable: (state, name: ArcadeTableName) => {
     const lastState = state[name]
-    const lastScoreToWin = lastState?.scoreToWin || initialScoreToWin
-    const nextScoreToWin = lastScoreToWin // + initialScoreToWin // * 3
     const lastSequence = lastState?.sequence || 0
     const nextSequence = lastSequence + 1
+    const lastScoreToWin = lastState?.scoreToWin || initialScoreToWin
+    const nextScoreToWin =
+      nextSequence % 8 === 0 ? initialScoreToWin : lastScoreToWin + 5000
+
     return {
       ...state,
       [name]: {

@@ -11,7 +11,7 @@ import { store } from 'ServerScriptService/store'
 
 @Component({ tag: BouncerTag })
 export class BouncerComponent
-  extends BaseComponent<{}, BasePart>
+  extends BaseComponent<{ BounceDiretion?: Vector3 }, BasePart>
   implements OnStart
 {
   constructor(private gameService: GameService) {

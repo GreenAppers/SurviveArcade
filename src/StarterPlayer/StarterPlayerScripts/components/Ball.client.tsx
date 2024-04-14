@@ -12,7 +12,13 @@ export class BallComponent
     const ball = this.instance
     ball.Touched?.Connect((part) => {
       if (CollectionService.HasTag(part, BouncerTag)) {
-        ball.ApplyImpulse(ball.Position.sub(part.Position).mul(1000))
+        const bounceDirection = part.GetAttribute('BounceDirection') as
+          | Vector3
+          | undefined
+        const vector = bounceDirection
+          ? part.CFrame.mul(bounceDirection).sub(part.Position).mul(10)
+          : ball.Position.sub(part.Position)
+        ball.ApplyImpulse(vector.mul(1000))
       }
     })
   }
