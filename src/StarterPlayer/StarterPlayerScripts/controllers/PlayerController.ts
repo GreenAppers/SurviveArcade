@@ -176,15 +176,19 @@ export class PlayerController implements OnStart {
       selectPlayerState(player.UserId),
       (playerData, previousPlayerData) => {
         if (!playerData || !previousPlayerData) return
-        if (playerData.levity > previousPlayerData.levity)
+        if (playerData.levity > previousPlayerData.levity) {
+          game.Workspace.Audio.CollectLevity.Play()
           this.playCollectionAnimation(
             CURRENCY_EMOJIS.Levity,
             game.Workspace.CurrentCamera
               ? calculateRem(game.Workspace.CurrentCamera.ViewportSize) * 8
               : 0,
           )
-        if (playerData.dollars > previousPlayerData.dollars)
+        }
+        if (playerData.dollars > previousPlayerData.dollars) {
+          game.Workspace.Audio.CollectDollars.Play()
           this.playCollectionAnimation(CURRENCY_EMOJIS.Dollars)
+        }
         if (playerData.tickets > previousPlayerData.tickets) {
           sendAlert({
             emoji: '🎟️',
@@ -192,6 +196,7 @@ export class PlayerController implements OnStart {
               playerData.tickets - previousPlayerData.tickets
             } tickets!`,
           })
+          game.Workspace.Audio.CollectTickets.Play()
           this.playCollectionAnimation(
             CURRENCY_EMOJIS.Tickets,
             game.Workspace.CurrentCamera

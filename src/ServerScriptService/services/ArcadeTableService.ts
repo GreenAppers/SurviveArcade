@@ -46,24 +46,28 @@ export class ArcadeTableService implements OnStart {
         )) {
           const previousArcadeTableState = previousArcadeTablesState[tableName]
           if (arcadeTableState.score !== previousArcadeTableState?.score)
-            this.onTableScoreChanged(tableName, arcadeTableState)
+            this.onScoreChanged(tableName, arcadeTableState)
           if (arcadeTableState.status === ArcadeTableStatus.Won) {
             if (
               previousArcadeTableState?.status !== ArcadeTableStatus.Won &&
               arcadeTableState.owner
             )
-              this.onPlayerWon(arcadeTableState.owner, arcadeTableState.score)
+              this.onGameWon(
+                tableName,
+                arcadeTableState.owner,
+                arcadeTableState.score,
+              )
             continue
           }
           if (arcadeTableState.owner === previousArcadeTableState?.owner)
             continue
-          this.onTableClaimed(tableName, arcadeTableState.owner)
           if (arcadeTableState.owner) {
             this.onPlayerClaimed(
               arcadeTableState.owner,
               tableName,
               arcadeTableState,
             )
+            this.onGameStart(tableName, arcadeTableState.owner)
           } else if (previousArcadeTableState?.owner) {
             this.onPlayerClaimEnded(
               previousArcadeTableState.owner,
@@ -103,23 +107,18 @@ export class ArcadeTableService implements OnStart {
 
   onPlayerClaimEnded(
     player: Player,
-    _tableName: string,
+    tableName: string,
     _tableState: ArcadeTableState,
     previousTableState: ArcadeTableState,
   ) {
-    this.onPlayerGameOver(player, previousTableState.score)
+    this.onGameOver(tableName, player, previousTableState.score)
   }
 
-  onPlayerWon(player: Player, score: number) {
-    this.onPlayerGameOver(player, score)
+  onGameWon(tableName: string, player: Player, score: number) {
+    this.onGameOver(tableName, player, score)
   }
 
-  onPlayerGameOver(player: Player, score: number) {
-    const payout = math.floor(score / 1000)
-    if (payout >= 1) store.addTickets(player.UserId, payout)
-  }
-
-  onTableClaimed(tableName: string, player?: Player) {
+  onGameOver(tableName: string, player: Player, score: number) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
     const flipperLeft = <Flipper>arcadeTable?.FindFirstChild('FlipperLeft')
     const flipperRight = <Flipper>arcadeTable?.FindFirstChild('FlipperRight')
@@ -130,7 +129,12 @@ export class ArcadeTableService implements OnStart {
       setNetworkOwner(spinnerLeft, undefined)
       return
     }
+    const payout = math.floor(score / 1000)
+    if (payout >= 1) store.addTickets(player.UserId, payout)
+  }
 
+  onGameStart(tableName: string, player: Player) {
+    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
     const balls = arcadeTable?.FindFirstChild('Balls')
     const ballTemplate = arcadeTable?.FindFirstChild('BallTemplate')
     const ground = <BasePart>arcadeTable?.FindFirstChild('Ground')
@@ -156,12 +160,15 @@ export class ArcadeTableService implements OnStart {
       }
       setNetworkOwner(ball, player)
     }
+    const flipperLeft = <Flipper>arcadeTable?.FindFirstChild('FlipperLeft')
+    const flipperRight = <Flipper>arcadeTable?.FindFirstChild('FlipperRight')
+    const spinnerLeft = <Spinner>arcadeTable?.FindFirstChild('SpinnerLeft')
     setNetworkOwner(flipperLeft, player)
     setNetworkOwner(flipperRight, player)
     setNetworkOwner(spinnerLeft, player)
   }
 
-  onTableScoreChanged(tableName: string, arcadeTableState: ArcadeTableState) {
+  onScoreChanged(tableName: string, arcadeTableState: ArcadeTableState) {
     // Find the scoreboard on the arcade table.
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
       tableName,

@@ -9,6 +9,7 @@ const parent = <Folder>script.Parent?.FindFirstChild('cmdr')
 Cmdr.RegisterDefaultCommands()
 Cmdr.RegisterCommandsIn(<Folder>parent.FindFirstChild('commands'))
 Cmdr.RegisterTypesIn(<Folder>parent.FindFirstChild('types'))
+Cmdr.RegisterHooksIn(<Folder>parent.FindFirstChild('hooks'))
 
 Flamework.addPaths('src/ServerScriptService/components')
 Flamework.addPaths('src/ServerScriptService/services')

@@ -235,6 +235,11 @@ interface TycoonPlot extends Model {
 }
 
 interface Workspace extends Instance {
+  Audio: Folder & {
+    CollectDollars: Sound
+    CollectLevity: Sound
+    CollectTickets: Sound
+  }
   ArcadeTables: Folder & {
     Table1?: ArcadeTable
     Table2?: ArcadeTable
