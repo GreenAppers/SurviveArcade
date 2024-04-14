@@ -28,3 +28,5 @@ export const palette = {
   ...neutrals,
   ...base,
 } as const
+
+export const gameEmoticons = ['🏁', '🕹️', '🎮', '🎲']

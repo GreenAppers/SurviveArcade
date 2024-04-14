@@ -8,6 +8,7 @@ import { ArcadeTableTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   ArcadeTablesState,
   ArcadeTableStatus,
+  nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 
 export function isArcadeTable(arcadeTable: Instance) {
@@ -31,16 +32,23 @@ export function nearestArcadeTable(
 ) {
   let nearestDistance = math.huge
   let nearestArcadeTableName: ArcadeTableName | ArcadeTableNextName | undefined
-  for (const [name, arcadeTableState] of Object.entries(arcadeTablesState)) {
-    if (arcadeTableState.status === ArcadeTableStatus.Won) continue
-    if (teamName && arcadeTableState.teamName !== teamName) continue
-    const arcadeSeatPosition =
-      game.Workspace.ArcadeTables?.[name]?.Seat?.Position
-    if (!arcadeSeatPosition) continue
+  const compareDistance = (name: ArcadeTableName | ArcadeTableNextName) => {
+    const arcadeSeatPosition = (
+      game.Workspace.ArcadeTables?.FindFirstChild(name) as ArcadeTable
+    )?.Seat?.Position
+    if (!arcadeSeatPosition) return
     const distance = position.sub(arcadeSeatPosition).Magnitude
     if (distance < nearestDistance) {
       nearestArcadeTableName = name
       nearestDistance = distance
+    }
+  }
+  for (const [name, arcadeTableState] of Object.entries(arcadeTablesState)) {
+    if (teamName && arcadeTableState.teamName !== teamName) continue
+    if (arcadeTableState.status === ArcadeTableStatus.Won) {
+      compareDistance(nextArcadeTableName(name))
+    } else {
+      compareDistance(name)
     }
   }
   return nearestArcadeTableName

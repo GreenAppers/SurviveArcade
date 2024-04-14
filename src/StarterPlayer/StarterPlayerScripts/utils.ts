@@ -1,6 +1,3 @@
-import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
-import { store } from 'StarterPlayer/StarterPlayerScripts/store'
-
 export function forEveryPlayerCharacterAdded(
   player: Player,
   addedFunc: (character: PlayerCharacter) => void,
@@ -27,21 +24,4 @@ export function formatDuration(value: number) {
   const minutes = math.floor(value / 60)
   const seconds = math.floor(value % 60)
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
-}
-
-export function getArcadeTableStateFromDescendent(instance: Instance) {
-  const arcadeTable = getArcadeTableFromDescendent(instance)
-  if (!arcadeTable?.Name) return undefined
-  return store.getState().arcadeTables[arcadeTable.Name]
-}
-
-export function getArcadeTableAndStateFromDescendent(instance: Instance) {
-  const arcadeTable = getArcadeTableFromDescendent(instance)
-  if (!arcadeTable?.Name) return [undefined, undefined]
-  const state = store.getState().arcadeTables[arcadeTable.Name]
-  return [arcadeTable, state]
-}
-
-export function getArcadeTableOwner(instance: Instance) {
-  return getArcadeTableStateFromDescendent(instance)?.owner
 }

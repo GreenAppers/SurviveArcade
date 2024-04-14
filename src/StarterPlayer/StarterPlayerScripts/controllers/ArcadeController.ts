@@ -2,6 +2,7 @@ import { Controller, OnStart } from '@flamework/core'
 import { Players, UserInputService } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { USER_NAME } from 'ReplicatedStorage/shared/constants/core'
+import { gameEmoticons } from 'ReplicatedStorage/shared/constants/palette'
 import {
   selectArcadeTableNameOwnedBy,
   selectLocalPlayerArcadeTableStatus,
@@ -16,6 +17,7 @@ import {
   nearestCabinet,
   nearestCabinetTruss,
 } from 'ReplicatedStorage/shared/utils/arcade'
+import { randomElement } from 'ReplicatedStorage/shared/utils/object'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
@@ -90,7 +92,7 @@ export class ArcadeController implements OnStart {
         const aracdeTableState = store.getState().arcadeTables[arcadeTableName]
         if (aracdeTableState?.status !== ArcadeTableStatus.Active) return
         sendAlert({
-          emoji: '🏁',
+          emoji: randomElement(gameEmoticons),
           message: `Score ${aracdeTableState?.scoreToWin} to win.`,
         })
         const arcadeTable =

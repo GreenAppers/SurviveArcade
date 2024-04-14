@@ -7,13 +7,15 @@ import {
   IS_START_PLACE,
   TYCOON_TYPES,
 } from 'ReplicatedStorage/shared/constants/core'
-import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
+import {
+  selectArcadeTablesState,
+  selectArcadeTableState,
+} from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTablesState,
   ArcadeTableState,
   ArcadeTableStatus,
   baseArcadeTableName,
-  isArcadeTableNextName,
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { animateBuildingIn } from 'ServerScriptService/buildin'
@@ -153,7 +155,6 @@ export class MapService implements OnStart {
   resetTable(name: ArcadeTableName) {
     const arcadeTablesState = selectArcadeTablesState()(store.getState())
     const arcadeTableState = arcadeTablesState[name]
-    const nextTableState = arcadeTablesState[nextArcadeTableName(name)]
     let arcadeTable = <ArcadeTable>(
       game.Workspace.ArcadeTables?.FindFirstChild(name)
     )
@@ -163,74 +164,72 @@ export class MapService implements OnStart {
     arcadeTable?.Destroy()
     nextArcadeTable?.Destroy()
     store.resetArcadeTable(name)
-    const oldState = arcadeTableState || nextTableState
-    const tableMap = arcadeTableState?.tableMap || nextTableState?.tableMap
+    const oldState = arcadeTableState
+    const tableMap = arcadeTableState?.tableMap
     if (!tableMap || !oldState) return
     arcadeTable = this.loadArcadeTableTemplate(tableMap, name)
     arcadeTable.Name = name
     this.setupArcadeTable(arcadeTable, oldState, getArcadeTableCFrame(name))
   }
 
-  materializeTable(
+  createNextTable(name: ArcadeTableName) {
+    const arcadeTableNextName = nextArcadeTableName(name)
+    const arcadeTablesState = store.getState().arcadeTables
+    const state = arcadeTablesState[name]
+    const arcadeTable = <ArcadeTable | undefined>(
+      game.Workspace.ArcadeTables?.FindFirstChild(name)
+    )
+    let arcadeTableNext = <ArcadeTable | undefined>(
+      game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableNextName)
+    )
+    if (!state?.tableMap || arcadeTableNext) return
+    const nextArcadeTableCF = arcadeTable?.NextBaseplate?.CFrame
+    if (!nextArcadeTableCF) return
+    arcadeTableNext = this.loadArcadeTableTemplate(state.tableMap, name)
+    arcadeTableNext.Name = arcadeTableNextName as ArcadeTableName
+    this.setupNextArcadeTable(arcadeTableNext, nextArcadeTableCF)
+  }
+
+  activateNextTable(
     name: ArcadeTableName | ArcadeTableNextName,
     player: Player,
   ) {
-    const state = store.getState().arcadeTables[name]
-    const unmaterializedArcadeTable = game.Workspace.ArcadeTables?.[name]
+    const baseName = baseArcadeTableName(name)
+    const nextName = nextArcadeTableName(name)
+    const arcadeTableSelector = selectArcadeTableState(baseName)
+
+    let arcadeTableState = arcadeTableSelector(store.getState())
+    const unmaterializedArcadeTable =
+      game.Workspace.ArcadeTables?.FindFirstChild(nextName) as
+        | ArcadeTable
+        | undefined
     const arcadeTableCF = unmaterializedArcadeTable?.PrimaryPart?.CFrame
     if (
-      state?.status === ArcadeTableStatus.Unmaterialized &&
-      state.tableMap &&
+      arcadeTableState.status === ArcadeTableStatus.Won &&
+      arcadeTableState.tableMap &&
       unmaterializedArcadeTable &&
       arcadeTableCF
     ) {
-      const baseName = baseArcadeTableName(name)
-      store.updateArcadeTableStatus(name, ArcadeTableStatus.Active)
-      const arcadeTable = this.loadArcadeTableTemplate(state.tableMap, baseName)
-      arcadeTable.Name = name
-      this.setupArcadeTable(arcadeTable, state, arcadeTableCF)
-      const isNextName = isArcadeTableNextName(name)
-      if (isNextName) game.Workspace.ArcadeTables?.[baseName]?.Destroy()
-      if (unmaterializedArcadeTable) unmaterializedArcadeTable.Destroy()
-      Events.arcadeTableMaterialize.fire(player, name)
+      arcadeTableState = arcadeTableSelector(store.extendArcadeTable(baseName))
+      const previousArcadeTable = game.Workspace.ArcadeTables[baseName]
+      const arcadeTable = this.loadArcadeTableTemplate(
+        arcadeTableState.tableMap,
+        baseName,
+      )
+      this.setupArcadeTable(arcadeTable, arcadeTableState, arcadeTableCF)
+
+      previousArcadeTable?.Destroy()
+      unmaterializedArcadeTable.Destroy()
+      Events.arcadeTableMaterialize.fire(player, baseName)
+
       if (arcadeTable.Backbox)
         animateBuildingIn(
           arcadeTable.Backbox,
           new TweenInfo(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
         )?.Wait()
-      if ((state?.sequence || 0) % 8 === 0)
-        store.addPlayerLoops(player.UserId, state.tableType, 1)
-    }
-  }
 
-  chainNextTable(name: ArcadeTableName | ArcadeTableNextName) {
-    const isNextName = isArcadeTableNextName(name)
-    const arcadeTableBaseName = baseArcadeTableName(name)
-    const arcadeTableNextName = nextArcadeTableName(name)
-    const arcadeTablesState = store.getState().arcadeTables
-    const state = arcadeTablesState[arcadeTableBaseName]
-    let arcadeTable = <ArcadeTable | undefined>(
-      game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableBaseName)
-    )
-    let arcadeTableNext = <ArcadeTable | undefined>(
-      game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableNextName)
-    )
-    if (!state?.tableMap) return
-    store.extendArcadeTable(name)
-
-    if (isNextName && arcadeTableNext) {
-      arcadeTable?.Destroy()
-      arcadeTable = arcadeTableNext
-      arcadeTable.Name = arcadeTableBaseName
-      arcadeTableNext = undefined
+      if (arcadeTableState.sequence > 0 && arcadeTableState.sequence % 8 === 0)
+        store.addPlayerLoops(player.UserId, arcadeTableState.tableType, 1)
     }
-    const nextArcadeTableCF = arcadeTable?.NextBaseplate?.CFrame
-    if (arcadeTableNext || !nextArcadeTableCF) return
-    arcadeTableNext = this.loadArcadeTableTemplate(
-      state.tableMap,
-      arcadeTableBaseName,
-    )
-    arcadeTableNext.Name = arcadeTableNextName
-    this.setupNextArcadeTable(arcadeTableNext, nextArcadeTableCF)
   }
 }

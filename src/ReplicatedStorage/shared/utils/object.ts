@@ -70,6 +70,12 @@ export function assign<K extends string, V>(
   return result
 }
 
+export function randomElement<T extends defined>(array: T[]): T {
+  const random = new Random()
+  const randomIndex = random.NextInteger(0, array.size() - 1)
+  return array[randomIndex]
+}
+
 /**
  * Returns a shuffled copy of the given array.
  */

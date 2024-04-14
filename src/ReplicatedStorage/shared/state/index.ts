@@ -24,7 +24,7 @@ export const selectArcadeTablesState = () => (state: SharedState) =>
   state.arcadeTables
 
 export const selectArcadeTableState =
-  (tableName: ArcadeTableName | ArcadeTableNextName) => (state: SharedState) =>
+  (tableName: ArcadeTableName) => (state: SharedState) =>
     state.arcadeTables[tableName]
 
 export const selectArcadeTableNameOwnedBy =

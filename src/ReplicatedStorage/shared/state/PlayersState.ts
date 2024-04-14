@@ -41,10 +41,8 @@ export interface PlayerData {
 
 export interface PlayerDetail {
   readonly gravityUp: Vector3
-  readonly groundArcadeTableName:
-    | ArcadeTableName
-    | ArcadeTableNextName
-    | undefined
+  readonly groundArcadeTableName: ArcadeTableName | undefined
+  readonly groundArcadeTableSequence: number | undefined
   readonly scale: TycoonType
   readonly score: number
 }
@@ -104,6 +102,7 @@ export const defaultPlayerData: PlayerData = {
 export const defaultPlayerDetail: PlayerDetail = {
   gravityUp: new Vector3(0, 1, 0),
   groundArcadeTableName: undefined,
+  groundArcadeTableSequence: undefined,
   scale: TYCOON_TYPES.Elf,
   score: 0,
 } as const
@@ -131,7 +130,7 @@ const getPlayerKey = (userID: number) => KEY_TEMPLATE.format(userID)
 export const getPlayerState = (state: Players, userID: number) =>
   state[getPlayerKey(userID)]
 
-export function addPlayerCurrency(
+export function addPlayerResource(
   state: Players,
   userID: number,
   currency: 'dollars' | 'levity' | 'tickets',
@@ -170,13 +169,13 @@ export const playersSlice = createProducer(initialState, {
   }),
 
   addDollars: (state, userID: number, amount: number) =>
-    addPlayerCurrency(state, userID, 'dollars', amount),
+    addPlayerResource(state, userID, 'dollars', amount),
 
   addLevity: (state, userID: number, amount: number) =>
-    addPlayerCurrency(state, userID, 'levity', amount),
+    addPlayerResource(state, userID, 'levity', amount),
 
   addTickets: (state, userID: number, amount: number) =>
-    addPlayerCurrency(state, userID, 'tickets', amount),
+    addPlayerResource(state, userID, 'tickets', amount),
 
   addPlayerLoops: (
     state,
@@ -263,16 +262,23 @@ export const playersSlice = createProducer(initialState, {
     playerGround: Array<{
       userID: number
       gravityUp: Vector3 | undefined
-      groundArcadeTableName: ArcadeTableName | ArcadeTableNextName | undefined
+      groundArcadeTableName: ArcadeTableName | undefined
+      groundArcadeTableSequence: number | undefined
     }>,
   ) => {
     let newState: { [playerKey: string]: PlayerState | undefined } | undefined
-    for (const { userID, gravityUp, groundArcadeTableName } of playerGround) {
+    for (const {
+      userID,
+      gravityUp,
+      groundArcadeTableName,
+      groundArcadeTableSequence,
+    } of playerGround) {
       const playerKey = getPlayerKey(userID)
       const playerState = state[playerKey]
       if (
         !playerState ||
-        playerState.groundArcadeTableName === groundArcadeTableName
+        (playerState.groundArcadeTableName === groundArcadeTableName &&
+          playerState.groundArcadeTableSequence === groundArcadeTableSequence)
       )
         continue
       if (!newState) newState = { ...state }

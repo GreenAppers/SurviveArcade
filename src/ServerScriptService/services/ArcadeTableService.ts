@@ -24,10 +24,7 @@ export class ArcadeTableService implements OnStart {
   ballNumber = 1
   scoreboardCharacters = 14
 
-  claimArcadeTable(
-    tableName: ArcadeTableName | ArcadeTableNextName,
-    player?: Player,
-  ) {
+  claimArcadeTable(tableName: ArcadeTableName, player?: Player) {
     if (!player) return store.claimArcadeTable(tableName, undefined)
     const state = store.getState()
     const tableCost = 1
@@ -50,10 +47,15 @@ export class ArcadeTableService implements OnStart {
           const previousArcadeTableState = previousArcadeTablesState[tableName]
           if (arcadeTableState.score !== previousArcadeTableState?.score)
             this.onTableScoreChanged(tableName, arcadeTableState)
-          if (
-            arcadeTableState.status === ArcadeTableStatus.Won ||
-            arcadeTableState.owner === previousArcadeTableState?.owner
-          )
+          if (arcadeTableState.status === ArcadeTableStatus.Won) {
+            if (
+              previousArcadeTableState?.status !== ArcadeTableStatus.Won &&
+              arcadeTableState.owner
+            )
+              this.onPlayerWon(arcadeTableState.owner, arcadeTableState.score)
+            continue
+          }
+          if (arcadeTableState.owner === previousArcadeTableState?.owner)
             continue
           this.onTableClaimed(tableName, arcadeTableState.owner)
           if (arcadeTableState.owner) {
@@ -105,7 +107,15 @@ export class ArcadeTableService implements OnStart {
     _tableState: ArcadeTableState,
     previousTableState: ArcadeTableState,
   ) {
-    const payout = math.floor(previousTableState.score / 1000)
+    this.onPlayerGameOver(player, previousTableState.score)
+  }
+
+  onPlayerWon(player: Player, score: number) {
+    this.onPlayerGameOver(player, score)
+  }
+
+  onPlayerGameOver(player: Player, score: number) {
+    const payout = math.floor(score / 1000)
     if (payout >= 1) store.addTickets(player.UserId, payout)
   }
 
@@ -152,14 +162,12 @@ export class ArcadeTableService implements OnStart {
   }
 
   onTableScoreChanged(tableName: string, arcadeTableState: ArcadeTableState) {
-    // print('score state')
-    // print(store.getState().arcadeTables)
     // Find the scoreboard on the arcade table.
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
       tableName,
     ) as ArcadeTable
-    if (!arcadeTable?.Backbox) return
-    const surfaceGuiFrame = arcadeTable.Backbox.Scoreboard.SurfaceGui.Frame
+    if (!arcadeTable?.FindFirstChild('Backbox')) return
+    const surfaceGuiFrame = arcadeTable.Backbox?.Scoreboard.SurfaceGui.Frame
     if (!surfaceGuiFrame) return
 
     // Determine the name and score to display on the scoreboard.

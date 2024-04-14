@@ -2,9 +2,10 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { BarrierTag } from 'ReplicatedStorage/shared/constants/tags'
+import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
-import { getArcadeTableStateFromDescendent } from 'StarterPlayer/StarterPlayerScripts/utils'
+import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
 @Component({ tag: BarrierTag })
 export class BarrierComponent
@@ -26,10 +27,13 @@ export class BarrierComponent
       const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
       if (touchedPlayer?.UserId === Players.LocalPlayer.UserId) {
         this.debounce = true
+
+        const state = store.getState()
+        const arcadeTableSelector = selectArcadeTableState(arcadeTable.Name)
+        const tableState = arcadeTableSelector(state)
         sendAlert({
           emoji: '🚧',
-          message: `Score ${getArcadeTableStateFromDescendent(this.instance)
-            ?.scoreToWin} to defeat the barrier.`,
+          message: `Score ${tableState?.scoreToWin} to defeat the barrier.`,
         })
         task.wait(5)
         this.debounce = false

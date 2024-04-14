@@ -33,7 +33,7 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
         character.Humanoid.Sit = false
         return
       }
-      this.mapService.materializeTable(arcadeTable.Name, player)
+      this.mapService.activateNextTable(arcadeTable.Name, player)
     })
   }
 }

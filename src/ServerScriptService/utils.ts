@@ -1,6 +1,4 @@
 import { CollectionService, Players } from '@rbxts/services'
-import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
-import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { getTycoonFromDescendent } from 'ReplicatedStorage/shared/utils/tycoon'
 import { store } from 'ServerScriptService/store'
 
@@ -52,25 +50,6 @@ export function forEveryPlayer(
   if (leaveFunc) events.push(Players.PlayerRemoving.Connect(leaveFunc))
 
   return events
-}
-
-export function getArcadeTableStateFromDescendent(instance: Instance) {
-  const arcadeTable = getArcadeTableFromDescendent(instance)
-  if (!arcadeTable?.Name) return undefined
-  return store.getState().arcadeTables[arcadeTable.Name]
-}
-
-export function getArcadeTableAndStateFromDescendent(
-  instance: Instance,
-): [ArcadeTable?, ArcadeTableState?] {
-  const arcadeTable = getArcadeTableFromDescendent(instance)
-  if (!arcadeTable?.Name) return [undefined, undefined]
-  const state = store.getState().arcadeTables[arcadeTable.Name]
-  return [arcadeTable, state]
-}
-
-export function getArcadeTableOwner(instance: Instance) {
-  return getArcadeTableStateFromDescendent(instance)?.owner
 }
 
 export function getTycoonStateFromDescendent(instance: Instance) {

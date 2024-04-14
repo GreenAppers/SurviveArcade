@@ -1,15 +1,16 @@
 import Object from '@rbxts/object-utils'
 import { createProducer } from '@rbxts/reflex'
-import {
-  ARCADE_TABLE_NAMES,
-  ARCADE_TABLE_NEXT_NAMES,
-  ARCADE_TABLE_TYPES,
-} from 'ReplicatedStorage/shared/constants/core'
+import { ARCADE_TABLE_TYPES } from 'ReplicatedStorage/shared/constants/core'
 
 export enum ArcadeTableStatus {
   Unmaterialized,
   Active,
   Won,
+}
+
+export enum ArcadeTableScoreDomain {
+  Table,
+  Player,
 }
 
 export interface ArcadeTableArcadeTable {
@@ -27,6 +28,7 @@ export interface ArcadeTableState {
   readonly baseMaterial: Enum.Material
   readonly statorColor: BrickColor
   readonly score: number
+  readonly scoreDomain: number
   readonly scoreStart: number
   readonly scoreToWin: number
   readonly arcadeTable: {
@@ -37,37 +39,7 @@ export interface ArcadeTableState {
 }
 
 export type ArcadeTablesState = {
-  readonly [arcadeTableName in ArcadeTableName | ArcadeTableNextName]:
-    | ArcadeTableState
-    | undefined
-}
-
-export const isArcadeTableBaseName = (
-  tableName: ArcadeTableName | ArcadeTableNextName,
-): ArcadeTableName | undefined => {
-  switch (tableName) {
-    case ARCADE_TABLE_NAMES[0]:
-    case ARCADE_TABLE_NAMES[1]:
-    case ARCADE_TABLE_NAMES[2]:
-    case ARCADE_TABLE_NAMES[3]:
-      return tableName
-    default:
-      return undefined
-  }
-}
-
-export const isArcadeTableNextName = (
-  tableName: ArcadeTableName | ArcadeTableNextName,
-): ArcadeTableNextName | undefined => {
-  switch (tableName) {
-    case ARCADE_TABLE_NEXT_NAMES[0]:
-    case ARCADE_TABLE_NEXT_NAMES[1]:
-    case ARCADE_TABLE_NEXT_NAMES[2]:
-    case ARCADE_TABLE_NEXT_NAMES[3]:
-      return tableName
-    default:
-      return undefined
-  }
+  readonly [arcadeTableName in ArcadeTableName]: ArcadeTableState
 }
 
 export const baseArcadeTableName = (
@@ -116,23 +88,25 @@ export const findArcadeTableNameOwnedBy = (
     ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
   )?.[0] as ArcadeTableName | undefined
 
-export const initialScoreToWin = 100000
+export const initialScoreToWin = 50000
 
-export const defaultArcadeTableArcadTable: ArcadeTableArcadeTable = {
+export const defaultArcadeTableArcadeTable: ArcadeTableArcadeTable = {
   highScore: 0,
 }
 
 export const defaultArcadeTableState = {
   owner: undefined,
   score: 0,
+  scoreDomain: ArcadeTableScoreDomain.Table,
   scoreStart: 0,
   scoreToWin: initialScoreToWin,
   arcadeTable: {
-    Pinball: defaultArcadeTableArcadTable,
-    Foosball: defaultArcadeTableArcadTable,
-    AirHockey: defaultArcadeTableArcadTable,
+    Pinball: defaultArcadeTableArcadeTable,
+    Foosball: defaultArcadeTableArcadeTable,
+    AirHockey: defaultArcadeTableArcadeTable,
   },
   status: ArcadeTableStatus.Active,
+  nextStatus: ArcadeTableStatus.Unmaterialized,
   sequence: 0,
 }
 
@@ -181,18 +155,10 @@ const initialState: ArcadeTablesState = {
     baseColor: new BrickColor('Terra Cotta'),
     baseMaterial: Enum.Material.Glass,
   },
-  Table1Next: undefined,
-  Table2Next: undefined,
-  Table3Next: undefined,
-  Table4Next: undefined,
 }
 
 export const arcadeTablesSlice = createProducer(initialState, {
-  claimArcadeTable: (
-    state,
-    name: ArcadeTableName | ArcadeTableNextName,
-    owner?: Player,
-  ) => {
+  claimArcadeTable: (state, name: ArcadeTableName, owner?: Player) => {
     const prevTable = state[name]
     return !prevTable || prevTable.owner === owner || (owner && prevTable.owner)
       ? state
@@ -204,7 +170,7 @@ export const arcadeTablesSlice = createProducer(initialState, {
 
   updateArcadeTableStatus: (
     state,
-    name: ArcadeTableName | ArcadeTableNextName,
+    name: ArcadeTableName,
     status: ArcadeTableStatus,
   ) =>
     state[name]?.status !== status
@@ -214,53 +180,27 @@ export const arcadeTablesSlice = createProducer(initialState, {
         }
       : state,
 
-  extendArcadeTable: (state, name: ArcadeTableName | ArcadeTableNextName) => {
-    const nextName = nextArcadeTableName(name)
+  extendArcadeTable: (state, name: ArcadeTableName) => {
     const lastState = state[name]
     const lastScoreToWin = lastState?.scoreToWin || initialScoreToWin
-    const nextScoreToWin = lastScoreToWin + initialScoreToWin // * 3
+    const nextScoreToWin = lastScoreToWin // + initialScoreToWin // * 3
     const lastSequence = lastState?.sequence || 0
     const nextSequence = lastSequence + 1
-    if (isArcadeTableBaseName(name)) {
-      // We're extending the inital table.
-      const nextTable = state[nextName]
-      return nextTable
-        ? state
-        : {
-            ...state,
-            [nextName]: {
-              ...initialState[name],
-              scoreToWin: nextScoreToWin,
-              sequence: nextSequence,
-              status: ArcadeTableStatus.Unmaterialized,
-            },
-          }
-    } else {
-      // We're extending the current "next" table.
-      const baseName = baseArcadeTableName(name)
-      return {
-        ...state,
-        // Replace the base table with the current next table.
-        [baseName]: state[name] || { ...initialState[baseName] },
-        // Create a new next table.
-        [nextName]: {
-          ...initialState[baseName],
-          scoreToWin: nextScoreToWin,
-          sequence: nextSequence,
-          status: ArcadeTableStatus.Unmaterialized,
-        },
-      }
+    return {
+      ...state,
+      [name]: {
+        ...initialState[name],
+        scoreToWin: nextScoreToWin,
+        sequence: nextSequence,
+        nextStatus: ArcadeTableStatus.Active,
+      },
     }
   },
 
-  resetArcadeTable: (state, name: ArcadeTableName) => {
-    const nextName = nextArcadeTableName(name)
-    return {
-      ...state,
-      [name]: { ...initialState[name] },
-      [nextName]: initialState[nextName],
-    }
-  },
+  resetArcadeTable: (state, name: ArcadeTableName) => ({
+    ...state,
+    [name]: { ...initialState[name] },
+  }),
 
   resetArcadeTables: () => ({ ...initialState }),
 

@@ -17,8 +17,6 @@ export class JoinTeamComponent
   onStart() {
     const arcadeTable = getArcadeTableFromDescendent(this.instance)
     if (!arcadeTable) throw error('No ancestor ArcadeTable')
-    const arcadeTableSelector = selectArcadeTableState(arcadeTable.Name)
-
     this.instance.Touched?.Connect((hit) => {
       const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
         | Humanoid
@@ -27,6 +25,7 @@ export class JoinTeamComponent
         const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
         if (touchedPlayer) {
           const state = store.getState()
+          const arcadeTableSelector = selectArcadeTableState(arcadeTable.Name)
           const tableState = arcadeTableSelector(state)
           const gameState = selectGameState()(state)
           if (gameState.teamsActive) {

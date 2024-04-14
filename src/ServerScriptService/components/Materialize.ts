@@ -30,6 +30,6 @@ export class MaterializeComponent
   }
 
   handlePlayerTouched(arcadeTable: ArcadeTable, player: Player) {
-    this.mapService.materializeTable(arcadeTable.Name, player)
+    this.mapService.activateNextTable(arcadeTable.Name, player)
   }
 }

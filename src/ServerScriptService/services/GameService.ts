@@ -12,8 +12,8 @@ import {
   selectPlayerScore,
 } from 'ReplicatedStorage/shared/state'
 import {
+  ArcadeTableScoreDomain,
   ArcadeTableStatus,
-  initialScoreToWin,
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { MapService } from 'ServerScriptService/services/MapService'
@@ -77,14 +77,25 @@ export class GameService implements OnStart {
             10,
           )
 
-          if (arcadeTableState.status !== ArcadeTableStatus.Active) continue
-          const arcadeTable = game.Workspace.ArcadeTables[name]
-
           // Trigger winning sequence when threshhold score exceeded.
-          const userScoreSelector = selectPlayerScore(userId)
-          const score = userScoreSelector(newState)
-          if (score > arcadeTableState.scoreToWin)
-            this.handleArcadeTableWon(name, arcadeTable)
+          if (arcadeTableState.status === ArcadeTableStatus.Active) {
+            if (
+              arcadeTableState.scoreDomain === ArcadeTableScoreDomain.Player
+            ) {
+              const userScoreSelector = selectPlayerScore(userId)
+              const score = userScoreSelector(newState)
+              if (score > arcadeTableState.scoreToWin)
+                this.handleArcadeTableWon(
+                  name,
+                  game.Workspace.ArcadeTables[name],
+                )
+            } else if (
+              arcadeTableState.scoreDomain === ArcadeTableScoreDomain.Table &&
+              arcadeTableState.score > arcadeTableState.scoreToWin
+            ) {
+              this.handleArcadeTableWon(name, game.Workspace.ArcadeTables[name])
+            }
+          }
         }
       }
 
@@ -96,9 +107,8 @@ export class GameService implements OnStart {
     const players = Players.GetPlayers().map((x) => ({
       userID: x.UserId,
       gravityUp: <Vector3 | undefined>undefined,
-      groundArcadeTableName: <
-        ArcadeTableName | ArcadeTableNextName | undefined
-      >undefined,
+      groundArcadeTableName: <ArcadeTableName | undefined>undefined,
+      groundArcadeTableSequence: <number | undefined>undefined,
       humanoidRootPart: playerHumanoidRootPart(x),
     }))
     const state = store.getState()
@@ -120,6 +130,7 @@ export class GameService implements OnStart {
         ) {
           player.gravityUp = arcadeTable.Baseplate.CFrame.UpVector
           player.groundArcadeTableName = arcadeTableName
+          player.groundArcadeTableSequence = arcadeTableState?.sequence || 0
           foundPlayerInPlayZone = true
         } else if (
           nextArcadeTable &&
@@ -129,13 +140,15 @@ export class GameService implements OnStart {
           )
         ) {
           player.gravityUp = nextArcadeTable.Baseplate.CFrame.UpVector
-          player.groundArcadeTableName = nextTableName
+          player.groundArcadeTableName = arcadeTableName
+          player.groundArcadeTableSequence =
+            (arcadeTableState?.sequence || 0) + 1
           foundPlayerInPlayZone = true
         }
       }
       const isInitialTable =
         arcadeTableState?.status === ArcadeTableStatus.Active &&
-        arcadeTableState?.scoreToWin === initialScoreToWin
+        arcadeTableState?.sequence === 0
       if (!foundPlayerInPlayZone && !isInitialTable) {
         this.mapService.resetTable(arcadeTableName)
       }
@@ -144,7 +157,7 @@ export class GameService implements OnStart {
   }
 
   handleArcadeTableWon(
-    name: ArcadeTableName | ArcadeTableNextName,
+    name: ArcadeTableName,
     arcadeTable: ArcadeTable | undefined,
   ) {
     store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
@@ -171,7 +184,7 @@ export class GameService implements OnStart {
       task.wait(2.2)
       arcadeTable.Backbox?.Destroy()
     }
-    this.mapService.chainNextTable(name)
+    this.mapService.createNextTable(name)
   }
 }
 

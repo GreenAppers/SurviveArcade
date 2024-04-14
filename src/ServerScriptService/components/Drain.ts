@@ -3,11 +3,14 @@ import { OnStart } from '@flamework/core'
 import { CollectionService } from '@rbxts/services'
 import { DIFFICULTY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { BallTag, DrainTag } from 'ReplicatedStorage/shared/constants/tags'
-import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
+import {
+  ArcadeTableState,
+  ArcadeTableStatus,
+} from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
-import { getArcadeTableOwner } from 'ServerScriptService/utils'
 
 @Component({ tag: DrainTag })
 export class DrainComponent
@@ -24,14 +27,22 @@ export class DrainComponent
 
     this.instance.Touched?.Connect((hit) => {
       if (CollectionService.HasTag(hit, BallTag)) {
-        this.handleBallTouched(arcadeTable, hit)
+        const state = store.getState()
+        const arcadeTableSelector = selectArcadeTableState(arcadeTable.Name)
+        const arcadeTableState = arcadeTableSelector(state)
+
+        this.handleBallTouched(arcadeTable, arcadeTableState, hit)
         return
       }
     })
   }
 
-  handleBallTouched(arcadeTable: ArcadeTable, part: BasePart) {
-    const player = getArcadeTableOwner(arcadeTable)
+  handleBallTouched(
+    arcadeTable: ArcadeTable,
+    arcadeTableState: ArcadeTableState | undefined,
+    part: BasePart,
+  ) {
+    const player = arcadeTableState?.owner
     if (player) {
       const character: (Model & { Humanoid?: Humanoid }) | undefined =
         player.Character

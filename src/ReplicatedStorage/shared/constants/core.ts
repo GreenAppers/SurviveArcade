@@ -43,10 +43,6 @@ export const ARCADE_TABLE_NEXT_NAMES: ArcadeTableNextName[] = [
   'Table4Next',
 ]
 
-export const EXTENDED_ARCADE_TABLE_NAMES: Array<
-  ArcadeTableName | ArcadeTableNextName
-> = [...ARCADE_TABLE_NAMES, ...ARCADE_TABLE_NEXT_NAMES]
-
 export const CURRENCY_TYPES: {
   [name in Currency]: Currency
 } = {
