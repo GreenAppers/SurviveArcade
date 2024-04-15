@@ -2,7 +2,7 @@ import Object from '@rbxts/object-utils'
 import { createProducer } from '@rbxts/reflex'
 
 export interface TycoonState {
-  readonly owner?: Player
+  readonly owner?: number
 }
 
 export type TycoonsState = {
@@ -14,7 +14,7 @@ export const findTycoonNameOwnedBy = (
   userId: number,
 ) =>
   Object.entries(tycoonsState).find(
-    ([_name, tycoon]) => tycoon?.owner?.UserId === userId,
+    ([_name, tycoon]) => tycoon?.owner === userId,
   )?.[0] as TycoonName | undefined
 
 const initialState: TycoonsState = {
@@ -45,16 +45,21 @@ const initialState: TycoonsState = {
 }
 
 export const tycoonsSlice = createProducer(initialState, {
-  claimTycoon: (state, name: TycoonName, owner?: Player) => {
+  claimTycoon: (state, name: TycoonName, userId?: number) => {
     const prevTycoon = state[name]
     return !prevTycoon ||
-      prevTycoon.owner === owner ||
-      (owner && prevTycoon.owner)
+      prevTycoon.owner === userId ||
+      (userId && prevTycoon.owner)
       ? state
       : {
           ...state,
-          [name]: { ...prevTycoon, owner },
+          [name]: { ...prevTycoon, owner: userId },
         }
+  },
+
+  resetPlayerTycoon: (state, userId: number) => {
+    const name = findTycoonNameOwnedBy(state, userId)
+    return name ? { ...state, [name]: { ...initialState[name] } } : state
   },
 
   resetTycoon: (state, name: TycoonName) => {

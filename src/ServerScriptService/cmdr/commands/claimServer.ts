@@ -4,7 +4,11 @@ import { store } from 'ServerScriptService/store'
 export = function (
   context: CommandContext,
   player: Player,
-  tycoon: TycoonName,
+  tycoon: TycoonName | 'None',
 ) {
-  store.claimTycoon(tycoon, player)
+  if (tycoon === 'None') {
+    store.resetPlayerTycoon(player.UserId)
+  } else {
+    store.claimTycoon(tycoon, player.UserId)
+  }
 }

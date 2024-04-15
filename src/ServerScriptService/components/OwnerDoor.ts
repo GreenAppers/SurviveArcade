@@ -22,7 +22,7 @@ export class OwnerDoorComponent
       if (!humanoid) return
       const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
       const tycoonState = tycoonSelector(store.getState())
-      if (tycoonState.owner?.UserId === touchedPlayer?.UserId) return
+      if (tycoonState.owner === touchedPlayer?.UserId) return
       humanoid.Health = 0
     })
   }

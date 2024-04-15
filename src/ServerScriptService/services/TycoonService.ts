@@ -1,6 +1,6 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
-import { ReplicatedStorage, Workspace } from '@rbxts/services'
+import { Players, ReplicatedStorage, Workspace } from '@rbxts/services'
 import {
   selectTycoonsState,
   selectTycoonState,
@@ -43,10 +43,15 @@ export class TycoonService implements OnStart {
   }
 
   resetTycoon(name: TycoonName) {
-    const tycoonsState = selectTycoonsState()(store.getState())
-    const tycoonState = tycoonsState[name]
-    const tycoon = <Tycoon>game.Workspace.Tycoons?.FindFirstChild(name)
+    const tycoon = game.Workspace.Tycoons?.FindFirstChild(name)
     tycoon?.Destroy()
+    const workspaceMap = game.Workspace.Map
+    const tycoonPlot = workspaceMap[name]
+    const tycoonPlotTemplate =
+      ReplicatedStorage.Maps[this.mapService.currentMap][name]
+    const newTycoonPlot = tycoonPlotTemplate?.Clone()
+    if (newTycoonPlot) newTycoonPlot.Parent = workspaceMap
+    tycoonPlot?.Destroy()
     store.resetTycoon(name)
   }
 
@@ -57,11 +62,17 @@ export class TycoonService implements OnStart {
         for (const [tycoonName, tycoonState] of Object.entries(tycoonsState)) {
           const previousTycoonState = previousTycoonsState[tycoonName]
           if (tycoonState.owner === previousTycoonState?.owner) continue
-          this.onTycoonClaimed(tycoonName, tycoonState.owner)
-          if (tycoonState.owner) {
-            this.onPlayerClaimed(tycoonState.owner, tycoonName, tycoonState)
+          const owner = tycoonState.owner
+            ? Players.GetPlayerByUserId(tycoonState.owner)
+            : undefined
+          this.onTycoonClaimed(tycoonName, owner)
+          if (owner) {
+            this.onPlayerClaimed(owner, tycoonName, tycoonState)
           } else if (previousTycoonState?.owner) {
-            this.onPlayerClaimed(previousTycoonState.owner)
+            const previousOwner = Players.GetPlayerByUserId(
+              previousTycoonState.owner,
+            )
+            if (previousOwner) this.onPlayerClaimed(previousOwner)
           }
         }
       },

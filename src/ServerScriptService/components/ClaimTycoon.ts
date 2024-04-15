@@ -2,7 +2,7 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { ClaimTycoonTag } from 'ReplicatedStorage/shared/constants/tags'
-import { getTycoonPlotNameFromDescendent } from 'ReplicatedStorage/shared/utils/tycoon'
+import { getTycoonPlotFromDescendent } from 'ReplicatedStorage/shared/utils/tycoon'
 import { store } from 'ServerScriptService/store'
 
 @Component({ tag: ClaimTycoonTag })
@@ -18,9 +18,12 @@ export class ClaimTycoonComponent
       if (!humanoid) return
       const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
       if (!touchedPlayer) return
-      const tycoonName = getTycoonPlotNameFromDescendent(this.instance)
-      if (!tycoonName) return
-      store.claimTycoon(tycoonName, touchedPlayer)
+      const tycoonPlot = getTycoonPlotFromDescendent(this.instance)
+      if (!tycoonPlot) return
+      const state = store.getState()
+      const newState = store.claimTycoon(tycoonPlot.Name, touchedPlayer.UserId)
+      if (state === newState) return
+      tycoonPlot.FindFirstChild('ClaimTycoon')?.Destroy()
     })
   }
 }

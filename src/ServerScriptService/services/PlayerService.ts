@@ -59,6 +59,7 @@ export class PlayerService implements OnInit {
       this.logger.Info(`Releasing profile ${player.UserId}`)
       this.profiles.delete(player.UserId)
       store.closePlayerData(player.UserId)
+      store.resetPlayerTycoon(player.UserId)
       player.Kick()
     })
 
