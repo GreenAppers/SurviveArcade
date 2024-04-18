@@ -45,7 +45,20 @@ export class TycoonService implements OnStart {
       if (!playerState?.buttons[item.Name]) setHidden(item, true)
     }
     for (const button of tycoon.Buttons.GetChildren()) {
-      if (playerState?.buttons[button.Name]) button.Destroy()
+      if (playerState?.buttons[button.Name]) {
+        button.Destroy()
+        continue
+      }
+      const dependency = (button as TycoonButtonModel).Button.GetAttribute(
+        'Dependency',
+      )
+      if (
+        dependency &&
+        typeIs(dependency, 'string') &&
+        !playerState?.buttons[dependency]
+      ) {
+        setHidden(button, true)
+      }
     }
     return tycoon
   }

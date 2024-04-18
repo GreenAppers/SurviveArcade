@@ -228,13 +228,21 @@ type TycoonType = 'Elf' | 'Human' | 'Omniverse'
 
 interface TycoonButton extends BasePart {
   Attachment: Attachment
+  BillboardGui: BillboardGui & {
+    Frame: Frame & {
+      TextLabel: TextLabel
+    }
+  }
+}
+
+interface TycoonButtonModel extends Model {
+  Button: TycoonButton
+  Base: BasePart
 }
 
 interface TycoonPlot extends Model {
   Baseplate: BasePart
-  ClaimTycoon: Model & {
-    Button: TycoonButton
-  }
+  ClaimTycoon: TycoonButtonModel
   Name: TycoonName
 }
 
