@@ -27,6 +27,19 @@ export function getDescendentsWithTag(ancestor: Instance, tagName: string) {
   return descendents
 }
 
+export function setHidden(ancestor: Instance, hidden: boolean) {
+  for (const descendent of ancestor.GetDescendants()) {
+    if (descendent.IsA('BasePart')) {
+      descendent.CanCollide = !hidden
+      descendent.Transparency = hidden ? 1 : 0
+    }
+  }
+  if (ancestor.IsA('BasePart')) {
+    ancestor.CanCollide = !hidden
+    ancestor.Transparency = hidden ? 1 : 0
+  }
+}
+
 export function setNetworkOwner(ancestor: Instance, player?: Player) {
   for (const descendent of ancestor.GetDescendants()) {
     if (descendent.IsA('BasePart') && descendent.CanSetNetworkOwnership()[0]) {

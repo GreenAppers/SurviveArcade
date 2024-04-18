@@ -2,10 +2,11 @@ import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Workspace } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
+import { CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
 import {
   selectArcadeTablesState,
-  selectPlayerState,
+  selectPlayerCurrency,
   selectTycoonsState,
 } from 'ReplicatedStorage/shared/state'
 import {
@@ -28,12 +29,18 @@ export class ArcadeTableService implements OnStart {
     if (!player) return store.claimArcadeTable(tableName, undefined)
     const state = store.getState()
     const tableCost = 1
-    if (
-      !findTycoonNameOwnedBy(selectTycoonsState()(state), player.UserId) ||
-      (selectPlayerState(player.UserId)(state)?.dollars ?? 0) < tableCost
-    )
+    if (!findTycoonNameOwnedBy(selectTycoonsState()(state), player.UserId))
       return undefined
-    store.addDollars(player.UserId, -tableCost)
+    const newState = store.addPlayerCurrency(
+      player.UserId,
+      CURRENCY_TYPES.Dollars,
+      -tableCost,
+    )
+    const currencySelector = selectPlayerCurrency(
+      player.UserId,
+      CURRENCY_TYPES.Dollars,
+    )
+    if (currencySelector(newState) === currencySelector(state)) return undefined
     return store.claimArcadeTable(tableName, player)
   }
 
@@ -130,7 +137,8 @@ export class ArcadeTableService implements OnStart {
       return
     }
     const payout = math.floor(score / 1000)
-    if (payout >= 1) store.addTickets(player.UserId, payout)
+    if (payout >= 1)
+      store.addPlayerCurrency(player.UserId, CURRENCY_TYPES.Tickets, payout)
   }
 
   onGameStart(tableName: string, player: Player) {

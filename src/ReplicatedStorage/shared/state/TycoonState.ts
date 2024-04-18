@@ -47,14 +47,18 @@ const initialState: TycoonsState = {
 export const tycoonsSlice = createProducer(initialState, {
   claimTycoon: (state, name: TycoonName, userId?: number) => {
     const prevTycoon = state[name]
-    return !prevTycoon ||
+    if (
+      !prevTycoon ||
       prevTycoon.owner === userId ||
-      (userId && prevTycoon.owner)
-      ? state
-      : {
-          ...state,
-          [name]: { ...prevTycoon, owner: userId },
-        }
+      (userId && prevTycoon.owner) ||
+      Object.values(state).some((tycoon) => tycoon?.owner === userId)
+    ) {
+      return state
+    }
+    return {
+      ...state,
+      [name]: { ...prevTycoon, owner: userId },
+    }
   },
 
   resetPlayerTycoon: (state, userId: number) => {

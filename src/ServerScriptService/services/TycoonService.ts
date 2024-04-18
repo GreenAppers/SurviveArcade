@@ -2,32 +2,51 @@ import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Players, ReplicatedStorage, Workspace } from '@rbxts/services'
 import {
+  selectPlayerState,
   selectTycoonsState,
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
+import { PlayerTycoon } from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonState } from 'ReplicatedStorage/shared/state/TycoonState'
 import {
   getTycoonCFrame,
   MapService,
 } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
-import { getDescendentsWhichAre } from 'ServerScriptService/utils'
+import { getDescendentsWhichAre, setHidden } from 'ServerScriptService/utils'
 
 @Service()
 export class TycoonService implements OnStart {
   constructor(protected mapService: MapService) {}
 
-  loadTycoon(tycoonName: TycoonName, state: TycoonState) {
+  loadTycoon(
+    tycoonName: TycoonName,
+    state: TycoonState,
+    playerTycoonState?: PlayerTycoon,
+  ) {
     const map = this.mapService.getMap()
-    const tycoon = this.loadTycoonTemplate(map.scale, tycoonName)
+    const tycoon = this.loadTycoonTemplate(
+      map.scale,
+      tycoonName,
+      playerTycoonState,
+    )
     this.setupTycoon(tycoon, state, getTycoonCFrame(tycoonName))
     return tycoon
   }
 
-  loadTycoonTemplate(tycoonType: TycoonType, tycoonName: TycoonName) {
-    const tycoonTemplate = ReplicatedStorage.Tycoons[tycoonType]
-    const tycoon = tycoonTemplate.Clone()
+  loadTycoonTemplate(
+    tycoonType: TycoonType,
+    tycoonName: TycoonName,
+    playerState?: PlayerTycoon,
+  ) {
+    const tycoon = ReplicatedStorage.Tycoons[tycoonType].Clone()
     tycoon.Name = tycoonName
+    for (const item of tycoon.Items.GetChildren()) {
+      if (!playerState?.buttons[item.Name]) setHidden(item, true)
+    }
+    for (const button of tycoon.Buttons.GetChildren()) {
+      if (playerState?.buttons[button.Name]) button.Destroy()
+    }
     return tycoon
   }
 
@@ -91,7 +110,14 @@ export class TycoonService implements OnStart {
 
   onTycoonClaimed(name: TycoonName, player?: Player) {
     if (player) {
-      this.loadTycoon(name, selectTycoonState(name)(store.getState()))
+      const map = this.mapService.getMap()
+      const state = store.getState()
+      const playerState = selectPlayerState(player.UserId)(state)
+      this.loadTycoon(
+        name,
+        selectTycoonState(name)(state),
+        playerState?.tycoon[map.scale],
+      )
     } else {
       this.resetTycoon(name)
     }

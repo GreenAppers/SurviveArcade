@@ -1,5 +1,6 @@
 import { OnStart, Service } from '@flamework/core'
 import { ProximityPromptService } from '@rbxts/services'
+import { CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { selectTycoonsState } from 'ReplicatedStorage/shared/state'
 import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
 import { store } from 'ServerScriptService/store'
@@ -25,7 +26,7 @@ export class ProximityController implements OnStart {
         player.UserId,
       )
     ) {
-      store.addDollars(player.UserId, 1)
+      store.addPlayerCurrency(player.UserId, CURRENCY_TYPES.Dollars, 1)
     }
   }
 }

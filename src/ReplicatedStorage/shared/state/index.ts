@@ -6,6 +6,7 @@ import {
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { gameSlice } from 'ReplicatedStorage/shared/state/GameState'
 import {
+  getPlayerDataCurrencyKey,
   getPlayerState,
   playersSlice,
 } from 'ReplicatedStorage/shared/state/PlayersState'
@@ -41,12 +42,22 @@ export const selectPlayersState = () => (state: SharedState) => state.players
 export const selectPlayerState = (userID: number) => (state: SharedState) =>
   getPlayerState(state.players, userID)
 
+export const selectPlayerCurrency =
+  (userID: number, currency: Currency) => (state: SharedState) =>
+    getPlayerState(state.players, userID)?.[
+      getPlayerDataCurrencyKey(currency)
+    ] || 0
+
 export const selectPlayerScore = (userID: number) => (state: SharedState) =>
   getPlayerState(state.players, userID)?.score || 0
 
 export const selectPlayerGuideEnabled =
   (userID: number) => (state: SharedState) =>
     getPlayerState(state.players, userID)?.settings?.guide
+
+export const selectPlayerTycoonButtons =
+  (userID: number, tycoonType: TycoonType) => (state: SharedState) =>
+    getPlayerState(state.players, userID)?.tycoon?.[tycoonType]?.buttons
 
 export const selectLocalPlayerState = () => (state: SharedState) =>
   getPlayerState(state.players, USER_ID)

@@ -125,28 +125,21 @@ export const getPlayerData = (state: PlayerState): PlayerData => ({
   completed: state.completed,
 })
 
+export function getPlayerDataCurrencyKey(currency: Currency) {
+  switch (currency) {
+    case 'Dollars':
+      return 'dollars'
+    case 'Tickets':
+      return 'tickets'
+    case 'Levity':
+      return 'levity'
+  }
+}
+
 const getPlayerKey = (userID: number) => KEY_TEMPLATE.format(userID)
 
 export const getPlayerState = (state: Players, userID: number) =>
   state[getPlayerKey(userID)]
-
-export function addPlayerResource(
-  state: Players,
-  userID: number,
-  currency: 'dollars' | 'levity' | 'tickets',
-  amount: number,
-) {
-  const playerKey = getPlayerKey(userID)
-  const playerState = state[playerKey]
-  if (!playerState) return state
-  return {
-    ...state,
-    [playerKey]: {
-      ...playerState,
-      [currency]: math.max(0, playerState[currency] + (amount || 0)),
-    },
-  }
-}
 
 export const playersSlice = createProducer(initialState, {
   loadPlayerData: (state, userID: number, data: PlayerData) => {
@@ -168,14 +161,26 @@ export const playersSlice = createProducer(initialState, {
     [getPlayerKey(userID)]: undefined,
   }),
 
-  addDollars: (state, userID: number, amount: number) =>
-    addPlayerResource(state, userID, 'dollars', amount),
-
-  addLevity: (state, userID: number, amount: number) =>
-    addPlayerResource(state, userID, 'levity', amount),
-
-  addTickets: (state, userID: number, amount: number) =>
-    addPlayerResource(state, userID, 'tickets', amount),
+  addPlayerCurrency: (
+    state,
+    userID: number,
+    currency: Currency,
+    amount: number,
+  ) => {
+    const playerKey = getPlayerKey(userID)
+    const playerState = state[playerKey]
+    const currencyField = getPlayerDataCurrencyKey(currency)
+    const playerCurrency = playerState?.[currencyField] || 0
+    if (!playerState || (amount < 0 && playerCurrency < math.abs(amount)))
+      return state
+    return {
+      ...state,
+      [playerKey]: {
+        ...playerState,
+        [currencyField]: math.max(0, playerCurrency + (amount || 0)),
+      },
+    }
+  },
 
   addPlayerLoops: (
     state,
@@ -220,7 +225,7 @@ export const playersSlice = createProducer(initialState, {
     const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
     if (!playerState) return state
-    const newScore = (playerState?.score || 0) + (amount || 0)
+    const newScore = math.max(0, (playerState?.score || 0) + (amount || 0))
     const tableState = playerState.arcadeTable[tableType]
     return {
       ...state,
@@ -247,6 +252,45 @@ export const playersSlice = createProducer(initialState, {
       [playerKey]: {
         ...playerState,
         score: 0,
+      },
+    }
+  },
+
+  purchaseTycoonButton: (
+    state,
+    userID: number,
+    tycoonType: TycoonType,
+    buttonName: string,
+    currency: Currency,
+    amount: number,
+  ) => {
+    const playerKey = getPlayerKey(userID)
+    const playerState = state[playerKey]
+    const currencyField = getPlayerDataCurrencyKey(currency)
+    const playerCurrency = playerState?.[currencyField] || 0
+    if (
+      !playerState ||
+      amount < 0 ||
+      playerCurrency < amount ||
+      playerState.tycoon[tycoonType]?.buttons?.[buttonName]
+    ) {
+      return state
+    }
+    return {
+      ...state,
+      [playerKey]: {
+        ...playerState,
+        [currencyField]: math.max(0, playerCurrency - amount),
+        tycoon: {
+          ...playerState.tycoon,
+          [tycoonType]: {
+            ...playerState.tycoon[tycoonType],
+            buttons: {
+              ...playerState.tycoon[tycoonType].buttons,
+              [buttonName]: true,
+            },
+          },
+        },
       },
     }
   },

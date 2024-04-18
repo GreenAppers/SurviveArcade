@@ -207,7 +207,11 @@ type TeamName =
 
 interface Tycoon extends Model {
   Baseplate: BasePart
+  Buttons: Folder
+  Items: Folder
+  MainItems: Folder
   Name: TycoonName
+  Purchases: Folder
 }
 
 type TycoonName =
