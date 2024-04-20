@@ -31,11 +31,15 @@ export function setHidden(ancestor: Instance, hidden: boolean) {
   for (const descendent of ancestor.GetDescendants()) {
     if (descendent.IsA('BasePart')) {
       descendent.CanCollide = !hidden
+      descendent.CanTouch = !hidden
       descendent.Transparency = hidden ? 1 : 0
+    } else if (descendent.IsA('BillboardGui')) {
+      descendent.Enabled = !hidden
     }
   }
   if (ancestor.IsA('BasePart')) {
     ancestor.CanCollide = !hidden
+    ancestor.CanTouch = !hidden
     ancestor.Transparency = hidden ? 1 : 0
   }
 }

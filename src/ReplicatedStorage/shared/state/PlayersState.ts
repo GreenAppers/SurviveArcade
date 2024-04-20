@@ -7,11 +7,13 @@ export interface PlayerSettings {
   readonly music: boolean
 }
 
+export type PlayerTycoonButtons = {
+  readonly [buttonName: string]: boolean
+}
+
 export interface PlayerTycoon {
   readonly name: string
-  readonly buttons: {
-    readonly [buttonName: string]: boolean
-  }
+  readonly buttons: PlayerTycoonButtons
 }
 
 export interface PlayerCompleted {
@@ -25,17 +27,21 @@ export interface PlayerArcadeTable {
   readonly completed: PlayerCompleted
 }
 
+export type PlayerArcadeTables = {
+  readonly [tableType in ArcadeTableType]: PlayerArcadeTable
+}
+
+export type PlayerTycoons = {
+  readonly [tycoonType in TycoonType]: PlayerTycoon
+}
+
 export interface PlayerData {
   readonly tickets: number
   readonly dollars: number
   readonly levity: number
   readonly settings: PlayerSettings
-  readonly arcadeTable: {
-    readonly [tableType in ArcadeTableType]: PlayerArcadeTable
-  }
-  readonly tycoon: {
-    readonly [tycoonType in TycoonType]: PlayerTycoon
-  }
+  readonly arcadeTable: PlayerArcadeTables
+  readonly tycoon: PlayerTycoons
   readonly completed: PlayerCompleted
 }
 

@@ -6,7 +6,10 @@ import {
   selectPlayerTycoonButtons,
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
-import { getTycoonFromDescendent } from 'ReplicatedStorage/shared/utils/tycoon'
+import {
+  getTycoonFromDescendent,
+  isTycoonButtonDependencyMet,
+} from 'ReplicatedStorage/shared/utils/tycoon'
 import { animateBuildingIn } from 'ServerScriptService/buildin'
 import { store } from 'ServerScriptService/store'
 import { setHidden } from 'ServerScriptService/utils'
@@ -49,6 +52,10 @@ export class TycoonButtonComponent
       )
       if (tycoonButtonsSelector(state) === tycoonButtonsSelector(newState))
         return
+      const playerTycoonButtons = selectPlayerTycoonButtons(
+        touchedPlayer.UserId,
+        tycoonType,
+      )(newState)
 
       let buildingAnimation
       const purchasedItem = tycoon.Items.FindFirstChild(buttonName) as Model
@@ -66,13 +73,11 @@ export class TycoonButtonComponent
           thisButton = button
           continue
         }
-        const dependency = (button as TycoonButtonModel).Button.GetAttribute(
-          'Dependency',
-        )
         if (
-          dependency &&
-          typeIs(dependency, 'string') &&
-          dependency === buttonName
+          isTycoonButtonDependencyMet(
+            button as TycoonButtonModel,
+            playerTycoonButtons,
+          )
         ) {
           setHidden(button, false)
         }

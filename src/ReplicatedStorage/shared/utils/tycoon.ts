@@ -4,6 +4,7 @@ import {
   TycoonPlotTag,
   TycoonTag,
 } from 'ReplicatedStorage/shared/constants/tags'
+import { PlayerTycoonButtons } from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonsState } from 'ReplicatedStorage/shared/state/TycoonState'
 
 export function isTycoon(tycoon: Instance) {
@@ -55,4 +56,18 @@ export function nearestTycoonPlot(
     }
   }
   return nearestTycoonName
+}
+
+export function isTycoonButtonDependencyMet(
+  button: TycoonButtonModel,
+  playerTycoonButtons?: PlayerTycoonButtons,
+) {
+  const dependencies = button.Button.GetAttribute('Dependency')
+  if (dependencies && typeIs(dependencies, 'string')) {
+    if (!playerTycoonButtons) return false
+    for (const dependency of dependencies.split(',')) {
+      if (!playerTycoonButtons[dependency]) return false
+    }
+  }
+  return true
 }

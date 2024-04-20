@@ -8,6 +8,7 @@ import {
 } from 'ReplicatedStorage/shared/state'
 import { PlayerTycoon } from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonState } from 'ReplicatedStorage/shared/state/TycoonState'
+import { isTycoonButtonDependencyMet } from 'ReplicatedStorage/shared/utils/tycoon'
 import {
   getTycoonCFrame,
   MapService,
@@ -49,13 +50,11 @@ export class TycoonService implements OnStart {
         button.Destroy()
         continue
       }
-      const dependency = (button as TycoonButtonModel).Button.GetAttribute(
-        'Dependency',
-      )
       if (
-        dependency &&
-        typeIs(dependency, 'string') &&
-        !playerState?.buttons[dependency]
+        !isTycoonButtonDependencyMet(
+          button as TycoonButtonModel,
+          playerState?.buttons,
+        )
       ) {
         setHidden(button, true)
       }
