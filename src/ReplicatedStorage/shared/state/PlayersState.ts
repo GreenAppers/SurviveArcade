@@ -142,6 +142,11 @@ export function getPlayerDataCurrencyKey(currency: Currency) {
   }
 }
 
+export const getPlayerCurrency = (
+  playerState: PlayerState | undefined,
+  currency: Currency,
+) => playerState?.[getPlayerDataCurrencyKey(currency)] || 0
+
 const getPlayerKey = (userID: number) => KEY_TEMPLATE.format(userID)
 
 export const getPlayerState = (state: Players, userID: number) =>

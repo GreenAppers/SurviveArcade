@@ -1,6 +1,4 @@
 import { CollectionService, Players } from '@rbxts/services'
-import { getTycoonFromDescendent } from 'ReplicatedStorage/shared/utils/tycoon'
-import { store } from 'ServerScriptService/store'
 
 type PlayerReceivingFunction = (player: Player) => unknown
 
@@ -67,14 +65,4 @@ export function forEveryPlayer(
   if (leaveFunc) events.push(Players.PlayerRemoving.Connect(leaveFunc))
 
   return events
-}
-
-export function getTycoonStateFromDescendent(instance: Instance) {
-  const tycoon = getTycoonFromDescendent(instance)
-  if (!tycoon?.Name) return undefined
-  return store.getState().tycoons[tycoon.Name]
-}
-
-export function getTycoonOwner(instance: Instance) {
-  return getTycoonStateFromDescendent(instance)?.owner
 }

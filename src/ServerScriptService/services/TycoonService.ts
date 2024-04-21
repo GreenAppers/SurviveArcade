@@ -1,6 +1,7 @@
 import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Players, ReplicatedStorage, Workspace } from '@rbxts/services'
+import { CURRENCY_EMOJIS } from 'ReplicatedStorage/shared/constants/core'
 import {
   selectPlayerState,
   selectTycoonsState,
@@ -8,7 +9,11 @@ import {
 } from 'ReplicatedStorage/shared/state'
 import { PlayerTycoon } from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonState } from 'ReplicatedStorage/shared/state/TycoonState'
-import { isTycoonButtonDependencyMet } from 'ReplicatedStorage/shared/utils/tycoon'
+import {
+  getTycoonButtonCost,
+  getTycoonButtonCurrency,
+  isTycoonButtonDependencyMet,
+} from 'ReplicatedStorage/shared/utils/tycoon'
 import {
   getTycoonCFrame,
   MapService,
@@ -45,17 +50,17 @@ export class TycoonService implements OnStart {
     for (const item of tycoon.Items.GetChildren()) {
       if (!playerState?.buttons[item.Name]) setHidden(item, true)
     }
-    for (const button of tycoon.Buttons.GetChildren()) {
+    for (const button of tycoon.Buttons.GetChildren() as TycoonButtonModel[]) {
       if (playerState?.buttons[button.Name]) {
         button.Destroy()
         continue
       }
-      if (
-        !isTycoonButtonDependencyMet(
-          button as TycoonButtonModel,
-          playerState?.buttons,
-        )
-      ) {
+      const cost = getTycoonButtonCost(button)
+      const currency = getTycoonButtonCurrency(button)
+      if (cost && currency) {
+        button.Button.BillboardGui.Frame.TextLabel.Text += ` ${CURRENCY_EMOJIS[currency]} ${cost}`
+      }
+      if (!isTycoonButtonDependencyMet(button, playerState?.buttons)) {
         setHidden(button, true)
       }
     }

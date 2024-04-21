@@ -305,8 +305,13 @@ export class PlayerController implements OnStart {
         humanoidRootPart,
         rootRigAttachment,
       )
-      // } else if (false) {
-      //   status = 'Build your tycoon'
+    } else if (
+      (targetAttachment = this.tycoonController.findTycoonButtonTarget(
+        tycoonName,
+        playerState,
+      ))
+    ) {
+      status = 'Build your tycoon'
     } else if ((playerState?.dollars ?? 0) <= 0) {
       status = 'Collect coins'
       targetAttachment = this.arcadeController.findCoinTarget(

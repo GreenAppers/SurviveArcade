@@ -6,7 +6,7 @@ import {
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { gameSlice } from 'ReplicatedStorage/shared/state/GameState'
 import {
-  getPlayerDataCurrencyKey,
+  getPlayerCurrency,
   getPlayerState,
   playersSlice,
 } from 'ReplicatedStorage/shared/state/PlayersState'
@@ -44,9 +44,7 @@ export const selectPlayerState = (userID: number) => (state: SharedState) =>
 
 export const selectPlayerCurrency =
   (userID: number, currency: Currency) => (state: SharedState) =>
-    getPlayerState(state.players, userID)?.[
-      getPlayerDataCurrencyKey(currency)
-    ] || 0
+    getPlayerCurrency(getPlayerState(state.players, userID), currency)
 
 export const selectPlayerScore = (userID: number) => (state: SharedState) =>
   getPlayerState(state.players, userID)?.score || 0

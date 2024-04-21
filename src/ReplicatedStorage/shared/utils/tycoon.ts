@@ -6,6 +6,7 @@ import {
 } from 'ReplicatedStorage/shared/constants/tags'
 import { PlayerTycoonButtons } from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonsState } from 'ReplicatedStorage/shared/state/TycoonState'
+import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 
 export function isTycoon(tycoon: Instance) {
   return CollectionService.HasTag(tycoon, TycoonTag)
@@ -70,4 +71,16 @@ export function isTycoonButtonDependencyMet(
     }
   }
   return true
+}
+
+export function getTycoonButtonCurrency(button: TycoonButtonModel) {
+  const currencyName = button.Button.GetAttribute('Currency')
+  return currencyName && typeIs(currencyName, 'string')
+    ? getCurrency(currencyName)
+    : undefined
+}
+
+export function getTycoonButtonCost(button: TycoonButtonModel) {
+  const cost = button.Button.GetAttribute('Cost')
+  return cost && typeIs(cost, 'number') ? cost : undefined
 }

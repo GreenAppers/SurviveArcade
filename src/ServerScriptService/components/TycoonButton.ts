@@ -63,7 +63,7 @@ export class TycoonButtonComponent
         setHidden(purchasedItem, false)
         buildingAnimation = animateBuildingIn(
           purchasedItem,
-          new TweenInfo(1, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
+          new TweenInfo(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
         )
       }
 
