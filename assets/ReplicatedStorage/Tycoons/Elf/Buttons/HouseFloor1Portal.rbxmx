@@ -1,7 +1,7 @@
 <roblox version="4">
   <Item class="Model" referent="0">
     <Properties>
-      <string name="Name">HouseFloor1Door</string>
+      <string name="Name">HouseFloor1Portal</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
@@ -33,9 +33,9 @@
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>-443.1718</X>
+          <X>-516.42236</X>
           <Y>7.626729</Y>
-          <Z>-65.41129</Z>
+          <Z>-110.44338</Z>
           <R00>0</R00>
           <R01>0.25881907</R01>
           <R02>0.9659258</R02>
@@ -62,9 +62,9 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>-443.1718</X>
+          <X>-516.42236</X>
           <Y>7.47672</Y>
-          <Z>-65.41129</Z>
+          <Z>-110.44338</Z>
           <R00>0</R00>
           <R01>0.25881907</R01>
           <R02>0.9659258</R02>
@@ -149,7 +149,7 @@
       <Properties>
         <string name="Name">Button</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize">AwAAAAQAAABDb3N0BgAAAAAAADRACAAAAEN1cnJlbmN5AgcAAABUaWNrZXRzCgAAAERlcGVuZGVuY3kCaAAAAEhvdXNlRmxvb3IxV2luZG93RnJvbnRMZWZ0LEhvdXNlRmxvb3IxV2luZG93RnJvbnRSaWdodCxIb3VzZUZsb29yMVdpbmRvd1JpZ2h0LEhvdXNlRmxvb3IxV2luZG93RnJvbnRMZWZ0</BinaryString>
+        <BinaryString name="AttributesSerialize">AwAAAAQAAABDb3N0BgAAAAAAADRACAAAAEN1cnJlbmN5AgcAAABUaWNrZXRzCgAAAERlcGVuZGVuY3kCFwAAAEhvdXNlRmxvb3IxQ29tbXVuaWNhdG9y</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -159,9 +159,9 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>-443.18466</X>
+          <X>-516.4353</X>
           <Y>7.776738</Y>
-          <Z>-65.45963</Z>
+          <Z>-110.491714</Z>
           <R00>0</R00>
           <R01>0.25881907</R01>
           <R02>0.9659258</R02>
@@ -434,7 +434,7 @@
               <token name="SizeConstraint">0</token>
               <int64 name="SourceAssetId">-1</int64>
               <BinaryString name="Tags"></BinaryString>
-              <string name="Text">Doorframe</string>
+              <string name="Text">Human Portal</string>
               <Color3 name="TextColor3">
                 <R>1</R>
                 <G>1</G>

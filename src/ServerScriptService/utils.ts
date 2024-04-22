@@ -31,7 +31,11 @@ export function setHidden(ancestor: Instance, hidden: boolean) {
       descendent.CanCollide = !hidden
       descendent.CanTouch = !hidden
       descendent.Transparency = hidden ? 1 : 0
-    } else if (descendent.IsA('BillboardGui')) {
+    } else if (
+      descendent.IsA('BillboardGui') ||
+      descendent.IsA('ParticleEmitter') ||
+      descendent.IsA('ProximityPrompt')
+    ) {
       descendent.Enabled = !hidden
     }
   }
