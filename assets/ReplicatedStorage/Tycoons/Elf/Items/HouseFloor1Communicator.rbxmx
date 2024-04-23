@@ -28,13 +28,13 @@
       <token name="ModelStreamingMode">0</token>
       <bool name="NeedsPivotMigration">false</bool>
       <Ref name="PrimaryPart">null</Ref>
-      <float name="ScaleFactor">1</float>
+      <float name="ScaleFactor">0.99999964</float>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>-523.08765</X>
-          <Y>13.44763</Y>
+          <Y>13.447643</Y>
           <Z>-62.621506</Z>
           <R00>1</R00>
           <R01>0</R01>
@@ -77,13 +77,13 @@
         <token name="ModelStreamingMode">0</token>
         <bool name="NeedsPivotMigration">false</bool>
         <Ref name="PrimaryPart">null</Ref>
-        <float name="ScaleFactor">1</float>
+        <float name="ScaleFactor">0.99999964</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
             <X>-523.08765</X>
-            <Y>10.036861</Y>
+            <Y>10.0368805</Y>
             <Z>-62.912067</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -112,7 +112,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.0943</X>
-            <Y>10.115467</Y>
+            <Y>10.115486</Y>
             <Z>-62.868477</Z>
             <R00>0</R00>
             <R01>0</R01>
@@ -176,9 +176,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>1.0234237</X>
-            <Y>2.7218714</Y>
-            <Z>2.7218714</Z>
+            <X>1.0234233</X>
+            <Y>2.7218704</Y>
+            <Z>2.7218704</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -229,7 +229,7 @@
               <token name="GamepadKeyCode">1000</token>
               <float name="HoldDuration">1</float>
               <token name="KeyboardKeyCode">101</token>
-              <float name="MaxActivationDistance">10</float>
+              <float name="MaxActivationDistance">9.999996</float>
               <string name="ObjectText">Communicator</string>
               <bool name="RequiresLineOfSight">false</bool>
               <Ref name="RootLocalizationTable">null</Ref>
@@ -263,7 +263,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.08765</X>
-            <Y>11.68819</Y>
+            <Y>11.68821</Y>
             <Z>-62.912064</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -342,9 +342,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>3.4186783</X>
-            <Y>2.0700428</Y>
-            <Z>3.4186864</Z>
+            <X>3.418677</X>
+            <Y>2.0700421</Y>
+            <Z>3.4186852</Z>
           </Vector3>
           <float name="SmoothingAngle">0</float>
           <int64 name="SourceAssetId">-1</int64>
@@ -377,7 +377,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.09436</X>
-            <Y>9.543903</Y>
+            <Y>9.543922</Y>
             <Z>-62.868484</Z>
             <R00>0</R00>
             <R01>0</R01>
@@ -441,9 +441,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>3.2989082</X>
-            <Y>2.1774971</Y>
-            <Z>2.1774971</Z>
+            <X>3.298907</X>
+            <Y>2.1774964</Y>
+            <Z>2.1774964</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -474,7 +474,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.0943</X>
-            <Y>7.9379845</Y>
+            <Y>7.9380035</Y>
             <Z>-62.868477</Z>
             <R00>0</R00>
             <R01>0</R01>
@@ -538,9 +538,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>1.0234237</X>
-            <Y>3.2662458</Y>
-            <Z>3.2662458</Z>
+            <X>1.0234233</X>
+            <Y>3.2662446</Y>
+            <Z>3.2662446</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -571,7 +571,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.0943</X>
-            <Y>12.249409</Y>
+            <Y>12.249428</Y>
             <Z>-62.868477</Z>
             <R00>0</R00>
             <R01>0</R01>
@@ -635,9 +635,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>0.1959748</X>
-            <Y>2.1774971</Y>
-            <Z>2.1774971</Z>
+            <X>0.19597472</X>
+            <Y>2.1774964</Y>
+            <Z>2.1774964</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -668,7 +668,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.20667</X>
-            <Y>12.1474495</Y>
+            <Y>12.147469</Y>
             <Z>-62.890274</Z>
             <R00>-0.0000009862403</R00>
             <R01>1.0000001</R01>
@@ -732,9 +732,9 @@
           </Vector3>
           <token name="shape">1</token>
           <Vector3 name="size">
-            <X>1</X>
-            <Y>1</Y>
-            <Z>1</Z>
+            <X>0.99999964</X>
+            <Y>0.99999964</Y>
+            <Z>0.99999964</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -831,13 +831,13 @@
         <token name="ModelStreamingMode">0</token>
         <bool name="NeedsPivotMigration">false</bool>
         <Ref name="PrimaryPart">null</Ref>
-        <float name="ScaleFactor">1</float>
+        <float name="ScaleFactor">0.99999964</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
             <X>-523.38855</X>
-            <Y>17.024122</Y>
+            <Y>17.024136</Y>
             <Z>-57.34498</Z>
             <R00>-1</R00>
             <R01>0</R01>
@@ -867,7 +867,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.4471</X>
-            <Y>18.195623</Y>
+            <Y>18.195637</Y>
             <Z>-57.319504</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -950,9 +950,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>2.3456018</X>
-            <Y>2.54673</Y>
-            <Z>2.54673</Z>
+            <X>2.3456008</X>
+            <Y>2.546729</Y>
+            <Z>2.546729</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -989,7 +989,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.3885</X>
-            <Y>16.680326</Y>
+            <Y>16.68034</Y>
             <Z>-57.34498</Z>
             <R00>-1</R00>
             <R01>0</R01>
@@ -1072,9 +1072,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>2.7122679</X>
-            <Y>0.48387894</Y>
-            <Z>3.1834126</Z>
+            <X>2.712267</X>
+            <Y>0.48387876</Y>
+            <Z>3.1834114</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1111,7 +1111,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.363</X>
-            <Y>15.763517</Y>
+            <Y>15.763531</Y>
             <Z>-57.33223</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -1194,9 +1194,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>1.9991827</X>
-            <Y>1.8845804</Y>
-            <Z>1.9100475</Z>
+            <X>1.999182</X>
+            <Y>1.8845797</Y>
+            <Z>1.9100468</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1233,7 +1233,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.38855</X>
-            <Y>14.821196</Y>
+            <Y>14.821209</Y>
             <Z>-57.34498</Z>
             <R00>-1</R00>
             <R01>0</R01>
@@ -1316,9 +1316,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>2.7122679</X>
-            <Y>0.48387894</Y>
-            <Z>3.1834126</Z>
+            <X>2.712267</X>
+            <Y>0.48387876</Y>
+            <Z>3.1834114</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1369,13 +1369,13 @@
         <token name="ModelStreamingMode">0</token>
         <bool name="NeedsPivotMigration">false</bool>
         <Ref name="PrimaryPart">null</Ref>
-        <float name="ScaleFactor">1</float>
+        <float name="ScaleFactor">0.99999964</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
             <X>-523.36804</X>
-            <Y>9.044521</Y>
+            <Y>9.04454</Y>
             <Z>-67.82929</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -1404,7 +1404,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>9.86577</Y>
+            <Y>9.865791</Y>
             <Z>-67.8263</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -1468,9 +1468,9 @@
           </Vector3>
           <token name="shape">0</token>
           <Vector3 name="size">
-            <X>1.5940002</X>
-            <Y>1.5940002</Y>
-            <Z>1.5940002</Z>
+            <X>1.5939996</X>
+            <Y>1.5939996</Y>
+            <Z>1.5939996</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1501,7 +1501,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>8.866259</Y>
+            <Y>8.86628</Y>
             <Z>-67.82929</Z>
             <R00>0</R00>
             <R01>1</R01>
@@ -1565,9 +1565,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>1.8479999</X>
-            <Y>1.871</Y>
-            <Z>1.871</Z>
+            <X>1.8479992</X>
+            <Y>1.8709993</Y>
+            <Z>1.8709993</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1598,7 +1598,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>9.320757</Y>
+            <Y>9.320778</Y>
             <Z>-67.82929</Z>
             <R00>0</R00>
             <R01>1</R01>
@@ -1662,9 +1662,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>0.120000005</X>
-            <Y>1.931</Y>
-            <Z>1.931</Z>
+            <X>0.11999996</X>
+            <Y>1.9309993</Y>
+            <Z>1.9309993</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1695,7 +1695,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>8.8877735</Y>
+            <Y>8.8877945</Y>
             <Z>-67.82929</Z>
             <R00>0</R00>
             <R01>1</R01>
@@ -1759,9 +1759,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>0.120000005</X>
-            <Y>1.931</Y>
-            <Z>1.931</Z>
+            <X>0.11999996</X>
+            <Y>1.9309993</Y>
+            <Z>1.9309993</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1792,7 +1792,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>8.3877735</Y>
+            <Y>8.3877945</Y>
             <Z>-67.82929</Z>
             <R00>0</R00>
             <R01>1</R01>
@@ -1856,9 +1856,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>0.120000005</X>
-            <Y>1.931</Y>
-            <Z>1.931</Z>
+            <X>0.11999996</X>
+            <Y>1.9309993</Y>
+            <Z>1.9309993</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1889,7 +1889,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>7.6742725</Y>
+            <Y>7.6742935</Y>
             <Z>-67.82929</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -1953,9 +1953,9 @@
           </Vector3>
           <token name="shape">1</token>
           <Vector3 name="size">
-            <X>2.4</X>
-            <Y>0.49600005</Y>
-            <Z>2.4</Z>
+            <X>2.3999991</X>
+            <Y>0.49599987</Y>
+            <Z>2.3999991</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1986,7 +1986,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>7.774248</Y>
+            <Y>7.774269</Y>
             <Z>-67.82929</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -2050,9 +2050,9 @@
           </Vector3>
           <token name="shape">1</token>
           <Vector3 name="size">
-            <X>1.9999999</X>
-            <Y>0.49600005</Y>
-            <Z>1.9999999</Z>
+            <X>1.9999992</X>
+            <Y>0.49599987</Y>
+            <Z>1.9999992</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2098,13 +2098,13 @@
         <token name="ModelStreamingMode">0</token>
         <bool name="NeedsPivotMigration">false</bool>
         <Ref name="PrimaryPart">null</Ref>
-        <float name="ScaleFactor">1</float>
+        <float name="ScaleFactor">0.99999964</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
             <X>-523.38855</X>
-            <Y>17.024122</Y>
+            <Y>17.024136</Y>
             <Z>-67.89803</Z>
             <R00>-1</R00>
             <R01>0</R01>
@@ -2134,7 +2134,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.4471</X>
-            <Y>18.195623</Y>
+            <Y>18.195637</Y>
             <Z>-67.87256</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -2217,9 +2217,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>2.3456018</X>
-            <Y>2.54673</Y>
-            <Z>2.54673</Z>
+            <X>2.3456008</X>
+            <Y>2.546729</Y>
+            <Z>2.546729</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2256,7 +2256,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.3885</X>
-            <Y>16.680326</Y>
+            <Y>16.68034</Y>
             <Z>-67.89803</Z>
             <R00>-1</R00>
             <R01>0</R01>
@@ -2339,9 +2339,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>2.7122679</X>
-            <Y>0.48387894</Y>
-            <Z>3.1834126</Z>
+            <X>2.712267</X>
+            <Y>0.48387876</Y>
+            <Z>3.1834114</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2378,7 +2378,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.363</X>
-            <Y>15.763517</Y>
+            <Y>15.763531</Y>
             <Z>-67.885284</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -2461,9 +2461,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>1.9991827</X>
-            <Y>1.8845804</Y>
-            <Z>1.9100475</Z>
+            <X>1.999182</X>
+            <Y>1.8845797</Y>
+            <Z>1.9100468</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2500,7 +2500,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.38855</X>
-            <Y>14.821196</Y>
+            <Y>14.821209</Y>
             <Z>-67.89803</Z>
             <R00>-1</R00>
             <R01>0</R01>
@@ -2583,9 +2583,9 @@
             <Z>0</Z>
           </Vector3>
           <Vector3 name="size">
-            <X>2.7122679</X>
-            <Y>0.48387894</Y>
-            <Z>3.1834126</Z>
+            <X>2.712267</X>
+            <Y>0.48387876</Y>
+            <Z>3.1834114</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2636,13 +2636,13 @@
         <token name="ModelStreamingMode">0</token>
         <bool name="NeedsPivotMigration">false</bool>
         <Ref name="PrimaryPart">null</Ref>
-        <float name="ScaleFactor">1</float>
+        <float name="ScaleFactor">0.99999964</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
             <X>-523.36804</X>
-            <Y>9.044521</Y>
+            <Y>9.04454</Y>
             <Z>-57.343468</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -2671,7 +2671,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>9.86577</Y>
+            <Y>9.865791</Y>
             <Z>-57.340477</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -2735,9 +2735,9 @@
           </Vector3>
           <token name="shape">0</token>
           <Vector3 name="size">
-            <X>1.5940002</X>
-            <Y>1.5940002</Y>
-            <Z>1.5940002</Z>
+            <X>1.5939996</X>
+            <Y>1.5939996</Y>
+            <Z>1.5939996</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2768,7 +2768,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>8.866259</Y>
+            <Y>8.86628</Y>
             <Z>-57.343468</Z>
             <R00>0</R00>
             <R01>1</R01>
@@ -2832,9 +2832,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>1.8479999</X>
-            <Y>1.871</Y>
-            <Z>1.871</Z>
+            <X>1.8479992</X>
+            <Y>1.8709993</Y>
+            <Z>1.8709993</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2865,7 +2865,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>9.320757</Y>
+            <Y>9.320778</Y>
             <Z>-57.343468</Z>
             <R00>0</R00>
             <R01>1</R01>
@@ -2929,9 +2929,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>0.120000005</X>
-            <Y>1.931</Y>
-            <Z>1.931</Z>
+            <X>0.11999996</X>
+            <Y>1.9309993</Y>
+            <Z>1.9309993</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2962,7 +2962,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>8.8877735</Y>
+            <Y>8.8877945</Y>
             <Z>-57.343468</Z>
             <R00>0</R00>
             <R01>1</R01>
@@ -3026,9 +3026,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>0.120000005</X>
-            <Y>1.931</Y>
-            <Z>1.931</Z>
+            <X>0.11999996</X>
+            <Y>1.9309993</Y>
+            <Z>1.9309993</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -3059,7 +3059,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>8.3877735</Y>
+            <Y>8.3877945</Y>
             <Z>-57.343468</Z>
             <R00>0</R00>
             <R01>1</R01>
@@ -3123,9 +3123,9 @@
           </Vector3>
           <token name="shape">2</token>
           <Vector3 name="size">
-            <X>0.120000005</X>
-            <Y>1.931</Y>
-            <Z>1.931</Z>
+            <X>0.11999996</X>
+            <Y>1.9309993</Y>
+            <Z>1.9309993</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -3156,7 +3156,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>7.6742725</Y>
+            <Y>7.6742935</Y>
             <Z>-57.343468</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -3220,9 +3220,9 @@
           </Vector3>
           <token name="shape">1</token>
           <Vector3 name="size">
-            <X>2.4</X>
-            <Y>0.49600005</Y>
-            <Z>2.4</Z>
+            <X>2.3999991</X>
+            <Y>0.49599987</Y>
+            <Z>2.3999991</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -3253,7 +3253,7 @@
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
             <X>-523.36804</X>
-            <Y>7.774248</Y>
+            <Y>7.774269</Y>
             <Z>-57.343468</Z>
             <R00>1</R00>
             <R01>0</R01>
@@ -3317,9 +3317,9 @@
           </Vector3>
           <token name="shape">1</token>
           <Vector3 name="size">
-            <X>1.9999999</X>
-            <Y>0.49600005</Y>
-            <Z>1.9999999</Z>
+            <X>1.9999992</X>
+            <Y>0.49599987</Y>
+            <Z>1.9999992</Z>
           </Vector3>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>

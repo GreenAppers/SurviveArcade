@@ -28,13 +28,13 @@
       <token name="ModelStreamingMode">0</token>
       <bool name="NeedsPivotMigration">false</bool>
       <Ref name="PrimaryPart">null</Ref>
-      <float name="ScaleFactor">1</float>
+      <float name="ScaleFactor">0.99999964</float>
       <int64 name="SourceAssetId">4603931630</int64>
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>-435.9172</X>
-          <Y>18.66506</Y>
+          <X>-435.91724</X>
+          <Y>18.665073</Y>
           <Z>-63.602734</Z>
           <R00>0</R00>
           <R01>0</R01>
@@ -66,8 +66,8 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>-435.90402</X>
-          <Y>18.66506</Y>
+          <X>-435.90405</X>
+          <Y>18.665073</Y>
           <Z>-62.261414</Z>
           <R00>0</R00>
           <R01>0</R01>
@@ -146,9 +146,9 @@
           <Z>0</Z>
         </Vector3>
         <Vector3 name="size">
-          <X>15.039078</X>
-          <Y>16.81</Y>
-          <Z>0.9171684</Z>
+          <X>15.039072</X>
+          <Y>16.809994</Y>
+          <Z>0.917168</Z>
         </Vector3>
         <float name="SmoothingAngle">0</float>
         <int64 name="SourceAssetId">-1</int64>
@@ -180,9 +180,9 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>-435.9172</X>
-          <Y>16.950594</Y>
-          <Z>-72.0507</Z>
+          <X>-435.91724</X>
+          <Y>16.950611</Y>
+          <Z>-72.05069</Z>
           <R00>0.00018349107</R00>
           <R01>0</R01>
           <R02>1</R02>
@@ -245,9 +245,9 @@
         </Vector3>
         <token name="shape">1</token>
         <Vector3 name="size">
-          <X>0.83</X>
-          <Y>0.87999976</Y>
-          <Z>4.3727756</Z>
+          <X>0.8299997</X>
+          <Y>0.87999946</Y>
+          <Z>4.372774</Z>
         </Vector3>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
@@ -271,7 +271,7 @@
             </null>
           </Content>
           <bool name="DefinesCapabilities">false</bool>
-          <float name="MaxActivationDistance">32</float>
+          <float name="MaxActivationDistance">31.999989</float>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
         </Properties>

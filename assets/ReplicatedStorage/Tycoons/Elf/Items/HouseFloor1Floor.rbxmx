@@ -28,13 +28,13 @@
       <token name="ModelStreamingMode">0</token>
       <bool name="NeedsPivotMigration">false</bool>
       <Ref name="PrimaryPart">null</Ref>
-      <float name="ScaleFactor">1</float>
+      <float name="ScaleFactor">0.99999964</float>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>-481.14502</X>
-          <Y>6.411232</Y>
+          <X>-481.14505</X>
+          <Y>6.411251</Y>
           <Z>-60.098812</Z>
           <R00>0</R00>
           <R01>0</R01>
@@ -62,8 +62,8 @@
         <token name="BottomSurface">4</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>-481.14502</X>
-          <Y>6.411232</Y>
+          <X>-481.14505</X>
+          <Y>6.4868736</Y>
           <Z>-60.098812</Z>
           <R00>0</R00>
           <R01>0</R01>
@@ -127,9 +127,9 @@
         </Vector3>
         <token name="shape">1</token>
         <Vector3 name="size">
-          <X>146.30435</X>
-          <Y>1.7755382</Y>
-          <Z>90.90755</Z>
+          <X>146.3043</X>
+          <Y>1.624293</Y>
+          <Z>90.90752</Z>
         </Vector3>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
