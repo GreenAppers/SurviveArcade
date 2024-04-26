@@ -45,12 +45,31 @@ export class TycoonService implements OnStart {
     tycoonName: TycoonName,
     playerState?: PlayerTycoon,
   ) {
-    const tycoon = ReplicatedStorage.Tycoons[tycoonType].Clone()
+    const tycoon = new Instance('Model')
     tycoon.Name = tycoonName
-    for (const item of tycoon.Items.GetChildren()) {
-      if (!playerState?.buttons[item.Name]) setHidden(item, true)
+    tycoon.AddTag('Tycoon')
+    tycoon.SetAttribute('TycoonType', tycoonType)
+
+    const tycoonTemplate = ReplicatedStorage.Tycoons[tycoonType]
+    const baseplate = tycoonTemplate.Baseplate.Clone()
+    baseplate.Parent = tycoon
+    const buttons = tycoonTemplate.Buttons.Clone()
+    buttons.Parent = tycoon
+    const items = new Instance('Folder')
+    items.Name = 'Items'
+    items.Parent = tycoon
+    const mainItems = tycoonTemplate.MainItems.Clone()
+    mainItems.Parent = tycoon.Clone()
+    const purchases = tycoonTemplate.Purchases.Clone()
+    purchases.Parent = tycoon
+
+    for (const itemTemplate of tycoonTemplate.Items.GetChildren()) {
+      if (!playerState?.buttons[itemTemplate.Name]) continue
+      const item = itemTemplate.Clone()
+      item.Parent = items
     }
-    for (const button of tycoon.Buttons.GetChildren() as TycoonButtonModel[]) {
+
+    for (const button of buttons.GetChildren() as TycoonButtonModel[]) {
       if (playerState?.buttons[button.Name]) {
         button.Destroy()
         continue
@@ -64,7 +83,8 @@ export class TycoonService implements OnStart {
         setHidden(button, true)
       }
     }
-    return tycoon
+
+    return tycoon as Tycoon
   }
 
   setupTycoon(tycoon: Tycoon, state: TycoonState, cframe?: CFrame) {

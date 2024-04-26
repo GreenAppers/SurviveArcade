@@ -1,6 +1,6 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { Players } from '@rbxts/services'
+import { Players, ReplicatedStorage } from '@rbxts/services'
 import { TycoonButtonTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectPlayerTycoonButtons,
@@ -58,11 +58,22 @@ export class TycoonButtonComponent
       )(newState)
 
       let buildingAnimation
-      const purchasedItem = tycoon.Items.FindFirstChild(buttonName) as Model
-      if (purchasedItem) {
-        setHidden(purchasedItem, false)
+      const tycoonTemplate = ReplicatedStorage.Tycoons[tycoonType]
+      const itemTemplate = tycoonTemplate.Items.FindFirstChild(buttonName) as
+        | Model
+        | undefined
+
+      if (itemTemplate) {
+        const item = itemTemplate.Clone()
+        const relativeCFrame = tycoonTemplate.Baseplate.CFrame.ToObjectSpace(
+          itemTemplate.GetPivot(),
+        )
+        const targetCFrame =
+          tycoon.Baseplate.CFrame.ToWorldSpace(relativeCFrame)
+        item.Parent = tycoon.Items
+        item.PivotTo(targetCFrame)
         buildingAnimation = animateBuildingIn(
-          purchasedItem,
+          item,
           new TweenInfo(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out),
         )
       }
