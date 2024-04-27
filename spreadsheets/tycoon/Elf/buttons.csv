@@ -1,0 +1,25 @@
+Name,Cost,Currency,Description,Dependencies
+HousePorch,20,Tickets,Porch,
+HouseFloor1Floor,20,Tickets,Popsicle Stick Floor,HousePorch
+HouseFloor1WallBack,20,Tickets,Popcorn Box Wall,HouseFloor1Floor
+HouseFloor1WallFrontLeft,20,Tickets,Popcorn Box Wall,HouseFloor1Floor
+HouseFloor1WallFrontRight,20,Tickets,Popcorn Box Wall,HouseFloor1Floor
+HouseFloor1WallLeft,20,Tickets,Popcorn Box Wall,HouseFloor1Floor
+HouseFloor1WallRight,20,Tickets,Popcorn Box Wall,HouseFloor1Floor
+HouseFloor1WindowFrontLeft,20,Tickets,Foil Window,"HouseFloor1WallBack,HouseFloor1WallFrontLeft,HouseFloor1WallFrontRight,HouseFloor1WallLeft,HouseFloor1WallRight"
+HouseFloor1WindowFrontRight,20,Tickets,Foil Window,"HouseFloor1WallBack,HouseFloor1WallFrontLeft,HouseFloor1WallFrontRight,HouseFloor1WallLeft,HouseFloor1WallRight"
+HouseFloor1WindowLeft,20,Tickets,Foil Window,"HouseFloor1WallBack,HouseFloor1WallFrontLeft,HouseFloor1WallFrontRight,HouseFloor1WallLeft,HouseFloor1WallRight"
+HouseFloor1WindowRight,20,Tickets,Foil Window,"HouseFloor1WallBack,HouseFloor1WallFrontLeft,HouseFloor1WallFrontRight,HouseFloor1WallLeft,HouseFloor1WallRight"
+HouseFloor1Door,20,Tickets,Foil Doorframe,"HouseFloor1WindowFrontLeft,HouseFloor1WindowFrontRight,HouseFloor1WindowRight,HouseFloor1WindowFrontLeft"
+HouseOwnerDoor,20,Tickets,Owner Door,HouseFloor1Door
+HouseFloor1Communicator,20,Tickets,Communicator,HouseOwnerDoor
+HouseFloor1Portal,20,Tickets,Human Portal,HouseFloor1Communicator
+HouseLights,20,Tickets,House Lights,HouseFloor1Portal
+HouseFloor2Floor,20,Tickets,Second Floor,HouseLights
+HouseFloor1Stairs,20,Tickets,Matchbox Stairs,HouseFloor2Floor
+HouseFloor2WallBack,20,Tickets,Popcorn Box Wall,HouseFloor2Floor
+HouseFloor2WallFront,20,Tickets,Popcorn Box Wall,HouseFloor2Floor
+HouseFloor2Roof,20,Tickets,Popsicle Stick Roof,"HouseFloor2WallBack,HouseFloor2WallFront"
+HouseStrawSupports,20,Tickets,Straw Supports,HouseFloor2Roof
+HouseAwning,20,Tickets,Awning,HouseStrawSupports
+HouseStringLights,20,Tickets,String Lights,HouseAwning

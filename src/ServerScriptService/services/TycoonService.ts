@@ -2,6 +2,7 @@ import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Players, ReplicatedStorage, Workspace } from '@rbxts/services'
 import { CURRENCY_EMOJIS } from 'ReplicatedStorage/shared/constants/core'
+import ElfButtons from 'ReplicatedStorage/shared/constants/tycoon/Elf/buttons.json'
 import {
   selectPlayerState,
   selectTycoonsState,
@@ -20,6 +21,12 @@ import {
 } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre, setHidden } from 'ServerScriptService/utils'
+
+export const TycoonConstants = {
+  Elf: {
+    Buttons: ElfButtons,
+  },
+}
 
 @Service()
 export class TycoonService implements OnStart {
