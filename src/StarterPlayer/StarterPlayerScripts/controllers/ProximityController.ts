@@ -2,6 +2,7 @@ import { Controller, OnStart } from '@flamework/core'
 import { Players, ProximityPromptService } from '@rbxts/services'
 import { selectTycoonsState } from 'ReplicatedStorage/shared/state'
 import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
+import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { PlayerController } from 'StarterPlayer/StarterPlayerScripts/controllers/PlayerController'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
@@ -22,7 +23,9 @@ export class ProximityController implements OnStart {
         ) {
           this.onPhoneCall(
             proximityPrompt,
-            `Hello ${player.Name}, I see that you have learned to communicate.`,
+            formatMessage(MESSAGE.QuestCommunicate, {
+              playerName: player.Name,
+            }),
           )
         } else if (proximityPrompt.ObjectText === 'Coin') {
           this.onCoin()
@@ -40,7 +43,7 @@ export class ProximityController implements OnStart {
     ) {
       sendAlert({
         emoji: '🏗️',
-        message: `Claim a tycoon first!`,
+        message: formatMessage(MESSAGE.TycoonNeeded),
       })
     }
   }

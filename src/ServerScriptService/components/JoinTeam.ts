@@ -1,6 +1,7 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players, Teams } from '@rbxts/services'
+import { TEAM_NAMES } from 'ReplicatedStorage/shared/constants/core'
 import { JoinTeamTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTableState,
@@ -29,7 +30,8 @@ export class JoinTeamComponent
           const tableState = arcadeTableSelector(state)
           const gameState = selectGameState()(state)
           if (gameState.teamsActive) {
-            touchedPlayer.Team = Teams[tableState?.teamName || 'Unclaimed Team']
+            touchedPlayer.Team =
+              Teams[tableState?.teamName || TEAM_NAMES.UnclaimedTeam]
           }
         }
       }

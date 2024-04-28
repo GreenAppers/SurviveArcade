@@ -17,6 +17,7 @@ import {
   nearestCabinet,
   nearestCabinetTruss,
 } from 'ReplicatedStorage/shared/utils/arcade'
+import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { randomElement } from 'ReplicatedStorage/shared/utils/object'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { Events } from 'StarterPlayer/StarterPlayerScripts/network'
@@ -93,7 +94,9 @@ export class ArcadeController implements OnStart {
         if (aracdeTableState?.status !== ArcadeTableStatus.Active) return
         sendAlert({
           emoji: randomElement(gameEmoticons),
-          message: `Score ${aracdeTableState?.scoreToWin} to win.`,
+          message: formatMessage(MESSAGE.ArcadeTableStart, {
+            scoreToWin: aracdeTableState?.scoreToWin || 0,
+          }),
         })
         const arcadeTable =
           game.Workspace.ArcadeTables.FindFirstChild(arcadeTableName)
@@ -141,7 +144,9 @@ export class ArcadeController implements OnStart {
     store.subscribe(selectLocalPlayerLoops(), () => {
       sendAlert({
         emoji: '🔄',
-        message: `${USER_NAME} looped!`,
+        message: formatMessage(MESSAGE.ArcadeTableLooped, {
+          playerName: USER_NAME,
+        }),
       })
     })
   }
@@ -153,7 +158,7 @@ export class ArcadeController implements OnStart {
         if (arcadeTableStatus !== ArcadeTableStatus.Won) return
         sendAlert({
           emoji: '🏆',
-          message: `You defeated the barrier!  Now you can ascend the stairs!`,
+          message: formatMessage(MESSAGE.ArcadeTableWon),
         })
       },
     )

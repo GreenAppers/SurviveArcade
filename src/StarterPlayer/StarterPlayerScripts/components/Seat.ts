@@ -8,6 +8,7 @@ import {
 } from 'ReplicatedStorage/shared/state'
 import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
+import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
@@ -30,7 +31,7 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
       if (!findTycoonNameOwnedBy(selectTycoonsState()(state), player.UserId)) {
         sendAlert({
           emoji: '🏗️',
-          message: `Claim a tycoon first!`,
+          message: formatMessage(MESSAGE.TycoonNeeded),
         })
         return
       }
@@ -38,7 +39,7 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
       if ((selectPlayerState(player.UserId)(state)?.dollars ?? 0) < 1) {
         sendAlert({
           emoji: '💰',
-          message: `Insert coin.`,
+          message: formatMessage(MESSAGE.DollarsNeeded),
         })
         return
       }

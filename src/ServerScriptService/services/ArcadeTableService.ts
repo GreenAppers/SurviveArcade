@@ -14,7 +14,7 @@ import {
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
-import { abbreviator } from 'ReplicatedStorage/shared/utils/math'
+import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
 import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'

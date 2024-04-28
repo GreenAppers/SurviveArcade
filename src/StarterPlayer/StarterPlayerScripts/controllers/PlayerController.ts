@@ -9,6 +9,8 @@ import {
 } from '@rbxts/services'
 import {
   CURRENCY_EMOJIS,
+  ROBLOX,
+  TEAM_NAMES,
   USER_DEVICE,
 } from 'ReplicatedStorage/shared/constants/core'
 import {
@@ -24,6 +26,7 @@ import {
   GravityController,
   gravityControllerClass,
 } from 'ReplicatedStorage/shared/utils/gravity'
+import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { ArcadeController } from 'StarterPlayer/StarterPlayerScripts/controllers/ArcadeController'
 import { TycoonController } from 'StarterPlayer/StarterPlayerScripts/controllers/TycoonController'
@@ -110,12 +113,12 @@ export class PlayerController implements OnStart {
       if (this.firstRespawn) {
         this.firstRespawn = false
         this.playDialogAnimation(
-          `Welcome ${player.Name}.  The veil between arcades grows thin.  You must find the way to the high score.  But beware of the rats!`,
+          formatMessage(MESSAGE.GameWelcome, { playerName: player.Name }),
         )
       } else {
         sendAlert({
           emoji: '👼',
-          message: 'Get the high score.  But beware of the rats!',
+          message: formatMessage(MESSAGE.GameRespawn),
         })
       }
       const state = store.getState()
@@ -192,9 +195,9 @@ export class PlayerController implements OnStart {
         if (playerData.tickets > previousPlayerData.tickets) {
           sendAlert({
             emoji: '🎟️',
-            message: `You won ${
-              playerData.tickets - previousPlayerData.tickets
-            } tickets!`,
+            message: formatMessage(MESSAGE.TicketsWon, {
+              tickets: playerData.tickets - previousPlayerData.tickets,
+            }),
           })
           game.Workspace.Audio.CollectTickets.Play()
           this.playCollectionAnimation(
@@ -265,7 +268,7 @@ export class PlayerController implements OnStart {
     const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
     const beam = playerCharacter?.FindFirstChild('Beam') as Beam | undefined
     const humanoid = <Humanoid | undefined>(
-      playerCharacter?.FindFirstChild('Humanoid')
+      playerCharacter?.FindFirstChild(ROBLOX.Humanoid)
     )
     if (!playerCharacter || !humanoid || !beam) return
 
@@ -275,17 +278,17 @@ export class PlayerController implements OnStart {
     // Check if player is alive and has guide enabled.
     if (!guideEnabled || !humanoid.Health || humanoid.Sit) return
     const localPlayerTeamName =
-      localPlayer?.Team?.Name === 'Unclaimed Team'
+      localPlayer?.Team?.Name === TEAM_NAMES.UnclaimedTeam
         ? undefined
         : localPlayer?.Team?.Name
 
     // Find the local player's RootRigAttachment.
     const humanoidRootPart = <BasePart | undefined>(
-      playerCharacter.FindFirstChild('HumanoidRootPart')
+      playerCharacter.FindFirstChild(ROBLOX.HumanoidRootPart)
     )
     if (!playerCharacter || !humanoidRootPart) return
     const rootRigAttachment = <Attachment | undefined>(
-      humanoidRootPart.FindFirstChild('RootRigAttachment')
+      humanoidRootPart.FindFirstChild(ROBLOX.RootRigAttachment)
     )
     if (!rootRigAttachment) return
 
@@ -299,7 +302,7 @@ export class PlayerController implements OnStart {
     let status = ''
     let targetAttachment
     if (!tycoonName) {
-      status = 'Claim tycoon'
+      status = formatMessage(MESSAGE.GuideClaimTycoon)
       targetAttachment = this.tycoonController.findTycoonTarget(
         tycoonsState,
         humanoidRootPart,
@@ -311,14 +314,14 @@ export class PlayerController implements OnStart {
         playerState,
       ))
     ) {
-      status = 'Build your tycoon'
+      status = formatMessage(MESSAGE.GuideBuildTycoon)
     } else if ((playerState?.dollars ?? 0) <= 0) {
-      status = 'Collect coins'
+      status = formatMessage(MESSAGE.GuideCollectCoins)
       targetAttachment = this.arcadeController.findCoinTarget(
         humanoidRootPart.Position,
       )
     } else {
-      status = 'Win tickets'
+      status = formatMessage(MESSAGE.GuideWinTickets)
       targetAttachment = this.arcadeController.findTableTarget(
         selectArcadeTablesState()(state),
         humanoidRootPart,

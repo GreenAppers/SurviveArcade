@@ -21,6 +21,12 @@ export const USER_NAME = Players.LocalPlayer
 
 export const USER_DEVICE = Device.GetPlatformType()
 
+export const ROBLOX = {
+  Humanoid: 'Humanoid',
+  HumanoidRootPart: 'HumanoidRootPart',
+  RootRigAttachment: 'RootRigAttachment',
+}
+
 export const ARCADE_TABLE_TYPES: {
   [name in ArcadeTableType]: ArcadeTableType
 } = {
@@ -64,6 +70,16 @@ export const DIFFICULTY_TYPES: {
 } = {
   peaceful: 'peaceful',
   normal: 'normal',
+}
+
+export const TEAM_NAMES: {
+  [name in TeamKey]: TeamName
+} = {
+  BlueTeam: 'Blue Team',
+  GreenTeam: 'Green Team',
+  RedTeam: 'Red Team',
+  UnclaimedTeam: 'Unclaimed Team',
+  YellowTeam: 'Yellow Team',
 }
 
 export const TRUSS_NAMES: CabinetTrussName[] = [

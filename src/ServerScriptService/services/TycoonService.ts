@@ -22,7 +22,7 @@ import {
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre, setHidden } from 'ServerScriptService/utils'
 
-export const TycoonConstants = {
+export const tycoonConstants = {
   Elf: {
     Buttons: ElfButtons,
   },

@@ -6,6 +6,7 @@ import { Players, RunService, Teams } from '@rbxts/services'
 import {
   CURRENCY_EMOJIS,
   CURRENCY_TYPES,
+  TEAM_NAMES,
 } from 'ReplicatedStorage/shared/constants/core'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import {
@@ -126,7 +127,7 @@ export class PlayerService implements OnInit {
   private createRespawnHandler(player: Player) {
     player.CharacterAdded.Connect(() => {
       store.resetPlayerScore(player.UserId)
-      if (player.Team) player.Team = Teams['Unclaimed Team']
+      if (player.Team) player.Team = Teams[TEAM_NAMES.UnclaimedTeam]
     })
   }
 }

@@ -6,6 +6,7 @@ import {
   START_PLACE_ID,
 } from 'ReplicatedStorage/shared/constants/core'
 import { TeleporterTag } from 'ReplicatedStorage/shared/constants/tags'
+import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 
 @Component({ tag: TeleporterTag })
 export class TeleporterComponent
@@ -30,11 +31,11 @@ export class TeleporterComponent
         switch (this.attributes.Destination) {
           case 'ElfMap':
             placeId = START_PLACE_ID
-            message = 'Returning home...'
+            message = formatMessage(MESSAGE.TeleportElf)
             break
           case 'HumanMap':
             placeId = HUMAN_PLACE_ID
-            message = 'Growing humanity...'
+            message = formatMessage(MESSAGE.TeleportHuman)
             break
         }
         if (placeId) {

@@ -6,7 +6,7 @@ import {
 } from 'ReplicatedStorage/shared/constants/core'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
-import { abbreviator } from 'ReplicatedStorage/shared/utils/math'
+import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
 import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
 import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
 import {

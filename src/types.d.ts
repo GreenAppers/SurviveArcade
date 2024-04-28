@@ -198,6 +198,13 @@ interface Teams extends Instance {
   'Yellow Team': Team
 }
 
+type TeamKey =
+  | 'BlueTeam'
+  | 'GreenTeam'
+  | 'RedTeam'
+  | 'UnclaimedTeam'
+  | 'YellowTeam'
+
 type TeamName =
   | 'Blue Team'
   | 'Green Team'
