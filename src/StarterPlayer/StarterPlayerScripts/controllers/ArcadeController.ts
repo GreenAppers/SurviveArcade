@@ -68,7 +68,7 @@ export class ArcadeController implements OnStart {
     let debouncePlayer = false
     // Local player was bounced by a Bouncer.
     Events.playerBounce.connect((position) => {
-      const humanoid = (<PlayerCharacter>player.Character).Humanoid
+      const humanoid = (player.Character as PlayerCharacter).Humanoid
       const rootPart = humanoid?.RootPart
       if (rootPart && !debouncePlayer) {
         debouncePlayer = true
@@ -165,7 +165,7 @@ export class ArcadeController implements OnStart {
   }
 
   flipFlipper(player: Player, flipperName: string, force: number) {
-    if (!(<PlayerCharacter>player.Character)?.Humanoid?.Sit) return
+    if (!(player.Character as PlayerCharacter)?.Humanoid?.Sit) return
     // print('flip', flipperName, force)
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
       this.myArcadeTableName,
@@ -173,7 +173,7 @@ export class ArcadeController implements OnStart {
     if (!arcadeTable) return
     const flipperModel = arcadeTable.FindFirstChild(flipperName)
     const flipper = flipperModel?.FindFirstChild('Flipper')
-    const rotor = <BasePart>flipper?.FindFirstChild('Rotor')
+    const rotor = flipper?.FindFirstChild('Rotor') as BasePart
     if (!rotor) return
     const orientation = flipperName === 'FlipperRight' ? -1 : 1
     rotor.ApplyAngularImpulse(

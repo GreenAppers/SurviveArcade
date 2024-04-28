@@ -68,9 +68,9 @@ export class ZombieComponent
         TargetModel.FindFirstChild('HumanoidRootPart') &&
         TargetModel.FindFirstChild('Head')
       ) {
-        const TargetPart = <BasePart | undefined>(
-          TargetModel.FindFirstChild('HumanoidRootPart')
-        )
+        const TargetPart = TargetModel.FindFirstChild('HumanoidRootPart') as
+          | BasePart
+          | undefined
         let FoundHumanoid: Humanoid | undefined
         for (const Child of TargetModel.GetChildren()) {
           if (Child && Child.IsA('Humanoid') && Child.Health !== 0) {
@@ -256,7 +256,7 @@ export class ZombieComponent
                 2,
               ),
             ),
-            <Terrain | undefined>game.Workspace.FindFirstChild('Terrain'),
+            game.Workspace.FindFirstChild('Terrain') as Terrain | undefined,
           )
         }
       } else {
@@ -264,9 +264,9 @@ export class ZombieComponent
         this.noticeDebounce = false
         const RandomWalk = math.random(1, 150)
         if (this.instance && this.humanoid && this.humanoid.Health !== 0) {
-          const terrain = <Terrain | undefined>(
-            game.Workspace.FindFirstChild('Terrain')
-          )
+          const terrain = game.Workspace.FindFirstChild('Terrain') as
+            | Terrain
+            | undefined
           this.humanoid.WalkSpeed = 16
           if (terrain && RandomWalk === 1) {
             this.humanoid.MoveTo(
@@ -326,11 +326,11 @@ export class ZombieComponent
 
   onStart() {
     this.respawndant = this.instance.Clone()
-    this.knife = <BasePart | undefined>this.instance.FindFirstChild('Knife')
-    this.head = <BasePart | undefined>this.instance.FindFirstChild('Head')
-    this.humanoidRootPart = <BasePart | undefined>(
-      this.instance.FindFirstChild('HumanoidRootPart')
-    )
+    this.knife = this.instance.FindFirstChild('Knife') as BasePart | undefined
+    this.head = this.instance.FindFirstChild('Head') as BasePart | undefined
+    this.humanoidRootPart = this.instance.FindFirstChild('HumanoidRootPart') as
+      | BasePart
+      | undefined
     for (const child of this.instance.GetChildren()) {
       if (child?.IsA('Humanoid') && child.Health !== 0) {
         this.humanoid = child

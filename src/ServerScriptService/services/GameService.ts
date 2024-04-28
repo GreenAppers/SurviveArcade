@@ -3,7 +3,10 @@ import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { Players } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
-import { ARCADE_TABLE_NAMES } from 'ReplicatedStorage/shared/constants/core'
+import {
+  ARCADE_TABLE_NAMES,
+  ROBLOX,
+} from 'ReplicatedStorage/shared/constants/core'
 import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTablesState,
@@ -106,21 +109,21 @@ export class GameService implements OnStart {
   trackArcadeTablePlayZones() {
     const players = Players.GetPlayers().map((x) => ({
       userID: x.UserId,
-      gravityUp: <Vector3 | undefined>undefined,
-      groundArcadeTableName: <ArcadeTableName | undefined>undefined,
-      groundArcadeTableSequence: <number | undefined>undefined,
+      gravityUp: undefined as Vector3 | undefined,
+      groundArcadeTableName: undefined as ArcadeTableName | undefined,
+      groundArcadeTableSequence: undefined as number | undefined,
       humanoidRootPart: playerHumanoidRootPart(x),
     }))
     const state = store.getState()
     for (const arcadeTableName of ARCADE_TABLE_NAMES) {
       const nextTableName = nextArcadeTableName(arcadeTableName)
       const arcadeTableState = selectArcadeTableState(arcadeTableName)(state)
-      const arcadeTable = <ArcadeTable>(
-        game.Workspace.ArcadeTables.FindFirstChild(arcadeTableName)
-      )
-      const nextArcadeTable = <ArcadeTable>(
-        game.Workspace.ArcadeTables.FindFirstChild(nextTableName)
-      )
+      const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
+        arcadeTableName,
+      ) as ArcadeTable
+      const nextArcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
+        nextTableName,
+      ) as ArcadeTable
       let foundPlayerInPlayZone = false
       for (const player of players) {
         if (player.groundArcadeTableName || !player.humanoidRootPart) continue
@@ -189,8 +192,10 @@ export class GameService implements OnStart {
 }
 
 export function playerHumanoidRootPart(player: Player) {
-  const character = <PlayerCharacter | undefined>player?.Character
-  return <BasePart | undefined>character?.FindFirstChild('HumanoidRootPart')
+  const character = player?.Character as PlayerCharacter | undefined
+  return character?.FindFirstChild(ROBLOX.HumanoidRootPart) as
+    | BasePart
+    | undefined
 }
 
 export function isWithinBox(brick: BasePart, position: Vector3) {

@@ -5,11 +5,11 @@ import Log, { Logger } from '@rbxts/log'
 Log.SetLogger(Logger.configure().WriteTo(Log.RobloxOutput()).Create())
 Modding.registerDependency<Logger>((ctor) => Log.ForContext(ctor))
 
-const parent = <Folder>script.Parent?.FindFirstChild('cmdr')
+const parent = script.Parent?.FindFirstChild('cmdr') as Folder
 Cmdr.RegisterDefaultCommands()
-Cmdr.RegisterCommandsIn(<Folder>parent.FindFirstChild('commands'))
-Cmdr.RegisterTypesIn(<Folder>parent.FindFirstChild('types'))
-Cmdr.RegisterHooksIn(<Folder>parent.FindFirstChild('hooks'))
+Cmdr.RegisterCommandsIn(parent.FindFirstChild('commands') as Folder)
+Cmdr.RegisterTypesIn(parent.FindFirstChild('types') as Folder)
+Cmdr.RegisterHooksIn(parent.FindFirstChild('hooks') as Folder)
 
 Flamework.addPaths('src/ServerScriptService/components')
 Flamework.addPaths('src/ServerScriptService/services')

@@ -309,12 +309,12 @@ export class AnimatedComponent
   }
 
   onStart() {
-    this.torso = <BasePart>waitForChild(this.instance, 'Torso')
-    this.rightShoulder = <Motor6D>waitForChild(this.torso, 'Right Shoulder')
-    this.leftShoulder = <Motor6D>waitForChild(this.torso, 'Left Shoulder')
-    this.rightHip = <Motor6D>waitForChild(this.torso, 'Right Hip')
-    this.leftHip = <Motor6D>waitForChild(this.torso, 'Left Hip')
-    this.neck = <Motor6D>waitForChild(this.torso, 'Neck')
+    this.torso = waitForChild(this.instance, 'Torso') as BasePart
+    this.rightShoulder = waitForChild(this.torso, 'Right Shoulder') as Motor6D
+    this.leftShoulder = waitForChild(this.torso, 'Left Shoulder') as Motor6D
+    this.rightHip = waitForChild(this.torso, 'Right Hip') as Motor6D
+    this.leftHip = waitForChild(this.torso, 'Left Hip') as Motor6D
+    this.neck = waitForChild(this.torso, 'Neck') as Motor6D
     for (const child of this.instance.GetChildren()) {
       if (child.IsA('Humanoid')) {
         this.humanoid = child

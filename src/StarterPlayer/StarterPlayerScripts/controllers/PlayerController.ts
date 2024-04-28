@@ -72,7 +72,7 @@ export class PlayerController implements OnStart {
       if (inputObject.KeyCode === Enum.KeyCode.LeftShift) {
         // Sprint started
         const player = Players.LocalPlayer
-        const humanoid = (<PlayerCharacter>player.Character)?.Humanoid
+        const humanoid = (player.Character as PlayerCharacter)?.Humanoid
         const camera = game.Workspace.CurrentCamera
         if (!this.arcadeController.myArcadeTableName) {
           if (humanoid && humanoid.WalkSpeed > 0)
@@ -95,7 +95,7 @@ export class PlayerController implements OnStart {
       if (inputObject.KeyCode === Enum.KeyCode.LeftShift) {
         // Sprint stopped
         const player = Players.LocalPlayer
-        const humanoid = (<PlayerCharacter>player.Character)?.Humanoid
+        const humanoid = (player.Character as PlayerCharacter)?.Humanoid
         const camera = game.Workspace.CurrentCamera
         if (humanoid && humanoid.WalkSpeed > 0)
           humanoid.WalkSpeed = this.walkSpeed
@@ -142,7 +142,9 @@ export class PlayerController implements OnStart {
   prepareGravityController(player: Player) {
     forEveryPlayerCharacterAdded(player, (character) => {
       this.disableGravityController()
-      const humanoid = <Humanoid>character.WaitForChild('Humanoid')
+      const humanoid = character.WaitForChild('Humanoid') as
+        | Humanoid
+        | undefined
       humanoid?.Seated?.Connect((seated) => {
         this.isSeated = seated
         if (seated) this.disableGravityController()
@@ -265,11 +267,13 @@ export class PlayerController implements OnStart {
 
   refreshBeams(guideEnabled?: boolean) {
     const localPlayer = Players.LocalPlayer
-    const playerCharacter = <PlayerCharacter | undefined>localPlayer?.Character
+    const playerCharacter = localPlayer?.Character as
+      | PlayerCharacter
+      | undefined
     const beam = playerCharacter?.FindFirstChild('Beam') as Beam | undefined
-    const humanoid = <Humanoid | undefined>(
-      playerCharacter?.FindFirstChild(ROBLOX.Humanoid)
-    )
+    const humanoid = playerCharacter?.FindFirstChild(ROBLOX.Humanoid) as
+      | Humanoid
+      | undefined
     if (!playerCharacter || !humanoid || !beam) return
 
     // Clear old beam
@@ -283,13 +287,13 @@ export class PlayerController implements OnStart {
         : localPlayer?.Team?.Name
 
     // Find the local player's RootRigAttachment.
-    const humanoidRootPart = <BasePart | undefined>(
-      playerCharacter.FindFirstChild(ROBLOX.HumanoidRootPart)
-    )
+    const humanoidRootPart = playerCharacter.FindFirstChild(
+      ROBLOX.HumanoidRootPart,
+    ) as BasePart | undefined
     if (!playerCharacter || !humanoidRootPart) return
-    const rootRigAttachment = <Attachment | undefined>(
-      humanoidRootPart.FindFirstChild(ROBLOX.RootRigAttachment)
-    )
+    const rootRigAttachment = humanoidRootPart.FindFirstChild(
+      ROBLOX.RootRigAttachment,
+    ) as Attachment | undefined
     if (!rootRigAttachment) return
 
     // Check player state

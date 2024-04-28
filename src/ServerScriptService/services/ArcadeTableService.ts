@@ -127,9 +127,9 @@ export class ArcadeTableService implements OnStart {
 
   onGameOver(tableName: string, player: Player, score: number) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
-    const flipperLeft = <Flipper>arcadeTable?.FindFirstChild('FlipperLeft')
-    const flipperRight = <Flipper>arcadeTable?.FindFirstChild('FlipperRight')
-    const spinnerLeft = <Spinner>arcadeTable?.FindFirstChild('SpinnerLeft')
+    const flipperLeft = arcadeTable?.FindFirstChild('FlipperLeft') as Flipper
+    const flipperRight = arcadeTable?.FindFirstChild('FlipperRight') as Flipper
+    const spinnerLeft = arcadeTable?.FindFirstChild('SpinnerLeft') as Spinner
     if (!player) {
       setNetworkOwner(flipperLeft, undefined)
       setNetworkOwner(flipperRight, undefined)
@@ -145,8 +145,8 @@ export class ArcadeTableService implements OnStart {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
     const balls = arcadeTable?.FindFirstChild('Balls')
     const ballTemplate = arcadeTable?.FindFirstChild('BallTemplate')
-    const ground = <BasePart>arcadeTable?.FindFirstChild('Ground')
-    const ball = <BasePart>ballTemplate?.Clone()
+    const ground = arcadeTable?.FindFirstChild('Ground') as BasePart
+    const ball = ballTemplate?.Clone() as BasePart
     if (ball) {
       this.ballNumber = this.ballNumber + 1
       ball.Name = `Ball${this.ballNumber}`
@@ -154,11 +154,13 @@ export class ArcadeTableService implements OnStart {
       ball.CanCollide = true
       ball.Anchored = false
       ball.Parent = balls
-      const sparks = <ParticleEmitter | undefined>ball.FindFirstChild('Sparks')
-      const light = <PointLight | undefined>ball.FindFirstChild('Light')
-      const gravity = <VectorForce | undefined>(
-        ball.FindFirstChild('VectorForce')
-      )
+      const sparks = ball.FindFirstChild('Sparks') as
+        | ParticleEmitter
+        | undefined
+      const light = ball.FindFirstChild('Light') as PointLight | undefined
+      const gravity = ball.FindFirstChild('VectorForce') as
+        | VectorForce
+        | undefined
       if (sparks) sparks.Enabled = true
       if (light) light.Enabled = true
       if (gravity && ground) {
@@ -168,9 +170,9 @@ export class ArcadeTableService implements OnStart {
       }
       setNetworkOwner(ball, player)
     }
-    const flipperLeft = <Flipper>arcadeTable?.FindFirstChild('FlipperLeft')
-    const flipperRight = <Flipper>arcadeTable?.FindFirstChild('FlipperRight')
-    const spinnerLeft = <Spinner>arcadeTable?.FindFirstChild('SpinnerLeft')
+    const flipperLeft = arcadeTable?.FindFirstChild('FlipperLeft') as Flipper
+    const flipperRight = arcadeTable?.FindFirstChild('FlipperRight') as Flipper
+    const spinnerLeft = arcadeTable?.FindFirstChild('SpinnerLeft') as Spinner
     setNetworkOwner(flipperLeft, player)
     setNetworkOwner(flipperRight, player)
     setNetworkOwner(spinnerLeft, player)

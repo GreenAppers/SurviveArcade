@@ -137,7 +137,7 @@ export class MapService implements OnStart {
   }
 
   setupNextArcadeTable(arcadeTable: ArcadeTable, cframe: CFrame) {
-    const parts = <BasePart[]>getDescendentsWhichAre(arcadeTable, 'BasePart')
+    const parts = getDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     for (const part of parts) {
       if (part.Name === 'Baseplate') arcadeTable.PrimaryPart = part
       if (part.Transparency === 1) continue
@@ -155,12 +155,12 @@ export class MapService implements OnStart {
   resetTable(name: ArcadeTableName) {
     const arcadeTablesState = selectArcadeTablesState()(store.getState())
     const arcadeTableState = arcadeTablesState[name]
-    let arcadeTable = <ArcadeTable>(
-      game.Workspace.ArcadeTables?.FindFirstChild(name)
-    )
-    const nextArcadeTable = <ArcadeTable>(
-      game.Workspace.ArcadeTables?.FindFirstChild(nextArcadeTableName(name))
-    )
+    let arcadeTable = game.Workspace.ArcadeTables?.FindFirstChild(
+      name,
+    ) as ArcadeTable
+    const nextArcadeTable = game.Workspace.ArcadeTables?.FindFirstChild(
+      nextArcadeTableName(name),
+    ) as ArcadeTable
     arcadeTable?.Destroy()
     nextArcadeTable?.Destroy()
     store.resetArcadeTable(name)
@@ -176,12 +176,12 @@ export class MapService implements OnStart {
     const arcadeTableNextName = nextArcadeTableName(name)
     const arcadeTablesState = store.getState().arcadeTables
     const state = arcadeTablesState[name]
-    const arcadeTable = <ArcadeTable | undefined>(
-      game.Workspace.ArcadeTables?.FindFirstChild(name)
-    )
-    let arcadeTableNext = <ArcadeTable | undefined>(
-      game.Workspace.ArcadeTables?.FindFirstChild(arcadeTableNextName)
-    )
+    const arcadeTable = game.Workspace.ArcadeTables?.FindFirstChild(name) as
+      | ArcadeTable
+      | undefined
+    let arcadeTableNext = game.Workspace.ArcadeTables?.FindFirstChild(
+      arcadeTableNextName,
+    ) as ArcadeTable | undefined
     if (!state?.tableMap || arcadeTableNext) return
     const nextArcadeTableCF = arcadeTable?.NextBaseplate?.CFrame
     if (!nextArcadeTableCF) return

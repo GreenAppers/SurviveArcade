@@ -3,9 +3,9 @@ export function forEveryPlayerCharacterAdded(
   addedFunc: (character: PlayerCharacter) => void,
 ): RBXScriptConnection {
   const connection = player.CharacterAdded.Connect((character) =>
-    addedFunc(<PlayerCharacter>character),
+    addedFunc(character as PlayerCharacter),
   )
-  if (player.Character) addedFunc(<PlayerCharacter>player.Character)
+  if (player.Character) addedFunc(player.Character as PlayerCharacter)
   return connection
 }
 

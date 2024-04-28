@@ -1,8 +1,8 @@
 # SurviveArcade [![build](https://github.com/GreenAppers/SurviveArcade/actions/workflows/build.yml/badge.svg)](https://github.com/GreenAppers/SurviveArcade/actions/workflows/build.yml)
 
-![thumbnail](./assets/marketing/github_logo.jpg)
+[![thumbnail](./assets/marketing/github_logo.jpg)](https://ro.blox.com/Ebh5?af_dp=roblox%3A%2F%2FplaceId%3D15699266223%26launchData%3Dutm1%25253A0%25252C0%25252Cweb-link%25252Chome-hero-play-button%25252C%25253B&af_web_dp=https%3A%2F%2Fwww.roblox.com%2Fgames%2Fstart%3FplaceId%3D15699266223%26launchData%3Dutm1%25253A0%25252C0%25252Cweb-link%25252Chome-hero-play-button%25252C%25253B)
 
-Join [the Experience (BETA)](https://www.roblox.com/games/15699266223)!
+[Join the Experience](https://ro.blox.com/Ebh5?af_dp=roblox%3A%2F%2FplaceId%3D15699266223%26launchData%3Dutm1%25253A0%25252C0%25252Cweb-link%25252Chome-hero-play-button%25252C%25253B&af_web_dp=https%3A%2F%2Fwww.roblox.com%2Fgames%2Fstart%3FplaceId%3D15699266223%26launchData%3Dutm1%25253A0%25252C0%25252Cweb-link%25252Chome-hero-play-button%25252C%25253B) (BETA)!
 
 ## Setup
 
@@ -58,7 +58,7 @@ yarn && yarn build
 ## Workflow
 
 - VSCode > NPM Scripts > Watch
-- VSCode > Command+Shift+P > Rojo Menu > Start
+- VSCode > NPM Scripts > Sync
 - Studio > Plugins > Rojo > Connect to `rojo serve` running in VS Code.
 - Develop scripts in VSCode
 - Develop Models in Roblox Studio
