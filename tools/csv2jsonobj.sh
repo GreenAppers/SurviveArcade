@@ -5,5 +5,5 @@ for csv_file in `find ./spreadsheets -name "*.obj.csv"`; do
   json_dir=`dirname $json_file`
   mkdir -p $json_dir
   echo Converting $csv_file to $json_file
-  node node_modules/.bin/csv2json $csv_file | jq "map( { (.Name): . } ) | add" > $json_file
+  node node_modules/.bin/csv2json -d $csv_file | jq "map( { (.Name): . } ) | add" > $json_file
 done

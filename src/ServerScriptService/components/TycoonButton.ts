@@ -6,9 +6,11 @@ import {
   selectPlayerTycoonButtons,
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
+import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 import {
   getTycoonFromDescendent,
   isTycoonButtonDependencyMet,
+  tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
 import { animateBuildingIn } from 'ServerScriptService/buildin'
 import { store } from 'ServerScriptService/store'
@@ -16,7 +18,7 @@ import { setHidden } from 'ServerScriptService/utils'
 
 @Component({ tag: TycoonButtonTag })
 export class TycoonButtonComponent
-  extends BaseComponent<{ Cost: number; Currency: Currency }, BasePart>
+  extends BaseComponent<{}, BasePart>
   implements OnStart
 {
   onStart() {
@@ -26,6 +28,10 @@ export class TycoonButtonComponent
       | TycoonType
       | undefined
     if (!tycoon || !tycoonType) throw error('Button has no ancestor Tycoon')
+    const constants = tycoonConstants[tycoonType]
+    const buttonDetails = constants.Buttons[buttonName]
+    const buttonCurrency = getCurrency(buttonDetails?.Currency)
+    if (!buttonDetails || !buttonCurrency) throw error('Button has no details')
     const tycoonSelector = selectTycoonState(tycoon.Name)
 
     this.instance.Touched?.Connect((hit) => {
@@ -43,8 +49,8 @@ export class TycoonButtonComponent
         touchedPlayer.UserId,
         tycoonType,
         buttonName,
-        this.attributes.Currency,
-        this.attributes.Cost,
+        buttonCurrency,
+        buttonDetails.Cost,
       )
       const tycoonButtonsSelector = selectPlayerTycoonButtons(
         touchedPlayer.UserId,
@@ -86,7 +92,7 @@ export class TycoonButtonComponent
         }
         if (
           isTycoonButtonDependencyMet(
-            button as TycoonButtonModel,
+            constants.Buttons[button.Name],
             playerTycoonButtons,
           )
         ) {

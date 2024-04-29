@@ -4,9 +4,23 @@ import {
   TycoonPlotTag,
   TycoonTag,
 } from 'ReplicatedStorage/shared/constants/tags'
+import ElfButtons from 'ReplicatedStorage/shared/constants/tycoon/Elf/buttons.json'
 import { PlayerTycoonButtons } from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonsState } from 'ReplicatedStorage/shared/state/TycoonState'
-import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
+
+export const tycoonConstants: {
+  [name in TycoonType]: { Buttons: Record<string, TycoonButtonDetails> }
+} = {
+  Elf: {
+    Buttons: ElfButtons,
+  },
+  Human: {
+    Buttons: {},
+  },
+  Omniverse: {
+    Buttons: {},
+  },
+}
 
 export function isTycoon(tycoon: Instance) {
   return CollectionService.HasTag(tycoon, TycoonTag)
@@ -14,6 +28,20 @@ export function isTycoon(tycoon: Instance) {
 
 export function isTycoonPlot(tycoon: Instance) {
   return CollectionService.HasTag(tycoon, TycoonPlotTag)
+}
+
+export function getTycoonType(
+  tycoonType?: AttributeValue,
+): TycoonType | undefined {
+  if (!typeIs(tycoonType, 'string')) return undefined
+  switch (tycoonType) {
+    case 'Elf':
+    case 'Human':
+    case 'Omniverse':
+      return tycoonType
+    default:
+      return undefined
+  }
 }
 
 export function getTycoonFromDescendent(instance: Instance) {
@@ -60,27 +88,13 @@ export function nearestTycoonPlot(
 }
 
 export function isTycoonButtonDependencyMet(
-  button: TycoonButtonModel,
+  details?: TycoonButtonDetails,
   playerTycoonButtons?: PlayerTycoonButtons,
 ) {
-  const dependencies = button.Button.GetAttribute('Dependency')
-  if (dependencies && typeIs(dependencies, 'string')) {
-    if (!playerTycoonButtons) return false
-    for (const dependency of dependencies.split(',')) {
-      if (!playerTycoonButtons[dependency]) return false
-    }
+  if (!details || !playerTycoonButtons) return false
+  if (!details.Dependencies.size()) return true
+  for (const dependency of details.Dependencies.split(',')) {
+    if (!playerTycoonButtons[dependency]) return false
   }
   return true
-}
-
-export function getTycoonButtonCurrency(button: TycoonButtonModel) {
-  const currencyName = button.Button.GetAttribute('Currency')
-  return currencyName && typeIs(currencyName, 'string')
-    ? getCurrency(currencyName)
-    : undefined
-}
-
-export function getTycoonButtonCost(button: TycoonButtonModel) {
-  const cost = button.Button.GetAttribute('Cost')
-  return cost && typeIs(cost, 'number') ? cost : undefined
 }

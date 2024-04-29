@@ -2,7 +2,6 @@ import { OnStart, Service } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { Players, ReplicatedStorage, Workspace } from '@rbxts/services'
 import { CURRENCY_EMOJIS } from 'ReplicatedStorage/shared/constants/core'
-import ElfButtons from 'ReplicatedStorage/shared/constants/tycoon/Elf/buttons.json'
 import {
   selectPlayerState,
   selectTycoonsState,
@@ -10,10 +9,10 @@ import {
 } from 'ReplicatedStorage/shared/state'
 import { PlayerTycoon } from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonState } from 'ReplicatedStorage/shared/state/TycoonState'
+import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 import {
-  getTycoonButtonCost,
-  getTycoonButtonCurrency,
   isTycoonButtonDependencyMet,
+  tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
 import {
   getTycoonCFrame,
@@ -21,12 +20,6 @@ import {
 } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { getDescendentsWhichAre, setHidden } from 'ServerScriptService/utils'
-
-export const tycoonConstants = {
-  Elf: {
-    Buttons: ElfButtons,
-  },
-}
 
 @Service()
 export class TycoonService implements OnStart {
@@ -76,17 +69,42 @@ export class TycoonService implements OnStart {
       item.Parent = items
     }
 
+    const constants = tycoonConstants[tycoonType]
+    const font = Font.fromName('FredokaOne')
     for (const button of buttons.GetChildren() as TycoonButtonModel[]) {
-      if (playerState?.buttons[button.Name]) {
+      const details = constants.Buttons[button.Name]
+      if (!details || playerState?.buttons[button.Name]) {
         button.Destroy()
         continue
       }
-      const cost = getTycoonButtonCost(button)
-      const currency = getTycoonButtonCurrency(button)
+
+      const attachment = new Instance('Attachment')
+      attachment.Parent = button.Button
+      const billboardGui = new Instance('BillboardGui')
+      billboardGui.Size = new UDim2(10, 0, 10, 0)
+      const frame = new Instance('Frame')
+      frame.BackgroundTransparency = 1
+      frame.Size = new UDim2(1, 0, 1, 0)
+      frame.Parent = billboardGui
+      const textLabel = new Instance('TextLabel')
+      textLabel.BackgroundTransparency = 1
+      textLabel.FontFace = font
+      textLabel.Size = new UDim2(1, 0, 0.4, 0)
+      textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+      textLabel.TextScaled = true
+      textLabel.TextSize = 14
+      textLabel.Parent = frame
+      const uiStroke = new Instance('UIStroke')
+      uiStroke.Parent = textLabel
+      billboardGui.Parent = button.Button
+
+      const cost = details.Cost
+      const currency = getCurrency(details.Currency)
       if (cost && currency) {
-        button.Button.BillboardGui.Frame.TextLabel.Text += ` ${CURRENCY_EMOJIS[currency]} ${cost}`
+        textLabel.Text = `${details.Description} ${CURRENCY_EMOJIS[currency]} ${cost}`
       }
-      if (!isTycoonButtonDependencyMet(button, playerState?.buttons)) {
+
+      if (!isTycoonButtonDependencyMet(details, playerState?.buttons)) {
         setHidden(button, true)
       }
     }

@@ -1,168 +1,168 @@
 {
   "HousePorch": {
     "Name": "HousePorch",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Porch",
     "Dependencies": ""
   },
   "HouseFloor1Floor": {
     "Name": "HouseFloor1Floor",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popsicle Stick Floor",
     "Dependencies": "HousePorch"
   },
   "HouseFloor1WallBack": {
     "Name": "HouseFloor1WallBack",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popcorn Box Wall",
     "Dependencies": "HouseFloor1Floor"
   },
   "HouseFloor1WallFrontLeft": {
     "Name": "HouseFloor1WallFrontLeft",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popcorn Box Wall",
     "Dependencies": "HouseFloor1Floor"
   },
   "HouseFloor1WallFrontRight": {
     "Name": "HouseFloor1WallFrontRight",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popcorn Box Wall",
     "Dependencies": "HouseFloor1Floor"
   },
   "HouseFloor1WallLeft": {
     "Name": "HouseFloor1WallLeft",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popcorn Box Wall",
     "Dependencies": "HouseFloor1Floor"
   },
   "HouseFloor1WallRight": {
     "Name": "HouseFloor1WallRight",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popcorn Box Wall",
     "Dependencies": "HouseFloor1Floor"
   },
   "HouseFloor1WindowFrontLeft": {
     "Name": "HouseFloor1WindowFrontLeft",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Foil Window",
     "Dependencies": "HouseFloor1WallBack,HouseFloor1WallFrontLeft,HouseFloor1WallFrontRight,HouseFloor1WallLeft,HouseFloor1WallRight"
   },
   "HouseFloor1WindowFrontRight": {
     "Name": "HouseFloor1WindowFrontRight",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Foil Window",
     "Dependencies": "HouseFloor1WallBack,HouseFloor1WallFrontLeft,HouseFloor1WallFrontRight,HouseFloor1WallLeft,HouseFloor1WallRight"
   },
   "HouseFloor1WindowLeft": {
     "Name": "HouseFloor1WindowLeft",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Foil Window",
     "Dependencies": "HouseFloor1WallBack,HouseFloor1WallFrontLeft,HouseFloor1WallFrontRight,HouseFloor1WallLeft,HouseFloor1WallRight"
   },
   "HouseFloor1WindowRight": {
     "Name": "HouseFloor1WindowRight",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Foil Window",
     "Dependencies": "HouseFloor1WallBack,HouseFloor1WallFrontLeft,HouseFloor1WallFrontRight,HouseFloor1WallLeft,HouseFloor1WallRight"
   },
   "HouseFloor1Door": {
     "Name": "HouseFloor1Door",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Foil Doorframe",
     "Dependencies": "HouseFloor1WindowFrontLeft,HouseFloor1WindowFrontRight,HouseFloor1WindowRight,HouseFloor1WindowFrontLeft"
   },
   "HouseOwnerDoor": {
     "Name": "HouseOwnerDoor",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Owner Door",
     "Dependencies": "HouseFloor1Door"
   },
   "HouseFloor1Communicator": {
     "Name": "HouseFloor1Communicator",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Communicator",
     "Dependencies": "HouseOwnerDoor"
   },
   "HouseFloor1Portal": {
     "Name": "HouseFloor1Portal",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Human Portal",
     "Dependencies": "HouseFloor1Communicator"
   },
   "HouseLights": {
     "Name": "HouseLights",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "House Lights",
     "Dependencies": "HouseFloor1Portal"
   },
   "HouseFloor2Floor": {
     "Name": "HouseFloor2Floor",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Second Floor",
     "Dependencies": "HouseLights"
   },
   "HouseFloor1Stairs": {
     "Name": "HouseFloor1Stairs",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Matchbox Stairs",
     "Dependencies": "HouseFloor2Floor"
   },
   "HouseFloor2WallBack": {
     "Name": "HouseFloor2WallBack",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popcorn Box Wall",
     "Dependencies": "HouseFloor2Floor"
   },
   "HouseFloor2WallFront": {
     "Name": "HouseFloor2WallFront",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popcorn Box Wall",
     "Dependencies": "HouseFloor2Floor"
   },
   "HouseFloor2Roof": {
     "Name": "HouseFloor2Roof",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Popsicle Stick Roof",
     "Dependencies": "HouseFloor2WallBack,HouseFloor2WallFront"
   },
   "HouseStrawSupports": {
     "Name": "HouseStrawSupports",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Straw Supports",
     "Dependencies": "HouseFloor2Roof"
   },
   "HouseAwning": {
     "Name": "HouseAwning",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "Awning",
     "Dependencies": "HouseStrawSupports"
   },
   "HouseStringLights": {
     "Name": "HouseStringLights",
-    "Cost": "20",
+    "Cost": 20,
     "Currency": "Tickets",
     "Description": "String Lights",
     "Dependencies": "HouseAwning"

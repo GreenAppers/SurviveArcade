@@ -242,6 +242,14 @@ interface TycoonButton extends BasePart {
   }
 }
 
+interface TycoonButtonDetails {
+  Name: string
+  Cost: number
+  Currency: string
+  Description: string
+  Dependencies: string
+}
+
 interface TycoonButtonModel extends Model {
   Button: TycoonButton
   Base: BasePart

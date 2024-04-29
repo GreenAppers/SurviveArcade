@@ -4,10 +4,11 @@ import {
   PlayerState,
 } from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonsState } from 'ReplicatedStorage/shared/state/TycoonState'
+import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 import {
-  getTycoonButtonCost,
-  getTycoonButtonCurrency,
+  getTycoonType,
   nearestTycoonPlot,
+  tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
 
 @Controller({})
@@ -31,11 +32,15 @@ export class TycoonController {
     playerState?: PlayerState,
   ): Attachment | undefined {
     const tycoon = game.Workspace.Tycoons[tycoonName]
-    if (!tycoon || !playerState) return undefined
+    const tycoonType = getTycoonType(tycoon?.GetAttribute('TycoonType'))
+    if (!tycoon || !tycoonType || !playerState) return undefined
+
+    const constants = tycoonConstants[tycoonType]
     for (const button of tycoon.Buttons.GetChildren() as TycoonButtonModel[]) {
       if (button.Button.CanTouch === false) continue
-      const cost = getTycoonButtonCost(button)
-      const currency = getTycoonButtonCurrency(button)
+      const details = constants.Buttons[button.Name]
+      const currency = getCurrency(details.Currency)
+      const cost = details.Cost
       if (cost && currency && getPlayerCurrency(playerState, currency) >= cost)
         return button.Button.Attachment
     }
