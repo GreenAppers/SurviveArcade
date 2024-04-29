@@ -59,7 +59,7 @@ export class TycoonService implements OnStart {
     items.Name = 'Items'
     items.Parent = tycoon
     const mainItems = tycoonTemplate.MainItems.Clone()
-    mainItems.Parent = tycoon.Clone()
+    mainItems.Parent = tycoon
     const purchases = tycoonTemplate.Purchases.Clone()
     purchases.Parent = tycoon
 
@@ -103,7 +103,6 @@ export class TycoonService implements OnStart {
       if (cost && currency) {
         textLabel.Text = `${details.Description} ${CURRENCY_EMOJIS[currency]} ${cost}`
       }
-
       if (!isTycoonButtonDependencyMet(details, playerState?.buttons)) {
         setHidden(button, true)
       }
