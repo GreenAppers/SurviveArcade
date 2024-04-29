@@ -21,7 +21,12 @@ export const USER_NAME = Players.LocalPlayer
 
 export const USER_DEVICE = Device.GetPlatformType()
 
-export const ROBLOX = {
+export const TYPE = {
+  Folder: 'Folder',
+  Humanoid: 'Humanoid',
+}
+
+export const NAME = {
   Humanoid: 'Humanoid',
   HumanoidRootPart: 'HumanoidRootPart',
   RootRigAttachment: 'RootRigAttachment',

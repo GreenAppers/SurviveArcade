@@ -9,7 +9,7 @@ import {
 } from '@rbxts/services'
 import {
   CURRENCY_EMOJIS,
-  ROBLOX,
+  NAME,
   TEAM_NAMES,
   USER_DEVICE,
 } from 'ReplicatedStorage/shared/constants/core'
@@ -271,7 +271,7 @@ export class PlayerController implements OnStart {
       | PlayerCharacter
       | undefined
     const beam = playerCharacter?.FindFirstChild('Beam') as Beam | undefined
-    const humanoid = playerCharacter?.FindFirstChild(ROBLOX.Humanoid) as
+    const humanoid = playerCharacter?.FindFirstChild(NAME.Humanoid) as
       | Humanoid
       | undefined
     if (!playerCharacter || !humanoid || !beam) return
@@ -288,11 +288,11 @@ export class PlayerController implements OnStart {
 
     // Find the local player's RootRigAttachment.
     const humanoidRootPart = playerCharacter.FindFirstChild(
-      ROBLOX.HumanoidRootPart,
+      NAME.HumanoidRootPart,
     ) as BasePart | undefined
     if (!playerCharacter || !humanoidRootPart) return
     const rootRigAttachment = humanoidRootPart.FindFirstChild(
-      ROBLOX.RootRigAttachment,
+      NAME.RootRigAttachment,
     ) as Attachment | undefined
     if (!rootRigAttachment) return
 

@@ -5,7 +5,7 @@ import { Players } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
 import {
   ARCADE_TABLE_NAMES,
-  ROBLOX,
+  NAME,
 } from 'ReplicatedStorage/shared/constants/core'
 import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
@@ -193,7 +193,7 @@ export class GameService implements OnStart {
 
 export function playerHumanoidRootPart(player: Player) {
   const character = player?.Character as PlayerCharacter | undefined
-  return character?.FindFirstChild(ROBLOX.HumanoidRootPart) as
+  return character?.FindFirstChild(NAME.HumanoidRootPart) as
     | BasePart
     | undefined
 }
