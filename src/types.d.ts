@@ -221,6 +221,8 @@ interface Tycoon extends Model {
   Purchases: Folder
 }
 
+type TycoonChild = 'Baseplate' | 'Buttons' | 'Items' | 'MainItems' | 'Purchases'
+
 type TycoonName =
   | 'Tycoon1'
   | 'Tycoon2'

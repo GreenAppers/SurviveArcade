@@ -22,22 +22,33 @@ export const USER_NAME = Players.LocalPlayer
 export const USER_DEVICE = Device.GetPlatformType()
 
 export const TYPE = {
-  Folder: 'Folder',
-  Humanoid: 'Humanoid',
+  Attachment: 'Attachment' as const,
+  BasePart: 'BasePart' as const,
+  BillboardGui: 'BillboardGui' as const,
+  Frame: 'Frame' as const,
+  Folder: 'Folder' as const,
+  Humanoid: 'Humanoid' as const,
+  Model: 'Model' as const,
+  TextLabel: 'TextLabel' as const,
+  UIStroke: 'UIStroke' as const,
 }
 
-export const NAME = {
-  Humanoid: 'Humanoid',
-  HumanoidRootPart: 'HumanoidRootPart',
-  RootRigAttachment: 'RootRigAttachment',
+export const CHARACTER_CHILD = {
+  GuideBeam: 'GuideBeam' as const,
+  Humanoid: 'Humanoid' as const,
+  HumanoidRootPart: 'HumanoidRootPart' as const,
+}
+
+export const HUMANOID_ROOT_PART_CHILD = {
+  RootRigAttachment: 'RootRigAttachment' as const,
 }
 
 export const ARCADE_TABLE_TYPES: {
   [name in ArcadeTableType]: ArcadeTableType
 } = {
-  Pinball: 'Pinball',
-  AirHockey: 'AirHockey',
-  Foosball: 'Foosball',
+  Pinball: 'Pinball' as const,
+  AirHockey: 'AirHockey' as const,
+  Foosball: 'Foosball' as const,
 }
 
 export const ARCADE_TABLE_NAMES: ArcadeTableName[] = [
@@ -57,34 +68,34 @@ export const ARCADE_TABLE_NEXT_NAMES: ArcadeTableNextName[] = [
 export const CURRENCY_TYPES: {
   [name in Currency]: Currency
 } = {
-  Dollars: 'Dollars',
-  Levity: 'Levity',
-  Tickets: 'Tickets',
+  Dollars: 'Dollars' as const,
+  Levity: 'Levity' as const,
+  Tickets: 'Tickets' as const,
 }
 
 export const CURRENCY_EMOJIS: {
   [name in Currency]: string
 } = {
-  Dollars: '💵',
-  Levity: '✨',
-  Tickets: '🎟️',
+  Dollars: '💵' as const,
+  Levity: '✨' as const,
+  Tickets: '🎟️' as const,
 }
 
 export const DIFFICULTY_TYPES: {
   [name in Difficulty]: Difficulty
 } = {
-  peaceful: 'peaceful',
-  normal: 'normal',
+  peaceful: 'peaceful' as const,
+  normal: 'normal' as const,
 }
 
 export const TEAM_NAMES: {
   [name in TeamKey]: TeamName
 } = {
-  BlueTeam: 'Blue Team',
-  GreenTeam: 'Green Team',
-  RedTeam: 'Red Team',
-  UnclaimedTeam: 'Unclaimed Team',
-  YellowTeam: 'Yellow Team',
+  BlueTeam: 'Blue Team' as const,
+  GreenTeam: 'Green Team' as const,
+  RedTeam: 'Red Team' as const,
+  UnclaimedTeam: 'Unclaimed Team' as const,
+  YellowTeam: 'Yellow Team' as const,
 }
 
 export const TRUSS_NAMES: CabinetTrussName[] = [
@@ -105,10 +116,24 @@ export const TYCOON_NAMES: TycoonName[] = [
   'Tycoon8',
 ]
 
+export const TYCOON_ATTRIBUTES = {
+  TycoonType: 'TycoonType' as const,
+}
+
+export const TYCOON_CHILD: {
+  [name in TycoonChild]: TycoonChild
+} = {
+  Baseplate: 'Baseplate' as const,
+  Buttons: 'Buttons' as const,
+  Items: 'Items' as const,
+  MainItems: 'MainItems' as const,
+  Purchases: 'Purchases' as const,
+}
+
 export const TYCOON_TYPES: {
   [name in TycoonType]: TycoonType
 } = {
-  Elf: 'Elf',
-  Human: 'Human',
-  Omniverse: 'Omniverse',
+  Elf: 'Elf' as const,
+  Human: 'Human' as const,
+  Omniverse: 'Omniverse' as const,
 }

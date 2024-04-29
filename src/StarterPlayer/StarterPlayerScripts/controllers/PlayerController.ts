@@ -8,8 +8,9 @@ import {
   UserInputService,
 } from '@rbxts/services'
 import {
+  CHARACTER_CHILD,
   CURRENCY_EMOJIS,
-  NAME,
+  HUMANOID_ROOT_PART_CHILD,
   TEAM_NAMES,
   USER_DEVICE,
 } from 'ReplicatedStorage/shared/constants/core'
@@ -108,6 +109,7 @@ export class PlayerController implements OnStart {
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     const handleRespawn = (playerCharacter: Model) => {
       const beam = ReplicatedStorage.Common.Beam.Clone()
+      beam.Name = CHARACTER_CHILD.GuideBeam
       beam.Parent = playerCharacter
 
       if (this.firstRespawn) {
@@ -270,10 +272,12 @@ export class PlayerController implements OnStart {
     const playerCharacter = localPlayer?.Character as
       | PlayerCharacter
       | undefined
-    const beam = playerCharacter?.FindFirstChild('Beam') as Beam | undefined
-    const humanoid = playerCharacter?.FindFirstChild(NAME.Humanoid) as
-      | Humanoid
+    const beam = playerCharacter?.FindFirstChild(CHARACTER_CHILD.GuideBeam) as
+      | Beam
       | undefined
+    const humanoid = playerCharacter?.FindFirstChild(
+      CHARACTER_CHILD.Humanoid,
+    ) as Humanoid | undefined
     if (!playerCharacter || !humanoid || !beam) return
 
     // Clear old beam
@@ -288,11 +292,11 @@ export class PlayerController implements OnStart {
 
     // Find the local player's RootRigAttachment.
     const humanoidRootPart = playerCharacter.FindFirstChild(
-      NAME.HumanoidRootPart,
+      CHARACTER_CHILD.HumanoidRootPart,
     ) as BasePart | undefined
     if (!playerCharacter || !humanoidRootPart) return
     const rootRigAttachment = humanoidRootPart.FindFirstChild(
-      NAME.RootRigAttachment,
+      HUMANOID_ROOT_PART_CHILD.RootRigAttachment,
     ) as Attachment | undefined
     if (!rootRigAttachment) return
 

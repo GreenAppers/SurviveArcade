@@ -2,7 +2,13 @@ import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { Players, ReplicatedStorage, Workspace } from '@rbxts/services'
-import { CURRENCY_EMOJIS } from 'ReplicatedStorage/shared/constants/core'
+import {
+  CURRENCY_EMOJIS,
+  TYCOON_ATTRIBUTES,
+  TYCOON_CHILD,
+  TYPE,
+} from 'ReplicatedStorage/shared/constants/core'
+import { TycoonTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectPlayerState,
   selectTycoonsState,
@@ -53,34 +59,34 @@ export class TycoonService implements OnStart {
     tycoonName: TycoonName,
     playerState?: PlayerTycoon,
   ) {
-    const tycoon = new Instance('Model')
+    const tycoon = new Instance(TYPE.Model)
     tycoon.Name = tycoonName
-    tycoon.AddTag('Tycoon')
-    tycoon.SetAttribute('TycoonType', tycoonType)
+    tycoon.AddTag(TycoonTag)
+    tycoon.SetAttribute(TYCOON_ATTRIBUTES.TycoonType, tycoonType)
 
     const tycoonTemplate = ReplicatedStorage.Tycoons[tycoonType]
     const baseplate = tycoonTemplate.Baseplate.Clone()
     baseplate.Parent = tycoon
     const buttons = tycoonTemplate.Buttons.Clone()
     buttons.Parent = tycoon
-    const items = new Instance('Folder')
-    items.Name = 'Items'
+    const items = new Instance(TYPE.Folder)
+    items.Name = TYCOON_CHILD.Items
     items.Parent = tycoon
     const mainItems = tycoonTemplate.MainItems.Clone()
     mainItems.Parent = tycoon
     const purchases = tycoonTemplate.Purchases.Clone()
     purchases.Parent = tycoon
 
-    this.logger.Info('Adding tycoon items')
+    this.logger.Info(`Loading ${tycoonType} ${tycoonName} items`)
     for (const itemTemplate of tycoonTemplate.Items.GetChildren()) {
       if (!playerState?.buttons[itemTemplate.Name]) continue
       const item = itemTemplate.Clone()
       item.Parent = items
     }
 
-    this.logger.Info('Adding tycoon buttons')
+    this.logger.Info(`Loading ${tycoonType} ${tycoonName} buttons`)
     const constants = tycoonConstants[tycoonType]
-    const font = Font.fromName('FredokaOne')
+    const font = Font.fromEnum(Enum.Font.FredokaOne)
     for (const button of buttons.GetChildren() as TycoonButtonModel[]) {
       const details = constants.Buttons[button.Name]
       if (!details || playerState?.buttons[button.Name]) {
@@ -88,16 +94,18 @@ export class TycoonService implements OnStart {
         continue
       }
 
-      this.logger.Info(`Adding ${button.Name}`)
-      const attachment = new Instance('Attachment')
+      const attachment = new Instance(TYPE.Attachment)
       attachment.Parent = button.Button
-      const billboardGui = new Instance('BillboardGui')
+
+      const billboardGui = new Instance(TYPE.BillboardGui)
       billboardGui.Size = new UDim2(10, 0, 10, 0)
-      const frame = new Instance('Frame')
+
+      const frame = new Instance(TYPE.Frame)
       frame.BackgroundTransparency = 1
       frame.Size = new UDim2(1, 0, 1, 0)
       frame.Parent = billboardGui
-      const textLabel = new Instance('TextLabel')
+
+      const textLabel = new Instance(TYPE.TextLabel)
       textLabel.BackgroundTransparency = 1
       textLabel.FontFace = font
       textLabel.Size = new UDim2(1, 0, 0.4, 0)
@@ -105,7 +113,8 @@ export class TycoonService implements OnStart {
       textLabel.TextScaled = true
       textLabel.TextSize = 14
       textLabel.Parent = frame
-      const uiStroke = new Instance('UIStroke')
+
+      const uiStroke = new Instance(TYPE.UIStroke)
       uiStroke.Parent = textLabel
       billboardGui.Parent = button.Button
 
@@ -114,10 +123,9 @@ export class TycoonService implements OnStart {
       if (cost && currency) {
         textLabel.Text = `${details.Description} ${CURRENCY_EMOJIS[currency]} ${cost}`
       }
-      if (!isTycoonButtonDependencyMet(details, playerState?.buttons)) {
-        setHidden(button, true)
-      }
-      this.logger.Info(`Added ${button.Name}`)
+
+      const hidden = !isTycoonButtonDependencyMet(details, playerState?.buttons)
+      if (hidden) setHidden(button, true)
     }
 
     return tycoon as Tycoon
@@ -126,7 +134,7 @@ export class TycoonService implements OnStart {
   setupTycoon(tycoon: Tycoon, state: TycoonState, cframe?: CFrame) {
     const parts = getDescendentsWhichAre(tycoon, 'BasePart') as BasePart[]
     for (const part of parts) {
-      if (part.Name === 'Baseplate') {
+      if (part.Name === TYCOON_CHILD.Baseplate) {
         tycoon.PrimaryPart = part
       }
     }
