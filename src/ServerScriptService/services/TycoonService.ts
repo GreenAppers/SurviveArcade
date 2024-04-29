@@ -1,4 +1,5 @@
 import { OnStart, Service } from '@flamework/core'
+import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { Players, ReplicatedStorage, Workspace } from '@rbxts/services'
 import { CURRENCY_EMOJIS } from 'ReplicatedStorage/shared/constants/core'
@@ -23,7 +24,10 @@ import { getDescendentsWhichAre, setHidden } from 'ServerScriptService/utils'
 
 @Service()
 export class TycoonService implements OnStart {
-  constructor(protected mapService: MapService) {}
+  constructor(
+    protected readonly logger: Logger,
+    protected mapService: MapService,
+  ) {}
 
   loadTycoon(
     tycoonName: TycoonName,
@@ -31,6 +35,10 @@ export class TycoonService implements OnStart {
     playerTycoonState?: PlayerTycoon,
   ) {
     const map = this.mapService.getMap()
+    this.logger.Info(
+      `Loading ${map.scale} ${tycoonName} {@Buttons}`,
+      playerTycoonState?.buttons ?? {},
+    )
     const tycoon = this.loadTycoonTemplate(
       map.scale,
       tycoonName,
@@ -63,12 +71,14 @@ export class TycoonService implements OnStart {
     const purchases = tycoonTemplate.Purchases.Clone()
     purchases.Parent = tycoon
 
+    this.logger.Info('Adding tycoon items')
     for (const itemTemplate of tycoonTemplate.Items.GetChildren()) {
       if (!playerState?.buttons[itemTemplate.Name]) continue
       const item = itemTemplate.Clone()
       item.Parent = items
     }
 
+    this.logger.Info('Adding tycoon buttons')
     const constants = tycoonConstants[tycoonType]
     const font = Font.fromName('FredokaOne')
     for (const button of buttons.GetChildren() as TycoonButtonModel[]) {
@@ -78,6 +88,7 @@ export class TycoonService implements OnStart {
         continue
       }
 
+      this.logger.Info(`Adding ${button.Name}`)
       const attachment = new Instance('Attachment')
       attachment.Parent = button.Button
       const billboardGui = new Instance('BillboardGui')
@@ -106,6 +117,7 @@ export class TycoonService implements OnStart {
       if (!isTycoonButtonDependencyMet(details, playerState?.buttons)) {
         setHidden(button, true)
       }
+      this.logger.Info(`Added ${button.Name}`)
     }
 
     return tycoon as Tycoon
@@ -123,6 +135,7 @@ export class TycoonService implements OnStart {
   }
 
   resetTycoon(name: TycoonName) {
+    this.logger.Info(`Resetting ${name}`)
     const tycoon = game.Workspace.Tycoons?.FindFirstChild(name)
     tycoon?.Destroy()
     const workspaceMap = game.Workspace.Map
