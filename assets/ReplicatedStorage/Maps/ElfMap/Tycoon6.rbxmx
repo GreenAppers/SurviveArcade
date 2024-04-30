@@ -33,9 +33,9 @@
       <BinaryString name="Tags">VHljb29uUGxvdA==</BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>310.53674</X>
-          <Y>3.0572302</Y>
-          <Z>-737.56146</Z>
+          <X>310.55545</X>
+          <Y>0.030982018</Y>
+          <Z>-737.60156</Z>
           <R00>-0.4226179</R00>
           <R01>0</R01>
           <R02>-0.9063112</R02>
@@ -63,17 +63,17 @@
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
           <X>310.55545</X>
-          <Y>2.3241382</Y>
+          <Y>0.030982018</Y>
           <Z>-737.60156</Z>
-          <R00>-0.4226179</R00>
+          <R00>-0.4226176</R00>
           <R01>0</R01>
-          <R02>-0.9063112</R02>
+          <R02>-0.9063081</R02>
           <R10>0</R10>
-          <R11>0.9999964</R11>
+          <R11>1</R11>
           <R12>0</R12>
-          <R20>0.9063081</R20>
+          <R20>0.9063082</R20>
           <R21>0</R21>
-          <R22>-0.42261964</R22>
+          <R22>-0.4226176</R22>
         </CoordinateFrame>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
@@ -179,18 +179,18 @@
         <BinaryString name="Tags"></BinaryString>
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
-            <X>275.25235</X>
-            <Y>3.4853244</Y>
-            <Z>-668.4036</Z>
+            <X>275.25232</X>
+            <Y>0.3655985</Y>
+            <Z>-668.40356</Z>
             <R00>0</R00>
-            <R01>0.4226179</R01>
-            <R02>-0.9063112</R02>
-            <R10>0.9999964</R10>
+            <R01>0.4226176</R01>
+            <R02>-0.9063081</R02>
+            <R10>1</R10>
             <R11>0</R11>
             <R12>0</R12>
             <R20>0</R20>
-            <R21>-0.9063081</R21>
-            <R22>-0.42261964</R22>
+            <R21>-0.9063082</R21>
+            <R22>-0.4226176</R22>
           </CFrame>
         </OptionalCoordinateFrame>
       </Properties>
@@ -208,18 +208,18 @@
           <token name="BottomSurface">0</token>
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
-            <X>275.25235</X>
-            <Y>3.3353167</Y>
-            <Z>-668.4036</Z>
+            <X>275.25232</X>
+            <Y>0.2155934</Y>
+            <Z>-668.40356</Z>
             <R00>0</R00>
-            <R01>0.4226179</R01>
-            <R02>-0.9063112</R02>
-            <R10>0.9999964</R10>
+            <R01>0.4226169</R01>
+            <R02>-0.9063085</R02>
+            <R10>1</R10>
             <R11>0</R11>
             <R12>0</R12>
             <R20>0</R20>
-            <R21>-0.9063081</R21>
-            <R22>-0.42261964</R22>
+            <R21>-0.90630853</R21>
+            <R22>-0.42261687</R22>
           </CoordinateFrame>
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
@@ -305,18 +305,18 @@
           <token name="BottomSurface">0</token>
           <token name="BottomSurfaceInput">0</token>
           <CoordinateFrame name="CFrame">
-            <X>275.23117</X>
-            <Y>3.6353343</Y>
-            <Z>-668.3582</Z>
+            <X>275.23114</X>
+            <Y>0.5156055</Y>
+            <Z>-668.35815</Z>
             <R00>0</R00>
-            <R01>0.4226179</R01>
-            <R02>-0.9063112</R02>
-            <R10>0.9999964</R10>
+            <R01>0.4226169</R01>
+            <R02>-0.9063085</R02>
+            <R10>1</R10>
             <R11>0</R11>
             <R12>0</R12>
             <R20>0</R20>
-            <R21>-0.9063081</R21>
-            <R22>-0.42261964</R22>
+            <R21>-0.90630853</R21>
+            <R22>-0.42261687</R22>
           </CoordinateFrame>
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
@@ -630,7 +630,7 @@
             <string name="Name">Attachment</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <CoordinateFrame name="CFrame">
-              <X>0</X>
+              <X>2</X>
               <Y>0</Y>
               <Z>0</Z>
               <R00>1</R00>

@@ -95,10 +95,12 @@ export class TycoonService implements OnStart {
       }
 
       const attachment = new Instance(TYPE.Attachment)
+      attachment.CFrame = new CFrame(2, 0, 0)
       attachment.Parent = button.Button
 
       const billboardGui = new Instance(TYPE.BillboardGui)
-      billboardGui.Size = new UDim2(10, 0, 10, 0)
+      billboardGui.Size = new UDim2(10, 0, 3, 0)
+      billboardGui.SizeOffset = new Vector2(0, 0.5)
 
       const frame = new Instance(TYPE.Frame)
       frame.BackgroundTransparency = 1
