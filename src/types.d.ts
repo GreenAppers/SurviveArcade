@@ -173,6 +173,9 @@ interface ReplicatedStorage extends Instance {
   Maps: Folder & {
     [mapName: string]: Folder & ArcadeMap
   }
+  Tools: Folder & {
+    PopcornBox: Tool
+  }
   Tycoons: Folder & {
     Elf: Tycoon
     Human: Tycoon

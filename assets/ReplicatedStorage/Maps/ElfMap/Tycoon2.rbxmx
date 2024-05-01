@@ -34,7 +34,7 @@
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>-313.80975</X>
-          <Y>0.93262845</Y>
+          <Y>0.5108724</Y>
           <Z>675.1954</Z>
           <R00>0.65605885</R00>
           <R01>0</R01>
@@ -183,14 +183,14 @@
             <Y>0.5172081</Y>
             <Z>618.4424</Z>
             <R00>0</R00>
-            <R01>-0.65605885</R01>
-            <R02>0.75470954</R02>
+            <R01>-0.65605855</R01>
+            <R02>0.7547094</R02>
             <R10>1</R10>
             <R11>0</R11>
             <R12>0</R12>
             <R20>0</R20>
             <R21>0.7547096</R21>
-            <R22>0.6560591</R22>
+            <R22>0.65605927</R22>
           </CFrame>
         </OptionalCoordinateFrame>
       </Properties>
@@ -413,7 +413,7 @@
               <Z>0</Z>
             </Vector3>
             <float name="LightInfluence">1</float>
-            <float name="MaxDistance">40</float>
+            <float name="MaxDistance">200</float>
             <Ref name="PlayerToHideFrom">null</Ref>
             <bool name="ResetOnSpawn">false</bool>
             <Ref name="RootLocalizationTable">null</Ref>

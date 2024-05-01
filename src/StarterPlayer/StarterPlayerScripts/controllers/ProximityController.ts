@@ -1,5 +1,10 @@
 import { Controller, OnStart } from '@flamework/core'
-import { Players, ProximityPromptService } from '@rbxts/services'
+import {
+  Players,
+  ProximityPromptService,
+  ReplicatedStorage,
+} from '@rbxts/services'
+import proximity from 'ReplicatedStorage/shared/constants/proximity.json'
 import { selectTycoonsState } from 'ReplicatedStorage/shared/state'
 import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
@@ -18,8 +23,8 @@ export class ProximityController implements OnStart {
       (proximityPrompt, player) => {
         if (player.UserId !== Players.LocalPlayer.UserId) return
         if (
-          proximityPrompt.ObjectText === 'Phone' ||
-          proximityPrompt.ObjectText === 'Communicator'
+          proximityPrompt.ObjectText === proximity.Phone.Name ||
+          proximityPrompt.ObjectText === proximity.Communicator.Name
         ) {
           this.onPhoneCall(
             proximityPrompt,
@@ -27,8 +32,10 @@ export class ProximityController implements OnStart {
               playerName: player.Name,
             }),
           )
-        } else if (proximityPrompt.ObjectText === 'Coin') {
+        } else if (proximityPrompt.ObjectText === proximity.Coin.Name) {
           this.onCoin()
+        } else if (proximityPrompt.ObjectText === proximity.Popcorn.Name) {
+          this.onPopcorn()
         }
       },
     )
@@ -52,5 +59,15 @@ export class ProximityController implements OnStart {
     proximityPrompt.Enabled = false
     this.playerController.playDialogAnimation(displayText)
     proximityPrompt.Enabled = true
+  }
+
+  onPopcorn() {
+    const backpack = Players.LocalPlayer.FindFirstChild('Backpack') as
+      | Backpack
+      | undefined
+    if (backpack && !backpack.FindFirstChild('PopcornBox')) {
+      const popcornBox = ReplicatedStorage.Tools.PopcornBox.Clone()
+      popcornBox.Parent = backpack
+    }
   }
 }

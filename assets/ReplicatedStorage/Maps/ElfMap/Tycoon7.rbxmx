@@ -33,18 +33,18 @@
       <BinaryString name="Tags">VHljb29uUGxvdA==</BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>798.767</X>
-          <Y>0.3187225</Y>
-          <Z>-186.17694</Z>
-          <R00>-0.9816272</R00>
+          <X>798.72363</X>
+          <Y>0.6342381</Y>
+          <Z>-186.1685</Z>
+          <R00>-0.98162735</R00>
           <R01>0</R01>
-          <R02>-0.19080909</R02>
+          <R02>-0.19080934</R02>
           <R10>0</R10>
-          <R11>0.9999993</R11>
+          <R11>0.99999785</R11>
           <R12>0</R12>
-          <R20>0.190809</R20>
+          <R20>0.19080907</R20>
           <R21>0</R21>
-          <R22>-0.98162794</R22>
+          <R22>-0.9816295</R22>
         </CFrame>
       </OptionalCoordinateFrame>
     </Properties>
@@ -180,17 +180,17 @@
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
             <X>722.0341</X>
-            <Y>0.6447483</Y>
+            <Y>0.64474905</Y>
             <Z>-174.06425</Z>
             <R00>0</R00>
-            <R01>0.98162735</R01>
-            <R02>-0.19080934</R02>
-            <R10>0.99999785</R10>
+            <R01>0.9816271</R01>
+            <R02>-0.19080919</R02>
+            <R10>1</R10>
             <R11>0</R11>
             <R12>0</R12>
             <R20>0</R20>
-            <R21>-0.19080907</R21>
-            <R22>-0.9816295</R22>
+            <R21>-0.19080918</R21>
+            <R22>-0.9816272</R22>
           </CFrame>
         </OptionalCoordinateFrame>
       </Properties>
@@ -413,7 +413,7 @@
               <Z>0</Z>
             </Vector3>
             <float name="LightInfluence">1</float>
-            <float name="MaxDistance">40</float>
+            <float name="MaxDistance">200</float>
             <Ref name="PlayerToHideFrom">null</Ref>
             <bool name="ResetOnSpawn">false</bool>
             <Ref name="RootLocalizationTable">null</Ref>
