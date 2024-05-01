@@ -10,14 +10,17 @@ import {
 import {
   CHARACTER_CHILD,
   CURRENCY_EMOJIS,
+  CURRENCY_TYPES,
   HUMANOID_ROOT_PART_CHILD,
   TEAM_NAMES,
   USER_DEVICE,
 } from 'ReplicatedStorage/shared/constants/core'
+import VALUES from 'ReplicatedStorage/shared/constants/values.json'
 import {
   selectArcadeTablesState,
   selectLocalPlayerGroundArcadeTableName,
   selectLocalPlayerState,
+  selectPlayerCurrency,
   selectPlayerGuideEnabled,
   selectPlayerState,
   selectTycoonsState,
@@ -27,13 +30,17 @@ import {
   GravityController,
   gravityControllerClass,
 } from 'ReplicatedStorage/shared/utils/gravity'
-import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
+import {
+  formatMessage,
+  joinMessage,
+  MESSAGE,
+} from 'ReplicatedStorage/shared/utils/messages'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { ArcadeController } from 'StarterPlayer/StarterPlayerScripts/controllers/ArcadeController'
 import { TycoonController } from 'StarterPlayer/StarterPlayerScripts/controllers/TycoonController'
 import { calculateRem } from 'StarterPlayer/StarterPlayerScripts/fonts'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
-import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts/utils'
+import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts/utils/player'
 
 @Controller({})
 export class PlayerController implements OnStart {
@@ -106,16 +113,28 @@ export class PlayerController implements OnStart {
   }
 
   startMyRespawnHandler(player: Player) {
+    const playerDollarsSelector = selectPlayerCurrency(
+      player.UserId,
+      CURRENCY_TYPES.Dollars,
+    )
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     const handleRespawn = (playerCharacter: Model) => {
       const beam = ReplicatedStorage.Common.Beam.Clone()
       beam.Name = CHARACTER_CHILD.GuideBeam
       beam.Parent = playerCharacter
-
+      const state = store.getState()
+      const playerDollars = playerDollarsSelector(state)
       if (this.firstRespawn) {
         this.firstRespawn = false
         this.playDialogAnimation(
-          formatMessage(MESSAGE.GameWelcome, { playerName: player.Name }),
+          joinMessage(
+            formatMessage(MESSAGE.GameWelcome, { playerName: player.Name }),
+            playerDollars < VALUES.GameWelcomeDollars.Value
+              ? formatMessage(MESSAGE.GameWelcomeDollars, {
+                  dollars: VALUES.GameWelcomeDollars.Value,
+                })
+              : '',
+          ),
         )
       } else {
         sendAlert({
@@ -123,7 +142,6 @@ export class PlayerController implements OnStart {
           message: formatMessage(MESSAGE.GameRespawn),
         })
       }
-      const state = store.getState()
       this.refreshBeams(playerGuideEnabledSelector(state))
     }
     player.CharacterAdded.Connect(handleRespawn)
@@ -144,7 +162,7 @@ export class PlayerController implements OnStart {
   prepareGravityController(player: Player) {
     forEveryPlayerCharacterAdded(player, (character) => {
       this.disableGravityController()
-      const humanoid = character.WaitForChild('Humanoid') as
+      const humanoid = character.WaitForChild(CHARACTER_CHILD.Humanoid) as
         | Humanoid
         | undefined
       humanoid?.Seated?.Connect((seated) => {

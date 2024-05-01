@@ -93,6 +93,16 @@ type Currency = 'Dollars' | 'Levity' | 'Tickets'
 
 type Difficulty = 'peaceful' | 'normal'
 
+interface Exchange {
+  Name: string
+  Cost: number
+  Currency: string
+  Requires: string
+  Pays: number
+  PaysCurrency: string
+  Gives: string
+}
+
 interface CollectGui extends ScreenGui {
   Frame: Frame & {
     [labelName: string]: TextLabel

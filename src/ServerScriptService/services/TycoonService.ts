@@ -26,7 +26,10 @@ import {
   MapService,
 } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
-import { getDescendentsWhichAre, setHidden } from 'ServerScriptService/utils'
+import {
+  getDescendentsWhichAre,
+  setHidden,
+} from 'ServerScriptService/utils/instance'
 
 @Service()
 export class TycoonService implements OnStart {

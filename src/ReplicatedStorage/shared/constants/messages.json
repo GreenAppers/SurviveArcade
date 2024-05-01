@@ -14,16 +14,6 @@
       "Message": "You defeated the barrier! Now you can ascend the stairs!"
     }
   ],
-  "CoinProximityPrompt": [
-    {
-      "Message": "Coin"
-    }
-  ],
-  "CommunicatorProximityPrompt": [
-    {
-      "Message": "Communicator"
-    }
-  ],
   "DollarsNeeded": [
     {
       "Message": "Insert coin."
@@ -40,6 +30,11 @@
   "GameWelcome": [
     {
       "Message": "Welcome {playerName}.  The veil between arcades grows thin.  You must find the way to the high score.  But beware of the rats!"
+    }
+  ],
+  "GameWelcomeDollars": [
+    {
+      "Message": "Here's ${dollars} to get you started!"
     }
   ],
   "GuideBuildTycoon": [

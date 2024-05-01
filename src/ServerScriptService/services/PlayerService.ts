@@ -3,11 +3,13 @@ import { Logger } from '@rbxts/log'
 import ProfileService from '@rbxts/profileservice'
 import { Profile } from '@rbxts/profileservice/globals'
 import { Players, RunService, Teams } from '@rbxts/services'
+import { setTimeout } from '@rbxts/set-timeout'
 import {
   CURRENCY_EMOJIS,
   CURRENCY_TYPES,
   TEAM_NAMES,
 } from 'ReplicatedStorage/shared/constants/core'
+import VALUES from 'ReplicatedStorage/shared/constants/values.json'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import {
   defaultPlayerData,
@@ -16,7 +18,7 @@ import {
   PlayerState,
 } from 'ReplicatedStorage/shared/state/PlayersState'
 import { store } from 'ServerScriptService/store'
-import { forEveryPlayer } from 'ServerScriptService/utils'
+import { forEveryPlayer } from 'ServerScriptService/utils/player'
 
 const KEY_TEMPLATE = '%d_Data'
 const DataStoreName = RunService.IsStudio() ? 'Testing' : 'Production'
@@ -85,6 +87,16 @@ export class PlayerService implements OnInit {
       playerSelector(state),
     )
     this.createRespawnHandler(player)
+
+    const playerDollars = playerSelector(state)?.dollars ?? 0
+    if (playerDollars <= VALUES.GameWelcomeDollars.Value)
+      setTimeout(() => {
+        store.addPlayerCurrency(
+          player.UserId,
+          CURRENCY_TYPES.Dollars,
+          math.max(0, VALUES.GameWelcomeDollars.Value - playerDollars),
+        )
+      }, VALUES.GameWelcomeDelay.Value)
 
     Players.PlayerRemoving.Connect((playerLeft) => {
       if (playerLeft.UserId !== player.UserId) return

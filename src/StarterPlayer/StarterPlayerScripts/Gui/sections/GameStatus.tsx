@@ -5,7 +5,7 @@ import { selectGameState } from 'ReplicatedStorage/shared/state'
 import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
 import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
 import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
-import { formatDuration } from 'StarterPlayer/StarterPlayerScripts/utils'
+import { formatDuration } from 'StarterPlayer/StarterPlayerScripts/utils/format'
 
 export function GameStatus() {
   const rem = useRem()

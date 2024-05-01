@@ -18,10 +18,10 @@ import {
   baseArcadeTableName,
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
-import { animateBuildingIn } from 'ServerScriptService/buildin'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
-import { getDescendentsWhichAre } from 'ServerScriptService/utils'
+import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
+import { getDescendentsWhichAre } from 'ServerScriptService/utils/instance'
 
 export interface MapAPI {
   scale: TycoonType

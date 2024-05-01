@@ -3,6 +3,7 @@ import messages from 'ReplicatedStorage/shared/constants/messages.json'
 
 export const MESSAGE = {
   GameWelcome: 'GameWelcome',
+  GameWelcomeDollars: 'GameWelcomeDollars',
   GameRespawn: 'GameRespawn',
   GuideWelcome: 'GuideWelcome',
   GuideClaimTycoon: 'GuideClaimTycoon',
@@ -15,8 +16,6 @@ export const MESSAGE = {
   TicketsWon: 'TicketsWon',
   DollarsNeeded: 'DollarsNeeded',
   TycoonNeeded: 'TycoonNeeded',
-  CoinProximityPrompt: 'CoinProximityPrompt',
-  CommunicatorProximityPrompt: 'CommunicatorProximityPrompt',
   TeleportHuman: 'TeleportHuman',
   TeleportElf: 'TeleportElf',
   QuestCommunicate: 'QuestCommunicate',
@@ -37,4 +36,12 @@ export function formatMessage(
     ;[message] = message.gsub(`{${key}}`, `${value}`)
   }
   return message
+}
+
+export function joinMessage(
+  message1: string,
+  message2?: string,
+  separator = '  ',
+) {
+  return message2 ? `${message1}${separator}${message2}` : message1
 }

@@ -1,5 +1,5 @@
 import { TweenService } from '@rbxts/services'
-import { getDescendentsWhichAre } from 'ServerScriptService/utils'
+import { getDescendentsWhichAre } from 'ServerScriptService/utils/instance'
 
 const BUILDING_ANIMATION_POSITION_OFFSET_AMOUNT = 5
 const BUILDING_ANIMATION_PART_DELAY = 0.03

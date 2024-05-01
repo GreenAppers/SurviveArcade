@@ -6,19 +6,18 @@ import { CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
 import {
   selectArcadeTablesState,
-  selectPlayerCurrency,
-  selectTycoonsState,
+  selectArcadeTableState,
 } from 'ReplicatedStorage/shared/state'
 import {
   ArcadeTableState,
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
-import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
 import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
 import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
-import { setNetworkOwner } from 'ServerScriptService/utils'
+import { EXCHANGE, executeExchange } from 'ServerScriptService/utils/exchange'
+import { setNetworkOwner } from 'ServerScriptService/utils/instance'
 
 @Service()
 export class ArcadeTableService implements OnStart {
@@ -28,19 +27,9 @@ export class ArcadeTableService implements OnStart {
   claimArcadeTable(tableName: ArcadeTableName, player?: Player) {
     if (!player) return store.claimArcadeTable(tableName, undefined)
     const state = store.getState()
-    const tableCost = 1
-    if (!findTycoonNameOwnedBy(selectTycoonsState()(state), player.UserId))
-      return undefined
-    const newState = store.addPlayerCurrency(
-      player.UserId,
-      CURRENCY_TYPES.Dollars,
-      -tableCost,
-    )
-    const currencySelector = selectPlayerCurrency(
-      player.UserId,
-      CURRENCY_TYPES.Dollars,
-    )
-    if (currencySelector(newState) === currencySelector(state)) return undefined
+    const tableType = selectArcadeTableState(tableName)(state).tableType
+    const exchange = EXCHANGE[tableType]
+    if (!executeExchange(player.UserId, exchange)) return undefined
     return store.claimArcadeTable(tableName, player)
   }
 

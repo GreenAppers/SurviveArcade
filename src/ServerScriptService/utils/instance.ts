@@ -1,6 +1,4 @@
-import { CollectionService, Players } from '@rbxts/services'
-
-type PlayerReceivingFunction = (player: Player) => unknown
+import { CollectionService } from '@rbxts/services'
 
 export function getDescendentsWhichAre(
   ancestor: Instance,
@@ -55,18 +53,4 @@ export function setNetworkOwner(ancestor: Instance, player?: Player) {
   if (ancestor.IsA('BasePart') && ancestor.CanSetNetworkOwnership()[0]) {
     ancestor.SetNetworkOwner(player)
   }
-}
-
-export function forEveryPlayer(
-  joinFunc: PlayerReceivingFunction,
-  leaveFunc?: PlayerReceivingFunction,
-): Array<RBXScriptConnection> {
-  const events: Array<RBXScriptConnection> = []
-  const spawnJoinFunc = (player: Player) => task.spawn(() => joinFunc(player))
-
-  Players.GetPlayers().forEach(spawnJoinFunc)
-  events.push(Players.PlayerAdded.Connect(joinFunc))
-  if (leaveFunc) events.push(Players.PlayerRemoving.Connect(leaveFunc))
-
-  return events
 }

@@ -12,9 +12,9 @@ import {
   isTycoonButtonDependencyMet,
   tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
-import { animateBuildingIn } from 'ServerScriptService/buildin'
 import { store } from 'ServerScriptService/store'
-import { setHidden } from 'ServerScriptService/utils'
+import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
+import { setHidden } from 'ServerScriptService/utils/instance'
 
 @Component({ tag: TycoonButtonTag })
 export class TycoonButtonComponent

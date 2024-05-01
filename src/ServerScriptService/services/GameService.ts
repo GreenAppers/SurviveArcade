@@ -21,7 +21,7 @@ import {
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
-import { getDescendentsWithTag } from 'ServerScriptService/utils'
+import { getDescendentsWithTag } from 'ServerScriptService/utils/instance'
 
 @Service()
 export class GameService implements OnStart {

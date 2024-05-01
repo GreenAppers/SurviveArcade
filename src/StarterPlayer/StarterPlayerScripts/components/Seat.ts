@@ -2,15 +2,13 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
 import { SeatTag } from 'ReplicatedStorage/shared/constants/tags'
-import {
-  selectPlayerState,
-  selectTycoonsState,
-} from 'ReplicatedStorage/shared/state'
-import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
+import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
-import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
-import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
+import {
+  EXCHANGE,
+  testExchange,
+} from 'StarterPlayer/StarterPlayerScripts/utils/exchange'
 
 @Component({ tag: SeatTag })
 export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
@@ -28,21 +26,10 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
       if (!player) return
 
       const state = store.getState()
-      if (!findTycoonNameOwnedBy(selectTycoonsState()(state), player.UserId)) {
-        sendAlert({
-          emoji: '🏗️',
-          message: formatMessage(MESSAGE.TycoonNeeded),
-        })
-        return
-      }
-
-      if ((selectPlayerState(player.UserId)(state)?.dollars ?? 0) < 1) {
-        sendAlert({
-          emoji: '💰',
-          message: formatMessage(MESSAGE.DollarsNeeded),
-        })
-        return
-      }
+      const tableType = selectArcadeTableState(arcadeTable.Name)(
+        state,
+      ).tableType
+      if (!testExchange(player.UserId, EXCHANGE[tableType])) return
 
       const audio = arcadeTable.FindFirstChild('Audio') as
         | { SeatSound?: Sound }

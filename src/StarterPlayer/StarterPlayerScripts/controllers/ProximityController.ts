@@ -4,13 +4,13 @@ import {
   ProximityPromptService,
   ReplicatedStorage,
 } from '@rbxts/services'
-import proximity from 'ReplicatedStorage/shared/constants/proximity.json'
 import { selectTycoonsState } from 'ReplicatedStorage/shared/state'
-import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
-import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { PlayerController } from 'StarterPlayer/StarterPlayerScripts/controllers/PlayerController'
-import { store } from 'StarterPlayer/StarterPlayerScripts/store'
+import {
+  EXCHANGE,
+  testExchange,
+} from 'StarterPlayer/StarterPlayerScripts/utils/exchange'
 
 @Controller()
 export class ProximityController implements OnStart {
@@ -23,8 +23,8 @@ export class ProximityController implements OnStart {
       (proximityPrompt, player) => {
         if (player.UserId !== Players.LocalPlayer.UserId) return
         if (
-          proximityPrompt.ObjectText === proximity.Phone.Name ||
-          proximityPrompt.ObjectText === proximity.Communicator.Name
+          proximityPrompt.ObjectText === EXCHANGE.Phone.Name ||
+          proximityPrompt.ObjectText === EXCHANGE.Communicator.Name
         ) {
           this.onPhoneCall(
             proximityPrompt,
@@ -32,27 +32,13 @@ export class ProximityController implements OnStart {
               playerName: player.Name,
             }),
           )
-        } else if (proximityPrompt.ObjectText === proximity.Coin.Name) {
-          this.onCoin()
-        } else if (proximityPrompt.ObjectText === proximity.Popcorn.Name) {
+        } else if (proximityPrompt.ObjectText === EXCHANGE.Coin.Name) {
+          testExchange(player.UserId, EXCHANGE.Coin)
+        } else if (proximityPrompt.ObjectText === EXCHANGE.Popcorn.Name) {
           this.onPopcorn()
         }
       },
     )
-  }
-
-  onCoin() {
-    if (
-      !findTycoonNameOwnedBy(
-        this.tycoonsSelector(store.getState()),
-        Players.LocalPlayer.UserId,
-      )
-    ) {
-      sendAlert({
-        emoji: '🏗️',
-        message: formatMessage(MESSAGE.TycoonNeeded),
-      })
-    }
   }
 
   onPhoneCall(proximityPrompt: ProximityPrompt, displayText: string) {
