@@ -17,6 +17,7 @@ import {
   PlayerData,
   PlayerState,
 } from 'ReplicatedStorage/shared/state/PlayersState'
+import { TycoonService } from 'ServerScriptService/services/TycoonService'
 import { store } from 'ServerScriptService/store'
 import { forEveryPlayer } from 'ServerScriptService/utils/player'
 
@@ -31,7 +32,10 @@ export class PlayerService implements OnInit {
   )
   private profiles = new Map<number, Profile<PlayerData>>()
 
-  constructor(private readonly logger: Logger) {}
+  constructor(
+    protected readonly logger: Logger,
+    protected readonly tycoonService: TycoonService,
+  ) {}
 
   onInit() {
     forEveryPlayer(
@@ -78,8 +82,15 @@ export class PlayerService implements OnInit {
 
     const unsubscribePlayerData = store.subscribe(
       playerSelector,
-      (playerState) => {
-        if (playerState) profile.Data = getPlayerData(playerState)
+      (playerState, previousPlayerState) => {
+        if (!playerState) return
+        profile.Data = getPlayerData(playerState)
+        if (!previousPlayerState) return
+        this.tycoonService.onPlayerStateChanged(
+          player,
+          playerState,
+          previousPlayerState,
+        )
       },
     )
     const unsubscribeLeaderstats = this.createLeaderstatsHandler(

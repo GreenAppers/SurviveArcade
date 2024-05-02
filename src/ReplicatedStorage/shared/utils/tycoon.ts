@@ -5,7 +5,11 @@ import {
   TycoonTag,
 } from 'ReplicatedStorage/shared/constants/tags'
 import ElfButtons from 'ReplicatedStorage/shared/constants/tycoon/Elf/buttons.json'
-import { PlayerTycoonButtons } from 'ReplicatedStorage/shared/state/PlayersState'
+import {
+  getPlayerCurrency,
+  PlayerState,
+  PlayerTycoonButtons,
+} from 'ReplicatedStorage/shared/state/PlayersState'
 import { TycoonsState } from 'ReplicatedStorage/shared/state/TycoonState'
 
 export const tycoonConstants: {
@@ -97,4 +101,21 @@ export function isTycoonButtonDependencyMet(
     if (!playerTycoonButtons[dependency]) return false
   }
   return true
+}
+
+export function getTycoonButtonColor(
+  playerState?: PlayerState,
+  currency?: Currency,
+  cost?: number,
+) {
+  if (
+    !cost ||
+    (playerState &&
+      currency &&
+      getPlayerCurrency(playerState, currency) >= cost)
+  ) {
+    return new BrickColor('Lime green')
+  } else {
+    return new BrickColor('Bright red')
+  }
 }

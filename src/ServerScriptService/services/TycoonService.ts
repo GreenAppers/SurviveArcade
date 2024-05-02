@@ -14,10 +14,18 @@ import {
   selectTycoonsState,
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
-import { PlayerTycoon } from 'ReplicatedStorage/shared/state/PlayersState'
-import { TycoonState } from 'ReplicatedStorage/shared/state/TycoonState'
+import {
+  PlayerState,
+  PlayerTycoon,
+} from 'ReplicatedStorage/shared/state/PlayersState'
+import {
+  findTycoonNameOwnedBy,
+  TycoonState,
+} from 'ReplicatedStorage/shared/state/TycoonState'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 import {
+  getTycoonButtonColor,
+  getTycoonType,
   isTycoonButtonDependencyMet,
   tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
@@ -42,6 +50,7 @@ export class TycoonService implements OnStart {
     tycoonName: TycoonName,
     state: TycoonState,
     playerTycoonState?: PlayerTycoon,
+    playerState?: PlayerState,
   ) {
     const map = this.mapService.getMap()
     this.logger.Info(
@@ -52,6 +61,7 @@ export class TycoonService implements OnStart {
       map.scale,
       tycoonName,
       playerTycoonState,
+      playerState,
     )
     this.setupTycoon(tycoon, state, getTycoonCFrame(tycoonName))
     return tycoon
@@ -60,7 +70,8 @@ export class TycoonService implements OnStart {
   loadTycoonTemplate(
     tycoonType: TycoonType,
     tycoonName: TycoonName,
-    playerState?: PlayerTycoon,
+    playerTycoonState?: PlayerTycoon,
+    playerState?: PlayerState,
   ) {
     const tycoon = new Instance(TYPE.Model)
     tycoon.Name = tycoonName
@@ -82,7 +93,7 @@ export class TycoonService implements OnStart {
 
     this.logger.Info(`Loading ${tycoonType} ${tycoonName} items`)
     for (const itemTemplate of tycoonTemplate.Items.GetChildren()) {
-      if (!playerState?.buttons[itemTemplate.Name]) continue
+      if (!playerTycoonState?.buttons[itemTemplate.Name]) continue
       const item = itemTemplate.Clone()
       item.Parent = items
     }
@@ -92,7 +103,7 @@ export class TycoonService implements OnStart {
     const font = Font.fromEnum(Enum.Font.FredokaOne)
     for (const button of buttons.GetChildren() as TycoonButtonModel[]) {
       const details = constants.Buttons[button.Name]
-      if (!details || playerState?.buttons[button.Name]) {
+      if (!details || playerTycoonState?.buttons[button.Name]) {
         button.Destroy()
         continue
       }
@@ -129,8 +140,17 @@ export class TycoonService implements OnStart {
         textLabel.Text = `${details.Description} ${CURRENCY_EMOJIS[currency]} ${cost}`
       }
 
-      const hidden = !isTycoonButtonDependencyMet(details, playerState?.buttons)
+      const hidden = !isTycoonButtonDependencyMet(
+        details,
+        playerTycoonState?.buttons,
+      )
       if (hidden) setHidden(button, true)
+      else
+        button.Button.BrickColor = getTycoonButtonColor(
+          playerState,
+          currency,
+          cost,
+        )
     }
 
     return tycoon as Tycoon
@@ -189,6 +209,42 @@ export class TycoonService implements OnStart {
     this.startTycoonClaimedSubscription()
   }
 
+  onPlayerStateChanged(
+    player: Player,
+    playerState: PlayerState,
+    previousPlayerState: PlayerState,
+  ) {
+    const state = store.getState()
+    const tycoonName = findTycoonNameOwnedBy(
+      selectTycoonsState()(state),
+      player.UserId,
+    )
+    if (
+      !tycoonName ||
+      (playerState.dollars === previousPlayerState.dollars &&
+        playerState.tickets === previousPlayerState.tickets &&
+        playerState.levity === previousPlayerState.levity)
+    )
+      return
+
+    const tycoon = game.Workspace.Tycoons[tycoonName]
+    const tycoonType = getTycoonType(
+      tycoon?.GetAttribute(TYCOON_ATTRIBUTES.TycoonType),
+    )
+    if (!tycoon || !tycoonType) return
+
+    const constants = tycoonConstants[tycoonType]
+    for (const button of tycoon.Buttons.GetChildren() as TycoonButtonModel[]) {
+      if (button.Button.Transparency) continue
+      const details = constants.Buttons[button.Name]
+      button.Button.BrickColor = getTycoonButtonColor(
+        playerState,
+        getCurrency(details.Currency),
+        details.Cost,
+      )
+    }
+  }
+
   onPlayerClaimed(
     _player: Player,
     _tycoonName?: string,
@@ -204,6 +260,7 @@ export class TycoonService implements OnStart {
         name,
         selectTycoonState(name)(state),
         playerState?.tycoon[map.scale],
+        playerState,
       )
     } else {
       this.resetTycoon(name)

@@ -1,4 +1,5 @@
 import { Controller } from '@flamework/core'
+import { TYCOON_ATTRIBUTES } from 'ReplicatedStorage/shared/constants/core'
 import {
   getPlayerCurrency,
   PlayerState,
@@ -32,7 +33,9 @@ export class TycoonController {
     playerState?: PlayerState,
   ): Attachment | undefined {
     const tycoon = game.Workspace.Tycoons[tycoonName]
-    const tycoonType = getTycoonType(tycoon?.GetAttribute('TycoonType'))
+    const tycoonType = getTycoonType(
+      tycoon?.GetAttribute(TYCOON_ATTRIBUTES.TycoonType),
+    )
     if (!tycoon || !tycoonType || !playerState) return undefined
 
     const constants = tycoonConstants[tycoonType]

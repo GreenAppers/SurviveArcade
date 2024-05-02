@@ -1,14 +1,18 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players, ReplicatedStorage } from '@rbxts/services'
+import { TYCOON_ATTRIBUTES } from 'ReplicatedStorage/shared/constants/core'
 import { TycoonButtonTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
+  selectPlayerState,
   selectPlayerTycoonButtons,
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 import {
+  getTycoonButtonColor,
   getTycoonFromDescendent,
+  getTycoonType,
   isTycoonButtonDependencyMet,
   tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
@@ -24,9 +28,9 @@ export class TycoonButtonComponent
   onStart() {
     const buttonName = this.instance.Parent?.Name || ''
     const tycoon = getTycoonFromDescendent(this.instance)
-    const tycoonType = tycoon?.GetAttribute('TycoonType') as
-      | TycoonType
-      | undefined
+    const tycoonType = getTycoonType(
+      tycoon?.GetAttribute(TYCOON_ATTRIBUTES.TycoonType),
+    )
     if (!tycoon || !tycoonType) throw error('Button has no ancestor Tycoon')
     const constants = tycoonConstants[tycoonType]
     const buttonDetails = constants.Buttons[buttonName]
@@ -58,6 +62,7 @@ export class TycoonButtonComponent
       )
       if (tycoonButtonsSelector(state) === tycoonButtonsSelector(newState))
         return
+      const playerState = selectPlayerState(touchedPlayer.UserId)(newState)
       const playerTycoonButtons = selectPlayerTycoonButtons(
         touchedPlayer.UserId,
         tycoonType,
@@ -85,17 +90,18 @@ export class TycoonButtonComponent
       }
 
       let thisButton
-      for (const button of tycoon.Buttons.GetChildren()) {
+      for (const button of tycoon.Buttons.GetChildren() as TycoonButtonModel[]) {
         if (button.Name === buttonName) {
           thisButton = button
           continue
         }
-        if (
-          isTycoonButtonDependencyMet(
-            constants.Buttons[button.Name],
-            playerTycoonButtons,
+        const details = constants.Buttons[button.Name]
+        if (isTycoonButtonDependencyMet(details, playerTycoonButtons)) {
+          button.Button.BrickColor = getTycoonButtonColor(
+            playerState,
+            getCurrency(details.Currency),
+            details.Cost,
           )
-        ) {
           setHidden(button, false)
         }
       }
