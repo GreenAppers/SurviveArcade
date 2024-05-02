@@ -49,8 +49,10 @@ export interface PlayerDetail {
   readonly gravityUp: Vector3
   readonly groundArcadeTableName: ArcadeTableName | undefined
   readonly groundArcadeTableSequence: number | undefined
+  readonly sessionStartTime: number
   readonly scale: TycoonType
   readonly score: number
+  readonly tablePlays: number
 }
 
 export interface PlayerState extends PlayerData, PlayerDetail {}
@@ -109,8 +111,10 @@ export const defaultPlayerDetail: PlayerDetail = {
   gravityUp: new Vector3(0, 1, 0),
   groundArcadeTableName: undefined,
   groundArcadeTableSequence: undefined,
+  sessionStartTime: 0,
   scale: TYCOON_TYPES.Elf,
   score: 0,
+  tablePlays: 0,
 } as const
 
 export const defaultPlayerState = {
@@ -163,6 +167,7 @@ export const playersSlice = createProducer(initialState, {
         ...playerState,
         ...data,
         ...defaultPlayerDetail,
+        sessionStartTime: os.time(),
       },
     }
   },
@@ -250,6 +255,19 @@ export const playersSlice = createProducer(initialState, {
             highScore: math.max(tableState?.highScore || 0, newScore),
           },
         },
+      },
+    }
+  },
+
+  addPlayerTablePlays: (state, userID: number) => {
+    const playerKey = getPlayerKey(userID)
+    const playerState = state[playerKey]
+    if (!playerState) return state
+    return {
+      ...state,
+      [playerKey]: {
+        ...playerState,
+        tablePlays: playerState.tablePlays + 1,
       },
     }
   },

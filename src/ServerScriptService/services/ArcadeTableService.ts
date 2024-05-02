@@ -30,6 +30,7 @@ export class ArcadeTableService implements OnStart {
     const tableType = selectArcadeTableState(tableName)(state).tableType
     const exchange = EXCHANGE[tableType]
     if (!executeExchange(player.UserId, exchange)) return undefined
+    store.addPlayerTablePlays(player.UserId)
     return store.claimArcadeTable(tableName, player)
   }
 
