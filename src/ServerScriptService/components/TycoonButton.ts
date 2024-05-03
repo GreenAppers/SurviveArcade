@@ -16,6 +16,7 @@ import {
   isTycoonButtonDependencyMet,
   tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
+import { TycoonService } from 'ServerScriptService/services/TycoonService'
 import { store } from 'ServerScriptService/store'
 import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
 import { setHidden } from 'ServerScriptService/utils/instance'
@@ -25,6 +26,10 @@ export class TycoonButtonComponent
   extends BaseComponent<{}, BasePart>
   implements OnStart
 {
+  constructor(private tycoonService: TycoonService) {
+    super()
+  }
+
   onStart() {
     const buttonName = this.instance.Parent?.Name || ''
     const tycoon = getTycoonFromDescendent(this.instance)
@@ -47,7 +52,8 @@ export class TycoonButtonComponent
       if (!touchedPlayer) return
 
       const state = store.getState()
-      if (tycoonSelector(state)?.owner !== touchedPlayer.UserId) return
+      const tycoonState = tycoonSelector(state)
+      if (tycoonState.owner !== touchedPlayer.UserId) return
 
       const newState = store.purchaseTycoonButton(
         touchedPlayer.UserId,
@@ -76,6 +82,7 @@ export class TycoonButtonComponent
 
       if (itemTemplate) {
         const item = itemTemplate.Clone()
+        this.tycoonService.setupTycoonItem(item, tycoonState)
         const relativeCFrame = tycoonTemplate.Baseplate.CFrame.ToObjectSpace(
           itemTemplate.GetPivot(),
         )

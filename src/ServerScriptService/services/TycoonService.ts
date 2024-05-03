@@ -21,6 +21,7 @@ import {
 import {
   findTycoonNameOwnedBy,
   TycoonState,
+  tycoonTemplateColor,
 } from 'ReplicatedStorage/shared/state/TycoonState'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 import {
@@ -48,7 +49,7 @@ export class TycoonService implements OnStart {
 
   loadTycoon(
     tycoonName: TycoonName,
-    state: TycoonState,
+    tycoonState: TycoonState,
     playerTycoonState?: PlayerTycoon,
     playerState?: PlayerState,
   ) {
@@ -60,16 +61,18 @@ export class TycoonService implements OnStart {
     const tycoon = this.loadTycoonTemplate(
       map.scale,
       tycoonName,
+      tycoonState,
       playerTycoonState,
       playerState,
     )
-    this.setupTycoon(tycoon, state, getTycoonCFrame(tycoonName))
+    this.setupTycoon(tycoon, tycoonState, getTycoonCFrame(tycoonName))
     return tycoon
   }
 
   loadTycoonTemplate(
     tycoonType: TycoonType,
     tycoonName: TycoonName,
+    tycoonState: TycoonState,
     playerTycoonState?: PlayerTycoon,
     playerState?: PlayerState,
   ) {
@@ -92,9 +95,10 @@ export class TycoonService implements OnStart {
     purchases.Parent = tycoon
 
     this.logger.Info(`Loading ${tycoonType} ${tycoonName} items`)
-    for (const itemTemplate of tycoonTemplate.Items.GetChildren()) {
+    for (const itemTemplate of tycoonTemplate.Items.GetChildren() as Model[]) {
       if (!playerTycoonState?.buttons[itemTemplate.Name]) continue
       const item = itemTemplate.Clone()
+      this.setupTycoonItem(item, tycoonState)
       item.Parent = items
     }
 
@@ -156,8 +160,17 @@ export class TycoonService implements OnStart {
     return tycoon as Tycoon
   }
 
+  setupTycoonItem(item: Model, state: TycoonState) {
+    const parts = getDescendentsWhichAre(item, TYPE.BasePart) as BasePart[]
+    for (const part of parts) {
+      if (part.BrickColor.Name === tycoonTemplateColor.Name) {
+        part.BrickColor = state.color
+      }
+    }
+  }
+
   setupTycoon(tycoon: Tycoon, state: TycoonState, cframe?: CFrame) {
-    const parts = getDescendentsWhichAre(tycoon, 'BasePart') as BasePart[]
+    const parts = getDescendentsWhichAre(tycoon, TYPE.BasePart) as BasePart[]
     for (const part of parts) {
       if (part.Name === TYCOON_CHILD.Baseplate) {
         tycoon.PrimaryPart = part

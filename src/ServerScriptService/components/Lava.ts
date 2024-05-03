@@ -8,7 +8,11 @@ export class LavaComponent
   implements OnStart
 {
   onStart() {
+    const lavaHumanoid = this.instance.Parent?.FindFirstChild('Humanoid') as
+      | Humanoid
+      | undefined
     this.instance.Touched?.Connect((part) => {
+      if (lavaHumanoid && !lavaHumanoid.Health) return
       const humanoid = part.Parent?.FindFirstChild('Humanoid') as
         | Humanoid
         | undefined

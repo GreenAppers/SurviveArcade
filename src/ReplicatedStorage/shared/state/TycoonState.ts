@@ -3,6 +3,7 @@ import { createProducer } from '@rbxts/reflex'
 
 export interface TycoonState {
   readonly owner?: number
+  readonly color: BrickColor
 }
 
 export type TycoonsState = {
@@ -19,30 +20,40 @@ export const findTycoonNameOwnedBy = (
 
 const initialState: TycoonsState = {
   Tycoon1: {
+    color: new BrickColor('Really red'),
     owner: undefined,
   },
   Tycoon2: {
+    color: new BrickColor('Neon orange'),
     owner: undefined,
   },
   Tycoon3: {
+    color: new BrickColor('Deep orange'),
     owner: undefined,
   },
   Tycoon4: {
+    color: new BrickColor('Lime green'),
     owner: undefined,
   },
   Tycoon5: {
+    color: new BrickColor('Really blue'),
     owner: undefined,
   },
   Tycoon6: {
+    color: new BrickColor('Cyan'),
     owner: undefined,
   },
   Tycoon7: {
+    color: new BrickColor('Royal purple'),
     owner: undefined,
   },
   Tycoon8: {
+    color: new BrickColor('Hot pink'),
     owner: undefined,
   },
 }
+
+export const tycoonTemplateColor = initialState.Tycoon1.color
 
 export const tycoonsSlice = createProducer(initialState, {
   claimTycoon: (state, name: TycoonName, userId?: number) => {

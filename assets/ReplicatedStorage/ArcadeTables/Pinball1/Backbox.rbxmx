@@ -241,27 +241,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Decal" referent="3">
-        <Properties>
-          <string name="Name">Decal</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <Color3 name="Color3">
-            <R>1</R>
-            <G>1</G>
-            <B>1</B>
-          </Color3>
-          <bool name="DefinesCapabilities">false</bool>
-          <token name="Face">5</token>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <Content name="Texture">
-            <url>http://www.roblox.com/asset/?id=264479850</url>
-          </Content>
-          <float name="Transparency">0</float>
-          <int name="ZIndex">1</int>
-        </Properties>
-      </Item>
-      <Item class="ParticleEmitter" referent="4">
+      <Item class="ParticleEmitter" referent="3">
         <Properties>
           <string name="Name">Explosion</string>
           <Vector3 name="Acceleration">
@@ -312,7 +292,7 @@
           <float name="ZOffset">0</float>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="5">
+      <Item class="Attachment" referent="4">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -337,7 +317,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="UnionOperation" referent="6">
+    <Item class="UnionOperation" referent="5">
       <Properties>
         <string name="Name">Union</string>
         <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -454,7 +434,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Decal" referent="7">
+      <Item class="Decal" referent="6">
         <Properties>
           <string name="Name">Decal</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -475,7 +455,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="Part" referent="8">
+    <Item class="Part" referent="7">
       <Properties>
         <string name="Name">Scoreboard</string>
         <bool name="Anchored">true</bool>
@@ -571,7 +551,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="SurfaceGui" referent="9">
+      <Item class="SurfaceGui" referent="8">
         <Properties>
           <string name="Name">SurfaceGui</string>
           <bool name="Active">true</bool>
@@ -605,7 +585,7 @@
           <token name="ZIndexBehavior">1</token>
           <float name="ZOffset">0</float>
         </Properties>
-        <Item class="Frame" referent="10">
+        <Item class="Frame" referent="9">
           <Properties>
             <string name="Name">Frame</string>
             <bool name="Active">false</bool>
@@ -667,7 +647,7 @@
             <bool name="Visible">true</bool>
             <int name="ZIndex">1</int>
           </Properties>
-          <Item class="UIListLayout" referent="11">
+          <Item class="UIListLayout" referent="10">
             <Properties>
               <string name="Name">UIListLayout</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
@@ -688,7 +668,7 @@
               <bool name="Wraps">false</bool>
             </Properties>
           </Item>
-          <Item class="Frame" referent="12">
+          <Item class="Frame" referent="11">
             <Properties>
               <string name="Name">Glyph00</string>
               <bool name="Active">false</bool>
@@ -750,7 +730,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="13">
+            <Item class="ImageLabel" referent="12">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -849,7 +829,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="14">
+          <Item class="Frame" referent="13">
             <Properties>
               <string name="Name">Glyph01</string>
               <bool name="Active">false</bool>
@@ -911,7 +891,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="15">
+            <Item class="ImageLabel" referent="14">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -1010,7 +990,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="16">
+          <Item class="Frame" referent="15">
             <Properties>
               <string name="Name">Glyph02</string>
               <bool name="Active">false</bool>
@@ -1072,7 +1052,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="17">
+            <Item class="ImageLabel" referent="16">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -1171,7 +1151,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="18">
+          <Item class="Frame" referent="17">
             <Properties>
               <string name="Name">Glyph03</string>
               <bool name="Active">false</bool>
@@ -1233,7 +1213,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="19">
+            <Item class="ImageLabel" referent="18">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -1332,7 +1312,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="20">
+          <Item class="Frame" referent="19">
             <Properties>
               <string name="Name">Glyph04</string>
               <bool name="Active">false</bool>
@@ -1394,7 +1374,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="21">
+            <Item class="ImageLabel" referent="20">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -1493,7 +1473,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="22">
+          <Item class="Frame" referent="21">
             <Properties>
               <string name="Name">Glyph05</string>
               <bool name="Active">false</bool>
@@ -1555,7 +1535,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="23">
+            <Item class="ImageLabel" referent="22">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -1654,7 +1634,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="24">
+          <Item class="Frame" referent="23">
             <Properties>
               <string name="Name">Glyph06</string>
               <bool name="Active">false</bool>
@@ -1716,7 +1696,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="25">
+            <Item class="ImageLabel" referent="24">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -1815,7 +1795,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="26">
+          <Item class="Frame" referent="25">
             <Properties>
               <string name="Name">Glyph07</string>
               <bool name="Active">false</bool>
@@ -1877,7 +1857,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="27">
+            <Item class="ImageLabel" referent="26">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -1976,7 +1956,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="28">
+          <Item class="Frame" referent="27">
             <Properties>
               <string name="Name">Glyph08</string>
               <bool name="Active">false</bool>
@@ -2038,7 +2018,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="29">
+            <Item class="ImageLabel" referent="28">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -2137,7 +2117,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="30">
+          <Item class="Frame" referent="29">
             <Properties>
               <string name="Name">Glyph09</string>
               <bool name="Active">false</bool>
@@ -2199,7 +2179,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="31">
+            <Item class="ImageLabel" referent="30">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -2298,7 +2278,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="32">
+          <Item class="Frame" referent="31">
             <Properties>
               <string name="Name">Glyph10</string>
               <bool name="Active">false</bool>
@@ -2360,7 +2340,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="33">
+            <Item class="ImageLabel" referent="32">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -2459,7 +2439,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="34">
+          <Item class="Frame" referent="33">
             <Properties>
               <string name="Name">Glyph11</string>
               <bool name="Active">false</bool>
@@ -2521,7 +2501,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="35">
+            <Item class="ImageLabel" referent="34">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -2620,7 +2600,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="36">
+          <Item class="Frame" referent="35">
             <Properties>
               <string name="Name">Glyph12</string>
               <bool name="Active">false</bool>
@@ -2682,7 +2662,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="37">
+            <Item class="ImageLabel" referent="36">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
@@ -2781,7 +2761,7 @@
               </Properties>
             </Item>
           </Item>
-          <Item class="Frame" referent="38">
+          <Item class="Frame" referent="37">
             <Properties>
               <string name="Name">Glyph13</string>
               <bool name="Active">false</bool>
@@ -2843,7 +2823,7 @@
               <bool name="Visible">true</bool>
               <int name="ZIndex">1</int>
             </Properties>
-            <Item class="ImageLabel" referent="39">
+            <Item class="ImageLabel" referent="38">
               <Properties>
                 <string name="Name">ImageLabel</string>
                 <bool name="Active">false</bool>
