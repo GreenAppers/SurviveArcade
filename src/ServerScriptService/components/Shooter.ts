@@ -1,6 +1,6 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import FastCast, { ActiveCast } from '@rbxts/fastcast'
+import FastCast from '@rbxts/fastcast'
 import { PartCache } from '@rbxts/partcache/out/class'
 import { Debris, Workspace } from '@rbxts/services'
 import { ShooterTag } from 'ReplicatedStorage/shared/constants/tags'
@@ -16,6 +16,9 @@ const FIRE_DELAY = 0 // The amount of time that must pass after firing the gun b
 const BULLETS_PER_SHOT = 1 // The amount of bullets to fire every shot. Make this greater than 1 for a shotgun effect.
 const PIERCE_DEMO = true // True if the pierce demo should be used. See the CanRayPierce function for more info.
 const TAU = math.pi * 2 // Set up mathematical constant Tau (pi * 2)
+
+const reflect = (surfaceNormal: Vector3, bulletNormal: Vector3) =>
+  bulletNormal.sub(surfaceNormal.mul(2 * bulletNormal.Dot(surfaceNormal)))
 
 // In production scripts that you are writing that you know you will write properly, you should not do this.
 // This is included exclusively as a result of this being an example script, and users may tweak the values incorrectly.
@@ -48,14 +51,14 @@ export class ShooterComponent
 
   onStart() {
     // New raycast parameters.
-    const CastParams = new RaycastParams()
-    CastParams.IgnoreWater = true
-    CastParams.FilterType = Enum.RaycastFilterType.Blacklist
-    CastParams.FilterDescendantsInstances = []
+    const castParams = new RaycastParams()
+    castParams.IgnoreWater = true
+    castParams.FilterType = Enum.RaycastFilterType.Blacklist
+    castParams.FilterDescendantsInstances = []
 
     // NEW v12.0.0: Casters now use a data packet which can be made like what follows.
     // Check the API for more information: https://etithespirit.github.io/FastCastAPIDocs/fastcast-objects/fcbehavior
-    this.castBehavior.RaycastParams = CastParams
+    this.castBehavior.RaycastParams = castParams
     this.castBehavior.MaxDistance = BULLET_MAXDIST
     this.castBehavior.HighFidelityBehavior = 1
 
@@ -68,6 +71,58 @@ export class ShooterComponent
     this.castBehavior.CosmeticBulletContainer = bulletsFolder
     this.castBehavior.Acceleration = BULLET_GRAVITY
     this.castBehavior.AutoIgnoreContainer = false // We already do this! We don't need the default value of true (see the bottom of this script)
+
+    if (PIERCE_DEMO) {
+      // The pierce function can also be used for things like bouncing.
+      // In reality, it's more of a function that the module uses to ask "Do I end the cast now, or do I keep going?"
+      // Because of this, you can use it for logic such as ray reflection or other redirection methods.
+      // A great example might be to pierce or bounce based on something like velocity or angle.
+      // You can see this implementation further down in the OnRayPierced function.
+      this.castBehavior.CanPierceFunction = (
+        cast,
+        rayResult,
+        segmentVelocity,
+      ) => {
+        // Let's keep track of how many times we've hit something.
+        /* const hits = cast.UserData.Hits
+        if (!hits) {
+          // If the hit data isn't registered, set it to 1 (because this is our first hit)
+          cast.UserData.Hits = 1
+        } else {
+          // If the hit data is registered, add 1.
+          cast.UserData.Hits += 1
+        }
+        // And if the hit count is over 3, don't allow piercing and instead stop the ray.
+        if (cast.UserData.Hits > 3) {
+          return false
+        } */
+
+        // Now if we make it here, we want our ray to continue.
+        // This is extra important! If a bullet bounces off of something, maybe we want it to do damage too!
+        // So let's implement that.
+        const hitPart = rayResult.Instance
+        if (hitPart && hitPart.Parent) {
+          const humanoid = hitPart.Parent.FindFirstChildOfClass('Humanoid')
+          if (humanoid) {
+            humanoid.TakeDamage(10) // Damage.
+          }
+        }
+
+        /* // This function shows off the piercing feature literally. Pass this function as the last argument (after bulletAcceleration) and it will run this every time the ray runs into an object.
+        // Do note that if you want this to work properly, you will need to edit the OnRayPierced event handler below so that it doesn't bounce.
+        if (material == Enum.Material.Plastic or material == Enum.Material.Ice or material == Enum.Material.Glass or material == Enum.Material.SmoothPlastic) {
+          // Hit glass, plastic, or ice...
+          if (hitPart.Transparency >= 0.5) {
+            // And it's >= half transparent...
+            return true -- Yes! We can pierce.
+          }
+        }
+        return false */
+
+        // And then lastly, return true to tell FC to continue simulating.
+        return true
+      }
+    }
 
     this.caster.RayHit.Connect(
       (_cast, raycastResult, _segmentVelocity, _cosmeticBulletObject) => {
@@ -91,7 +146,7 @@ export class ShooterComponent
         const position = raycastResult.Position
         const normal = raycastResult.Normal
 
-        const newNormal = this.reflect(normal, segmentVelocity.Unit)
+        const newNormal = reflect(normal, segmentVelocity.Unit)
         cast.SetVelocity(newNormal.mul(segmentVelocity.Magnitude))
 
         // It's super important that we set the cast's position to the ray hit position. Remember: When a pierce is successful, it increments the ray forward by one increment.
@@ -137,14 +192,14 @@ export class ShooterComponent
     })
 
     this.instance.Equipped.Connect(() => {
-      CastParams.FilterDescendantsInstances = [
+      castParams.FilterDescendantsInstances = [
         this.instance.Parent || this.instance,
         bulletsFolder,
       ]
     })
 
     this.instance.MouseEvent.OnServerEvent.Connect(
-      (clientThatFired, mousePoint) => {
+      (_clientThatFired, mousePoint) => {
         if (!this.canFire || !typeIs(mousePoint, 'Vector3')) return
         this.canFire = false
         const mouseDirection = mousePoint.sub(
@@ -186,62 +241,6 @@ export class ShooterComponent
     particle.Enabled = false
   }
 
-  reflect(surfaceNormal: Vector3, bulletNormal: Vector3) {
-    return bulletNormal.sub(
-      surfaceNormal.mul(2 * bulletNormal.Dot(surfaceNormal)),
-    )
-  }
-
-  // The pierce function can also be used for things like bouncing.
-  // In reality, it's more of a function that the module uses to ask "Do I end the cast now, or do I keep going?"
-  // Because of this, you can use it for logic such as ray reflection or other redirection methods.
-  // A great example might be to pierce or bounce based on something like velocity or angle.
-  // You can see this implementation further down in the OnRayPierced function.
-  canRayPierce(
-    cast: ActiveCast,
-    rayResult: RaycastResult,
-    segmentVelocity: Vector3,
-  ) {
-    // Let's keep track of how many times we've hit something.
-    /* const hits = cast.UserData.Hits
-    if (!hits) {
-      // If the hit data isn't registered, set it to 1 (because this is our first hit)
-      cast.UserData.Hits = 1
-    } else {
-      // If the hit data is registered, add 1.
-      cast.UserData.Hits += 1
-    }
-    // And if the hit count is over 3, don't allow piercing and instead stop the ray.
-    if (cast.UserData.Hits > 3) {
-      return false
-    } */
-
-    // Now if we make it here, we want our ray to continue.
-    // This is extra important! If a bullet bounces off of something, maybe we want it to do damage too!
-    // So let's implement that.
-    const hitPart = rayResult.Instance
-    if (hitPart && hitPart.Parent) {
-      const humanoid = hitPart.Parent.FindFirstChildOfClass('Humanoid')
-      if (humanoid) {
-        humanoid.TakeDamage(10) // Damage.
-      }
-    }
-
-    /* // This function shows off the piercing feature literally. Pass this function as the last argument (after bulletAcceleration) and it will run this every time the ray runs into an object.
-	  // Do note that if you want this to work properly, you will need to edit the OnRayPierced event handler below so that it doesn't bounce.
-	  if (material == Enum.Material.Plastic or material == Enum.Material.Ice or material == Enum.Material.Glass or material == Enum.Material.SmoothPlastic) {
-		  // Hit glass, plastic, or ice...
-		  if (hitPart.Transparency >= 0.5) {
-			  // And it's >= half transparent...
-			  return true -- Yes! We can pierce.
-		  }
-	  }
-	  return false */
-
-    // And then lastly, return true to tell FC to continue simulating.
-    return true
-  }
-
   // Called when we want to fire the gun.
   fire(direction: Vector3) {
     if (!this.instance.Parent || this.instance.Parent.IsA('Backpack')) return // Can't fire if it's not equipped.
@@ -276,8 +275,6 @@ export class ShooterComponent
     ) as BasePart // Add a timeout to this.
     const myMovementSpeed = humanoidRootPart.Velocity // To do: It may be better to get this value on the clientside since the server will see this value differently due to ping and such.
     const modifiedBulletSpeed = direction.mul(BULLET_SPEED) // + myMovementSpeed // We multiply our direction unit by the bullet speed. This creates a Vector3 version of the bullet's velocity at the given speed. We then add MyMovementSpeed to add our body's motion to the velocity.
-
-    if (PIERCE_DEMO) this.castBehavior.CanPierceFunction = this.canRayPierce
 
     const simBullet = this.caster.Fire(
       this.instance.Handle.GunFirePoint.WorldPosition,
