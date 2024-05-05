@@ -134,6 +134,11 @@
   resolved "https://registry.yarnpkg.com/@rbxts/cmdr/-/cmdr-1.12.0.tgz#a1095dbe6f06bbc13b67178d07e22458bc0c92ec"
   integrity sha512-lCMgAzaAXCU2BuRWGCqnkitQb4TsQm/o5e0ZPsx0HKLtavre57+A2RPL54Yf/hfbiEKH7MAf2+JvwbGThqG06A==
 
+"@rbxts/compiler-types@^1.0.0-types.0":
+  version "1.0.0-types.0"
+  resolved "https://registry.yarnpkg.com/@rbxts/compiler-types/-/compiler-types-1.0.0-types.0.tgz#27e1cb297c9e96f4761f40fb24095f5a1c6881ec"
+  integrity sha512-DMYByLmapF5T04l1Jmg71BZNmR8sFhDt/aq9aV9X8JjnQimnCCBFK+FzdHh9Nx40D/o+k9vYn5aS58g8kISlYQ==
+
 "@rbxts/compiler-types@^2.2.0-types.0":
   version "2.2.0-types.0"
   resolved "https://registry.yarnpkg.com/@rbxts/compiler-types/-/compiler-types-2.2.0-types.0.tgz#cba7ff0cde0fa9ac18abb4251452814232d67a1e"
@@ -143,6 +148,13 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@rbxts/device/-/device-0.1.2.tgz#ae1202b4ce1771e61829f449d69a35c044dd48db"
   integrity sha512-2VcMSEr+sUVHo7+gCDa7XVPzpTt5wC58QxINgar1XrTZ6QhZXyNyDbuOY9I8bKqKc4H2aXrjtkN2l3V7mKpIkw==
+
+"@rbxts/fastcast@^13.2.0-ts.2":
+  version "13.2.0-ts.2"
+  resolved "https://registry.yarnpkg.com/@rbxts/fastcast/-/fastcast-13.2.0-ts.2.tgz#ddfc9147687c3b5b89b3fcd78c342948ca2ef42d"
+  integrity sha512-EdrMZTg0pOTwOkxDdcPKMvvdIwPR6WCCsjQYbYNpyB/SgJL9bGDXuBG3Pb+T5NCQc2/nlNh4UGj6DkmuI1B+ng==
+  dependencies:
+    "@rbxts/compiler-types" "^1.0.0-types.0"
 
 "@rbxts/flipper@^2.0.1":
   version "2.0.1"
@@ -175,6 +187,11 @@
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@rbxts/object-utils/-/object-utils-1.0.4.tgz#c53d80f89e75c401365446be63fa1396bc2cffe7"
   integrity sha512-dLLhf022ipV+9i910sOE7kl9losKHoon0WgeerHqVMQA5EYsLUsVT2AxhJuhk8MiDn5oJ2GiFofE/LadY9TpJQ==
+
+"@rbxts/partcache@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@rbxts/partcache/-/partcache-1.1.1.tgz#d73b219eb3c16080f6f389d2c4b58082652fcf6c"
+  integrity sha512-EsLQeginnwXdxvLtqerGMQAa8XvOtAnPnW4T5SH6bSXsJjrLMyWXoyrSfNk5CjgFJn8v7rq0nYFsnCTmO18kiA==
 
 "@rbxts/pretty-react-hooks@^0.3.3":
   version "0.3.3"

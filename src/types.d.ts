@@ -193,6 +193,15 @@ interface ReplicatedStorage extends Instance {
   }
 }
 
+interface Shooter extends Tool {
+  MouseEvent: RemoteEvent
+  Handle: BasePart & {
+    Fire: Sound
+    GunFirePoint: Attachment
+    ImpactParticle: ParticleEmitter
+  }
+}
+
 interface Spinner extends Model {
   Spinner: BasePart & {
     Spinner: BasePart

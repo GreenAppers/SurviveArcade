@@ -17,9 +17,9 @@ export interface GravityControllerClass {
   new (player: Player): GravityController
 }
 
-export const gravityControllerClass = <GravityControllerClass>(
-  require(<ModuleScript>ReplicatedStorage.WaitForChild('GravityController'))
-)
+export const gravityControllerClass = require(
+  ReplicatedStorage.WaitForChild('GravityController') as ModuleScript,
+) as GravityControllerClass
 
 const PI2 = math.pi * 2
 const ZERO = new Vector3(0, 0, 0)
