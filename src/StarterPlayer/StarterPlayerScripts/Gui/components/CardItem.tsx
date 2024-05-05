@@ -1,12 +1,12 @@
-import Roact, { useEffect, useMemo } from '@rbxts/roact'
+import React, { useEffect, useMemo } from '@rbxts/react'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { fonts } from 'StarterPlayer/StarterPlayerScripts/fonts'
-import { CanvasOrFrame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CanvasOrFrame'
 import { Frame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
 import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
 import { ReactiveButton } from 'StarterPlayer/StarterPlayerScripts/Gui/components/ReactiveButton'
 import { Shadow } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Shadow'
 import { Text } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Text'
+import { Transition } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Transition'
 import { springs } from 'StarterPlayer/StarterPlayerScripts/Gui/constants/springs'
 import { useMotion, useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 
@@ -64,10 +64,8 @@ export function CardItem({
       size={size}
       layoutOrder={order}
     >
-      <CanvasOrFrame
-        key="fade-out"
+      <Transition
         groupTransparency={transparency}
-        backgroundTransparency={1}
         size={
           new UDim2(
             1,
@@ -81,7 +79,6 @@ export function CardItem({
         }
       >
         <uipadding
-          key="canvas-margin"
           PaddingTop={new UDim(0, rem(CARD_CANVAS_MARGIN))}
           PaddingBottom={new UDim(0, rem(CARD_CANVAS_MARGIN))}
           PaddingLeft={new UDim(0, rem(CARD_CANVAS_MARGIN))}
@@ -89,7 +86,6 @@ export function CardItem({
         />
 
         <Shadow
-          key="drop-shadow"
           shadowColor={primary.Lerp(secondary, 0.5)}
           shadowBlur={0.3}
           shadowPosition={rem(0.5)}
@@ -98,25 +94,16 @@ export function CardItem({
         />
 
         <Frame
-          key="background"
           backgroundTransparency={0.3}
           backgroundColor={palette.white}
           cornerRadius={new UDim(0, rem(0.5))}
           size={new UDim2(1, 0, 1, 0)}
         >
-          <uigradient
-            key="gradient"
-            Color={new ColorSequence(primaryDark, secondaryDark)}
-          />
+          <uigradient Color={new ColorSequence(primaryDark, secondaryDark)} />
         </Frame>
 
-        <Group
-          key="indicator-container"
-          clipsDescendants
-          size={new UDim2(0, rem(0.35), 1, 0)}
-        >
+        <Group clipsDescendants size={new UDim2(0, rem(0.35), 1, 0)}>
           <Frame
-            key="indicator"
             backgroundColor={primary}
             cornerRadius={new UDim(0, rem(0.5))}
             size={new UDim2(0, rem(1), 1, 0)}
@@ -124,7 +111,6 @@ export function CardItem({
         </Group>
 
         <Text
-          key="emoji"
           text={emoji}
           textSize={rem(2)}
           size={new UDim2(0, rem(CARD_EMOJI_WIDTH), 1, 0)}
@@ -132,7 +118,6 @@ export function CardItem({
         />
 
         <Text
-          key="label"
           font={fonts.inter.bold}
           text={label}
           textColor={primary}
@@ -156,7 +141,6 @@ export function CardItem({
         />
 
         <Text
-          key="value"
           font={fonts.inter.regular}
           text={value}
           textColor={palette.white}
@@ -178,7 +162,7 @@ export function CardItem({
             },
           }}
         />
-      </CanvasOrFrame>
+      </Transition>
     </ReactiveButton>
   )
 }

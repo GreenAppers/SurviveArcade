@@ -1,4 +1,4 @@
-import Roact, { useEffect } from '@rbxts/roact'
+import React, { useEffect } from '@rbxts/react'
 import { TeleportService } from '@rbxts/services'
 import { playSound, sounds } from 'ReplicatedStorage/shared/assets'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
@@ -26,13 +26,8 @@ export function ErrorPage({ message }: ErrorPageProps) {
 
   return (
     <Layer>
-      <Frame
-        key="background"
-        backgroundColor={palette.eerie}
-        size={new UDim2(1, 0, 1, 0)}
-      >
+      <Frame backgroundColor={palette.eerie} size={new UDim2(1, 0, 1, 0)}>
         <uilistlayout
-          key="layout"
           FillDirection="Vertical"
           VerticalAlignment="Center"
           HorizontalAlignment="Center"
@@ -40,7 +35,6 @@ export function ErrorPage({ message }: ErrorPageProps) {
         />
 
         <Text
-          key="icon"
           text="🤖⁉️"
           textSize={rem(5)}
           size={new UDim2(0, rem(5), 0, rem(5))}
@@ -48,7 +42,6 @@ export function ErrorPage({ message }: ErrorPageProps) {
         />
 
         <Text
-          key="title"
           font={fonts.inter.bold}
           text="System malfunction"
           textColor={palette.text}
@@ -57,14 +50,9 @@ export function ErrorPage({ message }: ErrorPageProps) {
           layoutOrder={index++}
         />
 
-        <Group
-          key={`spacer-${index}`}
-          size={new UDim2(0, 0, 0, rem(2))}
-          layoutOrder={index++}
-        />
+        <Group size={new UDim2(0, 0, 0, rem(2))} layoutOrder={index++} />
 
         <Text
-          key="subtitle"
           font={fonts.inter.regular}
           text="Something went wrong, and we were unable to recover."
           textColor={palette.text}
@@ -73,14 +61,9 @@ export function ErrorPage({ message }: ErrorPageProps) {
           layoutOrder={index++}
         />
 
-        <Group
-          key={`spacer-${index}`}
-          size={new UDim2(0, 0, 0, rem(0.5))}
-          layoutOrder={index++}
-        />
+        <Group size={new UDim2(0, 0, 0, rem(0.5))} layoutOrder={index++} />
 
         <Text
-          key="callout"
           font={fonts.inter.regular}
           text="Please send this error to the developers, and try reconnecting:"
           textColor={palette.text}
@@ -89,14 +72,9 @@ export function ErrorPage({ message }: ErrorPageProps) {
           layoutOrder={index++}
         />
 
-        <Group
-          key={`spacer-${index}`}
-          size={new UDim2(0, 0, 0, rem(2))}
-          layoutOrder={index++}
-        />
+        <Group size={new UDim2(0, 0, 0, rem(2))} layoutOrder={index++} />
 
         <TextField
-          key="message"
           clearTextOnFocus={false}
           textEditable={false}
           font={fonts.robotoMono.regular}
@@ -112,7 +90,6 @@ export function ErrorPage({ message }: ErrorPageProps) {
           layoutOrder={index++}
         >
           <uipadding
-            key="padding"
             PaddingLeft={new UDim(0, rem(2))}
             PaddingRight={new UDim(0, rem(2))}
             PaddingTop={new UDim(0, rem(2))}
@@ -120,7 +97,6 @@ export function ErrorPage({ message }: ErrorPageProps) {
           />
 
           <uistroke
-            key="border"
             Color={palette.red}
             Transparency={0.3}
             Thickness={1}
@@ -128,14 +104,9 @@ export function ErrorPage({ message }: ErrorPageProps) {
           />
         </TextField>
 
-        <Group
-          key={`spacer-${index}`}
-          size={new UDim2(0, 0, 0, rem(2))}
-          layoutOrder={index++}
-        />
+        <Group size={new UDim2(0, 0, 0, rem(2))} layoutOrder={index++} />
 
         <PrimaryButton
-          key="reconnect"
           onClick={async () =>
             TeleportService.TeleportToPlaceInstance(game.PlaceId, game.JobId)
           }
@@ -144,7 +115,6 @@ export function ErrorPage({ message }: ErrorPageProps) {
           layoutOrder={index++}
         >
           <Text
-            key="text"
             font={fonts.inter.medium}
             text="Reconnect →"
             textColor={palette.base}

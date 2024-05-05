@@ -1,7 +1,7 @@
 import { lerpBinding, useMountEffect } from '@rbxts/pretty-react-hooks'
 import { composeBindings } from '@rbxts/pretty-react-hooks'
+import React, { useEffect, useMemo } from '@rbxts/react'
 import { useSelector, useSelectorCreator } from '@rbxts/react-reflex'
-import Roact, { useEffect, useMemo } from '@rbxts/roact'
 import { images, playSound, sounds } from 'ReplicatedStorage/shared/assets'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { brightenIfDark, darken } from 'ReplicatedStorage/shared/utils/color'
@@ -47,7 +47,9 @@ export function Alert({ alert, index }: AlertProps) {
   const [position, positionMotion] = useMotion(new UDim2(0.5, 0, 0, rem(5)))
 
   const style = useMemo(() => {
-    const highlight = composeBindings(hover, transition, (a, b) => a * b)
+    const highlight = composeBindings(hover, transition, (a, b) =>
+      typeIs(a, 'number') && typeIs(b, 'number') ? a * b : b,
+    )
     const background = darken(alert.color.Lerp(palette.base, 0.25), 0.8)
     const backgroundSecondary = darken(
       alert.colorSecondary?.Lerp(palette.base, 0.25) || palette.white,
@@ -111,7 +113,6 @@ export function Alert({ alert, index }: AlertProps) {
       position={position}
     >
       <Shadow
-        key="drop-shadow"
         shadowColor={
           hasGradient
             ? palette.white
@@ -122,7 +123,6 @@ export function Alert({ alert, index }: AlertProps) {
       >
         {hasGradient && (
           <uigradient
-            key="drop-shadow-gradient"
             Color={
               new ColorSequence(style.background, style.backgroundSecondary)
             }
@@ -131,7 +131,6 @@ export function Alert({ alert, index }: AlertProps) {
       </Shadow>
 
       <Frame
-        key="background"
         backgroundColor={hasGradient ? palette.white : style.background}
         backgroundTransparency={lerpBinding(transition, 1, 0.1)}
         cornerRadius={new UDim(0, rem(1))}
@@ -139,7 +138,6 @@ export function Alert({ alert, index }: AlertProps) {
       >
         {hasGradient && (
           <uigradient
-            key="background-gradient"
             Color={
               new ColorSequence(style.background, style.backgroundSecondary)
             }
@@ -148,7 +146,6 @@ export function Alert({ alert, index }: AlertProps) {
       </Frame>
 
       <Frame
-        key="highlight"
         backgroundColor={alert.color}
         backgroundTransparency={lerpBinding(style.highlight, 1, 0.9)}
         cornerRadius={new UDim(0, rem(1))}
@@ -156,7 +153,6 @@ export function Alert({ alert, index }: AlertProps) {
       />
 
       <Outline
-        key="border"
         innerColor={hasGradient ? palette.white : alert.color}
         innerTransparency={lerpBinding(transition, 1, 0.85)}
         outerTransparency={lerpBinding(transition, 1, 0.75)}
@@ -164,14 +160,12 @@ export function Alert({ alert, index }: AlertProps) {
       >
         {hasGradient && (
           <uigradient
-            key="border-gradient"
             Color={new ColorSequence(alert.color, alert.colorSecondary)}
           />
         )}
       </Outline>
 
       <Text
-        key="icon"
         font={fonts.inter.regular}
         text={alert.emoji}
         textColor={style.message}
@@ -183,7 +177,6 @@ export function Alert({ alert, index }: AlertProps) {
       />
 
       <Text
-        key="message"
         richText
         font={fonts.inter.medium}
         text={alert.message}
@@ -202,7 +195,6 @@ export function Alert({ alert, index }: AlertProps) {
       />
 
       <Image
-        key="close"
         image={images.gui.alert_dismiss}
         imageColor={brightenIfDark(
           alert.colorSecondary || alert.colorMessage || alert.color,
@@ -214,7 +206,6 @@ export function Alert({ alert, index }: AlertProps) {
       />
 
       <AlertTimer
-        key="timer"
         duration={alert.duration}
         color={alert.color}
         colorSecondary={alert.colorSecondary}

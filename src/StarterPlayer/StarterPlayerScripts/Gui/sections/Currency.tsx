@@ -1,5 +1,5 @@
+import React, { useMemo } from '@rbxts/react'
 import { useSelector } from '@rbxts/react-reflex'
-import Roact, { useMemo } from '@rbxts/roact'
 import {
   CURRENCY_EMOJIS,
   CURRENCY_TYPES,
@@ -44,7 +44,6 @@ export function Currency() {
       size={new UDim2(0, 0, 0, 0)}
     >
       <uilistlayout
-        key="layout"
         FillDirection="Vertical"
         HorizontalAlignment="Left"
         VerticalAlignment="Center"
@@ -53,7 +52,6 @@ export function Currency() {
       />
 
       <CardItem
-        key="tickets"
         emoji={CURRENCY_EMOJIS.Tickets}
         label={CURRENCY_TYPES.Tickets}
         value={ticketsFormatted}
@@ -64,7 +62,6 @@ export function Currency() {
       />
 
       <CardItem
-        key="dollars"
         emoji={CURRENCY_EMOJIS.Dollars}
         label={CURRENCY_TYPES.Dollars}
         value={dollarsFormatted}
@@ -75,7 +72,6 @@ export function Currency() {
       />
 
       <CardItem
-        key="levity"
         emoji={CURRENCY_EMOJIS.Levity}
         label={CURRENCY_TYPES.Levity}
         value={levityFormatted}

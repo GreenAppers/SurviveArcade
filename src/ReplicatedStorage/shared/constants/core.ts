@@ -98,6 +98,13 @@ export const TEAM_NAMES: {
   YellowTeam: 'Yellow Team' as const,
 }
 
+export const TOOL_NAMES: {
+  [name in ToolName]: ToolName
+} = {
+  DebugGun: 'DebugGun' as const,
+  Popcorn: 'Popcorn' as const,
+}
+
 export const TRUSS_NAMES: CabinetTrussName[] = [
   'Truss1',
   'Truss2',

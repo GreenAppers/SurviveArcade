@@ -1,4 +1,4 @@
-import Roact from '@rbxts/roact'
+import React from '@rbxts/react'
 import { ErrorHandler } from 'StarterPlayer/StarterPlayerScripts/Gui/components/ErrorHandler'
 import { Layer } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Layer'
 import { Alerts } from 'StarterPlayer/StarterPlayerScripts/Gui/sections/Alerts'
@@ -10,16 +10,16 @@ import { Settings } from 'StarterPlayer/StarterPlayerScripts/Gui/sections/Settin
 export function App() {
   return (
     <ErrorHandler>
-      <Music key="music" />
+      <Music />
 
-      <Layer key="menu-layer">
-        <Currency key="currency" />
-        <GameStatus key="game-status" />
-        <Settings key="settings" />
+      <Layer>
+        <Currency />
+        <GameStatus />
+        <Settings />
       </Layer>
 
-      <Layer key="modal-layer">
-        <Alerts key="alerts" />
+      <Layer>
+        <Alerts />
       </Layer>
     </ErrorHandler>
   )

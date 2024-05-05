@@ -31,15 +31,15 @@ aftman install
 lune --version
 ```
 
-### Install roblox-ts on Node.js 18.17.0 with Node Version Manager:
+### Install Node.js 18.18.0 with Node Version Manager:
 
 ```console
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 echo ". ~/.nvm/nvm.sh" >> ~/.zprofile
-nvm install 18.17.0
-nvm use 18.17.0
+nvm install 18.18.0
+nvm use 18.18.0
 node --version
-npm install --global yarn roblox-ts
+npm install --global yarn
 ```
 
 ## Build `SurviveArcade.rbxlx`

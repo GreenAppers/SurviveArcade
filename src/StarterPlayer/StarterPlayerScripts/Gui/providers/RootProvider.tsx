@@ -1,5 +1,5 @@
+import React from '@rbxts/react'
 import { ReflexProvider } from '@rbxts/react-reflex'
-import Roact from '@rbxts/roact'
 import {
   RemProvider,
   RemProviderProps,
@@ -15,11 +15,7 @@ export function RootProvider({
 }: RootProviderProps) {
   return (
     <ReflexProvider producer={store}>
-      <RemProvider
-        key="rem-provider"
-        baseRem={baseRem}
-        remOverride={remOverride}
-      >
+      <RemProvider baseRem={baseRem} remOverride={remOverride}>
         {children}
       </RemProvider>
     </ReflexProvider>

@@ -81,7 +81,7 @@ export class ShooterComponent
       this.castBehavior.CanPierceFunction = (
         cast,
         rayResult,
-        segmentVelocity,
+        _segmentVelocity,
       ) => {
         // Let's keep track of how many times we've hit something.
         /* const hits = cast.UserData.Hits
@@ -140,7 +140,7 @@ export class ShooterComponent
     )
 
     this.caster.RayPierced.Connect(
-      (cast, raycastResult, segmentVelocity, cosmeticBulletObject) => {
+      (cast, raycastResult, segmentVelocity, _cosmeticBulletObject) => {
         // You can do some really unique stuff with pierce behavior - In reality, pierce is just the module's way of asking "Do I keep the bullet going, or do I stop it here?"
         // You can make use of this unique behavior in a manner like this, for instance, which causes bullets to be bouncy.
         const position = raycastResult.Position
@@ -273,10 +273,10 @@ export class ShooterComponent
       'HumanoidRootPart',
       1,
     ) as BasePart // Add a timeout to this.
-    const myMovementSpeed = humanoidRootPart.Velocity // To do: It may be better to get this value on the clientside since the server will see this value differently due to ping and such.
+    const _myMovementSpeed = humanoidRootPart.Velocity // To do: It may be better to get this value on the clientside since the server will see this value differently due to ping and such.
     const modifiedBulletSpeed = direction.mul(BULLET_SPEED) // + myMovementSpeed // We multiply our direction unit by the bullet speed. This creates a Vector3 version of the bullet's velocity at the given speed. We then add MyMovementSpeed to add our body's motion to the velocity.
 
-    const simBullet = this.caster.Fire(
+    const _simBullet = this.caster.Fire(
       this.instance.Handle.GunFirePoint.WorldPosition,
       direction,
       modifiedBulletSpeed,

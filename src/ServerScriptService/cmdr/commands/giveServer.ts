@@ -1,11 +1,13 @@
 import { CommandContext } from '@rbxts/cmdr'
-import { store } from 'ServerScriptService/store'
+import { ReplicatedStorage } from '@rbxts/services'
 
 export = function (
-  context: CommandContext,
+  _context: CommandContext,
   player: Player,
-  currency: Currency,
-  amount: number,
+  toolName: ToolName,
 ) {
-  store.addPlayerCurrency(player.UserId, currency, amount)
+  const backpack = player.FindFirstChild('Backpack') as Backpack | undefined
+  if (!backpack || backpack.FindFirstChild(toolName)) return
+  const tool = ReplicatedStorage.Tools[toolName].Clone()
+  tool.Parent = backpack
 }

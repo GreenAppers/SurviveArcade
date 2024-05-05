@@ -3,14 +3,14 @@ import {
   useDebounceState,
   useEventListener,
 } from '@rbxts/pretty-react-hooks'
-import Roact, { createContext, useEffect } from '@rbxts/roact'
+import React, { createContext, useEffect } from '@rbxts/react'
 import {
   calculateRem,
   DEFAULT_REM,
   MIN_REM,
 } from 'StarterPlayer/StarterPlayerScripts/fonts'
 
-export interface RemProviderProps extends Roact.PropsWithChildren {
+export interface RemProviderProps extends React.PropsWithChildren {
   baseRem?: number
   remOverride?: number
   minimumRem?: number

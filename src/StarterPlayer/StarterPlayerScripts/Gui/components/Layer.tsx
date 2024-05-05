@@ -1,9 +1,9 @@
-import Roact from '@rbxts/roact'
+import React from '@rbxts/react'
 import { IS_EDIT } from 'ReplicatedStorage/shared/constants/core'
 
 import { Group } from './Group'
 
-interface LayerProps extends Roact.PropsWithChildren {
+interface LayerProps extends React.PropsWithChildren {
   displayOrder?: number
 }
 
