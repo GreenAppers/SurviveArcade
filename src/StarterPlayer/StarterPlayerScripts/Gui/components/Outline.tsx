@@ -1,9 +1,8 @@
 import { blend, composeBindings } from '@rbxts/pretty-react-hooks'
 import React, { useMemo } from '@rbxts/react'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
-
-import { useRem } from '../hooks'
-import { Group } from './Group'
+import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
+import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 
 interface OutlineProps extends React.PropsWithChildren {
   readonly outlineTransparency?: number | React.Binding<number>

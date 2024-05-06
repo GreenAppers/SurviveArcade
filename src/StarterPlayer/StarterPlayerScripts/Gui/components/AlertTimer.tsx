@@ -3,10 +3,9 @@ import React, { useBinding } from '@rbxts/react'
 import { RunService } from '@rbxts/services'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { darken } from 'ReplicatedStorage/shared/utils/color'
-
-import { useRem } from '../hooks'
-import { CanvasGroup } from './CanvasGroup'
-import { Frame } from './Frame'
+import { CanvasGroup } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CanvasGroup'
+import { Frame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
+import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 
 interface AlertTimerProps {
   readonly duration: number

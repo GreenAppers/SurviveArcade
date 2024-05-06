@@ -7,12 +7,11 @@ import {
   playButtonUp,
 } from 'ReplicatedStorage/shared/assets'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
-
-import { useMotion, useRem } from '../hooks'
-import { useButtonAnimation } from '../hooks/useButtonAnimation'
-import { useButtonState } from '../hooks/useButtonState'
-import { Button } from './Button'
-import { Frame } from './Frame'
+import { Button } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Button'
+import { Frame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
+import { useMotion, useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
+import { useButtonAnimation } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks/useButtonAnimation'
+import { useButtonState } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks/useButtonState'
 
 interface ReactiveButtonProps extends React.PropsWithChildren {
   onClick?: () => void
@@ -123,7 +122,6 @@ export function ReactiveButton({
       change={change}
     >
       <Frame
-        key="button-box"
         backgroundColor={composeBindings(
           animation.hoverOnly,
           animation.press,

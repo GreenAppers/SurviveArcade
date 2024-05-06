@@ -3,13 +3,12 @@ import { composeBindings } from '@rbxts/pretty-react-hooks'
 import React from '@rbxts/react'
 import { images } from 'ReplicatedStorage/shared/assets'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
-
-import { useMotion, useRem } from '../hooks'
-import { Frame } from './Frame'
-import { Image } from './Image'
-import { Outline } from './Outline'
-import { ReactiveButton } from './ReactiveButton'
-import { Shadow } from './Shadow'
+import { Frame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
+import { Image } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Image'
+import { Outline } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Outline'
+import { ReactiveButton } from 'StarterPlayer/StarterPlayerScripts/Gui/components/ReactiveButton'
+import { Shadow } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Shadow'
+import { useMotion, useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 
 interface PrimaryButtonProps extends React.PropsWithChildren {
   readonly onClick?: () => void
@@ -52,7 +51,6 @@ export function PrimaryButton({
       layoutOrder={layoutOrder}
     >
       <Shadow
-        key="drop-shadow"
         shadowSize={rem(2.5)}
         shadowBlur={0.2}
         shadowTransparency={lerpBinding(hover, 0.7, 0.4)}
@@ -60,27 +58,20 @@ export function PrimaryButton({
       />
 
       <Frame
-        key="background"
         backgroundColor={palette.white}
         cornerRadius={new UDim(0, rem(1))}
         size={new UDim2(1, 0, 1, 0)}
       >
         <uigradient
-          key="background-gradient"
           Offset={lerpBinding(hover, new Vector2(), new Vector2(0, 1))}
           Rotation={90}
           Transparency={new NumberSequence(0, 0.1)}
         />
       </Frame>
 
-      <Outline
-        key="button-outline"
-        cornerRadius={new UDim(0, rem(1))}
-        innerTransparency={0}
-      />
+      <Outline cornerRadius={new UDim(0, rem(1))} innerTransparency={0} />
 
       <Image
-        key="glow-overlay"
         image={images.gui.button_glow_top}
         imageTransparency={composeBindings(
           overlayTransparency,
@@ -90,11 +81,7 @@ export function PrimaryButton({
         cornerRadius={new UDim(0, rem(1))}
         size={new UDim2(1, 0, 1, 0)}
       >
-        <uigradient
-          key="gradient"
-          Color={overlayGradient}
-          Rotation={overlayRotation}
-        />
+        <uigradient Color={overlayGradient} Rotation={overlayRotation} />
       </Image>
 
       {children}

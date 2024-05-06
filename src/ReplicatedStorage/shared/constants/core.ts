@@ -39,8 +39,20 @@ export const CHARACTER_CHILD = {
   HumanoidRootPart: 'HumanoidRootPart' as const,
 }
 
+export const COLLECT_GUI_ATTRIBUTES = {
+  StartPosition: 'StartPosition' as const,
+}
+
 export const HUMANOID_ROOT_PART_CHILD = {
   RootRigAttachment: 'RootRigAttachment' as const,
+}
+
+export const PLAYER_CHILD = {
+  PlayerGui: 'PlayerGui' as const,
+}
+
+export const PLAYER_GUI_CHILD = {
+  CollectGui: 'CollectGui' as const,
 }
 
 export const ARCADE_TABLE_TYPES: {

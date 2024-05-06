@@ -1,7 +1,6 @@
 import React from '@rbxts/react'
 import { IS_EDIT } from 'ReplicatedStorage/shared/constants/core'
-
-import { Group } from './Group'
+import { Group } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Group'
 
 interface LayerProps extends React.PropsWithChildren {
   displayOrder?: number

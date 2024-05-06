@@ -1,6 +1,5 @@
 import React from '@rbxts/react'
-
-import { FrameProps } from './Frame'
+import { FrameProps } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
 
 export interface ButtonProps extends FrameProps<TextButton> {
   active?: boolean | React.Binding<boolean>

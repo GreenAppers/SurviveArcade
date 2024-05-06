@@ -1,6 +1,5 @@
 import React, { forwardRef, Ref } from '@rbxts/react'
-
-import { FrameProps } from './Frame'
+import { FrameProps } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
 
 export interface CanvasGroupProps extends FrameProps<CanvasGroup> {
   groupColor?: Color3 | React.Binding<Color3>

@@ -1,6 +1,5 @@
 import React from '@rbxts/react'
-
-import { FrameProps } from './Frame'
+import { FrameProps } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
 
 export interface ImageProps extends FrameProps<ImageLabel> {
   image: string
