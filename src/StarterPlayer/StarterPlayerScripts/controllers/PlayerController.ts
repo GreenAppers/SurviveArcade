@@ -1,4 +1,5 @@
 import { Controller, OnStart } from '@flamework/core'
+import { CmdrClient } from '@rbxts/cmdr'
 import { DeviceType } from '@rbxts/device'
 import {
   Players,
@@ -67,6 +68,8 @@ export class PlayerController implements OnStart {
   onStart() {
     if (this.isDesktop)
       StarterGui.SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
+
+    CmdrClient.SetActivationKeys([Enum.KeyCode.F2])
 
     const player = Players.LocalPlayer
     this.startInputHandling()
