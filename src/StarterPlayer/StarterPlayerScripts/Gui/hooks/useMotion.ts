@@ -1,6 +1,6 @@
 import { useLatestCallback } from '@rbxts/pretty-react-hooks'
+import { Binding, useBinding, useEffect, useMemo } from '@rbxts/react'
 import { createMotion, Motion, MotionGoal } from '@rbxts/ripple'
-import { Binding, useBinding, useEffect, useMemo } from '@rbxts/roact'
 
 export function useMotion<T = number>(
   goal: number,

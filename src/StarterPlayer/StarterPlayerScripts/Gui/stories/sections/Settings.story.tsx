@@ -1,13 +1,13 @@
 import { hoarcekat } from '@rbxts/pretty-react-hooks'
-import Roact from '@rbxts/roact'
+import React from '@rbxts/react'
 
 import { RootProvider } from '../../providers/RootProvider'
 import { Settings } from '../../sections/Settings'
 
-export = hoarcekat(() => {
+export default hoarcekat(() => {
   return (
     <RootProvider>
-      <Settings key="settings" />
+      <Settings />
     </RootProvider>
   )
 })

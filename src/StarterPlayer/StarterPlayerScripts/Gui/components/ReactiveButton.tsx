@@ -1,20 +1,19 @@
 import { blend, lerpBinding, useUpdateEffect } from '@rbxts/pretty-react-hooks'
 import { composeBindings } from '@rbxts/pretty-react-hooks'
-import Roact from '@rbxts/roact'
+import React from '@rbxts/react'
 import {
   ButtonSoundVariant,
   playButtonDown,
   playButtonUp,
 } from 'ReplicatedStorage/shared/assets'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
+import { Button } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Button'
+import { Frame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
+import { useMotion, useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
+import { useButtonAnimation } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks/useButtonAnimation'
+import { useButtonState } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks/useButtonState'
 
-import { useMotion, useRem } from '../hooks'
-import { useButtonAnimation } from '../hooks/useButtonAnimation'
-import { useButtonState } from '../hooks/useButtonState'
-import { Button } from './Button'
-import { Frame } from './Frame'
-
-interface ReactiveButtonProps extends Roact.PropsWithChildren {
+interface ReactiveButtonProps extends React.PropsWithChildren {
   onClick?: () => void
   onMouseDown?: () => void
   onMouseUp?: () => void
@@ -23,22 +22,22 @@ interface ReactiveButtonProps extends Roact.PropsWithChildren {
   onHover?: (hovered: boolean) => void
   onPress?: (pressed: boolean) => void
   enabled?: boolean
-  size?: UDim2 | Roact.Binding<UDim2>
-  position?: UDim2 | Roact.Binding<UDim2>
-  anchorPoint?: Vector2 | Roact.Binding<Vector2>
-  backgroundColor?: Color3 | Roact.Binding<Color3>
-  backgroundTransparency?: number | Roact.Binding<number>
-  cornerRadius?: UDim | Roact.Binding<UDim>
-  layoutOrder?: number | Roact.Binding<number>
+  size?: UDim2 | React.Binding<UDim2>
+  position?: UDim2 | React.Binding<UDim2>
+  anchorPoint?: Vector2 | React.Binding<Vector2>
+  backgroundColor?: Color3 | React.Binding<Color3>
+  backgroundTransparency?: number | React.Binding<number>
+  cornerRadius?: UDim | React.Binding<UDim>
+  layoutOrder?: number | React.Binding<number>
   animatePosition?: boolean
   animatePositionStrength?: number
   animatePositionDirection?: Vector2
   animateSize?: boolean
   animateSizeStrength?: number
   soundVariant?: ButtonSoundVariant
-  zIndex?: number | Roact.Binding<number>
-  event?: Roact.JsxInstanceEvents<TextButton>
-  change?: Roact.JsxInstanceChangeEvents<TextButton>
+  zIndex?: number | React.Binding<number>
+  event?: React.InstanceEvent<TextButton>
+  change?: React.InstanceChangeEvent<TextButton>
 }
 
 export function ReactiveButton({
@@ -123,7 +122,6 @@ export function ReactiveButton({
       change={change}
     >
       <Frame
-        key="button-box"
         backgroundColor={composeBindings(
           animation.hoverOnly,
           animation.press,

@@ -1,4 +1,4 @@
-import Roact, { createElement, FunctionComponent } from '@rbxts/roact'
+import React, { createElement, FunctionComponent } from '@rbxts/react'
 
 export function profiler<P extends object>(
   name: string,
@@ -20,7 +20,7 @@ export function profileAllComponents() {
     return name
   }
 
-  Roact.createElement = ((...args: Parameters<typeof Roact.createElement>) => {
+  React.createElement = ((...args: Parameters<typeof React.createElement>) => {
     const [component] = args
 
     if (typeIs(component, 'function')) {

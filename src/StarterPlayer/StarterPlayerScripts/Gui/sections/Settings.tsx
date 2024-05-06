@@ -1,5 +1,5 @@
+import React from '@rbxts/react'
 import { useSelector } from '@rbxts/react-reflex'
-import Roact from '@rbxts/roact'
 import { USER_ID } from 'ReplicatedStorage/shared/constants/core'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectLocalPlayerState } from 'ReplicatedStorage/shared/state'
@@ -19,13 +19,11 @@ export function Settings() {
   return (
     <Group>
       <uipadding
-        key="margin"
         PaddingBottom={new UDim(0, rem(3))}
         PaddingLeft={new UDim(0, rem(3))}
       />
 
       <uilistlayout
-        key="layout"
         FillDirection="Vertical"
         HorizontalAlignment="Left"
         VerticalAlignment="Bottom"
@@ -34,7 +32,6 @@ export function Settings() {
       />
 
       <CardItem
-        key="guide"
         emoji="➡️"
         label="Guide"
         value={

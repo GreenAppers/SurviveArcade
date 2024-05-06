@@ -1,18 +1,17 @@
 import { lerpBinding, useEventListener } from '@rbxts/pretty-react-hooks'
-import Roact, { useBinding } from '@rbxts/roact'
+import React, { useBinding } from '@rbxts/react'
 import { RunService } from '@rbxts/services'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { darken } from 'ReplicatedStorage/shared/utils/color'
-
-import { useRem } from '../hooks'
-import { CanvasGroup } from './CanvasGroup'
-import { Frame } from './Frame'
+import { CanvasGroup } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CanvasGroup'
+import { Frame } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
+import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 
 interface AlertTimerProps {
   readonly duration: number
   readonly color: Color3
   readonly colorSecondary?: Color3
-  readonly transparency: Roact.Binding<number>
+  readonly transparency: React.Binding<number>
 }
 
 export function AlertTimer({
@@ -37,13 +36,9 @@ export function AlertTimer({
       cornerRadius={new UDim(0, rem(1))}
       size={new UDim2(1, 0, 1, 0)}
     >
-      <uigradient
-        key="gradient"
-        Color={new ColorSequence(colorFrom, colorTo)}
-      />
+      <uigradient Color={new ColorSequence(colorFrom, colorTo)} />
 
       <Frame
-        key="progress"
         backgroundColor={palette.white}
         backgroundTransparency={transparency}
         anchorPoint={new Vector2(0, 1)}

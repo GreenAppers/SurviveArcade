@@ -184,12 +184,22 @@ interface ReplicatedStorage extends Instance {
     [mapName: string]: Folder & ArcadeMap
   }
   Tools: Folder & {
-    PopcornBox: Tool
+    DebugGun: Tool
+    Popcorn: Tool
   }
   Tycoons: Folder & {
     Elf: Tycoon
     Human: Tycoon
     Omniverse: Tycoon
+  }
+}
+
+interface Shooter extends Tool {
+  MouseEvent: RemoteEvent
+  Handle: BasePart & {
+    Fire: Sound
+    GunFirePoint: Attachment
+    ImpactParticle: ParticleEmitter
   }
 }
 
@@ -224,6 +234,8 @@ type TeamName =
   | 'Red Team'
   | 'Unclaimed Team'
   | 'Yellow Team'
+
+type ToolName = 'DebugGun' | 'Popcorn'
 
 interface Tycoon extends Model {
   Baseplate: BasePart

@@ -4,7 +4,7 @@ import { selectTycoonsState } from 'ReplicatedStorage/shared/state'
 import { EXCHANGE, executeExchange } from 'ServerScriptService/utils/exchange'
 
 @Service()
-export class ProximityController implements OnStart {
+export class ProximityService implements OnStart {
   tycoonsSelector = selectTycoonsState()
 
   onStart() {

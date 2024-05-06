@@ -1,5 +1,5 @@
+import React from '@rbxts/react'
 import { useSelector } from '@rbxts/react-reflex'
-import Roact from '@rbxts/roact'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { selectGameState } from 'ReplicatedStorage/shared/state'
 import { CardItem } from 'StarterPlayer/StarterPlayerScripts/Gui/components/CardItem'
@@ -13,12 +13,10 @@ export function GameStatus() {
 
   return (
     <Group
-      key="margin"
       size={new UDim2(1, 0, 0, rem(5))}
       position={new UDim2(0, 0, 0, rem(0))}
     >
       <uilistlayout
-        key="layout"
         SortOrder="LayoutOrder"
         FillDirection="Horizontal"
         VerticalAlignment="Center"
@@ -27,7 +25,6 @@ export function GameStatus() {
       />
       {gameState.roundActive && (
         <CardItem
-          key="remaining"
           emoji="⏰"
           label="Remaining"
           value={`${formatDuration(gameState.roundRemaining)}`}

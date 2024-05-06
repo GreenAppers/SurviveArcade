@@ -20,7 +20,7 @@ export function animateBuildingIn(buildingModel: Model, tweenInfo: TweenInfo) {
   }))
 
   // Make parts invisible and randomly move them
-  parts.forEach((part, i) => {
+  parts.forEach((part) => {
     part.Transparency = 1
     part.Color = Color3.fromRGB(255, 255, 255)
     part.Size = new Vector3()
@@ -44,7 +44,7 @@ export function animateBuildingIn(buildingModel: Model, tweenInfo: TweenInfo) {
   parts.forEach((part, i) => {
     const tween = TweenService.Create(part, tweenInfo, originalProperties[i])
     lastTween = tween
-    tween.Completed.Connect((playbackState) => {
+    tween.Completed.Connect((_playbackState) => {
       // Sometimes Tweens stop before reaching their goal property.
       const original = originalProperties[i]
       part.Transparency = original.Transparency

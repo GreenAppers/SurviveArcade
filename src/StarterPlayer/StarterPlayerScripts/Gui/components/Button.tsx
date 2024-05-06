@@ -1,9 +1,8 @@
-import Roact from '@rbxts/roact'
-
-import { FrameProps } from './Frame'
+import React from '@rbxts/react'
+import { FrameProps } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
 
 export interface ButtonProps extends FrameProps<TextButton> {
-  active?: boolean | Roact.Binding<boolean>
+  active?: boolean | React.Binding<boolean>
   onClick?: () => void
   onMouseDown?: () => void
   onMouseUp?: () => void
@@ -39,11 +38,9 @@ export function Button(props: ButtonProps) {
       LayoutOrder={props.layoutOrder}
       BorderSizePixel={0}
       Event={event}
-      Change={props.change || {}}
+      Change={props.change}
     >
-      {props.cornerRadius && (
-        <uicorner key="corner" CornerRadius={props.cornerRadius} />
-      )}
+      {props.cornerRadius && <uicorner CornerRadius={props.cornerRadius} />}
       {props.children}
     </textbutton>
   )

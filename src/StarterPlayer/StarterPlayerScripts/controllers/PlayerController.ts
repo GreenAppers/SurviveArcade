@@ -3,15 +3,19 @@ import { DeviceType } from '@rbxts/device'
 import {
   Players,
   ReplicatedStorage,
+  RunService,
   StarterGui,
   TweenService,
   UserInputService,
 } from '@rbxts/services'
 import {
   CHARACTER_CHILD,
+  COLLECT_GUI_ATTRIBUTES,
   CURRENCY_EMOJIS,
   CURRENCY_TYPES,
   HUMANOID_ROOT_PART_CHILD,
+  PLAYER_CHILD,
+  PLAYER_GUI_CHILD,
   TEAM_NAMES,
   USER_DEVICE,
 } from 'ReplicatedStorage/shared/constants/core'
@@ -36,6 +40,7 @@ import {
   MESSAGE,
 } from 'ReplicatedStorage/shared/utils/messages'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
+import { ShooterComponent } from 'StarterPlayer/StarterPlayerScripts/components/Shooter'
 import { ArcadeController } from 'StarterPlayer/StarterPlayerScripts/controllers/ArcadeController'
 import { TycoonController } from 'StarterPlayer/StarterPlayerScripts/controllers/TycoonController'
 import { calculateRem } from 'StarterPlayer/StarterPlayerScripts/fonts'
@@ -44,11 +49,13 @@ import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts
 
 @Controller({})
 export class PlayerController implements OnStart {
-  collectionPlaying = false
+  collectionAnimationPlaying = false
   firstRespawn = true
   gravityController: GravityController | undefined
+  shooter: ShooterComponent | undefined
   isDesktop = USER_DEVICE === DeviceType.Desktop
   isSeated = false
+  isShooting = false
   runSpeed = 32
   walkSpeed = 16
 
@@ -75,8 +82,13 @@ export class PlayerController implements OnStart {
     }
   }
 
+  equipShooter(shooter: ShooterComponent | undefined) {
+    this.shooter = shooter
+    this.isShooting = false
+  }
+
   startInputHandling() {
-    UserInputService.InputBegan.Connect((inputObject) => {
+    UserInputService.InputBegan.Connect((inputObject, gameHandledEvent) => {
       if (inputObject.KeyCode === Enum.KeyCode.LeftShift) {
         // Sprint started
         const player = Players.LocalPlayer
@@ -96,10 +108,16 @@ export class PlayerController implements OnStart {
           Enum.CoreGuiType.PlayerList,
           !playerListEnabled,
         )
+      } else if (
+        inputObject.UserInputType === Enum.UserInputType.MouseButton1 &&
+        this.shooter &&
+        !gameHandledEvent
+      ) {
+        this.isShooting = true
       }
     })
 
-    UserInputService.InputEnded.Connect((inputObject) => {
+    UserInputService.InputEnded.Connect((inputObject, gameHandledEvent) => {
       if (inputObject.KeyCode === Enum.KeyCode.LeftShift) {
         // Sprint stopped
         const player = Players.LocalPlayer
@@ -108,6 +126,20 @@ export class PlayerController implements OnStart {
         if (humanoid && humanoid.WalkSpeed > 0)
           humanoid.WalkSpeed = this.walkSpeed
         if (camera) camera.FieldOfView = 70
+      } else if (
+        inputObject.UserInputType === Enum.UserInputType.MouseButton1 &&
+        this.shooter &&
+        !gameHandledEvent
+      ) {
+        this.isShooting = false
+      }
+    })
+
+    RunService.Stepped.Connect(() => {
+      if (this.isShooting && this.shooter && this.shooter.mouse) {
+        this.shooter.instance.MouseEvent.FireServer(
+          this.shooter.mouse.Hit.Position,
+        )
       }
     })
   }
@@ -235,15 +267,17 @@ export class PlayerController implements OnStart {
 
   playCollectionAnimation(text?: string, yOffset = 0) {
     const collectGui = Players.LocalPlayer.FindFirstChild(
-      'PlayerGui',
-    )?.FindFirstChild('CollectGui') as CollectGui | undefined
+      PLAYER_CHILD.PlayerGui,
+    )?.FindFirstChild(PLAYER_GUI_CHILD.CollectGui) as CollectGui | undefined
     if (!collectGui) return
-    if (this.collectionPlaying) return
-    this.collectionPlaying = true
+    if (this.collectionAnimationPlaying) return
+    this.collectionAnimationPlaying = true
     const tweenInfo = new TweenInfo(0.8, Enum.EasingStyle.Linear)
     ;(collectGui.Frame.GetChildren() as TextLabel[]).forEach((child) => {
       if (text) child.Text = text
-      child.Position = child.GetAttribute('StartPosition') as UDim2
+      child.Position = child.GetAttribute(
+        COLLECT_GUI_ATTRIBUTES.StartPosition,
+      ) as UDim2
       const tween = TweenService.Create(child, tweenInfo, {
         Position: new UDim2(1.0, 0, 0.5, yOffset),
       })
@@ -252,7 +286,7 @@ export class PlayerController implements OnStart {
     collectGui.Enabled = true
     wait(0.7)
     collectGui.Enabled = false
-    this.collectionPlaying = false
+    this.collectionAnimationPlaying = false
   }
 
   playDialogAnimation(
@@ -263,7 +297,9 @@ export class PlayerController implements OnStart {
     const textLabel = dialogGui.Frame.TextFrame.TextLabel
     textLabel.Text = displayText
     textLabel.MaxVisibleGraphemes = 0
-    dialogGui.Parent = Players.LocalPlayer.FindFirstChild('PlayerGui')
+    dialogGui.Parent = Players.LocalPlayer.FindFirstChild(
+      PLAYER_CHILD.PlayerGui,
+    )
 
     const wizard =
       dialogGui.Frame.CharacterFrame.ViewportFrame.WorldModel.Wizard

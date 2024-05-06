@@ -4,6 +4,7 @@ import {
   ProximityPromptService,
   ReplicatedStorage,
 } from '@rbxts/services'
+import { TOOL_NAMES } from 'ReplicatedStorage/shared/constants/core'
 import { selectTycoonsState } from 'ReplicatedStorage/shared/state'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { PlayerController } from 'StarterPlayer/StarterPlayerScripts/controllers/PlayerController'
@@ -51,8 +52,8 @@ export class ProximityController implements OnStart {
     const backpack = Players.LocalPlayer.FindFirstChild('Backpack') as
       | Backpack
       | undefined
-    if (backpack && !backpack.FindFirstChild('PopcornBox')) {
-      const popcornBox = ReplicatedStorage.Tools.PopcornBox.Clone()
+    if (backpack && !backpack.FindFirstChild(TOOL_NAMES.Popcorn)) {
+      const popcornBox = ReplicatedStorage.Tools.Popcorn.Clone()
       popcornBox.Parent = backpack
     }
   }
