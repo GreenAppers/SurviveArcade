@@ -113,7 +113,7 @@ export const TEAM_NAMES: {
 export const TOOL_NAMES: {
   [name in ToolName]: ToolName
 } = {
-  DebugGun: 'DebugGun' as const,
+  ArcadeGun: 'ArcadeGun' as const,
   Popcorn: 'Popcorn' as const,
 }
 

@@ -184,7 +184,7 @@ interface ReplicatedStorage extends Instance {
     [mapName: string]: Folder & ArcadeMap
   }
   Tools: Folder & {
-    DebugGun: Tool
+    ArcadeGun: Tool
     Popcorn: Tool
   }
   Tycoons: Folder & {
@@ -235,7 +235,7 @@ type TeamName =
   | 'Unclaimed Team'
   | 'Yellow Team'
 
-type ToolName = 'DebugGun' | 'Popcorn'
+type ToolName = 'ArcadeGun' | 'Popcorn'
 
 interface Tycoon extends Model {
   Baseplate: BasePart

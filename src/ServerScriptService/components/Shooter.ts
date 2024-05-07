@@ -4,6 +4,7 @@ import FastCast from '@rbxts/fastcast'
 import { PartCache } from '@rbxts/partcache/out/class'
 import { Debris, Workspace } from '@rbxts/services'
 import { ShooterTag } from 'ReplicatedStorage/shared/constants/tags'
+import { randomElement } from 'ReplicatedStorage/shared/utils/object'
 import { ShooterService } from 'ServerScriptService/services/ShooterService'
 
 // REMEMBER: THERE'S RESOURCES TO HELP YOU AT https://etithespirit.github.io/FastCastAPIDocs
@@ -16,6 +17,14 @@ const FIRE_DELAY = 0 // The amount of time that must pass after firing the gun b
 const BULLETS_PER_SHOT = 1 // The amount of bullets to fire every shot. Make this greater than 1 for a shotgun effect.
 const PIERCE_DEMO = true // True if the pierce demo should be used. See the CanRayPierce function for more info.
 const TAU = math.pi * 2 // Set up mathematical constant Tau (pi * 2)
+const USERDATA_HITS = 'Hits' // The key for the hits data in the cast's UserData
+const USERDATA_INIT = 'Init' // The key for the initialization data in the cast's UserData
+
+const BULLET_COLORS = [
+  Color3.fromRGB(208, 40, 41),
+  Color3.fromRGB(238, 180, 71),
+  Color3.fromRGB(85, 152, 207),
+]
 
 const reflect = (surfaceNormal: Vector3, bulletNormal: Vector3) =>
   bulletNormal.sub(surfaceNormal.mul(2 * bulletNormal.Dot(surfaceNormal)))
@@ -84,18 +93,19 @@ export class ShooterComponent
         _segmentVelocity,
       ) => {
         // Let's keep track of how many times we've hit something.
-        /* const hits = cast.UserData.Hits
-        if (!hits) {
+        const userData = cast.UserData as Record<string, unknown>
+        const hits = userData[USERDATA_HITS]
+        if (!hits || !typeIs(hits, 'number')) {
           // If the hit data isn't registered, set it to 1 (because this is our first hit)
-          cast.UserData.Hits = 1
+          userData[USERDATA_HITS] = 1
         } else {
           // If the hit data is registered, add 1.
-          cast.UserData.Hits += 1
+          userData[USERDATA_HITS] = hits + 1
+          // And if the hit count is over 3, don't allow piercing and instead stop the ray.
+          if (hits + 1 > 3) {
+            return false
+          }
         }
-        // And if the hit count is over 3, don't allow piercing and instead stop the ray.
-        if (cast.UserData.Hits > 3) {
-          return false
-        } */
 
         // Now if we make it here, we want our ray to continue.
         // This is extra important! If a bullet bounces off of something, maybe we want it to do damage too!
@@ -158,7 +168,7 @@ export class ShooterComponent
 
     this.caster.LengthChanged.Connect(
       (
-        _cast,
+        cast,
         segmentOrigin,
         segmentDirection,
         length,
@@ -169,6 +179,20 @@ export class ShooterComponent
         // The bullet argument is the same object passed into the fire function.
         if (!cosmeticBulletObject || !cosmeticBulletObject.IsA('BasePart'))
           return
+
+        const userData = cast.UserData as Record<string, unknown>
+        if (!userData[USERDATA_INIT]) {
+          userData[USERDATA_INIT] = 1
+
+          // If the bullet is just starting, we can set up some initial properties.
+          const color = randomElement(BULLET_COLORS)
+          cosmeticBulletObject.Color = Color3.fromRGB(
+            color.R * 255 + this.random.NextInteger(-5, 5),
+            color.G * 255 + this.random.NextInteger(-5, 5),
+            color.B * 255 + this.random.NextInteger(-5, 5),
+          )
+        }
+
         const bulletLength = cosmeticBulletObject.Size.Z / 2 // This is used to move the bullet to the right spot based on a CFrame offset
         const baseCFrame = new CFrame(
           segmentOrigin,
@@ -231,6 +255,7 @@ export class ShooterComponent
     const attachment = new Instance('Attachment')
     attachment.CFrame = new CFrame(position, position.add(normal))
     attachment.Parent = Workspace.Terrain
+
     const particle = this.instance.Handle.ImpactParticle.Clone()
     particle.Parent = attachment
     Debris.AddItem(attachment, particle.Lifetime.Max) // Automatically delete the particle effect after its maximum lifetime.

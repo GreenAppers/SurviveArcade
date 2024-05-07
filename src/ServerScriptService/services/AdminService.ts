@@ -5,7 +5,7 @@ import { ServerScriptService } from '@rbxts/services'
 
 @Service()
 export class AdminService implements OnStart {
-  operators = new Set<number>()
+  operators = new Map<number, string>()
 
   constructor(private readonly logger: Logger) {}
 
@@ -21,7 +21,7 @@ export class AdminService implements OnStart {
   }
 
   opUser(target: Player, source: Player) {
-    this.operators.add(target.UserId)
+    this.operators.set(target.UserId, target.Name)
     this.logger.Info(`${source.Name} has op'd ${target.Name}`)
   }
 
@@ -32,7 +32,10 @@ export class AdminService implements OnStart {
 
   isAdmin(userId: number) {
     return (
-      !game.CreatorId || userId === game.CreatorId || this.operators.has(userId)
+      !game.CreatorId ||
+      userId === game.CreatorId ||
+      (game.PrivateServerId && game.PrivateServerOwnerId === userId) ||
+      this.operators.has(userId)
     )
   }
 }
