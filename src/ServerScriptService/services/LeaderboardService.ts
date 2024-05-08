@@ -21,10 +21,14 @@ export class LeaderboardService implements OnStart {
       DataStoreService.GetOrderedDataStore('LeaderboardLevity')
     for (;;) {
       const now = DateTime.now().UnixTimestamp
-      if (now - this.leaderboardUpdateLast >= this.leaderboardUpdateSeconds)
+      if (now - this.leaderboardUpdateLast >= this.leaderboardUpdateSeconds) {
+        this.leaderboardUpdateLast = now
         this.updateLeaderboards()
-      if (now - this.datascoreUpdateLast >= this.datascoreUpdateSeconds)
+      }
+      if (now - this.datascoreUpdateLast >= this.datascoreUpdateSeconds) {
+        this.datascoreUpdateLast = now
         this.updateDatastores()
+      }
       task.wait(5)
     }
   }
