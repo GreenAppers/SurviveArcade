@@ -73,7 +73,7 @@ export class LeaderboardService implements OnStart {
       item.PlayerName.Text = name
       item.Rank.Text = `#${rankInLB++}`
       item.Value.Text = `${dataStored.value}`
-      item.Parent = script.Parent
+      item.Parent = container
       if (image[1]) item.Photo.Image = image[0]
     }
   }
