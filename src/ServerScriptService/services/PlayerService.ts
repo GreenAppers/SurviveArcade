@@ -17,6 +17,7 @@ import {
   PlayerData,
   PlayerState,
 } from 'ReplicatedStorage/shared/state/PlayersState'
+import { LeaderboardService } from 'ServerScriptService/services/LeaderboardService'
 import { TycoonService } from 'ServerScriptService/services/TycoonService'
 import { store } from 'ServerScriptService/store'
 import { forEveryPlayer } from 'ServerScriptService/utils/player'
@@ -35,6 +36,7 @@ export class PlayerService implements OnInit {
   constructor(
     protected readonly logger: Logger,
     protected readonly tycoonService: TycoonService,
+    protected readonly leaderboardService: LeaderboardService,
   ) {}
 
   onInit() {
@@ -50,6 +52,8 @@ export class PlayerService implements OnInit {
 
   private handlePlayerLeft(player: Player) {
     const profile = this.profiles.get(player.UserId)
+    if (profile?.Data)
+      this.leaderboardService.updateDatastoresForPlayer(player, profile.Data)
     this.logger.Info(`Player left ${player.UserId}`)
     profile?.Release()
   }

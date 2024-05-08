@@ -146,6 +146,7 @@ interface ChangeMachine extends Model {
 interface ArcadeMap {
   Baseplate: BasePart
   ChangeMachine: ChangeMachine
+  LeaderboardLevity: Leaderboard
   Skybox?: Sky
   Table1?: Cabinet
   Table2?: Cabinet
@@ -159,6 +160,22 @@ interface ArcadeMap {
   Tycoon6?: TycoonPlot
   Tycoon7?: TycoonPlot
   Tycoon8?: TycoonPlot
+}
+
+interface Leaderboard extends Model {
+  Leaderboard: Part & {
+    SurfaceGui: SurfaceGui & {
+      Frame: Frame & {
+        List: ScrollingFrame
+      }
+    }
+    ItemTemplate: Frame & {
+      PlayerName: TextLabel
+      Photo: ImageLabel
+      Rank: TextLabel
+      Value: TextLabel
+    }
+  }
 }
 
 interface PlayerCharacter extends Model {
