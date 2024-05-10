@@ -47,17 +47,3 @@ target:
           description: |
             Get the high score.  But beware of the humans!
           maxPlayerCount: 8
-    assets:
-      - assets/sounds/*
-    badges:
-      score-100000:
-        name: 🚀 100,000 Score
-        description: You're breaking records! Hit a score of 100,000.
-        icon: assets/badges/score_100000.png
-        enabled: true
-    products:
-      tron-morph:
-        price: 375
-        name: 🤖 Tron morph
-        description: Buy extra health in style!
-        icon: assets/marketing/game_icon.jpg

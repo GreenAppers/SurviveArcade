@@ -2,6 +2,17 @@ import { createProducer } from '@rbxts/reflex'
 import { TYCOON_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
 
+export enum GamePass {
+  ArcadeGun = 806588971,
+}
+
+export enum Product {
+  Dollars1000 = 1825724409,
+  Levity10 = 1825722222,
+  NukeServer = 1710612154,
+  Tickets2500 = 1825725223,
+}
+
 export interface PlayerSettings {
   readonly guide: boolean
   readonly music: boolean
@@ -31,8 +42,24 @@ export type PlayerArcadeTables = {
   readonly [tableType in ArcadeTableType]: PlayerArcadeTable
 }
 
+export type PlayerGamePasses = {
+  readonly [gamePass in GamePass]: GamePassData
+}
+
+export type PlayerProducts = {
+  readonly [product in Product]: ProductData
+}
+
 export type PlayerTycoons = {
   readonly [tycoonType in TycoonType]: PlayerTycoon
+}
+
+export interface GamePassData {
+  active: boolean
+}
+
+export interface ProductData {
+  timesPurchased: number
 }
 
 export interface PlayerData {
@@ -43,6 +70,9 @@ export interface PlayerData {
   readonly arcadeTable: PlayerArcadeTables
   readonly tycoon: PlayerTycoons
   readonly completed: PlayerCompleted
+  readonly gamePasses: Partial<PlayerGamePasses>
+  readonly products: Partial<PlayerProducts>
+  readonly receiptHistory: string[]
 }
 
 export interface PlayerDetail {
@@ -105,6 +135,9 @@ export const defaultPlayerData: PlayerData = {
     },
   },
   completed: defaultPlayerCompleted,
+  gamePasses: {},
+  products: {},
+  receiptHistory: [],
 } as const
 
 export const defaultPlayerDetail: PlayerDetail = {
@@ -133,6 +166,9 @@ export const getPlayerData = (state: PlayerState): PlayerData => ({
   arcadeTable: state.arcadeTable,
   tycoon: state.tycoon,
   completed: state.completed,
+  gamePasses: state.gamePasses,
+  products: state.products,
+  receiptHistory: state.receiptHistory,
 })
 
 export function getPlayerDataCurrencyKey(currency: Currency) {
@@ -150,6 +186,11 @@ export const getPlayerCurrency = (
   playerState: PlayerState | undefined,
   currency: Currency,
 ) => playerState?.[getPlayerDataCurrencyKey(currency)] || 0
+
+export const getPlayerGamePass = (
+  playerState: PlayerState | undefined,
+  gamePassId: GamePass,
+) => playerState?.gamePasses?.[gamePassId]?.active ?? false
 
 const getPlayerKey = (userID: number) => KEY_TEMPLATE.format(userID)
 
@@ -319,6 +360,50 @@ export const playersSlice = createProducer(initialState, {
               [buttonName]: true,
             },
           },
+        },
+      },
+    }
+  },
+
+  purchaseDeveloperProduct: (
+    state,
+    userId: number,
+    productId: Product,
+    purchaseId: string,
+  ) => {
+    const playerKey = getPlayerKey(userId)
+    const playerState = state[playerKey]
+    if (!playerState || playerState.receiptHistory.includes(purchaseId))
+      return state
+    const receiptHistory = [...playerState.receiptHistory, purchaseId]
+    while (receiptHistory.size() > 50) receiptHistory.shift()
+    return {
+      ...state,
+      [playerKey]: {
+        ...playerState,
+        products: {
+          ...playerState.products,
+          [productId]: {
+            timesPurchased:
+              (playerState.products[productId]?.timesPurchased || 0) + 1,
+          },
+        },
+        receiptHistory,
+      },
+    }
+  },
+
+  setGamePassOwned: (state, userID: number, gamePassId: GamePass) => {
+    const playerKey = getPlayerKey(userID)
+    const playerState = state[playerKey]
+    if (!playerState || playerState.gamePasses[gamePassId]?.active) return state
+    return {
+      ...state,
+      [playerKey]: {
+        ...playerState,
+        gamePasses: {
+          ...playerState.gamePasses,
+          [gamePassId]: { active: true },
         },
       },
     }

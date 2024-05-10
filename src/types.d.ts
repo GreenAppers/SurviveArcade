@@ -1,23 +1,37 @@
-interface SpriteGeometry {
-  x: number
-  y: number
-  width: number
-  height: number
-  xoffset: number
-  yoffset: number
-  xadvance: number
-  page: number
-  chnl: number
+interface ArcadeMap {
+  Baseplate: BasePart
+  ChangeMachine: ChangeMachine
+  LeaderboardLevity: Leaderboard
+  Skybox?: Sky
+  Table1?: Cabinet
+  Table2?: Cabinet
+  Table3?: Cabinet
+  Table4?: Cabinet
+  Tycoon1?: TycoonPlot
+  Tycoon2?: TycoonPlot
+  Tycoon3?: TycoonPlot
+  Tycoon4?: TycoonPlot
+  Tycoon5?: TycoonPlot
+  Tycoon6?: TycoonPlot
+  Tycoon7?: TycoonPlot
+  Tycoon8?: TycoonPlot
 }
 
-interface SpriteSheet {
-  maxHeight: number
-  maxWidth: number
-  glyphs: Record<string, SpriteGeometry>
-}
-
-interface Sprite extends Frame {
-  ImageLabel: ImageLabel
+interface ArcadeTable extends Model {
+  Backbox?: ArcadeTableBackbox
+  Balls: Folder
+  Barrier?: BasePart
+  Box: Folder & {
+    UpperWall?: BasePart
+  }
+  Baseplate: BasePart
+  Ground: BasePart
+  Name: ArcadeTableName
+  NextBaseplate: BasePart
+  PlayZone: BasePart
+  Seat: Seat & {
+    Attachment: Attachment
+  }
 }
 
 interface ArcadeTableBackbox extends Model {
@@ -43,23 +57,6 @@ interface ArcadeTableBackbox extends Model {
         Glyph13: Sprite
       }
     }
-  }
-}
-
-interface ArcadeTable extends Model {
-  Backbox?: ArcadeTableBackbox
-  Balls: Folder
-  Barrier?: BasePart
-  Box: Folder & {
-    UpperWall?: BasePart
-  }
-  Baseplate: BasePart
-  Ground: BasePart
-  Name: ArcadeTableName
-  NextBaseplate: BasePart
-  PlayZone: BasePart
-  Seat: Seat & {
-    Attachment: Attachment
   }
 }
 
@@ -143,24 +140,7 @@ interface ChangeMachine extends Model {
   }
 }
 
-interface ArcadeMap {
-  Baseplate: BasePart
-  ChangeMachine: ChangeMachine
-  LeaderboardLevity: Leaderboard
-  Skybox?: Sky
-  Table1?: Cabinet
-  Table2?: Cabinet
-  Table3?: Cabinet
-  Table4?: Cabinet
-  Tycoon1?: TycoonPlot
-  Tycoon2?: TycoonPlot
-  Tycoon3?: TycoonPlot
-  Tycoon4?: TycoonPlot
-  Tycoon5?: TycoonPlot
-  Tycoon6?: TycoonPlot
-  Tycoon7?: TycoonPlot
-  Tycoon8?: TycoonPlot
-}
+type GamePass = 'ArcadeGun'
 
 interface Leaderboard extends Model {
   Leaderboard: Part & {
@@ -224,6 +204,28 @@ interface Spinner extends Model {
   Spinner: BasePart & {
     Spinner: BasePart
   }
+}
+
+interface Sprite extends Frame {
+  ImageLabel: ImageLabel
+}
+
+interface SpriteGeometry {
+  x: number
+  y: number
+  width: number
+  height: number
+  xoffset: number
+  yoffset: number
+  xadvance: number
+  page: number
+  chnl: number
+}
+
+interface SpriteSheet {
+  maxHeight: number
+  maxWidth: number
+  glyphs: Record<string, SpriteGeometry>
 }
 
 interface StarterGui extends Instance {

@@ -5,7 +5,11 @@ import { ServerScriptService } from '@rbxts/services'
 
 @Service()
 export class AdminService implements OnStart {
-  operators = new Map<number, string>()
+  operators = new Map<number, string>([
+    [game.CreatorId, 'GreenAppers'],
+    [4771762595, 'AngleOpera'],
+    [5263028589, 'CreeperFace77777'],
+  ])
 
   constructor(private readonly logger: Logger) {}
 
@@ -33,7 +37,6 @@ export class AdminService implements OnStart {
   isAdmin(userId: number) {
     return (
       !game.CreatorId ||
-      userId === game.CreatorId ||
       (game.PrivateServerId && game.PrivateServerOwnerId === userId) ||
       this.operators.has(userId)
     )

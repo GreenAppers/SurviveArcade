@@ -99,9 +99,11 @@ mantle deploy --environment beta
 - [Reflex](https://github.com/littensy/reflex) by [littensy](https://github.com/littensy)
 - [Slither](https://github.com/littensy/slither) by [littensy](https://github.com/)
 - [Roblox-TS-Template](https://github.com/MonzterDev/Roblox-TS-Template) by [MonzterDev](https://github.com/MonzterDev)
+- [roblox-ts-project-template](https://github.com/christopher-buss/roblox-ts-project-template) by [christopher-buss](https://github.com/christopher-buss)
 - [FastCast](https://etithespir.it/FastCastAPIDocs/) by [EtiTheSpirit](https://github.com/EtiTheSpirit)
 - [Gravity Controller](https://devforum.roblox.com/t/wall-stickgravity-controller/432598/404) by [Ego Moose](https://github.com/EgoMoose)
 - [Skybox AI](https://skybox.blockadelabs.com/) by [Blockade Labs](https://www.blockadelabs.com/)
-- [SnowB Bitmap Font](https://snowb.org/): Bitmap Font Generator Online
+- [SnowB Bitmap Font](https://snowb.org/): Bitmap Font Generator Onlina
+- [Android Asset Studio](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.htmle)
 - Image and narrative generation by [Together AI](https://www.together.ai/) and [Microsoft Designer](https://designer.microsoft.com/)
 - Roblox community for models, plugins, tutorials, and help!

@@ -18,6 +18,7 @@ import {
   PlayerState,
 } from 'ReplicatedStorage/shared/state/PlayersState'
 import { LeaderboardService } from 'ServerScriptService/services/LeaderboardService'
+import { TransactionService } from 'ServerScriptService/services/TransactionService'
 import { TycoonService } from 'ServerScriptService/services/TycoonService'
 import { store } from 'ServerScriptService/store'
 import { forEveryPlayer } from 'ServerScriptService/utils/player'
@@ -37,6 +38,7 @@ export class PlayerService implements OnInit {
     protected readonly logger: Logger,
     protected readonly tycoonService: TycoonService,
     protected readonly leaderboardService: LeaderboardService,
+    protected readonly transactionService: TransactionService,
   ) {}
 
   onInit() {
@@ -83,6 +85,11 @@ export class PlayerService implements OnInit {
     this.profiles.set(player.UserId, profile)
     const state = store.loadPlayerData(player.UserId, profile.Data)
     const playerSelector = selectPlayerState(player.UserId)
+    const playerDollars = playerSelector(state)?.dollars ?? 0
+
+    Promise.try(() =>
+      this.transactionService.reloadPlayerGamePasses(player, player.UserId),
+    )
 
     const unsubscribePlayerData = store.subscribe(
       playerSelector,
@@ -97,13 +104,19 @@ export class PlayerService implements OnInit {
         )
       },
     )
+
     const unsubscribeLeaderstats = this.createLeaderstatsHandler(
       player,
       playerSelector(state),
     )
     this.createRespawnHandler(player)
 
-    const playerDollars = playerSelector(state)?.dollars ?? 0
+    Players.PlayerRemoving.Connect((playerLeft) => {
+      if (playerLeft.UserId !== player.UserId) return
+      unsubscribePlayerData()
+      unsubscribeLeaderstats()
+    })
+
     if (playerDollars <= VALUES.GameWelcomeDollars.Value)
       setTimeout(() => {
         store.addPlayerCurrency(
@@ -112,12 +125,6 @@ export class PlayerService implements OnInit {
           math.max(0, VALUES.GameWelcomeDollars.Value - playerDollars),
         )
       }, VALUES.GameWelcomeDelay.Value)
-
-    Players.PlayerRemoving.Connect((playerLeft) => {
-      if (playerLeft.UserId !== player.UserId) return
-      unsubscribePlayerData()
-      unsubscribeLeaderstats()
-    })
   }
 
   private createLeaderstatsHandler(player: Player, playerState?: PlayerState) {
