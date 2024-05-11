@@ -66,6 +66,7 @@ export interface PlayerData {
   readonly tickets: number
   readonly dollars: number
   readonly levity: number
+  readonly KOs: number
   readonly settings: PlayerSettings
   readonly arcadeTable: PlayerArcadeTables
   readonly tycoon: PlayerTycoons
@@ -114,6 +115,7 @@ export const defaultPlayerData: PlayerData = {
   tickets: 0,
   dollars: 0,
   levity: 0,
+  KOs: 0,
   settings: defaultPlayerSettings,
   arcadeTable: {
     Pinball: defaultPlayerArcadeTable,
@@ -162,6 +164,7 @@ export const getPlayerData = (state: PlayerState): PlayerData => ({
   tickets: state.tickets,
   dollars: state.dollars,
   levity: state.levity,
+  KOs: state.KOs,
   settings: state.settings,
   arcadeTable: state.arcadeTable,
   tycoon: state.tycoon,

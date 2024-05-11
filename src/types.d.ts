@@ -1,7 +1,10 @@
 interface ArcadeMap {
   Baseplate: BasePart
   ChangeMachine: ChangeMachine
+  LeaderboardDollars: Leaderboard
   LeaderboardLevity: Leaderboard
+  LeaderboardKOs: Leaderboard
+  LeaderboardTickets: Leaderboard
   Skybox?: Sky
   Table1?: Cabinet
   Table2?: Cabinet

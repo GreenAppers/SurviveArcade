@@ -1,6 +1,6 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { Players, ReplicatedStorage } from '@rbxts/services'
+import { MarketplaceService, Players, ReplicatedStorage } from '@rbxts/services'
 import { TYCOON_ATTRIBUTES } from 'ReplicatedStorage/shared/constants/core'
 import { TycoonButtonTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
@@ -16,6 +16,7 @@ import {
   isTycoonButtonDependencyMet,
   tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
+import { getProductForCurrency } from 'ServerScriptService/services/TransactionService'
 import { TycoonService } from 'ServerScriptService/services/TycoonService'
 import { store } from 'ServerScriptService/store'
 import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
@@ -66,8 +67,15 @@ export class TycoonButtonComponent
         touchedPlayer.UserId,
         tycoonType,
       )
-      if (tycoonButtonsSelector(state) === tycoonButtonsSelector(newState))
+      if (tycoonButtonsSelector(state) === tycoonButtonsSelector(newState)) {
+        // Insufficient funds
+        const product = getProductForCurrency(buttonCurrency)
+        if (product)
+          MarketplaceService.PromptProductPurchase(touchedPlayer, product)
         return
+      }
+
+      // Handle button purchased
       const playerState = selectPlayerState(touchedPlayer.UserId)(newState)
       const playerTycoonButtons = selectPlayerTycoonButtons(
         touchedPlayer.UserId,

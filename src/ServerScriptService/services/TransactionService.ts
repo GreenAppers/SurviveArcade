@@ -3,6 +3,7 @@ import { Service } from '@flamework/core'
 import type { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { MarketplaceService, Players } from '@rbxts/services'
+import { CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import { GamePass, Product } from 'ReplicatedStorage/shared/state/PlayersState'
 import { store } from 'ServerScriptService/store'
@@ -30,6 +31,21 @@ export function getProduct(productID: number): Product | undefined {
     case Product.Levity10:
       return Product.Levity10
     case Product.Tickets2500:
+      return Product.Tickets2500
+    default:
+      return undefined
+  }
+}
+
+export function getProductForCurrency(
+  currency?: Currency,
+): Product | undefined {
+  switch (currency) {
+    case CURRENCY_TYPES.Dollars:
+      return Product.Dollars1000
+    case CURRENCY_TYPES.Levity:
+      return Product.Levity10
+    case CURRENCY_TYPES.Tickets:
       return Product.Tickets2500
     default:
       return undefined

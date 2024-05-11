@@ -10,6 +10,8 @@ export class LeaderboardService implements OnStart {
   leaderboardUpdateLast = 0
   datastoreDollars: OrderedDataStore | undefined
   datastoreLevity: OrderedDataStore | undefined
+  datastoreKOs: OrderedDataStore | undefined
+  datastoreTickets: OrderedDataStore | undefined
   datascoreUpdateSeconds = 5 * 60
   datascoreUpdateLast = DateTime.now().UnixTimestamp
 
@@ -19,6 +21,9 @@ export class LeaderboardService implements OnStart {
       DataStoreService.GetOrderedDataStore('LeaderboardDollars')
     this.datastoreLevity =
       DataStoreService.GetOrderedDataStore('LeaderboardLevity')
+    this.datastoreKOs = DataStoreService.GetOrderedDataStore('LeaderboardKOs')
+    this.datastoreTickets =
+      DataStoreService.GetOrderedDataStore('LeaderboardTickets')
     for (;;) {
       const now = DateTime.now().UnixTimestamp
       if (now - this.leaderboardUpdateLast >= this.leaderboardUpdateSeconds) {
@@ -42,19 +47,35 @@ export class LeaderboardService implements OnStart {
   }
 
   updateDatastoresForPlayer(player: Player, playerState: PlayerData) {
+    const key = `${player.UserId}`
+    if (this.datastoreDollars && playerState.dollars > 0)
+      this.datastoreDollars.SetAsync(key, playerState.dollars)
     if (this.datastoreLevity && playerState.levity > 0)
-      this.datastoreLevity.SetAsync(`${player.UserId}`, playerState.levity)
+      this.datastoreLevity.SetAsync(key, playerState.levity)
+    if (this.datastoreKOs && playerState.KOs > 0)
+      this.datastoreKOs.SetAsync(key, playerState.KOs)
+    if (this.datastoreTickets && playerState.tickets > 0)
+      this.datastoreTickets.SetAsync(key, playerState.tickets)
   }
 
   updateLeaderboards() {
     this.updateLeaderboard(
+      Workspace.Map.LeaderboardDollars,
+      this.datastoreDollars,
+    )
+    this.updateLeaderboard(
       Workspace.Map.LeaderboardLevity,
       this.datastoreLevity,
     )
+    this.updateLeaderboard(Workspace.Map.LeaderboardKOs, this.datastoreKOs)
+    this.updateLeaderboard(
+      Workspace.Map.LeaderboardTickets,
+      this.datastoreTickets,
+    )
   }
 
-  updateLeaderboard(leaderboard: Leaderboard, datastore?: OrderedDataStore) {
-    if (!datastore) return
+  updateLeaderboard(leaderboard?: Leaderboard, datastore?: OrderedDataStore) {
+    if (!leaderboard || !datastore) return
     const template = leaderboard.Leaderboard.ItemTemplate
     const container = leaderboard.Leaderboard.SurfaceGui.Frame.List
     for (const child of container.GetChildren()) {
