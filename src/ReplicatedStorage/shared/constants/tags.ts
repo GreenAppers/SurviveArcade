@@ -1,3 +1,4 @@
+export const AirplaneTag = 'Airplane'
 export const AnimatedTag = 'Animated'
 export const ArcadeTableTag = 'ArcadeTable'
 export const BallTag = 'Ball'

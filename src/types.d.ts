@@ -1,3 +1,37 @@
+interface Airplane extends Model {
+  AimPart: BasePart & {
+    AirplaneGui: BillboardGui
+    AirplaneMobileGui: AirplaneMobileGui
+  }
+  Body: BasePart
+  Engine: BasePart
+  Guns: Model & {
+    Gun1: Model & {
+      Muzzle: BasePart
+    }
+    Gun2: Model & {
+      Muzzle: BasePart
+    }
+  }
+  Propeller: BasePart & {
+    Hinge: Motor
+  }
+  Seat: Seat
+  Shoot: RemoteEvent
+}
+
+interface AirplaneConfig {
+  gunsEnabled: boolean
+  speed: number
+  turnSpeed: number
+}
+
+interface AirplaneMobileGui extends ScreenGui {
+  Throttle: Frame & {
+    Slider: TextButton
+  }
+}
+
 interface ArcadeMap {
   Baseplate: BasePart
   ChangeMachine: ChangeMachine
