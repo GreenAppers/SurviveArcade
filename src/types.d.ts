@@ -109,6 +109,26 @@ type ArcadeTableNextName =
 
 type ArcadeTableMap = 'Pinball1'
 
+interface BlockDestroyer extends Tool {
+  DestroyBlock: RemoteFunction
+}
+
+interface BlockDestroyerAttributes {
+  MaxDistance: number
+}
+
+interface BlockPlacer extends Tool {
+  PlaceBlock: RemoteFunction
+}
+
+interface BlockPlacerAttributes {
+  CanFloat: boolean
+  Color: Color3
+  IsColorRandom: boolean
+  Material: Enum.Material
+  MaxDistance: number
+}
+
 interface Cabinet extends Model {
   Baseplate: BasePart
   Truss1: CabinetTruss
@@ -199,12 +219,19 @@ interface PlayerCharacter extends Model {
   Humanoid: Humanoid
 }
 
+interface PlayerSpace extends Folder {
+  PlacedBlocks: Model
+  PlaceBlockPreview: Model
+}
+
 interface ReplicatedStorage extends Instance {
   ArcadeTables: Folder & {
     Pinball1: ArcadeTable
   }
   Common: Folder & {
     Beam: Beam
+    PlaceBlockBlock: Part
+    PlaceBlockPreview: Part
   }
   Guis: Folder & {
     DialogGui: DialogGui
@@ -346,6 +373,8 @@ interface TycoonPlot extends Model {
 
 interface Workspace extends Instance {
   Audio: Folder & {
+    BlockDestroyed: Sound
+    BlockPlaced: Sound
     CollectDollars: Sound
     CollectLevity: Sound
     CollectTickets: Sound
@@ -360,6 +389,7 @@ interface Workspace extends Instance {
     Table3Next?: ArcadeTable
     Table4Next?: ArcadeTable
   }
+  PlayerSpaces: Folder
   Map: Folder & ArcadeMap
   Tycoons: Folder & {
     Tycoon1?: Tycoon

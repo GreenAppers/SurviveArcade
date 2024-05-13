@@ -2,7 +2,7 @@ import { OnInit, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
 import ProfileService from '@rbxts/profileservice'
 import { Profile } from '@rbxts/profileservice/globals'
-import { Players, RunService, Teams } from '@rbxts/services'
+import { Players, RunService, Teams, Workspace } from '@rbxts/services'
 import { setTimeout } from '@rbxts/set-timeout'
 import {
   CURRENCY_EMOJIS,
@@ -52,7 +52,30 @@ export class PlayerService implements OnInit {
     return this.profiles.get(player.UserId)
   }
 
+  public getPlayerSpace(player: Player): PlayerSpace {
+    const key = `${player.UserId}`
+    const existing = Workspace.PlayerSpaces.FindFirstChild(key)
+    if (existing) return existing as PlayerSpace
+    const folder = new Instance('Folder')
+    folder.Name = key
+    const placedBlocks = new Instance('Model')
+    placedBlocks.Name = 'PlacedBlocks'
+    placedBlocks.Parent = folder
+    const placeBlockPreview = new Instance('Model')
+    placeBlockPreview.Name = 'PlaceBlockPreview'
+    placeBlockPreview.Parent = folder
+    folder.Parent = Workspace.PlayerSpaces
+    return folder as PlayerSpace
+  }
+
+  private cleanupPlayerSpace(player: Player) {
+    const key = `${player.UserId}`
+    const existing = Workspace.PlayerSpaces.FindFirstChild(key)
+    if (existing) existing.Destroy()
+  }
+
   private handlePlayerLeft(player: Player) {
+    this.cleanupPlayerSpace(player)
     const profile = this.profiles.get(player.UserId)
     if (profile?.Data)
       this.leaderboardService.updateDatastoresForPlayer(player, profile.Data)
