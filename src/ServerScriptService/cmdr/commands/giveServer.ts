@@ -8,6 +8,12 @@ export = function (
 ) {
   const backpack = player.FindFirstChild('Backpack') as Backpack | undefined
   if (!backpack || backpack.FindFirstChild(toolName)) return
-  const tool = ReplicatedStorage.Tools[toolName].Clone()
-  tool.Parent = backpack
+  switch (toolName) {
+    case 'Blocks':
+      ReplicatedStorage.Tools.PlaceBlock.Clone().Parent = backpack
+      ReplicatedStorage.Tools.BreakBlock.Clone().Parent = backpack
+      break
+    default:
+      ReplicatedStorage.Tools[toolName].Clone().Parent = backpack
+  }
 }

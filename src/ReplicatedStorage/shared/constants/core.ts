@@ -114,6 +114,7 @@ export const TOOL_NAMES: {
   [name in ToolName]: ToolName
 } = {
   ArcadeGun: 'ArcadeGun' as const,
+  Blocks: 'Blocks' as const,
   Popcorn: 'Popcorn' as const,
 }
 
