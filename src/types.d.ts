@@ -109,11 +109,11 @@ type ArcadeTableNextName =
 
 type ArcadeTableMap = 'Pinball1'
 
-interface BlockDestroyer extends Tool {
-  DestroyBlock: RemoteFunction
+interface BlockBreaker extends Tool {
+  BreakBlock: RemoteFunction
 }
 
-interface BlockDestroyerAttributes {
+interface BlockBreakerAttributes {
   MaxDistance: number
 }
 
@@ -125,7 +125,7 @@ interface BlockPlacerAttributes {
   CanFloat: boolean
   Color: Color3
   IsColorRandom: boolean
-  Material: Enum.Material
+  Material: string
   MaxDistance: number
 }
 
@@ -231,7 +231,9 @@ interface ReplicatedStorage extends Instance {
   Common: Folder & {
     Beam: Beam
     PlaceBlockBlock: Part
-    PlaceBlockPreview: Part
+    PlaceBlockPreview: Part & {
+      SelectionBox: SelectionBox
+    }
   }
   Guis: Folder & {
     DialogGui: DialogGui
@@ -246,6 +248,8 @@ interface ReplicatedStorage extends Instance {
   }
   Tools: Folder & {
     ArcadeGun: Tool
+    BreakBlock: BlockBreaker
+    PlaceBlock: BlockPlacer
     Popcorn: Tool
   }
   Tycoons: Folder & {
@@ -318,7 +322,7 @@ type TeamName =
   | 'Unclaimed Team'
   | 'Yellow Team'
 
-type ToolName = 'ArcadeGun' | 'Popcorn'
+type ToolName = 'ArcadeGun' | 'Blocks' | 'Popcorn'
 
 interface Tycoon extends Model {
   Baseplate: BasePart
@@ -373,7 +377,7 @@ interface TycoonPlot extends Model {
 
 interface Workspace extends Instance {
   Audio: Folder & {
-    BlockDestroyed: Sound
+    BlockBroken: Sound
     BlockPlaced: Sound
     CollectDollars: Sound
     CollectLevity: Sound

@@ -110,6 +110,7 @@ export class PlayerService implements OnInit {
     const playerSelector = selectPlayerState(player.UserId)
     const playerDollars = playerSelector(state)?.dollars ?? 0
 
+    this.getPlayerSpace(player)
     Promise.try(() =>
       this.transactionService.reloadPlayerGamePasses(player, player.UserId),
     )

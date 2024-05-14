@@ -1,17 +1,12 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import {
-  Players,
-  ReplicatedStorage,
-  RunService,
-  Workspace,
-} from '@rbxts/services'
-import { BlockDestroyerTag } from 'ReplicatedStorage/shared/constants/tags'
+import { Players, ReplicatedStorage, RunService } from '@rbxts/services'
+import { BlockBreakerTag } from 'ReplicatedStorage/shared/constants/tags'
 import { PlayerController } from 'StarterPlayer/StarterPlayerScripts/controllers/PlayerController'
 
-@Component({ tag: BlockDestroyerTag })
-export class BlockDestroyerComponent
-  extends BaseComponent<BlockDestroyerAttributes, BlockDestroyer>
+@Component({ tag: BlockBreakerTag })
+export class BlockBreakerComponent
+  extends BaseComponent<BlockBreakerAttributes, BlockBreaker>
   implements OnStart
 {
   constructor(protected playerController: PlayerController) {
@@ -19,24 +14,25 @@ export class BlockDestroyerComponent
   }
 
   onStart() {
-    const ignoreModelForMouse = Workspace.WaitForChild(
-      'IgnoreModelForMouse',
-    ) as Folder
-    const previewBlock = ReplicatedStorage.WaitForChild('PreviewBlock') as Part
-    const buildingModel = Workspace.WaitForChild('BuildingModel') as Folder
-    const mouse = Players.LocalPlayer.GetMouse()
+    const playerSpace = this.playerController.getPlayerSpace()
+    const buildingModel = playerSpace.PlacedBlocks
+    const ignoreModelForMouse = playerSpace.PlaceBlockPreview
+    const previewBlock = ReplicatedStorage.Common.PlaceBlockPreview
+    const previewBlockParent = previewBlock.Parent
+    const selectionBox = previewBlock.SelectionBox
+
     const tool = this.instance
-    const selectionBox = previewBlock.WaitForChild(
-      'SelectionBox',
-    ) as SelectionBox
     const red = Color3.fromRGB(255, 0, 0)
     const character = Players.LocalPlayer.Character as PlayerCharacter
     const humanoid = character.Humanoid
+
     let connection: RBXScriptConnection | undefined
     let targetToDestory: BasePart | undefined
     let canUse = true
 
+    const mouse = Players.LocalPlayer.GetMouse()
     mouse.TargetFilter = ignoreModelForMouse
+
     tool.Equipped.Connect(() => {
       selectionBox.Color3 = red
       connection = RunService.RenderStepped.Connect((_deltaTime) => {
@@ -53,20 +49,22 @@ export class BlockDestroyerComponent
           previewBlock.Parent = ignoreModelForMouse
           targetToDestory = mouse.Target
         } else {
-          previewBlock.Parent = ReplicatedStorage
+          previewBlock.Parent = previewBlockParent
           targetToDestory = undefined
         }
       })
     })
+
     tool.Unequipped.Connect(() => {
       connection?.Disconnect()
-      previewBlock.Parent = ReplicatedStorage
+      previewBlock.Parent = previewBlockParent
     })
+
     tool.Activated.Connect(() => {
       if (!canUse || !targetToDestory) return
       canUse = false
-      this.instance.DestroyBlock.InvokeServer(targetToDestory)
-      previewBlock.Parent = ReplicatedStorage
+      this.instance.BreakBlock.InvokeServer(targetToDestory)
+      previewBlock.Parent = previewBlockParent
       targetToDestory = undefined
       canUse = true
     })

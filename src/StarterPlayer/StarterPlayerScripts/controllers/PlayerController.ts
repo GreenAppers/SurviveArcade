@@ -8,6 +8,7 @@ import {
   StarterGui,
   TweenService,
   UserInputService,
+  Workspace,
 } from '@rbxts/services'
 import {
   CHARACTER_CHILD,
@@ -50,8 +51,9 @@ import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts
 
 @Controller({})
 export class PlayerController implements OnStart {
-  collectionAnimationPlaying = false
   firstRespawn = true
+  collectionAnimationPlaying = false
+  playerSpace: PlayerSpace | undefined
   gravityController: GravityController | undefined
   shooter: ShooterComponent | undefined
   isDesktop = USER_DEVICE === DeviceType.Desktop
@@ -83,6 +85,17 @@ export class PlayerController implements OnStart {
       const state = store.getState()
       this.refreshBeams(playerGuideEnabledSelector(state))
     }
+  }
+
+  getPlayerSpace() {
+    if (this.playerSpace) return this.playerSpace
+    const key = `${Players.LocalPlayer.UserId}`
+    const playerSpace = Workspace.PlayerSpaces.WaitForChild(key) as
+      | PlayerSpace
+      | undefined
+    if (!playerSpace) throw 'Player space not found'
+    this.playerSpace = playerSpace
+    return playerSpace
   }
 
   equipShooter(shooter: ShooterComponent | undefined) {

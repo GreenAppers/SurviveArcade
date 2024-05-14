@@ -103,16 +103,19 @@ end)*/
 		end]]*/
           const clonedBlock = block.Clone()
           const clonedSound = placeSound.Clone()
+          clonedBlock.Name = 'Block'
           clonedBlock.SetAttribute('CanFloat', this.attributes.CanFloat)
           if (this.attributes.IsColorRandom)
             clonedBlock.BrickColor = BrickColor.random()
           else clonedBlock.Color = this.attributes.Color
-          clonedBlock.Material = this.attributes.Material
+          const material = Enum.Material.GetEnumItems().find(
+            (x) => x.Name === this.attributes.Material,
+          )
+          if (material) clonedBlock.Material = material
           clonedBlock.CFrame = previewCframe
           clonedSound.Parent = clonedBlock
           clonedBlock.Parent =
             this.playerService.getPlayerSpace(player).PlacedBlocks
-          clonedSound.Play()
           clonedSound.Play()
         },
         () => {

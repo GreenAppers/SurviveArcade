@@ -1,39 +1,40 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Workspace } from '@rbxts/services'
-import { BlockDestroyerTag } from 'ReplicatedStorage/shared/constants/tags'
+import { BlockBreakerTag } from 'ReplicatedStorage/shared/constants/tags'
+import { PlayerService } from 'ServerScriptService/services/PlayerService'
 
-@Component({ tag: BlockDestroyerTag })
-export class LavaComponent
-  extends BaseComponent<{}, BlockDestroyer>
+@Component({ tag: BlockBreakerTag })
+export class BlockBreakerComponent
+  extends BaseComponent<{}, BlockBreaker>
   implements OnStart
 {
-  onStart() {
-    const ignoreModelForMouse = Workspace.FindFirstChild(
-      'IgnoreModelForMouse',
-    ) as Folder
+  constructor(private playerService: PlayerService) {
+    super()
+  }
 
-    this.instance.DestroyBlock.OnServerInvoke = (player, target) => {
+  onStart() {
+    this.instance.BreakBlock.OnServerInvoke = (player, target) => {
       xpcall(
         () => {
+          const playerSpace = this.playerService.getPlayerSpace(player)
           if (!typeIs(target, 'Instance') || !target.IsA('Part')) return
           if (target.Name !== 'Block') {
-            player.Kick('Stop exploiting!')
+            player.Kick('Stop exploiting AAA! ' + target.Name)
             return false
           }
-
           const clonedSoundBlock = new Instance('Part')
           clonedSoundBlock.Size = new Vector3(3, 3, 3)
           clonedSoundBlock.CFrame = target.CFrame
-          const clonedSound = Workspace.Audio.BlockDestroyed.Clone()
+          const clonedSound = Workspace.Audio.BlockBroken.Clone()
           clonedSound.Ended.Connect(() => clonedSoundBlock.Destroy())
           clonedSound.Parent = clonedSoundBlock
-          clonedSoundBlock.Parent = ignoreModelForMouse
+          clonedSoundBlock.Parent = playerSpace.PlaceBlockPreview
           clonedSound.Play()
           target.Destroy()
         },
         () => {
-          player.Kick('Stop exploiting!')
+          player.Kick('Stop exploiting ZZZ!')
         },
       )
     }

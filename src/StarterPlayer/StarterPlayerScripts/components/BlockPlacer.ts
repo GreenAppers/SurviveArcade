@@ -1,6 +1,11 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { Players, Workspace } from '@rbxts/services'
+import {
+  Players,
+  ReplicatedStorage,
+  RunService,
+  Workspace,
+} from '@rbxts/services'
 import { BlockPlacerTag } from 'ReplicatedStorage/shared/constants/tags'
 import { PlayerController } from 'StarterPlayer/StarterPlayerScripts/controllers/PlayerController'
 
@@ -20,18 +25,13 @@ export class BlockPlacerComponent
   }
 
   onStart() {
-    const replicatedStorage = game.GetService('ReplicatedStorage')
-    const runService = game.GetService('RunService')
-
-    const ignoreModelForMouse = Workspace.WaitForChild(
-      'IgnoreModelForMouse',
-    ) as Folder
-    const previewBlock = replicatedStorage.WaitForChild('PreviewBlock') as Part
-    const buildingModel = Workspace.WaitForChild('BuildingModel') as Folder
+    const playerSpace = this.playerController.getPlayerSpace()
+    const buildingModel = playerSpace.PlacedBlocks
+    const ignoreModelForMouse = playerSpace.PlaceBlockPreview
+    const previewBlock = ReplicatedStorage.Common.PlaceBlockPreview
+    const previewBlockParent = previewBlock.Parent
     const baseplate = Workspace.Map.Baseplate
-    const selectionBox = previewBlock.WaitForChild(
-      'SelectionBox',
-    ) as SelectionBox
+    const selectionBox = previewBlock.SelectionBox
 
     const bottom = Enum.NormalId.Bottom
     const top = Enum.NormalId.Top
@@ -47,20 +47,19 @@ export class BlockPlacerComponent
     const bottomOffset = new CFrame(0, -3, 0)
     const topOffet = new CFrame(0, 3, 0)
 
-    const mouse = game.GetService('Players').LocalPlayer.GetMouse()
-
     const y = (baseplate.Size.Y + 3) / 2 + baseplate.Position.Y
-    const tool = this.instance
-    let canUse = true
-    let connection: RBXScriptConnection | undefined
-
     const character = Players.LocalPlayer.Character as PlayerCharacter
     const humanoid = character.Humanoid
 
+    let canUse = true
+    let connection: RBXScriptConnection | undefined
+
+    const mouse = Players.LocalPlayer.GetMouse()
     mouse.TargetFilter = ignoreModelForMouse
-    tool.Equipped.Connect(() => {
+
+    this.instance.Equipped.Connect(() => {
       selectionBox.Color3 = green
-      connection = runService.RenderStepped.Connect((_deltaTime) => {
+      connection = RunService.RenderStepped.Connect((_deltaTime) => {
         const mouseHit = mouse.Hit
         if (
           character.PrimaryPart &&
@@ -97,20 +96,21 @@ export class BlockPlacerComponent
 
             previewBlock.Parent = ignoreModelForMouse
           } else {
-            previewBlock.Parent = replicatedStorage
+            previewBlock.Parent = previewBlockParent
           }
         } else {
-          previewBlock.Parent = replicatedStorage
+          previewBlock.Parent = previewBlockParent
         }
       })
     })
 
-    tool.Unequipped.Connect(() => {
+    this.instance.Unequipped.Connect(() => {
       connection?.Disconnect()
-      previewBlock.Parent = replicatedStorage
+      connection = undefined
+      previewBlock.Parent = previewBlockParent
     })
 
-    tool.Activated.Connect(() => {
+    this.instance.Activated.Connect(() => {
       if (canUse && previewBlock.Parent === ignoreModelForMouse) {
         canUse = false
         this.instance.PlaceBlock.InvokeServer(previewBlock.CFrame)
