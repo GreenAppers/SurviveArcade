@@ -215,6 +215,17 @@ interface Leaderboard extends Model {
   }
 }
 
+interface LoadingGui extends ScreenGui {
+  Background: Frame & {
+    AssetsLoaded: TextLabel
+    BarBackground: Frame & {
+      Bar: Frame
+    }
+    DisplayPercentage: TextLabel
+    GameTitle: TextLabel
+  }
+}
+
 interface PlayerCharacter extends Model {
   Humanoid: Humanoid
 }
@@ -298,6 +309,7 @@ interface SpriteSheet {
 
 interface StarterGui extends Instance {
   CollectGui: CollectGui
+  LoadingGui: LoadingGui
 }
 
 interface Teams extends Instance {
@@ -392,6 +404,10 @@ interface Workspace extends Instance {
     Table2Next?: ArcadeTable
     Table3Next?: ArcadeTable
     Table4Next?: ArcadeTable
+  }
+  Cutscenes: Folder & {
+    Loading1: Part
+    Loading2: Part
   }
   PlayerSpaces: Folder
   Map: Folder & ArcadeMap
