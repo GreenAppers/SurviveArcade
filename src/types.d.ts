@@ -406,6 +406,8 @@ interface Workspace extends Instance {
     Table4Next?: ArcadeTable
   }
   Cutscenes: Folder & {
+    LoadedClient: BindableEvent
+    LoadedServer: RemoteEvent
     Loading1: Part
     Loading2: Part
   }

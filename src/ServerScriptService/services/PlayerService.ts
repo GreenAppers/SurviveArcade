@@ -42,6 +42,9 @@ export class PlayerService implements OnInit {
   ) {}
 
   onInit() {
+    game.Workspace.Cutscenes.LoadedServer.OnServerEvent.Connect((player) =>
+      this.handlePlayerLoaded(player),
+    )
     forEveryPlayer(
       (player) => this.handlePlayerJoined(player),
       (player) => this.handlePlayerLeft(player),
@@ -108,7 +111,6 @@ export class PlayerService implements OnInit {
     this.profiles.set(player.UserId, profile)
     const state = store.loadPlayerData(player.UserId, profile.Data)
     const playerSelector = selectPlayerState(player.UserId)
-    const playerDollars = playerSelector(state)?.dollars ?? 0
 
     this.getPlayerSpace(player)
     Promise.try(() =>
@@ -140,6 +142,11 @@ export class PlayerService implements OnInit {
       unsubscribePlayerData()
       unsubscribeLeaderstats()
     })
+  }
+
+  private handlePlayerLoaded(player: Player) {
+    const playerState = store.getState(selectPlayerState(player.UserId))
+    const playerDollars = playerState?.dollars ?? 0
 
     if (playerDollars <= VALUES.GameWelcomeDollars.Value)
       setTimeout(() => {

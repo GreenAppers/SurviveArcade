@@ -74,6 +74,9 @@ export class PlayerController implements OnStart {
     CmdrClient.SetActivationKeys([Enum.KeyCode.F2])
 
     const player = Players.LocalPlayer
+    game.Workspace.Cutscenes.LoadedClient.Event.Connect(() =>
+      this.handleLoaded(player),
+    )
     this.startInputHandling()
     this.startMyRespawnHandler(player)
     this.startMyGuideHandler(player)
@@ -160,40 +163,47 @@ export class PlayerController implements OnStart {
     })
   }
 
-  startMyRespawnHandler(player: Player) {
+  handleRespawn(player: Player, playerCharacter: Model) {
+    const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
+    const beam = ReplicatedStorage.Common.Beam.Clone()
+    beam.Name = CHARACTER_CHILD.GuideBeam
+    beam.Parent = playerCharacter
+    const state = store.getState()
+    if (this.firstRespawn) {
+      this.firstRespawn = false
+    } else {
+      sendAlert({
+        emoji: '👼',
+        message: formatMessage(MESSAGE.GameRespawn),
+      })
+    }
+    this.refreshBeams(playerGuideEnabledSelector(state))
+  }
+
+  handleLoaded(player: Player) {
     const playerDollarsSelector = selectPlayerCurrency(
       player.UserId,
       CURRENCY_TYPES.Dollars,
     )
-    const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
-    const handleRespawn = (playerCharacter: Model) => {
-      const beam = ReplicatedStorage.Common.Beam.Clone()
-      beam.Name = CHARACTER_CHILD.GuideBeam
-      beam.Parent = playerCharacter
-      const state = store.getState()
-      const playerDollars = playerDollarsSelector(state)
-      if (this.firstRespawn) {
-        this.firstRespawn = false
-        this.playDialogAnimation(
-          joinMessage(
-            formatMessage(MESSAGE.GameWelcome, { playerName: player.Name }),
-            playerDollars < VALUES.GameWelcomeDollars.Value
-              ? formatMessage(MESSAGE.GameWelcomeDollars, {
-                  dollars: VALUES.GameWelcomeDollars.Value,
-                })
-              : '',
-          ),
-        )
-      } else {
-        sendAlert({
-          emoji: '👼',
-          message: formatMessage(MESSAGE.GameRespawn),
-        })
-      }
-      this.refreshBeams(playerGuideEnabledSelector(state))
-    }
-    player.CharacterAdded.Connect(handleRespawn)
-    if (player.Character) handleRespawn(player.Character)
+    const state = store.getState()
+    const playerDollars = playerDollarsSelector(state)
+    this.playDialogAnimation(
+      joinMessage(
+        formatMessage(MESSAGE.GameWelcome, { playerName: player.Name }),
+        playerDollars < VALUES.GameWelcomeDollars.Value
+          ? formatMessage(MESSAGE.GameWelcomeDollars, {
+              dollars: VALUES.GameWelcomeDollars.Value,
+            })
+          : '',
+      ),
+    )
+  }
+
+  startMyRespawnHandler(player: Player) {
+    player.CharacterAdded.Connect((character) =>
+      this.handleRespawn(player, character),
+    )
+    if (player.Character) this.handleRespawn(player, player.Character)
   }
 
   startMyGuideHandler(player: Player) {

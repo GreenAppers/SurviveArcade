@@ -72,3 +72,7 @@ blurEffect?.Destroy()
 cutscene?.Cancel()
 if (camera) camera.CameraType = Enum.CameraType.Custom
 loadingGui.Enabled = false
+
+// Signal that we are done loading
+game.Workspace.Cutscenes.LoadedServer.FireServer()
+game.Workspace.Cutscenes.LoadedClient.Fire()
