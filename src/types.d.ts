@@ -323,6 +323,10 @@ interface StarterGui extends Instance {
   LoadingGui: LoadingGui
 }
 
+interface Sword extends Tool {
+  Handle: BasePart
+}
+
 interface Teams extends Instance {
   'Blue Team': Team
   'Green Team': Team
