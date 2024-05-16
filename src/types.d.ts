@@ -270,7 +270,7 @@ interface ReplicatedStorage extends Instance {
     BreakBlock: BlockBreaker
     PlaceBlock: BlockPlacer
     Popcorn: Tool
-    Sword: Tool
+    Sword: Sword
   }
   Tycoons: Folder & {
     Elf: Tycoon
@@ -289,6 +289,10 @@ interface Shooter extends Tool {
     GunFirePoint: Attachment
     ImpactParticle: ParticleEmitter
   }
+}
+
+interface Sword extends Tool {
+  Handle: BasePart
 }
 
 interface Spinner extends Model {
