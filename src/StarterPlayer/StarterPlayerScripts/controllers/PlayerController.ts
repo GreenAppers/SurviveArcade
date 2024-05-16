@@ -388,45 +388,65 @@ export class PlayerController implements OnStart {
     const tycoonName = findTycoonNameOwnedBy(tycoonsState, localPlayer.UserId)
     // const sessionSeconds = os.time() - playerState.sessionStartTime
 
+    // Plan next tycoon action
+    let tycoonStatus = ''
+    let tycoonTargetAttachment
+    if (!tycoonName) {
+      tycoonStatus = formatMessage(MESSAGE.GuideClaimTycoon)
+      tycoonTargetAttachment = this.tycoonController.findTycoonTarget(
+        tycoonsState,
+        humanoidRootPart,
+        rootRigAttachment,
+      )
+    } else if (
+      (tycoonTargetAttachment = this.tycoonController.findTycoonButtonTarget(
+        tycoonName,
+        playerState,
+      ))
+    ) {
+      tycoonStatus = formatMessage(MESSAGE.GuideBuildTycoon)
+    }
+
+    // Plan next game action
+    let gameStatus = ''
+    let gameTargetAttachment
+    if ((playerState?.dollars ?? 0) <= 0) {
+      gameStatus = formatMessage(MESSAGE.GuideCollectCoins)
+      gameTargetAttachment = this.arcadeController.findCoinTarget(
+        humanoidRootPart.Position,
+      )
+    } else {
+      gameStatus = formatMessage(MESSAGE.GuideWinTickets)
+      gameTargetAttachment = this.arcadeController.findTableTarget(
+        selectArcadeTablesState()(state),
+        humanoidRootPart,
+        rootRigAttachment,
+        localPlayerTeamName,
+      )
+    }
+
     // Plan next action
     let status = ''
     let targetAttachment
-    if (!playerState.groundArcadeTableName && playerState.tablePlays > 0) {
-      if (!tycoonName) {
-        status = formatMessage(MESSAGE.GuideClaimTycoon)
-        targetAttachment = this.tycoonController.findTycoonTarget(
-          tycoonsState,
-          humanoidRootPart,
-          rootRigAttachment,
-        )
-      } else if (
-        (targetAttachment = this.tycoonController.findTycoonButtonTarget(
-          tycoonName,
-          playerState,
-        ))
-      ) {
-        status = formatMessage(MESSAGE.GuideBuildTycoon)
-      }
+    if (
+      !playerState.groundArcadeTableName &&
+      (playerState.tablePlays > 0 ||
+        !gameTargetAttachment ||
+        (tycoonTargetAttachment &&
+          humanoidRootPart.Position.sub(tycoonTargetAttachment.WorldPosition)
+            .Magnitude <
+            humanoidRootPart.Position.sub(gameTargetAttachment.WorldPosition)
+              .Magnitude))
+    ) {
+      status = tycoonStatus
+      targetAttachment = tycoonTargetAttachment
     }
-
     if (!status) {
-      if ((playerState?.dollars ?? 0) <= 0) {
-        status = formatMessage(MESSAGE.GuideCollectCoins)
-        targetAttachment = this.arcadeController.findCoinTarget(
-          humanoidRootPart.Position,
-        )
-      } else {
-        status = formatMessage(MESSAGE.GuideWinTickets)
-        targetAttachment = this.arcadeController.findTableTarget(
-          selectArcadeTablesState()(state),
-          humanoidRootPart,
-          rootRigAttachment,
-          localPlayerTeamName,
-        )
-      }
+      status = gameStatus
+      targetAttachment = gameTargetAttachment
     }
 
-    if (status !== '') store.setGuideText(status)
+    if (status) store.setGuideText(status)
     if (!targetAttachment) return
     beam.Attachment0 = rootRigAttachment
     beam.Attachment1 = targetAttachment

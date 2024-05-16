@@ -33,16 +33,16 @@
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>-444.67056</X>
-          <Y>3.9938486</Y>
-          <Z>27.191477</Z>
-          <R00>-1</R00>
-          <R01>0</R01>
-          <R02>0</R02>
-          <R10>0</R10>
+          <X>-444.67053</X>
+          <Y>3.9938755</Y>
+          <Z>27.191442</Z>
+          <R00>-0.9999999</R00>
+          <R01>-0.000000008014862</R01>
+          <R02>-0.0000000051623736</R02>
+          <R10>0.0000000020210937</R10>
           <R11>0.70710677</R11>
           <R12>-0.70710677</R12>
-          <R20>0</R20>
+          <R20>0.000000042291838</R20>
           <R21>-0.70710677</R21>
           <R22>-0.70710677</R22>
         </CFrame>
@@ -784,6 +784,15 @@
             </Item>
           </Item>
         </Item>
+      </Item>
+      <Item class="RemoteEvent" referent="10">
+        <Properties>
+          <string name="Name">Spawn</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <bool name="DefinesCapabilities">false</bool>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+        </Properties>
       </Item>
     </Item>
   </Item>
