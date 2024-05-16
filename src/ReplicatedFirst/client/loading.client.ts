@@ -1,4 +1,5 @@
 const ContentProvider = game.GetService('ContentProvider')
+const ReplicatedFirst = game.GetService('ReplicatedFirst')
 const TweenService = game.GetService('TweenService')
 const Players = game.GetService('Players')
 const player = Players.LocalPlayer
@@ -34,7 +35,7 @@ const blurEffect = camera ? new Instance('BlurEffect', camera) : undefined
 if (blurEffect) blurEffect.Size = 24
 
 // Stop default loading GUI
-game.GetService('StarterGui').SetCoreGuiEnabled(Enum.CoreGuiType.All, false)
+ReplicatedFirst.RemoveDefaultLoadingScreen()
 
 // Show custom loading GUI
 loadingGui.Enabled = true
