@@ -16,13 +16,15 @@ function resizeBar(percentage: number, time = 0.2) {
   ).Play()
 }
 
-function moveCamera(camera: Camera, time = 10) {
+function moveCamera(camera: Camera, cutscenes: Cutscenes, time = 10) {
+  const loading1 = cutscenes.WaitForChild('Loading1') as Part
+  const loading2 = cutscenes.WaitForChild('Loading2') as Part
   camera.CameraType = Enum.CameraType.Scriptable
-  camera.CFrame = game.Workspace.Cutscenes.Loading1.CFrame
+  camera.CFrame = loading1.CFrame
   return TweenService.Create(
     camera,
     new TweenInfo(time, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-    { CFrame: game.Workspace.Cutscenes.Loading2.CFrame },
+    { CFrame: loading2.CFrame },
   )
 }
 
@@ -43,7 +45,8 @@ while (!player.Character) wait()
 resizeBar(40)
 
 // Start camera cutscene
-const cutscene = camera ? moveCamera(camera, 10) : undefined
+const cutscenes = game.Workspace.WaitForChild('Cutscenes') as Cutscenes
+const cutscene = camera ? moveCamera(camera, cutscenes, 10) : undefined
 cutscene?.Play()
 
 // Wait for assets to load
@@ -74,5 +77,5 @@ if (camera) camera.CameraType = Enum.CameraType.Custom
 loadingGui.Enabled = false
 
 // Signal that we are done loading
-game.Workspace.Cutscenes.LoadedServer.FireServer()
-game.Workspace.Cutscenes.LoadedClient.Fire()
+cutscenes.LoadedServer.FireServer()
+cutscenes.LoadedClient.Fire()

@@ -145,6 +145,13 @@ type CabinetTrussName = 'Truss1' | 'Truss2' | 'Truss3' | 'Truss4'
 
 type Currency = 'Dollars' | 'Levity' | 'Tickets'
 
+interface Cutscenes extends Folder {
+  LoadedClient: BindableEvent
+  LoadedServer: RemoteEvent
+  Loading1: Part
+  Loading2: Part
+}
+
 type Difficulty = 'peaceful' | 'normal'
 
 interface Exchange {
@@ -233,6 +240,7 @@ interface PlayerCharacter extends Model {
 interface PlayerSpace extends Folder {
   PlacedBlocks: Model
   PlaceBlockPreview: Model
+  Vehicles: Folder
 }
 
 interface ReplicatedStorage extends Instance {
@@ -267,6 +275,9 @@ interface ReplicatedStorage extends Instance {
     Elf: Tycoon
     Human: Tycoon
     Omniverse: Tycoon
+  }
+  Vehicles: Folder & {
+    Airplane: Airplane
   }
 }
 
@@ -387,6 +398,18 @@ interface TycoonPlot extends Model {
   Name: TycoonName
 }
 
+interface VehicleSpawner extends Model {
+  Screen: BasePart & {
+    Spawn: SurfaceGui & {
+      Frame: Frame & {
+        TextButton: TextButton
+        TextLabel: TextLabel
+      }
+    }
+  }
+  Spawn: RemoteEvent
+}
+
 interface Workspace extends Instance {
   Audio: Folder & {
     BlockBroken: Sound
@@ -405,12 +428,7 @@ interface Workspace extends Instance {
     Table3Next?: ArcadeTable
     Table4Next?: ArcadeTable
   }
-  Cutscenes: Folder & {
-    LoadedClient: BindableEvent
-    LoadedServer: RemoteEvent
-    Loading1: Part
-    Loading2: Part
-  }
+  Cutscenes: Cutscenes
   PlayerSpaces: Folder
   Map: Folder & ArcadeMap
   Tycoons: Folder & {

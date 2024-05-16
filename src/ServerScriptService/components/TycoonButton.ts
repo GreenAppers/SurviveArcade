@@ -56,6 +56,13 @@ export class TycoonButtonComponent
       const tycoonState = tycoonSelector(state)
       if (tycoonState.owner !== touchedPlayer.UserId) return
 
+      const tycoonButtonsSelector = selectPlayerTycoonButtons(
+        touchedPlayer.UserId,
+        tycoonType,
+      )
+      const purchasedTycoonButtons = tycoonButtonsSelector(state)
+      if (purchasedTycoonButtons?.[buttonName]) return
+
       const newState = store.purchaseTycoonButton(
         touchedPlayer.UserId,
         tycoonType,
@@ -63,11 +70,7 @@ export class TycoonButtonComponent
         buttonCurrency,
         buttonDetails.Cost,
       )
-      const tycoonButtonsSelector = selectPlayerTycoonButtons(
-        touchedPlayer.UserId,
-        tycoonType,
-      )
-      if (tycoonButtonsSelector(state) === tycoonButtonsSelector(newState)) {
+      if (purchasedTycoonButtons === tycoonButtonsSelector(newState)) {
         // Insufficient funds
         const product = getProductForCurrency(buttonCurrency)
         if (product)

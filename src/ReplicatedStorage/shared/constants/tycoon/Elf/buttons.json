@@ -90,6 +90,13 @@
     "Description": "Owner Door",
     "Dependencies": "HouseFloor1Door"
   },
+  "VehicleSpawner": {
+    "Name": "VehicleSpawner",
+    "Cost": 4000,
+    "Currency": "Tickets",
+    "Description": "Vehicle Spawner",
+    "Dependencies": "HouseOwnerDoor"
+  },
   "HouseFloor1Communicator": {
     "Name": "HouseFloor1Communicator",
     "Cost": 1000,

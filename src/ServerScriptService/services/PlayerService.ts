@@ -67,6 +67,9 @@ export class PlayerService implements OnInit {
     const placeBlockPreview = new Instance('Model')
     placeBlockPreview.Name = 'PlaceBlockPreview'
     placeBlockPreview.Parent = folder
+    const vehicles = new Instance('Folder')
+    vehicles.Name = 'Vehicles'
+    vehicles.Parent = folder
     folder.Parent = Workspace.PlayerSpaces
     return folder as PlayerSpace
   }

@@ -68,7 +68,7 @@ export class AirplaneController implements OnStart {
     this.bodyVelocity?.Destroy()
     this.mobileGui?.Destroy()
 
-    plane.AimPart.AirplaneGui.Enabled = true
+    plane.AimPart.AirplaneGui.Enabled = false
 
     if (this.camera && this.cameraType) this.camera.CameraType = this.cameraType
     if (UserInputService.TouchEnabled) UserInputService.ModalEnabled = false
