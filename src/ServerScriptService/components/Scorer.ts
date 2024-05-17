@@ -4,7 +4,7 @@ import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { ScorerTag } from 'ReplicatedStorage/shared/constants/tags'
 import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
-import { GameService } from 'ServerScriptService/services/GameService'
+import { ArcadeTableService } from 'ServerScriptService/services/ArcadeTableService'
 import { store } from 'ServerScriptService/store'
 
 @Component({ tag: ScorerTag })
@@ -12,7 +12,7 @@ export class ScorerComponent
   extends BaseComponent<{}, BasePart>
   implements OnStart
 {
-  constructor(private gameService: GameService) {
+  constructor(private arcadeTableService: ArcadeTableService) {
     super()
   }
 
@@ -30,7 +30,7 @@ export class ScorerComponent
 
       const player = arcadeTableState?.owner
       if (player)
-        this.gameService.addScore(
+        this.arcadeTableService.addScore(
           player.UserId,
           arcadeTableState.tableName,
           arcadeTableState.tableType,

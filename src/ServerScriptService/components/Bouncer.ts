@@ -6,7 +6,7 @@ import { BouncerTag } from 'ReplicatedStorage/shared/constants/tags'
 import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { Events } from 'ServerScriptService/network'
-import { GameService } from 'ServerScriptService/services/GameService'
+import { ArcadeTableService } from 'ServerScriptService/services/ArcadeTableService'
 import { store } from 'ServerScriptService/store'
 
 @Component({ tag: BouncerTag })
@@ -14,7 +14,7 @@ export class BouncerComponent
   extends BaseComponent<{ BounceDiretion?: Vector3 }, BasePart>
   implements OnStart
 {
-  constructor(private gameService: GameService) {
+  constructor(private arcadeTableService: ArcadeTableService) {
     super()
   }
 
@@ -32,7 +32,7 @@ export class BouncerComponent
       const player = arcadeTableState?.owner
 
       if (player)
-        this.gameService.addScore(
+        this.arcadeTableService.addScore(
           player.UserId,
           arcadeTableState.tableName,
           arcadeTableState.tableType,

@@ -1,27 +1,20 @@
 import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
-import Object from '@rbxts/object-utils'
 import { Players } from '@rbxts/services'
-import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
 import {
   ARCADE_TABLE_NAMES,
   CHARACTER_CHILD,
 } from 'ReplicatedStorage/shared/constants/core'
-import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
-  selectArcadeTablesState,
   selectArcadeTableState,
   selectGameState,
-  selectPlayerScore,
 } from 'ReplicatedStorage/shared/state'
 import {
-  ArcadeTableScoreDomain,
   ArcadeTableStatus,
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
-import { getDescendentsWithTag } from 'ServerScriptService/utils/instance'
 
 @Service()
 export class GameService implements OnStart {
@@ -29,16 +22,6 @@ export class GameService implements OnStart {
     private mapService: MapService,
     private readonly logger: Logger,
   ) {}
-
-  addScore(
-    userId: number,
-    tableName: ArcadeTableName,
-    tableType: ArcadeTableType,
-    amount: number,
-  ) {
-    store.addArcadeTableScore(tableName, amount)
-    return store.addPlayerScore(userId, tableType, amount)
-  }
 
   changeRound() {
     this.logger.Info('Changing round')
@@ -50,7 +33,6 @@ export class GameService implements OnStart {
 
   onStart() {
     const gameSelector = selectGameState()
-    const arcadeTablesSelector = selectArcadeTablesState()
 
     for (;;) {
       task.wait(1)
@@ -66,47 +48,11 @@ export class GameService implements OnStart {
         else store.setRoundRemaining(remaining)
       }
 
-      const arcadeTablesState = arcadeTablesSelector(state)
-      for (const [name, arcadeTableState] of Object.entries(
-        arcadeTablesState,
-      )) {
-        if (arcadeTableState.owner) {
-          // Increase players' score for each second owning an arcade table.
-          const userId = arcadeTableState.owner.UserId
-          const newState = this.addScore(
-            userId,
-            arcadeTableState.tableName,
-            arcadeTableState.tableType,
-            10,
-          )
-
-          // Trigger winning sequence when threshhold score exceeded.
-          if (arcadeTableState.status === ArcadeTableStatus.Active) {
-            if (
-              arcadeTableState.scoreDomain === ArcadeTableScoreDomain.Player
-            ) {
-              const userScoreSelector = selectPlayerScore(userId)
-              const score = userScoreSelector(newState)
-              if (score > arcadeTableState.scoreToWin)
-                this.handleArcadeTableWon(
-                  name,
-                  game.Workspace.ArcadeTables[name],
-                )
-            } else if (
-              arcadeTableState.scoreDomain === ArcadeTableScoreDomain.Table &&
-              arcadeTableState.score > arcadeTableState.scoreToWin
-            ) {
-              this.handleArcadeTableWon(name, game.Workspace.ArcadeTables[name])
-            }
-          }
-        }
-      }
-
-      this.trackArcadeTablePlayZones()
+      this.updatePlayersGravity()
     }
   }
 
-  trackArcadeTablePlayZones() {
+  updatePlayersGravity() {
     const players = Players.GetPlayers().map((x) => ({
       userID: x.UserId,
       gravityUp: undefined as Vector3 | undefined,
@@ -157,37 +103,6 @@ export class GameService implements OnStart {
       }
     }
     store.updateGround(players)
-  }
-
-  handleArcadeTableWon(
-    name: ArcadeTableName,
-    arcadeTable: ArcadeTable | undefined,
-  ) {
-    store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
-    if (arcadeTable) {
-      if (arcadeTable.Backbox) {
-        const audio = arcadeTable.FindFirstChild('Audio') as
-          | { WinSound?: Sound }
-          | undefined
-        if (audio?.WinSound)
-          playSoundId(arcadeTable.Backbox, audio.WinSound.SoundId)
-        arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)
-        for (const descendent of arcadeTable.Backbox.GetDescendants()) {
-          if (descendent.IsA('BasePart')) {
-            descendent.Transparency = 1
-          } else if (descendent.IsA('Decal')) {
-            descendent.Transparency = 1
-          }
-        }
-      }
-      arcadeTable.Barrier?.Destroy()
-      arcadeTable.Box.UpperWall?.Destroy()
-      const balls = getDescendentsWithTag(arcadeTable.Balls, BallTag)
-      for (const ball of balls) ball.Destroy()
-      task.wait(2.2)
-      arcadeTable.Backbox?.Destroy()
-    }
-    this.mapService.createNextTable(name)
   }
 }
 

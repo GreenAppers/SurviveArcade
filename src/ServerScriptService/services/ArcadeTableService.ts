@@ -1,28 +1,51 @@
 import { OnStart, Service } from '@flamework/core'
+import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { Workspace } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
+import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTablesState,
   selectArcadeTableState,
+  selectPlayerScore,
 } from 'ReplicatedStorage/shared/state'
 import {
+  ArcadeTableScoreDomain,
   ArcadeTableState,
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
 import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 import { Events } from 'ServerScriptService/network'
+import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { EXCHANGE, executeExchange } from 'ServerScriptService/utils/exchange'
-import { setNetworkOwner } from 'ServerScriptService/utils/instance'
+import {
+  getDescendentsWithTag,
+  setNetworkOwner,
+} from 'ServerScriptService/utils/instance'
 
 @Service()
 export class ArcadeTableService implements OnStart {
   ballNumber = 1
   scoreboardCharacters = 14
+
+  constructor(
+    private readonly mapService: MapService,
+    private readonly logger: Logger,
+  ) {}
+
+  addScore(
+    userId: number,
+    tableName: ArcadeTableName,
+    tableType: ArcadeTableType,
+    amount: number,
+  ) {
+    store.addArcadeTableScore(tableName, amount)
+    return store.addPlayerScore(userId, tableType, amount)
+  }
 
   claimArcadeTable(tableName: ArcadeTableName, player?: Player) {
     if (!player) return store.claimArcadeTable(tableName, undefined)
@@ -94,6 +117,44 @@ export class ArcadeTableService implements OnStart {
   onStart() {
     this.startArcadeTablesClaimedSubscription()
     this.startArcadeTablesControlEventHandler()
+    const arcadeTablesSelector = selectArcadeTablesState()
+
+    for (;;) {
+      task.wait(1)
+      const state = store.getState()
+      const arcadeTablesState = arcadeTablesSelector(state)
+      for (const [name, arcadeTableState] of Object.entries(
+        arcadeTablesState,
+      )) {
+        if (arcadeTableState.owner) {
+          // Increase players' score for each second owning an arcade table.
+          const userId = arcadeTableState.owner.UserId
+          const newState = this.addScore(
+            userId,
+            arcadeTableState.tableName,
+            arcadeTableState.tableType,
+            10,
+          )
+
+          // Trigger winning sequence when threshhold score exceeded.
+          if (arcadeTableState.status === ArcadeTableStatus.Active) {
+            if (
+              arcadeTableState.scoreDomain === ArcadeTableScoreDomain.Player
+            ) {
+              const userScoreSelector = selectPlayerScore(userId)
+              const score = userScoreSelector(newState)
+              if (score > arcadeTableState.scoreToWin)
+                store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
+            } else if (
+              arcadeTableState.scoreDomain === ArcadeTableScoreDomain.Table &&
+              arcadeTableState.score > arcadeTableState.scoreToWin
+            ) {
+              store.updateArcadeTableStatus(name, ArcadeTableStatus.Won)
+            }
+          }
+        }
+      }
+    }
   }
 
   onPlayerClaimed(
@@ -111,8 +172,13 @@ export class ArcadeTableService implements OnStart {
     this.onGameOver(tableName, player, previousTableState.score)
   }
 
-  onGameWon(tableName: string, player: Player, score: number) {
-    this.onGameOver(tableName, player, score)
+  onGameWon(tableName: ArcadeTableName, player: Player, score: number) {
+    Promise.try(() =>
+      this.playWinningSequence(game.Workspace.ArcadeTables[tableName]),
+    ).then(() => {
+      this.mapService.createNextTable(tableName)
+      this.onGameOver(tableName, player, score)
+    })
   }
 
   onGameOver(tableName: string, player: Player, score: number) {
@@ -190,5 +256,30 @@ export class ArcadeTableService implements OnStart {
       existingGlyphsLength: this.scoreboardCharacters,
       textScaled: true,
     })
+  }
+
+  async playWinningSequence(arcadeTable: ArcadeTable | undefined) {
+    if (!arcadeTable) return
+    if (arcadeTable.Backbox) {
+      const audio = arcadeTable.FindFirstChild('Audio') as
+        | { WinSound?: Sound }
+        | undefined
+      if (audio?.WinSound)
+        playSoundId(arcadeTable.Backbox, audio.WinSound.SoundId)
+      arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)
+      for (const descendent of arcadeTable.Backbox.GetDescendants()) {
+        if (descendent.IsA('BasePart')) {
+          descendent.Transparency = 1
+        } else if (descendent.IsA('Decal')) {
+          descendent.Transparency = 1
+        }
+      }
+    }
+    arcadeTable.Barrier?.Destroy()
+    arcadeTable.Box.UpperWall?.Destroy()
+    const balls = getDescendentsWithTag(arcadeTable.Balls, BallTag)
+    for (const ball of balls) ball.Destroy()
+    task.wait(2.2)
+    arcadeTable.Backbox?.Destroy()
   }
 }
