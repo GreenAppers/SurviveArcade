@@ -7,8 +7,8 @@ import { RootProvider } from 'StarterPlayer/StarterPlayerScripts/Gui/providers/R
 
 @Controller({})
 export class GuiController implements OnStart {
-  private playerGui = Players.LocalPlayer.WaitForChild('PlayerGui')
-  private root = createRoot(new Instance('Folder'))
+  playerGui = Players.LocalPlayer.WaitForChild('PlayerGui')
+  root = createRoot(new Instance('Folder'))
 
   onStart() {
     this.root.render(

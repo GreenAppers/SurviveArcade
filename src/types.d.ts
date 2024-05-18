@@ -405,12 +405,7 @@ interface TycoonPlot extends Model {
 
 interface VehicleSpawner extends Model {
   Screen: BasePart & {
-    Spawn: SurfaceGui & {
-      Frame: Frame & {
-        TextButton: TextButton
-        TextLabel: TextLabel
-      }
-    }
+    Spawn: SurfaceGui
   }
   Spawn: RemoteEvent
 }
