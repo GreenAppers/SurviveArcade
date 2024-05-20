@@ -3,6 +3,7 @@
     <Properties>
       <string name="Name">ArcadeSecurityCamera1</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -52,7 +53,7 @@
       <Properties>
         <string name="Name">CamOrigin</string>
         <bool name="Anchored">false</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZjMg==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">2</token>
@@ -78,6 +79,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -147,7 +149,7 @@
       <Item class="Weld" referent="2">
         <Properties>
           <string name="Name">Weld</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDg2YzIRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA4NmM3</BinaryString>
           <CoordinateFrame name="C0">
             <X>0</X>
             <Y>0</Y>
@@ -176,6 +178,7 @@
             <R21>-0.0000045039815</R21>
             <R22>1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">1</Ref>
@@ -187,7 +190,7 @@
       <Item class="Weld" referent="4">
         <Properties>
           <string name="Name">Weld</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDg2YzIRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA4NmM1</BinaryString>
           <CoordinateFrame name="C0">
             <X>0</X>
             <Y>0</Y>
@@ -216,6 +219,7 @@
             <R21>-0.0000013700081</R21>
             <R22>-0.00000044198714</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">1</Ref>
@@ -229,7 +233,7 @@
       <Properties>
         <string name="Name">CamTarget</string>
         <bool name="Anchored">false</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZjNQ==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">2</token>
@@ -255,6 +259,7 @@
         <bool name="CanCollide">false</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -326,6 +331,7 @@
       <Properties>
         <string name="Name">Misc</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -379,7 +385,7 @@
           <Content name="AssetId">
             <url>https://www.roblox.com//asset/?id=5916321011</url>
           </Content>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZjNw==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -405,6 +411,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -523,6 +530,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -609,7 +617,7 @@
         <Item class="Attachment" referent="8">
           <Properties>
             <string name="Name">Attachment1</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZjOQ==</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>-0.172</X>
               <Y>-0.15</Y>
@@ -624,6 +632,7 @@
               <R21>0.000003099456</R21>
               <R22>-0.0000038370663</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
@@ -635,6 +644,7 @@
         <Properties>
           <string name="Name">qPerfectionWeld</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Disabled">false</bool>
           <Content name="LinkedSource">
@@ -921,6 +931,7 @@ end
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -1039,6 +1050,7 @@ end
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -1125,7 +1137,7 @@ end
         <Item class="Attachment" referent="12">
           <Properties>
             <string name="Name">Attachment1</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZjZA==</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>0.25</X>
               <Y>0.128</Y>
@@ -1140,6 +1152,7 @@ end
               <R21>0</R21>
               <R22>1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
@@ -1181,6 +1194,7 @@ end
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -1270,6 +1284,7 @@ end
             <float name="Angle">30</float>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <float name="Brightness">10000000000000000000000000000000</float>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <Color3 name="Color">
               <R>1</R>
               <G>1</G>
@@ -1287,6 +1302,7 @@ end
             <Properties>
               <string name="Name">Script</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Disabled">false</bool>
               <Content name="LinkedSource">
@@ -1312,6 +1328,7 @@ end</string>
         <Properties>
           <string name="Name">Lens</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <token name="LevelOfDetail">0</token>
           <CoordinateFrame name="ModelMeshCFrame">
@@ -1391,6 +1408,7 @@ end</string>
             <bool name="CanCollide">false</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <BinaryString name="ChildData">
             </BinaryString>
@@ -1510,6 +1528,7 @@ end</string>
             <bool name="CanCollide">false</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1612,6 +1631,7 @@ end</string>
             <bool name="CanCollide">false</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1714,6 +1734,7 @@ end</string>
             <bool name="CanCollide">false</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1816,6 +1837,7 @@ end</string>
             <bool name="CanCollide">false</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1918,6 +1940,7 @@ end</string>
             <bool name="CanCollide">false</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -2020,6 +2043,7 @@ end</string>
             <bool name="CanCollide">false</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -2098,6 +2122,7 @@ end</string>
       <Properties>
         <string name="Name">Body</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -2177,6 +2202,7 @@ end</string>
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -2263,7 +2289,7 @@ end</string>
         <Item class="Attachment" referent="26">
           <Properties>
             <string name="Name">Attachment0</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZkYg==</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>-0.36</X>
               <Y>0</Y>
@@ -2278,6 +2304,7 @@ end</string>
               <R21>0</R21>
               <R22>-1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
@@ -2293,7 +2320,8 @@ end</string>
             <float name="AngularVelocity">0</float>
             <Ref name="Attachment0">26</Ref>
             <Ref name="Attachment1">28</Ref>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDg2ZGIXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA4NmUw</BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <int name="Color">1009</int>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
@@ -2347,6 +2375,7 @@ end</string>
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -2433,7 +2462,7 @@ end</string>
         <Item class="Attachment" referent="30">
           <Properties>
             <string name="Name">Attachment0</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZkZQ==</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>-0.244</X>
               <Y>-0.29</Y>
@@ -2448,6 +2477,7 @@ end</string>
               <R21>-0.00000009108777</R21>
               <R22>1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
@@ -2463,7 +2493,8 @@ end</string>
             <float name="AngularVelocity">0</float>
             <Ref name="Attachment0">30</Ref>
             <Ref name="Attachment1">12</Ref>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDg2ZGUXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA4NmNk</BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <int name="Color">1009</int>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
@@ -2485,7 +2516,7 @@ end</string>
         <Item class="Attachment" referent="28">
           <Properties>
             <string name="Name">Attachment1</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZlMA==</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>0.374</X>
               <Y>0.05</Y>
@@ -2500,6 +2531,7 @@ end</string>
               <R21>0</R21>
               <R22>-1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
@@ -2541,6 +2573,7 @@ end</string>
           <bool name="CanCollide">false</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -2627,7 +2660,7 @@ end</string>
         <Item class="Attachment" referent="33">
           <Properties>
             <string name="Name">Attachment0</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwODZlMg==</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>-0.030000063</X>
               <Y>0.00024334148</Y>
@@ -2642,6 +2675,7 @@ end</string>
               <R21>0</R21>
               <R22>-1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
@@ -2657,7 +2691,8 @@ end</string>
             <float name="AngularVelocity">0</float>
             <Ref name="Attachment0">33</Ref>
             <Ref name="Attachment1">8</Ref>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDg2ZTIXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA4NmM5</BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <int name="Color">1009</int>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
@@ -2679,6 +2714,7 @@ end</string>
             <Properties>
               <string name="Name">Script</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Disabled">false</bool>
               <Content name="LinkedSource">
@@ -2708,6 +2744,7 @@ end</string>
       <Properties>
         <string name="Name">PresetVal</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
@@ -2716,6 +2753,7 @@ end</string>
         <Properties>
           <string name="Name">P</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2726,6 +2764,7 @@ end</string>
         <Properties>
           <string name="Name">T</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -2737,6 +2776,7 @@ end</string>
       <Properties>
         <string name="Name">Light</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
@@ -2747,6 +2787,7 @@ end</string>
       <Properties>
         <string name="Name">Wipe</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
@@ -2757,6 +2798,7 @@ end</string>
       <Properties>
         <string name="Name">PTCalibration</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <bool name="Disabled">false</bool>
         <Content name="LinkedSource">
@@ -2836,6 +2878,7 @@ script.Parent.Body.Tilt.HingeConstraint.ActuatorType = 1</string>
         </CoordinateFrame>
         <Ref name="CameraSubject">null</Ref>
         <token name="CameraType">0</token>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <float name="FieldOfView">5</float>
         <token name="FieldOfViewMode">0</token>

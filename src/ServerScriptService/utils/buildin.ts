@@ -1,5 +1,5 @@
 import { TweenService } from '@rbxts/services'
-import { getDescendentsWhichAre } from 'ServerScriptService/utils/instance'
+import { findDescendentsWhichAre } from 'ServerScriptService/utils/instance'
 
 const BUILDING_ANIMATION_POSITION_OFFSET_AMOUNT = 5
 const BUILDING_ANIMATION_PART_DELAY = 0.03
@@ -8,7 +8,7 @@ const random = new Random()
 export function animateBuildingIn(buildingModel: Model, tweenInfo: TweenInfo) {
   // Collect BaseParts and original properties
   const parts = <BasePart[]>(
-    getDescendentsWhichAre(buildingModel, 'BasePart').filter(
+    findDescendentsWhichAre(buildingModel, 'BasePart').filter(
       (x) => x.Name !== 'Baseplate',
     )
   )

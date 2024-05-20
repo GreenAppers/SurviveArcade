@@ -109,6 +109,26 @@ type ArcadeTableNextName =
 
 type ArcadeTableMap = 'Pinball1'
 
+interface BehaviorObject {
+  attackDebounce?: boolean
+  Blackboard: Record<string, unknown> & {
+    status?: string
+    obstacle?: BasePart
+    obstaclePos?: Vector3
+    sourceHumanoid?: Humanoid
+    sourceHumanoidRootPart?: BasePart
+    sourceInstance?: Instance
+    sourceAttachment?: Attachment
+    targetAttachment?: Attachment
+    targetPart?: BasePart
+    targetHumanoid?: Humanoid
+    targetHumanoidRootPart?: BasePart
+    teamName?: string
+  }
+  notice?: boolean
+  noticeDebounce?: boolean
+}
+
 interface BlockBreaker extends Tool {
   BreakBlock: RemoteFunction
 }
@@ -233,6 +253,12 @@ interface LoadingGui extends ScreenGui {
   }
 }
 
+type NPCType = 'Player' | 'Rat'
+
+interface NPCAttributes {
+  NPCType: NPCType
+}
+
 interface PlayerCharacter extends Model {
   Humanoid: Humanoid
 }
@@ -246,6 +272,9 @@ interface PlayerSpace extends Folder {
 interface ReplicatedStorage extends Instance {
   ArcadeTables: Folder & {
     Pinball1: ArcadeTable
+  }
+  BehaviorTrees: Folder & {
+    Player: Folder
   }
   Common: Folder & {
     Beam: Beam
@@ -265,6 +294,10 @@ interface ReplicatedStorage extends Instance {
   Maps: Folder & {
     [mapName: string]: Folder & ArcadeMap
   }
+  NPC: Folder & {
+    Rat: Model
+    Player: Model
+  }
   Tools: Folder & {
     ArcadeGun: Tool
     BreakBlock: BlockBreaker
@@ -279,6 +312,12 @@ interface ReplicatedStorage extends Instance {
   }
   Vehicles: Folder & {
     Airplane: Airplane
+  }
+}
+
+interface ServerStorage extends Instance {
+  BehaviorTrees: Folder & {
+    Zombie: Folder
   }
 }
 
@@ -431,6 +470,7 @@ interface Workspace extends Instance {
   Cutscenes: Cutscenes
   PlayerSpaces: Folder
   Map: Folder & ArcadeMap
+  NPC: Folder
   Tycoons: Folder & {
     Tycoon1?: Tycoon
     Tycoon2?: Tycoon

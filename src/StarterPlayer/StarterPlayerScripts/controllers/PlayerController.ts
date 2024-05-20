@@ -1,4 +1,5 @@
 import { Controller, OnStart } from '@flamework/core'
+import { BehaviorTree3, BehaviorTreeCreator } from '@rbxts/behavior-tree-5'
 import { CmdrClient } from '@rbxts/cmdr'
 import { DeviceType } from '@rbxts/device'
 import {
@@ -54,6 +55,7 @@ export class PlayerController implements OnStart {
   firstRespawn = true
   collectionAnimationPlaying = false
   playerSpace: PlayerSpace | undefined
+  guide: BehaviorTree3<BehaviorObject> | undefined
   gravityController: GravityController | undefined
   shooter: ShooterComponent | undefined
   isDesktop = USER_DEVICE === DeviceType.Desktop
@@ -80,7 +82,7 @@ export class PlayerController implements OnStart {
     this.startInputHandling()
     this.startMyRespawnHandler(player)
     this.startMyGuideHandler(player)
-    this.prepareGravityController(player)
+    this.startGravityController(player)
     this.startCollectionAnimator(player)
 
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
@@ -163,6 +165,13 @@ export class PlayerController implements OnStart {
     })
   }
 
+  startMyRespawnHandler(player: Player) {
+    player.CharacterAdded.Connect((character) =>
+      this.handleRespawn(player, character),
+    )
+    if (player.Character) this.handleRespawn(player, player.Character)
+  }
+
   handleRespawn(player: Player, playerCharacter: Model) {
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     const beam = ReplicatedStorage.Common.Beam.Clone()
@@ -199,14 +208,10 @@ export class PlayerController implements OnStart {
     )
   }
 
-  startMyRespawnHandler(player: Player) {
-    player.CharacterAdded.Connect((character) =>
-      this.handleRespawn(player, character),
-    )
-    if (player.Character) this.handleRespawn(player, player.Character)
-  }
-
   startMyGuideHandler(player: Player) {
+    /*this.guide = BehaviorTreeCreator.Create<BehaviorObject>(
+      ReplicatedStorage.BehaviorTrees.Player,
+    )*/
     const arcadeTablesSelector = selectArcadeTablesState()
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     store.subscribe(arcadeTablesSelector, (_arcadeTablesState) => {
@@ -217,7 +222,7 @@ export class PlayerController implements OnStart {
     })
   }
 
-  prepareGravityController(player: Player) {
+  startGravityController(player: Player) {
     forEveryPlayerCharacterAdded(player, (character) => {
       this.disableGravityController()
       const humanoid = character.WaitForChild(CHARACTER_CHILD.Humanoid) as
@@ -395,7 +400,6 @@ export class PlayerController implements OnStart {
       tycoonStatus = formatMessage(MESSAGE.GuideClaimTycoon)
       tycoonTargetAttachment = this.tycoonController.findTycoonTarget(
         tycoonsState,
-        humanoidRootPart,
         rootRigAttachment,
       )
     } else if (
@@ -419,7 +423,6 @@ export class PlayerController implements OnStart {
       gameStatus = formatMessage(MESSAGE.GuideWinTickets)
       gameTargetAttachment = this.arcadeController.findTableTarget(
         selectArcadeTablesState()(state),
-        humanoidRootPart,
         rootRigAttachment,
         localPlayerTeamName,
       )

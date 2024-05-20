@@ -5,11 +5,11 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn compile && yarn build-place",
-    "build-place": "rojo build -o SurviveArcade.rbxlx",
+    "build-place": "rojo build -o SurviveArcade.rbxl",
     "compile": "rbxtsc",
     "lint": "yarn eslint src && yarn prettier --check src",
     "sync": "rojo serve",
-    "syncback": "rojo-syncback syncback --input ./SurviveArcade.rbxlx 2>&1 | tee syncback.log && tools/rbxm2rbxmx.sh && rm -rf node_modules && yarn",
+    "syncback": "rojo syncback --input ./SurviveArcade.rbxl 2>&1 | tee syncback.log",
     "tarmac": "tarmac sync --target roblox",
     "watch": "rbxtsc -w"
   },

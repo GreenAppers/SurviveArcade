@@ -3,6 +3,7 @@
     <Properties>
       <string name="Name">FlipperLeft</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -78,6 +79,7 @@
         <bool name="CanCollide">false</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -147,7 +149,7 @@
       <Item class="Attachment" referent="2">
         <Properties>
           <string name="Name">Attachment1</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQwZQ==</BinaryString>
           <CoordinateFrame name="CFrame">
             <X>0.7200877</X>
             <Y>0</Y>
@@ -162,6 +164,7 @@
             <R21>-0.00000008742279</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -173,6 +176,7 @@
       <Properties>
         <string name="Name">Flipper</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -222,7 +226,7 @@
         <Properties>
           <string name="Name">Rotor</string>
           <bool name="Anchored">false</bool>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQxMA==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -248,6 +252,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -320,7 +325,7 @@
             <token name="AlignType">5</token>
             <Ref name="Attachment0">6</Ref>
             <Ref name="Attachment1">2</Ref>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MTIXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDBl</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>0</X>
               <Y>0</Y>
@@ -335,6 +340,7 @@
               <R21>0</R21>
               <R22>1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <int name="Color">23</int>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
@@ -353,7 +359,7 @@
         <Item class="Attachment" referent="6">
           <Properties>
             <string name="Name">Attachment0</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQxMg==</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>-1.4401754</X>
               <Y>0</Y>
@@ -368,6 +374,7 @@
               <R21>0</R21>
               <R22>-1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
@@ -383,7 +390,8 @@
             <float name="AngularVelocity">0</float>
             <Ref name="Attachment0">6</Ref>
             <Ref name="Attachment1">2</Ref>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MTIXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDBl</BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <int name="Color">1009</int>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
@@ -407,7 +415,7 @@
         <Properties>
           <string name="Name">End</string>
           <bool name="Anchored">false</bool>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQxNA==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -433,6 +441,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -502,7 +511,7 @@
         <Item class="WeldConstraint" referent="9">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MTQRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDE2</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>-0.00015282631</X>
               <Y>8.051861</Y>
@@ -517,6 +526,7 @@
               <R21>-0.11320108</R21>
               <R22>0.9935722</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <Ref name="Part0Internal">8</Ref>
             <Ref name="Part1Internal">10</Ref>
@@ -530,7 +540,7 @@
         <Properties>
           <string name="Name">Wedge2</string>
           <bool name="Anchored">false</bool>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQxNg==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -556,6 +566,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -625,7 +636,7 @@
         <Item class="WeldConstraint" referent="11">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MTYRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDEw</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>0.00015294552</X>
               <Y>7.8321915</Y>
@@ -640,6 +651,7 @@
               <R21>0.11320722</R21>
               <R22>0.993569</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <Ref name="Part0Internal">10</Ref>
             <Ref name="Part1Internal">4</Ref>
@@ -653,7 +665,7 @@
         <Properties>
           <string name="Name">Wedge1</string>
           <bool name="Anchored">false</bool>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQxOA==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -679,6 +691,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -748,7 +761,7 @@
         <Item class="WeldConstraint" referent="13">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MTgRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDEw</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>0.00019788742</X>
               <Y>-8.123304</Y>
@@ -763,6 +776,7 @@
               <R21>0.17192635</R21>
               <R22>-0.98510826</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <Ref name="Part0Internal">12</Ref>
             <Ref name="Part1Internal">4</Ref>
@@ -776,7 +790,7 @@
         <Properties>
           <string name="Name">Middle</string>
           <bool name="Anchored">false</bool>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQxYQ==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -802,6 +816,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -871,7 +886,7 @@
         <Item class="WeldConstraint" referent="15">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MWERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDEw</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>0.00019788742</X>
               <Y>4.41465</Y>
@@ -886,6 +901,7 @@
               <R21>-0.10452965</R21>
               <R22>0.9945204</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <Ref name="Part0Internal">14</Ref>
             <Ref name="Part1Internal">4</Ref>
@@ -903,7 +919,7 @@
           <Content name="AssetId">
             <url>https://www.roblox.com//asset/?id=15518286409</url>
           </Content>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQxYw==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -929,6 +945,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -1015,7 +1032,7 @@
         <Item class="WeldConstraint" referent="17">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MWMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDE0</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>7.9306526</X>
               <Y>-1.4471922</Y>
@@ -1030,6 +1047,7 @@
               <R21>0.104500234</R21>
               <R22>0.99452496</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <Ref name="Part0Internal">16</Ref>
             <Ref name="Part1Internal">8</Ref>

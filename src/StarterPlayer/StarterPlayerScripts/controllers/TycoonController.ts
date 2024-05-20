@@ -16,12 +16,11 @@ import {
 export class TycoonController {
   findTycoonTarget(
     tycoonsState: TycoonsState,
-    humanoidRootPart: BasePart,
-    _rootRigAttachment: Attachment,
+    rootRigAttachment: Attachment,
   ): Attachment | undefined {
     // Find nearest Tycoon Plot
     const tycoonName = nearestTycoonPlot(
-      humanoidRootPart.Position,
+      rootRigAttachment.WorldPosition,
       tycoonsState,
     )
     if (!tycoonName) return undefined

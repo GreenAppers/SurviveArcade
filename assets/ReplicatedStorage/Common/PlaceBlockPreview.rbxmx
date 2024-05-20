@@ -3,7 +3,7 @@
     <Properties>
       <string name="Name">PlaceBlockPreview</string>
       <bool name="Anchored">true</bool>
-      <BinaryString name="AttributesSerialize"></BinaryString>
+      <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdjMg==</BinaryString>
       <float name="BackParamA">-0.5</float>
       <float name="BackParamB">0.5</float>
       <token name="BackSurface">0</token>
@@ -29,6 +29,7 @@
       <bool name="CanCollide">false</bool>
       <bool name="CanQuery">true</bool>
       <bool name="CanTouch">false</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="CastShadow">true</bool>
       <string name="CollisionGroup">Default</string>
       <int name="CollisionGroupId">0</int>
@@ -99,7 +100,8 @@
       <Properties>
         <string name="Name">SelectionBox</string>
         <Ref name="Adornee">0</Ref>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAABMAAABSb2pvX1RhcmdldF9BZG9ybmVlAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdjMg==</BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <Color3 name="Color3">
           <R>0</R>
           <G>1</G>

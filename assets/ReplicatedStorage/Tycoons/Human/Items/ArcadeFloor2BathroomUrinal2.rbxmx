@@ -3,6 +3,7 @@
     <Properties>
       <string name="Name">ArcadeFloor2BathroomUrinal2</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -52,7 +53,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U2Yg==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -78,6 +79,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -148,6 +150,7 @@
         <Properties>
           <string name="Name">Mesh</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <Content name="MeshId">
             <null>
@@ -182,7 +185,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U2ZA==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -208,6 +211,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -279,7 +283,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U2ZQ==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -305,6 +309,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -375,6 +380,7 @@
         <Properties>
           <string name="Name">Mesh</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <Content name="MeshId">
             <null>
@@ -409,7 +415,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U3MA==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -435,6 +441,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -505,6 +512,7 @@
         <Properties>
           <string name="Name">Mesh</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <Content name="MeshId">
             <null>
@@ -537,7 +545,7 @@
       <Item class="ManualWeld" referent="8">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlNzARAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTZk</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.20000002</X>
             <Y>-0.2</Y>
@@ -566,6 +574,7 @@
             <R21>0.4461978</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">6</Ref>
@@ -579,7 +588,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U3Mw==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -605,6 +614,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -674,7 +684,7 @@
       <Item class="ManualWeld" referent="10">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlNzMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTgw</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.6</X>
             <Y>-0.19999999</Y>
@@ -703,6 +713,7 @@
             <R21>0</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">9</Ref>
@@ -714,7 +725,7 @@
       <Item class="ManualWeld" referent="12">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlNzMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTZk</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.6</X>
             <Y>0.19999999</Y>
@@ -743,6 +754,7 @@
             <R21>0.89493436</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">9</Ref>
@@ -754,7 +766,7 @@
       <Item class="ManualWeld" referent="13">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlNzMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTk3</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.6</X>
             <Y>0.19999999</Y>
@@ -783,6 +795,7 @@
             <R21>-0.89493436</R21>
             <R22>0.00000007823765</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">9</Ref>
@@ -794,7 +807,7 @@
       <Item class="ManualWeld" referent="15">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlNzMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTZl</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.6</X>
             <Y>-0.19999999</Y>
@@ -823,6 +836,7 @@
             <R21>0</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">9</Ref>
@@ -834,7 +848,7 @@
       <Item class="ManualWeld" referent="16">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlNzMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTlm</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.6</X>
             <Y>-0.19999999</Y>
@@ -863,6 +877,7 @@
             <R21>0</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">9</Ref>
@@ -874,7 +889,7 @@
       <Item class="ManualWeld" referent="18">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlNzMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTll</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.6</X>
             <Y>0.19999999</Y>
@@ -903,6 +918,7 @@
             <R21>0</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">9</Ref>
@@ -914,7 +930,7 @@
       <Item class="ManualWeld" referent="20">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlNzMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZThi</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.6</X>
             <Y>0.19999999</Y>
@@ -943,6 +959,7 @@
             <R21>0</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">9</Ref>
@@ -956,6 +973,7 @@
       <Properties>
         <string name="Name">Person Sensor</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -1031,6 +1049,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1101,6 +1120,7 @@
           <Properties>
             <string name="Name">Mesh</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <Content name="MeshId">
               <null>
@@ -1161,6 +1181,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1231,6 +1252,7 @@
           <Properties>
             <string name="Name">Mesh</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <Content name="MeshId">
               <null>
@@ -1266,7 +1288,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U4MA==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -1292,6 +1314,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1362,6 +1385,7 @@
         <Properties>
           <string name="Name">Mesh</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <Content name="MeshId">
             <null>
@@ -1394,7 +1418,7 @@
       <Item class="ManualWeld" referent="28">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlODARAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTk3</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.20000002</X>
             <Y>-0.2</Y>
@@ -1423,6 +1447,7 @@
             <R21>0.4461978</R21>
             <R22>0.00000007823765</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">11</Ref>
@@ -1436,7 +1461,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U4Mw==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -1462,6 +1487,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1531,7 +1557,7 @@
       <Item class="ManualWeld" referent="30">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlODMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTZl</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.1</X>
             <Y>-1.6999999</Y>
@@ -1560,6 +1586,7 @@
             <R21>0</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">29</Ref>
@@ -1571,7 +1598,7 @@
       <Item class="ManualWeld" referent="31">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlODMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTlm</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.1</X>
             <Y>-1.6999999</Y>
@@ -1600,6 +1627,7 @@
             <R21>0</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">29</Ref>
@@ -1613,6 +1641,7 @@
       <Properties>
         <string name="Name">Water Pipe</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -1662,7 +1691,7 @@
         <Properties>
           <string name="Name">Part</string>
           <bool name="Anchored">true</bool>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U4Nw==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">10</token>
@@ -1688,6 +1717,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1761,6 +1791,7 @@
             <float name="Bevel">0</float>
             <float name="Bevel Roundness">0</float>
             <float name="Bulge">0</float>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <Vector3 name="Offset">
               <X>0</X>
@@ -1784,7 +1815,7 @@
         <Item class="ManualWeld" referent="35">
           <Properties>
             <string name="Name">Part-to-Part Strong Joint</string>
-            <BinaryString name="AttributesSerialize"></BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlODcRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZThh</BinaryString>
             <CoordinateFrame name="C0">
               <X>-0.3</X>
               <Y>0.5</Y>
@@ -1813,6 +1844,7 @@
               <R21>1</R21>
               <R22>0</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <Ref name="Part0">33</Ref>
@@ -1826,7 +1858,7 @@
         <Properties>
           <string name="Name">Part</string>
           <bool name="Anchored">true</bool>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U4YQ==</BinaryString>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">10</token>
@@ -1852,6 +1884,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1924,7 +1957,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U4Yg==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -1950,6 +1983,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2021,7 +2055,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U4Yw==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -2047,6 +2081,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2118,7 +2153,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U4ZA==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -2144,6 +2179,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2213,7 +2249,7 @@
       <Item class="ManualWeld" referent="39">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOGQRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTgw</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.3</X>
             <Y>-0.19999999</Y>
@@ -2242,6 +2278,7 @@
             <R21>0</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">38</Ref>
@@ -2253,7 +2290,7 @@
       <Item class="ManualWeld" referent="40">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOGQRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTZk</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.3</X>
             <Y>0.19999999</Y>
@@ -2282,6 +2319,7 @@
             <R21>0.89493436</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">38</Ref>
@@ -2293,7 +2331,7 @@
       <Item class="ManualWeld" referent="41">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOGQRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTk3</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.3</X>
             <Y>0.19999999</Y>
@@ -2322,6 +2360,7 @@
             <R21>-0.89493436</R21>
             <R22>0.00000007823765</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">38</Ref>
@@ -2333,7 +2372,7 @@
       <Item class="ManualWeld" referent="42">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOGQRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZThj</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.3</X>
             <Y>0.19999999</Y>
@@ -2362,6 +2401,7 @@
             <R21>0</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">38</Ref>
@@ -2375,7 +2415,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U5Mg==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -2401,6 +2441,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2470,7 +2511,7 @@
       <Item class="ManualWeld" referent="44">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOTIRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTgz</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.5</X>
             <Y>-0.1</Y>
@@ -2499,6 +2540,7 @@
             <R21>1</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">43</Ref>
@@ -2510,7 +2552,7 @@
       <Item class="ManualWeld" referent="45">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOTIRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZWE1</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.5</X>
             <Y>-0.1</Y>
@@ -2539,6 +2581,7 @@
             <R21>0</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">43</Ref>
@@ -2550,7 +2593,7 @@
       <Item class="ManualWeld" referent="47">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOTIRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTZi</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.5</X>
             <Y>-0.1</Y>
@@ -2579,6 +2622,7 @@
             <R21>0</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">43</Ref>
@@ -2590,7 +2634,7 @@
       <Item class="ManualWeld" referent="48">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOTIRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTg3</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.5</X>
             <Y>0.1</Y>
@@ -2619,6 +2663,7 @@
             <R21>1</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">43</Ref>
@@ -2632,7 +2677,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U5Nw==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -2658,6 +2703,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2729,7 +2775,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U5OA==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -2755,6 +2801,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2824,7 +2871,7 @@
       <Item class="ManualWeld" referent="50">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOTgRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTgz</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.5</X>
             <Y>-1.5</Y>
@@ -2853,6 +2900,7 @@
             <R21>0</R21>
             <R22>-1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">49</Ref>
@@ -2864,7 +2912,7 @@
       <Item class="ManualWeld" referent="51">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOTgRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTZi</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.5</X>
             <Y>1.5</Y>
@@ -2893,6 +2941,7 @@
             <R21>-1</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">49</Ref>
@@ -2904,7 +2953,7 @@
       <Item class="ManualWeld" referent="52">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlOTgRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTZl</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.5</X>
             <Y>-1.5</Y>
@@ -2933,6 +2982,7 @@
             <R21>-1</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">49</Ref>
@@ -2972,6 +3022,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3042,6 +3093,7 @@
         <Properties>
           <string name="Name">Hole</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <token name="FaceId">0</token>
           <token name="InOut">1</token>
@@ -3056,7 +3108,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U5ZQ==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -3082,6 +3134,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3153,7 +3206,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2U5Zg==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -3179,6 +3232,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3249,6 +3303,7 @@
         <Properties>
           <string name="Name">Mesh</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <Content name="MeshId">
             <null>
@@ -3283,7 +3338,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2VhMQ==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -3309,6 +3364,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3378,7 +3434,7 @@
       <Item class="ManualWeld" referent="57">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlYTERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTgz</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.5</X>
             <Y>-1.5</Y>
@@ -3407,6 +3463,7 @@
             <R21>0</R21>
             <R22>1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">56</Ref>
@@ -3418,7 +3475,7 @@
       <Item class="ManualWeld" referent="58">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlYTERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZWE1</BinaryString>
           <CoordinateFrame name="C0">
             <X>-0.5</X>
             <Y>1.5</Y>
@@ -3447,6 +3504,7 @@
             <R21>-1</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">56</Ref>
@@ -3458,7 +3516,7 @@
       <Item class="ManualWeld" referent="59">
         <Properties>
           <string name="Name">Part-to-Part Strong Joint</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDdlYTERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3ZTlm</BinaryString>
           <CoordinateFrame name="C0">
             <X>0.5</X>
             <Y>-1.5</Y>
@@ -3487,6 +3545,7 @@
             <R21>-1</R21>
             <R22>0</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">56</Ref>
@@ -3500,7 +3559,7 @@
       <Properties>
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwN2VhNQ==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -3526,6 +3585,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3596,6 +3656,7 @@
         <Properties>
           <string name="Name">Mesh</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <Content name="MeshId">
             <null>

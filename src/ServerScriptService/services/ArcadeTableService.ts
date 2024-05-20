@@ -23,7 +23,7 @@ import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { EXCHANGE, executeExchange } from 'ServerScriptService/utils/exchange'
 import {
-  getDescendentsWithTag,
+  findDescendentsWithTag,
   setNetworkOwner,
 } from 'ServerScriptService/utils/instance'
 
@@ -277,7 +277,7 @@ export class ArcadeTableService implements OnStart {
     }
     arcadeTable.Barrier?.Destroy()
     arcadeTable.Box.UpperWall?.Destroy()
-    const balls = getDescendentsWithTag(arcadeTable.Balls, BallTag)
+    const balls = findDescendentsWithTag(arcadeTable.Balls, BallTag)
     for (const ball of balls) ball.Destroy()
     task.wait(2.2)
     arcadeTable.Backbox?.Destroy()

@@ -36,7 +36,7 @@ import {
 } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import {
-  getDescendentsWhichAre,
+  findDescendentsWhichAre,
   setHidden,
 } from 'ServerScriptService/utils/instance'
 
@@ -161,7 +161,7 @@ export class TycoonService implements OnStart {
   }
 
   setupTycoonItem(item: Model, state: TycoonState) {
-    const parts = getDescendentsWhichAre(item, TYPE.BasePart) as BasePart[]
+    const parts = findDescendentsWhichAre(item, TYPE.BasePart) as BasePart[]
     for (const part of parts) {
       if (part.BrickColor.Name === tycoonTemplateColor.Name) {
         part.BrickColor = state.color
@@ -170,7 +170,7 @@ export class TycoonService implements OnStart {
   }
 
   setupTycoon(tycoon: Tycoon, state: TycoonState, cframe?: CFrame) {
-    const parts = getDescendentsWhichAre(tycoon, TYPE.BasePart) as BasePart[]
+    const parts = findDescendentsWhichAre(tycoon, TYPE.BasePart) as BasePart[]
     for (const part of parts) {
       if (part.Name === TYCOON_CHILD.Baseplate) {
         tycoon.PrimaryPart = part

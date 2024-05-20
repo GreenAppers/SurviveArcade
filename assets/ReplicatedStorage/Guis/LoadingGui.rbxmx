@@ -4,6 +4,7 @@
       <string name="Name">LoadingGui</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <bool name="AutoLocalize">true</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="ClipToDeviceSafeArea">true</bool>
       <bool name="DefinesCapabilities">false</bool>
       <int name="DisplayOrder">0</int>
@@ -45,6 +46,7 @@
         </Color3>
         <token name="BorderMode">0</token>
         <int name="BorderSizePixel">0</int>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="ClipsDescendants">false</bool>
         <bool name="DefinesCapabilities">false</bool>
         <bool name="Draggable">false</bool>
@@ -107,6 +109,7 @@
           </Color3>
           <token name="BorderMode">0</token>
           <int name="BorderSizePixel">1</int>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
@@ -123,10 +126,8 @@
           <bool name="Interactable">true</bool>
           <int name="LayoutOrder">0</int>
           <float name="LineHeight">1</float>
-          <BinaryString name="LocalizationMatchIdentifier">
-          </BinaryString>
-          <BinaryString name="LocalizationMatchedSourceText">
-          </BinaryString>
+          <string name="LocalizationMatchIdentifier"></string>
+          <string name="LocalizationMatchedSourceText"></string>
           <int name="MaxVisibleGraphemes">-1</int>
           <Ref name="NextSelectionDown">null</Ref>
           <Ref name="NextSelectionLeft">null</Ref>
@@ -206,6 +207,7 @@
           </Color3>
           <token name="BorderMode">0</token>
           <int name="BorderSizePixel">1</int>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
@@ -268,6 +270,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -310,6 +313,7 @@
             <Properties>
               <string name="Name">UICorner</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <UDim name="CornerRadius">
                 <S>0.5</S>
                 <O>0</O>
@@ -343,6 +347,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">1</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -385,6 +390,7 @@
               <Properties>
                 <string name="Name">UICorner</string>
                 <BinaryString name="AttributesSerialize"></BinaryString>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <UDim name="CornerRadius">
                   <S>0.5</S>
                   <O>0</O>
@@ -420,6 +426,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -462,6 +469,7 @@
             <Properties>
               <string name="Name">UICorner</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <UDim name="CornerRadius">
                 <S>0.5</S>
                 <O>0</O>
@@ -495,6 +503,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">1</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -537,6 +546,7 @@
               <Properties>
                 <string name="Name">UICorner</string>
                 <BinaryString name="AttributesSerialize"></BinaryString>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <UDim name="CornerRadius">
                   <S>0.5</S>
                   <O>0</O>
@@ -572,6 +582,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -614,6 +625,7 @@
             <Properties>
               <string name="Name">UICorner</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <UDim name="CornerRadius">
                 <S>0.5</S>
                 <O>0</O>
@@ -647,6 +659,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">1</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -689,6 +702,7 @@
               <Properties>
                 <string name="Name">UICorner</string>
                 <BinaryString name="AttributesSerialize"></BinaryString>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <UDim name="CornerRadius">
                   <S>0.5</S>
                   <O>0</O>
@@ -704,6 +718,7 @@
           <Properties>
             <string name="Name">Dots</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Disabled">false</bool>
             <Content name="LinkedSource">

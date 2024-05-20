@@ -2,6 +2,7 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import Object from '@rbxts/object-utils'
 import { AnimatedTag } from 'ReplicatedStorage/shared/constants/tags'
+import { findChildHumanoid } from 'ServerScriptService/utils/instance'
 
 function getTool(instance: Instance) {
   for (const kid of instance.GetChildren()) {
@@ -315,11 +316,7 @@ export class AnimatedComponent
     this.rightHip = waitForChild(this.torso, 'Right Hip') as Motor6D
     this.leftHip = waitForChild(this.torso, 'Left Hip') as Motor6D
     this.neck = waitForChild(this.torso, 'Neck') as Motor6D
-    for (const child of this.instance.GetChildren()) {
-      if (child.IsA('Humanoid')) {
-        this.humanoid = child
-      }
-    }
+    this.humanoid = findChildHumanoid(this.instance)
     for (const [name, fileList] of Object.entries(this.animNames)) {
       this.configureAnimationSet(name, fileList)
     }
