@@ -106,6 +106,13 @@ export const DIFFICULTY_TYPES: {
   normal: 'normal' as const,
 }
 
+export const NPC_TYPES: {
+  [name in NPCType]: NPCType
+} = {
+  Player: 'Player' as const,
+  Rat: 'Rat' as const,
+} as const
+
 export const TEAM_NAMES: {
   [name in TeamKey]: TeamName
 } = {

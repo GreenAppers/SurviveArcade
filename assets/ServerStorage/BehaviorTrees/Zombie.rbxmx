@@ -971,7 +971,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return game.ServerScriptService.behavior.FindObstacle</string>
+            <string name="Source">return require(game.ServerScriptService.behavior.FindObstacle)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1064,7 +1064,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return game.ServerScriptService.behavior.HandleObstacle</string>
+            <string name="Source">return require(game.ServerScriptService.behavior.HandleObstacle)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1157,7 +1157,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return game.ServerScriptService.behavior.FindNearestTarget</string>
+            <string name="Source">return require(game.ServerScriptService.behavior.FindNearestTarget)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1250,7 +1250,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return game.ServerScriptService.behavior.ChaseTarget</string>
+            <string name="Source">return require(game.ServerScriptService.behavior.ChaseTarget)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1343,7 +1343,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return game.ServerScriptService.behavior.CanAttackTarget</string>
+            <string name="Source">return require(game.ServerScriptService.behavior.CanAttackTarget)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1436,7 +1436,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return game.ServerScriptService.behavior.AttackTarget</string>
+            <string name="Source">return require(game.ServerScriptService.behavior.AttackTarget)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1529,7 +1529,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return game.ServerScriptService.behavior.WanderAround</string>
+            <string name="Source">return require(game.ServerScriptService.behavior.WanderAround)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1557,7 +1557,7 @@
         <BinaryString name="Tags"></BinaryString>
         <Vector3 name="Value">
           <X>0.5</X>
-          <Y>0</Y>
+          <Y>-28</Y>
           <Z>0</Z>
         </Vector3>
       </Properties>
@@ -1572,7 +1572,7 @@
         <BinaryString name="Tags"></BinaryString>
         <Vector3 name="Value">
           <X>0.5</X>
-          <Y>-206</Y>
+          <Y>-137</Y>
           <Z>0</Z>
         </Vector3>
       </Properties>

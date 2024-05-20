@@ -253,6 +253,12 @@ interface LoadingGui extends ScreenGui {
   }
 }
 
+type NPCType = 'Player' | 'Rat'
+
+interface NPCAttributes {
+  NPCType: NPCType
+}
+
 interface PlayerCharacter extends Model {
   Humanoid: Humanoid
 }
@@ -288,6 +294,10 @@ interface ReplicatedStorage extends Instance {
   Maps: Folder & {
     [mapName: string]: Folder & ArcadeMap
   }
+  NPC: Folder & {
+    Rat: Model
+    Player: Model
+  }
   Tools: Folder & {
     ArcadeGun: Tool
     BreakBlock: BlockBreaker
@@ -302,6 +312,12 @@ interface ReplicatedStorage extends Instance {
   }
   Vehicles: Folder & {
     Airplane: Airplane
+  }
+}
+
+interface ServerStorage extends Instance {
+  BehaviorTrees: Folder & {
+    Zombie: Folder
   }
 }
 
@@ -454,6 +470,7 @@ interface Workspace extends Instance {
   Cutscenes: Cutscenes
   PlayerSpaces: Folder
   Map: Folder & ArcadeMap
+  NPC: Folder
   Tycoons: Folder & {
     Tycoon1?: Tycoon
     Tycoon2?: Tycoon

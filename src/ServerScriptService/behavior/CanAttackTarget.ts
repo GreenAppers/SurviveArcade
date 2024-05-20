@@ -30,7 +30,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     targetHumanoidRootPart,
   } = obj.Blackboard
   if (!sourceHumanoidRootPart || !targetHumanoid || !targetHumanoidRootPart)
-    return false
+    return BEHAVIOR_TREE_STATUS.FAIL
   const [hit, _pos] = raycastThroughTools(
     sourceHumanoidRootPart.Position,
     targetHumanoidRootPart.Position.sub(sourceHumanoidRootPart.Position).Unit,

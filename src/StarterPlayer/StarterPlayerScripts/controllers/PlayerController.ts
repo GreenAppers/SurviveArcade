@@ -209,9 +209,9 @@ export class PlayerController implements OnStart {
   }
 
   startMyGuideHandler(player: Player) {
-    this.guide = BehaviorTreeCreator.Create<BehaviorObject>(
+    /*this.guide = BehaviorTreeCreator.Create<BehaviorObject>(
       ReplicatedStorage.BehaviorTrees.Player,
-    )
+    )*/
     const arcadeTablesSelector = selectArcadeTablesState()
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     store.subscribe(arcadeTablesSelector, (_arcadeTablesState) => {
@@ -369,7 +369,7 @@ export class PlayerController implements OnStart {
     beam.Enabled = false
 
     // Check if player is alive and has guide enabled.
-    if (!guideEnabled || !this.guide || !humanoid.Health || humanoid.Sit) return
+    if (!guideEnabled || !humanoid.Health || humanoid.Sit) return
     const localPlayerTeamName =
       localPlayer?.Team?.Name === TEAM_NAMES.UnclaimedTeam
         ? undefined

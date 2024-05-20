@@ -42,8 +42,16 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
       }
     }
   }
-  blackboard.targetPart = minDistanceTargetPart
-  blackboard.targetHumanoid = minDistanceHumanoid
-  blackboard.targetHumanoidRootPart = minDistanceHumanoidRootPart
-  return BEHAVIOR_TREE_STATUS.SUCCESS
+  if (
+    minDistanceTargetPart &&
+    minDistanceHumanoid &&
+    minDistanceHumanoidRootPart
+  ) {
+    blackboard.targetPart = minDistanceTargetPart
+    blackboard.targetHumanoid = minDistanceHumanoid
+    blackboard.targetHumanoidRootPart = minDistanceHumanoidRootPart
+    return BEHAVIOR_TREE_STATUS.SUCCESS
+  } else {
+    return BEHAVIOR_TREE_STATUS.FAIL
+  }
 }

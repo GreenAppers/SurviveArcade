@@ -24,9 +24,11 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
       ),
       sourceInstance ? [sourceInstance] : [],
     )
-    obj.Blackboard.obstacle = obstacle
-    obj.Blackboard.obstaclePos = obstaclePos
+    if (obstacle && obstaclePos) {
+      obj.Blackboard.obstacle = obstacle
+      obj.Blackboard.obstaclePos = obstaclePos
+      return BEHAVIOR_TREE_STATUS.SUCCESS
+    }
   }
-
-  return BEHAVIOR_TREE_STATUS.SUCCESS
+  return BEHAVIOR_TREE_STATUS.FAIL
 }
