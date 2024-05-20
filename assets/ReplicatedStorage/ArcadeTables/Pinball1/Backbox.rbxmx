@@ -2,7 +2,8 @@
   <Item class="Model" referent="0">
     <Properties>
       <string name="Name">Backbox</string>
-      <BinaryString name="AttributesSerialize"></BinaryString>
+      <BinaryString name="AttributesSerialize">AQAAABcAAABSb2pvX1RhcmdldF9QcmltYXJ5UGFydAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDAzNzM=</BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -78,6 +79,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">false</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -149,7 +151,7 @@
       <Properties>
         <string name="Name">Frame</string>
         <bool name="Anchored">true</bool>
-        <BinaryString name="AttributesSerialize"></BinaryString>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDM3Mw==</BinaryString>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -175,6 +177,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">false</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -251,6 +254,7 @@
           </Vector3>
           <BinaryString name="AttributesSerialize">AQAAAAkAAABFbWl0Q291bnQGAAAAAABAn0A=</BinaryString>
           <float name="Brightness">1</float>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <ColorSequence name="Color">0 1 0.639216 0.345098 0 0.25 1 0.392157 0.113725 0 0.5 0.501961 0.207843 0 0 0.625 0.12549 0.12549 0.12549 0 1 0.12549 0.12549 0.12549 0 </ColorSequence>
           <bool name="DefinesCapabilities">false</bool>
           <float name="Drag">0</float>
@@ -310,6 +314,7 @@
             <R21>0</R21>
             <R22>1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -351,6 +356,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">false</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -438,6 +444,7 @@
         <Properties>
           <string name="Name">Decal</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <Color3 name="Color3">
             <R>1</R>
             <G>1</G>
@@ -485,6 +492,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -564,6 +572,7 @@
             <X>800</X>
             <Y>600</Y>
           </Vector2>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">true</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
@@ -609,6 +618,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">0</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -651,6 +661,7 @@
             <Properties>
               <string name="Name">UIListLayout</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="DefinesCapabilities">false</bool>
               <token name="FillDirection">0</token>
               <token name="HorizontalAlignment">0</token>
@@ -692,6 +703,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -754,6 +766,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -853,6 +866,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -915,6 +929,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -1014,6 +1029,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1076,6 +1092,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -1175,6 +1192,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1237,6 +1255,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -1336,6 +1355,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1398,6 +1418,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -1497,6 +1518,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1559,6 +1581,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -1658,6 +1681,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1720,6 +1744,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -1819,6 +1844,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1881,6 +1907,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -1980,6 +2007,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -2042,6 +2070,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -2141,6 +2170,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -2203,6 +2233,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -2302,6 +2333,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -2364,6 +2396,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -2463,6 +2496,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -2525,6 +2559,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -2624,6 +2659,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -2686,6 +2722,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>
@@ -2785,6 +2822,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">0</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -2847,6 +2885,7 @@
                 </Color3>
                 <token name="BorderMode">0</token>
                 <int name="BorderSizePixel">0</int>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="ClipsDescendants">false</bool>
                 <bool name="DefinesCapabilities">false</bool>
                 <bool name="Draggable">false</bool>

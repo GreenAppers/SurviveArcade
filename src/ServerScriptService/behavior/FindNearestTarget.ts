@@ -1,0 +1,49 @@
+import {
+  BEHAVIOR_TREE_STATUS,
+  CHARACTER_CHILD,
+} from 'ReplicatedStorage/shared/constants/core'
+import { findChildHumanoid } from 'ServerScriptService/utils/instance'
+
+export function run(obj: BehaviorObject, ..._args: unknown[]) {
+  const blackboard = obj.Blackboard
+  const { sourceHumanoid, sourceHumanoidRootPart, sourceInstance } = blackboard
+  let minDistance = math.huge
+  let minDistanceTargetPart
+  let minDistanceHumanoid
+  let minDistanceHumanoidRootPart
+  for (const targetModel of game.Workspace.GetChildren()) {
+    if (
+      sourceHumanoidRootPart &&
+      sourceHumanoid &&
+      sourceHumanoid.Health !== 0 &&
+      targetModel.IsA('Model') &&
+      targetModel !== sourceInstance &&
+      targetModel.Name !== sourceInstance?.Name &&
+      targetModel.FindFirstChild('HumanoidRootPart') &&
+      targetModel.FindFirstChild('Head')
+    ) {
+      const targetHumanoid = findChildHumanoid(targetModel)
+      const targetHumanoidRootPart = targetModel.FindFirstChild(
+        CHARACTER_CHILD.HumanoidRootPart,
+      ) as BasePart | undefined
+      if (
+        targetHumanoid &&
+        targetHumanoid.Health !== 0 &&
+        targetHumanoidRootPart &&
+        targetHumanoidRootPart.Position.sub(sourceHumanoidRootPart.Position)
+          .Magnitude < minDistance
+      ) {
+        minDistanceHumanoid = targetHumanoid
+        minDistanceHumanoidRootPart = targetHumanoidRootPart
+        minDistanceTargetPart = targetHumanoidRootPart
+        minDistance = targetHumanoidRootPart.Position.sub(
+          sourceHumanoidRootPart.Position,
+        ).Magnitude
+      }
+    }
+  }
+  blackboard.targetPart = minDistanceTargetPart
+  blackboard.targetHumanoid = minDistanceHumanoid
+  blackboard.targetHumanoidRootPart = minDistanceHumanoidRootPart
+  return BEHAVIOR_TREE_STATUS.SUCCESS
+}

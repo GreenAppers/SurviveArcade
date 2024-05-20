@@ -1,6 +1,14 @@
 import { CollectionService } from '@rbxts/services'
 
-export function getDescendentsWhichAre(
+export function findChildHumanoid(instance?: Instance) {
+  if (!instance) return undefined
+  for (const child of instance.GetChildren()) {
+    if (child && child.IsA('Humanoid')) return child
+  }
+  return undefined
+}
+
+export function findDescendentsWhichAre(
   ancestor: Instance,
   className: keyof Instances,
 ) {
@@ -13,7 +21,7 @@ export function getDescendentsWhichAre(
   return descendents
 }
 
-export function getDescendentsWithTag(ancestor: Instance, tagName: string) {
+export function findDescendentsWithTag(ancestor: Instance, tagName: string) {
   assert(typeOf(ancestor) === 'Instance', 'Expected Instance ancestor')
   const descendents = []
   for (const descendent of ancestor.GetDescendants()) {

@@ -21,7 +21,7 @@ import {
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
-import { getDescendentsWhichAre } from 'ServerScriptService/utils/instance'
+import { findDescendentsWhichAre } from 'ServerScriptService/utils/instance'
 
 export interface MapAPI {
   scale: TycoonType
@@ -116,7 +116,7 @@ export class MapService implements OnStart {
     state: ArcadeTableState,
     cframe?: CFrame,
   ) {
-    const parts = getDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
+    const parts = findDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     for (const part of parts) {
       if (part.Name === 'BallTemplate') continue
       if (part.Name === 'Baseplate') {
@@ -137,7 +137,7 @@ export class MapService implements OnStart {
   }
 
   setupNextArcadeTable(arcadeTable: ArcadeTable, cframe: CFrame) {
-    const parts = getDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
+    const parts = findDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     for (const part of parts) {
       if (part.Name === 'Baseplate') arcadeTable.PrimaryPart = part
       if (part.Transparency === 1) continue

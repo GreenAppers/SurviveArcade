@@ -109,6 +109,26 @@ type ArcadeTableNextName =
 
 type ArcadeTableMap = 'Pinball1'
 
+interface BehaviorObject {
+  attackDebounce?: boolean
+  Blackboard: Record<string, unknown> & {
+    status?: string
+    obstacle?: BasePart
+    obstaclePos?: Vector3
+    sourceHumanoid?: Humanoid
+    sourceHumanoidRootPart?: BasePart
+    sourceInstance?: Instance
+    sourceAttachment?: Attachment
+    targetAttachment?: Attachment
+    targetPart?: BasePart
+    targetHumanoid?: Humanoid
+    targetHumanoidRootPart?: BasePart
+    teamName?: string
+  }
+  notice?: boolean
+  noticeDebounce?: boolean
+}
+
 interface BlockBreaker extends Tool {
   BreakBlock: RemoteFunction
 }
@@ -246,6 +266,9 @@ interface PlayerSpace extends Folder {
 interface ReplicatedStorage extends Instance {
   ArcadeTables: Folder & {
     Pinball1: ArcadeTable
+  }
+  BehaviorTrees: Folder & {
+    Player: Folder
   }
   Common: Folder & {
     Beam: Beam

@@ -188,7 +188,6 @@ export class ArcadeController implements OnStart {
 
   findTableTarget(
     arcadeTablesState: ArcadeTablesState,
-    humanoidRootPart: BasePart,
     rootRigAttachment: Attachment,
     localPlayerTeamName?: string,
   ): Attachment | undefined {
@@ -196,14 +195,14 @@ export class ArcadeController implements OnStart {
     if (rootRigAttachment.WorldPosition.Y < 10) {
       // Find nearest Cabinet
       const arcadeTableName = nearestCabinet(
-        humanoidRootPart.Position,
+        rootRigAttachment.WorldPosition,
         arcadeTablesState,
         localPlayerTeamName,
       )
       if (!arcadeTableName) return undefined
       // Find nearest truss
       const trussName = nearestCabinetTruss(
-        humanoidRootPart.Position,
+        rootRigAttachment.WorldPosition,
         arcadeTableName,
       )
       targetAttachment =
@@ -211,7 +210,7 @@ export class ArcadeController implements OnStart {
     } else {
       // Find nearest Arcade Table
       const arcadeTableName = nearestArcadeTable(
-        humanoidRootPart.Position,
+        rootRigAttachment.WorldPosition,
         arcadeTablesState,
         localPlayerTeamName,
       )

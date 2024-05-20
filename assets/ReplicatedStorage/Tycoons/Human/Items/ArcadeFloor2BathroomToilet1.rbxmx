@@ -3,6 +3,7 @@
     <Properties>
       <string name="Name">ArcadeFloor2BathroomToilet1</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -82,6 +83,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -200,6 +202,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -287,6 +290,7 @@
         <Properties>
           <string name="Name">Script</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Disabled">false</bool>
           <Content name="LinkedSource">
@@ -307,6 +311,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <Properties>
           <string name="Name">ClickDetector</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <Content name="CursorIcon">
             <null>
             </null>
@@ -321,6 +326,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <Properties>
           <string name="Name">Sound</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <NumberRange name="LoopRegion">0 60000 </NumberRange>
           <bool name="Looped">false</bool>
@@ -373,6 +379,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -444,6 +451,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
       <Properties>
         <string name="Name">Lid</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -523,6 +531,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -641,6 +650,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -756,6 +766,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">false</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -826,6 +837,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <Properties>
           <string name="Name">Mesh</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <Content name="MeshId">
             <null>
@@ -890,6 +902,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -1008,6 +1021,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -1126,6 +1140,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -1244,6 +1259,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -1362,6 +1378,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -1480,6 +1497,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -1598,6 +1616,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>
@@ -1712,6 +1731,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1814,6 +1834,7 @@ script.Parent.ClickDetector.MouseClick:connect(onClicked)</string>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <BinaryString name="ChildData">
         </BinaryString>

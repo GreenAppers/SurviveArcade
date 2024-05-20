@@ -33,6 +33,12 @@ export const TYPE = {
   UIStroke: 'UIStroke' as const,
 }
 
+export const BEHAVIOR_TREE_STATUS = {
+  SUCCESS: 1 as const,
+  FAIL: 2 as const,
+  RUNNING: 3 as const,
+}
+
 export const CHARACTER_CHILD = {
   GuideBeam: 'GuideBeam' as const,
   Humanoid: 'Humanoid' as const,
