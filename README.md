@@ -42,7 +42,7 @@ node --version
 npm install --global yarn
 ```
 
-## Build `SurviveArcade.rbxlx`
+## Build `SurviveArcade.rbxl`
 
 ```console
 yarn && yarn build
@@ -53,7 +53,7 @@ yarn && yarn build
 - Install [Hoarcekat](https://create.roblox.com/marketplace/asset/4621580428/Hoarcekat) plugin
 - Install [BTreesV5](https://create.roblox.com/store/asset/4702098000/BTreesV5) plugin
 - Install [rbxts-object-to-tree](https://www.roblox.com/library/3379119778/rbxts-object-to-tree) plugin
-- Open `SurviveArcade.rbxlx` in Roblox Studio.
+- Open `SurviveArcade.rbxl` in Roblox Studio.
 - Click Play to test.
 
 ## Workflow
@@ -69,7 +69,7 @@ yarn && yarn build
 
 ### Automatic
 
-- Save changes to `SurviveArcade.rbxlx`
+- Save changes to `SurviveArcade.rbxl`
 
 ```console
 yarn syncback

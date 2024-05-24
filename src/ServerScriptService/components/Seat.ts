@@ -2,6 +2,7 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { SeatTag } from 'ReplicatedStorage/shared/constants/tags'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
+import { getUserIdFromCharacter } from 'ReplicatedStorage/shared/utils/player'
 import { ArcadeTableService } from 'ServerScriptService/services/ArcadeTableService'
 import { MapService } from 'ServerScriptService/services/MapService'
 
@@ -25,15 +26,13 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
         return
       }
       const character = seat.Occupant.Parent as PlayerCharacter
-      const player = game
-        .GetService('Players')
-        .GetPlayerFromCharacter(character)
-      if (!player) return
-      if (!this.arcadeTableService.claimArcadeTable(arcadeTable.Name, player)) {
+      const userId = getUserIdFromCharacter(character)
+      if (!userId) return
+      if (!this.arcadeTableService.claimArcadeTable(arcadeTable.Name, userId)) {
         character.Humanoid.Sit = false
         return
       }
-      this.mapService.activateNextTable(arcadeTable.Name, player)
+      this.mapService.activateNextTable(arcadeTable.Name, userId)
     })
   }
 }

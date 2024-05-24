@@ -1,4 +1,5 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 function raycastThroughTools(
   position: Vector3,

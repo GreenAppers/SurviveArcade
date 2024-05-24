@@ -2,7 +2,7 @@ import {
   BEHAVIOR_TREE_STATUS,
   CHARACTER_CHILD,
 } from 'ReplicatedStorage/shared/constants/core'
-import { findChildHumanoid } from 'ServerScriptService/utils/instance'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const blackboard = obj.Blackboard
@@ -22,7 +22,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
       targetModel.FindFirstChild('HumanoidRootPart') &&
       targetModel.FindFirstChild('Head')
     ) {
-      const targetHumanoid = findChildHumanoid(targetModel)
+      const targetHumanoid = targetModel.FindFirstChildOfClass('Humanoid')
       const targetHumanoidRootPart = targetModel.FindFirstChild(
         CHARACTER_CHILD.HumanoidRootPart,
       ) as BasePart | undefined

@@ -1,41 +1,42 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
+import { CHARACTER_CHILD } from 'ReplicatedStorage/shared/constants/core'
 import { NPCTag } from 'ReplicatedStorage/shared/constants/tags'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import { NPCService } from 'ServerScriptService/services/NPCService'
-import { findChildHumanoid } from 'ServerScriptService/utils/instance'
 
 @Component({ tag: NPCTag })
 export class NPCComponent
   extends BaseComponent<NPCAttributes, Model>
   implements OnStart
 {
-  behavior: BehaviorObject = {
-    Blackboard: {},
-  }
+  humanoid?: Humanoid
+  humanoidRootPart?: BasePart
+  behavior: BehaviorObject = { Blackboard: {} }
 
   constructor(protected npcService: NPCService) {
     super()
   }
 
   onStart() {
-    const sourceHumanoid = findChildHumanoid(this.instance)
-    const sourceHumanoidRootPart = this.instance.FindFirstChild(
-      'HumanoidRootPart',
+    this.humanoid = this.instance.FindFirstChildOfClass('Humanoid')
+    this.humanoidRootPart = this.instance.FindFirstChild(
+      CHARACTER_CHILD.HumanoidRootPart,
     ) as BasePart | undefined
 
-    sourceHumanoid?.Died?.Connect(() => {
+    this.humanoid?.Died?.Connect(() => {
       wait(1)
       this.instance.Destroy()
     })
 
-    while (wait(0)[0]) {
+    while (this.humanoid && this.humanoid.Health > 0 && wait(0.3)[0]) {
       const behaviorTree =
-        this.npcService.npc[this.attributes.NPCType].behaviorTree
+        this.npcService.population[this.attributes.NPCType].behaviorTree
       if (!behaviorTree) continue
 
       this.behavior.Blackboard = {
-        sourceHumanoid,
-        sourceHumanoidRootPart,
+        sourceHumanoid: this.humanoid,
+        sourceHumanoidRootPart: this.humanoidRootPart,
         sourceInstance: this.instance,
       }
 

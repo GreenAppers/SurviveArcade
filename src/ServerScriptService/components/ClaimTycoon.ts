@@ -1,8 +1,8 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { Players } from '@rbxts/services'
 import { ClaimTycoonTag } from 'ReplicatedStorage/shared/constants/tags'
 import { selectTycoonState } from 'ReplicatedStorage/shared/state'
+import { getUserIdFromCharacter } from 'ReplicatedStorage/shared/utils/player'
 import { getTycoonPlotFromDescendent } from 'ReplicatedStorage/shared/utils/tycoon'
 import { store } from 'ServerScriptService/store'
 
@@ -17,12 +17,12 @@ export class ClaimTycoonComponent
         | Humanoid
         | undefined
       if (!humanoid) return
-      const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
-      if (!touchedPlayer) return
+      const touchedUserId = getUserIdFromCharacter(hit.Parent)
+      if (!touchedUserId) return
       const tycoonPlot = getTycoonPlotFromDescendent(this.instance)
       if (!tycoonPlot) return
       const state = store.getState()
-      const newState = store.claimTycoon(tycoonPlot.Name, touchedPlayer.UserId)
+      const newState = store.claimTycoon(tycoonPlot.Name, touchedUserId)
       const tycoonSelector = selectTycoonState(tycoonPlot.Name)
       if (tycoonSelector(state) === tycoonSelector(newState)) return
       tycoonPlot.FindFirstChild('ClaimTycoon')?.Destroy()

@@ -1,5 +1,5 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
-import { findChildHumanoid } from 'ServerScriptService/utils/instance'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const { obstacle, obstaclePos, sourceHumanoid } = obj.Blackboard
@@ -10,7 +10,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     obstacle.Parent &&
     obstacle.Parent.ClassName !== 'Workspace'
   ) {
-    const obstacleHumanoid = findChildHumanoid(obstacle.Parent)
+    const obstacleHumanoid = obstacle.Parent.FindFirstChildOfClass('Humanoid')
     if (obstacle.IsA('Terrain')) {
       const CellPos = obstacle.WorldToCellPreferSolid(
         obstaclePos.sub(new Vector3(0, 2, 0)),

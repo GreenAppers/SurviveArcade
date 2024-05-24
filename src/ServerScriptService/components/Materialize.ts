@@ -1,8 +1,11 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { Players } from '@rbxts/services'
 import { MaterializeTag } from 'ReplicatedStorage/shared/constants/tags'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
+import {
+  getCharacterHumanoid,
+  getUserIdFromCharacter,
+} from 'ReplicatedStorage/shared/utils/player'
 import { MapService } from 'ServerScriptService/services/MapService'
 
 @Component({ tag: MaterializeTag })
@@ -19,17 +22,15 @@ export class MaterializeComponent
     if (!arcadeTable) throw error('No ancestor ArcadeTable')
 
     this.instance.Touched?.Connect((hit) => {
-      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
-        | Humanoid
-        | undefined
+      const humanoid = getCharacterHumanoid(hit.Parent)
       if (humanoid) {
-        const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
-        if (touchedPlayer) this.handlePlayerTouched(arcadeTable, touchedPlayer)
+        const userId = getUserIdFromCharacter(hit.Parent)
+        if (userId) this.handlePlayerTouched(arcadeTable, userId)
       }
     })
   }
 
-  handlePlayerTouched(arcadeTable: ArcadeTable, player: Player) {
-    this.mapService.activateNextTable(arcadeTable.Name, player)
+  handlePlayerTouched(arcadeTable: ArcadeTable, userId: number) {
+    this.mapService.activateNextTable(arcadeTable.Name, userId)
   }
 }

@@ -28,10 +28,10 @@ export class ScorerComponent
       const arcadeTableSelector = selectArcadeTableState(arcadeTable.Name)
       const arcadeTableState = arcadeTableSelector(state)
 
-      const player = arcadeTableState?.owner
-      if (player)
+      const userId = arcadeTableState?.owner
+      if (userId)
         this.arcadeTableService.addScore(
-          player.UserId,
+          userId,
           arcadeTableState.tableName,
           arcadeTableState.tableType,
           1000,

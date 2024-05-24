@@ -3,6 +3,7 @@ import { OnStart } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import { OwnerDoorTag } from 'ReplicatedStorage/shared/constants/tags'
 import { selectTycoonState } from 'ReplicatedStorage/shared/state'
+import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
 import { getTycoonFromDescendent } from 'ReplicatedStorage/shared/utils/tycoon'
 import { store } from 'ServerScriptService/store'
 
@@ -16,9 +17,7 @@ export class OwnerDoorComponent
     if (!tycoon) return
     const tycoonSelector = selectTycoonState(tycoon.Name)
     this.instance.Touched?.Connect((hit) => {
-      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
-        | Humanoid
-        | undefined
+      const humanoid = getCharacterHumanoid(hit.Parent)
       if (!humanoid) return
       const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
       const tycoonState = tycoonSelector(store.getState())

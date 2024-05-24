@@ -1,6 +1,8 @@
 import { createProducer } from '@rbxts/reflex'
+import { Players } from '@rbxts/services'
 import { TYCOON_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
+import { isNPCId } from 'ReplicatedStorage/shared/utils/player'
 
 export enum GamePass {
   ArcadeGun = 806588971,
@@ -201,7 +203,24 @@ export const getPlayerState = (state: Players, userID: number) =>
   state[getPlayerKey(userID)]
 
 export const playersSlice = createProducer(initialState, {
+  addNPC: (state, userID: number) => {
+    if (!isNPCId(userID)) throw 'Invalid NPC userId'
+    const playerKey = getPlayerKey(userID)
+    const playerState = state[playerKey]
+    return {
+      ...state,
+      [playerKey]: {
+        ...defaultPlayerData,
+        ...defaultPlayerState,
+        ...playerState,
+        ...defaultPlayerDetail,
+        sessionStartTime: os.time(),
+      },
+    }
+  },
+
   loadPlayerData: (state, userID: number, data: PlayerData) => {
+    if (isNPCId(userID)) throw 'Invalid player userId'
     const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
     return {

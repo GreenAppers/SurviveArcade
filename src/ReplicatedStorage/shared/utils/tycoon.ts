@@ -1,5 +1,4 @@
 import { CollectionService } from '@rbxts/services'
-import { TYCOON_NAMES } from 'ReplicatedStorage/shared/constants/core'
 import {
   TycoonPlotTag,
   TycoonTag,
@@ -10,7 +9,6 @@ import {
   PlayerState,
   PlayerTycoonButtons,
 } from 'ReplicatedStorage/shared/state/PlayersState'
-import { TycoonsState } from 'ReplicatedStorage/shared/state/TycoonState'
 
 export const tycoonConstants: {
   [name in TycoonType]: { Buttons: Record<string, TycoonButtonDetails> }
@@ -70,25 +68,6 @@ export function getTycoonPlotFromDescendent(instance: Instance) {
 export function getTycoonPlotNameFromDescendent(instance: Instance) {
   const tycoonPlot = getTycoonPlotFromDescendent(instance)
   return tycoonPlot?.Name
-}
-
-export function nearestTycoonPlot(
-  position: Vector3,
-  tycoonsState?: TycoonsState,
-) {
-  let nearestDistance = math.huge
-  let nearestTycoonName: TycoonName | undefined
-  for (const name of TYCOON_NAMES) {
-    if (tycoonsState?.[name]?.owner) continue
-    const tycoon = game.Workspace.Map[name]
-    if (!tycoon) continue
-    const distance = position.sub(tycoon.Baseplate.Position).Magnitude
-    if (distance < nearestDistance) {
-      nearestTycoonName = name
-      nearestDistance = distance
-    }
-  }
-  return nearestTycoonName
 }
 
 export function isTycoonButtonDependencyMet(

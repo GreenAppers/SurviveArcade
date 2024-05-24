@@ -9,99 +9,126 @@ import {
   NPC_TYPES,
 } from 'ReplicatedStorage/shared/constants/core'
 import { selectDifficulty } from 'ReplicatedStorage/shared/state'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
+import { shuffle } from 'ReplicatedStorage/shared/utils/object'
+import { getUserIdFromNPCId } from 'ReplicatedStorage/shared/utils/player'
 import { NPCComponent } from 'ServerScriptService/components/NPC'
 import { store } from 'ServerScriptService/store'
 
+export interface NPCPopulation {
+  name: string
+  currentCount: number
+  targetCount: number
+  type: NPCType
+  template?: Model
+  behaviorTree?: BehaviorTree3
+  createPlayer?: boolean
+}
+
 @Service()
 export class NPCService implements OnStart {
-  npc: Record<
-    NPCType,
-    {
-      count: number
-      targetCount: number
-      type: NPCType
-      template?: Model
-      behaviorTree?: BehaviorTree3
-    }
-  > = {
+  population: Record<NPCType, NPCPopulation> = {
+    Player: {
+      name: 'NPC_%d',
+      currentCount: 0,
+      targetCount: 1,
+      type: NPC_TYPES.Player,
+    },
     Rat: {
-      count: 0,
+      name: 'Rat_%d',
+      currentCount: 0,
       targetCount: 2,
       type: NPC_TYPES.Rat,
     },
-    Player: {
-      count: 0,
-      targetCount: 0,
-      type: NPC_TYPES.Player,
-    },
   }
 
+  nextID = 1
   constructor(protected readonly logger: Logger) {}
 
   onStart() {
-    this.npc.Rat.template = ReplicatedStorage.NPC.Rat
-    this.npc.Rat.behaviorTree = BehaviorTreeCreator.Create<BehaviorObject>(
-      ServerStorage.BehaviorTrees.Zombie,
-    )
+    this.population.Player.template = ReplicatedStorage.NPC.Player
+    this.population.Player.behaviorTree =
+      BehaviorTreeCreator.Create<BehaviorObject>(
+        ReplicatedStorage.BehaviorTrees.Player,
+      )
+
+    this.population.Rat.template = ReplicatedStorage.NPC.Rat
+    this.population.Rat.behaviorTree =
+      BehaviorTreeCreator.Create<BehaviorObject>(
+        ServerStorage.BehaviorTrees.Zombie,
+      )
 
     const components = Dependency<Components>()
-    components.onComponentAdded<NPCComponent>((component) => {
-      const npc = this.npc[component.attributes.NPCType]
-      npc.count++
-      print('Interactable component was added!', npc)
-      this.controlPopulation(npc.type)
+    components.onComponentAdded<NPCComponent>((npc) => {
+      const population = this.population[npc.attributes.NPCType]
+      population.currentCount++
     })
-    components.onComponentRemoved<NPCComponent>((component) => {
-      const npc = this.npc[component.attributes.NPCType]
-      npc.count--
-      print('An enemy was removed!')
-      this.controlPopulation(npc.type)
+    components.onComponentRemoved<NPCComponent>((npc) => {
+      const population = this.population[npc.attributes.NPCType]
+      population.currentCount--
     })
 
     store.subscribe(selectDifficulty(), (difficulty) => {
       if (difficulty === DIFFICULTY_TYPES.peaceful) {
-        this.npc.Rat.targetCount = 0
-        this.controlPopulation(this.npc.Rat.type)
+        this.population.Rat.targetCount = 0
+        this.managePopulation(this.population.Rat.type)
       } else {
-        this.npc.Rat.targetCount = 2
-        this.controlPopulation(this.npc.Rat.type)
+        this.population.Rat.targetCount = 2
+        this.managePopulation(this.population.Rat.type)
       }
     })
 
-    this.controlPopulations()
-  }
-
-  controlPopulations() {
-    for (const npc of Object.keys(this.npc)) this.controlPopulation(npc)
-  }
-
-  controlPopulation(npcType: NPCType) {
-    const npc = this.npc[npcType]
-    if (npc.count < npc.targetCount) {
-      this.growPopulation(npc.type)
-    } else if (npc.count > npc.targetCount) {
-      this.shrinkPopulation(npc.type)
+    while (wait(0.3)[0]) {
+      this.managePopulations()
     }
   }
 
-  growPopulation(npcType: NPCType) {
-    const npc = this.npc[npcType]
-    for (let i = npc.count; i < npc.targetCount; i++) {
-      this.spawn(npc.type)
+  managePopulations() {
+    for (const npc of Object.keys(this.population)) this.managePopulation(npc)
+  }
+
+  managePopulation(npcType: NPCType) {
+    const population = this.population[npcType]
+    if (population.currentCount < population.targetCount) {
+      this.spawnPopulation(population.type)
+    } else if (population.currentCount > population.targetCount) {
+      this.despawnPopulation(population.type)
     }
   }
 
-  shrinkPopulation(npcType: NPCType) {
-    const npc = this.npc[npcType]
-    for (let i = npc.count; i > npc.targetCount; i--) {
-      // sourceHumanoid?.TakeDamage(math.huge)
+  spawnPopulation(npcType: NPCType) {
+    const population = this.population[npcType]
+    for (let i = population.currentCount; i < population.targetCount; i++) {
+      this.spawn(population.type)
+    }
+  }
+
+  despawnPopulation(npcType: NPCType) {
+    const population = this.population[npcType]
+    const despawnTotal = math.max(
+      0,
+      population.currentCount - population.targetCount,
+    )
+    let despawnCount = 0
+    for (const npc of shuffle(
+      Dependency<Components>().getAllComponents<NPCComponent>(),
+    )) {
+      if (despawnCount >= despawnTotal) break
+      if (!npc.humanoid || !npc.humanoid.Health) continue
+      npc.humanoid.TakeDamage(math.huge)
+      despawnCount++
     }
   }
 
   spawn(npcType: NPCType) {
-    const npc = this.npc[npcType]
-    if (!npc.template) return
-    const newNpc = npc.template.Clone()
+    const population = this.population[npcType]
+    if (!population.template) return
+    const newNpcId = this.nextID++
+    const newNpc = population.template.Clone()
+    newNpc.Name = population.name.format(newNpcId)
     newNpc.Parent = Workspace.NPC
+    if (population.createPlayer) {
+      store.addNPC(getUserIdFromNPCId(newNpcId))
+    }
   }
 }

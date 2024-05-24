@@ -1,6 +1,6 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { CollectionService } from '@rbxts/services'
+import { CollectionService, Workspace } from '@rbxts/services'
 import { DIFFICULTY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { BallTag, DrainTag } from 'ReplicatedStorage/shared/constants/tags'
 import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
@@ -9,6 +9,10 @@ import {
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
+import {
+  getCharacterFromUserId,
+  getCharacterHumanoid,
+} from 'ReplicatedStorage/shared/utils/player'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 
@@ -42,18 +46,18 @@ export class DrainComponent
     arcadeTableState: ArcadeTableState | undefined,
     part: BasePart,
   ) {
-    const player = arcadeTableState?.owner
-    if (player) {
-      const character: (Model & { Humanoid?: Humanoid }) | undefined =
-        player.Character
+    const userId = arcadeTableState?.owner
+    if (userId) {
+      const character = getCharacterFromUserId(userId, Workspace)
+      const humanoid = getCharacterHumanoid(character)
       const state = store.getState()
       const tableState = state.arcadeTables[arcadeTable.Name]
       if (
+        humanoid &&
         tableState?.status === ArcadeTableStatus.Active &&
-        character?.Humanoid &&
         state.game.difficulty !== DIFFICULTY_TYPES.peaceful
       ) {
-        character.Humanoid.Health = 0
+        humanoid.Health = 0
       }
     }
     task.wait(0.5)

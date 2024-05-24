@@ -1,7 +1,7 @@
 import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
-import { Workspace } from '@rbxts/services'
+import { Players, Workspace } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
@@ -17,6 +17,7 @@ import {
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
+import { getNameFromUserId } from 'ReplicatedStorage/shared/utils/player'
 import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 import { Events } from 'ServerScriptService/network'
 import { MapService } from 'ServerScriptService/services/MapService'
@@ -47,14 +48,14 @@ export class ArcadeTableService implements OnStart {
     return store.addPlayerScore(userId, tableType, amount)
   }
 
-  claimArcadeTable(tableName: ArcadeTableName, player?: Player) {
-    if (!player) return store.claimArcadeTable(tableName, undefined)
+  claimArcadeTable(tableName: ArcadeTableName, userId?: number) {
+    if (!userId) return store.claimArcadeTable(tableName, undefined)
     const state = store.getState()
     const tableType = selectArcadeTableState(tableName)(state).tableType
     const exchange = EXCHANGE[tableType]
-    if (!executeExchange(player.UserId, exchange)) return undefined
-    store.addPlayerTablePlays(player.UserId)
-    return store.claimArcadeTable(tableName, player)
+    if (!executeExchange(userId, exchange)) return undefined
+    store.addPlayerTablePlays(userId)
+    return store.claimArcadeTable(tableName, userId)
   }
 
   startArcadeTablesClaimedSubscription() {
@@ -128,7 +129,7 @@ export class ArcadeTableService implements OnStart {
       )) {
         if (arcadeTableState.owner) {
           // Increase players' score for each second owning an arcade table.
-          const userId = arcadeTableState.owner.UserId
+          const userId = arcadeTableState.owner
           const newState = this.addScore(
             userId,
             arcadeTableState.tableName,
@@ -158,35 +159,35 @@ export class ArcadeTableService implements OnStart {
   }
 
   onPlayerClaimed(
-    _player: Player,
+    _userId: number,
     _tableName: string,
     _tableState: ArcadeTableState,
   ) {}
 
   onPlayerClaimEnded(
-    player: Player,
+    userId: number,
     tableName: string,
     _tableState: ArcadeTableState,
     previousTableState: ArcadeTableState,
   ) {
-    this.onGameOver(tableName, player, previousTableState.score)
+    this.onGameOver(tableName, userId, previousTableState.score)
   }
 
-  onGameWon(tableName: ArcadeTableName, player: Player, score: number) {
+  onGameWon(tableName: ArcadeTableName, userId: number, score: number) {
     Promise.try(() =>
       this.playWinningSequence(game.Workspace.ArcadeTables[tableName]),
     ).then(() => {
       this.mapService.createNextTable(tableName)
-      this.onGameOver(tableName, player, score)
+      this.onGameOver(tableName, userId, score)
     })
   }
 
-  onGameOver(tableName: string, player: Player, score: number) {
+  onGameOver(tableName: string, userId: number, score: number) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
     const flipperLeft = arcadeTable?.FindFirstChild('FlipperLeft') as Flipper
     const flipperRight = arcadeTable?.FindFirstChild('FlipperRight') as Flipper
     const spinnerLeft = arcadeTable?.FindFirstChild('SpinnerLeft') as Spinner
-    if (!player) {
+    if (!userId) {
       setNetworkOwner(flipperLeft, undefined)
       setNetworkOwner(flipperRight, undefined)
       setNetworkOwner(spinnerLeft, undefined)
@@ -194,15 +195,16 @@ export class ArcadeTableService implements OnStart {
     }
     const payout = math.floor(score / 1000)
     if (payout >= 1)
-      store.addPlayerCurrency(player.UserId, CURRENCY_TYPES.Tickets, payout)
+      store.addPlayerCurrency(userId, CURRENCY_TYPES.Tickets, payout)
   }
 
-  onGameStart(tableName: string, player: Player) {
+  onGameStart(tableName: string, userId: number) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
     const balls = arcadeTable?.FindFirstChild('Balls')
     const ballTemplate = arcadeTable?.FindFirstChild('BallTemplate')
     const ground = arcadeTable?.FindFirstChild('Ground') as BasePart
     const ball = ballTemplate?.Clone() as BasePart
+    const player = Players.GetPlayerByUserId(userId)
     if (ball) {
       this.ballNumber = this.ballNumber + 1
       ball.Name = `Ball${this.ballNumber}`
@@ -224,14 +226,18 @@ export class ArcadeTableService implements OnStart {
           .sub(ground.CFrame.UpVector.Unit)
           .mul(Workspace.Gravity * ball.Mass)
       }
-      setNetworkOwner(ball, player)
+      if (player) setNetworkOwner(ball, player)
     }
-    const flipperLeft = arcadeTable?.FindFirstChild('FlipperLeft') as Flipper
-    const flipperRight = arcadeTable?.FindFirstChild('FlipperRight') as Flipper
-    const spinnerLeft = arcadeTable?.FindFirstChild('SpinnerLeft') as Spinner
-    setNetworkOwner(flipperLeft, player)
-    setNetworkOwner(flipperRight, player)
-    setNetworkOwner(spinnerLeft, player)
+    if (player) {
+      const flipperLeft = arcadeTable?.FindFirstChild('FlipperLeft') as Flipper
+      const flipperRight = arcadeTable?.FindFirstChild(
+        'FlipperRight',
+      ) as Flipper
+      const spinnerLeft = arcadeTable?.FindFirstChild('SpinnerLeft') as Spinner
+      setNetworkOwner(flipperLeft, player)
+      setNetworkOwner(flipperRight, player)
+      setNetworkOwner(spinnerLeft, player)
+    }
   }
 
   onScoreChanged(tableName: string, arcadeTableState: ArcadeTableState) {
@@ -246,7 +252,7 @@ export class ArcadeTableService implements OnStart {
     // Determine the name and score to display on the scoreboard.
     const score = abbreviator.numberToString(arcadeTableState.score)
     const nameCharacters = this.scoreboardCharacters - score.size() - 1
-    let name = arcadeTableState.owner?.Name || ''
+    let name = getNameFromUserId(arcadeTableState.owner)
     if (name.size() > nameCharacters) name = name.sub(0, nameCharacters)
     else name = name += ' '.rep(nameCharacters - name.size())
     const text = `${name} ${score}`.upper()

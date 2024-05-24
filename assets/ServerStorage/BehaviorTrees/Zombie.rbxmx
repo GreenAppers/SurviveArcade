@@ -1165,7 +1165,7 @@
       </Item>
       <Item class="Folder" referent="44">
         <Properties>
-          <string name="Name">ChaseTarget</string>
+          <string name="Name">MoveToTarget</string>
           <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNzQzZWExNjE2ZjliMDA1MDY1YzZmOGIwMDA5OTc1MQ==</BinaryString>
           <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
@@ -1242,7 +1242,7 @@
         </Item>
         <Item class="ModuleScript" referent="114">
           <Properties>
-            <string name="Name">ChaseTarget</string>
+            <string name="Name">MoveToTarget</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
@@ -1250,7 +1250,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return require(game.ServerScriptService.behavior.ChaseTarget)</string>
+            <string name="Source">return require(game.ReplicatedStorage.shared.behavior.MoveToTarget)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1529,7 +1529,7 @@
               <null>
               </null>
             </Content>
-            <string name="Source">return require(game.ServerScriptService.behavior.WanderAround)</string>
+            <string name="Source">return require(game.ReplicatedStorage.shared.behavior.WanderAround)</string>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
           </Properties>
@@ -1557,7 +1557,7 @@
         <BinaryString name="Tags"></BinaryString>
         <Vector3 name="Value">
           <X>0.5</X>
-          <Y>-28</Y>
+          <Y>-27</Y>
           <Z>0</Z>
         </Vector3>
       </Properties>
@@ -1572,7 +1572,7 @@
         <BinaryString name="Tags"></BinaryString>
         <Vector3 name="Value">
           <X>0.5</X>
-          <Y>-137</Y>
+          <Y>-183</Y>
           <Z>0</Z>
         </Vector3>
       </Properties>
