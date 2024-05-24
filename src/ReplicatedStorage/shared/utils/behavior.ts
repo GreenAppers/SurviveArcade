@@ -1,8 +1,8 @@
 import { SharedState } from 'ReplicatedStorage/shared/state'
 
 export enum BehaviorPlanType {
-  Arcade,
-  Tycoon,
+  Arcade = 1,
+  Tycoon = 2,
 }
 
 export interface BehaviorPlan {

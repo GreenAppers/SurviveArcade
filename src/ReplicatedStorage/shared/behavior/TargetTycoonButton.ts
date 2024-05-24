@@ -49,15 +49,15 @@ function findTycoonButtonTarget(
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const { sourceAttachment, sourceUserId, state } = obj.Blackboard
   if (!sourceAttachment || !sourceUserId || !state)
-    return BEHAVIOR_TREE_STATUS.FAIL
+    return BEHAVIOR_TREE_STATUS.SUCCESS
 
   const tycoonsState = selectTycoonsState()(state)
   const tycoonName = findTycoonNameOwnedBy(tycoonsState, sourceUserId)
-  if (!tycoonName) return BEHAVIOR_TREE_STATUS.FAIL
+  if (!tycoonName) return BEHAVIOR_TREE_STATUS.SUCCESS
 
   const playerState = selectPlayerState(sourceUserId)(state)
   const targetAttachment = findTycoonButtonTarget(tycoonName, playerState)
-  if (!targetAttachment) return BEHAVIOR_TREE_STATUS.FAIL
+  if (!targetAttachment) return BEHAVIOR_TREE_STATUS.SUCCESS
 
   const plan: BehaviorPlan = {
     status: formatMessage(MESSAGE.GuideBuildTycoon),

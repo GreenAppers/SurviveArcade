@@ -1,4 +1,3 @@
-import Object from '@rbxts/object-utils'
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import {
@@ -7,9 +6,8 @@ import {
 } from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
-  const plan = Object.values(obj.Blackboard.plan ?? {})
-  const { sourceHumanoidRootPart, sourceUserId, state } = obj.Blackboard
-  if (!plan.size() || !sourceHumanoidRootPart || !sourceUserId || !state)
+  const { plan, sourceHumanoidRootPart, sourceUserId, state } = obj.Blackboard
+  if (!plan || !sourceHumanoidRootPart || !sourceUserId || !state)
     return BEHAVIOR_TREE_STATUS.FAIL
 
   const arcadeTargetAttachment = plan[BehaviorPlanType.Arcade]?.targetAttachment
@@ -17,7 +15,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const playerState = selectPlayerState(sourceUserId)(state)
   if (!playerState) return BEHAVIOR_TREE_STATUS.FAIL
 
-  let status = ''
+  let status
   let targetAttachment
   if (
     !playerState.groundArcadeTableName &&
@@ -39,8 +37,10 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     targetAttachment = arcadeTargetAttachment
   }
 
-  obj.Blackboard.status = status
-  obj.Blackboard.targetAttachment = targetAttachment
+  if (status) {
+    obj.Blackboard.status = status
+    obj.Blackboard.targetAttachment = targetAttachment
+  }
 
   return BEHAVIOR_TREE_STATUS.SUCCESS
 }

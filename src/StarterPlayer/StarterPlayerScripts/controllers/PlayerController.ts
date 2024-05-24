@@ -382,6 +382,7 @@ export class PlayerController implements OnStart {
       sourceAttachment: rootRigAttachment,
       sourceHumanoidRootPart: humanoidRootPart,
       sourceInstance: playerCharacter,
+      sourceUserId: localPlayer.UserId,
       sourceTeamName:
         localPlayer?.Team?.Name === TEAM_NAMES.UnclaimedTeam
           ? undefined
