@@ -8,6 +8,7 @@ import {
   selectGameState,
 } from 'ReplicatedStorage/shared/state'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
+import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
 import { store } from 'ServerScriptService/store'
 
 @Component({ tag: JoinTeamTag })
@@ -19,9 +20,7 @@ export class JoinTeamComponent
     const arcadeTable = getArcadeTableFromDescendent(this.instance)
     if (!arcadeTable) throw error('No ancestor ArcadeTable')
     this.instance.Touched?.Connect((hit) => {
-      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
-        | Humanoid
-        | undefined
+      const humanoid = getCharacterHumanoid(hit.Parent)
       if (humanoid) {
         const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
         if (touchedPlayer) {

@@ -9,6 +9,7 @@ import {
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
+import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
 import {
   getTycoonButtonColor,
   getTycoonFromDescendent,
@@ -45,9 +46,7 @@ export class TycoonButtonComponent
     const tycoonSelector = selectTycoonState(tycoon.Name)
 
     this.instance.Touched?.Connect((hit) => {
-      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
-        | Humanoid
-        | undefined
+      const humanoid = getCharacterHumanoid(hit.Parent)
       if (!humanoid) return
       const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
       if (!touchedPlayer) return

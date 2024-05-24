@@ -56,6 +56,7 @@ export class PlayerController implements OnStart {
   collectionAnimationPlaying = false
   playerSpace: PlayerSpace | undefined
   guide: BehaviorTree3<BehaviorObject> | undefined
+  guideObject: BehaviorObject = { Blackboard: {} }
   gravityController: GravityController | undefined
   shooter: ShooterComponent | undefined
   isDesktop = USER_DEVICE === DeviceType.Desktop
@@ -88,7 +89,7 @@ export class PlayerController implements OnStart {
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     while (task.wait(1)) {
       const state = store.getState()
-      this.refreshBeams(playerGuideEnabledSelector(state))
+      this.updateGuide(playerGuideEnabledSelector(state))
     }
   }
 
@@ -186,7 +187,7 @@ export class PlayerController implements OnStart {
         message: formatMessage(MESSAGE.GameRespawn),
       })
     }
-    this.refreshBeams(playerGuideEnabledSelector(state))
+    this.updateGuide(playerGuideEnabledSelector(state))
   }
 
   handleLoaded(player: Player) {
@@ -215,10 +216,10 @@ export class PlayerController implements OnStart {
     const arcadeTablesSelector = selectArcadeTablesState()
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     store.subscribe(arcadeTablesSelector, (_arcadeTablesState) => {
-      this.refreshBeams(playerGuideEnabledSelector(store.getState()))
+      this.updateGuide(playerGuideEnabledSelector(store.getState()))
     })
     store.subscribe(playerGuideEnabledSelector, (guideEnabled) => {
-      this.refreshBeams(guideEnabled)
+      this.updateGuide(guideEnabled)
     })
   }
 
@@ -352,7 +353,7 @@ export class PlayerController implements OnStart {
     dialogGui.Destroy()
   }
 
-  refreshBeams(guideEnabled?: boolean) {
+  updateGuide(guideEnabled?: boolean) {
     const localPlayer = Players.LocalPlayer
     const playerCharacter = localPlayer?.Character as
       | PlayerCharacter
@@ -369,11 +370,7 @@ export class PlayerController implements OnStart {
     beam.Enabled = false
 
     // Check if player is alive and has guide enabled.
-    if (!guideEnabled || !humanoid.Health || humanoid.Sit) return
-    const localPlayerTeamName =
-      localPlayer?.Team?.Name === TEAM_NAMES.UnclaimedTeam
-        ? undefined
-        : localPlayer?.Team?.Name
+    if (!this.guide || !guideEnabled || !humanoid.Health || humanoid.Sit) return
 
     // Find the local player's RootRigAttachment.
     const humanoidRootPart = playerCharacter.FindFirstChild(
@@ -385,6 +382,14 @@ export class PlayerController implements OnStart {
     ) as Attachment | undefined
     if (!rootRigAttachment) return
 
+    this.guideObject.Blackboard = {
+      sourceAttachment: rootRigAttachment,
+      sourceHumanoidRootPart: humanoidRootPart,
+      sourceInstance: playerCharacter,
+    }
+
+    this.guide.run(this.guideObject)
+
     // Check player state
     const state = store.getState()
     const playerState = selectPlayerState(localPlayer.UserId)(state)
@@ -392,6 +397,10 @@ export class PlayerController implements OnStart {
     const tycoonsState = selectTycoonsState()(state)
     const tycoonName = findTycoonNameOwnedBy(tycoonsState, localPlayer.UserId)
     // const sessionSeconds = os.time() - playerState.sessionStartTime
+    const localPlayerTeamName =
+      localPlayer?.Team?.Name === TEAM_NAMES.UnclaimedTeam
+        ? undefined
+        : localPlayer?.Team?.Name
 
     // Plan next tycoon action
     let tycoonStatus = ''

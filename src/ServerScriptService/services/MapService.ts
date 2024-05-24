@@ -1,7 +1,12 @@
 import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
-import { Lighting, ReplicatedStorage, Workspace } from '@rbxts/services'
+import {
+  Lighting,
+  Players,
+  ReplicatedStorage,
+  Workspace,
+} from '@rbxts/services'
 import {
   IS_HUMAN_PLACE,
   IS_START_PLACE,
@@ -192,7 +197,7 @@ export class MapService implements OnStart {
 
   activateNextTable(
     name: ArcadeTableName | ArcadeTableNextName,
-    player: Player,
+    userId: number,
   ) {
     const baseName = baseArcadeTableName(name)
     const nextName = nextArcadeTableName(name)
@@ -220,7 +225,9 @@ export class MapService implements OnStart {
 
       previousArcadeTable?.Destroy()
       unmaterializedArcadeTable.Destroy()
-      Events.arcadeTableMaterialize.fire(player, baseName)
+
+      const player = Players.GetPlayerByUserId(userId)
+      if (player) Events.arcadeTableMaterialize.fire(player, baseName)
 
       if (arcadeTable.Backbox)
         animateBuildingIn(
@@ -229,7 +236,7 @@ export class MapService implements OnStart {
         )?.Wait()
 
       if (arcadeTableState.sequence > 0 && arcadeTableState.sequence % 8 === 0)
-        store.addPlayerLoops(player.UserId, arcadeTableState.tableType, 1)
+        store.addPlayerLoops(userId, arcadeTableState.tableType, 1)
     }
   }
 }

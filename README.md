@@ -1,4 +1,4 @@
-# SurviveArcade [![build](https://github.com/GreenAppers/SurviveArcade/actions/workflows/build.yml/badge.svg)](https://github.com/GreenAppers/SurviveArcade/actions/workflows/build.yml)
+# SurviveArcade [![build](https://github.com/GreenAppers/SurviveArcade/actions/workflows/build.yml/badge.svg)](https://github.com/GreenAppers/SurviveArcade/actions/workflows/build.yml
 
 [![thumbnail](./assets/marketing/github_logo.jpg)](https://ro.blox.com/Ebh5?af_dp=roblox%3A%2F%2FplaceId%3D15699266223%26launchData%3Dutm1%25253A0%25252C0%25252Cweb-link%25252Chome-hero-play-button%25252C%25253B&af_web_dp=https%3A%2F%2Fwww.roblox.com%2Fgames%2Fstart%3FplaceId%3D15699266223%26launchData%3Dutm1%25253A0%25252C0%25252Cweb-link%25252Chome-hero-play-button%25252C%25253B)
 
@@ -42,7 +42,7 @@ node --version
 npm install --global yarn
 ```
 
-## Build `SurviveArcade.rbxlx`
+## Build `SurviveArcade.rbxl`
 
 ```console
 yarn && yarn build
@@ -53,7 +53,7 @@ yarn && yarn build
 - Install [Hoarcekat](https://create.roblox.com/marketplace/asset/4621580428/Hoarcekat) plugin
 - Install [BTreesV5](https://create.roblox.com/store/asset/4702098000/BTreesV5) plugin
 - Install [rbxts-object-to-tree](https://www.roblox.com/library/3379119778/rbxts-object-to-tree) plugin
-- Open `SurviveArcade.rbxlx` in Roblox Studio.
+- Open `SurviveArcade.rbxl` in Roblox Studio.
 - Click Play to test.
 
 ## Workflow
@@ -69,7 +69,7 @@ yarn && yarn build
 
 ### Automatic
 
-- Save changes to `SurviveArcade.rbxlx`
+- Save changes to `SurviveArcade.rbxl`
 
 ```console
 yarn syncback

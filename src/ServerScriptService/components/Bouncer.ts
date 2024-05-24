@@ -5,6 +5,7 @@ import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { BouncerTag } from 'ReplicatedStorage/shared/constants/tags'
 import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
+import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
 import { Events } from 'ServerScriptService/network'
 import { ArcadeTableService } from 'ServerScriptService/services/ArcadeTableService'
 import { store } from 'ServerScriptService/store'
@@ -29,11 +30,11 @@ export class BouncerComponent
       const state = store.getState()
       const arcadeTableSelector = selectArcadeTableState(arcadeTable.Name)
       const arcadeTableState = arcadeTableSelector(state)
-      const player = arcadeTableState?.owner
+      const userId = arcadeTableState?.owner
 
-      if (player)
+      if (userId)
         this.arcadeTableService.addScore(
-          player.UserId,
+          userId,
           arcadeTableState.tableName,
           arcadeTableState.tableType,
           1000,
@@ -44,9 +45,7 @@ export class BouncerComponent
         | undefined
       if (audio?.BouncerSound) playSoundId(part, audio.BouncerSound.SoundId)
 
-      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
-        | Humanoid
-        | undefined
+      const humanoid = getCharacterHumanoid(hit.Parent)
       if (humanoid) {
         const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
         if (touchedPlayer)

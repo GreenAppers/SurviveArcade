@@ -18,7 +18,7 @@ export interface ArcadeTableArcadeTable {
 }
 
 export interface ArcadeTableState {
-  readonly owner?: Player
+  readonly owner: number
   readonly tableName: ArcadeTableName
   readonly tableMap: ArcadeTableMap
   readonly tableType: ArcadeTableType
@@ -85,7 +85,7 @@ export const findArcadeTableNameOwnedBy = (
   userId: number,
 ) =>
   Object.entries(arcadeTablesState).find(
-    ([_name, arcadeTable]) => arcadeTable?.owner?.UserId === userId,
+    ([_name, arcadeTable]) => arcadeTable?.owner === userId,
   )?.[0] as ArcadeTableName | undefined
 
 export const initialScoreToWin = 10000
@@ -95,7 +95,7 @@ export const defaultArcadeTableArcadeTable: ArcadeTableArcadeTable = {
 }
 
 export const defaultArcadeTableState = {
-  owner: undefined,
+  owner: 0,
   score: 0,
   scoreDomain: ArcadeTableScoreDomain.Table,
   scoreStart: 0,
@@ -158,7 +158,7 @@ const initialState: ArcadeTablesState = {
 }
 
 export const arcadeTablesSlice = createProducer(initialState, {
-  claimArcadeTable: (state, name: ArcadeTableName, owner?: Player) => {
+  claimArcadeTable: (state, name: ArcadeTableName, owner?: number) => {
     const prevTable = state[name]
     return !prevTable || prevTable.owner === owner || (owner && prevTable.owner)
       ? state
