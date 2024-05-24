@@ -2,6 +2,7 @@ import {
   BEHAVIOR_TREE_STATUS,
   CHARACTER_CHILD,
 } from 'ReplicatedStorage/shared/constants/core'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const blackboard = obj.Blackboard

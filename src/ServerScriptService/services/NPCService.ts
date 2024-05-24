@@ -9,6 +9,7 @@ import {
   NPC_TYPES,
 } from 'ReplicatedStorage/shared/constants/core'
 import { selectDifficulty } from 'ReplicatedStorage/shared/state'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import { shuffle } from 'ReplicatedStorage/shared/utils/object'
 import { getUserIdFromNPCId } from 'ReplicatedStorage/shared/utils/player'
 import { NPCComponent } from 'ServerScriptService/components/NPC'

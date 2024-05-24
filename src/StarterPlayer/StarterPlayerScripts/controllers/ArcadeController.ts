@@ -8,15 +8,7 @@ import {
   selectLocalPlayerArcadeTableStatus,
   selectLocalPlayerLoops,
 } from 'ReplicatedStorage/shared/state'
-import {
-  ArcadeTablesState,
-  ArcadeTableStatus,
-} from 'ReplicatedStorage/shared/state/ArcadeTablesState'
-import {
-  nearestArcadeTable,
-  nearestCabinet,
-  nearestCabinetTruss,
-} from 'ReplicatedStorage/shared/utils/arcade'
+import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { randomElement } from 'ReplicatedStorage/shared/utils/object'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
@@ -180,44 +172,5 @@ export class ArcadeController implements OnStart {
       rotor.CFrame.RightVector.mul(orientation * 600000 * force),
     )
     Events.flipperFlip.fire(arcadeTable.Name, flipperName)
-  }
-
-  findCoinTarget(_position: Vector3) {
-    return game.Workspace.Map.ChangeMachine.Wedge.Attachment
-  }
-
-  findTableTarget(
-    arcadeTablesState: ArcadeTablesState,
-    rootRigAttachment: Attachment,
-    localPlayerTeamName?: string,
-  ): Attachment | undefined {
-    let targetAttachment
-    if (rootRigAttachment.WorldPosition.Y < 10) {
-      // Find nearest Cabinet
-      const arcadeTableName = nearestCabinet(
-        rootRigAttachment.WorldPosition,
-        arcadeTablesState,
-        localPlayerTeamName,
-      )
-      if (!arcadeTableName) return undefined
-      // Find nearest truss
-      const trussName = nearestCabinetTruss(
-        rootRigAttachment.WorldPosition,
-        arcadeTableName,
-      )
-      targetAttachment =
-        game.Workspace.Map[arcadeTableName]?.[trussName]?.Attachment
-    } else {
-      // Find nearest Arcade Table
-      const arcadeTableName = nearestArcadeTable(
-        rootRigAttachment.WorldPosition,
-        arcadeTablesState,
-        localPlayerTeamName,
-      )
-      if (!arcadeTableName) return undefined
-      targetAttachment =
-        game.Workspace.ArcadeTables[arcadeTableName]?.Seat?.Attachment
-    }
-    return targetAttachment
   }
 }

@@ -9,7 +9,10 @@ import {
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
-import { getCharacterFromUserId, getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
+import {
+  getCharacterFromUserId,
+  getCharacterHumanoid,
+} from 'ReplicatedStorage/shared/utils/player'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 

@@ -30,9 +30,8 @@ import {
   selectPlayerCurrency,
   selectPlayerGuideEnabled,
   selectPlayerState,
-  selectTycoonsState,
 } from 'ReplicatedStorage/shared/state'
-import { findTycoonNameOwnedBy } from 'ReplicatedStorage/shared/state/TycoonState'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import {
   GravityController,
   gravityControllerClass,
@@ -45,7 +44,6 @@ import {
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
 import { ShooterComponent } from 'StarterPlayer/StarterPlayerScripts/components/Shooter'
 import { ArcadeController } from 'StarterPlayer/StarterPlayerScripts/controllers/ArcadeController'
-import { TycoonController } from 'StarterPlayer/StarterPlayerScripts/controllers/TycoonController'
 import { calculateRem } from 'StarterPlayer/StarterPlayerScripts/fonts'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 import { forEveryPlayerCharacterAdded } from 'StarterPlayer/StarterPlayerScripts/utils/player'
@@ -65,10 +63,7 @@ export class PlayerController implements OnStart {
   runSpeed = 32
   walkSpeed = 16
 
-  constructor(
-    private arcadeController: ArcadeController,
-    private tycoonController: TycoonController,
-  ) {}
+  constructor(private arcadeController: ArcadeController) {}
 
   onStart() {
     if (this.isDesktop)
@@ -210,9 +205,9 @@ export class PlayerController implements OnStart {
   }
 
   startMyGuideHandler(player: Player) {
-    /*this.guide = BehaviorTreeCreator.Create<BehaviorObject>(
+    this.guide = BehaviorTreeCreator.Create<BehaviorObject>(
       ReplicatedStorage.BehaviorTrees.Player,
-    )*/
+    )
     const arcadeTablesSelector = selectArcadeTablesState()
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
     store.subscribe(arcadeTablesSelector, (_arcadeTablesState) => {
@@ -382,82 +377,21 @@ export class PlayerController implements OnStart {
     ) as Attachment | undefined
     if (!rootRigAttachment) return
 
+    // Run behavior tree
     this.guideObject.Blackboard = {
       sourceAttachment: rootRigAttachment,
       sourceHumanoidRootPart: humanoidRootPart,
       sourceInstance: playerCharacter,
+      sourceTeamName:
+        localPlayer?.Team?.Name === TEAM_NAMES.UnclaimedTeam
+          ? undefined
+          : localPlayer?.Team?.Name,
+      state: store.getState(),
     }
-
     this.guide.run(this.guideObject)
 
-    // Check player state
-    const state = store.getState()
-    const playerState = selectPlayerState(localPlayer.UserId)(state)
-    if (!playerState) return
-    const tycoonsState = selectTycoonsState()(state)
-    const tycoonName = findTycoonNameOwnedBy(tycoonsState, localPlayer.UserId)
-    // const sessionSeconds = os.time() - playerState.sessionStartTime
-    const localPlayerTeamName =
-      localPlayer?.Team?.Name === TEAM_NAMES.UnclaimedTeam
-        ? undefined
-        : localPlayer?.Team?.Name
-
-    // Plan next tycoon action
-    let tycoonStatus = ''
-    let tycoonTargetAttachment
-    if (!tycoonName) {
-      tycoonStatus = formatMessage(MESSAGE.GuideClaimTycoon)
-      tycoonTargetAttachment = this.tycoonController.findTycoonTarget(
-        tycoonsState,
-        rootRigAttachment,
-      )
-    } else if (
-      (tycoonTargetAttachment = this.tycoonController.findTycoonButtonTarget(
-        tycoonName,
-        playerState,
-      ))
-    ) {
-      tycoonStatus = formatMessage(MESSAGE.GuideBuildTycoon)
-    }
-
-    // Plan next game action
-    let gameStatus = ''
-    let gameTargetAttachment
-    if ((playerState?.dollars ?? 0) <= 0) {
-      gameStatus = formatMessage(MESSAGE.GuideCollectCoins)
-      gameTargetAttachment = this.arcadeController.findCoinTarget(
-        humanoidRootPart.Position,
-      )
-    } else {
-      gameStatus = formatMessage(MESSAGE.GuideWinTickets)
-      gameTargetAttachment = this.arcadeController.findTableTarget(
-        selectArcadeTablesState()(state),
-        rootRigAttachment,
-        localPlayerTeamName,
-      )
-    }
-
-    // Plan next action
-    let status = ''
-    let targetAttachment
-    if (
-      !playerState.groundArcadeTableName &&
-      (playerState.tablePlays > 0 ||
-        !gameTargetAttachment ||
-        (tycoonTargetAttachment &&
-          humanoidRootPart.Position.sub(tycoonTargetAttachment.WorldPosition)
-            .Magnitude <
-            humanoidRootPart.Position.sub(gameTargetAttachment.WorldPosition)
-              .Magnitude))
-    ) {
-      status = tycoonStatus
-      targetAttachment = tycoonTargetAttachment
-    }
-    if (!status) {
-      status = gameStatus
-      targetAttachment = gameTargetAttachment
-    }
-
+    // Apply result
+    const { status, targetAttachment } = this.guideObject.Blackboard
     if (status) store.setGuideText(status)
     if (!targetAttachment) return
     beam.Attachment0 = rootRigAttachment

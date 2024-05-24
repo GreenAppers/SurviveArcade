@@ -2,6 +2,7 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { CHARACTER_CHILD } from 'ReplicatedStorage/shared/constants/core'
 import { NPCTag } from 'ReplicatedStorage/shared/constants/tags'
+import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import { NPCService } from 'ServerScriptService/services/NPCService'
 
 @Component({ tag: NPCTag })
