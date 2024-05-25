@@ -49,9 +49,7 @@ export class ProximityController implements OnStart {
   }
 
   onPopcorn() {
-    const backpack = Players.LocalPlayer.FindFirstChild('Backpack') as
-      | Backpack
-      | undefined
+    const backpack = Players.LocalPlayer.FindFirstChild<Backpack>('Backpack')
     if (backpack && !backpack.FindFirstChild(TOOL_NAMES.Popcorn)) {
       const popcornBox = ReplicatedStorage.Tools.Popcorn.Clone()
       popcornBox.Parent = backpack

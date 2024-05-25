@@ -29,14 +29,10 @@ export function getCharacterFromUserId(
   workspace: Workspace,
 ): Model | undefined {
   return isNPCId(userId)
-    ? (workspace.NPC.FindFirstChild(getNameFromUserId(userId)) as
-        | Model
-        | undefined)
+    ? workspace.NPC.FindFirstChild<Model>(getNameFromUserId(userId))
     : Players.GetPlayerByUserId(userId)?.Character
 }
 
 export function getCharacterHumanoid(character?: Instance) {
-  return character?.FindFirstChild(CHARACTER_CHILD.Humanoid) as
-    | Humanoid
-    | undefined
+  return character?.FindFirstChild<Humanoid>(CHARACTER_CHILD.Humanoid)
 }

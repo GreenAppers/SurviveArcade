@@ -14,10 +14,10 @@ export class AdminService implements OnStart {
   constructor(private readonly logger: Logger) {}
 
   onStart() {
-    const cmdr = ServerScriptService.FindFirstChild('cmdr') as Folder
+    const cmdr = ServerScriptService.FindFirstChild<Folder>('cmdr')!
     Cmdr.RegisterDefaultCommands()
-    Cmdr.RegisterCommandsIn(cmdr.FindFirstChild('commands') as Folder)
-    Cmdr.RegisterTypesIn(cmdr.FindFirstChild('types') as Folder)
+    Cmdr.RegisterCommandsIn(cmdr.FindFirstChild<Folder>('commands')!)
+    Cmdr.RegisterTypesIn(cmdr.FindFirstChild<Folder>('types')!)
     Cmdr.RegisterHook('BeforeRun', (context) => {
       if (!this.isAdmin(context.Executor.UserId))
         return "You don't have permission to run this command"

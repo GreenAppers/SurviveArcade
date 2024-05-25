@@ -25,6 +25,10 @@ import {
 } from 'ReplicatedStorage/shared/state/TycoonState'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 import {
+  findDescendentsWhichAre,
+  setHidden,
+} from 'ReplicatedStorage/shared/utils/instance'
+import {
   getTycoonButtonColor,
   getTycoonType,
   isTycoonButtonDependencyMet,
@@ -35,10 +39,6 @@ import {
   MapService,
 } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
-import {
-  findDescendentsWhichAre,
-  setHidden,
-} from 'ServerScriptService/utils/instance'
 
 @Service()
 export class TycoonService implements OnStart {
@@ -95,7 +95,7 @@ export class TycoonService implements OnStart {
     purchases.Parent = tycoon
 
     this.logger.Info(`Loading ${tycoonType} ${tycoonName} items`)
-    for (const itemTemplate of tycoonTemplate.Items.GetChildren() as Model[]) {
+    for (const itemTemplate of tycoonTemplate.Items.GetChildren<Model>()) {
       if (!playerTycoonState?.buttons[itemTemplate.Name]) continue
       const item = itemTemplate.Clone()
       this.setupTycoonItem(item, tycoonState)
@@ -105,7 +105,7 @@ export class TycoonService implements OnStart {
     this.logger.Info(`Loading ${tycoonType} ${tycoonName} buttons`)
     const constants = tycoonConstants[tycoonType]
     const font = Font.fromEnum(Enum.Font.FredokaOne)
-    for (const button of buttons.GetChildren() as TycoonButtonModel[]) {
+    for (const button of buttons.GetChildren<TycoonButtonModel>()) {
       const details = constants.Buttons[button.Name]
       if (!details || playerTycoonState?.buttons[button.Name]) {
         button.Destroy()
@@ -247,7 +247,7 @@ export class TycoonService implements OnStart {
     if (!tycoon || !tycoonType) return
 
     const constants = tycoonConstants[tycoonType]
-    for (const button of tycoon.Buttons.GetChildren() as TycoonButtonModel[]) {
+    for (const button of tycoon.Buttons.GetChildren<TycoonButtonModel>()) {
       if (button.Button.Transparency) continue
       const details = constants.Buttons[button.Name]
       button.Button.BrickColor = getTycoonButtonColor(

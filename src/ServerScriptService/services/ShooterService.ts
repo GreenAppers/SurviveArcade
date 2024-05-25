@@ -17,7 +17,7 @@ export class ShooterService implements OnStart {
 
     // Cosmetic bullet container
     this.cosmeticBulletsFolder =
-      (Workspace.FindFirstChild('CosmeticBulletsFolder') as Folder) ||
+      Workspace.FindFirstChild<Folder>('CosmeticBulletsFolder') ||
       new Instance('Folder', Workspace)
     this.cosmeticBulletsFolder.Name = 'CosmeticBulletsFolder'
 

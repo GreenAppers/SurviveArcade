@@ -17,16 +17,16 @@ import {
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
+import {
+  findDescendentsWithTag,
+  setNetworkOwner,
+} from 'ReplicatedStorage/shared/utils/instance'
 import { getNameFromUserId } from 'ReplicatedStorage/shared/utils/player'
 import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 import { Events } from 'ServerScriptService/network'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { EXCHANGE, executeExchange } from 'ServerScriptService/utils/exchange'
-import {
-  findDescendentsWithTag,
-  setNetworkOwner,
-} from 'ServerScriptService/utils/instance'
 
 @Service()
 export class ArcadeTableService implements OnStart {
@@ -107,9 +107,9 @@ export class ArcadeTableService implements OnStart {
     Events.flipperFlip.connect((_player, tableName, flipperName) => {
       const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
       const flipper = arcadeTable?.FindFirstChild(flipperName)
-      const audio = <Folder & { FlipperSound?: Sound }>(
-        arcadeTable?.FindFirstChild('Audio')
-      )
+      const audio = arcadeTable?.FindFirstChild<
+        Folder & { FlipperSound?: Sound }
+      >('Audio')
       if (flipper && audio?.FlipperSound)
         playSoundId(flipper, audio.FlipperSound.SoundId)
     })
@@ -184,13 +184,13 @@ export class ArcadeTableService implements OnStart {
 
   onGameOver(tableName: string, userId: number, score: number) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
-    const flipperLeft = arcadeTable?.FindFirstChild('FlipperLeft') as Flipper
-    const flipperRight = arcadeTable?.FindFirstChild('FlipperRight') as Flipper
-    const spinnerLeft = arcadeTable?.FindFirstChild('SpinnerLeft') as Spinner
+    const flipperLeft = arcadeTable?.FindFirstChild<Flipper>('FlipperLeft')
+    const flipperRight = arcadeTable?.FindFirstChild<Flipper>('FlipperRight')
+    const spinnerLeft = arcadeTable?.FindFirstChild<Spinner>('SpinnerLeft')
     if (!userId) {
-      setNetworkOwner(flipperLeft, undefined)
-      setNetworkOwner(flipperRight, undefined)
-      setNetworkOwner(spinnerLeft, undefined)
+      if (flipperLeft) setNetworkOwner(flipperLeft, undefined)
+      if (flipperRight) setNetworkOwner(flipperRight, undefined)
+      if (spinnerLeft) setNetworkOwner(spinnerLeft, undefined)
       return
     }
     const payout = math.floor(score / 1000)
@@ -201,9 +201,9 @@ export class ArcadeTableService implements OnStart {
   onGameStart(tableName: string, userId: number) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
     const balls = arcadeTable?.FindFirstChild('Balls')
-    const ballTemplate = arcadeTable?.FindFirstChild('BallTemplate')
-    const ground = arcadeTable?.FindFirstChild('Ground') as BasePart
-    const ball = ballTemplate?.Clone() as BasePart
+    const ballTemplate = arcadeTable?.FindFirstChild<BasePart>('BallTemplate')
+    const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
+    const ball = ballTemplate?.Clone()
     const player = Players.GetPlayerByUserId(userId)
     if (ball) {
       this.ballNumber = this.ballNumber + 1
@@ -212,13 +212,9 @@ export class ArcadeTableService implements OnStart {
       ball.CanCollide = true
       ball.Anchored = false
       ball.Parent = balls
-      const sparks = ball.FindFirstChild('Sparks') as
-        | ParticleEmitter
-        | undefined
-      const light = ball.FindFirstChild('Light') as PointLight | undefined
-      const gravity = ball.FindFirstChild('VectorForce') as
-        | VectorForce
-        | undefined
+      const sparks = ball.FindFirstChild<ParticleEmitter>('Sparks')
+      const light = ball.FindFirstChild<PointLight>('Light')
+      const gravity = ball.FindFirstChild<VectorForce>('VectorForce')
       if (sparks) sparks.Enabled = true
       if (light) light.Enabled = true
       if (gravity && ground) {
@@ -229,22 +225,19 @@ export class ArcadeTableService implements OnStart {
       if (player) setNetworkOwner(ball, player)
     }
     if (player) {
-      const flipperLeft = arcadeTable?.FindFirstChild('FlipperLeft') as Flipper
-      const flipperRight = arcadeTable?.FindFirstChild(
-        'FlipperRight',
-      ) as Flipper
-      const spinnerLeft = arcadeTable?.FindFirstChild('SpinnerLeft') as Spinner
-      setNetworkOwner(flipperLeft, player)
-      setNetworkOwner(flipperRight, player)
-      setNetworkOwner(spinnerLeft, player)
+      const flipperLeft = arcadeTable?.FindFirstChild<Flipper>('FlipperLeft')
+      const flipperRight = arcadeTable?.FindFirstChild<Flipper>('FlipperRight')
+      const spinnerLeft = arcadeTable?.FindFirstChild<Spinner>('SpinnerLeft')
+      if (flipperLeft) setNetworkOwner(flipperLeft, player)
+      if (flipperRight) setNetworkOwner(flipperRight, player)
+      if (spinnerLeft) setNetworkOwner(spinnerLeft, player)
     }
   }
 
   onScoreChanged(tableName: string, arcadeTableState: ArcadeTableState) {
     // Find the scoreboard on the arcade table.
-    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
-      tableName,
-    ) as ArcadeTable
+    const arcadeTable =
+      game.Workspace.ArcadeTables.FindFirstChild<ArcadeTable>(tableName)
     if (!arcadeTable?.FindFirstChild('Backbox')) return
     const surfaceGuiFrame = arcadeTable.Backbox?.Scoreboard.SurfaceGui.Frame
     if (!surfaceGuiFrame) return
@@ -267,9 +260,7 @@ export class ArcadeTableService implements OnStart {
   async playWinningSequence(arcadeTable: ArcadeTable | undefined) {
     if (!arcadeTable) return
     if (arcadeTable.Backbox) {
-      const audio = arcadeTable.FindFirstChild('Audio') as
-        | { WinSound?: Sound }
-        | undefined
+      const audio = arcadeTable.FindFirstChild<{ WinSound?: Sound }>('Audio')
       if (audio?.WinSound)
         playSoundId(arcadeTable.Backbox, audio.WinSound.SoundId)
       arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)

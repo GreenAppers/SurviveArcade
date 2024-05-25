@@ -31,9 +31,7 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
       ).tableType
       if (!testExchange(player.UserId, EXCHANGE[tableType])) return
 
-      const audio = arcadeTable.FindFirstChild('Audio') as
-        | { SeatSound?: Sound }
-        | undefined
+      const audio = arcadeTable.FindFirstChild<{ SeatSound?: Sound }>('Audio')
       if (audio?.SeatSound) playSoundId(seat, audio.SeatSound.SoundId)
     })
   }

@@ -9,6 +9,7 @@ import {
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
+import { setHidden } from 'ReplicatedStorage/shared/utils/instance'
 import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
 import {
   getTycoonButtonColor,
@@ -21,7 +22,6 @@ import { getProductForCurrency } from 'ServerScriptService/services/TransactionS
 import { TycoonService } from 'ServerScriptService/services/TycoonService'
 import { store } from 'ServerScriptService/store'
 import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
-import { setHidden } from 'ServerScriptService/utils/instance'
 
 @Component({ tag: TycoonButtonTag })
 export class TycoonButtonComponent
@@ -86,9 +86,8 @@ export class TycoonButtonComponent
 
       let buildingAnimation
       const tycoonTemplate = ReplicatedStorage.Tycoons[tycoonType]
-      const itemTemplate = tycoonTemplate.Items.FindFirstChild(buttonName) as
-        | Model
-        | undefined
+      const itemTemplate =
+        tycoonTemplate.Items.FindFirstChild<Model>(buttonName)
 
       if (itemTemplate) {
         const item = itemTemplate.Clone()
@@ -107,7 +106,7 @@ export class TycoonButtonComponent
       }
 
       let thisButton
-      for (const button of tycoon.Buttons.GetChildren() as TycoonButtonModel[]) {
+      for (const button of tycoon.Buttons.GetChildren<TycoonButtonModel>()) {
         if (button.Name === buttonName) {
           thisButton = button
           continue

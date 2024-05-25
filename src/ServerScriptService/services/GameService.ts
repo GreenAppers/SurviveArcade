@@ -64,12 +64,10 @@ export class GameService implements OnStart {
     for (const arcadeTableName of ARCADE_TABLE_NAMES) {
       const nextTableName = nextArcadeTableName(arcadeTableName)
       const arcadeTableState = selectArcadeTableState(arcadeTableName)(state)
-      const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
-        arcadeTableName,
-      ) as ArcadeTable
-      const nextArcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
-        nextTableName,
-      ) as ArcadeTable
+      const arcadeTable =
+        game.Workspace.ArcadeTables.FindFirstChild<ArcadeTable>(arcadeTableName)
+      const nextArcadeTable =
+        game.Workspace.ArcadeTables.FindFirstChild<ArcadeTable>(nextTableName)
       let foundPlayerInPlayZone = false
       for (const player of players) {
         if (player.groundArcadeTableName || !player.humanoidRootPart) continue
@@ -108,9 +106,7 @@ export class GameService implements OnStart {
 
 export function playerHumanoidRootPart(player: Player) {
   const character = player?.Character as PlayerCharacter | undefined
-  return character?.FindFirstChild(CHARACTER_CHILD.HumanoidRootPart) as
-    | BasePart
-    | undefined
+  return character?.FindFirstChild<BasePart>(CHARACTER_CHILD.HumanoidRootPart)
 }
 
 export function isWithinBox(brick: BasePart, position: Vector3) {

@@ -29,7 +29,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
       targetPart.Position.add(
         targetPart.Position.sub(sourceHumanoidRootPart.Position).Unit.mul(2),
       ),
-      game.Workspace.FindFirstChild('Terrain') as Terrain | undefined,
+      game.Workspace.FindFirstChild<Terrain>('Terrain'),
     )
   }
   return BEHAVIOR_TREE_STATUS.SUCCESS

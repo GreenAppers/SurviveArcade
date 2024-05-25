@@ -91,9 +91,7 @@ export class PlayerController implements OnStart {
   getPlayerSpace() {
     if (this.playerSpace) return this.playerSpace
     const key = `${Players.LocalPlayer.UserId}`
-    const playerSpace = Workspace.PlayerSpaces.WaitForChild(key) as
-      | PlayerSpace
-      | undefined
+    const playerSpace = Workspace.PlayerSpaces.WaitForChild<PlayerSpace>(key)
     if (!playerSpace) throw 'Player space not found'
     this.playerSpace = playerSpace
     return playerSpace
@@ -221,9 +219,9 @@ export class PlayerController implements OnStart {
   startGravityController(player: Player) {
     forEveryPlayerCharacterAdded(player, (character) => {
       this.disableGravityController()
-      const humanoid = character.WaitForChild(CHARACTER_CHILD.Humanoid) as
-        | Humanoid
-        | undefined
+      const humanoid = character.WaitForChild<Humanoid>(
+        CHARACTER_CHILD.Humanoid,
+      )
       humanoid?.Seated?.Connect((seated) => {
         this.isSeated = seated
         if (seated) this.disableGravityController()
@@ -295,12 +293,12 @@ export class PlayerController implements OnStart {
   playCollectionAnimation(text?: string, yOffset = 0) {
     const collectGui = Players.LocalPlayer.FindFirstChild(
       PLAYER_CHILD.PlayerGui,
-    )?.FindFirstChild(PLAYER_GUI_CHILD.CollectGui) as CollectGui | undefined
+    )?.FindFirstChild<CollectGui>(PLAYER_GUI_CHILD.CollectGui)
     if (!collectGui) return
     if (this.collectionAnimationPlaying) return
     this.collectionAnimationPlaying = true
     const tweenInfo = new TweenInfo(0.8, Enum.EasingStyle.Linear)
-    ;(collectGui.Frame.GetChildren() as TextLabel[]).forEach((child) => {
+    collectGui.Frame.GetChildren<TextLabel>().forEach((child) => {
       if (text) child.Text = text
       child.Position = child.GetAttribute(
         COLLECT_GUI_ATTRIBUTES.StartPosition,
@@ -353,12 +351,12 @@ export class PlayerController implements OnStart {
     const playerCharacter = localPlayer?.Character as
       | PlayerCharacter
       | undefined
-    const beam = playerCharacter?.FindFirstChild(CHARACTER_CHILD.GuideBeam) as
-      | Beam
-      | undefined
-    const humanoid = playerCharacter?.FindFirstChild(
+    const beam = playerCharacter?.FindFirstChild<Beam>(
+      CHARACTER_CHILD.GuideBeam,
+    )
+    const humanoid = playerCharacter?.FindFirstChild<Humanoid>(
       CHARACTER_CHILD.Humanoid,
-    ) as Humanoid | undefined
+    )
     if (!playerCharacter || !humanoid || !beam) return
 
     // Clear old beam
@@ -368,13 +366,13 @@ export class PlayerController implements OnStart {
     if (!this.guide || !guideEnabled || !humanoid.Health || humanoid.Sit) return
 
     // Find the local player's RootRigAttachment.
-    const humanoidRootPart = playerCharacter.FindFirstChild(
+    const humanoidRootPart = playerCharacter.FindFirstChild<BasePart>(
       CHARACTER_CHILD.HumanoidRootPart,
-    ) as BasePart | undefined
+    )
     if (!playerCharacter || !humanoidRootPart) return
-    const rootRigAttachment = humanoidRootPart.FindFirstChild(
+    const rootRigAttachment = humanoidRootPart.FindFirstChild<Attachment>(
       HUMANOID_ROOT_PART_CHILD.RootRigAttachment,
-    ) as Attachment | undefined
+    )
     if (!rootRigAttachment) return
 
     // Run behavior tree

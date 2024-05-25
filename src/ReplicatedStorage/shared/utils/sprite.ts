@@ -14,9 +14,9 @@ export function renderGlyphs(
   for (let i = 0; i < glyphsAvailable; i++) {
     const character = text.sub(i + 1, i + 1)
     const glyph = font.glyphs[character] || font.glyphs[' ']
-    const glyphFrame = frame.FindFirstChild(`Glyph${i < 10 ? '0' : ''}${i}`) as
-      | Sprite
-      | undefined
+    const glyphFrame = frame.FindFirstChild<Sprite>(
+      `Glyph${i < 10 ? '0' : ''}${i}`,
+    )
     if (!glyph || !glyphFrame) continue
     const label = glyphFrame.ImageLabel
     label.ImageRectOffset = new Vector2(glyph.x, glyph.y)

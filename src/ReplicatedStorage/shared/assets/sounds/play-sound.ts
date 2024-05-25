@@ -33,7 +33,7 @@ export function playSound(soundId: string, options?: SoundOptions) {
 }
 
 export function playSoundId(object: Instance, soundId: string) {
-  let sound = object.FindFirstChild('Sound') as Sound
+  let sound = object.FindFirstChild<Sound>('Sound')
   if (sound) {
     sound.Play()
   } else {

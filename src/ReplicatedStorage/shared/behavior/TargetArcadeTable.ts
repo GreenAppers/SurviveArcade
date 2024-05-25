@@ -26,9 +26,9 @@ export function nearestArcadeTable(
   let nearestDistance = math.huge
   let nearestArcadeTableName: ArcadeTableName | ArcadeTableNextName | undefined
   const compareDistance = (name: ArcadeTableName | ArcadeTableNextName) => {
-    const arcadeSeatPosition = (
-      game.Workspace.ArcadeTables?.FindFirstChild(name) as ArcadeTable
-    )?.Seat?.Position
+    const arcadeSeatPosition =
+      game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(name)?.Seat
+        ?.Position
     if (!arcadeSeatPosition) return
     const distance = position.sub(arcadeSeatPosition).Magnitude
     if (distance < nearestDistance) {

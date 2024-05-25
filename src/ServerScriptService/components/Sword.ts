@@ -78,9 +78,9 @@ export class SwordComponent
 
     this.damage = this.damageValues.baseDamage
     this.character = tool.Parent as PlayerCharacter | undefined
-    this.slashSound = handle.WaitForChild('SwordSlash') as Sound | undefined
-    this.lungeSound = handle.WaitForChild('SwordLunge') as Sound | undefined
-    this.unsheathSound = handle.WaitForChild('Unsheath') as Sound | undefined
+    this.slashSound = handle.WaitForChild<Sound>('SwordSlash')
+    this.lungeSound = handle.WaitForChild<Sound>('SwordLunge')
+    this.unsheathSound = handle.WaitForChild<Sound>('Unsheath')
 
     tool.Enabled = true
     tool.Grip = this.grips.up
@@ -119,10 +119,10 @@ export class SwordComponent
     // wait(0.5)
     this.damage = this.damageValues.baseDamage
     this.slashAnim =
-      (this.instance.FindFirstChild('R15Slash') as Animation | undefined) ||
+      this.instance.FindFirstChild<Animation>('R15Slash') ||
       createAnimation('R15Slash', this.animations.r15Slash, this.instance)
     this.lungeAnim =
-      (this.instance.FindFirstChild('R15Lunge') as Animation | undefined) ||
+      this.instance.FindFirstChild<Animation>('R15Lunge') ||
       createAnimation('R15Lunge', this.animations.r15Lunge, this.instance)
     this.instance.Enabled = true
   }
@@ -134,10 +134,8 @@ export class SwordComponent
     this.player = Players.GetPlayerFromCharacter(this.character)
     this.humanoid = this.character.FindFirstChildOfClass('Humanoid')
     this.torso =
-      (this.character.FindFirstChild('Torso') as BasePart | undefined) ||
-      (this.character.FindFirstChild('HumanoidRootPart') as
-        | BasePart
-        | undefined)
+      this.character.FindFirstChild<BasePart>('Torso') ||
+      this.character.FindFirstChild<BasePart>('HumanoidRootPart')
     if (!this.isAlive()) return
     this.toolEquipped = true
 
@@ -167,7 +165,7 @@ export class SwordComponent
       this.character?.FindFirstChild('Right Arm') ||
       this.character?.FindFirstChild('RightHand')
     if (!rightArm) return
-    const rightGrip = rightArm.FindFirstChild('RightGrip') as Weld | undefined
+    const rightGrip = rightArm.FindFirstChild<Weld>('RightGrip')
     if (
       !rightGrip ||
       (rightGrip.Part0 !== this.instance.Handle &&
@@ -196,9 +194,7 @@ export class SwordComponent
         anim.Value = 'Slash'
         anim.Parent = this.instance
       } else if (this.humanoid.RigType === Enum.HumanoidRigType.R15) {
-        const anim = this.instance.FindFirstChild('R15Slash') as
-          | Animation
-          | undefined
+        const anim = this.instance.FindFirstChild<Animation>('R15Slash')
         if (anim) {
           const track = this.humanoid.LoadAnimation(anim)
           track.Play(0)
@@ -219,9 +215,7 @@ export class SwordComponent
         anim.Value = 'Lunge'
         anim.Parent = this.instance
       } else if (this.humanoid.RigType === Enum.HumanoidRigType.R15) {
-        const anim = this.instance.FindFirstChild('R15Lunge') as
-          | Animation
-          | undefined
+        const anim = this.instance.FindFirstChild<Animation>('R15Lunge')
         if (anim) {
           const track = this.humanoid.LoadAnimation(anim)
           track.Play(0)

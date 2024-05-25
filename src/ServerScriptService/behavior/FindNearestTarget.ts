@@ -23,9 +23,9 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
       targetModel.FindFirstChild('Head')
     ) {
       const targetHumanoid = targetModel.FindFirstChildOfClass('Humanoid')
-      const targetHumanoidRootPart = targetModel.FindFirstChild(
+      const targetHumanoidRootPart = targetModel.FindFirstChild<BasePart>(
         CHARACTER_CHILD.HumanoidRootPart,
-      ) as BasePart | undefined
+      )
       if (
         targetHumanoid &&
         targetHumanoid.Health !== 0 &&

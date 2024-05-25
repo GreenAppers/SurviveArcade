@@ -23,10 +23,10 @@ import {
   baseArcadeTableName,
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { findDescendentsWhichAre } from 'ReplicatedStorage/shared/utils/instance'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
-import { findDescendentsWhichAre } from 'ServerScriptService/utils/instance'
 
 export interface MapAPI {
   scale: TycoonType
@@ -160,12 +160,12 @@ export class MapService implements OnStart {
   resetTable(name: ArcadeTableName) {
     const arcadeTablesState = selectArcadeTablesState()(store.getState())
     const arcadeTableState = arcadeTablesState[name]
-    let arcadeTable = game.Workspace.ArcadeTables?.FindFirstChild(
-      name,
-    ) as ArcadeTable
-    const nextArcadeTable = game.Workspace.ArcadeTables?.FindFirstChild(
-      nextArcadeTableName(name),
-    ) as ArcadeTable
+    let arcadeTable =
+      game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(name)
+    const nextArcadeTable =
+      game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(
+        nextArcadeTableName(name),
+      )
     arcadeTable?.Destroy()
     nextArcadeTable?.Destroy()
     store.resetArcadeTable(name)
@@ -181,12 +181,12 @@ export class MapService implements OnStart {
     const arcadeTableNextName = nextArcadeTableName(name)
     const arcadeTablesState = store.getState().arcadeTables
     const state = arcadeTablesState[name]
-    const arcadeTable = game.Workspace.ArcadeTables?.FindFirstChild(name) as
-      | ArcadeTable
-      | undefined
-    let arcadeTableNext = game.Workspace.ArcadeTables?.FindFirstChild(
-      arcadeTableNextName,
-    ) as ArcadeTable | undefined
+    const arcadeTable =
+      game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(name)
+    let arcadeTableNext =
+      game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(
+        arcadeTableNextName,
+      )
     if (!state?.tableMap || arcadeTableNext) return
     const nextArcadeTableCF = arcadeTable?.NextBaseplate?.CFrame
     if (!nextArcadeTableCF) return
@@ -205,9 +205,7 @@ export class MapService implements OnStart {
 
     let arcadeTableState = arcadeTableSelector(store.getState())
     const unmaterializedArcadeTable =
-      game.Workspace.ArcadeTables?.FindFirstChild(nextName) as
-        | ArcadeTable
-        | undefined
+      game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(nextName)
     const arcadeTableCF = unmaterializedArcadeTable?.PrimaryPart?.CFrame
     if (
       arcadeTableState.status === ArcadeTableStatus.Won &&

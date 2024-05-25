@@ -3,6 +3,7 @@ import { OnStart } from '@flamework/core'
 import { CHARACTER_CHILD } from 'ReplicatedStorage/shared/constants/core'
 import { NPCTag } from 'ReplicatedStorage/shared/constants/tags'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
+import { getUserIdFromNPCName } from 'ReplicatedStorage/shared/utils/player'
 import { NPCService } from 'ServerScriptService/services/NPCService'
 
 @Component({ tag: NPCTag })
@@ -10,9 +11,10 @@ export class NPCComponent
   extends BaseComponent<NPCAttributes, Model>
   implements OnStart
 {
+  behavior: BehaviorObject = { Blackboard: {} }
   humanoid?: Humanoid
   humanoidRootPart?: BasePart
-  behavior: BehaviorObject = { Blackboard: {} }
+  userId?: number
 
   constructor(protected npcService: NPCService) {
     super()
@@ -20,9 +22,10 @@ export class NPCComponent
 
   onStart() {
     this.humanoid = this.instance.FindFirstChildOfClass('Humanoid')
-    this.humanoidRootPart = this.instance.FindFirstChild(
+    this.humanoidRootPart = this.instance.FindFirstChild<BasePart>(
       CHARACTER_CHILD.HumanoidRootPart,
-    ) as BasePart | undefined
+    )
+    this.userId = getUserIdFromNPCName(this.instance.Name)
 
     this.humanoid?.Died?.Connect(() => {
       wait(1)
@@ -38,6 +41,7 @@ export class NPCComponent
         sourceHumanoid: this.humanoid,
         sourceHumanoidRootPart: this.humanoidRootPart,
         sourceInstance: this.instance,
+        sourceUserId: this.userId,
       }
 
       behaviorTree.run(this.behavior)

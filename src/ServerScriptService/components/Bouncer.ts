@@ -40,9 +40,9 @@ export class BouncerComponent
           1000,
         )
 
-      const audio = arcadeTable.FindFirstChild('Audio') as
-        | { BouncerSound?: Sound }
-        | undefined
+      const audio = arcadeTable.FindFirstChild<{ BouncerSound?: Sound }>(
+        'Audio',
+      )
       if (audio?.BouncerSound) playSoundId(part, audio.BouncerSound.SoundId)
 
       const humanoid = getCharacterHumanoid(hit.Parent)

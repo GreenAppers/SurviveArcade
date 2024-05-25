@@ -10,9 +10,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     sourceHumanoid.WalkSpeed = 16
 
     const randomWalk = math.random(1, 150)
-    const terrain = game.Workspace.FindFirstChild('Terrain') as
-      | Terrain
-      | undefined
+    const terrain = game.Workspace.FindFirstChild<Terrain>('Terrain')
 
     if (terrain && randomWalk === 1) {
       sourceHumanoid.MoveTo(

@@ -812,7 +812,7 @@
           <R21>0</R21>
           <R22>0</R22>
         </CoordinateFrame>
-        <bool name="CanCollide">false</bool>
+        <bool name="CanCollide">true</bool>
         <bool name="CanQuery">false</bool>
         <bool name="CanTouch">false</bool>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
@@ -1268,8 +1268,8 @@
         <bool name="CanTouch">true</bool>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
-        <string name="CollisionGroup">Zombie</string>
-        <int name="CollisionGroupId">5</int>
+        <string name="CollisionGroup">ZombieLava</string>
+        <int name="CollisionGroupId">7</int>
         <Color3uint8 name="Color3uint8">16711680</Color3uint8>
         <PhysicalProperties name="CustomPhysicalProperties">
           <CustomPhysics>false</CustomPhysics>

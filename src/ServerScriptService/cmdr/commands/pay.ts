@@ -19,6 +19,7 @@ export = identity<CommandDefinition>({
       Type: 'number',
       Name: 'Amount',
       Description: 'Amount',
+      Default: 1,
     },
   ],
 })

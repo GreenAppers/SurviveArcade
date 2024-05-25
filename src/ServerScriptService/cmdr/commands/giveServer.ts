@@ -1,19 +1,12 @@
 import { CommandContext } from '@rbxts/cmdr'
-import { ReplicatedStorage } from '@rbxts/services'
+import { giveTool } from 'ServerScriptService/components/ToolGiver'
 
 export = function (
   _context: CommandContext,
   player: Player,
   toolName: ToolName,
 ) {
-  const backpack = player.FindFirstChild('Backpack') as Backpack | undefined
+  const backpack = player.FindFirstChild<Backpack>('Backpack')
   if (!backpack || backpack.FindFirstChild(toolName)) return
-  switch (toolName) {
-    case 'Blocks':
-      ReplicatedStorage.Tools.PlaceBlock.Clone().Parent = backpack
-      ReplicatedStorage.Tools.BreakBlock.Clone().Parent = backpack
-      break
-    default:
-      ReplicatedStorage.Tools[toolName].Clone().Parent = backpack
-  }
+  giveTool(toolName, backpack)
 }

@@ -13,9 +13,7 @@ export class ClaimTycoonComponent
 {
   onStart() {
     this.instance.Touched?.Connect((hit) => {
-      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
-        | Humanoid
-        | undefined
+      const humanoid = hit.Parent?.FindFirstChild<Humanoid>('Humanoid')
       if (!humanoid) return
       const touchedUserId = getUserIdFromCharacter(hit.Parent)
       if (!touchedUserId) return

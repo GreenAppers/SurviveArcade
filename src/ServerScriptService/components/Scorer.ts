@@ -37,9 +37,7 @@ export class ScorerComponent
           1000,
         )
 
-      const audio = arcadeTable.FindFirstChild('Audio') as
-        | { ScorerSound?: Sound }
-        | undefined
+      const audio = arcadeTable.FindFirstChild<{ ScorerSound?: Sound }>('Audio')
       if (audio?.ScorerSound) playSoundId(part, audio.ScorerSound.SoundId)
 
       task.wait(0.5)

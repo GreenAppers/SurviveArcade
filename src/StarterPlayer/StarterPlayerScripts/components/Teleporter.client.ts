@@ -18,9 +18,7 @@ export class TeleporterComponent
   onStart() {
     this.instance.Touched?.Connect((hit) => {
       if (this.debounce) return
-      const humanoid = hit.Parent?.FindFirstChild('Humanoid') as
-        | Humanoid
-        | undefined
+      const humanoid = hit.Parent?.FindFirstChild<Humanoid>('Humanoid')
       if (!humanoid) return
       const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
       if (touchedPlayer?.UserId === Players.LocalPlayer.UserId) {

@@ -35,7 +35,7 @@ function findTycoonButtonTarget(
   if (!tycoon || !tycoonType || !playerState) return undefined
 
   const constants = tycoonConstants[tycoonType]
-  for (const button of tycoon.Buttons.GetChildren() as TycoonButtonModel[]) {
+  for (const button of tycoon.Buttons.GetChildren<TycoonButtonModel>()) {
     if (button.Button.CanTouch === false) continue
     const details = constants.Buttons[button.Name]
     const currency = getCurrency(details.Currency)

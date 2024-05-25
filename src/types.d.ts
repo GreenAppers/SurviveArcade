@@ -143,6 +143,19 @@ interface CabinetTruss extends TrussPart {
 
 type CabinetTrussName = 'Truss1' | 'Truss2' | 'Truss3' | 'Truss4'
 
+interface ChangeMachine extends Model {
+  Coin: MeshPart
+  Wedge: WedgePart & {
+    Attachment: Attachment
+  }
+}
+
+interface CollectGui extends ScreenGui {
+  Frame: Frame & {
+    [labelName: string]: TextLabel
+  }
+}
+
 type Currency = 'Dollars' | 'Levity' | 'Tickets'
 
 interface Cutscenes extends Folder {
@@ -150,24 +163,6 @@ interface Cutscenes extends Folder {
   LoadedServer: RemoteEvent
   Loading1: Part
   Loading2: Part
-}
-
-type Difficulty = 'peaceful' | 'normal'
-
-interface Exchange {
-  Name: string
-  Cost: number
-  Currency: string
-  Requires: string
-  Pays: number
-  PaysCurrency: string
-  Gives: string
-}
-
-interface CollectGui extends ScreenGui {
-  Frame: Frame & {
-    [labelName: string]: TextLabel
-  }
 }
 
 interface DialogGui extends ScreenGui {
@@ -191,17 +186,34 @@ interface DialogGui extends ScreenGui {
   }
 }
 
+type Difficulty = 'peaceful' | 'normal'
+
+interface Exchange {
+  Name: string
+  Cost: number
+  Currency: string
+  Requires: string
+  Pays: number
+  PaysCurrency: string
+  Gives: string
+}
+
 interface Flipper extends Model {
   Flipper: BasePart & {
     Rotor: BasePart
   }
 }
 
-interface ChangeMachine extends Model {
-  Coin: MeshPart
-  Wedge: WedgePart & {
-    Attachment: Attachment
-  }
+interface Instance {
+  FindFirstChild<X = Instance>(
+    this: Instance,
+    childName: string | number,
+    recursive?: boolean,
+  ): X | undefined
+
+  GetChildren<X = Instance>(this: Instance): Array<X>
+
+  WaitForChild<X = Instance>(this: Instance, childName: string | number): X
 }
 
 type GamePass = 'ArcadeGun'

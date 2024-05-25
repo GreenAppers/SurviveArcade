@@ -92,13 +92,9 @@ export class ArcadeController implements OnStart {
         })
         const arcadeTable =
           game.Workspace.ArcadeTables.FindFirstChild(arcadeTableName)
-        const baseplate = arcadeTable?.FindFirstChild('Baseplate') as
-          | BasePart
-          | undefined
-        const ground = arcadeTable?.FindFirstChild('Ground') as
-          | BasePart
-          | undefined
-        const seat = arcadeTable?.FindFirstChild('Seat') as BasePart | undefined
+        const baseplate = arcadeTable?.FindFirstChild<BasePart>('Baseplate')
+        const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
+        const seat = arcadeTable?.FindFirstChild<BasePart>('Seat')
         const camera = game.Workspace.CurrentCamera
         if (camera && baseplate && seat) {
           const up = ground?.CFrame.UpVector.Unit || new Vector3(0, 1, 0)
@@ -121,9 +117,9 @@ export class ArcadeController implements OnStart {
       const arcadeTable = game.Workspace.ArcadeTables[arcadeTableName]
       if (arcadeTable && !debounce) {
         debounce = true
-        const audio = <Folder & { MaterializeSound?: Sound }>(
-          arcadeTable?.FindFirstChild('Audio')
-        )
+        const audio = arcadeTable?.FindFirstChild<
+          Folder & { MaterializeSound?: Sound }
+        >('Audio')
         if (audio?.MaterializeSound)
           playSoundId(arcadeTable, audio.MaterializeSound.SoundId)
         task.wait(0.5)
@@ -165,7 +161,7 @@ export class ArcadeController implements OnStart {
     if (!arcadeTable) return
     const flipperModel = arcadeTable.FindFirstChild(flipperName)
     const flipper = flipperModel?.FindFirstChild('Flipper')
-    const rotor = flipper?.FindFirstChild('Rotor') as BasePart
+    const rotor = flipper?.FindFirstChild<BasePart>('Rotor')
     if (!rotor) return
     const orientation = flipperName === 'FlipperRight' ? -1 : 1
     rotor.ApplyAngularImpulse(
