@@ -13,9 +13,9 @@ export const getNameFromUserId = (id: number) =>
     : Players.GetPlayerByUserId(id)?.Name ?? ''
 
 export function getUserIdFromNPCName(name: string) {
-  const match = name.match('^NPC_%d+')
-  if (match.size() < 2) return 0
-  const npcId = tonumber(match[1])
+  const match = name.match('^NPC_([0-9]+)')
+  if (match.size() < 1) return 0
+  const npcId = tonumber(match[0])
   return npcId ? getUserIdFromNPCId(npcId) : 0
 }
 

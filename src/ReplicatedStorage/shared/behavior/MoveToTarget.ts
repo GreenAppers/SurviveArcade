@@ -2,32 +2,42 @@ import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
-  const { sourceHumanoid, sourceHumanoidRootPart, targetHumanoid, targetPart } =
-    obj.Blackboard
+  const {
+    sourceHumanoid,
+    sourceHumanoidRootPart,
+    targetAttachment,
+    targetHumanoid,
+    targetPart,
+  } = obj.Blackboard
   obj.notice = true
+  const targetPosition =
+    targetAttachment?.WorldPosition ||
+    targetPart?.Position ||
+    targetHumanoid?.RootPart?.Position
   if (
     sourceHumanoidRootPart &&
     sourceHumanoid &&
     sourceHumanoid.Health !== 0 &&
-    targetPart
+    targetPosition
   ) {
     if (
       targetHumanoid &&
       targetHumanoid.Health !== 0 &&
-      targetPart.Position.sub(sourceHumanoidRootPart.Position).Magnitude > 5
+      targetPosition.sub(sourceHumanoidRootPart.Position).Magnitude > 5
     ) {
       wait(2)
       sourceHumanoid.WalkSpeed = 30
     } else if (
       targetHumanoid &&
       targetHumanoid.Health !== 0 &&
-      targetPart.Position.sub(sourceHumanoidRootPart.Position).Magnitude < 5
+      targetPosition.sub(sourceHumanoidRootPart.Position).Magnitude < 5
     ) {
       sourceHumanoid.WalkSpeed = 16
     }
+    print('moveTO', obj.Blackboard.sourceInstance)
     sourceHumanoid.MoveTo(
-      targetPart.Position.add(
-        targetPart.Position.sub(sourceHumanoidRootPart.Position).Unit.mul(2),
+      targetPosition.add(
+        targetPosition.sub(sourceHumanoidRootPart.Position).Unit.mul(2),
       ),
       game.Workspace.FindFirstChild<Terrain>('Terrain'),
     )

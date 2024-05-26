@@ -40,6 +40,7 @@ interface ArcadeMap {
   LeaderboardKOs: Leaderboard
   LeaderboardTickets: Leaderboard
   Skybox?: Sky
+  SpawnLocation: SpawnLocation
   Table1?: Cabinet
   Table2?: Cabinet
   Table3?: Cabinet

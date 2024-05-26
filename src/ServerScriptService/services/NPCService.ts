@@ -30,6 +30,7 @@ export class NPCService implements OnStart {
   population: Record<NPCType, NPCPopulation> = {
     Player: {
       name: 'NPC_%d',
+      createPlayer: true,
       currentCount: 0,
       targetCount: 1,
       type: NPC_TYPES.Player,
@@ -126,9 +127,12 @@ export class NPCService implements OnStart {
     const newNpcId = this.nextID++
     const newNpc = population.template.Clone()
     newNpc.Name = population.name.format(newNpcId)
-    newNpc.Parent = Workspace.NPC
     if (population.createPlayer) {
       store.addNPC(getUserIdFromNPCId(newNpcId))
+      newNpc.PivotTo(
+        Workspace.Map.SpawnLocation.CFrame.ToWorldSpace(new CFrame(0, 4, 0)),
+      )
     }
+    newNpc.Parent = Workspace.NPC
   }
 }

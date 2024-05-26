@@ -2,7 +2,7 @@ import { CommandDefinition } from '@rbxts/cmdr'
 
 export = identity<CommandDefinition>({
   Name: 'give',
-  Description: 'Give Player tool',
+  Description: 'Give player item',
   Group: 'Admin',
   Args: [
     {
@@ -11,9 +11,15 @@ export = identity<CommandDefinition>({
       Description: 'Player',
     },
     {
-      Type: 'tool',
-      Name: 'Tool',
-      Description: 'Tool',
+      Type: 'item',
+      Name: 'Item',
+      Description: 'Item',
+    },
+    {
+      Type: 'number',
+      Name: 'Amount',
+      Description: 'Amount',
+      Default: 1,
     },
   ],
 })
