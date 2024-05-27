@@ -3,6 +3,7 @@ import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const {
+    path,
     sourceHumanoid,
     sourceHumanoidRootPart,
     targetAttachment,
@@ -34,13 +35,17 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     ) {
       sourceHumanoid.WalkSpeed = 16
     }
-    print('moveTO', obj.Blackboard.sourceInstance)
-    sourceHumanoid.MoveTo(
-      targetPosition.add(
-        targetPosition.sub(sourceHumanoidRootPart.Position).Unit.mul(2),
-      ),
-      game.Workspace.FindFirstChild<Terrain>('Terrain'),
+    const target = targetPosition.add(
+      targetPosition.sub(sourceHumanoidRootPart.Position).Unit.mul(2),
     )
+    if (path) {
+      path.Run(target)
+    } else {
+      sourceHumanoid.MoveTo(
+        target,
+        game.Workspace.FindFirstChild<Terrain>('Terrain'),
+      )
+    }
   }
   return BEHAVIOR_TREE_STATUS.SUCCESS
 }

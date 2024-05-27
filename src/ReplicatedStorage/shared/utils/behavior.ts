@@ -1,3 +1,4 @@
+import SimplePath from '@rbxts/simplepath'
 import { SharedState } from 'ReplicatedStorage/shared/state'
 
 export enum BehaviorPlanType {
@@ -20,6 +21,7 @@ export interface BehaviorObject {
     state?: SharedState
     obstacle?: BasePart
     obstaclePos?: Vector3
+    path?: SimplePath
     plan?: BehaviorPlans
     sourceAttachment?: Attachment
     sourceHumanoid?: Humanoid

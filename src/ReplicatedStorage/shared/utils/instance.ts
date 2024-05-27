@@ -1,5 +1,16 @@
 import { CollectionService } from '@rbxts/services'
 
+export function findFirstChildWhichIs<X = Instance>(
+  ancestor: Instance,
+  childName: string,
+  className: keyof Instances,
+) {
+  for (const child of ancestor.GetChildren()) {
+    if (child.Name === childName && child.IsA(className)) return child as X
+  }
+  return undefined
+}
+
 export function findDescendentsWhichAre(
   ancestor: Instance,
   className: keyof Instances,

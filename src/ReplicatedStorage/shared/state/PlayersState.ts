@@ -215,6 +215,7 @@ export const playersSlice = createProducer(initialState, {
         ...playerState,
         ...defaultPlayerDetail,
         sessionStartTime: os.time(),
+        dollars: 10,
       },
     }
   },

@@ -21,8 +21,9 @@ export interface NPCPopulation {
   targetCount: number
   type: NPCType
   template?: Model
-  behaviorTree?: BehaviorTree3
+  behaviorTree?: BehaviorTree3 & { DataLookup?: Map<BehaviorObject, unknown> }
   createPlayer?: boolean
+  pathFinding?: boolean
 }
 
 @Service()
@@ -34,6 +35,7 @@ export class NPCService implements OnStart {
       currentCount: 0,
       targetCount: 1,
       type: NPC_TYPES.Player,
+      pathFinding: true,
     },
     Rat: {
       name: 'Rat_%d',
@@ -67,6 +69,7 @@ export class NPCService implements OnStart {
     components.onComponentRemoved<NPCComponent>((npc) => {
       const population = this.population[npc.attributes.NPCType]
       population.currentCount--
+      population.behaviorTree?.DataLookup?.delete(npc.behavior)
     })
 
     store.subscribe(selectDifficulty(), (difficulty) => {
