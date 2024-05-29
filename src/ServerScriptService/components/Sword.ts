@@ -54,8 +54,8 @@ export class SwordComponent
   }
 
   grips = {
-    up: new CFrame(0, 0, -1.70000005, 0, 0, 1, 1, 0, 0, 0, 1, 0),
-    out: new CFrame(0, 0, -1.70000005, 0, 1, 0, 1, -0, 0, 0, 0, -1),
+    up: new CFrame(new Vector3(0, 0, 0), new Vector3(0, 1, 0)),
+    out: new CFrame(new Vector3(0, 0, 0), new Vector3(1, 0, 0)),
   }
 
   character: PlayerCharacter | undefined

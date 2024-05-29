@@ -296,7 +296,7 @@ interface ReplicatedStorage extends Instance {
     BreakBlock: BlockBreaker
     PlaceBlock: BlockPlacer
     Popcorn: Tool
-    Sword: Sword
+    Saber: Sword
   }
   Tycoons: Folder & {
     Elf: Tycoon
@@ -382,7 +382,7 @@ type TeamName =
   | 'Unclaimed Team'
   | 'Yellow Team'
 
-type ToolName = 'ArcadeGun' | 'Blocks' | 'Popcorn' | 'Sword'
+type ToolName = 'ArcadeGun' | 'Blocks' | 'Popcorn' | 'Saber'
 
 interface Tycoon extends Model {
   Baseplate: BasePart

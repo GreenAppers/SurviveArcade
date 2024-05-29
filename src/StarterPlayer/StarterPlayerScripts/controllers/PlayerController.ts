@@ -225,7 +225,8 @@ export class PlayerController implements OnStart {
       humanoid?.Seated?.Connect((seated) => {
         this.isSeated = seated
         if (seated) this.disableGravityController()
-        else this.enableGravityController()
+        else if (store.getState(selectLocalPlayerGroundArcadeTableName()))
+          this.enableGravityController()
       })
     })
     store.subscribe(

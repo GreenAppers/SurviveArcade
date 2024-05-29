@@ -129,7 +129,7 @@ export const TOOL_NAMES: {
   ArcadeGun: 'ArcadeGun' as const,
   Blocks: 'Blocks' as const,
   Popcorn: 'Popcorn' as const,
-  Sword: 'Sword' as const,
+  Saber: 'Saber' as const,
 }
 
 export const TRUSS_NAMES: CabinetTrussName[] = [
