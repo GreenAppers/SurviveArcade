@@ -3,6 +3,7 @@ import { OnStart } from '@flamework/core'
 import React, { StrictMode } from '@rbxts/react'
 import { createPortal, createRoot } from '@rbxts/react-roblox'
 import { VehicleSpawnerTag } from 'ReplicatedStorage/shared/constants/tags'
+import { FlySafe } from 'StarterPlayer/StarterPlayerScripts/Gui/components/FlySafe'
 import { ReactiveButton } from 'StarterPlayer/StarterPlayerScripts/Gui/components/ReactiveButton'
 import { Text } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Text'
 import { RootProvider } from 'StarterPlayer/StarterPlayerScripts/Gui/providers/RootProvider'
@@ -41,16 +42,7 @@ export class VehicleSpawnerComponent
                   textScaled={true}
                 />
               </ReactiveButton>
-              <textlabel
-                BackgroundColor3={Color3.fromRGB(82, 198, 242)}
-                BackgroundTransparency={0.5}
-                Position={new UDim2(0, 0, 0.8, 0)}
-                Size={new UDim2(1, 0, 0.2, 0)}
-                Text={'Fly Safe!'}
-                TextColor3={Color3.fromRGB(255, 255, 255)}
-                TextScaled={true}
-                TextSize={14}
-              />
+              <FlySafe />
             </frame>
           </RootProvider>
         </StrictMode>,
