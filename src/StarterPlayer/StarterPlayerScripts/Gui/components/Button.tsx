@@ -1,8 +1,8 @@
-import React from '@rbxts/react'
+import React, { Binding } from '@rbxts/react'
 import { FrameProps } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
 
 export interface ButtonProps extends FrameProps<TextButton> {
-  active?: boolean | React.Binding<boolean>
+  active?: boolean | Binding<boolean>
   onClick?: () => void
   onMouseDown?: () => void
   onMouseUp?: () => void

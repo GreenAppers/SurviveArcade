@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@rbxroot/src']
+  transpilePackages: ['ReplicatedStorage', 'StarterPlayer']
 };
 
 export default nextConfig;

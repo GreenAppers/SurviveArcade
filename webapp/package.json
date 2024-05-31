@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@rbxroot/src": "file:../src",
+    "@rbxts/device": "git+https://github.com/GreenAppers/rbxts-device-browser.git",
+    "@rbxts/pretty-react-hooks": "git+https://github.com/GreenAppers/rbxts-pretty-react-hooks-browser.git",
     "@rbxts/react": "git+https://github.com/GreenAppers/rbxts-react-browser.git",
+    "@rbxts/ripple": "git+https://github.com/GreenAppers/rbxts-ripple-browser.git",
+    "@rbxts/services": "git+https://github.com/GreenAppers/rbxts-services-browser.git",
+    "@rbxts/set-timeout": "git+https://github.com/GreenAppers/rbxts-set-timeout-browser.git",
+    "ReplicatedStorage": "file:../src/ReplicatedStorage",
+    "StarterPlayer": "file:../src/StarterPlayer",
     "next": "14.2.3",
+    "rbxts-transform-env": "git+https://github.com/GreenAppers/rbxts-transform-env-browser.git",
     "react": "^18",
     "react-dom": "^18"
   },

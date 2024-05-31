@@ -1,4 +1,4 @@
-import { FlySafe } from '@rbxroot/src/StarterPlayer/StarterPlayerScripts/Gui/components/FlySafe'
+import { VehicleSpawner } from 'StarterPlayer/StarterPlayerScripts/Gui/components/VehicleSpawner'
 
 import styles from './page.module.css'
 
@@ -21,7 +21,7 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <FlySafe />
+        <VehicleSpawner />
       </div>
 
       <div className={styles.grid}>
