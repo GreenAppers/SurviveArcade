@@ -27,7 +27,7 @@ export function createSound(
 
 export function playSound(soundId: string, options?: SoundOptions) {
   const sound = createSound(soundId, options)
-  sound.Ended.Connect(() => sound.Destroy())
+  sound.Ended.Connect(() => sound.Destroy?.())
   sound.Play()
   return sound
 }

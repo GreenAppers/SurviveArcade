@@ -2,8 +2,6 @@
 const nextConfig = {
   transpilePackages: ['ReplicatedStorage', 'StarterPlayer'],
   experimental: {
-    serverComponentsExternalPackages: ['@rbxts/react'],
-    optimizePackageImports: [ 'react' ],
   }
 };
 
