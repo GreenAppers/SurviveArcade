@@ -1,6 +1,6 @@
 import { blend, lerpBinding, useUpdateEffect } from '@rbxts/pretty-react-hooks'
 import { composeBindings } from '@rbxts/pretty-react-hooks'
-import React from '@rbxts/react'
+import React, { Binding, InstanceChangeEvent, InstanceEvent } from '@rbxts/react'
 import {
   ButtonSoundVariant,
   playButtonDown,
@@ -22,22 +22,22 @@ interface ReactiveButtonProps extends React.PropsWithChildren {
   onHover?: (hovered: boolean) => void
   onPress?: (pressed: boolean) => void
   enabled?: boolean
-  size?: UDim2 | React.Binding<UDim2>
-  position?: UDim2 | React.Binding<UDim2>
-  anchorPoint?: Vector2 | React.Binding<Vector2>
-  backgroundColor?: Color3 | React.Binding<Color3>
-  backgroundTransparency?: number | React.Binding<number>
-  cornerRadius?: UDim | React.Binding<UDim>
-  layoutOrder?: number | React.Binding<number>
+  size?: UDim2 | Binding<UDim2>
+  position?: UDim2 | Binding<UDim2>
+  anchorPoint?: Vector2 | Binding<Vector2>
+  backgroundColor?: Color3 | Binding<Color3>
+  backgroundTransparency?: number | Binding<number>
+  cornerRadius?: UDim | Binding<UDim>
+  layoutOrder?: number | Binding<number>
   animatePosition?: boolean
   animatePositionStrength?: number
   animatePositionDirection?: Vector2
   animateSize?: boolean
   animateSizeStrength?: number
   soundVariant?: ButtonSoundVariant
-  zIndex?: number | React.Binding<number>
-  event?: React.InstanceEvent<TextButton>
-  change?: React.InstanceChangeEvent<TextButton>
+  zIndex?: number | Binding<number>
+  event?: InstanceEvent<TextButton>
+  change?: InstanceChangeEvent<TextButton>
 }
 
 export function ReactiveButton({
