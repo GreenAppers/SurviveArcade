@@ -1,5 +1,5 @@
 import { useUpdateEffect } from '@rbxts/pretty-react-hooks'
-import React, { useMemo } from '@rbxts/react'
+import React, { Binding, useMemo } from '@rbxts/react'
 
 import { springs } from '../constants/springs'
 import { useMotion } from './useMotion'
@@ -9,19 +9,19 @@ export interface ButtonAnimation {
    * An underdamped spring. `-1` is fully hovered, `0` is neutral, and `1` is
    * fully pressed. Values outside of this range are possible.
    */
-  readonly position: React.Binding<number>
+  readonly position: Binding<number>
   /**
    * A critically damped spring that is `1` when the button is pressed.
    */
-  readonly press: React.Binding<number>
+  readonly press: Binding<number>
   /**
    * A critically damped spring that is `1` when the button is hovered.
    */
-  readonly hover: React.Binding<number>
+  readonly hover: Binding<number>
   /**
    * Same as `hover`, but `pressed` must be `false`.
    */
-  readonly hoverOnly: React.Binding<number>
+  readonly hoverOnly: Binding<number>
 }
 
 /**
@@ -85,8 +85,8 @@ export function useButtonAnimation(
   return useMemo<ButtonAnimation>(() => {
     return {
       press,
-      hover: hover.map((t) => math.clamp(t, 0, 1)),
-      hoverOnly: hoverExclusive.map((t) => math.clamp(t, 0, 1)),
+      hover: hover.map((t: number) => math.clamp(t, 0, 1)),
+      hoverOnly: hoverExclusive.map((t: number) => math.clamp(t, 0, 1)),
       position,
     }
   }, [])

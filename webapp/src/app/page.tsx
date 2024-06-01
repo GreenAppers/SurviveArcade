@@ -1,6 +1,16 @@
-import { VehicleSpawner } from 'StarterPlayer/StarterPlayerScripts/Gui/components/VehicleSpawner'
-
+import dynamic from 'next/dynamic'
 import styles from './page.module.css'
+
+const DynamicVehicleSpawner = dynamic(
+  () =>
+    import(
+      'StarterPlayer/StarterPlayerScripts/Gui/components/VehicleSpawner'
+    ).then((x) => x.VehicleSpawner),
+  {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+  },
+)
 
 export default function Home() {
   return (
@@ -21,7 +31,7 @@ export default function Home() {
       </div>
 
       <div className={styles.center}>
-        <VehicleSpawner />
+       <DynamicVehicleSpawner />
       </div>
 
       <div className={styles.grid}>

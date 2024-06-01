@@ -1,4 +1,4 @@
-import React from '@rbxts/react'
+import React, { Binding, InferEnumNames } from '@rbxts/react'
 import { fonts } from 'StarterPlayer/StarterPlayerScripts/fonts'
 import { FrameProps } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Frame'
 import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
@@ -6,19 +6,19 @@ import { useRem } from 'StarterPlayer/StarterPlayerScripts/Gui/hooks'
 export interface TextProps<T extends Instance = TextLabel>
   extends FrameProps<T> {
   font?: Font
-  text?: string | React.Binding<string>
-  textColor?: Color3 | React.Binding<Color3>
-  textSize?: number | React.Binding<number>
-  textTransparency?: number | React.Binding<number>
-  textWrapped?: boolean | React.Binding<boolean>
-  textXAlignment?: React.InferEnumNames<Enum.TextXAlignment>
-  textYAlignment?: React.InferEnumNames<Enum.TextYAlignment>
-  textTruncate?: React.InferEnumNames<Enum.TextTruncate>
-  textScaled?: boolean | React.Binding<boolean>
-  textHeight?: number | React.Binding<number>
+  text?: string | Binding<string>
+  textColor?: Color3 | Binding<Color3>
+  textSize?: number | Binding<number>
+  textTransparency?: number | Binding<number>
+  textWrapped?: boolean | Binding<boolean>
+  textXAlignment?: InferEnumNames<Enum.TextXAlignment>
+  textYAlignment?: InferEnumNames<Enum.TextYAlignment>
+  textTruncate?: InferEnumNames<Enum.TextTruncate>
+  textScaled?: boolean | Binding<boolean>
+  textHeight?: number | Binding<number>
   textAutoResize?: 'X' | 'Y' | 'XY'
-  richText?: boolean | React.Binding<boolean>
-  maxVisibleGraphemes?: number | React.Binding<number>
+  richText?: boolean | Binding<boolean>
+  maxVisibleGraphemes?: number | Binding<number>
 }
 
 export function Text(props: TextProps) {
