@@ -4,6 +4,7 @@
       <string name="Name">ArcadeGun</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <bool name="CanBeDropped">false</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <bool name="Enabled">true</bool>
       <CoordinateFrame name="Grip">
@@ -101,6 +102,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -208,6 +210,7 @@
             <R21>0</R21>
             <R22>1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -218,6 +221,7 @@
         <Properties>
           <string name="Name">Fire</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <NumberRange name="LoopRegion">0 60000 </NumberRange>
           <bool name="Looped">false</bool>
@@ -249,6 +253,7 @@
           </Vector3>
           <BinaryString name="AttributesSerialize"></BinaryString>
           <float name="Brightness">1</float>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <ColorSequence name="Color">0 0 1 0.968627 0 0.357737 0 0.901961 1 0 0.698864 0.129412 0.698039 0.854902 0 0.930116 0 0.784314 1 0 0.956739 0.764706 0 0.976471 0 1 0 0.952941 1 0 </ColorSequence>
           <bool name="DefinesCapabilities">false</bool>
           <float name="Drag">0</float>
@@ -295,6 +300,7 @@
       <Properties>
         <string name="Name">MouseEvent</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>

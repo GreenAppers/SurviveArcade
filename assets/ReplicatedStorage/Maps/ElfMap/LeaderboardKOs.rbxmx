@@ -3,6 +3,7 @@
     <Properties>
       <string name="Name">LeaderboardKOs</string>
       <BinaryString name="AttributesSerialize">AQAAAAQAAABUeXBlAgMAAABLT3M=</BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -52,6 +53,7 @@
       <Properties>
         <string name="Name">Roof</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -127,6 +129,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -224,6 +227,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -321,6 +325,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -418,6 +423,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -520,6 +526,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -639,6 +646,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -754,6 +762,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -833,6 +842,7 @@
             <X>800</X>
             <Y>600</Y>
           </Vector2>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">true</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
@@ -878,6 +888,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">0</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -954,6 +965,7 @@
                 <YS>7</YS>
                 <YO>0</YO>
               </UDim2>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">true</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1014,6 +1026,7 @@
               <Properties>
                 <string name="Name">UIListLayout</string>
                 <BinaryString name="AttributesSerialize"></BinaryString>
+                <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="DefinesCapabilities">false</bool>
                 <token name="FillDirection">1</token>
                 <token name="HorizontalAlignment">1</token>
@@ -1056,6 +1069,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">1</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1072,10 +1086,8 @@
               <bool name="Interactable">true</bool>
               <int name="LayoutOrder">0</int>
               <float name="LineHeight">1</float>
-              <BinaryString name="LocalizationMatchIdentifier">
-              </BinaryString>
-              <BinaryString name="LocalizationMatchedSourceText">
-              </BinaryString>
+              <string name="LocalizationMatchIdentifier"></string>
+              <string name="LocalizationMatchedSourceText"></string>
               <int name="MaxVisibleGraphemes">-1</int>
               <Ref name="NextSelectionDown">null</Ref>
               <Ref name="NextSelectionLeft">null</Ref>
@@ -1155,6 +1167,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">1</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1171,10 +1184,8 @@
               <bool name="Interactable">true</bool>
               <int name="LayoutOrder">0</int>
               <float name="LineHeight">1</float>
-              <BinaryString name="LocalizationMatchIdentifier">
-              </BinaryString>
-              <BinaryString name="LocalizationMatchedSourceText">
-              </BinaryString>
+              <string name="LocalizationMatchIdentifier"></string>
+              <string name="LocalizationMatchedSourceText"></string>
               <int name="MaxVisibleGraphemes">-1</int>
               <Ref name="NextSelectionDown">null</Ref>
               <Ref name="NextSelectionLeft">null</Ref>
@@ -1254,6 +1265,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">1</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1270,10 +1282,8 @@
               <bool name="Interactable">true</bool>
               <int name="LayoutOrder">0</int>
               <float name="LineHeight">1</float>
-              <BinaryString name="LocalizationMatchIdentifier">
-              </BinaryString>
-              <BinaryString name="LocalizationMatchedSourceText">
-              </BinaryString>
+              <string name="LocalizationMatchIdentifier"></string>
+              <string name="LocalizationMatchedSourceText"></string>
               <int name="MaxVisibleGraphemes">-1</int>
               <Ref name="NextSelectionDown">null</Ref>
               <Ref name="NextSelectionLeft">null</Ref>
@@ -1353,6 +1363,7 @@
               </Color3>
               <token name="BorderMode">0</token>
               <int name="BorderSizePixel">1</int>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClipsDescendants">false</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Draggable">false</bool>
@@ -1369,10 +1380,8 @@
               <bool name="Interactable">true</bool>
               <int name="LayoutOrder">0</int>
               <float name="LineHeight">1</float>
-              <BinaryString name="LocalizationMatchIdentifier">
-              </BinaryString>
-              <BinaryString name="LocalizationMatchedSourceText">
-              </BinaryString>
+              <string name="LocalizationMatchIdentifier"></string>
+              <string name="LocalizationMatchedSourceText"></string>
               <int name="MaxVisibleGraphemes">-1</int>
               <Ref name="NextSelectionDown">null</Ref>
               <Ref name="NextSelectionLeft">null</Ref>
@@ -1454,6 +1463,7 @@
           </Color3>
           <token name="BorderMode">0</token>
           <int name="BorderSizePixel">1</int>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
@@ -1516,6 +1526,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -1532,10 +1543,8 @@
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
-            <BinaryString name="LocalizationMatchIdentifier">
-            </BinaryString>
-            <BinaryString name="LocalizationMatchedSourceText">
-            </BinaryString>
+            <string name="LocalizationMatchIdentifier"></string>
+            <string name="LocalizationMatchedSourceText"></string>
             <int name="MaxVisibleGraphemes">-1</int>
             <Ref name="NextSelectionDown">null</Ref>
             <Ref name="NextSelectionLeft">null</Ref>
@@ -1615,6 +1624,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -1631,10 +1641,8 @@
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
-            <BinaryString name="LocalizationMatchIdentifier">
-            </BinaryString>
-            <BinaryString name="LocalizationMatchedSourceText">
-            </BinaryString>
+            <string name="LocalizationMatchIdentifier"></string>
+            <string name="LocalizationMatchedSourceText"></string>
             <int name="MaxVisibleGraphemes">-1</int>
             <Ref name="NextSelectionDown">null</Ref>
             <Ref name="NextSelectionLeft">null</Ref>
@@ -1714,6 +1722,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -1793,6 +1802,7 @@
               <float name="AspectRatio">1</float>
               <token name="AspectType">0</token>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="DefinesCapabilities">false</bool>
               <token name="DominantAxis">1</token>
               <int64 name="SourceAssetId">-1</int64>
@@ -1824,6 +1834,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -1840,10 +1851,8 @@
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
-            <BinaryString name="LocalizationMatchIdentifier">
-            </BinaryString>
-            <BinaryString name="LocalizationMatchedSourceText">
-            </BinaryString>
+            <string name="LocalizationMatchIdentifier"></string>
+            <string name="LocalizationMatchedSourceText"></string>
             <int name="MaxVisibleGraphemes">-1</int>
             <Ref name="NextSelectionDown">null</Ref>
             <Ref name="NextSelectionLeft">null</Ref>
@@ -1931,6 +1940,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2028,6 +2038,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2099,6 +2110,7 @@
       <Properties>
         <string name="Name">Base</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -2174,6 +2186,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2271,6 +2284,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2368,6 +2382,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2465,6 +2480,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2567,6 +2583,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -2686,6 +2703,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>

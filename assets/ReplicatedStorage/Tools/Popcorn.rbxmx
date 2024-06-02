@@ -1,9 +1,10 @@
 <roblox version="4">
   <Item class="Tool" referent="0">
     <Properties>
-      <string name="Name">PopcornBox</string>
+      <string name="Name">Popcorn</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <bool name="CanBeDropped">true</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <bool name="Enabled">true</bool>
       <CoordinateFrame name="Grip">
@@ -101,6 +102,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>

@@ -140,6 +140,7 @@ interface Cabinet extends Model {
 
 interface CabinetTruss extends TrussPart {
   Attachment: Attachment
+  TopAttachment: Attachment
 }
 
 type CabinetTrussName = 'Truss1' | 'Truss2' | 'Truss3' | 'Truss4'

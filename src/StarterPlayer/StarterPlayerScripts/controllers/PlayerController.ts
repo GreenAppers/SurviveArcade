@@ -82,7 +82,7 @@ export class PlayerController implements OnStart {
     this.startCollectionAnimator(player)
 
     const playerGuideEnabledSelector = selectPlayerGuideEnabled(player.UserId)
-    while (task.wait(1)) {
+    while (task.wait(0.5)) {
       const state = store.getState()
       this.updateGuide(playerGuideEnabledSelector(state))
     }

@@ -2,7 +2,7 @@ import Object from '@rbxts/object-utils'
 import {
   ARCADE_TABLE_NAMES,
   BEHAVIOR_TREE_STATUS,
-  TRUSS_NAMES,
+  GUIDE_TRUSS_NAMES,
 } from 'ReplicatedStorage/shared/constants/core'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import {
@@ -76,7 +76,7 @@ export function nearestCabinetTruss(
   if (!cabinet) return 'Truss2'
   let nearestDistance = math.huge
   let nearestCabinetTrussName: CabinetTrussName | undefined
-  for (const name of TRUSS_NAMES) {
+  for (const name of GUIDE_TRUSS_NAMES) {
     const trussAttachment = cabinet[name].Attachment
     const distance = position.sub(trussAttachment.WorldPosition).Magnitude
     if (distance < nearestDistance) {
@@ -91,16 +91,19 @@ export function findArcadeTableTarget(
   arcadeTablesState: ArcadeTablesState,
   rootRigAttachment: Attachment,
   localPlayerTeamName?: string,
-): Attachment | undefined {
+): [Attachment | undefined, string] {
+  let targetStatus = formatMessage(MESSAGE.GuideWinTickets)
   let targetAttachment
-  if (rootRigAttachment.WorldPosition.Y < 10) {
+
+  if (rootRigAttachment.WorldPosition.Y < 20) {
     // Find nearest Cabinet
     const arcadeTableName = nearestCabinet(
       rootRigAttachment.WorldPosition,
       arcadeTablesState,
       localPlayerTeamName,
     )
-    if (!arcadeTableName) return undefined
+    if (!arcadeTableName) return [undefined, '']
+
     // Find nearest truss
     const trussName = nearestCabinetTruss(
       rootRigAttachment.WorldPosition,
@@ -108,18 +111,31 @@ export function findArcadeTableTarget(
     )
     targetAttachment =
       game.Workspace.Map[arcadeTableName]?.[trussName]?.Attachment
-  } else {
+
+    if (
+      targetAttachment &&
+      rootRigAttachment.WorldPosition.sub(targetAttachment.WorldPosition)
+        .Magnitude < 20
+    ) {
+      targetAttachment =
+        game.Workspace.Map[arcadeTableName]?.[trussName]?.TopAttachment
+      targetStatus = MESSAGE.Climb
+    }
+  }
+
+  if (!targetAttachment) {
     // Find nearest Arcade Table
     const arcadeTableName = nearestArcadeTable(
       rootRigAttachment.WorldPosition,
       arcadeTablesState,
       localPlayerTeamName,
     )
-    if (!arcadeTableName) return undefined
+    if (!arcadeTableName) return [undefined, '']
     targetAttachment =
       game.Workspace.ArcadeTables[arcadeTableName]?.Seat?.Attachment
   }
-  return targetAttachment
+
+  return [targetAttachment, targetStatus]
 }
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
@@ -127,7 +143,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   if (!sourceAttachment || !sourceUserId || !state)
     return BEHAVIOR_TREE_STATUS.FAIL
 
-  const targetAttachment = findArcadeTableTarget(
+  const [targetAttachment, targetStatus] = findArcadeTableTarget(
     selectArcadeTablesState()(state),
     sourceAttachment,
     obj.Blackboard.sourceTeamName,
@@ -135,7 +151,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   if (!targetAttachment) return BEHAVIOR_TREE_STATUS.FAIL
 
   const plan: BehaviorPlan = {
-    status: formatMessage(MESSAGE.GuideWinTickets),
+    status: targetStatus,
     targetAttachment,
     type: BehaviorPlanType.Arcade,
   }

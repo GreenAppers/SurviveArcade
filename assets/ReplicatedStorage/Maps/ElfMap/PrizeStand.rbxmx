@@ -72353,8 +72353,33 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
+      <Item class="Attachment" referent="1170">
+        <Properties>
+          <string name="Name">TopAttachment</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <CoordinateFrame name="CFrame">
+            <X>-0.0002593994</X>
+            <Y>57.570766</Y>
+            <Z>-0.00036621094</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="DefinesCapabilities">false</bool>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <bool name="Visible">false</bool>
+        </Properties>
+      </Item>
     </Item>
-    <Item class="TrussPart" referent="1170">
+    <Item class="TrussPart" referent="1171">
       <Properties>
         <string name="Name">Truss2</string>
         <bool name="Anchored">true</bool>
@@ -72450,7 +72475,7 @@
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="1171">
+      <Item class="Attachment" referent="1172">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -72475,8 +72500,33 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
+      <Item class="Attachment" referent="1173">
+        <Properties>
+          <string name="Name">TopAttachment</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <CoordinateFrame name="CFrame">
+            <X>-0.00015258789</X>
+            <Y>57.570766</Y>
+            <Z>-0.000061035156</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="DefinesCapabilities">false</bool>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <bool name="Visible">false</bool>
+        </Properties>
+      </Item>
     </Item>
-    <Item class="UnionOperation" referent="1172">
+    <Item class="UnionOperation" referent="1174">
       <Properties>
         <string name="Name">Union</string>
         <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>

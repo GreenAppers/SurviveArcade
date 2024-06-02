@@ -3,7 +3,10 @@ import { OnStart } from '@flamework/core'
 import SimplePath from '@rbxts/simplepath'
 import { CHARACTER_CHILD } from 'ReplicatedStorage/shared/constants/core'
 import { NPCTag } from 'ReplicatedStorage/shared/constants/tags'
-import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
+import {
+  BehaviorObject,
+  PathStatus,
+} from 'ReplicatedStorage/shared/utils/behavior'
 import { getUserIdFromNPCName } from 'ReplicatedStorage/shared/utils/player'
 import { NPCService } from 'ServerScriptService/services/NPCService'
 import { store } from 'ServerScriptService/store'
@@ -36,7 +39,26 @@ export class NPCComponent
     this.userId = getUserIdFromNPCName(this.instance.Name)
 
     const population = this.npcService.population[this.attributes.NPCType]
-    if (population.pathFinding) this.path = new SimplePath(this.instance)
+    if (population.pathFinding) {
+      this.humanoid?.SetStateEnabled(Enum.HumanoidStateType.Climbing, true)
+      this.path = new SimplePath(this.instance, {
+        AgentCanClimb: true,
+      })
+      this.path.Visualize = true
+      this.path.Reached.Connect(
+        () => (this.behavior.pathStatus = PathStatus.Reached),
+      )
+      this.path.Blocked.Connect(
+        () => (this.behavior.pathStatus = PathStatus.Blocked),
+      )
+      this.path.Error.Connect((err) => {
+        this.behavior.pathStatus = PathStatus.Error
+        this.behavior.pathError = `${err}`
+      })
+      this.path.Stopped.Connect(
+        () => (this.behavior.pathStatus = PathStatus.Stopped),
+      )
+    }
 
     this.humanoid?.Died?.Connect(() => {
       wait(1)

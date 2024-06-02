@@ -3,6 +3,7 @@
     <Properties>
       <string name="Name">ChangeMachine</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -78,6 +79,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -175,6 +177,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -254,6 +257,7 @@
             <X>200</X>
             <Y>150</Y>
           </Vector2>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
@@ -299,6 +303,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -315,10 +320,8 @@
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
-            <BinaryString name="LocalizationMatchIdentifier">
-            </BinaryString>
-            <BinaryString name="LocalizationMatchedSourceText">
-            </BinaryString>
+            <string name="LocalizationMatchIdentifier"></string>
+            <string name="LocalizationMatchedSourceText"></string>
             <int name="MaxVisibleGraphemes">-1</int>
             <Ref name="NextSelectionDown">null</Ref>
             <Ref name="NextSelectionLeft">null</Ref>
@@ -406,6 +409,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -503,6 +507,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -600,6 +605,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -697,6 +703,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -794,6 +801,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -873,6 +881,7 @@
             <X>200</X>
             <Y>75</Y>
           </Vector2>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
@@ -918,6 +927,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -934,10 +944,8 @@
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
-            <BinaryString name="LocalizationMatchIdentifier">
-            </BinaryString>
-            <BinaryString name="LocalizationMatchedSourceText">
-            </BinaryString>
+            <string name="LocalizationMatchIdentifier"></string>
+            <string name="LocalizationMatchedSourceText"></string>
             <int name="MaxVisibleGraphemes">-1</int>
             <Ref name="NextSelectionDown">null</Ref>
             <Ref name="NextSelectionLeft">null</Ref>
@@ -1025,6 +1033,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1122,6 +1131,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1219,6 +1229,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1316,6 +1327,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1395,6 +1407,7 @@
             <X>200</X>
             <Y>75</Y>
           </Vector2>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
@@ -1440,6 +1453,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -1456,10 +1470,8 @@
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
-            <BinaryString name="LocalizationMatchIdentifier">
-            </BinaryString>
-            <BinaryString name="LocalizationMatchedSourceText">
-            </BinaryString>
+            <string name="LocalizationMatchIdentifier"></string>
+            <string name="LocalizationMatchedSourceText"></string>
             <int name="MaxVisibleGraphemes">-1</int>
             <Ref name="NextSelectionDown">null</Ref>
             <Ref name="NextSelectionLeft">null</Ref>
@@ -1547,6 +1559,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1630,6 +1643,7 @@
             <R21>0</R21>
             <R22>1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -1641,6 +1655,7 @@
             <string name="ActionText">Interact</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <bool name="AutoLocalize">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClickablePrompt">true</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
@@ -1693,6 +1708,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1790,6 +1806,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1887,6 +1904,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -1984,6 +2002,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2081,6 +2100,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2178,6 +2198,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2275,6 +2296,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2372,6 +2394,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2469,6 +2492,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2566,6 +2590,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2663,6 +2688,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2760,6 +2786,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -2839,6 +2866,7 @@
             <X>200</X>
             <Y>75</Y>
           </Vector2>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
@@ -2884,6 +2912,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -2900,10 +2929,8 @@
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
-            <BinaryString name="LocalizationMatchIdentifier">
-            </BinaryString>
-            <BinaryString name="LocalizationMatchedSourceText">
-            </BinaryString>
+            <string name="LocalizationMatchIdentifier"></string>
+            <string name="LocalizationMatchedSourceText"></string>
             <int name="MaxVisibleGraphemes">-1</int>
             <Ref name="NextSelectionDown">null</Ref>
             <Ref name="NextSelectionLeft">null</Ref>
@@ -2991,6 +3018,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3070,6 +3098,7 @@
             <X>200</X>
             <Y>75</Y>
           </Vector2>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
@@ -3115,6 +3144,7 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
@@ -3131,10 +3161,8 @@
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
-            <BinaryString name="LocalizationMatchIdentifier">
-            </BinaryString>
-            <BinaryString name="LocalizationMatchedSourceText">
-            </BinaryString>
+            <string name="LocalizationMatchIdentifier"></string>
+            <string name="LocalizationMatchedSourceText"></string>
             <int name="MaxVisibleGraphemes">-1</int>
             <Ref name="NextSelectionDown">null</Ref>
             <Ref name="NextSelectionLeft">null</Ref>
@@ -3222,6 +3250,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3319,6 +3348,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3416,6 +3446,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3513,6 +3544,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3582,7 +3614,7 @@
     </Item>
     <Item class="TrussPart" referent="42">
       <Properties>
-        <string name="Name">Truss4</string>
+        <string name="Name">Truss1</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize"></BinaryString>
         <float name="BackParamA">-0.5</float>
@@ -3610,6 +3642,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3693,6 +3726,32 @@
             <R21>0</R21>
             <R22>1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="DefinesCapabilities">false</bool>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <bool name="Visible">false</bool>
+        </Properties>
+      </Item>
+      <Item class="Attachment" referent="44">
+        <Properties>
+          <string name="Name">TopAttachment</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <CoordinateFrame name="CFrame">
+            <X>0.00032043457</X>
+            <Y>55.20293</Y>
+            <Z>-0.00024414063</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -3700,9 +3759,9 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="44">
+    <Item class="TrussPart" referent="45">
       <Properties>
-        <string name="Name">Truss4</string>
+        <string name="Name">Truss2</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize"></BinaryString>
         <float name="BackParamA">-0.5</float>
@@ -3730,6 +3789,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3795,7 +3855,7 @@
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="45">
+      <Item class="Attachment" referent="46">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -3813,6 +3873,32 @@
             <R21>0</R21>
             <R22>1</R22>
           </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="DefinesCapabilities">false</bool>
+          <int64 name="SourceAssetId">-1</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <bool name="Visible">false</bool>
+        </Properties>
+      </Item>
+      <Item class="Attachment" referent="47">
+        <Properties>
+          <string name="Name">TopAttachment</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <CoordinateFrame name="CFrame">
+            <X>0.00033187866</X>
+            <Y>55.09979</Y>
+            <Z>0.000061035156</Z>
+            <R00>1</R00>
+            <R01>0</R01>
+            <R02>0</R02>
+            <R10>0</R10>
+            <R11>1</R11>
+            <R12>0</R12>
+            <R20>0</R20>
+            <R21>0</R21>
+            <R22>1</R22>
+          </CoordinateFrame>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
@@ -3820,7 +3906,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="MeshPart" referent="46">
+    <Item class="MeshPart" referent="48">
       <Properties>
         <string name="Name">Coin</string>
         <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
@@ -3851,6 +3937,7 @@
         <bool name="CanCollide">false</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -3941,10 +4028,11 @@
         </Vector3>
         <int name="VertexCount">0</int>
       </Properties>
-      <Item class="Decal" referent="47">
+      <Item class="Decal" referent="49">
         <Properties>
           <string name="Name">Decal2</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <Color3 name="Color3">
             <R>1</R>
             <G>1</G>
@@ -3961,10 +4049,11 @@
           <int name="ZIndex">1</int>
         </Properties>
       </Item>
-      <Item class="Decal" referent="48">
+      <Item class="Decal" referent="50">
         <Properties>
           <string name="Name">Decal1</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <Color3 name="Color3">
             <R>1</R>
             <G>1</G>
@@ -3982,10 +4071,11 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="Model" referent="49">
+    <Item class="Model" referent="51">
       <Properties>
         <string name="Name">CoinShine</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -4031,7 +4121,7 @@
           </CFrame>
         </OptionalCoordinateFrame>
       </Properties>
-      <Item class="Part" referent="50">
+      <Item class="Part" referent="52">
         <Properties>
           <string name="Name">Area</string>
           <bool name="Anchored">true</bool>
@@ -4061,6 +4151,7 @@
           <bool name="CanCollide">false</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -4127,7 +4218,7 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="ParticleEmitter" referent="51">
+        <Item class="ParticleEmitter" referent="53">
           <Properties>
             <string name="Name">Sparkles</string>
             <Vector3 name="Acceleration">
@@ -4137,6 +4228,7 @@
             </Vector3>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <float name="Brightness">1</float>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <ColorSequence name="Color">0 1 0.784314 0 0 1 1 0.784314 0 0 </ColorSequence>
             <bool name="DefinesCapabilities">false</bool>
             <float name="Drag">0</float>
@@ -4179,7 +4271,7 @@
           </Properties>
         </Item>
       </Item>
-      <Item class="Part" referent="52">
+      <Item class="Part" referent="54">
         <Properties>
           <string name="Name">Main</string>
           <bool name="Anchored">true</bool>
@@ -4209,6 +4301,7 @@
           <bool name="CanCollide">false</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -4275,7 +4368,7 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="Attachment" referent="53">
+        <Item class="Attachment" referent="55">
           <Properties>
             <string name="Name">Attachment</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -4293,12 +4386,13 @@
               <R21>0</R21>
               <R22>1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <bool name="Visible">false</bool>
           </Properties>
-          <Item class="ParticleEmitter" referent="54">
+          <Item class="ParticleEmitter" referent="56">
             <Properties>
               <string name="Name">Glow</string>
               <Vector3 name="Acceleration">
@@ -4308,6 +4402,7 @@
               </Vector3>
               <BinaryString name="AttributesSerialize"></BinaryString>
               <float name="Brightness">1</float>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <ColorSequence name="Color">0 1 0.784314 0 0 1 1 0.784314 0 0 </ColorSequence>
               <bool name="DefinesCapabilities">false</bool>
               <float name="Drag">0</float>
@@ -4351,7 +4446,7 @@
           </Item>
         </Item>
       </Item>
-      <Item class="Part" referent="55">
+      <Item class="Part" referent="57">
         <Properties>
           <string name="Name">Main2</string>
           <bool name="Anchored">true</bool>
@@ -4381,6 +4476,7 @@
           <bool name="CanCollide">false</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -4447,7 +4543,7 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="Attachment" referent="56">
+        <Item class="Attachment" referent="58">
           <Properties>
             <string name="Name">Attachment</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
@@ -4465,12 +4561,13 @@
               <R21>0</R21>
               <R22>1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <bool name="Visible">false</bool>
           </Properties>
-          <Item class="ParticleEmitter" referent="57">
+          <Item class="ParticleEmitter" referent="59">
             <Properties>
               <string name="Name">Rays</string>
               <Vector3 name="Acceleration">
@@ -4480,6 +4577,7 @@
               </Vector3>
               <BinaryString name="AttributesSerialize"></BinaryString>
               <float name="Brightness">1</float>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <ColorSequence name="Color">0 1 0.784314 0 0 1 1 0.784314 0 0 </ColorSequence>
               <bool name="DefinesCapabilities">false</bool>
               <float name="Drag">0</float>
@@ -4521,7 +4619,7 @@
               <float name="ZOffset">0</float>
             </Properties>
           </Item>
-          <Item class="ParticleEmitter" referent="58">
+          <Item class="ParticleEmitter" referent="60">
             <Properties>
               <string name="Name">Rays</string>
               <Vector3 name="Acceleration">
@@ -4531,6 +4629,7 @@
               </Vector3>
               <BinaryString name="AttributesSerialize"></BinaryString>
               <float name="Brightness">1</float>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <ColorSequence name="Color">0 1 0.784314 0 0 1 1 0.784314 0 0 </ColorSequence>
               <bool name="DefinesCapabilities">false</bool>
               <float name="Drag">0</float>

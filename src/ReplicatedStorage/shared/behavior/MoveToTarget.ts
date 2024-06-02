@@ -1,5 +1,8 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
-import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
+import {
+  BehaviorObject,
+  PathStatus,
+} from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const {
@@ -39,13 +42,23 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
       targetPosition.sub(sourceHumanoidRootPart.Position).Unit.mul(2),
     )
     if (path) {
-      path.Run(target)
+      if (obj.pathStatus === PathStatus.Running) {
+        return BEHAVIOR_TREE_STATUS.RUNNING
+      } else {
+        const result = path.Run(target)
+        if (result) {
+          obj.pathStatus = PathStatus.Running
+          return BEHAVIOR_TREE_STATUS.RUNNING
+        } else {
+          return BEHAVIOR_TREE_STATUS.FAIL
+        }
+      }
     } else {
       sourceHumanoid.MoveTo(
         target,
         game.Workspace.FindFirstChild<Terrain>('Terrain'),
       )
+      return BEHAVIOR_TREE_STATUS.SUCCESS
     }
   }
-  return BEHAVIOR_TREE_STATUS.SUCCESS
 }

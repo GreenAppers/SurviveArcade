@@ -3,6 +3,7 @@
     <Properties>
       <string name="Name">HouseFloor1Communicator</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -52,6 +53,7 @@
       <Properties>
         <string name="Name">GlowCauldron</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -127,6 +129,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -211,6 +214,7 @@
               <R21>0</R21>
               <R22>1</R22>
             </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
@@ -222,6 +226,7 @@
               <string name="ActionText">Interact</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
               <bool name="AutoLocalize">true</bool>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="ClickablePrompt">true</bool>
               <bool name="DefinesCapabilities">false</bool>
               <bool name="Enabled">true</bool>
@@ -278,6 +283,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <BinaryString name="ChildData">
           </BinaryString>
@@ -392,6 +398,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -489,6 +496,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -586,6 +594,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -683,6 +692,7 @@
           <bool name="CanCollide">false</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -759,6 +769,7 @@
             </Vector3>
             <BinaryString name="AttributesSerialize"></BinaryString>
             <float name="Brightness">1</float>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <ColorSequence name="Color">0 0.988235 0.215686 0.913725 0 1 0.988235 0.215686 0.913725 0 </ColorSequence>
             <bool name="DefinesCapabilities">false</bool>
             <float name="Drag">0</float>
@@ -806,6 +817,7 @@
       <Properties>
         <string name="Name">SpikeGlowBarricade</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -882,6 +894,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1004,6 +1017,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1126,6 +1140,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1248,6 +1263,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1344,6 +1360,7 @@
       <Properties>
         <string name="Name">SmallGlowBarricade</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -1419,6 +1436,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1516,6 +1534,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1613,6 +1632,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1710,6 +1730,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1807,6 +1828,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -1904,6 +1926,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2001,6 +2024,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2073,6 +2097,7 @@
       <Properties>
         <string name="Name">SpikeGlowBarricade</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -2149,6 +2174,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2271,6 +2297,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2393,6 +2420,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2515,6 +2543,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2611,6 +2640,7 @@
       <Properties>
         <string name="Name">SmallGlowBarricade</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -2686,6 +2716,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2783,6 +2814,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2880,6 +2912,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -2977,6 +3010,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -3074,6 +3108,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -3171,6 +3206,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>
@@ -3268,6 +3304,7 @@
           <bool name="CanCollide">true</bool>
           <bool name="CanQuery">true</bool>
           <bool name="CanTouch">true</bool>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="CastShadow">true</bool>
           <string name="CollisionGroup">Default</string>
           <int name="CollisionGroupId">0</int>

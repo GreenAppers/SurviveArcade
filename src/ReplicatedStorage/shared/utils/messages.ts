@@ -2,6 +2,7 @@ import Object from '@rbxts/object-utils'
 import messages from 'ReplicatedStorage/shared/constants/messages.json'
 
 export const MESSAGE = {
+  Climb: 'Climb',
   GameWelcome: 'GameWelcome',
   GameWelcomeDollars: 'GameWelcomeDollars',
   GameRespawn: 'GameRespawn',

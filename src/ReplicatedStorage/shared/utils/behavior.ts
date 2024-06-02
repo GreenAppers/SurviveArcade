@@ -1,6 +1,14 @@
 import SimplePath from '@rbxts/simplepath'
 import { SharedState } from 'ReplicatedStorage/shared/state'
 
+export enum PathStatus {
+  Running = 0,
+  Reached = 1,
+  Blocked = 2,
+  Error = 3,
+  Stopped = 4,
+}
+
 export enum BehaviorPlanType {
   Arcade = 1,
   Tycoon = 2,
@@ -37,6 +45,8 @@ export interface BehaviorObject {
   }
   notice?: boolean
   noticeDebounce?: boolean
+  pathError?: string
+  pathStatus?: PathStatus
 }
 
 export function addBehaviorPlan(obj: BehaviorObject, plan: BehaviorPlan) {
