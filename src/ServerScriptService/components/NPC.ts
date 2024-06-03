@@ -1,25 +1,33 @@
 import { BaseComponent, Component } from '@flamework/components'
-import { OnStart } from '@flamework/core'
+import { OnStart, OnTick } from '@flamework/core'
 import SimplePath from '@rbxts/simplepath'
-import { CHARACTER_CHILD } from 'ReplicatedStorage/shared/constants/core'
+import {
+  BEHAVIOR_TREE_STATUS,
+  CHARACTER_CHILD,
+} from 'ReplicatedStorage/shared/constants/core'
 import { NPCTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   BehaviorObject,
   PathStatus,
 } from 'ReplicatedStorage/shared/utils/behavior'
 import { getUserIdFromNPCName } from 'ReplicatedStorage/shared/utils/player'
-import { NPCService } from 'ServerScriptService/services/NPCService'
+import {
+  NPCPopulation,
+  NPCService,
+} from 'ServerScriptService/services/NPCService'
 import { store } from 'ServerScriptService/store'
 
 @Component({ tag: NPCTag })
 export class NPCComponent
   extends BaseComponent<NPCAttributes, Model>
-  implements OnStart
+  implements OnStart, OnTick
 {
   behavior: BehaviorObject = { Blackboard: {} }
+  behaviorTreeRunning = false
   humanoid?: Humanoid
   humanoidRootPart?: BasePart
   path?: SimplePath
+  population?: NPCPopulation
   rootRigAttachment?: Attachment
   userId?: number
 
@@ -38,13 +46,14 @@ export class NPCComponent
       this.humanoidRootPart?.FindFirstChildOfClass('Attachment')
     this.userId = getUserIdFromNPCName(this.instance.Name)
 
-    const population = this.npcService.population[this.attributes.NPCType]
-    if (population.pathFinding) {
+    this.population = this.npcService.population[this.attributes.NPCType]
+
+    if (this.population.pathFinding) {
       this.humanoid?.SetStateEnabled(Enum.HumanoidStateType.Climbing, true)
       this.path = new SimplePath(this.instance, {
         AgentCanClimb: true,
       })
-      this.path.Visualize = true
+      if (this.population.pathFindingVisualize) this.path.Visualize = true
       this.path.Reached.Connect(
         () => (this.behavior.pathStatus = PathStatus.Reached),
       )
@@ -66,8 +75,12 @@ export class NPCComponent
     })
 
     while (this.humanoid && this.humanoid.Health > 0 && wait(0.3)[0]) {
-      const behaviorTree = population.behaviorTree
-      if (!behaviorTree) continue
+      const behaviorTree = this.population.behaviorTree
+      if (
+        !behaviorTree ||
+        (this.behaviorTreeRunning && this.population.behaviorTreeOnTick)
+      )
+        continue
 
       this.behavior.Blackboard = {
         path: this.path,
@@ -79,7 +92,19 @@ export class NPCComponent
         state: store.getState(),
       }
 
-      behaviorTree.run(this.behavior)
+      this.runBehaviorTree()
     }
+  }
+
+  onTick() {
+    if (!this.behaviorTreeRunning || !this.population?.behaviorTreeOnTick)
+      return
+    this.runBehaviorTree()
+  }
+
+  runBehaviorTree() {
+    this.behaviorTreeRunning =
+      this.population?.behaviorTree?.run(this.behavior) ===
+      BEHAVIOR_TREE_STATUS.RUNNING
   }
 }

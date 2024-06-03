@@ -9,6 +9,7 @@ import {
   selectLocalPlayerLoops,
 } from 'ReplicatedStorage/shared/state'
 import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { flipPinballFlipper } from 'ReplicatedStorage/shared/utils/arcade'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { randomElement } from 'ReplicatedStorage/shared/utils/object'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
@@ -154,19 +155,11 @@ export class ArcadeController implements OnStart {
 
   flipFlipper(player: Player, flipperName: string, force: number) {
     if (!(player.Character as PlayerCharacter)?.Humanoid?.Sit) return
-    // print('flip', flipperName, force)
-    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(
+    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild<ArcadeTable>(
       this.myArcadeTableName,
     )
     if (!arcadeTable) return
-    const flipperModel = arcadeTable.FindFirstChild(flipperName)
-    const flipper = flipperModel?.FindFirstChild('Flipper')
-    const rotor = flipper?.FindFirstChild<BasePart>('Rotor')
-    if (!rotor) return
-    const orientation = flipperName === 'FlipperRight' ? -1 : 1
-    rotor.ApplyAngularImpulse(
-      rotor.CFrame.RightVector.mul(orientation * 600000 * force),
-    )
+    flipPinballFlipper(arcadeTable, flipperName, force)
     Events.flipperFlip.fire(arcadeTable.Name, flipperName)
   }
 }

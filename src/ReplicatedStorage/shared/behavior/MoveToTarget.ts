@@ -50,7 +50,9 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
           obj.pathStatus = PathStatus.Running
           return BEHAVIOR_TREE_STATUS.RUNNING
         } else {
-          return BEHAVIOR_TREE_STATUS.FAIL
+          return obj.pathStatus === PathStatus.Reached
+            ? BEHAVIOR_TREE_STATUS.SUCCESS
+            : BEHAVIOR_TREE_STATUS.FAIL
         }
       }
     } else {
@@ -58,7 +60,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
         target,
         game.Workspace.FindFirstChild<Terrain>('Terrain'),
       )
-      return BEHAVIOR_TREE_STATUS.SUCCESS
     }
   }
+  return BEHAVIOR_TREE_STATUS.SUCCESS
 }

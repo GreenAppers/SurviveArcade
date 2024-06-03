@@ -14,3 +14,19 @@ export function getArcadeTableFromDescendent(instance: Instance) {
   }
   return undefined
 }
+
+export function flipPinballFlipper(
+  arcadeTable?: ArcadeTable,
+  flipperName?: string,
+  force?: number,
+) {
+  if (!arcadeTable || !flipperName) return
+  const flipperModel = arcadeTable.FindFirstChild(flipperName)
+  const flipper = flipperModel?.FindFirstChild('Flipper')
+  const rotor = flipper?.FindFirstChild<BasePart>('Rotor')
+  if (!rotor) return
+  const orientation = flipperName === 'FlipperRight' ? -1 : 1
+  rotor.ApplyAngularImpulse(
+    rotor.CFrame.RightVector.mul(orientation * 600000 * (force ?? 1)),
+  )
+}

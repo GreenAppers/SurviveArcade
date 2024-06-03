@@ -31,6 +31,7 @@ export interface BehaviorObject {
     obstaclePos?: Vector3
     path?: SimplePath
     plan?: BehaviorPlans
+    sourceArcadeTableName?: ArcadeTableName
     sourceAttachment?: Attachment
     sourceHumanoid?: Humanoid
     sourceHumanoidRootPart?: BasePart

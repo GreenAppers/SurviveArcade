@@ -22,8 +22,10 @@ export interface NPCPopulation {
   type: NPCType
   template?: Model
   behaviorTree?: BehaviorTree3 & { DataLookup?: Map<BehaviorObject, unknown> }
+  behaviorTreeOnTick?: boolean
   createPlayer?: boolean
   pathFinding?: boolean
+  pathFindingVisualize?: boolean
 }
 
 @Service()
@@ -35,7 +37,8 @@ export class NPCService implements OnStart {
       currentCount: 0,
       targetCount: 1,
       type: NPC_TYPES.Player,
-      pathFinding: true,
+      pathFinding: false,
+      pathFindingVisualize: true,
     },
     Rat: {
       name: 'Rat_%d',

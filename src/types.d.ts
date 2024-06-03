@@ -63,6 +63,8 @@ interface ArcadeTable extends Model {
     UpperWall?: BasePart
   }
   Baseplate: BasePart
+  FlipperLeft: Flipper
+  FlipperRight: Flipper
   Ground: BasePart
   Name: ArcadeTableName
   NextBaseplate: BasePart
@@ -203,6 +205,8 @@ interface Exchange {
 interface Flipper extends Model {
   Flipper: BasePart & {
     Rotor: BasePart
+    Wedge1: WedgePart
+    Wedge2: WedgePart
   }
 }
 

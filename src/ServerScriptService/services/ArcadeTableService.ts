@@ -66,7 +66,10 @@ export class ArcadeTableService implements OnStart {
           arcadeTablesState,
         )) {
           const previousArcadeTableState = previousArcadeTablesState[tableName]
-          if (arcadeTableState.score !== previousArcadeTableState?.score)
+          if (
+            arcadeTableState.score !== previousArcadeTableState?.score &&
+            arcadeTableState.owner
+          )
             this.onScoreChanged(tableName, arcadeTableState)
           if (arcadeTableState.status === ArcadeTableStatus.Won) {
             if (
@@ -104,15 +107,9 @@ export class ArcadeTableService implements OnStart {
 
   startArcadeTablesControlEventHandler() {
     // Play sound on flipper flip.
-    Events.flipperFlip.connect((_player, tableName, flipperName) => {
-      const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
-      const flipper = arcadeTable?.FindFirstChild(flipperName)
-      const audio = arcadeTable?.FindFirstChild<
-        Folder & { FlipperSound?: Sound }
-      >('Audio')
-      if (flipper && audio?.FlipperSound)
-        playSoundId(flipper, audio.FlipperSound.SoundId)
-    })
+    Events.flipperFlip.connect((_player, tableName, flipperName) =>
+      this.onFlipperFlipped(tableName, flipperName),
+    )
   }
 
   onStart() {
@@ -173,7 +170,20 @@ export class ArcadeTableService implements OnStart {
     this.onGameOver(tableName, userId, previousTableState.score)
   }
 
+  onFlipperFlipped(tableName: string, flipperName: string) {
+    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
+    const flipper = arcadeTable?.FindFirstChild(flipperName)
+    const audio = arcadeTable?.FindFirstChild<
+      Folder & { FlipperSound?: Sound }
+    >('Audio')
+    if (flipper && audio?.FlipperSound)
+      playSoundId(flipper, audio.FlipperSound.SoundId)
+  }
+
   onGameWon(tableName: ArcadeTableName, userId: number, score: number) {
+    this.logger.Info(
+      `${tableName} won by ${getNameFromUserId(userId)} (${userId}) with ${score}`,
+    )
     Promise.try(() =>
       this.playWinningSequence(game.Workspace.ArcadeTables[tableName]),
     ).then(() => {
@@ -259,12 +269,13 @@ export class ArcadeTableService implements OnStart {
 
   async playWinningSequence(arcadeTable: ArcadeTable | undefined) {
     if (!arcadeTable) return
-    if (arcadeTable.Backbox) {
+
+    const backbox = arcadeTable.FindFirstChild<ArcadeTableBackbox>('Backbox')
+    if (backbox) {
       const audio = arcadeTable.FindFirstChild<{ WinSound?: Sound }>('Audio')
-      if (audio?.WinSound)
-        playSoundId(arcadeTable.Backbox, audio.WinSound.SoundId)
-      arcadeTable.Backbox.Frame?.Explosion?.Emit(2000)
-      for (const descendent of arcadeTable.Backbox.GetDescendants()) {
+      if (audio?.WinSound) playSoundId(backbox, audio.WinSound.SoundId)
+      backbox.Frame?.Explosion?.Emit(2000)
+      for (const descendent of backbox.GetDescendants()) {
         if (descendent.IsA('BasePart')) {
           descendent.Transparency = 1
         } else if (descendent.IsA('Decal')) {
@@ -272,11 +283,19 @@ export class ArcadeTableService implements OnStart {
         }
       }
     }
-    arcadeTable.Barrier?.Destroy()
-    arcadeTable.Box.UpperWall?.Destroy()
+
+    const barrier = arcadeTable.FindFirstChild('Barrier')
+    barrier?.Destroy()
+
+    const upperWall = arcadeTable.Box.FindFirstChild('UpperWall')
+    upperWall?.Destroy()
+
     const balls = findDescendentsWithTag(arcadeTable.Balls, BallTag)
     for (const ball of balls) ball.Destroy()
-    task.wait(2.2)
-    arcadeTable.Backbox?.Destroy()
+
+    if (backbox) {
+      task.wait(2.2)
+      backbox.Destroy()
+    }
   }
 }
