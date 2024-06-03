@@ -106,5 +106,6 @@ export class NPCComponent
     this.behaviorTreeRunning =
       this.population?.behaviorTree?.run(this.behavior) ===
       BEHAVIOR_TREE_STATUS.RUNNING
+    if (this.behaviorTreeRunning) this.behavior.lastRunning = time()
   }
 }

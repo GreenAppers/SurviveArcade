@@ -1,6 +1,17 @@
 import { Players } from '@rbxts/services'
 import { CHARACTER_CHILD } from 'ReplicatedStorage/shared/constants/core'
 
+export function getNPCType(name?: unknown): NPCType | undefined {
+  if (!name || !typeIs(name, 'string')) return undefined
+  switch (name) {
+    case 'Rat':
+    case 'Player':
+      return name
+    default:
+      return undefined
+  }
+}
+
 export const isNPCId = (userID: number) => userID < 0
 
 export const getUserIdFromNPCId = (id: number) => -id

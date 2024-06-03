@@ -1,7 +1,7 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
+import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
+import { findArcadeTableNameOwnedBy } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
-import { selectArcadeTablesState } from '../state'
-import { findArcadeTableNameOwnedBy } from '../state/ArcadeTablesState'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const { state, sourceUserId } = obj.Blackboard

@@ -1,11 +1,15 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
-import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
-import { selectArcadeTableState } from '../state'
-import { ArcadeTableStatus } from '../state/ArcadeTablesState'
-import { flipPinballFlipper } from '../utils/arcade'
+import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
+import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { flipPinballFlipper } from 'ReplicatedStorage/shared/utils/arcade'
+import {
+  BehaviorObject,
+  waitAfterBehaviorCompleted,
+} from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
-  const { sourceArcadeTableName, sourceHumanoid, sourceUserId, state } = obj.Blackboard
+  const { sourceArcadeTableName, sourceHumanoid, sourceUserId, state } =
+    obj.Blackboard
   if (!sourceArcadeTableName || !sourceUserId || !state)
     return BEHAVIOR_TREE_STATUS.FAIL
 
@@ -19,6 +23,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     return BEHAVIOR_TREE_STATUS.FAIL
 
   if (arcadeTableState.status === ArcadeTableStatus.Won) {
+    if (!waitAfterBehaviorCompleted(obj, 3)) return BEHAVIOR_TREE_STATUS.SUCCESS
     if (sourceHumanoid) sourceHumanoid.Jump = true
     return BEHAVIOR_TREE_STATUS.SUCCESS
   }

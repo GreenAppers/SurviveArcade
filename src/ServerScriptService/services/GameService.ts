@@ -1,6 +1,5 @@
 import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
-import { Players } from '@rbxts/services'
 import {
   ARCADE_TABLE_NAMES,
   CHARACTER_CHILD,
@@ -15,6 +14,7 @@ import {
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
+import { getPlayers } from 'ServerScriptService/utils/player'
 
 @Service()
 export class GameService implements OnStart {
@@ -53,7 +53,7 @@ export class GameService implements OnStart {
   }
 
   updatePlayersGravity() {
-    const players = Players.GetPlayers().map((x) => ({
+    const players = getPlayers().map((x) => ({
       userID: x.UserId,
       gravityUp: undefined as Vector3 | undefined,
       groundArcadeTableName: undefined as ArcadeTableName | undefined,
@@ -104,7 +104,7 @@ export class GameService implements OnStart {
   }
 }
 
-export function playerHumanoidRootPart(player: Player) {
+export function playerHumanoidRootPart(player: { Character?: Model }) {
   const character = player?.Character as PlayerCharacter | undefined
   return character?.FindFirstChild<BasePart>(CHARACTER_CHILD.HumanoidRootPart)
 }

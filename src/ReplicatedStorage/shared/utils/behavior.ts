@@ -25,8 +25,6 @@ export type BehaviorPlans = Partial<Record<BehaviorPlanType, BehaviorPlan>>
 export interface BehaviorObject {
   attackDebounce?: boolean
   Blackboard: Record<string, unknown> & {
-    status?: string
-    state?: SharedState
     obstacle?: BasePart
     obstaclePos?: Vector3
     path?: SimplePath
@@ -38,12 +36,15 @@ export interface BehaviorObject {
     sourceInstance?: Instance
     sourceTeamName?: string
     sourceUserId?: number
+    status?: string
+    state?: SharedState
     targetAttachment?: Attachment
     targetPart?: BasePart
     targetHumanoid?: Humanoid
     targetHumanoidRootPart?: BasePart
     teamName?: string
   }
+  lastRunning?: number
   notice?: boolean
   noticeDebounce?: boolean
   pathError?: string
@@ -55,4 +56,12 @@ export function addBehaviorPlan(obj: BehaviorObject, plan: BehaviorPlan) {
   obj.Blackboard.plan[plan.type] = plan
   obj.Blackboard.status = plan.status
   obj.Blackboard.targetAttachment = plan.targetAttachment
+}
+
+export function waitAfterBehaviorCompleted(
+  obj: BehaviorObject,
+  secondsAgo: number,
+) {
+  if (!obj.lastRunning) return true
+  return secondsAgo < time() - obj.lastRunning
 }
