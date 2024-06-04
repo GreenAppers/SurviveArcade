@@ -11,7 +11,7 @@ export function findFirstChildWhichIs<X = Instance>(
   return undefined
 }
 
-export function findDescendentsWhichAre(
+export function findDescendentsWhichAre<X = Instance>(
   ancestor: Instance,
   className: keyof Instances,
 ) {
@@ -21,7 +21,7 @@ export function findDescendentsWhichAre(
   for (const descendent of ancestor.GetDescendants()) {
     if (descendent.IsA(className)) descendents.push(descendent)
   }
-  return descendents
+  return descendents as X[]
 }
 
 export function findDescendentsWithTag(ancestor: Instance, tagName: string) {

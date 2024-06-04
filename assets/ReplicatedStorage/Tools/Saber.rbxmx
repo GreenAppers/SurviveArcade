@@ -310,35 +310,8 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="WeldConstraint" referent="4">
-          <Properties>
-            <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzA3OWI3ZTk5MjUxYWZjZTA2NjY2ODE2MDAwMGU1OTURAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADMwNzliN2U5OTI1MWFmY2UwNjY2NjgxNjAwMDBlNTk0</BinaryString>
-            <CoordinateFrame name="CFrame0">
-              <X>0.11418867</X>
-              <Y>-0.074977875</Y>
-              <Z>-0.030000687</Z>
-              <R00>0</R00>
-              <R01>1</R01>
-              <R02>0</R02>
-              <R10>-1</R10>
-              <R11>0</R11>
-              <R12>0</R12>
-              <R20>0</R20>
-              <R21>0</R21>
-              <R22>1</R22>
-            </CoordinateFrame>
-            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
-            <Ref name="Part0Internal">2</Ref>
-            <Ref name="Part1Internal">3</Ref>
-            <int64 name="SourceAssetId">-1</int64>
-            <int name="State">3</int>
-            <BinaryString name="Tags"></BinaryString>
-          </Properties>
-        </Item>
       </Item>
-      <Item class="Part" referent="5">
+      <Item class="Part" referent="4">
         <Properties>
           <string name="Name">Tip</string>
           <bool name="Anchored">false</bool>
@@ -435,35 +408,8 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="WeldConstraint" referent="6">
-          <Properties>
-            <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzA3OWI3ZTk5MjUxYWZjZTA2NjY2ODE2MDAwMGU1OTURAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADMwNzliN2U5OTI1MWFmY2UwNjY2NjgxNjAwMDBlNTk2</BinaryString>
-            <CoordinateFrame name="CFrame0">
-              <X>3.4950006</X>
-              <Y>-0.0049743652</Y>
-              <Z>-0.0049991608</Z>
-              <R00>0</R00>
-              <R01>1</R01>
-              <R02>0</R02>
-              <R10>-1</R10>
-              <R11>0</R11>
-              <R12>0</R12>
-              <R20>0</R20>
-              <R21>0</R21>
-              <R22>1</R22>
-            </CoordinateFrame>
-            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
-            <Ref name="Part0Internal">2</Ref>
-            <Ref name="Part1Internal">5</Ref>
-            <int64 name="SourceAssetId">-1</int64>
-            <int name="State">3</int>
-            <BinaryString name="Tags"></BinaryString>
-          </Properties>
-        </Item>
       </Item>
-      <Item class="Part" referent="7">
+      <Item class="Part" referent="5">
         <Properties>
           <string name="Name">Saber</string>
           <bool name="Anchored">false</bool>
@@ -560,35 +506,8 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
-        <Item class="WeldConstraint" referent="8">
-          <Properties>
-            <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzA3OWI3ZTk5MjUxYWZjZTA2NjY2ODE2MDAwMGU1OTURAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADMwNzliN2U5OTI1MWFmY2UwNjY2NjgxNjAwMDBlNTk3</BinaryString>
-            <CoordinateFrame name="CFrame0">
-              <X>2.0450046</X>
-              <Y>-0.0050277715</Y>
-              <Z>0</Z>
-              <R00>1</R00>
-              <R01>0</R01>
-              <R02>0</R02>
-              <R10>0</R10>
-              <R11>1</R11>
-              <R12>0</R12>
-              <R20>0</R20>
-              <R21>0</R21>
-              <R22>1</R22>
-            </CoordinateFrame>
-            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
-            <Ref name="Part0Internal">2</Ref>
-            <Ref name="Part1Internal">7</Ref>
-            <int64 name="SourceAssetId">-1</int64>
-            <int name="State">3</int>
-            <BinaryString name="Tags"></BinaryString>
-          </Properties>
-        </Item>
       </Item>
-      <Item class="Attachment" referent="9">
+      <Item class="Attachment" referent="6">
         <Properties>
           <string name="Name">DmgPoint</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -613,7 +532,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="10">
+      <Item class="Attachment" referent="7">
         <Properties>
           <string name="Name">DmgPoint</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -638,7 +557,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="11">
+      <Item class="Attachment" referent="8">
         <Properties>
           <string name="Name">DmgPoint</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -663,7 +582,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="12">
+      <Item class="Attachment" referent="9">
         <Properties>
           <string name="Name">DmgPoint</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -688,85 +607,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Sound" referent="13">
-        <Properties>
-          <string name="Name">Unsheath</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-          <bool name="DefinesCapabilities">false</bool>
-          <NumberRange name="LoopRegion">0 60000 </NumberRange>
-          <bool name="Looped">false</bool>
-          <bool name="PlayOnRemove">false</bool>
-          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-          <bool name="PlaybackRegionsEnabled">false</bool>
-          <float name="PlaybackSpeed">1</float>
-          <bool name="Playing">false</bool>
-          <float name="xmlRead_MaxDistance_3">10000</float>
-          <float name="EmitterSize">10</float>
-          <token name="RollOffMode">0</token>
-          <Ref name="SoundGroup">null</Ref>
-          <Content name="SoundId">
-            <url>http://www.roblox.com/asset/?id=12222225</url>
-          </Content>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <double name="TimePosition">0</double>
-          <float name="Volume">1</float>
-        </Properties>
-      </Item>
-      <Item class="Sound" referent="14">
-        <Properties>
-          <string name="Name">SwordLunge</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-          <bool name="DefinesCapabilities">false</bool>
-          <NumberRange name="LoopRegion">0 60000 </NumberRange>
-          <bool name="Looped">false</bool>
-          <bool name="PlayOnRemove">false</bool>
-          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-          <bool name="PlaybackRegionsEnabled">false</bool>
-          <float name="PlaybackSpeed">1</float>
-          <bool name="Playing">false</bool>
-          <float name="xmlRead_MaxDistance_3">10000</float>
-          <float name="EmitterSize">10</float>
-          <token name="RollOffMode">0</token>
-          <Ref name="SoundGroup">null</Ref>
-          <Content name="SoundId">
-            <url>http://www.roblox.com/asset/?id=12222208</url>
-          </Content>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <double name="TimePosition">0</double>
-          <float name="Volume">0.6</float>
-        </Properties>
-      </Item>
-      <Item class="Sound" referent="15">
-        <Properties>
-          <string name="Name">SwordSlash</string>
-          <BinaryString name="AttributesSerialize"></BinaryString>
-          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-          <bool name="DefinesCapabilities">false</bool>
-          <NumberRange name="LoopRegion">0 60000 </NumberRange>
-          <bool name="Looped">false</bool>
-          <bool name="PlayOnRemove">false</bool>
-          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
-          <bool name="PlaybackRegionsEnabled">false</bool>
-          <float name="PlaybackSpeed">1</float>
-          <bool name="Playing">false</bool>
-          <float name="xmlRead_MaxDistance_3">10000</float>
-          <float name="EmitterSize">10</float>
-          <token name="RollOffMode">0</token>
-          <Ref name="SoundGroup">null</Ref>
-          <Content name="SoundId">
-            <url>http://www.roblox.com/asset/?id=12222216</url>
-          </Content>
-          <int64 name="SourceAssetId">-1</int64>
-          <BinaryString name="Tags"></BinaryString>
-          <double name="TimePosition">0</double>
-          <float name="Volume">0.7</float>
-        </Properties>
-      </Item>
-      <Item class="Attachment" referent="16">
+      <Item class="Attachment" referent="10">
         <Properties>
           <string name="Name">DmgPoint</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -789,6 +630,84 @@
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
           <bool name="Visible">false</bool>
+        </Properties>
+      </Item>
+      <Item class="Sound" referent="11">
+        <Properties>
+          <string name="Name">Unsheath</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="DefinesCapabilities">false</bool>
+          <NumberRange name="LoopRegion">0 60000 </NumberRange>
+          <bool name="Looped">false</bool>
+          <bool name="PlayOnRemove">false</bool>
+          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
+          <bool name="PlaybackRegionsEnabled">false</bool>
+          <float name="PlaybackSpeed">1</float>
+          <bool name="Playing">false</bool>
+          <float name="xmlRead_MaxDistance_3">10000</float>
+          <float name="EmitterSize">10</float>
+          <token name="RollOffMode">0</token>
+          <Ref name="SoundGroup">null</Ref>
+          <Content name="SoundId">
+            <url>rbxassetid://536068772</url>
+          </Content>
+          <int64 name="SourceAssetId">536068772</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <double name="TimePosition">0</double>
+          <float name="Volume">0.5</float>
+        </Properties>
+      </Item>
+      <Item class="Sound" referent="12">
+        <Properties>
+          <string name="Name">SwordSlash</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="DefinesCapabilities">false</bool>
+          <NumberRange name="LoopRegion">0 60000 </NumberRange>
+          <bool name="Looped">false</bool>
+          <bool name="PlayOnRemove">false</bool>
+          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
+          <bool name="PlaybackRegionsEnabled">false</bool>
+          <float name="PlaybackSpeed">1</float>
+          <bool name="Playing">false</bool>
+          <float name="xmlRead_MaxDistance_3">10000</float>
+          <float name="EmitterSize">10</float>
+          <token name="RollOffMode">0</token>
+          <Ref name="SoundGroup">null</Ref>
+          <Content name="SoundId">
+            <url>rbxassetid://7261635904</url>
+          </Content>
+          <int64 name="SourceAssetId">7261635904</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <double name="TimePosition">0</double>
+          <float name="Volume">0.5</float>
+        </Properties>
+      </Item>
+      <Item class="Sound" referent="13">
+        <Properties>
+          <string name="Name">SwordLunge</string>
+          <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+          <bool name="DefinesCapabilities">false</bool>
+          <NumberRange name="LoopRegion">0 60000 </NumberRange>
+          <bool name="Looped">false</bool>
+          <bool name="PlayOnRemove">false</bool>
+          <NumberRange name="PlaybackRegion">0 60000 </NumberRange>
+          <bool name="PlaybackRegionsEnabled">false</bool>
+          <float name="PlaybackSpeed">1</float>
+          <bool name="Playing">false</bool>
+          <float name="xmlRead_MaxDistance_3">10000</float>
+          <float name="EmitterSize">10</float>
+          <token name="RollOffMode">0</token>
+          <Ref name="SoundGroup">null</Ref>
+          <Content name="SoundId">
+            <url>rbxassetid://526723469</url>
+          </Content>
+          <int64 name="SourceAssetId">526723469</int64>
+          <BinaryString name="Tags"></BinaryString>
+          <double name="TimePosition">0</double>
+          <float name="Volume">0.5</float>
         </Properties>
       </Item>
     </Item>
