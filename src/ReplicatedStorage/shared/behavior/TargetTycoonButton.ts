@@ -1,5 +1,6 @@
 import {
   BEHAVIOR_TREE_STATUS,
+  GUIDE_CURRENCY_ORDER,
   TYCOON_ATTRIBUTES,
 } from 'ReplicatedStorage/shared/constants/core'
 import {
@@ -27,6 +28,7 @@ import {
 function findTycoonButtonTarget(
   tycoonName: TycoonName,
   playerState?: PlayerState,
+  greedy?: boolean,
 ): Attachment | undefined {
   const tycoon = game.Workspace.Tycoons[tycoonName]
   const tycoonType = getTycoonType(
@@ -35,13 +37,32 @@ function findTycoonButtonTarget(
   if (!tycoon || !tycoonType || !playerState) return undefined
 
   const constants = tycoonConstants[tycoonType]
+  const minCost: Record<string, { attachment: Attachment; cost: number }> = {}
   for (const button of tycoon.Buttons.GetChildren<TycoonButtonModel>()) {
     if (button.Button.CanTouch === false) continue
     const details = constants.Buttons[button.Name]
     const currency = getCurrency(details.Currency)
+    if (!currency) continue
     const cost = details.Cost
-    if (cost && currency && getPlayerCurrency(playerState, currency) >= cost)
-      return button.Button.Attachment
+    const existing = minCost[currency]
+    if (
+      cost &&
+      getPlayerCurrency(playerState, currency) >= cost &&
+      (!existing || cost < existing.cost)
+    ) {
+      if (greedy) return button.Button.Attachment
+      if (existing) {
+        existing.attachment = button.Button.Attachment
+        existing.cost = cost
+      } else {
+        minCost[currency] = { attachment: button.Button.Attachment, cost }
+      }
+    }
+  }
+
+  for (const currency of GUIDE_CURRENCY_ORDER) {
+    const minCostForCurrency = minCost[currency]
+    if (minCostForCurrency) return minCostForCurrency.attachment
   }
   return undefined
 }

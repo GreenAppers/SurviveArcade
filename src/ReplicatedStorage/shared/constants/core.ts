@@ -106,6 +106,8 @@ export const DIFFICULTY_TYPES: {
   normal: 'normal' as const,
 }
 
+export const GUIDE_CURRENCY_ORDER: Currency[] = ['Tickets', 'Dollars', 'Levity']
+
 export const GUIDE_TRUSS_NAMES: CabinetTrussName[] = ['Truss2', 'Truss3']
 
 export const NPC_TYPES: {

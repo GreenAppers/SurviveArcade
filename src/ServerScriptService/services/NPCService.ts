@@ -73,6 +73,8 @@ export class NPCService implements OnStart {
       const population = this.population[npc.attributes.NPCType]
       population.currentCount--
       population.behaviorTree?.DataLookup?.delete(npc.behavior)
+      if (population.createPlayer && npc.userId)
+        store.closePlayerData(npc.userId)
     })
 
     store.subscribe(selectDifficulty(), (difficulty) => {

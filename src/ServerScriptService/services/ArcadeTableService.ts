@@ -287,8 +287,8 @@ export class ArcadeTableService implements OnStart {
     const barrier = arcadeTable.FindFirstChild('Barrier')
     barrier?.Destroy()
 
-    const upperWall = arcadeTable.Box.FindFirstChild('UpperWall')
-    upperWall?.Destroy()
+    const box = arcadeTable.FindFirstChild('Box')
+    box?.Destroy()
 
     const balls = findDescendentsWithTag(arcadeTable.Balls, BallTag)
     for (const ball of balls) ball.Destroy()

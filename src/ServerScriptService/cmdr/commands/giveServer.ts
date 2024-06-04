@@ -1,5 +1,8 @@
 import { CommandContext } from '@rbxts/cmdr'
-import { giveTool } from 'ServerScriptService/components/ToolGiver'
+import {
+  getBackpackToolName,
+  giveTool,
+} from 'ServerScriptService/components/ToolGiver'
 import { store } from 'ServerScriptService/store'
 
 export = function (
@@ -16,7 +19,8 @@ export = function (
     store.addPlayerCurrency(player.UserId, itemName, amount)
   } else {
     const backpack = player.FindFirstChild<Backpack>('Backpack')
-    if (!backpack || backpack.FindFirstChild(itemName)) return
+    if (!backpack || backpack.FindFirstChild(getBackpackToolName(itemName)))
+      return
     giveTool(itemName, backpack)
   }
 }

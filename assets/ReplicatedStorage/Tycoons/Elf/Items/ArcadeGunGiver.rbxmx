@@ -151,7 +151,7 @@
           <string name="Name">Beam</string>
           <Ref name="Attachment0">3</Ref>
           <Ref name="Attachment1">4</Ref>
-          <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAANmE0MmFkNzdhNzE3YmEzNTA2NjNmMWQxMDAwMDM1OWIXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADZhNDJhZDc3YTcxN2JhMzUwNjYzZjFkMTAwMDAzNTlh</BinaryString>
+          <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMGRiODI4ZDJlYzY3ZDAwMTA2NmU5ZTkxMDAwMGQ3Y2UXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADBkYjgyOGQyZWM2N2QwMDEwNjZlOWU5MTAwMDBkN2Nk</BinaryString>
           <float name="Brightness">5</float>
           <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <ColorSequence name="Color">0 1 1 1 0 1 1 1 1 0 </ColorSequence>
@@ -177,10 +177,10 @@
           <float name="ZOffset">0</float>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="5">
+      <Item class="Attachment" referent="4">
         <Properties>
           <string name="Name">Attachment</string>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAA2YTQyYWQ3N2E3MTdiYTM1MDY2M2YxZDEwMDAwMzU5YQ==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAwZGI4MjhkMmVjNjdkMDAxMDY2ZTllOTEwMDAwZDdjZA==</BinaryString>
           <CoordinateFrame name="CFrame">
             <X>2.819069</X>
             <Y>-0.080566406</Y>
@@ -202,10 +202,10 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="6">
+      <Item class="Attachment" referent="3">
         <Properties>
           <string name="Name">Attachment</string>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAA2YTQyYWQ3N2E3MTdiYTM1MDY2M2YxZDEwMDAwMzU5Yg==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAwZGI4MjhkMmVjNjdkMDAxMDY2ZTllOTEwMDAwZDdjZQ==</BinaryString>
           <CoordinateFrame name="CFrame">
             <X>-0.22492474</X>
             <Y>0</Y>
@@ -227,7 +227,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="SpotLight" referent="7">
+      <Item class="SpotLight" referent="5">
         <Properties>
           <string name="Name">SpotLight</string>
           <float name="Angle">80</float>
@@ -249,7 +249,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="Part" referent="8">
+    <Item class="Part" referent="6">
       <Properties>
         <string name="Name">ProjectorBase</string>
         <bool name="Anchored">true</bool>
@@ -347,7 +347,7 @@
         </Vector3>
       </Properties>
     </Item>
-    <Item class="Part" referent="9">
+    <Item class="Part" referent="7">
       <Properties>
         <string name="Name">Base</string>
         <bool name="Anchored">true</bool>
@@ -445,7 +445,7 @@
         </Vector3>
       </Properties>
     </Item>
-    <Item class="Part" referent="10">
+    <Item class="Part" referent="8">
       <Properties>
         <string name="Name">BaseLight</string>
         <bool name="Anchored">true</bool>
@@ -542,7 +542,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="PointLight" referent="11">
+      <Item class="PointLight" referent="9">
         <Properties>
           <string name="Name">PointLight</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -562,7 +562,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="MeshPart" referent="12">
+    <Item class="MeshPart" referent="10">
       <Properties>
         <string name="Name">Item</string>
         <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>

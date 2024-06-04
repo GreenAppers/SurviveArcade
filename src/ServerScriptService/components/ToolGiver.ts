@@ -4,6 +4,15 @@ import { Players, ReplicatedStorage } from '@rbxts/services'
 import { ToolGiverTag } from 'ReplicatedStorage/shared/constants/tags'
 import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
 
+export function getBackpackToolName(toolName: ToolName) {
+  switch (toolName) {
+    case 'Blocks':
+      return 'PlaceBlock'
+    default:
+      return toolName
+  }
+}
+
 export function giveTool(toolName: ToolName, backpack: Instance) {
   switch (toolName) {
     case 'Blocks':
@@ -27,7 +36,9 @@ export class ToolGiverComponent
 
       const player = Players.GetPlayerFromCharacter(hit.Parent)
       const backpack = player?.FindFirstChild<Backpack>('Backpack')
-      const tool = backpack?.FindFirstChild<Tool>(this.attributes.Tool)
+      const tool = backpack?.FindFirstChild<Tool>(
+        getBackpackToolName(this.attributes.Tool),
+      )
       if (!player || !backpack || tool) return
 
       giveTool(this.attributes.Tool, backpack)
