@@ -2,6 +2,7 @@ import { Controller, OnStart } from '@flamework/core'
 import { BehaviorTree3, BehaviorTreeCreator } from '@rbxts/behavior-tree-5'
 import { CmdrClient } from '@rbxts/cmdr'
 import { DeviceType } from '@rbxts/device'
+import { Logger } from '@rbxts/log'
 import {
   Players,
   ReplicatedStorage,
@@ -63,7 +64,10 @@ export class PlayerController implements OnStart {
   runSpeed = 32
   walkSpeed = 16
 
-  constructor(private arcadeController: ArcadeController) {}
+  constructor(
+    protected arcadeController: ArcadeController,
+    protected logger: Logger,
+  ) {}
 
   onStart() {
     if (this.isDesktop)
@@ -388,7 +392,12 @@ export class PlayerController implements OnStart {
           : localPlayer?.Team?.Name,
       state: store.getState(),
     }
-    this.guide.run(this.guideObject)
+
+    try {
+      this.guide.run(this.guideObject)
+    } catch (e) {
+      this.logger.Warn(`Error running guide behavior tree: ${e}`)
+    }
 
     // Apply result
     const { status, targetAttachment } = this.guideObject.Blackboard

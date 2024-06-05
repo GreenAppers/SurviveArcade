@@ -1,5 +1,6 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart, OnTick } from '@flamework/core'
+import { Logger } from '@rbxts/log'
 import SimplePath from '@rbxts/simplepath'
 import {
   BEHAVIOR_TREE_STATUS,
@@ -31,7 +32,10 @@ export class NPCComponent
   rootRigAttachment?: Attachment
   userId?: number
 
-  constructor(protected npcService: NPCService) {
+  constructor(
+    protected logger: Logger,
+    protected npcService: NPCService,
+  ) {
     super()
   }
 
@@ -118,9 +122,15 @@ export class NPCComponent
   }
 
   runBehaviorTree() {
-    this.behaviorTreeRunning =
-      this.population?.behaviorTree?.run(this.behavior) ===
-      BEHAVIOR_TREE_STATUS.RUNNING
-    if (this.behaviorTreeRunning) this.behavior.lastRunning = time()
+    try {
+      this.behaviorTreeRunning =
+        this.population?.behaviorTree?.run(this.behavior) ===
+        BEHAVIOR_TREE_STATUS.RUNNING
+      if (this.behaviorTreeRunning) this.behavior.lastRunning = time()
+    } catch (e) {
+      this.logger.Warn(
+        `Error running behavior tree for ${this.instance.Name}: ${e}`,
+      )
+    }
   }
 }

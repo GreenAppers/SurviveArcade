@@ -41,7 +41,10 @@ function findTycoonTarget(
     tycoonsState,
   )
   if (!tycoonName) return undefined
-  return game.Workspace.Map[tycoonName]?.ClaimTycoon.Button.Attachment
+  return game.Workspace.Map[tycoonName]
+    ?.FindFirstChild('ClaimTycoon')
+    ?.FindFirstChild('Button')
+    ?.FindFirstChild<Attachment>('Attachment')
 }
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {

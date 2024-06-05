@@ -457,6 +457,8 @@ interface Workspace extends Instance {
   Audio: Folder & {
     BlockBroken: Sound
     BlockPlaced: Sound
+    ButtonFail: Sound
+    ButtonSuccess: Sound
     CollectDollars: Sound
     CollectLevity: Sound
     CollectTickets: Sound
