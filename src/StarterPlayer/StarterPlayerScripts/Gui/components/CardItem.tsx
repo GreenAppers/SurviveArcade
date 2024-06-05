@@ -19,6 +19,7 @@ interface CardItemProps {
   readonly secondary: Color3
   readonly enabled: boolean
   readonly order: number
+  readonly animateWhenChanged?: string
 }
 
 const CARD_MARGIN = 1
@@ -36,6 +37,7 @@ export function CardItem({
   secondary,
   enabled,
   order,
+  animateWhenChanged,
 }: CardItemProps) {
   const primaryDark = primary.Lerp(palette.eerie, 0.75)
   const secondaryDark = secondary.Lerp(palette.eerie, 0.75)
@@ -63,6 +65,7 @@ export function CardItem({
       backgroundTransparency={1}
       size={size}
       layoutOrder={order}
+      animateWhenChanged={animateWhenChanged}
     >
       <Transition
         groupTransparency={transparency}

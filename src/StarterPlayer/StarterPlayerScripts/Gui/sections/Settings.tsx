@@ -42,6 +42,7 @@ export function Settings() {
         enabled={true}
         order={2}
         onClick={() => store.toggleGuide(USER_ID)}
+        animateWhenChanged={guideText}
       />
     </Group>
   )

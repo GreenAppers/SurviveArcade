@@ -9,4 +9,5 @@ export const sounds = {
   button_down: 'rbxassetid://15699268638',
   button_up_alt: 'rbxassetid://15699268359',
   button_up: 'rbxassetid://15699268452',
+  update: 'rbxassetid://138098523',
 }

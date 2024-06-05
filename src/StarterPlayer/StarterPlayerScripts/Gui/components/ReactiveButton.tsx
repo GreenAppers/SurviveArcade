@@ -1,10 +1,12 @@
 import { blend, lerpBinding, useUpdateEffect } from '@rbxts/pretty-react-hooks'
 import { composeBindings } from '@rbxts/pretty-react-hooks'
-import React from '@rbxts/react'
+import React, { useEffect, useState } from '@rbxts/react'
 import {
   ButtonSoundVariant,
   playButtonDown,
   playButtonUp,
+  playSound,
+  sounds,
 } from 'ReplicatedStorage/shared/assets'
 import { palette } from 'ReplicatedStorage/shared/constants/palette'
 import { Button } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Button'
@@ -34,6 +36,7 @@ interface ReactiveButtonProps extends React.PropsWithChildren {
   animatePositionDirection?: Vector2
   animateSize?: boolean
   animateSizeStrength?: number
+  animateWhenChanged?: string
   soundVariant?: ButtonSoundVariant
   zIndex?: number | React.Binding<number>
   event?: React.InstanceEvent<TextButton>
@@ -60,6 +63,7 @@ export function ReactiveButton({
   animatePosition = true,
   animatePositionStrength = 1,
   animatePositionDirection = new Vector2(0, 1),
+  animateWhenChanged,
   animateSize = true,
   animateSizeStrength = 1,
   soundVariant = 'default',
@@ -70,7 +74,19 @@ export function ReactiveButton({
   const rem = useRem()
   const [sizeAnimation, sizeMotion] = useMotion(0)
   const [press, hover, buttonEvents] = useButtonState()
-  const animation = useButtonAnimation(press, hover)
+  const [lastAnimateWhenChanged, setLastAnimateWhenChanged] =
+    useState(animateWhenChanged)
+  const animation = useButtonAnimation(
+    press || animateWhenChanged !== lastAnimateWhenChanged,
+    hover,
+  )
+
+  useEffect(() => {
+    if (animateWhenChanged !== lastAnimateWhenChanged) {
+      setLastAnimateWhenChanged(animateWhenChanged)
+      playSound(sounds.update, { volume: 0.25 })
+    }
+  }, [animateWhenChanged])
 
   useUpdateEffect(() => {
     if (press) {
