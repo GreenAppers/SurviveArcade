@@ -6,6 +6,7 @@
   "scripts": {
     "build": "yarn compile && yarn build-place",
     "build-place": "rojo build -o SurviveArcade.rbxl",
+    "clean": "rm -rf out flamework.build",
     "compile": "rbxtsc",
     "lint": "yarn eslint src && yarn prettier --check src",
     "sync": "rojo serve",

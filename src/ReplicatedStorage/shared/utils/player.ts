@@ -1,6 +1,18 @@
 import { Players } from '@rbxts/services'
 import { CHARACTER_CHILD } from 'ReplicatedStorage/shared/constants/core'
 
+export function isTeamMate(player1: Player, player2: Player) {
+  return (
+    player1 &&
+    player2 &&
+    !player1.Neutral &&
+    !player2.Neutral &&
+    player1.TeamColor === player2.TeamColor
+  )
+}
+
+export const isNPCId = (userID: number) => userID < 0
+
 export function getNPCType(name?: unknown): NPCType | undefined {
   if (!name || !typeIs(name, 'string')) return undefined
   switch (name) {
@@ -11,8 +23,6 @@ export function getNPCType(name?: unknown): NPCType | undefined {
       return undefined
   }
 }
-
-export const isNPCId = (userID: number) => userID < 0
 
 export const getUserIdFromNPCId = (id: number) => -id
 

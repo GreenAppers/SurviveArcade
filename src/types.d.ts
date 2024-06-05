@@ -253,6 +253,12 @@ interface LoadingGui extends ScreenGui {
 
 type NPCType = 'Player' | 'Rat'
 
+interface NPC extends Model {
+  Shell?: Model & {
+    Mesh?: SpecialMesh
+  }
+}
+
 interface NPCAttributes {
   NPCType: NPCType
 }
@@ -293,8 +299,8 @@ interface ReplicatedStorage extends Instance {
     [mapName: string]: Folder & ArcadeMap
   }
   NPC: Folder & {
-    Rat: Model
-    Player: Model
+    Rat: NPC
+    Player: NPC
   }
   Tools: Folder & {
     ArcadeGun: Tool

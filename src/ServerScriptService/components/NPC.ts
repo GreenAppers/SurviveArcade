@@ -69,6 +69,21 @@ export class NPCComponent
       )
     }
 
+    let previousHealth = 100
+    this.humanoid?.GetPropertyChangedSignal('Health')?.Connect(() => {
+      const health = this.humanoid?.Health ?? 0
+      const lessHealth = health < previousHealth
+      previousHealth = health
+      if (!lessHealth) return
+      const specialMesh = this.instance
+        .FindFirstChild('Shell')
+        ?.FindFirstChild<SpecialMesh>('Mesh')
+      if (!specialMesh) return
+      specialMesh.VertexColor = new Vector3(1, 0, 0)
+      wait(0.2)
+      specialMesh.VertexColor = new Vector3(1, 1, 1)
+    })
+
     this.humanoid?.Died?.Connect(() => {
       wait(1)
       this.instance.Destroy()

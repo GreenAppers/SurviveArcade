@@ -1,7 +1,7 @@
 import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
-import { Players, ReplicatedStorage, Workspace } from '@rbxts/services'
+import { ReplicatedStorage, Workspace } from '@rbxts/services'
 import {
   CURRENCY_EMOJIS,
   TYCOON_ATTRIBUTES,
@@ -202,15 +202,11 @@ export class TycoonService implements OnStart {
           const previousTycoonState = previousTycoonsState[tycoonName]
           if (tycoonState.owner === previousTycoonState?.owner) continue
           const owner = tycoonState.owner
-            ? Players.GetPlayerByUserId(tycoonState.owner)
-            : undefined
           this.onTycoonClaimed(tycoonName, owner)
           if (owner) {
             this.onPlayerClaimed(owner, tycoonName, tycoonState)
           } else if (previousTycoonState?.owner) {
-            const previousOwner = Players.GetPlayerByUserId(
-              previousTycoonState.owner,
-            )
+            const previousOwner = previousTycoonState.owner
             if (previousOwner) this.onPlayerClaimed(previousOwner)
           }
         }
@@ -259,16 +255,16 @@ export class TycoonService implements OnStart {
   }
 
   onPlayerClaimed(
-    _player: Player,
+    _userId: number,
     _tycoonName?: string,
     _tycoonState?: TycoonState,
   ) {}
 
-  onTycoonClaimed(name: TycoonName, player?: Player) {
-    if (player) {
+  onTycoonClaimed(name: TycoonName, userId?: number) {
+    if (userId) {
       const map = this.mapService.getMap()
       const state = store.getState()
-      const playerState = selectPlayerState(player.UserId)(state)
+      const playerState = selectPlayerState(userId)(state)
       this.loadTycoon(
         name,
         selectTycoonState(name)(state),
