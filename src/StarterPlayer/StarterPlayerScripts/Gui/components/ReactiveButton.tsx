@@ -1,6 +1,6 @@
 import { blend, lerpBinding, useUpdateEffect } from '@rbxts/pretty-react-hooks'
 import { composeBindings } from '@rbxts/pretty-react-hooks'
-import React, { useEffect } from '@rbxts/react'
+import React, { useEffect, useState } from '@rbxts/react'
 import {
   ButtonSoundVariant,
   playButtonDown,
@@ -75,7 +75,7 @@ export function ReactiveButton({
   const [sizeAnimation, sizeMotion] = useMotion(0)
   const [press, hover, buttonEvents] = useButtonState()
   const [lastAnimateWhenChanged, setLastAnimateWhenChanged] =
-    React.useState(animateWhenChanged)
+    useState(animateWhenChanged)
   const animation = useButtonAnimation(
     press || animateWhenChanged !== lastAnimateWhenChanged,
     hover,
