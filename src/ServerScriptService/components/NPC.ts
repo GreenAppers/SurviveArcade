@@ -1,15 +1,18 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart, OnTick } from '@flamework/core'
 import { Logger } from '@rbxts/log'
+import { Workspace } from '@rbxts/services'
 import SimplePath from '@rbxts/simplepath'
 import {
   BEHAVIOR_TREE_STATUS,
   CHARACTER_CHILD,
 } from 'ReplicatedStorage/shared/constants/core'
 import { NPCTag } from 'ReplicatedStorage/shared/constants/tags'
+import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import {
   BehaviorObject,
   PathStatus,
+  getBehaviorTime,
 } from 'ReplicatedStorage/shared/utils/behavior'
 import { getUserIdFromNPCName } from 'ReplicatedStorage/shared/utils/player'
 import {
@@ -37,6 +40,29 @@ export class NPCComponent
     protected npcService: NPCService,
   ) {
     super()
+  }
+
+  onGravityChanged(upVector?: Vector3) {
+    if (!this.humanoidRootPart || !this.rootRigAttachment) return
+    this.humanoidRootPart.FindFirstChild('BodyGyro')?.Destroy()
+    this.humanoidRootPart.FindFirstChild('VectorForce')?.Destroy()
+    if (!upVector || (upVector.X === 0 && upVector.Y === 1 && upVector.Z === 0))
+      return
+
+    const gyro = new Instance('BodyGyro')
+    gyro.P = 25000
+    gyro.MaxTorque = new Vector3(100000, 100000, 100000)
+    gyro.CFrame = this.humanoidRootPart.CFrame
+    gyro.Parent = this.humanoidRootPart
+
+    const vForce = new Instance('VectorForce')
+    vForce.Force = new Vector3(0, 1, 0)
+      .sub(upVector.Unit)
+      .mul(Workspace.Gravity * this.humanoidRootPart.AssemblyMass)
+    vForce.ApplyAtCenterOfMass = true
+    vForce.RelativeTo = Enum.ActuatorRelativeTo.World
+    vForce.Attachment0 = this.rootRigAttachment
+    vForce.Parent = this.humanoidRootPart
   }
 
   onStart() {
@@ -90,10 +116,28 @@ export class NPCComponent
 
     this.humanoid?.Died?.Connect(() => {
       wait(1)
+      this.path?.Destroy()
+      this.path = undefined
       this.instance.Destroy()
     })
 
+    let previousGravity: Vector3 | undefined
+    const npcSelector = selectPlayerState(this.userId)
     while (this.humanoid && this.humanoid.Health > 0 && wait(0.3)[0]) {
+      const state = store.getState()
+      const npcState = npcSelector(state)
+      const gravity = npcState?.groundArcadeTableName
+        ? npcState.gravityUp
+        : undefined
+      if (
+        gravity?.X !== previousGravity?.X ||
+        gravity?.Y !== previousGravity?.Y ||
+        gravity?.Z !== previousGravity?.Z
+      ) {
+        this.onGravityChanged(gravity)
+        previousGravity = gravity
+      }
+
       const behaviorTree = this.population.behaviorTree
       if (
         !behaviorTree ||
@@ -108,7 +152,7 @@ export class NPCComponent
         sourceHumanoidRootPart: this.humanoidRootPart,
         sourceInstance: this.instance,
         sourceUserId: this.userId,
-        state: store.getState(),
+        state,
       }
 
       this.runBehaviorTree()
@@ -126,7 +170,8 @@ export class NPCComponent
       this.behaviorTreeRunning =
         this.population?.behaviorTree?.run(this.behavior) ===
         BEHAVIOR_TREE_STATUS.RUNNING
-      if (this.behaviorTreeRunning) this.behavior.lastRunning = time()
+      if (this.behaviorTreeRunning)
+        this.behavior.previousRunningTime = getBehaviorTime(this.behavior)
     } catch (e) {
       this.logger.Warn(
         `Error running behavior tree for ${this.instance.Name}: ${e}`,

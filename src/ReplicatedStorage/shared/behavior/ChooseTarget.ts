@@ -17,6 +17,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
 
   let status
   let targetAttachment
+  let targetSeat
   if (
     !playerState.groundArcadeTableName &&
     (playerState.tablePlays > 0 ||
@@ -35,11 +36,13 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   if (!status) {
     status = plan[BehaviorPlanType.Arcade]?.status
     targetAttachment = arcadeTargetAttachment
+    targetSeat = plan[BehaviorPlanType.Arcade]?.targetSeat
   }
 
   if (status) {
     obj.Blackboard.status = status
     obj.Blackboard.targetAttachment = targetAttachment
+    obj.Blackboard.targetSeat = targetSeat
   }
 
   return BEHAVIOR_TREE_STATUS.SUCCESS

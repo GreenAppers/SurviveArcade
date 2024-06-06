@@ -9,7 +9,7 @@ import {
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
-import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
+import { getCharacterHumanoid, getUserIdFromCharacter } from 'ReplicatedStorage/shared/utils/player'
 import {
   getTycoonFromDescendent,
   getTycoonType,
@@ -38,15 +38,16 @@ export class TycoonButtonComponent
     this.instance.Touched?.Connect((hit) => {
       const humanoid = getCharacterHumanoid(hit.Parent)
       if (!humanoid) return
-      const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
-      if (!touchedPlayer) return
+
+      const touchedPlayerUserId = getUserIdFromCharacter(hit.Parent)
+      if (!touchedPlayerUserId) return
 
       const state = store.getState()
       const tycoonState = tycoonSelector(state)
-      if (tycoonState.owner !== touchedPlayer.UserId) return
+      if (tycoonState.owner !== touchedPlayerUserId) return
 
       const tycoonButtonsSelector = selectPlayerTycoonButtons(
-        touchedPlayer.UserId,
+        touchedPlayerUserId,
         tycoonType,
       )
       const purchasedTycoonButtons = tycoonButtonsSelector(state)
@@ -56,7 +57,7 @@ export class TycoonButtonComponent
       }
 
       const playerCurrency = selectPlayerCurrency(
-        touchedPlayer.UserId,
+        touchedPlayerUserId,
         buttonCurrency,
       )(state)
       if (playerCurrency < buttonDetails.Cost) {

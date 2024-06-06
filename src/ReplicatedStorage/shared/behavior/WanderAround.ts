@@ -3,8 +3,6 @@ import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const { sourceHumanoid } = obj.Blackboard
-  obj.notice = false
-  obj.noticeDebounce = false
 
   if (sourceHumanoid && sourceHumanoid.Health !== 0) {
     sourceHumanoid.WalkSpeed = 16

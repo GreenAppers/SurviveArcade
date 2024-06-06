@@ -18,7 +18,7 @@ import {
   isTycoonButtonDependencyMet,
   tycoonConstants,
 } from 'ReplicatedStorage/shared/utils/tycoon'
-import { getProductForCurrency } from 'ServerScriptService/services/TransactionService'
+import { getProductForCurrency, getProductId } from 'ServerScriptService/services/TransactionService'
 import { TycoonService } from 'ServerScriptService/services/TycoonService'
 import { store } from 'ServerScriptService/store'
 import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
@@ -73,7 +73,7 @@ export class TycoonButtonComponent
         // Insufficient funds
         const product = getProductForCurrency(buttonCurrency)
         if (product)
-          MarketplaceService.PromptProductPurchase(touchedPlayer, product)
+          MarketplaceService.PromptProductPurchase(touchedPlayer, getProductId(product))
         return
       }
 
