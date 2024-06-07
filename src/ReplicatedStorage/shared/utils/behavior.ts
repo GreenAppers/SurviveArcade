@@ -17,6 +17,7 @@ export enum BehaviorPlanType {
 export interface BehaviorPlan {
   status: string
   targetAttachment: Attachment
+  targetSeat?: Seat
   type: BehaviorPlanType
 }
 
@@ -42,13 +43,16 @@ export interface BehaviorObject {
     targetPart?: BasePart
     targetHumanoid?: Humanoid
     targetHumanoidRootPart?: BasePart
+    targetSeat?: Seat
+    time?: number
     teamName?: string
   }
-  lastRunning?: number
-  notice?: boolean
-  noticeDebounce?: boolean
+  pathEnabled?: boolean
   pathError?: string
   pathStatus?: PathStatus
+  previousPosition?: Vector3
+  previousPositionTime?: number
+  previousRunningTime?: number
 }
 
 export function addBehaviorPlan(obj: BehaviorObject, plan: BehaviorPlan) {
@@ -58,10 +62,21 @@ export function addBehaviorPlan(obj: BehaviorObject, plan: BehaviorPlan) {
   obj.Blackboard.targetAttachment = plan.targetAttachment
 }
 
+export function getBehaviorTime(obj: BehaviorObject) {
+  if (!obj.Blackboard.time) obj.Blackboard.time = time()
+  return obj.Blackboard.time
+}
+
 export function waitAfterBehaviorCompleted(
   obj: BehaviorObject,
   secondsAgo: number,
 ) {
-  if (!obj.lastRunning) return true
-  return secondsAgo < time() - obj.lastRunning
+  if (!obj.previousRunningTime) return true
+  return secondsAgo < getBehaviorTime(obj) - obj.previousRunningTime
+}
+
+export function stopPathFinding(obj: BehaviorObject) {
+  if (obj.pathStatus === PathStatus.Running && obj.Blackboard.path)
+    obj.Blackboard.path.Stop()
+  obj.pathStatus = PathStatus.Stopped
 }

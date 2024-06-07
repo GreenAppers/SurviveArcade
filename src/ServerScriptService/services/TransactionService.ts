@@ -15,8 +15,10 @@ export type ProductInfo =
   | GamePassProductInfo
   | SubscriptionProductInfo
 
-export function getGamePass(gamePassID: number): GamePass | undefined {
-  switch (gamePassID) {
+export const getGamePassId = (gamePass: GamePass): number => tonumber(gamePass)!
+
+export function getGamePass(gamePassID: number | string): GamePass | undefined {
+  switch (`${gamePassID}`) {
     case GamePass.ArcadeGun:
       return GamePass.ArcadeGun
     default:
@@ -24,8 +26,10 @@ export function getGamePass(gamePassID: number): GamePass | undefined {
   }
 }
 
-export function getProduct(productID: number): Product | undefined {
-  switch (productID) {
+export const getProductId = (product: Product): number => tonumber(product)!
+
+export function getProduct(productID: number | string): Product | undefined {
+  switch (`${productID}`) {
     case Product.Dollars1000:
       return Product.Dollars1000
     case Product.Levity10:
@@ -62,8 +66,17 @@ export class TransactionService implements OnStart {
 
   onStart() {
     MarketplaceService.PromptGamePassPurchaseFinished.Connect(
-      (player, gamePassId, wasPurchased) =>
-        this.onGamePassPurchaseFinished(player, gamePassId, wasPurchased),
+      (player, gamePassId, wasPurchased) => {
+        const gamePass = getGamePass(gamePassId)
+        // Ensure game passId is a valid game passes for our game
+        if (!gamePass) {
+          this.logger.Warn(
+            `Player ${player.Name} attempted to purchased invalid game pass ${gamePass}`,
+          )
+          return
+        }
+        this.onGamePassPurchaseFinished(player, gamePass, wasPurchased)
+      },
     )
     MarketplaceService.ProcessReceipt = (receiptInfo) =>
       this.onProcessReceipt(receiptInfo)
@@ -71,20 +84,10 @@ export class TransactionService implements OnStart {
 
   onGamePassPurchaseFinished(
     player: Player,
-    gamePassId: GamePass,
+    gamePass: GamePass,
     wasPurchased: boolean,
   ): void {
     if (!wasPurchased) return
-
-    // Ensure game passId is a valid game passes for our game
-    const gamePass = getGamePass(gamePassId)
-    if (!gamePass) {
-      this.logger.Warn(
-        `Player ${player.Name} attempted to purchased invalid game pass ${gamePassId}`,
-      )
-      return
-    }
-
     this.logger.Info(`Player ${player.Name} purchased game pass ${gamePass}`)
     store.setGamePassOwned(player.UserId, gamePass)
   }
@@ -120,17 +123,17 @@ export class TransactionService implements OnStart {
     const gamePasses =
       store.getState(selectPlayerState(userId))?.gamePasses ?? {}
     const unownedGamePasses = Object.values(GamePass).filter(
-      (gamePassId) => !gamePasses[gamePassId],
+      (gamePass) => !gamePasses[gamePass],
     )
-    for (const gamePassId of unownedGamePasses) {
+    for (const gamePass of unownedGamePasses) {
       Promise.try(() => {
         const owned = MarketplaceService.UserOwnsGamePassAsync(
           player.UserId,
-          gamePassId,
+          getGamePassId(gamePass),
         )
-        if (owned) store.setGamePassOwned(userId, gamePassId)
+        if (owned) store.setGamePassOwned(userId, gamePass)
       }).catch((err) => {
-        this.logger.Warn(`Error checking game pass ${gamePassId}: ${err}`)
+        this.logger.Warn(`Error checking game pass ${gamePass}: ${err}`)
       })
     }
   }
@@ -139,7 +142,11 @@ export class TransactionService implements OnStart {
     const owned = !!store.getState(selectPlayerState(player.UserId))
       ?.gamePasses?.[gamePass]
     return (
-      owned || MarketplaceService.UserOwnsGamePassAsync(player.UserId, gamePass)
+      owned ||
+      MarketplaceService.UserOwnsGamePassAsync(
+        player.UserId,
+        getGamePassId(gamePass),
+      )
     )
   }
 

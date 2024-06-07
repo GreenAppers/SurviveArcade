@@ -1,6 +1,7 @@
 import { Components } from '@flamework/components'
 import { Dependency, OnStart, Service } from '@flamework/core'
 import { BehaviorTree3, BehaviorTreeCreator } from '@rbxts/behavior-tree-5'
+import { Queue } from '@rbxts/datastructures'
 import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { ReplicatedStorage, ServerStorage, Workspace } from '@rbxts/services'
@@ -11,7 +12,10 @@ import {
 import { selectDifficulty } from 'ReplicatedStorage/shared/state'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import { shuffle } from 'ReplicatedStorage/shared/utils/object'
-import { getUserIdFromNPCId } from 'ReplicatedStorage/shared/utils/player'
+import {
+  getNPCIdFromUserId,
+  getUserIdFromNPCId,
+} from 'ReplicatedStorage/shared/utils/player'
 import { NPCComponent } from 'ServerScriptService/components/NPC'
 import { store } from 'ServerScriptService/store'
 
@@ -26,6 +30,7 @@ export interface NPCPopulation {
   createPlayer?: boolean
   pathFinding?: boolean
   pathFindingVisualize?: boolean
+  respawnNpcIds?: Queue<number>
 }
 
 @Service()
@@ -37,8 +42,9 @@ export class NPCService implements OnStart {
       currentCount: 0,
       targetCount: 1,
       type: NPC_TYPES.Player,
-      pathFinding: false,
+      pathFinding: true,
       pathFindingVisualize: true,
+      respawnNpcIds: new Queue<number>(),
     },
     Rat: {
       name: 'Rat_%d',
@@ -73,8 +79,13 @@ export class NPCService implements OnStart {
       const population = this.population[npc.attributes.NPCType]
       population.currentCount--
       population.behaviorTree?.DataLookup?.delete(npc.behavior)
-      if (population.createPlayer && npc.userId)
-        store.closePlayerData(npc.userId)
+      if (population.createPlayer && npc.userId) {
+        if (population.respawnNpcIds) {
+          population.respawnNpcIds.Push(getNPCIdFromUserId(npc.userId))
+        } else {
+          store.closePlayerData(npc.userId)
+        }
+      }
     })
 
     store.subscribe(selectDifficulty(), (difficulty) => {
@@ -132,11 +143,12 @@ export class NPCService implements OnStart {
   spawn(npcType: NPCType) {
     const population = this.population[npcType]
     if (!population.template) return
-    const newNpcId = this.nextID++
+    const reuseNpcId = population.respawnNpcIds?.Pop()
+    const newNpcId = reuseNpcId ? reuseNpcId : this.nextID++
     const newNpc = population.template.Clone()
     newNpc.Name = population.name.format(newNpcId)
     if (population.createPlayer) {
-      store.addNPC(getUserIdFromNPCId(newNpcId))
+      if (!reuseNpcId) store.addNPC(getUserIdFromNPCId(newNpcId))
       newNpc.PivotTo(
         Workspace.Map.SpawnLocation.CFrame.ToWorldSpace(new CFrame(0, 4, 0)),
       )

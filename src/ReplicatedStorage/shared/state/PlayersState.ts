@@ -5,14 +5,14 @@ import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
 import { isNPCId } from 'ReplicatedStorage/shared/utils/player'
 
 export enum GamePass {
-  ArcadeGun = 806588971,
+  ArcadeGun = '806588971',
 }
 
 export enum Product {
-  Dollars1000 = 1825724409,
-  Levity10 = 1825722222,
-  NukeServer = 1710612154,
-  Tickets2500 = 1825725223,
+  Dollars1000 = '1825724409',
+  Levity10 = '1825722222',
+  NukeServer = '1710612154',
+  Tickets2500 = '1825725223',
 }
 
 export interface PlayerSettings {

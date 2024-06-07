@@ -91,9 +91,10 @@ export function findArcadeTableTarget(
   arcadeTablesState: ArcadeTablesState,
   rootRigAttachment: Attachment,
   localPlayerTeamName?: string,
-): [Attachment | undefined, string] {
-  let targetStatus = formatMessage(MESSAGE.GuideWinTickets)
+): [Attachment | undefined, Seat | undefined, string] {
   let targetAttachment
+  let targetSeat
+  let targetStatus = formatMessage(MESSAGE.GuideWinTickets)
 
   if (rootRigAttachment.WorldPosition.Y < 20) {
     // Find nearest Cabinet
@@ -102,7 +103,7 @@ export function findArcadeTableTarget(
       arcadeTablesState,
       localPlayerTeamName,
     )
-    if (!arcadeTableName) return [undefined, '']
+    if (!arcadeTableName) return [undefined, undefined, '']
 
     // Find nearest truss
     const trussName = nearestCabinetTruss(
@@ -130,12 +131,12 @@ export function findArcadeTableTarget(
       arcadeTablesState,
       localPlayerTeamName,
     )
-    if (!arcadeTableName) return [undefined, '']
-    targetAttachment =
-      game.Workspace.ArcadeTables[arcadeTableName]?.Seat?.Attachment
+    if (!arcadeTableName) return [undefined, undefined, '']
+    targetSeat = game.Workspace.ArcadeTables[arcadeTableName]?.Seat
+    targetAttachment = targetSeat?.Attachment
   }
 
-  return [targetAttachment, targetStatus]
+  return [targetAttachment, targetSeat, targetStatus]
 }
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
@@ -143,7 +144,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   if (!sourceAttachment || !sourceUserId || !state)
     return BEHAVIOR_TREE_STATUS.FAIL
 
-  const [targetAttachment, targetStatus] = findArcadeTableTarget(
+  const [targetAttachment, targetSeat, targetStatus] = findArcadeTableTarget(
     selectArcadeTablesState()(state),
     sourceAttachment,
     obj.Blackboard.sourceTeamName,
@@ -153,6 +154,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const plan: BehaviorPlan = {
     status: targetStatus,
     targetAttachment,
+    targetSeat,
     type: BehaviorPlanType.Arcade,
   }
   addBehaviorPlan(obj, plan)
