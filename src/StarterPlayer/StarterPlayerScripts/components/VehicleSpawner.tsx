@@ -1,8 +1,9 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import React, { StrictMode } from '@rbxts/react'
-import { createPortal, createRoot } from '@rbxts/react-roblox'
+import { createPortal } from '@rbxts/react-roblox'
 import { VehicleSpawnerTag } from 'ReplicatedStorage/shared/constants/tags'
+import { GuiController } from 'StarterPlayer/StarterPlayerScripts/controllers/GuiController'
 import { ReactiveButton } from 'StarterPlayer/StarterPlayerScripts/Gui/components/ReactiveButton'
 import { Text } from 'StarterPlayer/StarterPlayerScripts/Gui/components/Text'
 import { RootProvider } from 'StarterPlayer/StarterPlayerScripts/Gui/providers/RootProvider'
@@ -12,14 +13,16 @@ export class VehicleSpawnerComponent
   extends BaseComponent<{}, VehicleSpawner>
   implements OnStart
 {
-  root = createRoot(new Instance('Folder'))
+  constructor(protected guiController: GuiController) {
+    super()
+  }
 
   spawnVehicle() {
     this.instance.Spawn.FireServer()
   }
 
   onStart() {
-    this.root.render(
+    this.guiController.root.render(
       createPortal(
         <StrictMode>
           <RootProvider>
