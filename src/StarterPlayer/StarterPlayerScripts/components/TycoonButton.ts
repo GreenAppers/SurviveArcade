@@ -1,6 +1,5 @@
 import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
-import { Players } from '@rbxts/services'
 import { TYCOON_ATTRIBUTES } from 'ReplicatedStorage/shared/constants/core'
 import { TycoonButtonTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
@@ -9,7 +8,10 @@ import {
   selectTycoonState,
 } from 'ReplicatedStorage/shared/state'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
-import { getCharacterHumanoid, getUserIdFromCharacter } from 'ReplicatedStorage/shared/utils/player'
+import {
+  getCharacterHumanoid,
+  getUserIdFromCharacter,
+} from 'ReplicatedStorage/shared/utils/player'
 import {
   getTycoonFromDescendent,
   getTycoonType,

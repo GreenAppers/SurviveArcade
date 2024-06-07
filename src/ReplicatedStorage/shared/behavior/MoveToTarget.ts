@@ -1,8 +1,8 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
 import {
   BehaviorObject,
-  PathStatus,
   getBehaviorTime,
+  PathStatus,
   stopPathFinding,
 } from 'ReplicatedStorage/shared/utils/behavior'
 

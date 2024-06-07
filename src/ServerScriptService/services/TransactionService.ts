@@ -142,7 +142,11 @@ export class TransactionService implements OnStart {
     const owned = !!store.getState(selectPlayerState(player.UserId))
       ?.gamePasses?.[gamePass]
     return (
-      owned || MarketplaceService.UserOwnsGamePassAsync(player.UserId, getGamePassId(gamePass))
+      owned ||
+      MarketplaceService.UserOwnsGamePassAsync(
+        player.UserId,
+        getGamePassId(gamePass),
+      )
     )
   }
 

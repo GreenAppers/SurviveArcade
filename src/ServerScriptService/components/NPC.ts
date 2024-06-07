@@ -11,8 +11,8 @@ import { NPCTag } from 'ReplicatedStorage/shared/constants/tags'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import {
   BehaviorObject,
-  PathStatus,
   getBehaviorTime,
+  PathStatus,
 } from 'ReplicatedStorage/shared/utils/behavior'
 import { getUserIdFromNPCName } from 'ReplicatedStorage/shared/utils/player'
 import {
