@@ -18,6 +18,11 @@ export class VehicleSpawnerComponent
     this.instance.Spawn.FireServer()
   }
 
+  // Called by GUIController when the component is removed
+  onRemoved() {
+    this.root.unmount()
+  }
+
   onStart() {
     this.root.render(
       createPortal(

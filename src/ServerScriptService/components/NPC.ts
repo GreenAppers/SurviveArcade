@@ -8,7 +8,7 @@ import {
   CHARACTER_CHILD,
 } from 'ReplicatedStorage/shared/constants/core'
 import { NPCTag } from 'ReplicatedStorage/shared/constants/tags'
-import { selectPlayerState } from 'ReplicatedStorage/shared/state'
+import { selectPlayerState, SharedState } from 'ReplicatedStorage/shared/state'
 import {
   BehaviorObject,
   getBehaviorTime,
@@ -26,8 +26,7 @@ export class NPCComponent
   extends BaseComponent<NPCAttributes, Model>
   implements OnStart, OnTick
 {
-  behavior: BehaviorObject = { Blackboard: {} }
-  behaviorTreeRunning = false
+  behavior: BehaviorObject = { Blackboard: {}, treeRunning: false }
   humanoid?: Humanoid
   humanoidRootPart?: BasePart
   path?: SimplePath
@@ -141,37 +140,47 @@ export class NPCComponent
       const behaviorTree = this.population.behaviorTree
       if (
         !behaviorTree ||
-        (this.behaviorTreeRunning && this.population.behaviorTreeOnTick)
+        (this.behavior.treeRunning && this.population.behaviorTreeOnTick)
       )
         continue
 
-      this.behavior.Blackboard = {
-        path: this.path,
-        sourceAttachment: this.rootRigAttachment,
-        sourceHumanoid: this.humanoid,
-        sourceHumanoidRootPart: this.humanoidRootPart,
-        sourceInstance: this.instance,
-        sourceUserId: this.userId,
-        state,
-      }
-
-      this.runBehaviorTree()
+      this.runBehaviorTree(state)
     }
   }
 
   onTick() {
-    if (!this.behaviorTreeRunning || !this.population?.behaviorTreeOnTick)
+    if (!this.behavior.treeRunning || !this.population?.behaviorTreeOnTick)
       return
-    this.runBehaviorTree()
+    this.runBehaviorTree(store.getState())
   }
 
-  runBehaviorTree() {
+  runBehaviorTree(state: SharedState) {
     try {
-      this.behaviorTreeRunning =
+      const wasRunning = this.behavior.treeRunning
+      if (wasRunning) {
+        const blackboard = this.behavior.Blackboard
+        blackboard.state = state
+        delete blackboard.time
+      } else {
+        this.behavior.Blackboard = {
+          path: this.path,
+          sourceAttachment: this.rootRigAttachment,
+          sourceHumanoid: this.humanoid,
+          sourceHumanoidRootPart: this.humanoidRootPart,
+          sourceInstance: this.instance,
+          sourceUserId: this.userId,
+          state,
+        }
+      }
+      const treeRunning =
         this.population?.behaviorTree?.run(this.behavior) ===
         BEHAVIOR_TREE_STATUS.RUNNING
-      if (this.behaviorTreeRunning)
-        this.behavior.previousRunningTime = getBehaviorTime(this.behavior)
+      this.behavior.treeRunning = treeRunning
+      if (treeRunning) {
+        const now = getBehaviorTime(this.behavior)
+        this.behavior.previousRunningTime = now
+        if (!wasRunning) this.behavior.startedRunningTime = now
+      }
     } catch (e) {
       this.logger.Warn(
         `Error running behavior tree for ${this.instance.Name}: ${e}`,

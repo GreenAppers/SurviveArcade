@@ -55,7 +55,7 @@ export class PlayerController implements OnStart {
   collectionAnimationPlaying = false
   playerSpace: PlayerSpace | undefined
   guide: BehaviorTree3<BehaviorObject> | undefined
-  guideObject: BehaviorObject = { Blackboard: {} }
+  guideObject: BehaviorObject = { Blackboard: {}, treeRunning: false }
   gravityController: GravityController | undefined
   shooter: ShooterComponent | undefined
   isDesktop = USER_DEVICE === DeviceType.Desktop

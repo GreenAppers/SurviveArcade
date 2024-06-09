@@ -53,6 +53,8 @@ export interface BehaviorObject {
   previousPosition?: Vector3
   previousPositionTime?: number
   previousRunningTime?: number
+  startedRunningTime?: number
+  treeRunning: boolean
 }
 
 export function addBehaviorPlan(obj: BehaviorObject, plan: BehaviorPlan) {

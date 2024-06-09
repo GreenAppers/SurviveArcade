@@ -38,6 +38,7 @@ export class NPCService implements OnStart {
   population: Record<NPCType, NPCPopulation> = {
     Player: {
       name: 'NPC_%d',
+      behaviorTreeOnTick: true,
       createPlayer: true,
       currentCount: 0,
       targetCount: 1,

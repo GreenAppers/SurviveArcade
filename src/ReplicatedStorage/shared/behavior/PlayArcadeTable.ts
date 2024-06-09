@@ -15,18 +15,16 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
 
   const arcadeTable = game.Workspace.ArcadeTables[sourceArcadeTableName]
   const arcadeTableState = selectArcadeTableState(sourceArcadeTableName)(state)
-  if (
-    !arcadeTable ||
-    !arcadeTableState ||
-    arcadeTableState.owner !== sourceUserId
-  )
-    return BEHAVIOR_TREE_STATUS.FAIL
+  if (!arcadeTable || !arcadeTableState) return BEHAVIOR_TREE_STATUS.FAIL
 
+  // If we just won, wait for the winning sequence to finish, then jump.
   if (arcadeTableState.status === ArcadeTableStatus.Won) {
     if (!waitAfterBehaviorCompleted(obj, 3)) return BEHAVIOR_TREE_STATUS.SUCCESS
     if (sourceHumanoid) sourceHumanoid.Jump = true
     return BEHAVIOR_TREE_STATUS.SUCCESS
   }
+
+  if (arcadeTableState.owner !== sourceUserId) return BEHAVIOR_TREE_STATUS.FAIL
 
   const leftFlipperPosition =
     arcadeTable.FlipperLeft.Flipper.Wedge2.CFrame.ToWorldSpace(
@@ -38,10 +36,14 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     ).Position
   for (const ball of arcadeTable.Balls.GetChildren<BasePart>()) {
     const ballPosition = ball.CFrame.ToWorldSpace(new CFrame()).Position
-    if (ballPosition.sub(leftFlipperPosition).Magnitude < 10) {
-      flipPinballFlipper(arcadeTable, 'FlipperLeft')
-    } else if (ballPosition.sub(rightFlipperPosition).Magnitude < 10) {
-      flipPinballFlipper(arcadeTable, 'FlipperRight')
+    const leftDistance = ballPosition.sub(leftFlipperPosition).Magnitude
+    const rightDistance = ballPosition.sub(rightFlipperPosition).Magnitude
+    if (leftDistance < 10 || rightDistance < 10) {
+      if (leftDistance < rightDistance) {
+        flipPinballFlipper(arcadeTable, 'FlipperLeft')
+      } else {
+        flipPinballFlipper(arcadeTable, 'FlipperRight')
+      }
     }
   }
 

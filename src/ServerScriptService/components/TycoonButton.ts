@@ -10,7 +10,10 @@ import {
 } from 'ReplicatedStorage/shared/state'
 import { getCurrency } from 'ReplicatedStorage/shared/utils/currency'
 import { setHidden } from 'ReplicatedStorage/shared/utils/instance'
-import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
+import {
+  getCharacterHumanoid,
+  getUserIdFromCharacter,
+} from 'ReplicatedStorage/shared/utils/player'
 import {
   getTycoonButtonColor,
   getTycoonFromDescendent,
@@ -51,22 +54,22 @@ export class TycoonButtonComponent
     this.instance.Touched?.Connect((hit) => {
       const humanoid = getCharacterHumanoid(hit.Parent)
       if (!humanoid) return
-      const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
-      if (!touchedPlayer) return
+      const touchedPlayerUserId = getUserIdFromCharacter(hit.Parent)
+      if (!touchedPlayerUserId) return
 
       const state = store.getState()
       const tycoonState = tycoonSelector(state)
-      if (tycoonState.owner !== touchedPlayer.UserId) return
+      if (tycoonState.owner !== touchedPlayerUserId) return
 
       const tycoonButtonsSelector = selectPlayerTycoonButtons(
-        touchedPlayer.UserId,
+        touchedPlayerUserId,
         tycoonType,
       )
       const purchasedTycoonButtons = tycoonButtonsSelector(state)
       if (purchasedTycoonButtons?.[buttonName]) return
 
       const newState = store.purchaseTycoonButton(
-        touchedPlayer.UserId,
+        touchedPlayerUserId,
         tycoonType,
         buttonName,
         buttonCurrency,
@@ -75,7 +78,8 @@ export class TycoonButtonComponent
       if (purchasedTycoonButtons === tycoonButtonsSelector(newState)) {
         // Insufficient funds
         const product = getProductForCurrency(buttonCurrency)
-        if (product)
+        const touchedPlayer = Players.GetPlayerFromCharacter(hit.Parent)
+        if (product && touchedPlayer)
           MarketplaceService.PromptProductPurchase(
             touchedPlayer,
             getProductId(product),
@@ -84,9 +88,9 @@ export class TycoonButtonComponent
       }
 
       // Handle button purchased
-      const playerState = selectPlayerState(touchedPlayer.UserId)(newState)
+      const playerState = selectPlayerState(touchedPlayerUserId)(newState)
       const playerTycoonButtons = selectPlayerTycoonButtons(
-        touchedPlayer.UserId,
+        touchedPlayerUserId,
         tycoonType,
       )(newState)
 
