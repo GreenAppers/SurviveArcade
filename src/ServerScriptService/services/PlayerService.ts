@@ -112,7 +112,7 @@ export class PlayerService implements OnInit {
 
     this.logger.Info(`Player loaded ${player.UserId}`)
     this.profiles.set(player.UserId, profile)
-    const state = store.loadPlayerData(player.UserId, profile.Data)
+    const state = store.loadPlayerData(player.UserId, player.Name, profile.Data)
     const playerSelector = selectPlayerState(player.UserId)
 
     this.getPlayerSpace(player)

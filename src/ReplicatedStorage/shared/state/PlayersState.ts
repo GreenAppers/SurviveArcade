@@ -1,6 +1,9 @@
 import { createProducer } from '@rbxts/reflex'
 import { Players } from '@rbxts/services'
-import { TYCOON_TYPES } from 'ReplicatedStorage/shared/constants/core'
+import {
+  IS_STUDIO,
+  TYCOON_TYPES,
+} from 'ReplicatedStorage/shared/constants/core'
 import { mapProperties } from 'ReplicatedStorage/shared/utils/object'
 import { isNPCId } from 'ReplicatedStorage/shared/utils/player'
 
@@ -82,6 +85,7 @@ export interface PlayerDetail {
   readonly gravityUp: Vector3
   readonly groundArcadeTableName: ArcadeTableName | undefined
   readonly groundArcadeTableSequence: number | undefined
+  readonly name: string
   readonly sessionStartTime: number
   readonly scale: TycoonType
   readonly score: number
@@ -148,6 +152,7 @@ export const defaultPlayerDetail: PlayerDetail = {
   gravityUp: new Vector3(0, 1, 0),
   groundArcadeTableName: undefined,
   groundArcadeTableSequence: undefined,
+  name: '',
   sessionStartTime: 0,
   scale: TYCOON_TYPES.Elf,
   score: 0,
@@ -203,7 +208,7 @@ export const getPlayerState = (state: Players, userID: number) =>
   state[getPlayerKey(userID)]
 
 export const playersSlice = createProducer(initialState, {
-  addNPC: (state, userID: number) => {
+  addNPC: (state, userID: number, name: string) => {
     if (!isNPCId(userID)) throw 'Invalid NPC userId'
     const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
@@ -214,14 +219,15 @@ export const playersSlice = createProducer(initialState, {
         ...defaultPlayerState,
         ...playerState,
         ...defaultPlayerDetail,
-        sessionStartTime: os.time(),
         dollars: 10,
+        name,
+        sessionStartTime: os.time(),
       },
     }
   },
 
-  loadPlayerData: (state, userID: number, data: PlayerData) => {
-    if (isNPCId(userID)) throw 'Invalid player userId'
+  loadPlayerData: (state, userID: number, name: string, data: PlayerData) => {
+    if (isNPCId(userID) && !IS_STUDIO) throw 'Invalid player userId'
     const playerKey = getPlayerKey(userID)
     const playerState = state[playerKey]
     return {
@@ -231,6 +237,7 @@ export const playersSlice = createProducer(initialState, {
         ...playerState,
         ...data,
         ...defaultPlayerDetail,
+        name,
         sessionStartTime: os.time(),
       },
     }

@@ -149,7 +149,7 @@ export class NPCService implements OnStart {
     const newNpc = population.template.Clone()
     newNpc.Name = population.name.format(newNpcId)
     if (population.createPlayer) {
-      if (!reuseNpcId) store.addNPC(getUserIdFromNPCId(newNpcId))
+      if (!reuseNpcId) store.addNPC(getUserIdFromNPCId(newNpcId), newNpc.Name)
       newNpc.PivotTo(
         Workspace.Map.SpawnLocation.CFrame.ToWorldSpace(new CFrame(0, 4, 0)),
       )

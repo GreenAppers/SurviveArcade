@@ -5,6 +5,7 @@ import { Alerts } from 'StarterPlayer/StarterPlayerScripts/Gui/sections/Alerts'
 import { Currency } from 'StarterPlayer/StarterPlayerScripts/Gui/sections/Currency'
 import { GameStatus } from 'StarterPlayer/StarterPlayerScripts/Gui/sections/GameStatus'
 import { Music } from 'StarterPlayer/StarterPlayerScripts/Gui/sections/Music'
+import { PlayerList } from 'StarterPlayer/StarterPlayerScripts/Gui/sections/PlayerList'
 import { Settings } from 'StarterPlayer/StarterPlayerScripts/Gui/sections/Settings'
 
 export function App() {
@@ -16,6 +17,7 @@ export function App() {
         <Currency />
         <GameStatus />
         <Settings />
+        <PlayerList />
       </Layer>
 
       <Layer>

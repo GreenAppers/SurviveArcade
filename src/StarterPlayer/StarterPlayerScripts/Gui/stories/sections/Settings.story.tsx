@@ -4,7 +4,7 @@ import React from '@rbxts/react'
 import { RootProvider } from '../../providers/RootProvider'
 import { Settings } from '../../sections/Settings'
 
-export default hoarcekat(() => {
+export = hoarcekat(() => {
   return (
     <RootProvider>
       <Settings />

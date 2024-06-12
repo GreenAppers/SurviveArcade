@@ -4,7 +4,8 @@ import { $NODE_ENV } from 'rbxts-transform-env'
 
 export const IS_PROD = $NODE_ENV === 'production'
 export const IS_CANARY = $NODE_ENV === 'canary'
-export const IS_EDIT = RunService.IsStudio() && !RunService.IsRunning()
+export const IS_STUDIO = RunService.IsStudio()
+export const IS_EDIT = IS_STUDIO && !RunService.IsRunning()
 
 export const START_PLACE_ID = IS_PROD ? -1 : 15699266223
 export const HUMAN_PLACE_ID = IS_PROD ? -1 : 16860946152

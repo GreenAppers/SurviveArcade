@@ -120,13 +120,18 @@ export class PlayerController implements OnStart {
         }
       } else if (inputObject.KeyCode === Enum.KeyCode.Tab && this.isDesktop) {
         // Toggle playerlist
-        const playerListEnabled = StarterGui.GetCoreGuiEnabled(
-          Enum.CoreGuiType.PlayerList,
-        )
-        StarterGui.SetCoreGuiEnabled(
-          Enum.CoreGuiType.PlayerList,
-          !playerListEnabled,
-        )
+        const useCoreGuiPlayerList = false
+        if (useCoreGuiPlayerList) {
+          const playerListEnabled = StarterGui.GetCoreGuiEnabled(
+            Enum.CoreGuiType.PlayerList,
+          )
+          StarterGui.SetCoreGuiEnabled(
+            Enum.CoreGuiType.PlayerList,
+            !playerListEnabled,
+          )
+        } else {
+          store.togglePlayerList()
+        }
       } else if (
         inputObject.UserInputType === Enum.UserInputType.MouseButton1 &&
         this.shooter &&
