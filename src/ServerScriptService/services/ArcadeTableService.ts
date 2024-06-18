@@ -182,7 +182,7 @@ export class ArcadeTableService implements OnStart {
 
   onGameWon(tableName: ArcadeTableName, userId: number, score: number) {
     this.logger.Info(
-      `${tableName} won by ${getNameFromUserId(userId)} (${userId}) with ${score}`,
+      `${tableName} won by ${getNameFromUserId(userId, game.Workspace)} (${userId}) with ${score}`,
     )
     Promise.try(() =>
       this.playWinningSequence(game.Workspace.ArcadeTables[tableName]),
@@ -255,7 +255,7 @@ export class ArcadeTableService implements OnStart {
     // Determine the name and score to display on the scoreboard.
     const score = abbreviator.numberToString(arcadeTableState.score)
     const nameCharacters = this.scoreboardCharacters - score.size() - 1
-    let name = getNameFromUserId(arcadeTableState.owner)
+    let name = getNameFromUserId(arcadeTableState.owner, game.Workspace)
     if (name.size() > nameCharacters) name = name.sub(0, nameCharacters)
     else name = name += ' '.rep(nameCharacters - name.size())
     const text = `${name} ${score}`.upper()

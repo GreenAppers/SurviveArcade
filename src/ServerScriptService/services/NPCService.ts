@@ -12,10 +12,7 @@ import {
 import { selectDifficulty } from 'ReplicatedStorage/shared/state'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import { shuffle } from 'ReplicatedStorage/shared/utils/object'
-import {
-  getNPCIdFromUserId,
-  getUserIdFromNPCId,
-} from 'ReplicatedStorage/shared/utils/player'
+import { getNPCIdFromUserId } from 'ReplicatedStorage/shared/utils/player'
 import { NPCComponent } from 'ServerScriptService/components/NPC'
 import { store } from 'ServerScriptService/store'
 
@@ -37,7 +34,7 @@ export interface NPCPopulation {
 export class NPCService implements OnStart {
   population: Record<NPCType, NPCPopulation> = {
     Player: {
-      name: 'NPC_%d',
+      name: 'Cameraman',
       behaviorTreeOnTick: true,
       createPlayer: true,
       currentCount: 0,
@@ -55,8 +52,16 @@ export class NPCService implements OnStart {
     },
   }
 
-  nextID = 1
+  nextID = 100
+
   constructor(protected readonly logger: Logger) {}
+
+  getNextId(npcType: NPCType): [number, boolean] {
+    const population = this.population[npcType]
+    const reuseNpcId = population.respawnNpcIds?.Pop()
+    const nextNpcId = reuseNpcId ? reuseNpcId : this.nextID++
+    return [nextNpcId, !reuseNpcId]
+  }
 
   onStart() {
     this.population.Player.template = ReplicatedStorage.NPC.Player
@@ -144,16 +149,11 @@ export class NPCService implements OnStart {
   spawn(npcType: NPCType) {
     const population = this.population[npcType]
     if (!population.template) return
-    const reuseNpcId = population.respawnNpcIds?.Pop()
-    const newNpcId = reuseNpcId ? reuseNpcId : this.nextID++
     const newNpc = population.template.Clone()
-    newNpc.Name = population.name.format(newNpcId)
-    if (population.createPlayer) {
-      if (!reuseNpcId) store.addNPC(getUserIdFromNPCId(newNpcId), newNpc.Name)
+    newNpc.Parent = Workspace.NPC
+    if (population.createPlayer)
       newNpc.PivotTo(
         Workspace.Map.SpawnLocation.CFrame.ToWorldSpace(new CFrame(0, 4, 0)),
       )
-    }
-    newNpc.Parent = Workspace.NPC
   }
 }

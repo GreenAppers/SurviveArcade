@@ -1,5 +1,8 @@
 import { Players } from '@rbxts/services'
 import { CHARACTER_CHILD } from 'ReplicatedStorage/shared/constants/core'
+import { findFirstChildWithAttributeValue } from 'ReplicatedStorage/shared/utils/instance'
+
+export const NPCIdAttributeName = 'NPCId'
 
 export function isTeamMate(player1: Player, player2: Player) {
   return (
@@ -28,21 +31,21 @@ export const getUserIdFromNPCId = (id: number) => -id
 
 export const getNPCIdFromUserId = (id: number) => -id
 
-export const getNameFromUserId = (id: number) =>
+export const getNameFromUserId = (id: number, workspace: Workspace) =>
   isNPCId(id)
-    ? `NPC_${getNPCIdFromUserId(id)}`
+    ? getCharacterFromUserId(id, workspace)?.Name ?? ''
     : Players.GetPlayerByUserId(id)?.Name ?? ''
 
-export function getUserIdFromNPCName(name: string) {
-  const match = name.match('^NPC_([0-9]+)')
-  if (match.size() < 1) return 0
-  const npcId = tonumber(match[0])
-  return npcId ? getUserIdFromNPCId(npcId) : 0
+export function getUserIdFromNPC(instance?: Instance): number | undefined {
+  const value = instance?.GetAttribute(NPCIdAttributeName)
+  return value && typeIs(value, 'number')
+    ? getUserIdFromNPCId(value)
+    : undefined
 }
 
 export function getUserIdFromCharacter(character?: Instance) {
   const player = Players.GetPlayerFromCharacter(character)
-  return player ? player.UserId : getUserIdFromNPCName(character?.Name || '')
+  return player ? player.UserId : getUserIdFromNPC(character)
 }
 
 export function getCharacterFromUserId(
@@ -50,7 +53,11 @@ export function getCharacterFromUserId(
   workspace: Workspace,
 ): Model | undefined {
   return isNPCId(userId)
-    ? workspace.NPC.FindFirstChild<Model>(getNameFromUserId(userId))
+    ? findFirstChildWithAttributeValue<Model>(
+        workspace.NPC,
+        NPCIdAttributeName,
+        getNPCIdFromUserId(userId),
+      )
     : Players.GetPlayerByUserId(userId)?.Character
 }
 

@@ -19,6 +19,17 @@ export function findFirstChildWhichIs<X = Instance>(
   return undefined
 }
 
+export function findFirstChildWithAttributeValue<X = Instance>(
+  ancestor: Instance,
+  attributeName: string,
+  attributeValue: AttributeValue,
+) {
+  for (const child of ancestor.GetChildren()) {
+    if (child.GetAttribute(attributeName) === attributeValue) return child as X
+  }
+  return undefined
+}
+
 export function findDescendentsWhichAre<X = Instance>(
   ancestor: Instance,
   className: keyof Instances,

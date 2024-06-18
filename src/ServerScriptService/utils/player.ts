@@ -2,7 +2,7 @@ import { Dependency } from '@flamework/core'
 import { Players } from '@rbxts/services'
 import {
   getNPCType,
-  getUserIdFromNPCName,
+  getUserIdFromNPC,
 } from 'ReplicatedStorage/shared/utils/player'
 import { NPCService } from 'ServerScriptService/services/NPCService'
 
@@ -32,8 +32,10 @@ export function getPlayers() {
   for (const npc of game.Workspace.NPC.GetChildren<Model>()) {
     const npcType = getNPCType(npc.GetAttribute('NPCType'))
     if (!npcType || !npcService.population[npcType]?.createPlayer) continue
+    const userId = getUserIdFromNPC(npc)
+    if (!userId) continue
     result.push({
-      UserId: getUserIdFromNPCName(npc.Name),
+      UserId: userId,
       Name: npc.Name,
       Character: npc,
     })

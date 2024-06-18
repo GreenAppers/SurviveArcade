@@ -14,7 +14,10 @@ import {
   getBehaviorTime,
   PathStatus,
 } from 'ReplicatedStorage/shared/utils/behavior'
-import { getUserIdFromNPCName } from 'ReplicatedStorage/shared/utils/player'
+import {
+  getUserIdFromNPCId,
+  NPCIdAttributeName,
+} from 'ReplicatedStorage/shared/utils/player'
 import {
   NPCPopulation,
   NPCService,
@@ -65,6 +68,8 @@ export class NPCComponent
   }
 
   onStart() {
+    const [npcId, newNpcId] = this.npcService.getNextId(this.attributes.NPCType)
+    const userId = getUserIdFromNPCId(npcId)
     this.humanoid = this.instance.FindFirstChildOfClass(
       CHARACTER_CHILD.Humanoid,
     )
@@ -73,9 +78,14 @@ export class NPCComponent
     )
     this.rootRigAttachment =
       this.humanoidRootPart?.FindFirstChildOfClass('Attachment')
-    this.userId = getUserIdFromNPCName(this.instance.Name)
-
     this.population = this.npcService.population[this.attributes.NPCType]
+    this.userId = userId
+    this.instance.Name = this.population.name.format(npcId)
+    this.instance.SetAttribute(NPCIdAttributeName, npcId)
+    if (this.population.createPlayer) {
+      if (newNpcId) store.addNPC(userId, this.instance.Name)
+    }
+    this.logger.Info(`Spawned NPC ${this.instance.Name} (${this.userId})`)
 
     if (this.population.pathFinding) {
       this.humanoid?.SetStateEnabled(Enum.HumanoidStateType.Climbing, true)

@@ -1,5 +1,5 @@
 import Object from '@rbxts/object-utils'
-import React from '@rbxts/react'
+import React, { useState } from '@rbxts/react'
 import { useSelector } from '@rbxts/react-reflex'
 import { selectPlayersState } from 'ReplicatedStorage/shared/state'
 import {
@@ -163,7 +163,7 @@ const TitleColumn = (props: {
 )
 
 export function PlayerList() {
-  const maxShowPlayers = 6
+  const maxShowPlayers = 5.8
   const showPlayerHeight = 40
   const showPlayerColumnWidths = [183, 66, 66, 66]
   const font = new Font(
@@ -171,11 +171,13 @@ export function PlayerList() {
     Enum.FontWeight.Medium,
     Enum.FontStyle.Normal,
   )
+  const [hoverIndex, setHoverIndex] = useState(-1)
   const playerListOpen = useSelector(selectIsPlayerListOpen)
   const playersState = useSelector(selectPlayersState())
   const players = Object.values(playersState ?? {})
   const showPlayers = math.min(players.size() || 1, maxShowPlayers)
   const showPlayerListHeight = showPlayerHeight * showPlayers
+  const totalPlayerListHeight = showPlayerHeight * players.size()
 
   return !playerListOpen ? (
     <></>
@@ -271,7 +273,7 @@ export function PlayerList() {
               Size={UDim2.fromScale(1, 1)}
             >
               <scrollingframe
-                CanvasSize={UDim2.fromOffset(0, showPlayerListHeight)}
+                CanvasSize={UDim2.fromOffset(0, totalPlayerListHeight)}
                 ScrollBarImageColor3={Color3.fromRGB(216, 216, 216)}
                 ScrollBarImageTransparency={0.5}
                 ScrollBarThickness={8}
@@ -289,9 +291,17 @@ export function PlayerList() {
                 >
                   {Object.values(playersState).map((player, i) => (
                     <frame
-                      BackgroundTransparency={1}
+                      BackgroundColor3={Color3.fromRGB(255, 255, 255)}
+                      BackgroundTransparency={i === hoverIndex ? 0.6 : 1}
                       Size={new UDim2(1, 0, 0, showPlayerHeight)}
                       Position={UDim2.fromOffset(0, i * showPlayerHeight)}
+                      Event={{
+                        MouseEnter: () => setHoverIndex(i),
+                        MouseLeave: () =>
+                          setHoverIndex((oldIndex) =>
+                            oldIndex === i ? -1 : oldIndex,
+                          ),
+                      }}
                     >
                       <frame
                         key="Content"
