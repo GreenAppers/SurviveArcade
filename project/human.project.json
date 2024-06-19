@@ -1,0 +1,203 @@
+{
+  "name": "SurviveArcade",
+  "tree": {
+    "$className": "DataModel",
+    "HttpService": {
+      "$className": "HttpService",
+      "$properties": {
+        "HttpEnabled": true
+      }
+    },
+    "Lighting": {
+      "$properties": {
+        "Ambient": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Brightness": 2.0,
+        "GlobalShadows": true,
+        "Outlines": false,
+        "TimeOfDay": "06:15:00"
+      },
+      "$path": "assets/Lighting"
+    },
+    "MaterialService": {
+      "$path": "assets/MaterialService"
+    },
+    "ReplicatedFirst": {
+      "client": {
+        "$path": "out/ReplicatedFirst/client"
+      }
+    },
+    "ReplicatedStorage": {
+      "ArcadeTables": {
+        "$className": "Folder",
+        "Pinball1": {
+          "$properties": {
+            "Tags": [
+              "ArcadeTable"
+            ],
+            "WorldPivotData": {
+              "OptionalCFrame": {
+                "position": [
+                  209.54236,
+                  56.859383,
+                  131.26396
+                ],
+                "orientation": [
+                  [
+                    0.0,
+                    0.0,
+                    -1.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ]
+                ]
+              }
+            }
+          },
+          "$path": "assets/ReplicatedStorage/ArcadeTables/Pinball1"
+        }
+      },
+      "BehaviorTrees": {
+        "$path": "assets/ReplicatedStorage/BehaviorTrees"
+      },
+      "Common": {
+        "$path": "assets/ReplicatedStorage/Common"
+      },
+      "Guis": {
+        "$path": "assets/ReplicatedStorage/Guis"
+      },
+      "Maps": {
+        "$className": "Folder",
+        "HumanMap": {
+          "$path": "assets/ReplicatedStorage/Maps/HumanMap"
+        }
+      },
+      "NPC": {
+        "$path": "assets/ReplicatedStorage/NPC"
+      },
+      "Tools": {
+        "$path": "assets/ReplicatedStorage/Tools"
+      },
+      "Tycoons": {
+        "$className": "Folder",
+        "Human": {
+          "$properties": {
+            "Tags": [
+              "Tycoon"
+            ],
+            "WorldPivotData": {
+              "OptionalCFrame": {
+                "position": [
+                  -459.7687,
+                  32.498142,
+                  -62.14059
+                ],
+                "orientation": [
+                  [
+                    1.0,
+                    0.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    1.0,
+                    0.0
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ]
+              }
+            }
+          },
+          "$attributes": {
+            "TycoonType": "Human"
+          },
+          "$path": "assets/ReplicatedStorage/Tycoons/Human"
+        }
+      },
+      "Vehicles": {
+        "$path": "assets/ReplicatedStorage/Vehicles"
+      },
+      "rbxts_include": {
+        "node_modules": {
+          "$className": "Folder",
+          "@flamework": {
+            "$path": "node_modules/@flamework"
+          },
+          "@rbxts": {
+            "$path": "node_modules/@rbxts"
+          }
+        },
+        "$path": "include"
+      },
+      "shared": {
+        "$path": "out/ReplicatedStorage/shared"
+      }
+    },
+    "ServerScriptService": {
+      "$path": "out/ServerScriptService"
+    },
+    "ServerStorage": {
+      "BehaviorTrees": {
+        "$path": "assets/ServerStorage/BehaviorTrees"
+      }
+    },
+    "SoundService": {
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    },
+    "StarterGui": {
+      "$path": "assets/StarterGui"
+    },
+    "StarterPlayer": {
+      "StarterCharacterScripts": {
+        "$path": "out/StarterPlayer/StarterCharacterScripts"
+      },
+      "StarterPlayerScripts": {
+        "$path": "out/StarterPlayer/StarterPlayerScripts"
+      }
+    },
+    "Teams": {
+      "$path": "assets/Teams"
+    },
+    "Workspace": {
+      "$properties": {
+        "CSGAsyncDynamicCollision": {
+          "Enum": 0
+        },
+        "DecreaseMinimumPartDensityMode": {
+          "Enum": 0
+        },
+        "RenderingCacheOptimizations": {
+          "Enum": 0
+        },
+        "WorldPivotData": {
+          "OptionalCFrame": null
+        }
+      },
+      "$attributes": {
+        "Rojo_Target_CurrentCamera": "3743ea1616f9b005065c6f8b00000003"
+      },
+      "$path": "assets/Workspace"
+    }
+  },
+  "globIgnorePaths": [
+    "**/package.json",
+    "**/tsconfig.json"
+  ]
+}

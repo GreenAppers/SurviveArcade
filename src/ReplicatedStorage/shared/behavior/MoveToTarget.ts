@@ -5,6 +5,7 @@ import {
   PathStatus,
   stopPathFinding,
 } from 'ReplicatedStorage/shared/utils/behavior'
+import { selectPlayerState } from '../state'
 
 export const NPC_STUCK_SECONDS = 5
 
@@ -13,6 +14,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     path,
     sourceHumanoid,
     sourceHumanoidRootPart,
+    state,
     targetAttachment,
     targetHumanoid,
     targetPart,
@@ -40,6 +42,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     return BEHAVIOR_TREE_STATUS.SUCCESS
   }
 
+  // Toggle path finding if stuck for NPC_STUCK_SECONDS
   const now = getBehaviorTime(obj)
   if (
     !sourceHumanoid?.Sit &&
@@ -52,7 +55,6 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
       now - obj.previousPositionTime < NPC_STUCK_SECONDS + 1 &&
       obj.previousPosition.sub(position).Magnitude < 1
     ) {
-      // Toggle path finding if stuck for NPC_STUCK_SECONDS
       stopPathFinding(obj)
       obj.pathEnabled = !obj.pathEnabled
     }
@@ -79,6 +81,31 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
         obj.pathStatus = PathStatus.Running
         return BEHAVIOR_TREE_STATUS.RUNNING
       } else {
+        // If inital path-finding failed, try path-finding to mid point.
+        const delta = target.sub(position)
+        if (delta.Magnitude > 10) {
+          let midTarget = position.add(delta.div(2))
+          // Try to get around blockages by adding right-vector
+          if (state && obj.Blackboard.sourceUserId) {
+            const maxRightVector = 10
+            const up =
+              selectPlayerState(obj.Blackboard.sourceUserId)(state)
+                ?.gravityUp ?? new Vector3(0, 1, 0)
+            midTarget = midTarget.add(
+              delta.Unit.Cross(up).mul(
+                maxRightVector * (math.random() * 2 - 1),
+              ),
+            )
+          }
+          // Move to midTarget
+          const midResult = path.Run(midTarget)
+          if (midResult) {
+            obj.pathStatus = PathStatus.Running
+            return BEHAVIOR_TREE_STATUS.RUNNING
+          }
+        }
+
+        // Path-finding failed
         return obj.pathStatus === PathStatus.Reached
           ? BEHAVIOR_TREE_STATUS.SUCCESS
           : BEHAVIOR_TREE_STATUS.FAIL

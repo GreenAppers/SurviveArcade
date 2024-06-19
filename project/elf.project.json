@@ -81,9 +81,6 @@
         "$className": "Folder",
         "ElfMap": {
           "$path": "assets/ReplicatedStorage/Maps/ElfMap"
-        },
-        "HumanMap": {
-          "$path": "assets/ReplicatedStorage/Maps/HumanMap"
         }
       },
       "NPC": {
@@ -130,43 +127,6 @@
             "TycoonType": "Elf"
           },
           "$path": "assets/ReplicatedStorage/Tycoons/Elf"
-        },
-        "Human": {
-          "$properties": {
-            "Tags": [
-              "Tycoon"
-            ],
-            "WorldPivotData": {
-              "OptionalCFrame": {
-                "position": [
-                  -459.7687,
-                  32.498142,
-                  -62.14059
-                ],
-                "orientation": [
-                  [
-                    1.0,
-                    0.0,
-                    0.0
-                  ],
-                  [
-                    0.0,
-                    1.0,
-                    0.0
-                  ],
-                  [
-                    0.0,
-                    0.0,
-                    1.0
-                  ]
-                ]
-              }
-            }
-          },
-          "$attributes": {
-            "TycoonType": "Human"
-          },
-          "$path": "assets/ReplicatedStorage/Tycoons/Human"
         }
       },
       "Vehicles": {

@@ -1,0 +1,38 @@
+{
+  "name": "SurviveArcade",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "rbxts_include": {
+        "node_modules": {
+          "$className": "Folder",
+          "@flamework": {
+            "$path": "node_modules/@flamework"
+          },
+          "@rbxts": {
+            "$path": "node_modules/@rbxts"
+          }
+        },
+        "$path": "include"
+      },
+      "shared": {
+        "$path": "out/ReplicatedStorage/shared"
+      }
+    },
+    "ServerScriptService": {
+      "$path": "out/ServerScriptService"
+    },
+    "StarterPlayer": {
+      "StarterCharacterScripts": {
+        "$path": "out/StarterPlayer/StarterCharacterScripts"
+      },
+      "StarterPlayerScripts": {
+        "$path": "out/StarterPlayer/StarterPlayerScripts"
+      }
+    }
+  },
+  "globIgnorePaths": [
+    "**/package.json",
+    "**/tsconfig.json"
+  ]
+}
