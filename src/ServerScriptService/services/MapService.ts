@@ -32,6 +32,11 @@ export interface MapAPI {
   scale: TycoonType
 }
 
+export const materialAttributeName = 'Material'
+
+export const materialNameMap: Record<string, Enum.Material> =
+  Object.fromEntries(Enum.Material.GetEnumItems().map((x) => [x.Name, x]))
+
 export function getArcadeTableCFrame(name: ArcadeTableName) {
   return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
 }
@@ -120,6 +125,7 @@ export class MapService implements OnStart {
     arcadeTable: ArcadeTable,
     state: ArcadeTableState,
     cframe?: CFrame,
+    restoreMaterial?: boolean,
   ) {
     const parts = findDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     for (const part of parts) {
@@ -131,9 +137,16 @@ export class MapService implements OnStart {
       } else if (string.match(part.Name, '^Floor*')[0]) {
         part.BrickColor = state.baseColor
         part.Material = state.baseMaterial
+        continue
       } else {
         part.BrickColor = state.color
       }
+      if (!restoreMaterial) continue
+      const attributeValue = part.GetAttribute(materialAttributeName)
+      const material = typeIs(attributeValue, 'string')
+        ? materialNameMap[attributeValue]
+        : undefined
+      if (material) part.Material = material
     }
     arcadeTable.Baseplate.BrickColor = state.baseColor
     arcadeTable.Baseplate.Material = state.baseMaterial
@@ -146,6 +159,7 @@ export class MapService implements OnStart {
     for (const part of parts) {
       if (part.Name === 'Baseplate') arcadeTable.PrimaryPart = part
       if (part.Transparency === 1) continue
+      part.SetAttribute(materialAttributeName, part.Material.Name)
       part.Material = Enum.Material.ForceField
     }
     arcadeTable.PivotTo(cframe)
@@ -167,14 +181,19 @@ export class MapService implements OnStart {
         nextArcadeTableName(name),
       )
     arcadeTable?.Destroy()
-    nextArcadeTable?.Destroy()
     store.resetArcadeTable(name)
     const oldState = arcadeTableState
     const tableMap = arcadeTableState?.tableMap
     if (!tableMap || !oldState) return
-    arcadeTable = this.loadArcadeTableTemplate(tableMap, name)
+    arcadeTable =
+      nextArcadeTable || this.loadArcadeTableTemplate(tableMap, name)
     arcadeTable.Name = name
-    this.setupArcadeTable(arcadeTable, oldState, getArcadeTableCFrame(name))
+    this.setupArcadeTable(
+      arcadeTable,
+      oldState,
+      nextArcadeTable ? undefined : getArcadeTableCFrame(name),
+      !!nextArcadeTable,
+    )
   }
 
   createNextTable(name: ArcadeTableName) {

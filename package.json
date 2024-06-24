@@ -13,8 +13,8 @@
     "enable-human": "cp project/human.project.json default.project.json",
     "lint": "yarn eslint src && yarn prettier --check src",
     "sync": "yarn enable-dev && rojo serve",
-    "syncback-elf": "yarn enable-elf && rojo-syncback syncback --input ./SurviveArcade.rbxl 2>&1 | tee syncback.log",
-    "syncback-human": "yarn enable-human && rojo-syncback syncback --input ./SurviveArcadeHuman.rbxl 2>&1 | tee syncback.log",
+    "syncback-elf": "yarn enable-elf && rojo syncback --input ./SurviveArcade.rbxl 2>&1 | tee syncback.log",
+    "syncback-human": "yarn enable-human && rojo syncback --input ./SurviveArcadeHuman.rbxl 2>&1 | tee syncback.log",
     "tarmac": "tarmac sync --target roblox",
     "watch": "rbxtsc -w"
   },

@@ -51,10 +51,19 @@ export class NPCComponent
     if (!upVector || (upVector.X === 0 && upVector.Y === 1 && upVector.Z === 0))
       return
 
+    const characterUpVector = this.humanoidRootPart.CFrame.UpVector
+    const rotateCharacterAxis = characterUpVector.Cross(upVector)
+    const rotateCharacterAngle = math.acos(characterUpVector.Dot(upVector))
     const gyro = new Instance('BodyGyro')
     gyro.P = 25000
     gyro.MaxTorque = new Vector3(100000, 100000, 100000)
     gyro.CFrame = this.humanoidRootPart.CFrame
+    gyro.CFrame = CFrame.fromAxisAngle(
+      rotateCharacterAxis,
+      rotateCharacterAngle,
+    )
+      .mul(this.humanoidRootPart.CFrame.Rotation)
+      .add(this.humanoidRootPart.CFrame.Position)
     gyro.Parent = this.humanoidRootPart
 
     const vForce = new Instance('VectorForce')

@@ -1,11 +1,11 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
+import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import {
   BehaviorObject,
   getBehaviorTime,
   PathStatus,
   stopPathFinding,
 } from 'ReplicatedStorage/shared/utils/behavior'
-import { selectPlayerState } from '../state'
 
 export const NPC_STUCK_SECONDS = 5
 

@@ -27,6 +27,7 @@ import { Events } from 'ServerScriptService/network'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { EXCHANGE, executeExchange } from 'ServerScriptService/utils/exchange'
+import { logAndBroadcast } from 'ServerScriptService/utils/server'
 
 @Service()
 export class ArcadeTableService implements OnStart {
@@ -181,8 +182,9 @@ export class ArcadeTableService implements OnStart {
   }
 
   onGameWon(tableName: ArcadeTableName, userId: number, score: number) {
-    this.logger.Info(
-      `${tableName} won by ${getNameFromUserId(userId, game.Workspace)} (${userId}) with ${score}`,
+    logAndBroadcast(
+      this.logger,
+      `${tableName} won by ${getNameFromUserId(userId, game.Workspace)} with ${score}`,
     )
     Promise.try(() =>
       this.playWinningSequence(game.Workspace.ArcadeTables[tableName]),

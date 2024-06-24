@@ -9,15 +9,16 @@ interface ServerEvents {
 interface ServerFunctions {}
 
 interface ClientEvents {
-  alert: (
-    message: string,
-    emoji: string,
-    color: Color3,
-    colorSecondary: Color3,
-    duration: number,
-  ) => void
   arcadeTableMaterialize: (arcadeTableName: ArcadeTableName) => void
   dispatch: (actions: Array<BroadcastAction>) => void
+  message: (
+    messageType: string,
+    message: string,
+    emoji?: string,
+    color?: Color3,
+    colorSecondary?: Color3,
+    duration?: number,
+  ) => void
   playerBounce: (position: Vector3) => void
   start: () => void
 }

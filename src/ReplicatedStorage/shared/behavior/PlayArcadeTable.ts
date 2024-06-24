@@ -4,8 +4,12 @@ import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesSt
 import { flipPinballFlipper } from 'ReplicatedStorage/shared/utils/arcade'
 import {
   BehaviorObject,
+  getBehaviorTime,
   waitAfterBehaviorCompleted,
 } from 'ReplicatedStorage/shared/utils/behavior'
+
+const flipperCooldown = 0.3
+const flipperFireDistance = 7
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const { sourceArcadeTableName, sourceHumanoid, sourceUserId, state } =
@@ -38,11 +42,23 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     const ballPosition = ball.CFrame.ToWorldSpace(new CFrame()).Position
     const leftDistance = ballPosition.sub(leftFlipperPosition).Magnitude
     const rightDistance = ballPosition.sub(rightFlipperPosition).Magnitude
-    if (leftDistance < 10 || rightDistance < 10) {
-      if (leftDistance < rightDistance) {
+    if (
+      leftDistance < flipperFireDistance ||
+      rightDistance < flipperFireDistance
+    ) {
+      const time = getBehaviorTime(obj)
+      if (
+        leftDistance < rightDistance &&
+        time - (obj.Blackboard.lastFlipperLeft ?? 0) > flipperCooldown
+      ) {
         flipPinballFlipper(arcadeTable, 'FlipperLeft')
-      } else {
+        obj.Blackboard.lastFlipperLeft = time
+      } else if (
+        time - (obj.Blackboard.lastFlipperRight ?? 0) >
+        flipperCooldown
+      ) {
         flipPinballFlipper(arcadeTable, 'FlipperRight')
+        obj.Blackboard.lastFlipperRight = time
       }
     }
   }

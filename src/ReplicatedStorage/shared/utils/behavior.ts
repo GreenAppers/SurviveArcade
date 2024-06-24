@@ -26,6 +26,8 @@ export type BehaviorPlans = Partial<Record<BehaviorPlanType, BehaviorPlan>>
 export interface BehaviorObject {
   attackDebounce?: boolean
   Blackboard: Record<string, unknown> & {
+    lastFlipperLeft?: number
+    lastFlipperRight?: number
     obstacle?: BasePart
     obstaclePos?: Vector3
     path?: SimplePath
