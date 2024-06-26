@@ -60,10 +60,7 @@ export function KillLog() {
 
       // Then fade out
       setCancelTimer(
-        updateCancelTimer(() => {
-          print('set viz false')
-          setVisible(false)
-        }, messageDuration),
+        updateCancelTimer(() => setVisible(false), messageDuration),
       )
     },
   )

@@ -1,4 +1,4 @@
-import { CombineStates } from '@rbxts/reflex'
+import { CombineProducers, CombineStates } from '@rbxts/reflex'
 import { USER_ID } from 'ReplicatedStorage/shared/constants/core'
 import {
   arcadeTablesSlice,
@@ -13,6 +13,7 @@ import {
 import { tycoonsSlice } from 'ReplicatedStorage/shared/state/TycoonState'
 
 export type SharedState = CombineStates<typeof slices>
+export type SharedStore = CombineProducers<typeof slices>
 
 export const slices = {
   arcadeTables: arcadeTablesSlice,

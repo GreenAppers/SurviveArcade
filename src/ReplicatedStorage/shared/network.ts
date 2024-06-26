@@ -1,4 +1,8 @@
 import { Networking } from '@flamework/networking'
+import {
+  ClientHandler,
+  ServerHandler,
+} from '@flamework/networking/out/events/types'
 import { BroadcastAction } from '@rbxts/reflex'
 
 interface ServerEvents {
@@ -24,6 +28,10 @@ interface ClientEvents {
 }
 
 interface ClientFunctions {}
+
+export type ClientNetwork = ClientHandler<ServerEvents, ClientEvents>
+
+export type ServerNetwork = ServerHandler<ServerEvents, ClientEvents>
 
 export const GlobalEvents = Networking.createEvent<ServerEvents, ClientEvents>()
 

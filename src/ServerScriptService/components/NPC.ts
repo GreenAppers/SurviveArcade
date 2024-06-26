@@ -183,6 +183,7 @@ export class NPCComponent
       } else {
         this.behavior.Blackboard = {
           path: this.path,
+          serverStore: store,
           sourceAttachment: this.rootRigAttachment,
           sourceHumanoid: this.humanoid,
           sourceHumanoidRootPart: this.humanoidRootPart,

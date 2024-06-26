@@ -14,7 +14,7 @@ const flipperFireDistance = 7
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const { sourceArcadeTableName, sourceHumanoid, sourceUserId, state } =
     obj.Blackboard
-  if (!sourceArcadeTableName || !sourceUserId || !state)
+  if (!sourceArcadeTableName || !sourceHumanoid || !sourceUserId || !state)
     return BEHAVIOR_TREE_STATUS.FAIL
 
   const arcadeTable = game.Workspace.ArcadeTables[sourceArcadeTableName]
@@ -24,7 +24,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   // If we just won, wait for the winning sequence to finish, then jump.
   if (arcadeTableState.status === ArcadeTableStatus.Won) {
     if (!waitAfterBehaviorCompleted(obj, 3)) return BEHAVIOR_TREE_STATUS.SUCCESS
-    if (sourceHumanoid) sourceHumanoid.Jump = true
+    sourceHumanoid.Jump = true
     return BEHAVIOR_TREE_STATUS.SUCCESS
   }
 
