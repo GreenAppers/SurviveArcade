@@ -269,6 +269,20 @@ export const playersSlice = createProducer(initialState, {
     }
   },
 
+  addPlayerKOs: (state, userID: number, amount: number) => {
+    const playerKey = getPlayerKey(userID)
+    const playerState = state[playerKey]
+    const playerKOs = playerState?.KOs || 0
+    if (!playerState) return state
+    return {
+      ...state,
+      [playerKey]: {
+        ...playerState,
+        KOs: math.max(0, playerKOs + (amount || 0)),
+      },
+    }
+  },
+
   addPlayerLoops: (
     state,
     userID: number,

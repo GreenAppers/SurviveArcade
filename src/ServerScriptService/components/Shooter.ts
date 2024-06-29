@@ -2,10 +2,11 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import FastCast from '@rbxts/fastcast'
 import { PartCache } from '@rbxts/partcache/out/class'
-import { Debris, Workspace } from '@rbxts/services'
+import { Debris, Players, Workspace } from '@rbxts/services'
 import { ShooterTag } from 'ReplicatedStorage/shared/constants/tags'
 import { randomElement } from 'ReplicatedStorage/shared/utils/object'
 import { ShooterService } from 'ServerScriptService/services/ShooterService'
+import { takeDamage } from 'ServerScriptService/utils/player'
 
 // REMEMBER: THERE'S RESOURCES TO HELP YOU AT https://etithespirit.github.io/FastCastAPIDocs
 const BULLET_SPEED = 100 // Studs/second - the speed of the bullet
@@ -114,7 +115,11 @@ export class ShooterComponent
         if (hitPart && hitPart.Parent) {
           const humanoid = hitPart.Parent.FindFirstChildOfClass('Humanoid')
           if (humanoid) {
-            humanoid.TakeDamage(10) // Damage.
+            takeDamage(
+              humanoid,
+              10,
+              Players.GetPlayerFromCharacter(this.instance.Parent)?.UserId,
+            )
           }
         }
 
@@ -143,7 +148,12 @@ export class ShooterComponent
         if (hitPart && hitPart.Parent) {
           // Test if we hit something
           const humanoid = hitPart.Parent.FindFirstChildOfClass('Humanoid') // Is there a humanoid?
-          if (humanoid) humanoid.TakeDamage(10) // Damage.
+          if (humanoid)
+            takeDamage(
+              humanoid,
+              10,
+              Players.GetPlayerFromCharacter(this.instance.Parent)?.UserId,
+            )
           this.makeParticleFX(hitPoint, normal) // Particle FX
         }
       },

@@ -17,11 +17,16 @@ import {
   PlayerData,
   PlayerState,
 } from 'ReplicatedStorage/shared/state/PlayersState'
+import { getNameFromUserId } from 'ReplicatedStorage/shared/utils/player'
+import { Events } from 'ServerScriptService/network'
 import { LeaderboardService } from 'ServerScriptService/services/LeaderboardService'
 import { TransactionService } from 'ServerScriptService/services/TransactionService'
 import { TycoonService } from 'ServerScriptService/services/TycoonService'
 import { store } from 'ServerScriptService/store'
-import { forEveryPlayer } from 'ServerScriptService/utils/player'
+import {
+  forEveryPlayer,
+  getAttackerUserId,
+} from 'ServerScriptService/utils/player'
 
 const KEY_TEMPLATE = '%d_Data'
 const DataStoreName = RunService.IsStudio() ? 'Testing' : 'Production'
@@ -193,9 +198,26 @@ export class PlayerService implements OnInit {
   }
 
   private createRespawnHandler(player: Player) {
-    player.CharacterAdded.Connect(() => {
+    player.CharacterAdded.Connect((characterModel) => {
       store.resetPlayerScore(player.UserId)
       if (player.Team) player.Team = Teams[TEAM_NAMES.UnclaimedTeam]
+
+      const humanoid = (characterModel as PlayerCharacter).Humanoid
+      humanoid.Died.Connect(() => this.handleKO(humanoid, player.Name))
     })
+  }
+
+  public handleKO(humanoid: Humanoid, playerName: string) {
+    const attackerUserId = getAttackerUserId(humanoid)
+    let message
+    if (attackerUserId) {
+      store.addPlayerKOs(attackerUserId, 1)
+      message = `${playerName} was KO'd by ${getNameFromUserId(attackerUserId, game.Workspace)}`
+    } else if ((humanoid.RootPart?.Position?.Y ?? 0) < -30) {
+      message = `${playerName} fell to their doom`
+    } else {
+      message = `${playerName} was KO'd`
+    }
+    Events.message.broadcast('log', message)
   }
 }

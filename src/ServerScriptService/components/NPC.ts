@@ -22,6 +22,7 @@ import {
   NPCPopulation,
   NPCService,
 } from 'ServerScriptService/services/NPCService'
+import { PlayerService } from 'ServerScriptService/services/PlayerService'
 import { store } from 'ServerScriptService/store'
 
 @Component({ tag: NPCTag })
@@ -40,6 +41,7 @@ export class NPCComponent
   constructor(
     protected logger: Logger,
     protected npcService: NPCService,
+    protected readonly playerService: PlayerService,
   ) {
     super()
   }
@@ -133,6 +135,8 @@ export class NPCComponent
     })
 
     this.humanoid?.Died?.Connect(() => {
+      if (this.humanoid)
+        this.playerService.handleKO(this.humanoid, this.instance.Name)
       wait(1)
       this.path?.Destroy()
       this.path = undefined

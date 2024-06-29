@@ -1,11 +1,13 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
+import { takeDamage } from 'ServerScriptService/utils/player'
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const {
     sourceHumanoid,
     sourceHumanoidRootPart,
     sourceInstance,
+    sourceUserId,
     targetHumanoid,
     targetPart,
   } = obj.Blackboard
@@ -25,7 +27,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     sourceHumanoidRootPart &&
     targetPart.Position.sub(sourceHumanoidRootPart.Position).Magnitude < 5
   ) {
-    targetHumanoid.TakeDamage(math.huge)
+    takeDamage(targetHumanoid, math.huge, sourceUserId)
   }
   wait(0.1)
   obj.attackDebounce = false

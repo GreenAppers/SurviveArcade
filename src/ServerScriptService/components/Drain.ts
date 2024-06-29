@@ -15,6 +15,7 @@ import {
 } from 'ReplicatedStorage/shared/utils/player'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
+import { takeDamage } from 'ServerScriptService/utils/player'
 
 @Component({ tag: DrainTag })
 export class DrainComponent
@@ -57,7 +58,7 @@ export class DrainComponent
         tableState?.status === ArcadeTableStatus.Active &&
         state.game.difficulty !== DIFFICULTY_TYPES.peaceful
       ) {
-        humanoid.Health = 0
+        takeDamage(humanoid, math.huge, undefined, 'drain')
       }
     }
     task.wait(0.5)

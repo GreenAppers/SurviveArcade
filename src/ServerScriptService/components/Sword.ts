@@ -7,6 +7,7 @@ import { Players } from '@rbxts/services'
 import { SwordTag } from 'ReplicatedStorage/shared/constants/tags'
 import { createAnimation } from 'ReplicatedStorage/shared/utils/instance'
 import { isTeamMate } from 'ReplicatedStorage/shared/utils/player'
+import { takeDamage } from 'ServerScriptService/utils/player'
 
 export interface SwordSwing {
   baseDamage: number
@@ -217,7 +218,7 @@ export class SwordComponent
     this.logger.Info(
       `${this.character?.Name} strikes ${hit.Parent?.Name} with ${this.active.name} for ${damage} damage`,
     )
-    humanoid.TakeDamage(damage)
+    takeDamage(humanoid, damage, this.player.UserId)
   }
 
   swing(swing: SwordSwing) {
