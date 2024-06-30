@@ -251,6 +251,10 @@ interface LoadingGui extends ScreenGui {
   }
 }
 
+interface LootBox extends Model {
+  HitBox: BasePart
+}
+
 type NPCType = 'Player' | 'Rat'
 
 interface NPC extends Model {
@@ -282,6 +286,7 @@ interface ReplicatedStorage extends Instance {
   }
   Common: Folder & {
     Beam: Beam
+    LootBox: Model
     PlaceBlockBlock: Part
     PlaceBlockPreview: Part & {
       SelectionBox: SelectionBox

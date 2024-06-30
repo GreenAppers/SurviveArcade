@@ -59,6 +59,21 @@ export class MapService implements OnStart {
 
   constructor(private readonly logger: Logger) {}
 
+  getRandomSpawnLocation(height = 5) {
+    const radius = 170
+    const randomAngle = math.random() * math.pi * 2
+    const baseplate =
+      Workspace.FindFirstChild('Map')?.FindFirstChild<BasePart>('Baseplate')
+        ?.CFrame ?? new CFrame(0, -10, 0)
+    return baseplate.ToWorldSpace(
+      new CFrame(
+        math.cos(randomAngle) * radius,
+        height,
+        math.sin(randomAngle) * radius,
+      ),
+    )
+  }
+
   getMap() {
     return this.maps[this.currentMap]
   }

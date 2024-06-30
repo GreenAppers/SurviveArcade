@@ -14,6 +14,7 @@ import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import { shuffle } from 'ReplicatedStorage/shared/utils/object'
 import { getNPCIdFromUserId } from 'ReplicatedStorage/shared/utils/player'
 import { NPCComponent } from 'ServerScriptService/components/NPC'
+import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
 import { takeDamage } from 'ServerScriptService/utils/player'
 
@@ -55,7 +56,10 @@ export class NPCService implements OnStart {
 
   nextID = 100
 
-  constructor(protected readonly logger: Logger) {}
+  constructor(
+    protected readonly logger: Logger,
+    protected readonly mapService: MapService,
+  ) {}
 
   getNextId(npcType: NPCType): [number, boolean] {
     const population = this.population[npcType]
@@ -157,20 +161,7 @@ export class NPCService implements OnStart {
         Workspace.Map.SpawnLocation.CFrame.ToWorldSpace(new CFrame(0, 4, 0)),
       )
     } else {
-      const radius = 170
-      const randomAngle = math.random() * math.pi * 2
-      const baseplate =
-        Workspace.FindFirstChild('Map')?.FindFirstChild<BasePart>('Baseplate')
-          ?.CFrame ?? new CFrame(0, -10, 0)
-      newNpc.PivotTo(
-        baseplate.ToWorldSpace(
-          new CFrame(
-            math.cos(randomAngle) * radius,
-            5,
-            math.sin(randomAngle) * radius,
-          ),
-        ),
-      )
+      newNpc.PivotTo(this.mapService.getRandomSpawnLocation())
     }
   }
 }
