@@ -1721,7 +1721,7 @@
     </Item>
     <Item class="Part" referent="28">
       <Properties>
-        <string name="Name">Baseplate</string>
+        <string name="Name">Ground</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize">AQAAAA8AAABSb2pvRXh0ZXJuYWxSZWYCIgAAACJlYzBiY2ZlMzEzNjlmMWQ0OGY0ZGU2YWRjZTgyYzIxNiI=</BinaryString>
         <float name="BackParamA">-0.5</float>
@@ -1733,18 +1733,18 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>331.11874</X>
-          <Y>149.07822</Y>
-          <Z>-282.1743</Z>
-          <R00>0.7660467</R00>
-          <R01>-0.1663857</R01>
-          <R02>-0.6208788</R02>
-          <R10>0.000000000034870044</R10>
-          <R11>0.9659175</R11>
-          <R12>-0.2588506</R12>
-          <R20>0.642786</R20>
-          <R21>0.19829148</R21>
-          <R22>0.7399373</R22>
+          <X>333.76755</X>
+          <Y>115.315</Y>
+          <Z>-285.33047</Z>
+          <R00>0.76604444</R00>
+          <R01>0</R01>
+          <R02>-0.64278764</R02>
+          <R10>0</R10>
+          <R11>1</R11>
+          <R12>0</R12>
+          <R20>0.64278764</R20>
+          <R21>0</R21>
+          <R22>0.76604444</R22>
         </CoordinateFrame>
         <bool name="CanCollide">false</bool>
         <bool name="CanQuery">true</bool>

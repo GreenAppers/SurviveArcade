@@ -38,7 +38,7 @@ export const materialNameMap: Record<string, Enum.Material> =
   Object.fromEntries(Enum.Material.GetEnumItems().map((x) => [x.Name, x]))
 
 export function getArcadeTableCFrame(name: ArcadeTableName) {
-  return game.Workspace.Map?.[name]?.Baseplate?.CFrame || new CFrame()
+  return game.Workspace.Map?.[name]?.Ground?.CFrame || new CFrame()
 }
 
 export function getTycoonCFrame(name: TycoonName) {
@@ -145,7 +145,7 @@ export class MapService implements OnStart {
     const parts = findDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     for (const part of parts) {
       if (part.Name === 'BallTemplate') continue
-      if (part.Name === 'Baseplate') {
+      if (part.Name === 'Ground') {
         arcadeTable.PrimaryPart = part
       } else if (part.Name === 'Stator') {
         part.BrickColor = state.statorColor
@@ -163,8 +163,11 @@ export class MapService implements OnStart {
         : undefined
       if (material) part.Material = material
     }
-    arcadeTable.Baseplate.BrickColor = state.baseColor
-    arcadeTable.Baseplate.Material = state.baseMaterial
+    const baseplate = arcadeTable.FindFirstChild<BasePart>('Baseplate')
+    if (baseplate) {
+      baseplate.BrickColor = state.baseColor
+      baseplate.Material = state.baseMaterial
+    }
     if (cframe) arcadeTable.PivotTo(cframe)
     arcadeTable.Parent = Workspace.ArcadeTables
   }
@@ -172,7 +175,7 @@ export class MapService implements OnStart {
   setupNextArcadeTable(arcadeTable: ArcadeTable, cframe: CFrame) {
     const parts = findDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     for (const part of parts) {
-      if (part.Name === 'Baseplate') arcadeTable.PrimaryPart = part
+      if (part.Name === 'Ground') arcadeTable.PrimaryPart = part
       if (part.Transparency === 1) continue
       part.SetAttribute(materialAttributeName, part.Material.Name)
       part.Material = Enum.Material.ForceField
@@ -206,7 +209,7 @@ export class MapService implements OnStart {
     this.setupArcadeTable(
       arcadeTable,
       oldState,
-      nextArcadeTable ? undefined : getArcadeTableCFrame(name),
+      getArcadeTableCFrame(name),
       !!nextArcadeTable,
     )
   }
@@ -222,7 +225,7 @@ export class MapService implements OnStart {
         arcadeTableNextName,
       )
     if (!state?.tableMap || arcadeTableNext) return
-    const nextArcadeTableCF = arcadeTable?.NextBaseplate?.CFrame
+    const nextArcadeTableCF = arcadeTable?.NextGround?.CFrame
     if (!nextArcadeTableCF) return
     arcadeTableNext = this.loadArcadeTableTemplate(state.tableMap, name)
     arcadeTableNext.Name = arcadeTableNextName as ArcadeTableName

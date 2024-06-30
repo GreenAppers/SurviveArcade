@@ -1,4 +1,7 @@
-import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
+import {
+  ARCADE_TABLE_TYPES,
+  BEHAVIOR_TREE_STATUS,
+} from 'ReplicatedStorage/shared/constants/core'
 import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
 import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { flipPinballFlipper } from 'ReplicatedStorage/shared/utils/arcade'
@@ -30,35 +33,38 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
 
   if (arcadeTableState.owner !== sourceUserId) return BEHAVIOR_TREE_STATUS.FAIL
 
-  const leftFlipperPosition =
-    arcadeTable.FlipperLeft.Flipper.Wedge2.CFrame.ToWorldSpace(
-      new CFrame(),
-    ).Position
-  const rightFlipperPosition =
-    arcadeTable.FlipperRight.Flipper.Wedge1.CFrame.ToWorldSpace(
-      new CFrame(),
-    ).Position
-  for (const ball of arcadeTable.Balls.GetChildren<BasePart>()) {
-    const ballPosition = ball.CFrame.ToWorldSpace(new CFrame()).Position
-    const leftDistance = ballPosition.sub(leftFlipperPosition).Magnitude
-    const rightDistance = ballPosition.sub(rightFlipperPosition).Magnitude
-    if (
-      leftDistance < flipperFireDistance ||
-      rightDistance < flipperFireDistance
-    ) {
-      const time = getBehaviorTime(obj)
+  if (arcadeTableState.tableType === ARCADE_TABLE_TYPES.Pinball) {
+    const pinballTable = arcadeTable as PinballTable
+    const leftFlipperPosition =
+      pinballTable.FlipperLeft.Flipper.Wedge2.CFrame.ToWorldSpace(
+        new CFrame(),
+      ).Position
+    const rightFlipperPosition =
+      pinballTable.FlipperRight.Flipper.Wedge1.CFrame.ToWorldSpace(
+        new CFrame(),
+      ).Position
+    for (const ball of pinballTable.Balls.GetChildren<BasePart>()) {
+      const ballPosition = ball.CFrame.ToWorldSpace(new CFrame()).Position
+      const leftDistance = ballPosition.sub(leftFlipperPosition).Magnitude
+      const rightDistance = ballPosition.sub(rightFlipperPosition).Magnitude
       if (
-        leftDistance < rightDistance &&
-        time - (obj.Blackboard.lastFlipperLeft ?? 0) > flipperCooldown
+        leftDistance < flipperFireDistance ||
+        rightDistance < flipperFireDistance
       ) {
-        flipPinballFlipper(arcadeTable, 'FlipperLeft')
-        obj.Blackboard.lastFlipperLeft = time
-      } else if (
-        time - (obj.Blackboard.lastFlipperRight ?? 0) >
-        flipperCooldown
-      ) {
-        flipPinballFlipper(arcadeTable, 'FlipperRight')
-        obj.Blackboard.lastFlipperRight = time
+        const time = getBehaviorTime(obj)
+        if (
+          leftDistance < rightDistance &&
+          time - (obj.Blackboard.lastFlipperLeft ?? 0) > flipperCooldown
+        ) {
+          flipPinballFlipper(pinballTable, 'FlipperLeft')
+          obj.Blackboard.lastFlipperLeft = time
+        } else if (
+          time - (obj.Blackboard.lastFlipperRight ?? 0) >
+          flipperCooldown
+        ) {
+          flipPinballFlipper(pinballTable, 'FlipperRight')
+          obj.Blackboard.lastFlipperRight = time
+        }
       }
     }
   }

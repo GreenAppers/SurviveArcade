@@ -10,6 +10,7 @@ import {
 } from 'ReplicatedStorage/shared/state'
 import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { flipPinballFlipper } from 'ReplicatedStorage/shared/utils/arcade'
+import { findDescendentWithPath } from 'ReplicatedStorage/shared/utils/instance'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { randomElement } from 'ReplicatedStorage/shared/utils/object'
 import { sendAlert } from 'StarterPlayer/StarterPlayerScripts/alerts'
@@ -95,7 +96,10 @@ export class ArcadeController implements OnStart {
           game.Workspace.ArcadeTables.FindFirstChild(arcadeTableName)
         const baseplate = arcadeTable?.FindFirstChild<BasePart>('Baseplate')
         const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
-        const seat = arcadeTable?.FindFirstChild<BasePart>('Seat')
+        const seat = findDescendentWithPath<Seat>(arcadeTable, [
+          'Control',
+          'Seat',
+        ])
         const camera = game.Workspace.CurrentCamera
         if (camera && baseplate && seat) {
           const up = ground?.CFrame.UpVector.Unit || new Vector3(0, 1, 0)

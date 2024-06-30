@@ -1,9 +1,9 @@
 <roblox version="4">
   <Item class="Part" referent="0">
     <Properties>
-      <string name="Name">Ground</string>
+      <string name="Name">LowerWall</string>
       <bool name="Anchored">true</bool>
-      <BinaryString name="AttributesSerialize">AQAAAA8AAABSb2pvRXh0ZXJuYWxSZWYCIgAAACJlYzBiY2ZlMzEzNjlmMWQ0OGY0ZGU2YWRjZTgyYzIxNiI=</BinaryString>
+      <BinaryString name="AttributesSerialize"></BinaryString>
       <float name="BackParamA">-0.5</float>
       <float name="BackParamB">0.5</float>
       <token name="BackSurface">0</token>
@@ -13,33 +13,33 @@
       <token name="BottomSurface">0</token>
       <token name="BottomSurfaceInput">0</token>
       <CoordinateFrame name="CFrame">
-        <X>120.226265</X>
-        <Y>-33.856888</Y>
-        <Z>130.98038</Z>
-        <R00>-0.00000004371139</R00>
-        <R01>0.25881904</R01>
-        <R02>-0.9659258</R02>
+        <X>-3.3610535</X>
+        <Y>8.145643</Y>
+        <Z>131.22559</Z>
+        <R00>0</R00>
+        <R01>0</R01>
+        <R02>-1</R02>
         <R10>0</R10>
-        <R11>0.9659258</R11>
-        <R12>0.25881904</R12>
+        <R11>1</R11>
+        <R12>0</R12>
         <R20>1</R20>
-        <R21>0.00000001131334</R21>
-        <R22>-0.00000004222196</R22>
+        <R21>0</R21>
+        <R22>0</R22>
       </CoordinateFrame>
       <bool name="CanCollide">false</bool>
       <bool name="CanQuery">true</bool>
-      <bool name="CanTouch">false</bool>
+      <bool name="CanTouch">true</bool>
       <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-      <bool name="CastShadow">false</bool>
+      <bool name="CastShadow">true</bool>
       <string name="CollisionGroup">Default</string>
       <int name="CollisionGroupId">0</int>
-      <Color3uint8 name="Color3uint8">8436699</Color3uint8>
+      <Color3uint8 name="Color3uint8">307180</Color3uint8>
       <PhysicalProperties name="CustomPhysicalProperties">
         <CustomPhysics>false</CustomPhysics>
       </PhysicalProperties>
       <bool name="DefinesCapabilities">false</bool>
       <bool name="EnableFluidForces">true</bool>
-      <token name="formFactorRaw">0</token>
+      <token name="formFactorRaw">1</token>
       <float name="FrontParamA">-0.5</float>
       <float name="FrontParamB">0.5</float>
       <token name="FrontSurface">0</token>
@@ -50,7 +50,7 @@
       <token name="LeftSurfaceInput">0</token>
       <bool name="Locked">false</bool>
       <bool name="Massless">false</bool>
-      <token name="Material">1568</token>
+      <token name="Material">256</token>
       <string name="MaterialVariantSerialized"></string>
       <CoordinateFrame name="PivotOffset">
         <X>0</X>
@@ -79,9 +79,9 @@
       </Vector3>
       <token name="shape">1</token>
       <Vector3 name="size">
-        <X>128</X>
-        <Y>1</Y>
-        <Z>256</Z>
+        <X>127.34901</X>
+        <Y>17.558247</Y>
+        <Z>0.49800003</Z>
       </Vector3>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>

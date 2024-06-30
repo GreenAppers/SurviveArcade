@@ -1,9 +1,9 @@
 <roblox version="4">
   <Item class="Part" referent="0">
     <Properties>
-      <string name="Name">NextBaseplate</string>
+      <string name="Name">LowerLeftTrack</string>
       <bool name="Anchored">true</bool>
-      <BinaryString name="AttributesSerialize">AQAAAA8AAABSb2pvRXh0ZXJuYWxSZWYCIgAAACJlYzBiY2ZlMzEzNjlmMWQ0OGY0ZGU2YWRjZTgyYzIxNiI=</BinaryString>
+      <BinaryString name="AttributesSerialize"></BinaryString>
       <float name="BackParamA">-0.5</float>
       <float name="BackParamB">0.5</float>
       <token name="BackSurface">0</token>
@@ -13,32 +13,33 @@
       <token name="BottomSurface">0</token>
       <token name="BottomSurfaceInput">0</token>
       <CoordinateFrame name="CFrame">
-        <X>343.49295</X>
-        <Y>90.32854</Y>
-        <Z>131.264</Z>
-        <R00>0</R00>
-        <R01>-0.7071068</R01>
-        <R02>-0.7071068</R02>
-        <R10>0</R10>
-        <R11>0.7071068</R11>
-        <R12>-0.7071068</R12>
-        <R20>1</R20>
-        <R21>0</R21>
-        <R22>0</R22>
+        <X>35.261536</X>
+        <Y>9.92488</Y>
+        <Z>88.84215</Z>
+        <R00>0.60875833</R00>
+        <R01>0.000000000000003821357</R01>
+        <R02>0.79335093</R02>
+        <R10>-0.0000000000000013417857</R10>
+        <R11>0.9999962</R11>
+        <R12>-0.000000000000013420545</R12>
+        <R20>-0.793354</R20>
+        <R21>0.000000000000021316165</R21>
+        <R22>0.60876065</R22>
       </CoordinateFrame>
-      <bool name="CanCollide">false</bool>
+      <bool name="CanCollide">true</bool>
       <bool name="CanQuery">true</bool>
-      <bool name="CanTouch">false</bool>
-      <bool name="CastShadow">false</bool>
-      <string name="CollisionGroup">Default</string>
-      <int name="CollisionGroupId">0</int>
-      <Color3uint8 name="Color3uint8">8436699</Color3uint8>
+      <bool name="CanTouch">true</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+      <bool name="CastShadow">true</bool>
+      <string name="CollisionGroup">Wall</string>
+      <int name="CollisionGroupId">2</int>
+      <Color3uint8 name="Color3uint8">307180</Color3uint8>
       <PhysicalProperties name="CustomPhysicalProperties">
         <CustomPhysics>false</CustomPhysics>
       </PhysicalProperties>
       <bool name="DefinesCapabilities">false</bool>
       <bool name="EnableFluidForces">true</bool>
-      <token name="formFactorRaw">0</token>
+      <token name="formFactorRaw">1</token>
       <float name="FrontParamA">-0.5</float>
       <float name="FrontParamB">0.5</float>
       <token name="FrontSurface">0</token>
@@ -78,9 +79,9 @@
       </Vector3>
       <token name="shape">1</token>
       <Vector3 name="size">
-        <X>128</X>
-        <Y>1</Y>
-        <Z>256</Z>
+        <X>53.445004</X>
+        <Y>14.367001</Y>
+        <Z>0.499</Z>
       </Vector3>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>

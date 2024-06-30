@@ -10,6 +10,7 @@ import {
   BehaviorPlan,
   BehaviorPlanType,
 } from 'ReplicatedStorage/shared/utils/behavior'
+import { findDescendentWithPath } from 'ReplicatedStorage/shared/utils/instance'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 
 export function nearestTycoonPlot(
@@ -41,10 +42,11 @@ function findTycoonTarget(
     tycoonsState,
   )
   if (!tycoonName) return undefined
-  return game.Workspace.Map[tycoonName]
-    ?.FindFirstChild('ClaimTycoon')
-    ?.FindFirstChild('Button')
-    ?.FindFirstChild<Attachment>('Attachment')
+  return findDescendentWithPath<Attachment>(game.Workspace.Map[tycoonName], [
+    'ClaimTycoon',
+    'Button',
+    'Attachment',
+  ])
 }
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {

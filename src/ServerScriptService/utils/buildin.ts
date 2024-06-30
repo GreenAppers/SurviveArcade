@@ -9,7 +9,7 @@ export function animateBuildingIn(buildingModel: Model, tweenInfo: TweenInfo) {
   // Collect BaseParts and original properties
   const parts = <BasePart[]>(
     findDescendentsWhichAre(buildingModel, 'BasePart').filter(
-      (x) => x.Name !== 'Baseplate',
+      (x) => x.Name !== 'Baseplate' && x.Name !== 'Ground',
     )
   )
   const originalProperties = parts.map((x) => ({

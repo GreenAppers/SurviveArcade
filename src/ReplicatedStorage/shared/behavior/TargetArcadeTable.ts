@@ -16,6 +16,7 @@ import {
   BehaviorPlan,
   BehaviorPlanType,
 } from 'ReplicatedStorage/shared/utils/behavior'
+import { findDescendentWithPath } from 'ReplicatedStorage/shared/utils/instance'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 
 export function nearestArcadeTable(
@@ -26,10 +27,10 @@ export function nearestArcadeTable(
   let nearestDistance = math.huge
   let nearestArcadeTableName: ArcadeTableName | ArcadeTableNextName | undefined
   const compareDistance = (name: ArcadeTableName | ArcadeTableNextName) => {
-    const arcadeSeatPosition =
-      game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(
-        name,
-      )?.FindFirstChild<Seat>('Seat')?.Position
+    const arcadeSeatPosition = findDescendentWithPath<Seat>(
+      game.Workspace.ArcadeTables,
+      [name, 'Control', 'Seat'],
+    )?.Position
     if (!arcadeSeatPosition) return
     const distance = position.sub(arcadeSeatPosition).Magnitude
     if (distance < nearestDistance) {
@@ -59,7 +60,7 @@ export function nearestCabinet(
     if (teamName && arcadeTablesState?.[name]?.teamName !== teamName) continue
     const cabinet = game.Workspace.Map[name]
     if (!cabinet) continue
-    const distance = position.sub(cabinet.Baseplate.Position).Magnitude
+    const distance = position.sub(cabinet.Ground.Position).Magnitude
     if (distance < nearestDistance) {
       nearestArcadeTableName = name
       nearestDistance = distance
@@ -132,7 +133,7 @@ export function findArcadeTableTarget(
       localPlayerTeamName,
     )
     if (!arcadeTableName) return [undefined, undefined, '']
-    targetSeat = game.Workspace.ArcadeTables[arcadeTableName]?.Seat
+    targetSeat = game.Workspace.ArcadeTables[arcadeTableName]?.Control?.Seat
     targetAttachment = targetSeat?.Attachment
   }
 

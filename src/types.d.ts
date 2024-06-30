@@ -1,3 +1,7 @@
+interface AirHockeyTable extends ArcadeTableBase {
+  Puck: Model
+}
+
 interface Airplane extends Model {
   AimPart: BasePart & {
     AirplaneGui: BillboardGui
@@ -55,22 +59,23 @@ interface ArcadeMap {
   Tycoon8?: TycoonPlot
 }
 
-interface ArcadeTable extends Model {
+type ArcadeTable = AirHockeyTable | PinballTable
+
+interface ArcadeTableBase extends Model {
   Backbox?: ArcadeTableBackbox
-  Balls: Folder
   Barrier?: BasePart
+  Baseplate?: BasePart
   Box: Folder & {
     UpperWall?: BasePart
   }
-  Baseplate: BasePart
-  FlipperLeft: Flipper
-  FlipperRight: Flipper
   Ground: BasePart
   Name: ArcadeTableName
-  NextBaseplate: BasePart
+  NextGround: BasePart
   PlayZone: BasePart
-  Seat: Seat & {
-    Attachment: Attachment
+  Control: Model & {
+    Seat: Seat & {
+      Attachment: Attachment
+    }
   }
 }
 
@@ -110,7 +115,7 @@ type ArcadeTableNextName =
   | 'Table3Next'
   | 'Table4Next'
 
-type ArcadeTableMap = 'Pinball1'
+type ArcadeTableMap = 'Pinball1' | 'AirHockey1'
 
 interface BlockBreaker extends Tool {
   BreakBlock: RemoteFunction
@@ -133,7 +138,7 @@ interface BlockPlacerAttributes {
 }
 
 interface Cabinet extends Model {
-  Baseplate: BasePart
+  Ground: BasePart
   Truss1: CabinetTruss
   Truss2: CabinetTruss
   Truss3: CabinetTruss
@@ -255,6 +260,13 @@ interface LootBox extends Model {
   HitBox: BasePart
 }
 
+interface PinballTable extends ArcadeTableBase {
+  Balls: Folder
+  Baseplate: BasePart
+  FlipperLeft: Flipper
+  FlipperRight: Flipper
+}
+
 type NPCType = 'Player' | 'Rat'
 
 interface NPC extends Model {
@@ -279,7 +291,8 @@ interface PlayerSpace extends Folder {
 
 interface ReplicatedStorage extends Instance {
   ArcadeTables: Folder & {
-    Pinball1: ArcadeTable
+    AirHockey1: AirHockeyTable
+    Pinball1: PinballTable
   }
   BehaviorTrees: Folder & {
     Player: Folder

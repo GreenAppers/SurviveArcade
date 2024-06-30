@@ -77,11 +77,7 @@ export class ArcadeTableService implements OnStart {
               previousArcadeTableState?.status !== ArcadeTableStatus.Won &&
               arcadeTableState.owner
             )
-              this.onGameWon(
-                tableName,
-                arcadeTableState.owner,
-                arcadeTableState.score,
-              )
+              this.onGameWon(tableName, arcadeTableState)
             continue
           }
           if (arcadeTableState.owner === previousArcadeTableState?.owner)
@@ -181,10 +177,12 @@ export class ArcadeTableService implements OnStart {
       playSoundId(flipper, audio.FlipperSound.SoundId)
   }
 
-  onGameWon(tableName: ArcadeTableName, userId: number, score: number) {
+  onGameWon(tableName: ArcadeTableName, arcadeTableState: ArcadeTableState) {
+    const userId = arcadeTableState.owner
+    const score = arcadeTableState.score
     logAndBroadcast(
       this.logger,
-      `${tableName} won by ${getNameFromUserId(userId, game.Workspace)} with ${score}`,
+      `${tableName}.${arcadeTableState.sequence} won by ${getNameFromUserId(userId, game.Workspace)} with ${score}`,
     )
     Promise.try(() =>
       this.playWinningSequence(game.Workspace.ArcadeTables[tableName]),
@@ -292,7 +290,10 @@ export class ArcadeTableService implements OnStart {
     const box = arcadeTable.FindFirstChild('Box')
     box?.Destroy()
 
-    const balls = findDescendentsWithTag(arcadeTable.Balls, BallTag)
+    const balls = findDescendentsWithTag(
+      arcadeTable.FindFirstChild('Balls'),
+      BallTag,
+    )
     for (const ball of balls) ball.Destroy()
 
     if (backbox) {

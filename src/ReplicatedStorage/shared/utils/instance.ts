@@ -43,7 +43,24 @@ export function findDescendentsWhichAre<X = Instance>(
   return descendents as X[]
 }
 
-export function findDescendentsWithTag(ancestor: Instance, tagName: string) {
+export function findDescendentWithPath<X = Instance>(
+  ancestor: Instance | undefined,
+  path?: string[],
+): X | undefined {
+  if (!ancestor || !path?.size()) return undefined
+  let descendent: Instance | undefined = ancestor
+  for (const name of path) {
+    descendent = descendent.FindFirstChild(name)
+    if (!descendent) return undefined
+  }
+  return descendent as X
+}
+
+export function findDescendentsWithTag(
+  ancestor: Instance | undefined,
+  tagName: string,
+) {
+  if (!ancestor) return []
   assert(typeOf(ancestor) === 'Instance', 'Expected Instance ancestor')
   const descendents = []
   for (const descendent of ancestor.GetDescendants()) {
