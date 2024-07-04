@@ -59,7 +59,7 @@ interface ArcadeMap {
   Tycoon8?: TycoonPlot
 }
 
-type ArcadeTable = AirHockeyTable | PinballTable
+type ArcadeTable = AirHockeyTable | FoosballTable | PinballTable
 
 interface ArcadeTableBase extends Model {
   Backbox?: ArcadeTableBackbox
@@ -115,7 +115,7 @@ type ArcadeTableNextName =
   | 'Table3Next'
   | 'Table4Next'
 
-type ArcadeTableMap = 'Pinball1' | 'AirHockey1'
+type ArcadeTableMap = 'Pinball1' | 'Foosball1' | 'AirHockey1'
 
 interface BlockBreaker extends Tool {
   BreakBlock: RemoteFunction
@@ -215,6 +215,10 @@ interface Flipper extends Model {
   }
 }
 
+interface FoosballTable extends ArcadeTableBase {
+  Balls: Folder
+}
+
 interface Instance {
   FindFirstChild<X = Instance>(
     this: Instance,
@@ -292,6 +296,7 @@ interface PlayerSpace extends Folder {
 interface ReplicatedStorage extends Instance {
   ArcadeTables: Folder & {
     AirHockey1: AirHockeyTable
+    Foosball1: FoosballTable
     Pinball1: PinballTable
   }
   BehaviorTrees: Folder & {

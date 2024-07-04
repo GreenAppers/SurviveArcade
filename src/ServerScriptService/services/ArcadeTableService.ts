@@ -59,7 +59,7 @@ export class ArcadeTableService implements OnStart {
     return store.claimArcadeTable(tableName, userId)
   }
 
-  startArcadeTablesClaimedSubscription() {
+  startArcadeTablesSubscription() {
     store.subscribe(
       selectArcadeTablesState(),
       (arcadeTablesState, previousArcadeTablesState) => {
@@ -67,11 +67,15 @@ export class ArcadeTableService implements OnStart {
           arcadeTablesState,
         )) {
           const previousArcadeTableState = previousArcadeTablesState[tableName]
+
+          // Handle score changed
           if (
             arcadeTableState.score !== previousArcadeTableState?.score &&
             arcadeTableState.owner
           )
             this.onScoreChanged(tableName, arcadeTableState)
+
+          // Handle game won
           if (arcadeTableState.status === ArcadeTableStatus.Won) {
             if (
               previousArcadeTableState?.status !== ArcadeTableStatus.Won &&
@@ -80,22 +84,31 @@ export class ArcadeTableService implements OnStart {
               this.onGameWon(tableName, arcadeTableState)
             continue
           }
-          if (arcadeTableState.owner === previousArcadeTableState?.owner)
-            continue
-          if (arcadeTableState.owner) {
-            this.onPlayerClaimed(
-              arcadeTableState.owner,
-              tableName,
-              arcadeTableState,
-            )
-            this.onGameStart(tableName, arcadeTableState.owner)
-          } else if (previousArcadeTableState?.owner) {
-            this.onPlayerClaimEnded(
-              previousArcadeTableState.owner,
-              tableName,
-              arcadeTableState,
-              previousArcadeTableState,
-            )
+
+          // Handle claim change
+          if (arcadeTableState.owner !== previousArcadeTableState?.owner) {
+            if (arcadeTableState.owner) {
+              this.onPlayerClaimed(
+                arcadeTableState.owner,
+                tableName,
+                arcadeTableState,
+              )
+              this.onGameStart(tableName, arcadeTableState.owner)
+            } else if (previousArcadeTableState?.owner) {
+              this.onPlayerClaimEnded(
+                previousArcadeTableState.owner,
+                tableName,
+                arcadeTableState,
+                previousArcadeTableState,
+              )
+            }
+          }
+
+          // Handle table change
+          if (
+            previousArcadeTableState?.tableMap !== arcadeTableState?.tableMap
+          ) {
+            this.mapService.resetTableWithState(tableName, arcadeTableState)
           }
         }
       },
@@ -110,7 +123,7 @@ export class ArcadeTableService implements OnStart {
   }
 
   onStart() {
-    this.startArcadeTablesClaimedSubscription()
+    this.startArcadeTablesSubscription()
     this.startArcadeTablesControlEventHandler()
     const arcadeTablesSelector = selectArcadeTablesState()
 

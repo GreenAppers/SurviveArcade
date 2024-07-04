@@ -112,17 +112,13 @@ export class MapService implements OnStart {
           case 'Table2':
           case 'Table3':
           case 'Table4':
-            this.loadArcadeTable(map, tableName, state)
+            this.loadArcadeTable(tableName, state)
         }
       }
     }
   }
 
-  loadArcadeTable(
-    mapAPI: MapAPI,
-    tableName: ArcadeTableName,
-    state: ArcadeTableState,
-  ) {
+  loadArcadeTable(tableName: ArcadeTableName, state: ArcadeTableState) {
     if (!state.tableMap) return
     const arcadeTable = this.loadArcadeTableTemplate(state.tableMap, tableName)
     this.setupArcadeTable(arcadeTable, state, getArcadeTableCFrame(tableName))
@@ -192,6 +188,13 @@ export class MapService implements OnStart {
   resetTable(name: ArcadeTableName) {
     const arcadeTablesState = selectArcadeTablesState()(store.getState())
     const arcadeTableState = arcadeTablesState[name]
+    return this.resetTableWithState(name, arcadeTableState)
+  }
+
+  resetTableWithState(
+    name: ArcadeTableName,
+    arcadeTableState: ArcadeTableState,
+  ) {
     let arcadeTable =
       game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(name)
     const nextArcadeTable =

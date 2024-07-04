@@ -1,6 +1,10 @@
 import Object from '@rbxts/object-utils'
 import { createProducer } from '@rbxts/reflex'
 import { ARCADE_TABLE_TYPES } from 'ReplicatedStorage/shared/constants/core'
+import {
+  firstArcadeTableMap,
+  nextArcadeTableType,
+} from 'ReplicatedStorage/shared/utils/arcade'
 
 export enum ArcadeTableStatus {
   Unmaterialized,
@@ -158,6 +162,26 @@ const initialState: ArcadeTablesState = {
 }
 
 export const arcadeTablesSlice = createProducer(initialState, {
+  changeArcadeTable: (state, name: ArcadeTableName) => {
+    const prevTable = state[name]
+    if (
+      !prevTable ||
+      prevTable.owner ||
+      prevTable.sequence !== 0 ||
+      prevTable.status !== ArcadeTableStatus.Active
+    )
+      return state
+    const tableType = nextArcadeTableType(prevTable.tableType)
+    return {
+      ...state,
+      [name]: {
+        ...prevTable,
+        tableType,
+        tableMap: firstArcadeTableMap(tableType),
+      },
+    }
+  },
+
   claimArcadeTable: (state, name: ArcadeTableName, owner?: number) => {
     const prevTable = state[name]
     return !prevTable || prevTable.owner === owner || (owner && prevTable.owner)
@@ -199,10 +223,17 @@ export const arcadeTablesSlice = createProducer(initialState, {
     }
   },
 
-  resetArcadeTable: (state, name: ArcadeTableName) => ({
-    ...state,
-    [name]: { ...initialState[name] },
-  }),
+  resetArcadeTable: (state, name: ArcadeTableName) => {
+    const lastState = state[name]
+    return {
+      ...state,
+      [name]: {
+        ...initialState[name],
+        tableType: lastState.tableType,
+        tableMap: lastState.tableMap,
+      },
+    }
+  },
 
   resetArcadeTables: () => ({ ...initialState }),
 

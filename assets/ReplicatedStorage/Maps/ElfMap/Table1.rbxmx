@@ -31,7 +31,7 @@
       <Ref name="PrimaryPart">1</Ref>
       <float name="ScaleFactor">14.45038</float>
       <int64 name="SourceAssetId">5221331016</int64>
-      <BinaryString name="Tags"></BinaryString>
+      <BinaryString name="Tags">QXJjYWRlQ2FiaW5ldA==</BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>261.25842</X>
@@ -990,9 +990,61 @@
             <Z>0</Z>
           </Vector3>
         </Properties>
+        <Item class="Attachment" referent="14">
+          <Properties>
+            <string name="Name">Attachment</string>
+            <BinaryString name="AttributesSerialize"></BinaryString>
+            <CoordinateFrame name="CFrame">
+              <X>0</X>
+              <Y>0</Y>
+              <Z>0</Z>
+              <R00>1</R00>
+              <R01>0</R01>
+              <R02>0</R02>
+              <R10>0</R10>
+              <R11>1</R11>
+              <R12>0</R12>
+              <R20>0</R20>
+              <R21>0</R21>
+              <R22>1</R22>
+            </CoordinateFrame>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+            <bool name="DefinesCapabilities">false</bool>
+            <int64 name="SourceAssetId">-1</int64>
+            <BinaryString name="Tags"></BinaryString>
+            <bool name="Visible">false</bool>
+          </Properties>
+          <Item class="ProximityPrompt" referent="15">
+            <Properties>
+              <string name="Name">ProximityPrompt</string>
+              <string name="ActionText">Interact</string>
+              <BinaryString name="AttributesSerialize"></BinaryString>
+              <bool name="AutoLocalize">true</bool>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+              <bool name="ClickablePrompt">true</bool>
+              <bool name="DefinesCapabilities">false</bool>
+              <bool name="Enabled">true</bool>
+              <token name="Exclusivity">0</token>
+              <token name="GamepadKeyCode">1000</token>
+              <float name="HoldDuration">1</float>
+              <token name="KeyboardKeyCode">101</token>
+              <float name="MaxActivationDistance">10</float>
+              <string name="ObjectText">Change Table</string>
+              <bool name="RequiresLineOfSight">false</bool>
+              <Ref name="RootLocalizationTable">null</Ref>
+              <int64 name="SourceAssetId">-1</int64>
+              <token name="Style">0</token>
+              <BinaryString name="Tags"></BinaryString>
+              <Vector2 name="UIOffset">
+                <X>0</X>
+                <Y>0</Y>
+              </Vector2>
+            </Properties>
+          </Item>
+        </Item>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="14">
+    <Item class="TrussPart" referent="16">
       <Properties>
         <string name="Name">Truss1</string>
         <bool name="Anchored">true</bool>
@@ -1088,7 +1140,7 @@
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="15">
+      <Item class="Attachment" referent="17">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1113,7 +1165,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="16">
+      <Item class="Attachment" referent="18">
         <Properties>
           <string name="Name">TopAttachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1139,7 +1191,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="Part" referent="17">
+    <Item class="Part" referent="19">
       <Properties>
         <string name="Name">Leg1</string>
         <bool name="Anchored">true</bool>
@@ -1236,7 +1288,7 @@
           <Z>0</Z>
         </Vector3>
       </Properties>
-      <Item class="Weld" referent="18">
+      <Item class="Weld" referent="20">
         <Properties>
           <string name="Name">Weld</string>
           <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDBmNmIRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwZjdh</BinaryString>
@@ -1272,13 +1324,13 @@
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <Ref name="Part0">1</Ref>
-          <Ref name="Part1">17</Ref>
+          <Ref name="Part1">19</Ref>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="19">
+    <Item class="TrussPart" referent="21">
       <Properties>
         <string name="Name">Truss2</string>
         <bool name="Anchored">true</bool>
@@ -1374,7 +1426,7 @@
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="20">
+      <Item class="Attachment" referent="22">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1399,7 +1451,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="21">
+      <Item class="Attachment" referent="23">
         <Properties>
           <string name="Name">TopAttachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1425,7 +1477,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="22">
+    <Item class="TrussPart" referent="24">
       <Properties>
         <string name="Name">Truss3</string>
         <bool name="Anchored">true</bool>
@@ -1521,7 +1573,7 @@
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="23">
+      <Item class="Attachment" referent="25">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1546,7 +1598,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="24">
+      <Item class="Attachment" referent="26">
         <Properties>
           <string name="Name">TopAttachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1572,7 +1624,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="TrussPart" referent="25">
+    <Item class="TrussPart" referent="27">
       <Properties>
         <string name="Name">Truss4</string>
         <bool name="Anchored">true</bool>
@@ -1668,7 +1720,7 @@
         </Vector3>
         <token name="style">0</token>
       </Properties>
-      <Item class="Attachment" referent="26">
+      <Item class="Attachment" referent="28">
         <Properties>
           <string name="Name">Attachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1693,7 +1745,7 @@
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
-      <Item class="Attachment" referent="27">
+      <Item class="Attachment" referent="29">
         <Properties>
           <string name="Name">TopAttachment</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
@@ -1719,7 +1771,7 @@
         </Properties>
       </Item>
     </Item>
-    <Item class="Part" referent="28">
+    <Item class="Part" referent="30">
       <Properties>
         <string name="Name">Ground</string>
         <bool name="Anchored">true</bool>
