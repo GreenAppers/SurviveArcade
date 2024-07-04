@@ -1,14 +1,13 @@
 import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
-import { Players, Workspace } from '@rbxts/services'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
 import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTablesState,
-  selectArcadeTableState,
+  selectArcadeTableType,
   selectPlayerScore,
 } from 'ReplicatedStorage/shared/state'
 import {
@@ -16,10 +15,11 @@ import {
   ArcadeTableState,
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { mechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
 import {
   findDescendentsWithTag,
-  setNetworkOwner,
+  findDescendentWithPath,
 } from 'ReplicatedStorage/shared/utils/instance'
 import { getNameFromUserId } from 'ReplicatedStorage/shared/utils/player'
 import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
@@ -31,7 +31,6 @@ import { logAndBroadcast } from 'ServerScriptService/utils/server'
 
 @Service()
 export class ArcadeTableService implements OnStart {
-  ballNumber = 1
   scoreboardCharacters = 14
 
   constructor(
@@ -51,8 +50,7 @@ export class ArcadeTableService implements OnStart {
 
   claimArcadeTable(tableName: ArcadeTableName, userId?: number) {
     if (!userId) return store.claimArcadeTable(tableName, undefined)
-    const state = store.getState()
-    const tableType = selectArcadeTableState(tableName)(state).tableType
+    const tableType = store.getState(selectArcadeTableType(tableName))
     const exchange = EXCHANGE[tableType]
     if (!executeExchange(userId, exchange)) return undefined
     store.addPlayerTablePlays(userId)
@@ -116,9 +114,8 @@ export class ArcadeTableService implements OnStart {
   }
 
   startArcadeTablesControlEventHandler() {
-    // Play sound on flipper flip.
-    Events.flipperFlip.connect((_player, tableName, flipperName) =>
-      this.onFlipperFlipped(tableName, flipperName),
+    Events.arcadeTableEvent.connect((_player, tableName, partPath, soundName) =>
+      this.onTableEvent(tableName, partPath, soundName),
     )
   }
 
@@ -167,27 +164,29 @@ export class ArcadeTableService implements OnStart {
 
   onPlayerClaimed(
     _userId: number,
-    _tableName: string,
+    _tableName: ArcadeTableName,
     _tableState: ArcadeTableState,
   ) {}
 
   onPlayerClaimEnded(
     userId: number,
-    tableName: string,
+    tableName: ArcadeTableName,
     _tableState: ArcadeTableState,
     previousTableState: ArcadeTableState,
   ) {
     this.onGameOver(tableName, userId, previousTableState.score)
   }
 
-  onFlipperFlipped(tableName: string, flipperName: string) {
+  onTableEvent(tableName: string, partPath: string[], soundName?: string) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
-    const flipper = arcadeTable?.FindFirstChild(flipperName)
-    const audio = arcadeTable?.FindFirstChild<
-      Folder & { FlipperSound?: Sound }
-    >('Audio')
-    if (flipper && audio?.FlipperSound)
-      playSoundId(flipper, audio.FlipperSound.SoundId)
+    const part = findDescendentWithPath(arcadeTable, partPath)
+    if (part && soundName) {
+      const sound = findDescendentWithPath<Sound>(arcadeTable, [
+        'Audio',
+        soundName,
+      ])
+      if (sound) playSoundId(part, sound.SoundId)
+    }
   }
 
   onGameWon(tableName: ArcadeTableName, arcadeTableState: ArcadeTableState) {
@@ -205,59 +204,24 @@ export class ArcadeTableService implements OnStart {
     })
   }
 
-  onGameOver(tableName: string, userId: number, score: number) {
-    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
-    const flipperLeft = arcadeTable?.FindFirstChild<Flipper>('FlipperLeft')
-    const flipperRight = arcadeTable?.FindFirstChild<Flipper>('FlipperRight')
-    const spinnerLeft = arcadeTable?.FindFirstChild<Spinner>('SpinnerLeft')
-    if (!userId) {
-      if (flipperLeft) setNetworkOwner(flipperLeft, undefined)
-      if (flipperRight) setNetworkOwner(flipperRight, undefined)
-      if (spinnerLeft) setNetworkOwner(spinnerLeft, undefined)
-      return
-    }
+  onGameOver(tableName: ArcadeTableName, userId: number, score: number) {
+    const tableType = store.getState(selectArcadeTableType(tableName))
+    mechanics[tableType].onGameOver(tableName, userId)
+
     const payout = math.floor(score / 1000)
     if (payout >= 1)
       store.addPlayerCurrency(userId, CURRENCY_TYPES.Tickets, payout)
   }
 
-  onGameStart(tableName: string, userId: number) {
-    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
-    const balls = arcadeTable?.FindFirstChild('Balls')
-    const ballTemplate = arcadeTable?.FindFirstChild<BasePart>('BallTemplate')
-    const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
-    const ball = ballTemplate?.Clone()
-    const player = Players.GetPlayerByUserId(userId)
-    if (ball) {
-      this.ballNumber = this.ballNumber + 1
-      ball.Name = `Ball${this.ballNumber}`
-      ball.Transparency = 0
-      ball.CanCollide = true
-      ball.Anchored = false
-      ball.Parent = balls
-      const sparks = ball.FindFirstChild<ParticleEmitter>('Sparks')
-      const light = ball.FindFirstChild<PointLight>('Light')
-      const gravity = ball.FindFirstChild<VectorForce>('VectorForce')
-      if (sparks) sparks.Enabled = true
-      if (light) light.Enabled = true
-      if (gravity && ground) {
-        gravity.Force = new Vector3(0, 1, 0)
-          .sub(ground.CFrame.UpVector.Unit)
-          .mul(Workspace.Gravity * ball.Mass)
-      }
-      if (player) setNetworkOwner(ball, player)
-    }
-    if (player) {
-      const flipperLeft = arcadeTable?.FindFirstChild<Flipper>('FlipperLeft')
-      const flipperRight = arcadeTable?.FindFirstChild<Flipper>('FlipperRight')
-      const spinnerLeft = arcadeTable?.FindFirstChild<Spinner>('SpinnerLeft')
-      if (flipperLeft) setNetworkOwner(flipperLeft, player)
-      if (flipperRight) setNetworkOwner(flipperRight, player)
-      if (spinnerLeft) setNetworkOwner(spinnerLeft, player)
-    }
+  onGameStart(tableName: ArcadeTableName, userId: number) {
+    const tableType = store.getState(selectArcadeTableType(tableName))
+    mechanics[tableType].onGameStart(tableName, userId)
   }
 
-  onScoreChanged(tableName: string, arcadeTableState: ArcadeTableState) {
+  onScoreChanged(
+    tableName: ArcadeTableName,
+    arcadeTableState: ArcadeTableState,
+  ) {
     // Find the scoreboard on the arcade table.
     const arcadeTable =
       game.Workspace.ArcadeTables.FindFirstChild<ArcadeTable>(tableName)

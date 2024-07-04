@@ -1,18 +1,11 @@
-import {
-  ARCADE_TABLE_TYPES,
-  BEHAVIOR_TREE_STATUS,
-} from 'ReplicatedStorage/shared/constants/core'
+import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
 import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
 import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
-import { flipPinballFlipper } from 'ReplicatedStorage/shared/utils/arcade'
+import { mechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import {
   BehaviorObject,
-  getBehaviorTime,
   waitAfterBehaviorCompleted,
 } from 'ReplicatedStorage/shared/utils/behavior'
-
-const flipperCooldown = 0.3
-const flipperFireDistance = 7
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const { sourceArcadeTableName, sourceHumanoid, sourceUserId, state } =
@@ -33,41 +26,11 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
 
   if (arcadeTableState.owner !== sourceUserId) return BEHAVIOR_TREE_STATUS.FAIL
 
-  if (arcadeTableState.tableType === ARCADE_TABLE_TYPES.Pinball) {
-    const pinballTable = arcadeTable as PinballTable
-    const leftFlipperPosition =
-      pinballTable.FlipperLeft.Flipper.Wedge2.CFrame.ToWorldSpace(
-        new CFrame(),
-      ).Position
-    const rightFlipperPosition =
-      pinballTable.FlipperRight.Flipper.Wedge1.CFrame.ToWorldSpace(
-        new CFrame(),
-      ).Position
-    for (const ball of pinballTable.Balls.GetChildren<BasePart>()) {
-      const ballPosition = ball.CFrame.ToWorldSpace(new CFrame()).Position
-      const leftDistance = ballPosition.sub(leftFlipperPosition).Magnitude
-      const rightDistance = ballPosition.sub(rightFlipperPosition).Magnitude
-      if (
-        leftDistance < flipperFireDistance ||
-        rightDistance < flipperFireDistance
-      ) {
-        const time = getBehaviorTime(obj)
-        if (
-          leftDistance < rightDistance &&
-          time - (obj.Blackboard.lastFlipperLeft ?? 0) > flipperCooldown
-        ) {
-          flipPinballFlipper(pinballTable, 'FlipperLeft')
-          obj.Blackboard.lastFlipperLeft = time
-        } else if (
-          time - (obj.Blackboard.lastFlipperRight ?? 0) >
-          flipperCooldown
-        ) {
-          flipPinballFlipper(pinballTable, 'FlipperRight')
-          obj.Blackboard.lastFlipperRight = time
-        }
-      }
-    }
-  }
+  mechanics[arcadeTableState.tableType].onNPCPlayingBehavior(
+    arcadeTable.Name,
+    sourceUserId,
+    obj,
+  )
 
   return BEHAVIOR_TREE_STATUS.RUNNING
 }

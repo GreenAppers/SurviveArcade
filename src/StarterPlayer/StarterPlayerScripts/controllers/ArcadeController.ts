@@ -5,11 +5,12 @@ import { USER_NAME } from 'ReplicatedStorage/shared/constants/core'
 import { gameEmoticons } from 'ReplicatedStorage/shared/constants/palette'
 import {
   selectArcadeTableNameOwnedBy,
+  selectArcadeTableType,
   selectLocalPlayerArcadeTableStatus,
   selectLocalPlayerLoops,
 } from 'ReplicatedStorage/shared/state'
 import { ArcadeTableStatus } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
-import { flipPinballFlipper } from 'ReplicatedStorage/shared/utils/arcade'
+import { mechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import { findDescendentWithPath } from 'ReplicatedStorage/shared/utils/instance'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
 import { randomElement } from 'ReplicatedStorage/shared/utils/object'
@@ -19,8 +20,7 @@ import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 
 @Controller({})
 export class ArcadeController implements OnStart {
-  fullForceKeypress = 0
-  myArcadeTableName = ''
+  myArcadeTableName: ArcadeTableName | undefined
 
   onStart() {
     const player = Players.LocalPlayer
@@ -34,27 +34,18 @@ export class ArcadeController implements OnStart {
 
   startArcadeTableControlsHandler(player: Player) {
     UserInputService.InputBegan.Connect((input, _processed) => {
-      if (input.UserInputType === Enum.UserInputType.Keyboard) {
-        let flip = ''
-        if (input.KeyCode === Enum.KeyCode.A) flip = 'FlipperLeft'
-        else if (input.KeyCode === Enum.KeyCode.D) flip = 'FlipperRight'
-        if (flip) {
-          let force = 1
-          if (this.fullForceKeypress) {
-            const startTick = tick()
-            let keyHeldDownFor = 0
-            while (
-              keyHeldDownFor < this.fullForceKeypress &&
-              UserInputService.IsKeyDown(input.KeyCode)
-            ) {
-              keyHeldDownFor = tick() - startTick
-              task.wait()
-            }
-            force = math.max(1, keyHeldDownFor / this.fullForceKeypress)
-          }
-          this.flipFlipper(player, flip, force)
-        }
-      }
+      const tableName = this.myArcadeTableName
+      if (!tableName || !(player.Character as PlayerCharacter)?.Humanoid?.Sit)
+        return
+
+      const tableType = store.getState(selectArcadeTableType(tableName))
+      mechanics[tableType].onClientInputBegan(
+        tableName,
+        player.UserId,
+        Events,
+        input,
+        UserInputService,
+      )
     })
   }
 
@@ -78,7 +69,7 @@ export class ArcadeController implements OnStart {
     store.subscribe(
       selectArcadeTableNameOwnedBy(player.UserId),
       (arcadeTableName) => {
-        this.myArcadeTableName = arcadeTableName || ''
+        this.myArcadeTableName = arcadeTableName
         if (!arcadeTableName) {
           const camera = game.Workspace.CurrentCamera
           if (camera) camera.CameraType = Enum.CameraType.Custom
@@ -155,15 +146,5 @@ export class ArcadeController implements OnStart {
         })
       },
     )
-  }
-
-  flipFlipper(player: Player, flipperName: string, force: number) {
-    if (!(player.Character as PlayerCharacter)?.Humanoid?.Sit) return
-    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild<ArcadeTable>(
-      this.myArcadeTableName,
-    )
-    if (!arcadeTable) return
-    flipPinballFlipper(arcadeTable, flipperName, force)
-    Events.flipperFlip.fire(arcadeTable.Name, flipperName)
   }
 }

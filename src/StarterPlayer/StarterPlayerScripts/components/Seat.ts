@@ -2,7 +2,7 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds'
 import { SeatTag } from 'ReplicatedStorage/shared/constants/tags'
-import { selectArcadeTableState } from 'ReplicatedStorage/shared/state'
+import { selectArcadeTableType } from 'ReplicatedStorage/shared/state'
 import { getArcadeTableFromDescendent } from 'ReplicatedStorage/shared/utils/arcade'
 import { store } from 'StarterPlayer/StarterPlayerScripts/store'
 import {
@@ -25,10 +25,7 @@ export class SeatComponent extends BaseComponent<{}, Seat> implements OnStart {
         .GetPlayerFromCharacter(character)
       if (!player) return
 
-      const state = store.getState()
-      const tableType = selectArcadeTableState(arcadeTable.Name)(
-        state,
-      ).tableType
+      const tableType = store.getState(selectArcadeTableType(arcadeTable.Name))
       if (!testExchange(player.UserId, EXCHANGE[tableType])) return
 
       const audio = arcadeTable.FindFirstChild<{ SeatSound?: Sound }>('Audio')

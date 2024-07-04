@@ -6,7 +6,11 @@ import {
 import { BroadcastAction } from '@rbxts/reflex'
 
 interface ServerEvents {
-  flipperFlip: (tableName: string, flipper: string) => void
+  arcadeTableEvent: (
+    tableName: string,
+    partPath: string[],
+    soundName?: string,
+  ) => void
   start: () => void
 }
 

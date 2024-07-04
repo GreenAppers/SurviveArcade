@@ -29,6 +29,10 @@ export const selectArcadeTableState =
   (tableName: ArcadeTableName) => (state: SharedState) =>
     state.arcadeTables[tableName]
 
+export const selectArcadeTableType =
+  (tableName: ArcadeTableName) => (state: SharedState) =>
+    state.arcadeTables[tableName].tableType
+
 export const selectArcadeTableNameOwnedBy =
   (userId: number) => (state: SharedState) =>
     findArcadeTableNameOwnedBy(state.arcadeTables, userId)
