@@ -33,10 +33,13 @@ export function findFirstChildWithAttributeValue<X = Instance>(
 export function findDescendentsWhichAre<X = Instance>(
   ancestor: Instance,
   className: keyof Instances,
+  options?: { includeSelf?: boolean },
 ) {
   assert(typeOf(ancestor) === 'Instance', 'Expected Instance ancestor')
   assert(typeOf(className) === 'string', 'Expected string className')
   const descendents = []
+  if (options?.includeSelf && ancestor.IsA(className))
+    descendents.push(ancestor)
   for (const descendent of ancestor.GetDescendants()) {
     if (descendent.IsA(className)) descendents.push(descendent)
   }
@@ -100,4 +103,17 @@ export function setNetworkOwner(ancestor: Instance, player?: Player) {
   if (ancestor.IsA('BasePart') && ancestor.CanSetNetworkOwnership()[0]) {
     ancestor.SetNetworkOwner(player)
   }
+}
+
+export function weldParts(parts: BasePart[], rootPart?: BasePart) {
+  parts.forEach((part) => {
+    if (!rootPart) {
+      rootPart = part
+    } else {
+      const weld = new Instance('WeldConstraint')
+      weld.Part0 = rootPart
+      weld.Part1 = part
+      weld.Parent = part
+    }
+  })
 }

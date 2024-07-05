@@ -47,6 +47,20 @@ export class ArcadeController implements OnStart {
         UserInputService,
       )
     })
+    UserInputService.InputEnded.Connect((input, _processed) => {
+      const tableName = this.myArcadeTableName
+      if (!tableName || !(player.Character as PlayerCharacter)?.Humanoid?.Sit)
+        return
+
+      const tableType = store.getState(selectArcadeTableType(tableName))
+      mechanics[tableType].onClientInputEnded(
+        tableName,
+        player.UserId,
+        Events,
+        input,
+        UserInputService,
+      )
+    })
   }
 
   startMyArcadeTableBounceHandler(player: Player) {

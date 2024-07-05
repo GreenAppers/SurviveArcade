@@ -102,6 +102,14 @@ export class PinballMechanics implements ArcadeTableMechanics {
     }
   }
 
+  onClientInputEnded(
+    _tableName: ArcadeTableName,
+    _userId: number,
+    _network: ClientNetwork,
+    _input: InputObject,
+    _inputService?: UserInputService,
+  ) {}
+
   onNPCPlayingBehavior(
     tableName: ArcadeTableName,
     _userId: number,

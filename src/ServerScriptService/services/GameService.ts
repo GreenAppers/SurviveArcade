@@ -76,7 +76,8 @@ export class GameService implements OnStart {
           isWithinBox(arcadeTable.PlayZone, player.humanoidRootPart.Position)
         ) {
           player.gravityUp = (
-            arcadeTable.Baseplate ?? arcadeTable.Ground
+            arcadeTable.FindFirstChild<BasePart>('Baseplate') ??
+            arcadeTable.Ground
           ).CFrame.UpVector
           player.groundArcadeTableName = arcadeTableName
           player.groundArcadeTableSequence = arcadeTableState?.sequence || 0
@@ -89,7 +90,8 @@ export class GameService implements OnStart {
           )
         ) {
           player.gravityUp = (
-            nextArcadeTable.Baseplate ?? nextArcadeTable.Ground
+            nextArcadeTable.FindFirstChild<BasePart>('Baseplate') ??
+            nextArcadeTable.Ground
           ).CFrame.UpVector
           player.groundArcadeTableName = arcadeTableName
           player.groundArcadeTableSequence =

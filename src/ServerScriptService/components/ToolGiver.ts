@@ -2,7 +2,10 @@ import { BaseComponent, Component } from '@flamework/components'
 import { OnStart } from '@flamework/core'
 import { Players, ReplicatedStorage } from '@rbxts/services'
 import { ToolGiverTag } from 'ReplicatedStorage/shared/constants/tags'
-import { findDescendentsWhichAre } from 'ReplicatedStorage/shared/utils/instance'
+import {
+  findDescendentsWhichAre,
+  weldParts,
+} from 'ReplicatedStorage/shared/utils/instance'
 import { getCharacterHumanoid } from 'ReplicatedStorage/shared/utils/player'
 
 export function getBackpackToolName(toolName: ToolName) {
@@ -28,15 +31,7 @@ export function giveTool(toolName: ToolName, backpack: Instance) {
 export function setupTool(tool: Tool) {
   const handle = tool.FindFirstChild<BasePart>('Handle')
   if (!handle) return tool
-  for (const descendentPart of findDescendentsWhichAre<BasePart>(
-    handle,
-    'BasePart',
-  )) {
-    const weld = new Instance('WeldConstraint')
-    weld.Part0 = handle
-    weld.Part1 = descendentPart
-    weld.Parent = descendentPart
-  }
+  weldParts(findDescendentsWhichAre<BasePart>(handle, 'BasePart'), handle)
   return tool
 }
 

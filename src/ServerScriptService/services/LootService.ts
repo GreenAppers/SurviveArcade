@@ -1,7 +1,10 @@
 import { OnStart, Service } from '@flamework/core'
 import { Logger } from '@rbxts/log'
 import { Debris, ReplicatedStorage, Workspace } from '@rbxts/services'
-import { findDescendentsWhichAre } from 'ReplicatedStorage/shared/utils/instance'
+import {
+  findDescendentsWhichAre,
+  weldParts,
+} from 'ReplicatedStorage/shared/utils/instance'
 import { MapService } from 'ServerScriptService/services/MapService'
 
 @Service()
@@ -16,18 +19,8 @@ export class LootService implements OnStart {
   }
 
   dropLootBox() {
-    let firstPart: BasePart | undefined
     const lootBox = ReplicatedStorage.Common.LootBox.Clone()
-    findDescendentsWhichAre<BasePart>(lootBox, 'BasePart').forEach((part) => {
-      if (!firstPart) {
-        firstPart = part
-      } else {
-        const weld = new Instance('WeldConstraint')
-        weld.Part0 = firstPart
-        weld.Part1 = part
-        weld.Parent = part
-      }
-    })
+    weldParts(findDescendentsWhichAre<BasePart>(lootBox, 'BasePart'))
     lootBox.PivotTo(this.mapService.getRandomSpawnLocation(150))
     lootBox.Parent = Workspace
     Debris.AddItem(lootBox, 35)
