@@ -117,3 +117,36 @@ export function weldParts(parts: BasePart[], rootPart?: BasePart) {
     }
   })
 }
+
+export function weldAssemblage(instance: Instance) {
+  const parts = findDescendentsWhichAre<BasePart>(instance, 'BasePart', {
+    includeSelf: true,
+  })
+  if (instance.IsA('Model')) instance.PrimaryPart = parts[0]
+  weldParts(parts)
+  for (const part of parts) {
+    part.Transparency = 0
+    part.CanCollide = true
+    part.Anchored = false
+  }
+}
+
+export function updateBodyVelocity(instance: Instance, velocity?: Vector3) {
+  const parent = instance.IsA('Model') ? instance.PrimaryPart : instance
+  if (!parent || !parent.IsA('BasePart'))
+    throw "Instance doesn't have a PrimaryPart and is not a BasePart"
+  const existingBodyVelocity =
+    parent.FindFirstChild<BodyVelocity>('BodyVelocity')
+  if (!velocity) {
+    existingBodyVelocity?.Destroy()
+    return undefined
+  }
+  const bodyVelocity =
+    existingBodyVelocity || new Instance('BodyVelocity', parent)
+  if (!existingBodyVelocity) {
+    bodyVelocity.P = math.huge
+    bodyVelocity.MaxForce = new Vector3(1000000, 1000000, 1000000)
+  }
+  bodyVelocity.Velocity = velocity
+  return bodyVelocity
+}

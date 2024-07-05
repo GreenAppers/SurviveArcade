@@ -3,34 +3,29 @@ import { ClientNetwork } from 'ReplicatedStorage/shared/network'
 import type { ArcadeTableMechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import {
-  findDescendentsWhichAre,
   setNetworkOwner,
-  weldParts,
+  updateBodyVelocity,
+  weldAssemblage,
 } from 'ReplicatedStorage/shared/utils/instance'
 
 export class AirHockeyMechanics implements ArcadeTableMechanics {
   puckNumber = 1
+  pusherSpeed = 35
 
   onGameStart(tableName: string, userId: number) {
-    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
+    const arcadeTable =
+      game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
     const pucks = arcadeTable?.FindFirstChild('Pucks')
     const puckTemplate = arcadeTable?.FindFirstChild<BasePart>('PuckTemplate')
+    const control = arcadeTable?.FindFirstChild('Control')
     const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
     const puck = puckTemplate?.Clone()
     const player = Players.GetPlayerByUserId(userId)
+    if (control) weldAssemblage(control)
     if (puck) {
       this.puckNumber = this.puckNumber + 1
+      weldAssemblage(puck)
       puck.Name = `Puck${this.puckNumber}`
-
-      const parts = findDescendentsWhichAre<BasePart>(puck, 'BasePart', {
-        includeSelf: true,
-      })
-      weldParts(parts)
-      for (const part of parts) {
-        part.Transparency = 0
-        part.CanCollide = true
-        part.Anchored = false
-      }
       puck.Parent = pucks
 
       const sparks = puck.FindFirstChild<ParticleEmitter>('Sparks')
@@ -52,7 +47,8 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
   }
 
   onGameOver(tableName: ArcadeTableName, userId: number) {
-    const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
+    const arcadeTable =
+      game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
     const control = arcadeTable?.FindFirstChild('Control')
     if (!userId) {
       if (control) setNetworkOwner(control, undefined)
@@ -61,28 +57,52 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
   }
 
   onClientInputBegan(
-    _tableName: ArcadeTableName,
+    tableName: ArcadeTableName,
     _userId: number,
     _network: ClientNetwork,
     input: InputObject,
     _inputService?: UserInputService,
   ) {
+    const arcadeTable =
+      game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
+    const control = arcadeTable?.FindFirstChild('Control')
+    const seat = control?.FindFirstChild<Seat>('Seat')
+    if (!control || !seat) return
     if (input.UserInputType === Enum.UserInputType.Keyboard) {
       if (input.KeyCode === Enum.KeyCode.A) {
-        // body force
+        updateBodyVelocity(
+          control,
+          seat.CFrame.RightVector.mul(-this.pusherSpeed),
+        )
       } else if (input.KeyCode === Enum.KeyCode.D) {
-        // body force
+        updateBodyVelocity(
+          control,
+          seat.CFrame.RightVector.mul(this.pusherSpeed),
+        )
       }
     }
   }
 
   onClientInputEnded(
-    _tableName: ArcadeTableName,
+    tableName: ArcadeTableName,
     _userId: number,
     _network: ClientNetwork,
-    _input: InputObject,
+    input: InputObject,
     _inputService?: UserInputService,
-  ) {}
+  ) {
+    const arcadeTable =
+      game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
+    const control = arcadeTable?.FindFirstChild('Control')
+    if (!control) return
+    if (input.UserInputType === Enum.UserInputType.Keyboard) {
+      if (
+        input.KeyCode === Enum.KeyCode.A ||
+        input.KeyCode === Enum.KeyCode.D
+      ) {
+        updateBodyVelocity(control, undefined)
+      }
+    }
+  }
 
   onNPCPlayingBehavior(
     tableName: ArcadeTableName,
