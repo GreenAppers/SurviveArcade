@@ -18,10 +18,22 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
     const pucks = arcadeTable?.FindFirstChild('Pucks')
     const puckTemplate = arcadeTable?.FindFirstChild<BasePart>('PuckTemplate')
     const control = arcadeTable?.FindFirstChild('Control')
+    const controlPlane = arcadeTable?.FindFirstChild('ControlPlane')
+    const seat = control?.FindFirstChild('Seat')
     const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
     const puck = puckTemplate?.Clone()
     const player = Players.GetPlayerByUserId(userId)
-    if (control) weldAssemblage(control)
+    if (seat) {
+      if (!seat.FindFirstChild('PrismaticConstraint')) {
+        if (control) weldAssemblage(control)
+        const constraint = new Instance('PrismaticConstraint')
+        constraint.Attachment0 = seat.FindFirstChild<Attachment>('Attachment')
+        constraint.Attachment1 =
+          controlPlane?.FindFirstChild<Attachment>('Attachment')
+        constraint.Parent = seat
+      }
+    }
+    pucks?.GetChildren()?.forEach((puck) => puck.Destroy())
     if (puck) {
       this.puckNumber = this.puckNumber + 1
       weldAssemblage(puck)

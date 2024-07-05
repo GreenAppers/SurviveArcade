@@ -1,7 +1,7 @@
 <roblox version="4">
   <Item class="Model" referent="0">
     <Properties>
-      <string name="Name">Control</string>
+      <string name="Name">Control2</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
@@ -34,18 +34,18 @@
       <BinaryString name="Tags"></BinaryString>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
-          <X>6.4994507</X>
+          <X>242.3905</X>
           <Y>4.808577</Y>
           <Z>130.22484</Z>
           <R00>0</R00>
-          <R01>1</R01>
+          <R01>-1</R01>
           <R02>0</R02>
           <R10>-1</R10>
           <R11>0</R11>
           <R12>0</R12>
           <R20>0</R20>
           <R21>0</R21>
-          <R22>1</R22>
+          <R22>-1</R22>
         </CFrame>
       </OptionalCoordinateFrame>
     </Properties>
@@ -63,18 +63,18 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>6.488289</X>
+          <X>242.40167</X>
           <Y>3.9116771</Y>
-          <Z>130.2348</Z>
+          <Z>130.21487</Z>
           <R00>0</R00>
-          <R01>1</R01>
+          <R01>-1</R01>
           <R02>0</R02>
           <R10>-1</R10>
           <R11>0</R11>
           <R12>0</R12>
           <R20>0</R20>
           <R21>0</R21>
-          <R22>1</R22>
+          <R22>-1</R22>
         </CoordinateFrame>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
@@ -161,18 +161,18 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>6.4993587</X>
+          <X>242.3906</X>
           <Y>6.3199224</Y>
           <Z>130.22484</Z>
           <R00>0</R00>
-          <R01>1</R01>
+          <R01>-1</R01>
           <R02>0</R02>
           <R10>-1</R10>
           <R11>0</R11>
           <R12>0</R12>
           <R20>0</R20>
           <R21>0</R21>
-          <R22>1</R22>
+          <R22>-1</R22>
         </CoordinateFrame>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
@@ -259,16 +259,16 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>2.1239896</X>
+          <X>246.76596</X>
           <Y>4.434122</Y>
-          <Z>130.07178</Z>
+          <Z>130.3779</Z>
           <R00>0</R00>
           <R01>0</R01>
-          <R02>-1</R02>
+          <R02>1</R02>
           <R10>0</R10>
           <R11>1</R11>
           <R12>0</R12>
-          <R20>1</R20>
+          <R20>-1</R20>
           <R21>0</R21>
           <R22>0</R22>
         </CoordinateFrame>
@@ -331,7 +331,7 @@
           <Z>2</Z>
         </Vector3>
         <int64 name="SourceAssetId">-1</int64>
-        <BinaryString name="Tags">U2VhdA==</BinaryString>
+        <BinaryString name="Tags"></BinaryString>
         <float name="TopParamA">-0.5</float>
         <float name="TopParamB">0.5</float>
         <token name="TopSurface">0</token>
@@ -383,18 +383,18 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>6.4993587</X>
+          <X>242.3906</X>
           <Y>1.4835992</Y>
           <Z>130.22484</Z>
           <R00>0</R00>
-          <R01>1</R01>
+          <R01>-1</R01>
           <R02>0</R02>
           <R10>-1</R10>
           <R11>0</R11>
           <R12>0</R12>
           <R20>0</R20>
           <R21>0</R21>
-          <R22>1</R22>
+          <R22>-1</R22>
         </CoordinateFrame>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
@@ -485,18 +485,18 @@
         <token name="BottomSurface">0</token>
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
-          <X>6.4994507</X>
+          <X>242.3905</X>
           <Y>3.297232</Y>
           <Z>130.22484</Z>
           <R00>0</R00>
-          <R01>1</R01>
+          <R01>-1</R01>
           <R02>0</R02>
           <R10>-1</R10>
           <R11>0</R11>
           <R12>0</R12>
           <R20>0</R20>
           <R21>0</R21>
-          <R22>1</R22>
+          <R22>-1</R22>
         </CoordinateFrame>
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
@@ -578,6 +578,22 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <Vector3 name="UnscaledCofm">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <Vector3 name="UnscaledVolInertiaDiags">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <Vector3 name="UnscaledVolInertiaOffDiags">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <float name="UnscaledVolume">NAN</float>
         <bool name="UsePartColor">true</bool>
         <Vector3 name="Velocity">
           <X>0</X>
