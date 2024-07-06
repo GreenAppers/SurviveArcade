@@ -41,6 +41,7 @@ export interface BehaviorObject {
     sourceHumanoid?: Humanoid
     sourceHumanoidRootPart?: BasePart
     sourceInstance?: Instance
+    sourceSpawnNumber?: number
     sourceTeamName?: string
     sourceUserId?: number
     status?: string
@@ -60,6 +61,7 @@ export interface BehaviorObject {
   previousPositionTime?: number
   previousRunningTime?: number
   startedRunningTime?: number
+  stuckCount?: number
   treeRunning: boolean
 }
 

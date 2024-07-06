@@ -35,7 +35,12 @@
       <int name="CollisionGroupId">0</int>
       <Color3uint8 name="Color3uint8">8436699</Color3uint8>
       <PhysicalProperties name="CustomPhysicalProperties">
-        <CustomPhysics>false</CustomPhysics>
+        <CustomPhysics>true</CustomPhysics>
+        <Density>0.919</Density>
+        <Friction>0</Friction>
+        <Elasticity>0.15</Elasticity>
+        <FrictionWeight>3</FrictionWeight>
+        <ElasticityWeight>1</ElasticityWeight>
       </PhysicalProperties>
       <bool name="DefinesCapabilities">false</bool>
       <bool name="EnableFluidForces">true</bool>
@@ -50,7 +55,7 @@
       <token name="LeftSurfaceInput">0</token>
       <bool name="Locked">false</bool>
       <bool name="Massless">false</bool>
-      <token name="Material">1568</token>
+      <token name="Material">1536</token>
       <string name="MaterialVariantSerialized"></string>
       <CoordinateFrame name="PivotOffset">
         <X>0</X>

@@ -1,5 +1,6 @@
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
+import { PlayerState } from 'ReplicatedStorage/shared/state/PlayersState'
 import {
   BehaviorObject,
   getBehaviorTime,
@@ -57,6 +58,13 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
     ) {
       stopPathFinding(obj)
       obj.pathEnabled = !obj.pathEnabled
+      obj.stuckCount = (obj.stuckCount || 0) + 1
+      if (obj.stuckCount > 5) {
+        obj.stuckCount = 1
+        return BEHAVIOR_TREE_STATUS.FAIL
+      }
+    } else {
+      obj.stuckCount = 0
     }
     obj.previousPosition = position
     obj.previousPositionTime = now
@@ -86,17 +94,13 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
         if (delta.Magnitude > 10) {
           let midTarget = position.add(delta.div(2))
           // Try to get around blockages by adding right-vector
-          if (state && obj.Blackboard.sourceUserId) {
-            const maxRightVector = 10
-            const up =
-              selectPlayerState(obj.Blackboard.sourceUserId)(state)
-                ?.gravityUp ?? new Vector3(0, 1, 0)
+          if (state && obj.Blackboard.sourceUserId)
             midTarget = midTarget.add(
-              delta.Unit.Cross(up).mul(
-                maxRightVector * (math.random() * 2 - 1),
+              randomRightVector(
+                delta,
+                selectPlayerState(obj.Blackboard.sourceUserId)(state),
               ),
             )
-          }
           // Move to midTarget
           const midResult = path.Run(midTarget)
           if (midResult) {
@@ -119,4 +123,13 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   }
 
   return BEHAVIOR_TREE_STATUS.SUCCESS
+}
+
+export function randomRightVector(
+  direction: Vector3,
+  playerState?: PlayerState,
+) {
+  const maxRightVector = 10
+  const up = playerState?.gravityUp ?? new Vector3(0, 1, 0)
+  return direction.Unit.Cross(up).mul(maxRightVector * (math.random() * 2 - 1))
 }

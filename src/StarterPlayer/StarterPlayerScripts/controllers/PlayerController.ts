@@ -385,17 +385,21 @@ export class PlayerController implements OnStart {
     )
     if (!rootRigAttachment) return
 
+    const state = store.getState()
+    const localPlayerState = selectLocalPlayerState()(state)
+
     // Run behavior tree
     this.guideObject.Blackboard = {
       sourceAttachment: rootRigAttachment,
       sourceHumanoidRootPart: humanoidRootPart,
       sourceInstance: playerCharacter,
-      sourceUserId: localPlayer.UserId,
+      sourceSpawnNumber: localPlayerState?.KOd,
       sourceTeamName:
         localPlayer?.Team?.Name === TEAM_NAMES.UnclaimedTeam
           ? undefined
           : localPlayer?.Team?.Name,
-      state: store.getState(),
+      sourceUserId: localPlayer.UserId,
+      state,
     }
 
     try {

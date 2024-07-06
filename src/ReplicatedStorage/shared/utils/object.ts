@@ -1,3 +1,5 @@
+export const getLastItem = <X>(array: X[]) => array[array.size() - 1]
+
 /**
  * Maps an object to a new object with the same keys, but values are
  * mapped using the provided mapper function.
@@ -79,17 +81,17 @@ export function randomElement<T extends defined>(array: T[]): T {
 /**
  * Returns a shuffled copy of the given array.
  */
-export function shuffle<T extends defined>(array: T[]): T[] {
+export function shuffle<T extends defined>(
+  array: T[],
+  random = new Random(),
+): T[] {
   const result = table.clone(array)
-  const random = new Random()
-
   for (const index of $range(result.size() - 1, 1, -1)) {
     const randomIndex = random.NextInteger(0, index)
     const temp = result[index]
     result[index] = result[randomIndex]
     result[randomIndex] = temp
   }
-
   return result
 }
 

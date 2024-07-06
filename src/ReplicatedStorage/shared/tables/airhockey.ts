@@ -50,6 +50,8 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
           .sub(ground.CFrame.UpVector.Unit)
           .mul(Workspace.Gravity * puck.Mass)
       }
+
+      randomKickInPlane(puck, ground?.CFrame || new CFrame(), 1000000)
       if (player) setNetworkOwner(puck, player)
     }
     if (player) {
@@ -125,4 +127,17 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
       game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
     if (!airhockeyTable) return
   }
+}
+
+export function randomKickInPlane(
+  part: BasePart,
+  plane: CFrame,
+  force: number,
+) {
+  const randomAngle = math.random() * math.pi * 2
+  const kick = plane.ToWorldSpace(
+    new CFrame(math.cos(randomAngle) * force, 0, math.sin(randomAngle) * force),
+  ).Position
+  print('give kick', part, kick)
+  part.ApplyImpulse(kick)
 }

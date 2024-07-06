@@ -14,7 +14,7 @@
       <token name="BottomSurfaceInput">0</token>
       <CoordinateFrame name="CFrame">
         <X>121.92985</X>
-        <Y>1.3519474</Y>
+        <Y>2.0536172</Y>
         <Z>131.89339</Z>
         <R00>0</R00>
         <R01>-1</R01>
@@ -35,7 +35,12 @@
       <int name="CollisionGroupId">0</int>
       <Color3uint8 name="Color3uint8">16711680</Color3uint8>
       <PhysicalProperties name="CustomPhysicalProperties">
-        <CustomPhysics>false</CustomPhysics>
+        <CustomPhysics>true</CustomPhysics>
+        <Density>0.7</Density>
+        <Friction>0</Friction>
+        <Elasticity>0.5</Elasticity>
+        <FrictionWeight>1</FrictionWeight>
+        <ElasticityWeight>1</ElasticityWeight>
       </PhysicalProperties>
       <bool name="DefinesCapabilities">false</bool>
       <bool name="EnableFluidForces">true</bool>
@@ -115,7 +120,7 @@
         <token name="BottomSurfaceInput">0</token>
         <CoordinateFrame name="CFrame">
           <X>121.929855</X>
-          <Y>1.3519474</Y>
+          <Y>2.0536172</Y>
           <Z>131.8934</Z>
           <R00>0</R00>
           <R01>-1</R01>
@@ -139,7 +144,12 @@
         <int name="CollisionGroupId">0</int>
         <Color3uint8 name="Color3uint8">16711680</Color3uint8>
         <PhysicalProperties name="CustomPhysicalProperties">
-          <CustomPhysics>false</CustomPhysics>
+          <CustomPhysics>true</CustomPhysics>
+          <Density>0.7</Density>
+          <Friction>0</Friction>
+          <Elasticity>0.5</Elasticity>
+          <FrictionWeight>1</FrictionWeight>
+          <ElasticityWeight>1</ElasticityWeight>
         </PhysicalProperties>
         <bool name="DefinesCapabilities">false</bool>
         <bool name="EnableFluidForces">true</bool>
@@ -207,23 +217,7 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">1</float>
-        <Vector3 name="UnscaledCofm">
-          <X>NAN</X>
-          <Y>NAN</Y>
-          <Z>NAN</Z>
-        </Vector3>
-        <Vector3 name="UnscaledVolInertiaDiags">
-          <X>NAN</X>
-          <Y>NAN</Y>
-          <Z>NAN</Z>
-        </Vector3>
-        <Vector3 name="UnscaledVolInertiaOffDiags">
-          <X>NAN</X>
-          <Y>NAN</Y>
-          <Z>NAN</Z>
-        </Vector3>
-        <float name="UnscaledVolume">NAN</float>
-        <bool name="UsePartColor">false</bool>
+        <bool name="UsePartColor">true</bool>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>

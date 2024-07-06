@@ -203,11 +203,17 @@ export class PlayerService implements OnInit {
       if (player.Team) player.Team = Teams[TEAM_NAMES.UnclaimedTeam]
 
       const humanoid = (characterModel as PlayerCharacter).Humanoid
-      humanoid.Died.Connect(() => this.handleKO(humanoid, player.Name))
+      humanoid.Died.Connect(() =>
+        this.handleKO(humanoid, player.UserId, player.Name),
+      )
     })
   }
 
-  public handleKO(humanoid: Humanoid, playerName: string) {
+  public handleKO(
+    humanoid: Humanoid,
+    playerUserId: number,
+    playerName: string,
+  ) {
     const attackerUserId = getAttackerUserId(humanoid)
     let message
     if (attackerUserId) {
@@ -218,6 +224,7 @@ export class PlayerService implements OnInit {
     } else {
       message = `${playerName} was KO'd`
     }
+    store.addPlayerKOd(playerUserId, 0)
     Events.message.broadcast('log', message)
   }
 }

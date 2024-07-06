@@ -136,7 +136,7 @@ export class NPCComponent
 
     this.humanoid?.Died?.Connect(() => {
       if (this.humanoid)
-        this.playerService.handleKO(this.humanoid, this.instance.Name)
+        this.playerService.handleKO(this.humanoid, userId, this.instance.Name)
       wait(1)
       this.path?.Destroy()
       this.path = undefined
@@ -192,6 +192,9 @@ export class NPCComponent
           sourceHumanoid: this.humanoid,
           sourceHumanoidRootPart: this.humanoidRootPart,
           sourceInstance: this.instance,
+          sourceSpawnNumber: this.userId
+            ? selectPlayerState(this.userId)(state)?.KOd
+            : undefined,
           sourceUserId: this.userId,
           state,
         }

@@ -85,6 +85,7 @@ export interface PlayerDetail {
   readonly gravityUp: Vector3
   readonly groundArcadeTableName: ArcadeTableName | undefined
   readonly groundArcadeTableSequence: number | undefined
+  readonly KOd: number
   readonly name: string
   readonly sessionStartTime: number
   readonly scale: TycoonType
@@ -152,6 +153,7 @@ export const defaultPlayerDetail: PlayerDetail = {
   gravityUp: new Vector3(0, 1, 0),
   groundArcadeTableName: undefined,
   groundArcadeTableSequence: undefined,
+  KOd: 0,
   name: '',
   sessionStartTime: 0,
   scale: TYCOON_TYPES.Elf,
@@ -265,6 +267,20 @@ export const playersSlice = createProducer(initialState, {
       [playerKey]: {
         ...playerState,
         [currencyField]: math.max(0, playerCurrency + (amount || 0)),
+      },
+    }
+  },
+
+  addPlayerKOd: (state, userID: number, amount: number) => {
+    const playerKey = getPlayerKey(userID)
+    const playerState = state[playerKey]
+    const playerKOd = playerState?.KOd || 0
+    if (!playerState) return state
+    return {
+      ...state,
+      [playerKey]: {
+        ...playerState,
+        KOd: math.max(0, playerKOd + (amount || 0)),
       },
     }
   },

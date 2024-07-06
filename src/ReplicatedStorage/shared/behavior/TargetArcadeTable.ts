@@ -3,6 +3,8 @@ import {
   ARCADE_TABLE_NAMES,
   BEHAVIOR_TREE_STATUS,
   GUIDE_TRUSS_NAMES,
+  JOB_ID,
+  USER_ID,
 } from 'ReplicatedStorage/shared/constants/core'
 import { selectArcadeTablesState } from 'ReplicatedStorage/shared/state'
 import {
@@ -18,6 +20,7 @@ import {
 } from 'ReplicatedStorage/shared/utils/behavior'
 import { findDescendentWithPath } from 'ReplicatedStorage/shared/utils/instance'
 import { formatMessage, MESSAGE } from 'ReplicatedStorage/shared/utils/messages'
+import { shuffle } from 'ReplicatedStorage/shared/utils/object'
 
 export function nearestArcadeTable(
   position: Vector3,
@@ -47,6 +50,24 @@ export function nearestArcadeTable(
     }
   }
   return nearestArcadeTableName
+}
+
+export function randomCabinet(
+  arcadeTablesState?: ArcadeTablesState,
+  spawnNumber?: number,
+  teamName?: string,
+) {
+  const randomTables = shuffle(
+    ARCADE_TABLE_NAMES,
+    new Random(JOB_ID + USER_ID + (spawnNumber || 0)),
+  )
+  for (const name of randomTables) {
+    const state = arcadeTablesState?.[name]
+    if (state?.owner) continue
+    if (teamName && state?.teamName !== teamName) continue
+    return name
+  }
+  return randomTables[0]
 }
 
 export function nearestCabinet(
@@ -91,6 +112,7 @@ export function nearestCabinetTruss(
 export function findArcadeTableTarget(
   arcadeTablesState: ArcadeTablesState,
   rootRigAttachment: Attachment,
+  localPlayerSpawnNumber?: number,
   localPlayerTeamName?: string,
 ): [Attachment | undefined, Seat | undefined, string] {
   let targetAttachment
@@ -98,12 +120,23 @@ export function findArcadeTableTarget(
   let targetStatus = formatMessage(MESSAGE.GuideWinTickets)
 
   if (rootRigAttachment.WorldPosition.Y < 20) {
-    // Find nearest Cabinet
-    const arcadeTableName = nearestCabinet(
-      rootRigAttachment.WorldPosition,
-      arcadeTablesState,
-      localPlayerTeamName,
-    )
+    // Choose a Cabinet
+    const arcadeTableName =
+      new Vector3(
+        rootRigAttachment.WorldPosition.X,
+        0,
+        rootRigAttachment.WorldPosition.Z,
+      ).Magnitude < 150
+        ? randomCabinet(
+            arcadeTablesState,
+            localPlayerSpawnNumber,
+            localPlayerTeamName,
+          )
+        : nearestCabinet(
+            rootRigAttachment.WorldPosition,
+            arcadeTablesState,
+            localPlayerTeamName,
+          )
     if (!arcadeTableName) return [undefined, undefined, '']
 
     // Find nearest truss
@@ -148,6 +181,7 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const [targetAttachment, targetSeat, targetStatus] = findArcadeTableTarget(
     selectArcadeTablesState()(state),
     sourceAttachment,
+    obj.Blackboard.sourceSpawnNumber,
     obj.Blackboard.sourceTeamName,
   )
   if (!targetAttachment) return BEHAVIOR_TREE_STATUS.FAIL
