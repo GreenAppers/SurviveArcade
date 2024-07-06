@@ -1,3 +1,5 @@
+import { Dependency } from '@flamework/core'
+import { Logger } from '@rbxts/log'
 import { BEHAVIOR_TREE_STATUS } from 'ReplicatedStorage/shared/constants/core'
 import { selectPlayerState } from 'ReplicatedStorage/shared/state'
 import { PlayerState } from 'ReplicatedStorage/shared/state/PlayersState'
@@ -8,7 +10,10 @@ import {
   stopPathFinding,
 } from 'ReplicatedStorage/shared/utils/behavior'
 
-export const NPC_STUCK_SECONDS = 5
+export const NPC_STUCK_SECONDS = 3
+export const NPC_MAX_STUCK_COUNT = 3
+
+const logger = Dependency<Logger>()
 
 export function run(obj: BehaviorObject, ..._args: unknown[]) {
   const {
@@ -57,10 +62,16 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
       obj.previousPosition.sub(position).Magnitude < 1
     ) {
       stopPathFinding(obj)
-      obj.pathEnabled = !obj.pathEnabled
+      obj.pathDisabled = !obj.pathDisabled
       obj.stuckCount = (obj.stuckCount || 0) + 1
-      if (obj.stuckCount > 5) {
-        obj.stuckCount = 1
+      logger.Debug(
+        `${sourceHumanoidRootPart.Parent?.Name} stuck for ${NPC_STUCK_SECONDS} seconds ${obj.stuckCount} times` +
+          (obj.stuckCount > NPC_MAX_STUCK_COUNT
+            ? `, MoveToTarget failed`
+            : `, ${obj.pathDisabled ? 'disabling' : 'enabling'} path-finding`),
+      )
+      if (obj.stuckCount > NPC_MAX_STUCK_COUNT) {
+        obj.stuckCount = 0
         return BEHAVIOR_TREE_STATUS.FAIL
       }
     } else {
@@ -79,13 +90,14 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
   }
 
   // Move to target
-  const target = targetPosition.add(targetPosition.sub(position).Unit.mul(2))
-  if (path && obj.pathEnabled) {
+  const target = targetPosition // .add(targetPosition.sub(position).Unit.mul(2))
+  if (path && !obj.pathDisabled) {
     if (obj.pathStatus === PathStatus.Running) {
       return BEHAVIOR_TREE_STATUS.RUNNING
     } else {
       const result = path.Run(target)
       if (result) {
+        // logger.Debug(`${sourceHumanoidRootPart.Parent?.Name} MoveToTarget ${target} RUNNING`)
         obj.pathStatus = PathStatus.Running
         return BEHAVIOR_TREE_STATUS.RUNNING
       } else {
@@ -104,12 +116,17 @@ export function run(obj: BehaviorObject, ..._args: unknown[]) {
           // Move to midTarget
           const midResult = path.Run(midTarget)
           if (midResult) {
+            // logger.Debug(`${sourceHumanoidRootPart.Parent?.Name} MoveToTarget midpoint ${midTarget} RUNNING`)
             obj.pathStatus = PathStatus.Running
             return BEHAVIOR_TREE_STATUS.RUNNING
           }
         }
 
         // Path-finding failed
+        /* logger.Debug(
+          `${sourceHumanoidRootPart.Parent?.Name} MoveToTarget path-finding ` +
+            `${obj.pathStatus === PathStatus.Reached ? 'SUCCESS' : 'FAIL'}`,
+        ) */
         return obj.pathStatus === PathStatus.Reached
           ? BEHAVIOR_TREE_STATUS.SUCCESS
           : BEHAVIOR_TREE_STATUS.FAIL

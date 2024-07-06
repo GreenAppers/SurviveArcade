@@ -54,7 +54,7 @@ export interface BehaviorObject {
     time?: number
     teamName?: string
   }
-  pathEnabled?: boolean
+  pathDisabled?: boolean
   pathError?: string
   pathStatus?: PathStatus
   previousPosition?: Vector3
