@@ -2,11 +2,22 @@ import {
   ClientNetworkEvents,
   ServerNetworkEvents,
 } from 'ReplicatedStorage/shared/network'
+import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import type { ArcadeTableMechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export class FoosballMechanics implements ArcadeTableMechanics {
   puckNumber = 1
+
+  onCreateTablePart(
+    _arcadeTable: ArcadeTable,
+    state: ArcadeTableState,
+    part: BasePart,
+  ) {
+    if (part.Parent?.Name === 'Box') {
+      part.BrickColor = state.color
+    }
+  }
 
   onGameStart(
     _tableName: ArcadeTableName,

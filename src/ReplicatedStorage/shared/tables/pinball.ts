@@ -3,6 +3,7 @@ import {
   ClientNetworkEvents,
   ServerNetworkEvents,
 } from 'ReplicatedStorage/shared/network'
+import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import type { ArcadeTableMechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import {
   BehaviorObject,
@@ -16,6 +17,22 @@ const flipperFireDistance = 7
 export class PinballMechanics implements ArcadeTableMechanics {
   ballNumber = 1
   fullForceKeypress = 0
+
+  onCreateTablePart(
+    _arcadeTable: ArcadeTable,
+    state: ArcadeTableState,
+    part: BasePart,
+  ) {
+    if (part.Name === 'BallTemplate') return
+    if (part.Name === 'Stator') {
+      part.BrickColor = state.statorColor
+    } else if (string.match(part.Name, '^Floor*')[0]) {
+      part.BrickColor = state.baseColor
+      part.Material = state.baseMaterial
+    } else {
+      part.BrickColor = state.color
+    }
+  }
 
   onGameStart(
     tableName: ArcadeTableName,

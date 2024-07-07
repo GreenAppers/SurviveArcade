@@ -2,12 +2,19 @@ import {
   ClientNetworkEvents,
   ServerNetworkEvents,
 } from 'ReplicatedStorage/shared/network'
+import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { AirHockeyMechanics } from 'ReplicatedStorage/shared/tables/airhockey'
 import { FoosballMechanics } from 'ReplicatedStorage/shared/tables/foosball'
 import { PinballMechanics } from 'ReplicatedStorage/shared/tables/pinball'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export interface ArcadeTableMechanics {
+  onCreateTablePart(
+    arcadeTable: ArcadeTable,
+    state: ArcadeTableState,
+    part: BasePart,
+  ): void
+
   onGameStart(
     tableName: ArcadeTableName,
     userId: number,

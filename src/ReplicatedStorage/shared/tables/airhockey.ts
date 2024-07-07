@@ -3,6 +3,7 @@ import {
   ClientNetworkEvents,
   ServerNetworkEvents,
 } from 'ReplicatedStorage/shared/network'
+import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import type { ArcadeTableMechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import {
@@ -14,6 +15,14 @@ import {
 export class AirHockeyMechanics implements ArcadeTableMechanics {
   ballNumber = 1
   pusherSpeed = 35
+
+  onCreateTablePart(
+    _arcadeTable: ArcadeTable,
+    state: ArcadeTableState,
+    part: BasePart,
+  ) {
+    part.BrickColor = state.color
+  }
 
   onGameStart(
     tableName: ArcadeTableName,

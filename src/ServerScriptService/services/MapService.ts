@@ -23,6 +23,7 @@ import {
   baseArcadeTableName,
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
+import { mechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import { findDescendentsWhichAre } from 'ReplicatedStorage/shared/utils/instance'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
@@ -139,18 +140,12 @@ export class MapService implements OnStart {
     restoreMaterial?: boolean,
   ) {
     const parts = findDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
+    const arcadeTableMechanics = mechanics[state.tableType]
     for (const part of parts) {
+      arcadeTableMechanics.onCreateTablePart(arcadeTable, state, part)
       if (part.Name === 'BallTemplate') continue
       if (part.Name === 'Ground') {
         arcadeTable.PrimaryPart = part
-      } else if (part.Name === 'Stator') {
-        part.BrickColor = state.statorColor
-      } else if (string.match(part.Name, '^Floor*')[0]) {
-        part.BrickColor = state.baseColor
-        part.Material = state.baseMaterial
-        continue
-      } else {
-        part.BrickColor = state.color
       }
       if (!restoreMaterial) continue
       const attributeValue = part.GetAttribute(materialAttributeName)
@@ -159,7 +154,9 @@ export class MapService implements OnStart {
         : undefined
       if (material) part.Material = material
     }
-    const baseplate = arcadeTable.FindFirstChild<BasePart>('Baseplate')
+    const baseplate =
+      arcadeTable.FindFirstChild<BasePart>('Baseplate') ??
+      arcadeTable.FindFirstChild<BasePart>('Ground')
     if (baseplate) {
       baseplate.BrickColor = state.baseColor
       baseplate.Material = state.baseMaterial
