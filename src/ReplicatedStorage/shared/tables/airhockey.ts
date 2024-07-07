@@ -1,5 +1,8 @@
 import { Players, Workspace } from '@rbxts/services'
-import { ClientNetwork } from 'ReplicatedStorage/shared/network'
+import {
+  ClientNetworkEvents,
+  ServerNetworkEvents,
+} from 'ReplicatedStorage/shared/network'
 import type { ArcadeTableMechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 import {
@@ -9,19 +12,23 @@ import {
 } from 'ReplicatedStorage/shared/utils/instance'
 
 export class AirHockeyMechanics implements ArcadeTableMechanics {
-  puckNumber = 1
+  ballNumber = 1
   pusherSpeed = 35
 
-  onGameStart(tableName: string, userId: number) {
+  onGameStart(
+    tableName: ArcadeTableName,
+    userId: number,
+    network: ServerNetworkEvents,
+  ) {
     const arcadeTable =
       game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
-    const pucks = arcadeTable?.FindFirstChild('Pucks')
-    const puckTemplate = arcadeTable?.FindFirstChild<BasePart>('PuckTemplate')
+    const balls = arcadeTable?.FindFirstChild('Balls')
+    const ballTemplate = arcadeTable?.FindFirstChild<BasePart>('BallTemplate')
     const control = arcadeTable?.FindFirstChild('Control')
     const controlPlane = arcadeTable?.FindFirstChild('ControlPlane')
     const seat = control?.FindFirstChild('Seat')
     const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
-    const puck = puckTemplate?.Clone()
+    const ball = ballTemplate?.Clone()
     const player = Players.GetPlayerByUserId(userId)
     if (seat) {
       if (!seat.FindFirstChild('PrismaticConstraint')) {
@@ -33,26 +40,27 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
         constraint.Parent = seat
       }
     }
-    pucks?.GetChildren()?.forEach((puck) => puck.Destroy())
-    if (puck) {
-      this.puckNumber = this.puckNumber + 1
-      weldAssemblage(puck)
-      puck.Name = `Puck${this.puckNumber}`
-      puck.Parent = pucks
+    balls?.GetChildren()?.forEach((ball) => ball.Destroy())
+    if (ball) {
+      this.ballNumber = this.ballNumber + 1
+      weldAssemblage(ball)
+      ball.Name = `Puck${this.ballNumber}`
+      ball.Parent = balls
 
-      const sparks = puck.FindFirstChild<ParticleEmitter>('Sparks')
-      const light = puck.FindFirstChild<PointLight>('Light')
-      const gravity = puck.FindFirstChild<VectorForce>('VectorForce')
+      const sparks = ball.FindFirstChild<ParticleEmitter>('Sparks')
+      const light = ball.FindFirstChild<PointLight>('Light')
+      const gravity = ball.FindFirstChild<VectorForce>('VectorForce')
       if (sparks) sparks.Enabled = true
       if (light) light.Enabled = true
       if (gravity && ground) {
         gravity.Force = new Vector3(0, 1, 0)
           .sub(ground.CFrame.UpVector.Unit)
-          .mul(Workspace.Gravity * puck.Mass)
+          .mul(Workspace.Gravity * ball.Mass)
       }
-
-      randomKickInPlane(puck, ground?.CFrame || new CFrame(), 1000000)
-      if (player) setNetworkOwner(puck, player)
+      if (player) {
+        setNetworkOwner(ball, player)
+        network.arcadeTableNewBall.fire(player, tableName, ball.Name)
+      }
     }
     if (player) {
       const control = arcadeTable?.FindFirstChild('Control')
@@ -73,7 +81,7 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
   onClientInputBegan(
     tableName: ArcadeTableName,
     _userId: number,
-    _network: ClientNetwork,
+    _network: ClientNetworkEvents,
     input: InputObject,
     _inputService?: UserInputService,
   ) {
@@ -100,7 +108,7 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
   onClientInputEnded(
     tableName: ArcadeTableName,
     _userId: number,
-    _network: ClientNetwork,
+    _network: ClientNetworkEvents,
     input: InputObject,
     _inputService?: UserInputService,
   ) {
@@ -116,6 +124,15 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
         updateBodyVelocity(control, undefined)
       }
     }
+  }
+
+  onClientNewBall(tableName: ArcadeTableName, ballName: string) {
+    const arcadeTable =
+      game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
+    const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
+    const balls = arcadeTable?.FindFirstChild('Balls')
+    const ball = balls?.FindFirstChild<BasePart>(ballName)
+    if (ball) randomKickInPlane(ball, ground?.CFrame || new CFrame(), 10000)
   }
 
   onNPCPlayingBehavior(

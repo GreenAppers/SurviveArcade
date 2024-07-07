@@ -25,11 +25,12 @@ export class ArcadeController implements OnStart {
   onStart() {
     const player = Players.LocalPlayer
     this.startArcadeTableControlsHandler(player)
-    this.startMyArcadeTableBounceHandler(player)
     this.startMyArcadeTableClaimHandler(player)
-    this.startMyArcadeTableMaterializeHandler()
     this.startMyArcadeTableLoopHandler()
+    this.startMyArcadeTableMaterializeHandler()
+    this.startMyArcadeTableNewBallHandler()
     this.startMyArcadeTableWinHandler()
+    this.startPlayerBounceHandler(player)
   }
 
   startArcadeTableControlsHandler(player: Player) {
@@ -60,21 +61,6 @@ export class ArcadeController implements OnStart {
         input,
         UserInputService,
       )
-    })
-  }
-
-  startMyArcadeTableBounceHandler(player: Player) {
-    let debouncePlayer = false
-    // Local player was bounced by a Bouncer.
-    Events.playerBounce.connect((position) => {
-      const humanoid = (player.Character as PlayerCharacter).Humanoid
-      const rootPart = humanoid?.RootPart
-      if (rootPart && !debouncePlayer) {
-        debouncePlayer = true
-        rootPart.ApplyImpulse(rootPart.Position.sub(position).mul(1000))
-        task.wait(0.5)
-        debouncePlayer = false
-      }
     })
   }
 
@@ -121,6 +107,17 @@ export class ArcadeController implements OnStart {
     )
   }
 
+  startMyArcadeTableLoopHandler() {
+    store.subscribe(selectLocalPlayerLoops(), () => {
+      sendAlert({
+        emoji: '🔄',
+        message: formatMessage(MESSAGE.ArcadeTableLooped, {
+          playerName: USER_NAME,
+        }),
+      })
+    })
+  }
+
   startMyArcadeTableMaterializeHandler() {
     let debounce = false
     Events.arcadeTableMaterialize.connect((arcadeTableName) => {
@@ -138,14 +135,10 @@ export class ArcadeController implements OnStart {
     })
   }
 
-  startMyArcadeTableLoopHandler() {
-    store.subscribe(selectLocalPlayerLoops(), () => {
-      sendAlert({
-        emoji: '🔄',
-        message: formatMessage(MESSAGE.ArcadeTableLooped, {
-          playerName: USER_NAME,
-        }),
-      })
+  startMyArcadeTableNewBallHandler() {
+    Events.arcadeTableNewBall.connect((tableName, ballName) => {
+      const tableType = store.getState(selectArcadeTableType(tableName))
+      mechanics[tableType].onClientNewBall(tableName, ballName)
     })
   }
 
@@ -160,5 +153,20 @@ export class ArcadeController implements OnStart {
         })
       },
     )
+  }
+
+  startPlayerBounceHandler(player: Player) {
+    let debouncePlayer = false
+    // Local player was bounced by a Bouncer.
+    Events.playerBounce.connect((position) => {
+      const humanoid = (player.Character as PlayerCharacter).Humanoid
+      const rootPart = humanoid?.RootPart
+      if (rootPart && !debouncePlayer) {
+        debouncePlayer = true
+        rootPart.ApplyImpulse(rootPart.Position.sub(position).mul(1000))
+        task.wait(0.5)
+        debouncePlayer = false
+      }
+    })
   }
 }

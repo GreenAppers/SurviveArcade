@@ -1,5 +1,8 @@
 import { Players, Workspace } from '@rbxts/services'
-import { ClientNetwork } from 'ReplicatedStorage/shared/network'
+import {
+  ClientNetworkEvents,
+  ServerNetworkEvents,
+} from 'ReplicatedStorage/shared/network'
 import type { ArcadeTableMechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import {
   BehaviorObject,
@@ -14,7 +17,11 @@ export class PinballMechanics implements ArcadeTableMechanics {
   ballNumber = 1
   fullForceKeypress = 0
 
-  onGameStart(tableName: string, userId: number) {
+  onGameStart(
+    tableName: ArcadeTableName,
+    userId: number,
+    _network: ServerNetworkEvents,
+  ) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
     const balls = arcadeTable?.FindFirstChild('Balls')
     const ballTemplate = arcadeTable?.FindFirstChild<BasePart>('BallTemplate')
@@ -66,7 +73,7 @@ export class PinballMechanics implements ArcadeTableMechanics {
   onClientInputBegan(
     tableName: ArcadeTableName,
     _userId: number,
-    network: ClientNetwork,
+    network: ClientNetworkEvents,
     input: InputObject,
     inputService?: UserInputService,
   ) {
@@ -105,10 +112,12 @@ export class PinballMechanics implements ArcadeTableMechanics {
   onClientInputEnded(
     _tableName: ArcadeTableName,
     _userId: number,
-    _network: ClientNetwork,
+    _network: ClientNetworkEvents,
     _input: InputObject,
     _inputService?: UserInputService,
   ) {}
+
+  onClientNewBall(_tableName: ArcadeTableName, _ballName: string) {}
 
   onNPCPlayingBehavior(
     tableName: ArcadeTableName,

@@ -18,6 +18,10 @@ interface ServerFunctions {}
 
 interface ClientEvents {
   arcadeTableMaterialize: (arcadeTableName: ArcadeTableName) => void
+  arcadeTableNewBall: (
+    arcadeTableName: ArcadeTableName,
+    ballName: string,
+  ) => void
   dispatch: (actions: Array<BroadcastAction>) => void
   message: (
     messageType: string,
@@ -33,9 +37,9 @@ interface ClientEvents {
 
 interface ClientFunctions {}
 
-export type ClientNetwork = ClientHandler<ServerEvents, ClientEvents>
+export type ClientNetworkEvents = ClientHandler<ServerEvents, ClientEvents>
 
-export type ServerNetwork = ServerHandler<ServerEvents, ClientEvents>
+export type ServerNetworkEvents = ServerHandler<ClientEvents, ServerEvents>
 
 export const GlobalEvents = Networking.createEvent<ServerEvents, ClientEvents>()
 

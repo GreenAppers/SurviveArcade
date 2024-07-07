@@ -1,17 +1,25 @@
-import { ClientNetwork } from 'ReplicatedStorage/shared/network'
+import {
+  ClientNetworkEvents,
+  ServerNetworkEvents,
+} from 'ReplicatedStorage/shared/network'
 import { AirHockeyMechanics } from 'ReplicatedStorage/shared/tables/airhockey'
 import { FoosballMechanics } from 'ReplicatedStorage/shared/tables/foosball'
 import { PinballMechanics } from 'ReplicatedStorage/shared/tables/pinball'
 import { BehaviorObject } from 'ReplicatedStorage/shared/utils/behavior'
 
 export interface ArcadeTableMechanics {
-  onGameStart(tableName: string, userId: number): void
+  onGameStart(
+    tableName: ArcadeTableName,
+    userId: number,
+    network: ServerNetworkEvents,
+  ): void
+
   onGameOver(tableName: ArcadeTableName, userId: number): void
 
   onClientInputBegan(
     tableName: ArcadeTableName,
     userId: number,
-    network: ClientNetwork,
+    network: ClientNetworkEvents,
     input: InputObject,
     inputService?: UserInputService,
   ): void
@@ -19,10 +27,12 @@ export interface ArcadeTableMechanics {
   onClientInputEnded(
     tableName: ArcadeTableName,
     userId: number,
-    network: ClientNetwork,
+    network: ClientNetworkEvents,
     input: InputObject,
     inputService?: UserInputService,
   ): void
+
+  onClientNewBall(tableName: ArcadeTableName, ballName: string): void
 
   onNPCPlayingBehavior(
     tableName: ArcadeTableName,

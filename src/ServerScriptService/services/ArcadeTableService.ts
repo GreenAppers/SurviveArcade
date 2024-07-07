@@ -215,7 +215,7 @@ export class ArcadeTableService implements OnStart {
 
   onGameStart(tableName: ArcadeTableName, userId: number) {
     const tableType = store.getState(selectArcadeTableType(tableName))
-    mechanics[tableType].onGameStart(tableName, userId)
+    mechanics[tableType].onGameStart(tableName, userId, Events)
   }
 
   onScoreChanged(

@@ -43,7 +43,7 @@ export class NPCService implements OnStart {
       targetCount: 1,
       type: NPC_TYPES.Player,
       pathFinding: true,
-      pathFindingVisualize: true,
+      pathFindingVisualize: false,
       respawnNpcIds: new Queue<number>(),
     },
     Rat: {

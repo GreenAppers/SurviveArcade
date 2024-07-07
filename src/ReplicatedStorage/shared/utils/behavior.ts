@@ -1,5 +1,8 @@
 import SimplePath from '@rbxts/simplepath'
-import { ClientNetwork, ServerNetwork } from 'ReplicatedStorage/shared/network'
+import {
+  ClientNetworkEvents,
+  ServerNetworkEvents,
+} from 'ReplicatedStorage/shared/network'
 import { SharedState, SharedStore } from 'ReplicatedStorage/shared/state'
 
 export enum PathStatus {
@@ -27,14 +30,14 @@ export type BehaviorPlans = Partial<Record<BehaviorPlanType, BehaviorPlan>>
 export interface BehaviorObject {
   attackDebounce?: boolean
   Blackboard: Record<string, unknown> & {
-    clientNetwork?: ClientNetwork
+    clientNetwork?: ClientNetworkEvents
     lastFlipperLeft?: number
     lastFlipperRight?: number
     obstacle?: BasePart
     obstaclePos?: Vector3
     path?: SimplePath
     plan?: BehaviorPlans
-    serverNetwork?: ServerNetwork
+    serverNetwork?: ServerNetworkEvents
     serverStore?: SharedStore
     sourceArcadeTableName?: ArcadeTableName
     sourceAttachment?: Attachment
