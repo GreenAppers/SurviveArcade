@@ -70,7 +70,7 @@ interface ArcadeTableBase extends Model {
   }
   Ground: BasePart
   Name: ArcadeTableName
-  NextGround: BasePart
+  NextBaseplate: BasePart
   PlayZone: BasePart
   Control: Model & {
     Seat: Seat & {

@@ -141,10 +141,14 @@ export class MapService implements OnStart {
   ) {
     const parts = findDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
     const arcadeTableMechanics = mechanics[state.tableType]
+    const groundTable = state.sequence % 8 === 0
     for (const part of parts) {
       arcadeTableMechanics.onCreateTablePart(arcadeTable, state, part)
       if (part.Name === 'BallTemplate') continue
-      if (part.Name === 'Ground') {
+      if (
+        ((groundTable || !arcadeTable.PrimaryPart) && part.Name === 'Ground') ||
+        (!groundTable && part.Name === 'Baseplate')
+      ) {
         arcadeTable.PrimaryPart = part
       }
       if (!restoreMaterial) continue
@@ -165,10 +169,20 @@ export class MapService implements OnStart {
     arcadeTable.Parent = Workspace.ArcadeTables
   }
 
-  setupNextArcadeTable(arcadeTable: ArcadeTable, cframe: CFrame) {
+  setupNextArcadeTable(
+    arcadeTable: ArcadeTable,
+    state: ArcadeTableState,
+    cframe: CFrame,
+  ) {
     const parts = findDescendentsWhichAre(arcadeTable, 'BasePart') as BasePart[]
+    const groundTable = (state.sequence + 1) % 8 === 0
     for (const part of parts) {
-      if (part.Name === 'Ground') arcadeTable.PrimaryPart = part
+      if (
+        ((groundTable || !arcadeTable.PrimaryPart) && part.Name === 'Ground') ||
+        (!groundTable && part.Name === 'Baseplate')
+      ) {
+        arcadeTable.PrimaryPart = part
+      }
       if (part.Transparency === 1) continue
       part.SetAttribute(materialAttributeName, part.Material.Name)
       part.Material = Enum.Material.ForceField
@@ -208,7 +222,7 @@ export class MapService implements OnStart {
     arcadeTable.Name = name
     this.setupArcadeTable(
       arcadeTable,
-      oldState,
+      { ...oldState, sequence: 0 },
       getArcadeTableCFrame(name),
       !!nextArcadeTable,
     )
@@ -218,6 +232,7 @@ export class MapService implements OnStart {
     const arcadeTableNextName = nextArcadeTableName(name)
     const arcadeTablesState = store.getState().arcadeTables
     const state = arcadeTablesState[name]
+    const groundTable = (state.sequence + 1) % 8 === 0
     const arcadeTable =
       game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(name)
     let arcadeTableNext =
@@ -225,11 +240,13 @@ export class MapService implements OnStart {
         arcadeTableNextName,
       )
     if (!state?.tableMap || arcadeTableNext) return
-    const nextArcadeTableCF = arcadeTable?.NextGround?.CFrame
+    const nextArcadeTableCF = groundTable
+      ? getArcadeTableCFrame(name)
+      : arcadeTable?.NextBaseplate?.CFrame
     if (!nextArcadeTableCF) return
     arcadeTableNext = this.loadArcadeTableTemplate(state.tableMap, name)
     arcadeTableNext.Name = arcadeTableNextName as ArcadeTableName
-    this.setupNextArcadeTable(arcadeTableNext, nextArcadeTableCF)
+    this.setupNextArcadeTable(arcadeTableNext, state, nextArcadeTableCF)
   }
 
   activateNextTable(
