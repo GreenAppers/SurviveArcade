@@ -5,6 +5,7 @@
       <BinaryString name="AttributesSerialize"></BinaryString>
       <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
         <X>0</X>
@@ -32,6 +33,7 @@
       <float name="ScaleFactor">1</float>
       <int64 name="SourceAssetId">9573727164</int64>
       <BinaryString name="Tags"></BinaryString>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bf3</UniqueId>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>-522.22546</X>
@@ -54,6 +56,7 @@
         <string name="Name">Projector</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AudioCanCollide">false</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -94,6 +97,7 @@
         <float name="FrontParamB">0.5</float>
         <token name="FrontSurface">0</token>
         <token name="FrontSurfaceInput">0</token>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <float name="LeftParamA">-0.5</float>
         <float name="LeftParamB">0.5</float>
         <token name="LeftSurface">0</token>
@@ -140,6 +144,7 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bf4</UniqueId>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>
@@ -160,6 +165,7 @@
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <bool name="FaceCamera">true</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <float name="LightEmission">0</float>
           <float name="LightInfluence">0</float>
           <int name="Segments">30</int>
@@ -172,6 +178,7 @@
           <token name="TextureMode">0</token>
           <float name="TextureSpeed">0.05</float>
           <NumberSequence name="Transparency">0 0.41875 0 0.22424242 0.68125 0 0.45212123 0.80625 0 0.70666665 0.8625 0 0.8933333 0.88125 0 1 0.9125 0 </NumberSequence>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bf5</UniqueId>
           <float name="Width0">0.5</float>
           <float name="Width1">5</float>
           <float name="ZOffset">0</float>
@@ -197,8 +204,10 @@
           </CoordinateFrame>
           <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bf6</UniqueId>
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
@@ -222,8 +231,10 @@
           </CoordinateFrame>
           <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bf7</UniqueId>
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
@@ -242,10 +253,12 @@
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
           <token name="Face">0</token>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <float name="Range">9</float>
           <bool name="Shadows">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bf8</UniqueId>
         </Properties>
       </Item>
     </Item>
@@ -254,6 +267,7 @@
         <string name="Name">ProjectorBase</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AudioCanCollide">false</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -294,6 +308,7 @@
         <float name="FrontParamB">0.5</float>
         <token name="FrontSurface">0</token>
         <token name="FrontSurfaceInput">0</token>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <float name="LeftParamA">-0.5</float>
         <float name="LeftParamB">0.5</float>
         <token name="LeftSurface">0</token>
@@ -340,6 +355,7 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bf9</UniqueId>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>
@@ -352,6 +368,7 @@
         <string name="Name">Base</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize">AQAAAAQAAABUb29sAgUAAABTYWJlcg==</BinaryString>
+        <bool name="AudioCanCollide">false</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -392,6 +409,7 @@
         <float name="FrontParamB">0.5</float>
         <token name="FrontSurface">0</token>
         <token name="FrontSurfaceInput">0</token>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <float name="LeftParamA">-0.5</float>
         <float name="LeftParamB">0.5</float>
         <token name="LeftSurface">0</token>
@@ -438,6 +456,7 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bfa</UniqueId>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>
@@ -450,6 +469,7 @@
         <string name="Name">BaseLight</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AudioCanCollide">false</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -490,6 +510,7 @@
         <float name="FrontParamB">0.5</float>
         <token name="FrontSurface">0</token>
         <token name="FrontSurfaceInput">0</token>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <float name="LeftParamA">-0.5</float>
         <float name="LeftParamB">0.5</float>
         <token name="LeftSurface">0</token>
@@ -536,6 +557,7 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bfb</UniqueId>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>
@@ -555,10 +577,12 @@
           </Color3>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <float name="Range">6</float>
           <bool name="Shadows">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bfc</UniqueId>
         </Properties>
       </Item>
     </Item>
@@ -567,6 +591,7 @@
         <string name="Name">Item</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzMDc5YjdlOTkyNTFhZmNlMDY2NjY4MTYwMDAwZTU5NQ==</BinaryString>
+        <bool name="AudioCanCollide">false</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -607,6 +632,7 @@
         <float name="FrontParamB">0.5</float>
         <token name="FrontSurface">0</token>
         <token name="FrontSurfaceInput">0</token>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <float name="LeftParamA">-0.5</float>
         <float name="LeftParamB">0.5</float>
         <token name="LeftSurface">0</token>
@@ -653,6 +679,7 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bfd</UniqueId>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>
@@ -664,6 +691,7 @@
           <string name="Name">Button</string>
           <bool name="Anchored">true</bool>
           <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzMDc5YjdlOTkyNTFhZmNlMDY2NjY4MTYwMDAwZTU5NA==</BinaryString>
+          <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -704,6 +732,7 @@
           <float name="FrontParamB">0.5</float>
           <token name="FrontSurface">0</token>
           <token name="FrontSurfaceInput">0</token>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <float name="LeftParamA">-0.5</float>
           <float name="LeftParamB">0.5</float>
           <token name="LeftSurface">0</token>
@@ -750,6 +779,7 @@
           <token name="TopSurface">0</token>
           <token name="TopSurfaceInput">0</token>
           <float name="Transparency">0</float>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bfe</UniqueId>
           <Vector3 name="Velocity">
             <X>0</X>
             <Y>0</Y>
@@ -762,6 +792,7 @@
           <string name="Name">Tip</string>
           <bool name="Anchored">true</bool>
           <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzMDc5YjdlOTkyNTFhZmNlMDY2NjY4MTYwMDAwZTU5Ng==</BinaryString>
+          <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -802,6 +833,7 @@
           <float name="FrontParamB">0.5</float>
           <token name="FrontSurface">0</token>
           <token name="FrontSurfaceInput">0</token>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <float name="LeftParamA">-0.5</float>
           <float name="LeftParamB">0.5</float>
           <token name="LeftSurface">0</token>
@@ -848,6 +880,7 @@
           <token name="TopSurface">0</token>
           <token name="TopSurfaceInput">0</token>
           <float name="Transparency">0</float>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000bff</UniqueId>
           <Vector3 name="Velocity">
             <X>0</X>
             <Y>0</Y>
@@ -860,6 +893,7 @@
           <string name="Name">Saber</string>
           <bool name="Anchored">true</bool>
           <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzMDc5YjdlOTkyNTFhZmNlMDY2NjY4MTYwMDAwZTU5Nw==</BinaryString>
+          <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
           <token name="BackSurface">0</token>
@@ -900,6 +934,7 @@
           <float name="FrontParamB">0.5</float>
           <token name="FrontSurface">0</token>
           <token name="FrontSurfaceInput">0</token>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <float name="LeftParamA">-0.5</float>
           <float name="LeftParamB">0.5</float>
           <token name="LeftSurface">0</token>
@@ -946,6 +981,7 @@
           <token name="TopSurface">0</token>
           <token name="TopSurfaceInput">0</token>
           <float name="Transparency">0</float>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000c00</UniqueId>
           <Vector3 name="Velocity">
             <X>0</X>
             <Y>0</Y>

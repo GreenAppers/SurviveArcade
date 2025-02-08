@@ -5,6 +5,7 @@
       <bool name="AllowTeamChangeOnTouch">false</bool>
       <bool name="Anchored">true</bool>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <bool name="AudioCanCollide">true</bool>
       <float name="BackParamA">-0.5</float>
       <float name="BackParamB">0.5</float>
       <token name="BackSurface">0</token>
@@ -30,6 +31,7 @@
       <bool name="CanCollide">true</bool>
       <bool name="CanQuery">true</bool>
       <bool name="CanTouch">true</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="CastShadow">true</bool>
       <string name="CollisionGroup">Default</string>
       <int name="CollisionGroupId">0</int>
@@ -46,6 +48,7 @@
       <float name="FrontParamB">0.5</float>
       <token name="FrontSurface">0</token>
       <token name="FrontSurfaceInput">0</token>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <float name="LeftParamA">-0.5</float>
       <float name="LeftParamB">0.5</float>
       <token name="LeftSurface">0</token>
@@ -94,6 +97,7 @@
       <token name="TopSurface">0</token>
       <token name="TopSurfaceInput">0</token>
       <float name="Transparency">0</float>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd000008c2</UniqueId>
       <Vector3 name="Velocity">
         <X>0</X>
         <Y>0</Y>
@@ -104,6 +108,7 @@
       <Properties>
         <string name="Name">Decal</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <Color3 name="Color3">
           <R>1</R>
           <G>1</G>
@@ -111,12 +116,14 @@
         </Color3>
         <bool name="DefinesCapabilities">false</bool>
         <token name="Face">1</token>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <Content name="Texture">
           <url>rbxasset://textures/SpawnLocation.png</url>
         </Content>
         <float name="Transparency">0.65</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd000008c3</UniqueId>
         <int name="ZIndex">1</int>
       </Properties>
     </Item>

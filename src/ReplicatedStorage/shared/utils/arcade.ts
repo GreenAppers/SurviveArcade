@@ -5,6 +5,7 @@ import {
   ArcadeCabinetTag,
   ArcadeTableTag,
 } from 'ReplicatedStorage/shared/constants/tags'
+import { randomElement } from 'ReplicatedStorage/shared/utils/object'
 
 export function firstArcadeTableMap(
   arcadeTableType: ArcadeTableType,
@@ -17,6 +18,13 @@ export function firstArcadeTableMap(
     case 'Pinball':
       return 'Pinball1'
   }
+}
+
+export function randomArcadeTableType(
+  _arcadeTableType?: ArcadeTableType,
+): ArcadeTableType {
+  const types = Object.values(ARCADE_TABLE_TYPES)
+  return randomElement(types)
 }
 
 export function nextArcadeTableType(
@@ -49,4 +57,10 @@ export function getArcadeTableFromDescendent(instance: Instance) {
     instance = instance.Parent
   }
   return undefined
+}
+
+export function getArcadeTableSpawn(arcadeTable?: ArcadeTable) {
+  return arcadeTable?.Control?.Seat?.CFrame?.ToWorldSpace(
+    new CFrame(new Vector3(0, 5, 5)),
+  )
 }

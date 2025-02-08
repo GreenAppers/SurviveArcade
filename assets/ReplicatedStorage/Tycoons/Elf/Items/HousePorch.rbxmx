@@ -3,7 +3,9 @@
     <Properties>
       <string name="Name">HousePorch</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="DefinesCapabilities">false</bool>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
         <X>0</X>
@@ -31,6 +33,7 @@
       <float name="ScaleFactor">0.99999964</float>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b8c</UniqueId>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>-418.9244</X>
@@ -53,6 +56,7 @@
         <string name="Name">Part</string>
         <bool name="Anchored">true</bool>
         <BinaryString name="AttributesSerialize">AQAAAA8AAABSb2pvRXh0ZXJuYWxSZWYCIgAAACJiNzI3YjM2M2NhM2VhMDlkMjE4YTI2YWJmNzUxNDE1ZiI=</BinaryString>
+        <bool name="AudioCanCollide">false</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">10</token>
@@ -78,6 +82,7 @@
         <bool name="CanCollide">true</bool>
         <bool name="CanQuery">true</bool>
         <bool name="CanTouch">true</bool>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="CastShadow">true</bool>
         <string name="CollisionGroup">Default</string>
         <int name="CollisionGroupId">0</int>
@@ -92,6 +97,7 @@
         <float name="FrontParamB">0.5</float>
         <token name="FrontSurface">0</token>
         <token name="FrontSurfaceInput">0</token>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <float name="LeftParamA">-0.5</float>
         <float name="LeftParamB">0.5</float>
         <token name="LeftSurface">10</token>
@@ -138,6 +144,7 @@
         <token name="TopSurface">10</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b8d</UniqueId>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>
@@ -149,7 +156,9 @@
       <Properties>
         <string name="Name">Stairs</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
           <X>0</X>
@@ -177,6 +186,7 @@
         <float name="ScaleFactor">1.7755376</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b8e</UniqueId>
         <OptionalCoordinateFrame name="WorldPivotData">
           <CFrame>
             <X>-406.3288</X>
@@ -198,7 +208,9 @@
         <Properties>
           <string name="Name">PopsicleStick</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <token name="LevelOfDetail">0</token>
           <CoordinateFrame name="ModelMeshCFrame">
             <X>0</X>
@@ -226,6 +238,7 @@
           <float name="ScaleFactor">30.832304</float>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b8f</UniqueId>
           <OptionalCoordinateFrame name="WorldPivotData">
             <CFrame>
               <X>-402.07587</X>
@@ -248,6 +261,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -273,6 +287,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -287,6 +302,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -333,6 +349,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b90</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -345,6 +362,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -370,6 +388,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -384,6 +403,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -430,6 +450,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b91</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -442,6 +463,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -467,6 +489,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -481,6 +504,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -527,6 +551,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b92</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -539,7 +564,9 @@
         <Properties>
           <string name="Name">PopsicleStick</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <token name="LevelOfDetail">0</token>
           <CoordinateFrame name="ModelMeshCFrame">
             <X>0</X>
@@ -567,6 +594,7 @@
           <float name="ScaleFactor">30.832304</float>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b93</UniqueId>
           <OptionalCoordinateFrame name="WorldPivotData">
             <CFrame>
               <X>-405.05487</X>
@@ -589,6 +617,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -614,6 +643,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -628,6 +658,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -674,6 +705,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b94</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -686,6 +718,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -711,6 +744,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -725,6 +759,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -771,6 +806,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b95</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -783,6 +819,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -808,6 +845,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -822,6 +860,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -868,6 +907,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b96</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -880,7 +920,9 @@
         <Properties>
           <string name="Name">PopsicleStick</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <token name="LevelOfDetail">0</token>
           <CoordinateFrame name="ModelMeshCFrame">
             <X>0</X>
@@ -908,6 +950,7 @@
           <float name="ScaleFactor">30.832304</float>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b97</UniqueId>
           <OptionalCoordinateFrame name="WorldPivotData">
             <CFrame>
               <X>-407.82922</X>
@@ -930,6 +973,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -955,6 +999,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -969,6 +1014,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -1015,6 +1061,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b98</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -1027,6 +1074,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -1052,6 +1100,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1066,6 +1115,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -1112,6 +1162,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b99</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -1124,6 +1175,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -1149,6 +1201,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1163,6 +1216,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -1209,6 +1263,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b9a</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -1221,7 +1276,9 @@
         <Properties>
           <string name="Name">PopsicleStick</string>
           <BinaryString name="AttributesSerialize"></BinaryString>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <token name="LevelOfDetail">0</token>
           <CoordinateFrame name="ModelMeshCFrame">
             <X>0</X>
@@ -1249,6 +1306,7 @@
           <float name="ScaleFactor">30.832304</float>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b9b</UniqueId>
           <OptionalCoordinateFrame name="WorldPivotData">
             <CFrame>
               <X>-410.58173</X>
@@ -1271,6 +1329,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -1296,6 +1355,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1310,6 +1370,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -1356,6 +1417,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b9c</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -1368,6 +1430,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -1393,6 +1456,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1407,6 +1471,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -1453,6 +1518,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b9d</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>
@@ -1465,6 +1531,7 @@
             <string name="Name">Part</string>
             <bool name="Anchored">true</bool>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <bool name="AudioCanCollide">false</bool>
             <float name="BackParamA">-0.5</float>
             <float name="BackParamB">0.5</float>
             <token name="BackSurface">0</token>
@@ -1490,6 +1557,7 @@
             <bool name="CanCollide">true</bool>
             <bool name="CanQuery">true</bool>
             <bool name="CanTouch">true</bool>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="CastShadow">true</bool>
             <string name="CollisionGroup">Default</string>
             <int name="CollisionGroupId">0</int>
@@ -1504,6 +1572,7 @@
             <float name="FrontParamB">0.5</float>
             <token name="FrontSurface">0</token>
             <token name="FrontSurfaceInput">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="LeftParamA">-0.5</float>
             <float name="LeftParamB">0.5</float>
             <token name="LeftSurface">0</token>
@@ -1550,6 +1619,7 @@
             <token name="TopSurface">0</token>
             <token name="TopSurfaceInput">0</token>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b9e</UniqueId>
             <Vector3 name="Velocity">
               <X>0</X>
               <Y>0</Y>

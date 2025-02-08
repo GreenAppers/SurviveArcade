@@ -4,6 +4,7 @@
       <string name="Name">LeftWall</string>
       <bool name="Anchored">true</bool>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <bool name="AudioCanCollide">false</bool>
       <float name="BackParamA">-0.5</float>
       <float name="BackParamB">0.5</float>
       <token name="BackSurface">0</token>
@@ -44,6 +45,7 @@
       <float name="FrontParamB">0.5</float>
       <token name="FrontSurface">0</token>
       <token name="FrontSurfaceInput">0</token>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <float name="LeftParamA">-0.5</float>
       <float name="LeftParamB">0.5</float>
       <token name="LeftSurface">0</token>
@@ -90,6 +92,7 @@
       <token name="TopSurface">0</token>
       <token name="TopSurfaceInput">0</token>
       <float name="Transparency">0</float>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd000003b9</UniqueId>
       <Vector3 name="Velocity">
         <X>0</X>
         <Y>0</Y>

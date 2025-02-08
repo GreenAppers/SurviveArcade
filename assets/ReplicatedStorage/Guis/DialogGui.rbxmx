@@ -9,6 +9,7 @@
       <bool name="DefinesCapabilities">false</bool>
       <int name="DisplayOrder">0</int>
       <bool name="Enabled">true</bool>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <bool name="ResetOnSpawn">true</bool>
       <Ref name="RootLocalizationTable">null</Ref>
       <token name="SafeAreaCompatibility">1</token>
@@ -20,6 +21,7 @@
       <bool name="SelectionGroup">false</bool>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000835</UniqueId>
       <token name="ZIndexBehavior">1</token>
     </Properties>
     <Item class="Frame" referent="1">
@@ -50,6 +52,7 @@
         <bool name="ClipsDescendants">false</bool>
         <bool name="DefinesCapabilities">false</bool>
         <bool name="Draggable">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <bool name="Interactable">true</bool>
         <int name="LayoutOrder">0</int>
         <Ref name="NextSelectionDown">null</Ref>
@@ -82,6 +85,7 @@
         <int64 name="SourceAssetId">-1</int64>
         <token name="Style">0</token>
         <BinaryString name="Tags"></BinaryString>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000836</UniqueId>
         <bool name="Visible">true</bool>
         <int name="ZIndex">1</int>
       </Properties>
@@ -113,6 +117,7 @@
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <bool name="Interactable">true</bool>
           <int name="LayoutOrder">0</int>
           <Ref name="NextSelectionDown">null</Ref>
@@ -145,6 +150,7 @@
           <int64 name="SourceAssetId">-1</int64>
           <token name="Style">0</token>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000837</UniqueId>
           <bool name="Visible">true</bool>
           <int name="ZIndex">1</int>
         </Properties>
@@ -157,8 +163,10 @@
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="DefinesCapabilities">false</bool>
             <token name="DominantAxis">0</token>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000838</UniqueId>
           </Properties>
         </Item>
         <Item class="ViewportFrame" referent="4">
@@ -209,6 +217,7 @@
             <bool name="ClipsDescendants">false</bool>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Color3 name="ImageColor3">
               <R>1</R>
               <G>1</G>
@@ -256,6 +265,7 @@
             <token name="SizeConstraint">0</token>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000839</UniqueId>
             <bool name="Visible">true</bool>
             <int name="ZIndex">1</int>
           </Properties>
@@ -299,8 +309,10 @@
               </CoordinateFrame>
               <bool name="HeadLocked">true</bool>
               <float name="HeadScale">1</float>
+              <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
               <int64 name="SourceAssetId">-1</int64>
               <BinaryString name="Tags"></BinaryString>
+              <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000083a</UniqueId>
               <bool name="VRTiltAndRollEnabled">false</bool>
             </Properties>
           </Item>
@@ -314,8 +326,10 @@
                 <O>20</O>
               </UDim>
               <bool name="DefinesCapabilities">false</bool>
+              <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
               <int64 name="SourceAssetId">-1</int64>
               <BinaryString name="Tags"></BinaryString>
+              <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000083b</UniqueId>
             </Properties>
           </Item>
           <Item class="WorldModel" referent="7">
@@ -324,6 +338,7 @@
               <BinaryString name="AttributesSerialize"></BinaryString>
               <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <bool name="DefinesCapabilities">false</bool>
+              <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
               <token name="LevelOfDetail">0</token>
               <CoordinateFrame name="ModelMeshCFrame">
                 <X>0</X>
@@ -351,6 +366,7 @@
               <float name="ScaleFactor">1</float>
               <int64 name="SourceAssetId">-1</int64>
               <BinaryString name="Tags"></BinaryString>
+              <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000083c</UniqueId>
               <OptionalCoordinateFrame name="WorldPivotData">
                 <CFrame>
                   <X>-72.24519</X>
@@ -374,6 +390,7 @@
                 <BinaryString name="AttributesSerialize">AgAAAA8AAABSb2pvRXh0ZXJuYWxSZWYCIgAAACIyYjhjNDY2OGY2ZWQyZTY2MDA3OGRhMTkwZTdiM2M1ZCIXAAAAUm9qb19UYXJnZXRfUHJpbWFyeVBhcnQCIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwN2Y0</BinaryString>
                 <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                 <bool name="DefinesCapabilities">false</bool>
+                <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                 <token name="LevelOfDetail">0</token>
                 <CoordinateFrame name="ModelMeshCFrame">
                   <X>0</X>
@@ -401,6 +418,7 @@
                 <float name="ScaleFactor">1</float>
                 <int64 name="SourceAssetId">9868942034</int64>
                 <BinaryString name="Tags"></BinaryString>
+                <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000083d</UniqueId>
                 <OptionalCoordinateFrame name="WorldPivotData">
                   <CFrame>
                     <X>-73.92507</X>
@@ -423,6 +441,7 @@
                   <string name="Name">Head</string>
                   <bool name="Anchored">false</bool>
                   <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdjZQ==</BinaryString>
+                  <bool name="AudioCanCollide">false</bool>
                   <float name="BackParamA">-0.5</float>
                   <float name="BackParamB">0.5</float>
                   <token name="BackSurface">0</token>
@@ -463,6 +482,7 @@
                   <float name="FrontParamB">0.5</float>
                   <token name="FrontSurface">0</token>
                   <token name="FrontSurfaceInput">0</token>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <float name="LeftParamA">-0.5</float>
                   <float name="LeftParamB">0.5</float>
                   <token name="LeftSurface">0</token>
@@ -509,6 +529,7 @@
                   <token name="TopSurface">0</token>
                   <token name="TopSurfaceInput">0</token>
                   <float name="Transparency">0</float>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000083e</UniqueId>
                   <Vector3 name="Velocity">
                     <X>0</X>
                     <Y>0</Y>
@@ -521,6 +542,7 @@
                     <BinaryString name="AttributesSerialize"></BinaryString>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Content name="MeshId">
                       <null>
                       </null>
@@ -542,6 +564,7 @@
                       <null>
                       </null>
                     </Content>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000083f</UniqueId>
                     <Vector3 name="VertexColor">
                       <X>1</X>
                       <Y>1</Y>
@@ -569,8 +592,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000840</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -594,8 +619,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000841</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -619,8 +646,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000842</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -644,8 +673,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000843</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -661,12 +692,14 @@
                     </Color3>
                     <bool name="DefinesCapabilities">false</bool>
                     <token name="Face">5</token>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
                     <Content name="Texture">
                       <url>http://www.roblox.com/asset/?id=8560915</url>
                     </Content>
                     <float name="Transparency">0</float>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000844</UniqueId>
                     <int name="ZIndex">1</int>
                   </Properties>
                 </Item>
@@ -705,10 +738,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000845</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Weld" referent="19">
@@ -746,10 +781,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000846</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Weld" referent="20">
@@ -787,10 +824,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000847</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Weld" referent="21">
@@ -828,10 +867,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000848</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Weld" referent="22">
@@ -869,10 +910,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000849</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Weld" referent="23">
@@ -910,10 +953,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000084a</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Weld" referent="24">
@@ -951,10 +996,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000084b</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Weld" referent="25">
@@ -992,10 +1039,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000084c</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Weld" referent="26">
@@ -1033,10 +1082,12 @@
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <Ref name="Part0">10</Ref>
                     <Ref name="Part1">18</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000084d</UniqueId>
                   </Properties>
                 </Item>
               </Item>
@@ -1045,6 +1096,7 @@
                   <string name="Name">Torso</string>
                   <bool name="Anchored">false</bool>
                   <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdkYw==</BinaryString>
+                  <bool name="AudioCanCollide">false</bool>
                   <float name="BackParamA">-0.5</float>
                   <float name="BackParamB">0.5</float>
                   <token name="BackSurface">0</token>
@@ -1085,6 +1137,7 @@
                   <float name="FrontParamB">0.5</float>
                   <token name="FrontSurface">0</token>
                   <token name="FrontSurfaceInput">0</token>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <float name="LeftParamA">0</float>
                   <float name="LeftParamB">0</float>
                   <token name="LeftSurface">2</token>
@@ -1131,6 +1184,7 @@
                   <token name="TopSurface">3</token>
                   <token name="TopSurfaceInput">0</token>
                   <float name="Transparency">0</float>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000084e</UniqueId>
                   <Vector3 name="Velocity">
                     <X>0</X>
                     <Y>0</Y>
@@ -1157,8 +1211,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000084f</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1182,8 +1238,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000850</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1207,8 +1265,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000851</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1232,8 +1292,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000852</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1257,8 +1319,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000853</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1282,8 +1346,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000854</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1307,8 +1373,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000855</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1332,8 +1400,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000856</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1373,11 +1443,13 @@
                     <bool name="DefinesCapabilities">false</bool>
                     <float name="DesiredAngle">0</float>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <float name="MaxVelocity">0.1</float>
                     <Ref name="Part0">27</Ref>
                     <Ref name="Part1">37</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000857</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Motor6D" referent="38">
@@ -1416,11 +1488,13 @@
                     <bool name="DefinesCapabilities">false</bool>
                     <float name="DesiredAngle">0</float>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <float name="MaxVelocity">0.1</float>
                     <Ref name="Part0">27</Ref>
                     <Ref name="Part1">39</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000858</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Motor6D" referent="40">
@@ -1459,11 +1533,13 @@
                     <bool name="DefinesCapabilities">false</bool>
                     <float name="DesiredAngle">0</float>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <float name="MaxVelocity">0.1</float>
                     <Ref name="Part0">27</Ref>
                     <Ref name="Part1">41</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000859</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Motor6D" referent="42">
@@ -1502,11 +1578,13 @@
                     <bool name="DefinesCapabilities">false</bool>
                     <float name="DesiredAngle">0</float>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <float name="MaxVelocity">0.1</float>
                     <Ref name="Part0">27</Ref>
                     <Ref name="Part1">43</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000085a</UniqueId>
                   </Properties>
                 </Item>
                 <Item class="Motor6D" referent="44">
@@ -1545,11 +1623,13 @@
                     <bool name="DefinesCapabilities">false</bool>
                     <float name="DesiredAngle">0</float>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <float name="MaxVelocity">0.1</float>
                     <Ref name="Part0">27</Ref>
                     <Ref name="Part1">10</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000085b</UniqueId>
                   </Properties>
                 </Item>
               </Item>
@@ -1558,6 +1638,7 @@
                   <string name="Name">Left Arm</string>
                   <bool name="Anchored">false</bool>
                   <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdlYQ==</BinaryString>
+                  <bool name="AudioCanCollide">false</bool>
                   <float name="BackParamA">-0.5</float>
                   <float name="BackParamB">0.5</float>
                   <token name="BackSurface">0</token>
@@ -1598,6 +1679,7 @@
                   <float name="FrontParamB">0.5</float>
                   <token name="FrontSurface">0</token>
                   <token name="FrontSurfaceInput">0</token>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <float name="LeftParamA">-0.5</float>
                   <float name="LeftParamB">0.5</float>
                   <token name="LeftSurface">0</token>
@@ -1644,6 +1726,7 @@
                   <token name="TopSurface">3</token>
                   <token name="TopSurfaceInput">0</token>
                   <float name="Transparency">0</float>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000085c</UniqueId>
                   <Vector3 name="Velocity">
                     <X>0</X>
                     <Y>0</Y>
@@ -1670,8 +1753,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000085d</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1695,8 +1780,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000085e</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1706,6 +1793,7 @@
                   <string name="Name">Right Arm</string>
                   <bool name="Anchored">false</bool>
                   <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdlZA==</BinaryString>
+                  <bool name="AudioCanCollide">false</bool>
                   <float name="BackParamA">-0.5</float>
                   <float name="BackParamB">0.5</float>
                   <token name="BackSurface">0</token>
@@ -1746,6 +1834,7 @@
                   <float name="FrontParamB">0.5</float>
                   <token name="FrontSurface">0</token>
                   <token name="FrontSurfaceInput">0</token>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <float name="LeftParamA">-0.5</float>
                   <float name="LeftParamB">0.5</float>
                   <token name="LeftSurface">0</token>
@@ -1792,6 +1881,7 @@
                   <token name="TopSurface">3</token>
                   <token name="TopSurfaceInput">0</token>
                   <float name="Transparency">0</float>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000085f</UniqueId>
                   <Vector3 name="Velocity">
                     <X>0</X>
                     <Y>0</Y>
@@ -1818,8 +1908,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000860</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1843,8 +1935,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000861</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1854,6 +1948,7 @@
                   <string name="Name">Left Leg</string>
                   <bool name="Anchored">false</bool>
                   <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdmMA==</BinaryString>
+                  <bool name="AudioCanCollide">false</bool>
                   <float name="BackParamA">-0.5</float>
                   <float name="BackParamB">0.5</float>
                   <token name="BackSurface">0</token>
@@ -1894,6 +1989,7 @@
                   <float name="FrontParamB">0.5</float>
                   <token name="FrontSurface">0</token>
                   <token name="FrontSurfaceInput">0</token>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <float name="LeftParamA">-0.5</float>
                   <float name="LeftParamB">0.5</float>
                   <token name="LeftSurface">0</token>
@@ -1940,6 +2036,7 @@
                   <token name="TopSurface">3</token>
                   <token name="TopSurfaceInput">0</token>
                   <float name="Transparency">0</float>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000862</UniqueId>
                   <Vector3 name="Velocity">
                     <X>0</X>
                     <Y>0</Y>
@@ -1966,8 +2063,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000863</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -1977,6 +2076,7 @@
                   <string name="Name">Right Leg</string>
                   <bool name="Anchored">false</bool>
                   <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdmMg==</BinaryString>
+                  <bool name="AudioCanCollide">false</bool>
                   <float name="BackParamA">-0.5</float>
                   <float name="BackParamB">0.5</float>
                   <token name="BackSurface">0</token>
@@ -2017,6 +2117,7 @@
                   <float name="FrontParamB">0.5</float>
                   <token name="FrontSurface">0</token>
                   <token name="FrontSurfaceInput">0</token>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <float name="LeftParamA">-0.5</float>
                   <float name="LeftParamB">0.5</float>
                   <token name="LeftSurface">0</token>
@@ -2063,6 +2164,7 @@
                   <token name="TopSurface">3</token>
                   <token name="TopSurfaceInput">0</token>
                   <float name="Transparency">0</float>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000864</UniqueId>
                   <Vector3 name="Velocity">
                     <X>0</X>
                     <Y>0</Y>
@@ -2089,8 +2191,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000865</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -2100,6 +2204,7 @@
                   <string name="Name">HumanoidRootPart</string>
                   <bool name="Anchored">false</bool>
                   <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdmNA==</BinaryString>
+                  <bool name="AudioCanCollide">false</bool>
                   <float name="BackParamA">-0.5</float>
                   <float name="BackParamB">0.5</float>
                   <token name="BackSurface">0</token>
@@ -2140,6 +2245,7 @@
                   <float name="FrontParamB">0.5</float>
                   <token name="FrontSurface">0</token>
                   <token name="FrontSurfaceInput">0</token>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <float name="LeftParamA">0</float>
                   <float name="LeftParamB">0</float>
                   <token name="LeftSurface">0</token>
@@ -2186,6 +2292,7 @@
                   <token name="TopSurface">0</token>
                   <token name="TopSurfaceInput">0</token>
                   <float name="Transparency">1</float>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000866</UniqueId>
                   <Vector3 name="Velocity">
                     <X>0</X>
                     <Y>0</Y>
@@ -2212,8 +2319,10 @@
                     </CoordinateFrame>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000867</UniqueId>
                     <bool name="Visible">false</bool>
                   </Properties>
                 </Item>
@@ -2253,11 +2362,13 @@
                     <bool name="DefinesCapabilities">false</bool>
                     <float name="DesiredAngle">0</float>
                     <bool name="Enabled">true</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <float name="MaxVelocity">0.1</float>
                     <Ref name="Part0">9</Ref>
                     <Ref name="Part1">27</Ref>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000868</UniqueId>
                   </Properties>
                 </Item>
               </Item>
@@ -2272,6 +2383,7 @@
                     <G>0.72156864</G>
                     <B>0.57254905</B>
                   </Color3>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <Color3 name="LeftArmColor3">
                     <R>0.9176471</R>
                     <G>0.72156864</G>
@@ -2299,6 +2411,7 @@
                     <G>0.72156864</G>
                     <B>0.57254905</B>
                   </Color3>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000869</UniqueId>
                 </Properties>
               </Item>
               <Item class="Humanoid" referent="54">
@@ -2319,6 +2432,7 @@
                   <token name="HealthDisplayType">2</token>
                   <float name="Health_XML">100</float>
                   <float name="HipHeight">0</float>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <Vector3 name="InternalBodyScale">
                     <X>1</X>
                     <Y>1</Y>
@@ -2335,6 +2449,7 @@
                   <token name="RigType">0</token>
                   <int64 name="SourceAssetId">-1</int64>
                   <BinaryString name="Tags"></BinaryString>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000086a</UniqueId>
                   <bool name="UseJumpPower">true</bool>
                   <float name="WalkSpeed">16</float>
                 </Properties>
@@ -2344,9 +2459,11 @@
                     <BinaryString name="AttributesSerialize"></BinaryString>
                     <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                     <bool name="DefinesCapabilities">false</bool>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <bool name="PreferLodEnabled">true</bool>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000086b</UniqueId>
                   </Properties>
                 </Item>
               </Item>
@@ -2361,11 +2478,13 @@
                     <B>0.9647059</B>
                   </Color3>
                   <bool name="DefinesCapabilities">false</bool>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <Content name="ShirtTemplate">
                     <url>rbxassetid://765622777</url>
                   </Content>
                   <int64 name="SourceAssetId">-1</int64>
                   <BinaryString name="Tags"></BinaryString>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000086c</UniqueId>
                 </Properties>
               </Item>
               <Item class="Pants" referent="57">
@@ -2379,11 +2498,13 @@
                     <B>0.9647059</B>
                   </Color3>
                   <bool name="DefinesCapabilities">false</bool>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <Content name="PantsTemplate">
                     <url>rbxassetid://973694853</url>
                   </Content>
                   <int64 name="SourceAssetId">-1</int64>
                   <BinaryString name="Tags"></BinaryString>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000086d</UniqueId>
                 </Properties>
               </Item>
               <Item class="ObjectValue" referent="58">
@@ -2392,8 +2513,10 @@
                   <BinaryString name="AttributesSerialize">AQAAABQAAABSb2pvRXh0ZXJuYWxSZWZQcm9wcwIsAAAAeyJWYWx1ZSI6ImZmOTNmM2I5ZjRkMTIxYzI2NDU0NGM1YTY0YWI3Y2ZlIn0=</BinaryString>
                   <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                   <bool name="DefinesCapabilities">false</bool>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <int64 name="SourceAssetId">-1</int64>
                   <BinaryString name="Tags"></BinaryString>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000086e</UniqueId>
                   <Ref name="Value">null</Ref>
                 </Properties>
               </Item>
@@ -2417,8 +2540,10 @@
                   <BinaryString name="AttributesSerialize"></BinaryString>
                   <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                   <bool name="DefinesCapabilities">false</bool>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <int64 name="SourceAssetId">-1</int64>
                   <BinaryString name="Tags"></BinaryString>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000086f</UniqueId>
                 </Properties>
                 <Item class="Camera" referent="60">
                   <Properties>
@@ -2460,8 +2585,10 @@
                     </CoordinateFrame>
                     <bool name="HeadLocked">true</bool>
                     <float name="HeadScale">1</float>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <int64 name="SourceAssetId">-1</int64>
                     <BinaryString name="Tags"></BinaryString>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000870</UniqueId>
                     <bool name="VRTiltAndRollEnabled">false</bool>
                   </Properties>
                 </Item>
@@ -2470,6 +2597,7 @@
                     <string name="Name">Handle</string>
                     <bool name="Anchored">false</bool>
                     <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdmZg==</BinaryString>
+                    <bool name="AudioCanCollide">false</bool>
                     <float name="BackParamA">-0.5</float>
                     <float name="BackParamB">0.5</float>
                     <token name="BackSurface">0</token>
@@ -2510,6 +2638,7 @@
                     <float name="FrontParamB">0.5</float>
                     <token name="FrontSurface">0</token>
                     <token name="FrontSurfaceInput">0</token>
+                    <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                     <float name="LeftParamA">-0.5</float>
                     <float name="LeftParamB">0.5</float>
                     <token name="LeftSurface">0</token>
@@ -2556,6 +2685,7 @@
                     <token name="TopSurface">0</token>
                     <token name="TopSurfaceInput">0</token>
                     <float name="Transparency">0</float>
+                    <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000871</UniqueId>
                     <Vector3 name="Velocity">
                       <X>0</X>
                       <Y>0</Y>
@@ -2568,6 +2698,7 @@
                       <BinaryString name="AttributesSerialize"></BinaryString>
                       <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                       <bool name="DefinesCapabilities">false</bool>
+                      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                       <Content name="MeshId">
                         <url><![CDATA[http://www.roblox.com/asset/?id=128216324 ]]></url>
                       </Content>
@@ -2587,6 +2718,7 @@
                       <Content name="TextureId">
                         <url><![CDATA[http://www.roblox.com/asset/?id=128216333  ]]></url>
                       </Content>
+                      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000872</UniqueId>
                       <Vector3 name="VertexColor">
                         <X>1</X>
                         <Y>1</Y>
@@ -2605,8 +2737,10 @@
                   <BinaryString name="AttributesSerialize"></BinaryString>
                   <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
                   <bool name="DefinesCapabilities">false</bool>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <int64 name="SourceAssetId">-1</int64>
                   <BinaryString name="Tags"></BinaryString>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000873</UniqueId>
                 </Properties>
               </Item>
             </Item>
@@ -2615,6 +2749,7 @@
                 <string name="Name">WizardBackdrop</string>
                 <bool name="Anchored">true</bool>
                 <BinaryString name="AttributesSerialize"></BinaryString>
+                <bool name="AudioCanCollide">false</bool>
                 <float name="BackParamA">-0.5</float>
                 <float name="BackParamB">0.5</float>
                 <token name="BackSurface">0</token>
@@ -2655,6 +2790,7 @@
                 <float name="FrontParamB">0.5</float>
                 <token name="FrontSurface">0</token>
                 <token name="FrontSurfaceInput">0</token>
+                <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                 <float name="LeftParamA">-0.5</float>
                 <float name="LeftParamB">0.5</float>
                 <token name="LeftSurface">0</token>
@@ -2701,6 +2837,7 @@
                 <token name="TopSurface">0</token>
                 <token name="TopSurfaceInput">0</token>
                 <float name="Transparency">0</float>
+                <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000874</UniqueId>
                 <Vector3 name="Velocity">
                   <X>0</X>
                   <Y>0</Y>
@@ -2719,12 +2856,14 @@
                   </Color3>
                   <bool name="DefinesCapabilities">false</bool>
                   <token name="Face">2</token>
+                  <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
                   <int64 name="SourceAssetId">-1</int64>
                   <BinaryString name="Tags"></BinaryString>
                   <Content name="Texture">
                     <url>rbxassetid://16876689304</url>
                   </Content>
                   <float name="Transparency">0</float>
+                  <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000875</UniqueId>
                   <int name="ZIndex">1</int>
                 </Properties>
               </Item>
@@ -2744,11 +2883,13 @@
             </Color3>
             <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <token name="LineJoinMode">0</token>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <float name="Thickness">3</float>
             <float name="Transparency">0</float>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000876</UniqueId>
           </Properties>
         </Item>
         <Item class="UICorner" referent="66">
@@ -2761,8 +2902,10 @@
               <O>20</O>
             </UDim>
             <bool name="DefinesCapabilities">false</bool>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000877</UniqueId>
           </Properties>
         </Item>
       </Item>
@@ -2794,6 +2937,7 @@
           <bool name="ClipsDescendants">false</bool>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <bool name="Interactable">true</bool>
           <int name="LayoutOrder">0</int>
           <Ref name="NextSelectionDown">null</Ref>
@@ -2826,6 +2970,7 @@
           <int64 name="SourceAssetId">-1</int64>
           <token name="Style">0</token>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000878</UniqueId>
           <bool name="Visible">true</bool>
           <int name="ZIndex">1</int>
         </Properties>
@@ -2864,6 +3009,7 @@
               <Weight>700</Weight>
               <Style>Normal</Style>
             </Font>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <float name="LineHeight">1</float>
@@ -2874,6 +3020,7 @@
             <Ref name="NextSelectionLeft">null</Ref>
             <Ref name="NextSelectionRight">null</Ref>
             <Ref name="NextSelectionUp">null</Ref>
+            <string name="OpenTypeFeatures"></string>
             <UDim2 name="Position">
               <XS>0</XS>
               <XO>0</XO>
@@ -2920,6 +3067,7 @@
             <bool name="TextWrapped">true</bool>
             <token name="TextXAlignment">0</token>
             <token name="TextYAlignment">0</token>
+            <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000879</UniqueId>
             <bool name="Visible">true</bool>
             <int name="ZIndex">1</int>
           </Properties>
@@ -2935,8 +3083,10 @@
             <O>20</O>
           </UDim>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000087a</UniqueId>
         </Properties>
       </Item>
       <Item class="UIStroke" referent="70">
@@ -2952,11 +3102,13 @@
           </Color3>
           <bool name="DefinesCapabilities">false</bool>
           <bool name="Enabled">true</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <token name="LineJoinMode">0</token>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
           <float name="Thickness">3</float>
           <float name="Transparency">0</float>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000087b</UniqueId>
         </Properties>
       </Item>
     </Item>

@@ -21,6 +21,7 @@
         <R21>0</R21>
         <R22>1</R22>
       </CoordinateFrame>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <token name="LevelOfDetail">0</token>
       <bool name="ManualActivationOnly">false</bool>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -54,6 +55,7 @@
         <url>http://www.roblox.com/asset/?id=17441955412</url>
       </Content>
       <string name="ToolTip"></string>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000939</UniqueId>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>26.83984</X>
@@ -77,6 +79,7 @@
         <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
         <bool name="Anchored">false</bool>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AudioCanCollide">true</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -120,6 +123,7 @@
         <token name="FrontSurfaceInput">0</token>
         <bool name="HasJointOffset">false</bool>
         <bool name="HasSkinnedMesh">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <Vector3 name="InitialSize">
           <X>0.596963</X>
           <Y>2.0875</Y>
@@ -185,6 +189,23 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000093a</UniqueId>
+        <Vector3 name="UnscaledCofm">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <Vector3 name="UnscaledVolInertiaDiags">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <Vector3 name="UnscaledVolInertiaOffDiags">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <float name="UnscaledVolume">NAN</float>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>
@@ -212,8 +233,10 @@
           </CoordinateFrame>
           <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000093b</UniqueId>
           <bool name="Visible">false</bool>
         </Properties>
       </Item>
@@ -223,6 +246,7 @@
           <BinaryString name="AttributesSerialize"></BinaryString>
           <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="DefinesCapabilities">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <NumberRange name="LoopRegion">0 60000 </NumberRange>
           <bool name="Looped">false</bool>
           <bool name="PlayOnRemove">false</bool>
@@ -240,6 +264,7 @@
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
           <double name="TimePosition">0</double>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000093c</UniqueId>
           <float name="Volume">0.5</float>
         </Properties>
       </Item>
@@ -264,6 +289,7 @@
           <token name="FlipbookLayout">0</token>
           <token name="FlipbookMode">0</token>
           <bool name="FlipbookStartRandom">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <NumberRange name="Lifetime">0.25 0.75 </NumberRange>
           <float name="LightEmission">1</float>
           <float name="LightInfluence">0</float>
@@ -290,6 +316,7 @@
           </Content>
           <float name="TimeScale">1</float>
           <NumberSequence name="Transparency">0 0 0 1 0 0 </NumberSequence>
+          <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000093d</UniqueId>
           <float name="VelocityInheritance">0</float>
           <bool name="WindAffectsDrag">false</bool>
           <float name="ZOffset">0</float>
@@ -302,8 +329,10 @@
         <BinaryString name="AttributesSerialize"></BinaryString>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000093e</UniqueId>
       </Properties>
     </Item>
   </Item>

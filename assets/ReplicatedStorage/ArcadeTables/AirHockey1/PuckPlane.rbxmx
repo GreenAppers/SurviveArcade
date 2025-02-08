@@ -1,10 +1,10 @@
 <roblox version="4">
   <Item class="Part" referent="0">
     <Properties>
-      <string name="Name">PlaceBlockPreview</string>
+      <string name="Name">PuckPlane</string>
       <bool name="Anchored">true</bool>
-      <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdjMg==</BinaryString>
-      <bool name="AudioCanCollide">false</bool>
+      <BinaryString name="AttributesSerialize"></BinaryString>
+      <bool name="AudioCanCollide">true</bool>
       <float name="BackParamA">-0.5</float>
       <float name="BackParamB">0.5</float>
       <token name="BackSurface">0</token>
@@ -14,14 +14,14 @@
       <token name="BottomSurface">0</token>
       <token name="BottomSurfaceInput">0</token>
       <CoordinateFrame name="CFrame">
-        <X>0</X>
-        <Y>-1.499999</Y>
-        <Z>0</Z>
-        <R00>1</R00>
-        <R01>0</R01>
+        <X>121.92985</X>
+        <Y>2.0536172</Y>
+        <Z>131.89339</Z>
+        <R00>0</R00>
+        <R01>-1</R01>
         <R02>0</R02>
-        <R10>0</R10>
-        <R11>1</R11>
+        <R10>1</R10>
+        <R11>0</R11>
         <R12>0</R12>
         <R20>0</R20>
         <R21>0</R21>
@@ -34,9 +34,14 @@
       <bool name="CastShadow">true</bool>
       <string name="CollisionGroup">Default</string>
       <int name="CollisionGroupId">0</int>
-      <Color3uint8 name="Color3uint8">10724005</Color3uint8>
+      <Color3uint8 name="Color3uint8">10011355</Color3uint8>
       <PhysicalProperties name="CustomPhysicalProperties">
-        <CustomPhysics>false</CustomPhysics>
+        <CustomPhysics>true</CustomPhysics>
+        <Density>0.7</Density>
+        <Friction>0</Friction>
+        <Elasticity>0.5</Elasticity>
+        <FrictionWeight>1</FrictionWeight>
+        <ElasticityWeight>1</ElasticityWeight>
       </PhysicalProperties>
       <bool name="DefinesCapabilities">false</bool>
       <bool name="EnableFluidForces">true</bool>
@@ -81,9 +86,9 @@
       </Vector3>
       <token name="shape">1</token>
       <Vector3 name="size">
-        <X>3</X>
-        <Y>3</Y>
-        <Z>3</Z>
+        <X>1.4161924</X>
+        <Y>260.277</Y>
+        <Z>132.74063</Z>
       </Vector3>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>
@@ -92,39 +97,38 @@
       <token name="TopSurface">0</token>
       <token name="TopSurfaceInput">0</token>
       <float name="Transparency">1</float>
-      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000832</UniqueId>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd000003cc</UniqueId>
       <Vector3 name="Velocity">
         <X>0</X>
         <Y>0</Y>
         <Z>0</Z>
       </Vector3>
     </Properties>
-    <Item class="SelectionBox" referent="1">
+    <Item class="Attachment" referent="1">
       <Properties>
-        <string name="Name">SelectionBox</string>
-        <Ref name="Adornee">0</Ref>
-        <BinaryString name="AttributesSerialize">AQAAABMAAABSb2pvX1RhcmdldF9BZG9ybmVlAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDdjMg==</BinaryString>
+        <string name="Name">Attachment</string>
+        <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAwMWJhMjc5NzhlNmUxYTJhMDY5ODhjZDgwMDAwNjJhOQ==</BinaryString>
+        <CoordinateFrame name="CFrame">
+          <X>0</X>
+          <Y>0</Y>
+          <Z>0</Z>
+          <R00>1</R00>
+          <R01>0</R01>
+          <R02>0</R02>
+          <R10>0</R10>
+          <R11>1</R11>
+          <R12>0</R12>
+          <R20>0</R20>
+          <R21>0</R21>
+          <R22>1</R22>
+        </CoordinateFrame>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-        <Color3 name="Color3">
-          <R>0</R>
-          <G>1</G>
-          <B>0</B>
-        </Color3>
         <bool name="DefinesCapabilities">false</bool>
         <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
-        <float name="LineThickness">0.15</float>
         <int64 name="SourceAssetId">-1</int64>
-        <bool name="StudioSelectionBox">false</bool>
-        <Color3 name="SurfaceColor3">
-          <R>0.050980397</R>
-          <G>0.41176474</G>
-          <B>0.6745098</B>
-        </Color3>
-        <float name="SurfaceTransparency">1</float>
         <BinaryString name="Tags"></BinaryString>
-        <float name="Transparency">0</float>
-        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000833</UniqueId>
-        <bool name="Visible">true</bool>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd000003cd</UniqueId>
+        <bool name="Visible">false</bool>
       </Properties>
     </Item>
   </Item>

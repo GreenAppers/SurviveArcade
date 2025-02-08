@@ -104,8 +104,13 @@ export class ArcadeTableService implements OnStart {
 
           // Handle table change
           if (
+            previousArcadeTableState?.sequence === 0 &&
+            arcadeTableState.sequence === 0 &&
             previousArcadeTableState?.tableMap !== arcadeTableState?.tableMap
           ) {
+            this.logger.Info(
+              `Table ${tableName} changed from ${previousArcadeTableState?.tableMap} to ${arcadeTableState?.tableMap}`,
+            )
             this.mapService.resetTableWithState(tableName, arcadeTableState)
           }
         }

@@ -4,6 +4,7 @@
       <string name="Name">BallTemplate</string>
       <bool name="Anchored">true</bool>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <bool name="AudioCanCollide">false</bool>
       <float name="BackParamA">-0.5</float>
       <float name="BackParamB">0.5</float>
       <token name="BackSurface">0</token>
@@ -112,6 +113,7 @@
           <url>https://www.roblox.com//asset/?id=2284207114</url>
         </Content>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AudioCanCollide">true</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -351,7 +353,7 @@
       <Properties>
         <string name="Name">VectorForce</string>
         <bool name="ApplyAtCenterOfMass">true</bool>
-        <Ref name="Attachment0">2</Ref>
+        <Ref name="Attachment0">6</Ref>
         <Ref name="Attachment1">null</Ref>
         <BinaryString name="AttributesSerialize">AQAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMDFiYTI3OTc4ZTZlMWEyYTA2OTg4Y2Q4MDAwMDYyYTk=</BinaryString>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>

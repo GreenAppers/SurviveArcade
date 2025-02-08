@@ -21,6 +21,7 @@
         <R21>0</R21>
         <R22>1</R22>
       </CoordinateFrame>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <token name="LevelOfDetail">0</token>
       <bool name="ManualActivationOnly">false</bool>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -54,6 +55,7 @@
         <url>rbxassetid://17345252391</url>
       </Content>
       <string name="ToolTip"></string>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000943</UniqueId>
       <OptionalCoordinateFrame name="WorldPivotData">
         <CFrame>
           <X>-0.24016005</X>
@@ -77,6 +79,7 @@
         <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
         <bool name="Anchored">false</bool>
         <BinaryString name="AttributesSerialize"></BinaryString>
+        <bool name="AudioCanCollide">true</bool>
         <float name="BackParamA">-0.5</float>
         <float name="BackParamB">0.5</float>
         <token name="BackSurface">0</token>
@@ -120,6 +123,7 @@
         <token name="FrontSurfaceInput">0</token>
         <bool name="HasJointOffset">false</bool>
         <bool name="HasSkinnedMesh">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <Vector3 name="InitialSize">
           <X>2.071934</X>
           <Y>4.453965</Y>
@@ -185,6 +189,23 @@
         <token name="TopSurface">0</token>
         <token name="TopSurfaceInput">0</token>
         <float name="Transparency">0</float>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000944</UniqueId>
+        <Vector3 name="UnscaledCofm">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <Vector3 name="UnscaledVolInertiaDiags">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <Vector3 name="UnscaledVolInertiaOffDiags">
+          <X>NAN</X>
+          <Y>NAN</Y>
+          <Z>NAN</Z>
+        </Vector3>
+        <float name="UnscaledVolume">NAN</float>
         <Vector3 name="Velocity">
           <X>0</X>
           <Y>0</Y>

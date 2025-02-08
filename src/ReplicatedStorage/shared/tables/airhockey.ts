@@ -141,7 +141,19 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
     const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
     const balls = arcadeTable?.FindFirstChild('Balls')
     const ball = balls?.FindFirstChild<BasePart>(ballName)
-    if (ball) randomKickInPlane(ball, ground?.CFrame || new CFrame(), 10000)
+    if (!ball) return
+
+    const ballAttachment = ball.FindFirstChild<Attachment>('Attachment')
+    const planeAttachment =
+      arcadeTable?.PuckPlane?.FindFirstChild<Attachment>('Attachment')
+    if (ballAttachment && planeAttachment) {
+      const constraint = new Instance('PlaneConstraint')
+      constraint.Attachment1 = planeAttachment
+      constraint.Attachment0 = ballAttachment
+      constraint.Parent = ball
+    }
+
+    randomKickInPlane(ball, ground?.CFrame || new CFrame(), 10000)
   }
 
   onNPCPlayingBehavior(

@@ -103,6 +103,7 @@ export class GameService implements OnStart {
         arcadeTableState?.status === ArcadeTableStatus.Active &&
         arcadeTableState?.sequence === 0
       if (!foundPlayerInPlayZone && !isInitialTable) {
+        this.logger.Info(`No player in ${arcadeTableName} play zone`)
         this.mapService.resetTable(arcadeTableName)
       }
     }

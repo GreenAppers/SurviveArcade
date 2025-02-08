@@ -4,6 +4,7 @@
       <string name="Name">BallTemplate</string>
       <bool name="Anchored">true</bool>
       <BinaryString name="AttributesSerialize"></BinaryString>
+      <bool name="AudioCanCollide">false</bool>
       <float name="BackParamA">-0.5</float>
       <float name="BackParamB">0.5</float>
       <token name="BackSurface">0</token>
@@ -44,6 +45,7 @@
       <float name="FrontParamB">0.5</float>
       <token name="FrontSurface">0</token>
       <token name="FrontSurfaceInput">0</token>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <float name="LeftParamA">-0.5</float>
       <float name="LeftParamB">0.5</float>
       <token name="LeftSurface">0</token>
@@ -90,6 +92,7 @@
       <token name="TopSurface">0</token>
       <token name="TopSurfaceInput">0</token>
       <float name="Transparency">1</float>
+      <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd0000068f</UniqueId>
       <Vector3 name="Velocity">
         <X>0</X>
         <Y>0</Y>
@@ -109,10 +112,12 @@
         </Color3>
         <bool name="DefinesCapabilities">false</bool>
         <bool name="Enabled">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <float name="Range">15</float>
         <bool name="Shadows">true</bool>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000690</UniqueId>
       </Properties>
     </Item>
     <Item class="ParticleEmitter" referent="2">
@@ -136,6 +141,7 @@
         <token name="FlipbookLayout">0</token>
         <token name="FlipbookMode">0</token>
         <bool name="FlipbookStartRandom">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <NumberRange name="Lifetime">1 1.5 </NumberRange>
         <float name="LightEmission">0.7</float>
         <float name="LightInfluence">0.5</float>
@@ -162,6 +168,7 @@
         </Content>
         <float name="TimeScale">1</float>
         <NumberSequence name="Transparency">0 0.05625 0 0.104478 0.06875 0 0.19977 0.59375 0 0.477612 0.34375 0 0.602755 0.675 0 0.726751 0.425 0 0.835821 0.69375 0 0.921929 0.525 0 1 1 0 </NumberSequence>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000691</UniqueId>
         <float name="VelocityInheritance">1</float>
         <bool name="WindAffectsDrag">false</bool>
         <float name="ZOffset">0</float>
@@ -183,9 +190,11 @@
           <Y>0</Y>
           <Z>0</Z>
         </Vector3>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <token name="RelativeTo">2</token>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000692</UniqueId>
         <bool name="Visible">false</bool>
       </Properties>
     </Item>
@@ -209,8 +218,10 @@
         </CoordinateFrame>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="DefinesCapabilities">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
+        <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000693</UniqueId>
         <bool name="Visible">false</bool>
       </Properties>
     </Item>

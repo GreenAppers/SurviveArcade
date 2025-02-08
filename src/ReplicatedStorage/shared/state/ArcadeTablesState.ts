@@ -4,6 +4,7 @@ import { ARCADE_TABLE_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import {
   firstArcadeTableMap,
   nextArcadeTableType,
+  randomArcadeTableType,
 } from 'ReplicatedStorage/shared/utils/arcade'
 
 export enum ArcadeTableStatus {
@@ -26,6 +27,7 @@ export interface ArcadeTableState {
   readonly tableName: ArcadeTableName
   readonly tableMap: ArcadeTableMap
   readonly tableType: ArcadeTableType
+  readonly nextTableType: ArcadeTableType
   readonly teamName?: TeamName
   readonly color: BrickColor
   readonly baseColor: BrickColor
@@ -114,12 +116,20 @@ export const defaultArcadeTableState = {
   sequence: 0,
 }
 
+const initialTableType = {
+  Table1: randomArcadeTableType(),
+  Table2: randomArcadeTableType(),
+  Table3: randomArcadeTableType(),
+  Table4: randomArcadeTableType(),
+}
+
 const initialState: ArcadeTablesState = {
   Table1: {
     ...defaultArcadeTableState,
     tableName: 'Table1',
-    tableMap: 'Pinball1',
-    tableType: ARCADE_TABLE_TYPES.Pinball,
+    tableMap: firstArcadeTableMap(initialTableType.Table1),
+    tableType: initialTableType.Table1,
+    nextTableType: randomArcadeTableType(initialTableType.Table1),
     teamName: 'Blue Team',
     color: new BrickColor('Cyan'),
     statorColor: new BrickColor('Electric blue'),
@@ -129,8 +139,9 @@ const initialState: ArcadeTablesState = {
   Table2: {
     ...defaultArcadeTableState,
     tableName: 'Table2',
-    tableMap: 'Pinball1',
-    tableType: ARCADE_TABLE_TYPES.Pinball,
+    tableMap: firstArcadeTableMap(initialTableType.Table2),
+    tableType: initialTableType.Table2,
+    nextTableType: randomArcadeTableType(initialTableType.Table2),
     teamName: 'Green Team',
     color: new BrickColor('Lime green'),
     statorColor: new BrickColor('Forest green'),
@@ -140,8 +151,9 @@ const initialState: ArcadeTablesState = {
   Table3: {
     ...defaultArcadeTableState,
     tableName: 'Table3',
-    tableMap: 'Pinball1',
-    tableType: ARCADE_TABLE_TYPES.Pinball,
+    tableMap: firstArcadeTableMap(initialTableType.Table3),
+    tableType: initialTableType.Table3,
+    nextTableType: randomArcadeTableType(initialTableType.Table3),
     teamName: 'Yellow Team',
     color: new BrickColor('Deep orange'),
     statorColor: new BrickColor('Neon orange'),
@@ -151,8 +163,9 @@ const initialState: ArcadeTablesState = {
   Table4: {
     ...defaultArcadeTableState,
     tableName: 'Table4',
-    tableMap: 'Pinball1',
-    tableType: ARCADE_TABLE_TYPES.Pinball,
+    tableMap: firstArcadeTableMap(initialTableType.Table4),
+    tableType: initialTableType.Table4,
+    nextTableType: randomArcadeTableType(initialTableType.Table4),
     teamName: 'Red Team',
     color: new BrickColor('Really red'),
     statorColor: new BrickColor('Crimson'),
@@ -218,6 +231,9 @@ export const arcadeTablesSlice = createProducer(initialState, {
         ...initialState[name],
         scoreToWin: nextScoreToWin,
         sequence: nextSequence,
+        tableMap: firstArcadeTableMap(lastState.nextTableType),
+        tableType: lastState.nextTableType,
+        nextTableType: randomArcadeTableType(lastState.nextTableType),
         nextStatus: ArcadeTableStatus.Active,
       },
     }
@@ -231,6 +247,7 @@ export const arcadeTablesSlice = createProducer(initialState, {
         ...initialState[name],
         tableType: lastState.tableType,
         tableMap: lastState.tableMap,
+        nextTableType: randomArcadeTableType(lastState.nextTableType),
       },
     }
   },

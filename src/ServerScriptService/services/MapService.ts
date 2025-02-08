@@ -24,6 +24,7 @@ import {
   nextArcadeTableName,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { mechanics } from 'ReplicatedStorage/shared/tables/mechanics'
+import { firstArcadeTableMap } from 'ReplicatedStorage/shared/utils/arcade'
 import { findDescendentsWhichAre } from 'ReplicatedStorage/shared/utils/instance'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
@@ -206,6 +207,7 @@ export class MapService implements OnStart {
     name: ArcadeTableName,
     arcadeTableState: ArcadeTableState,
   ) {
+    this.logger.Info(`Resetting table ${name}`)
     let arcadeTable =
       game.Workspace.ArcadeTables?.FindFirstChild<ArcadeTable>(name)
     const nextArcadeTable =
@@ -244,7 +246,8 @@ export class MapService implements OnStart {
       ? getArcadeTableCFrame(name)
       : arcadeTable?.NextBaseplate?.CFrame
     if (!nextArcadeTableCF) return
-    arcadeTableNext = this.loadArcadeTableTemplate(state.tableMap, name)
+    const tableMap = firstArcadeTableMap(state.nextTableType)
+    arcadeTableNext = this.loadArcadeTableTemplate(tableMap, name)
     arcadeTableNext.Name = arcadeTableNextName as ArcadeTableName
     this.setupNextArcadeTable(arcadeTableNext, state, nextArcadeTableCF)
   }
@@ -268,6 +271,10 @@ export class MapService implements OnStart {
       arcadeTableCF
     ) {
       arcadeTableState = arcadeTableSelector(store.extendArcadeTable(baseName))
+      this.logger.Info(
+        `Activating next table ${nextName}-${arcadeTableState.sequence}`,
+      )
+
       const previousArcadeTable = game.Workspace.ArcadeTables[baseName]
       const arcadeTable = this.loadArcadeTableTemplate(
         arcadeTableState.tableMap,

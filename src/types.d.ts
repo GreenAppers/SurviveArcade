@@ -1,5 +1,6 @@
 interface AirHockeyTable extends ArcadeTableBase {
-  Puck: Model
+  PuckPlane: BasePart
+  ControlPlane: BasePart
 }
 
 interface Airplane extends Model {
