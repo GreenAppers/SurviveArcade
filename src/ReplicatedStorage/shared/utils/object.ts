@@ -1,3 +1,6 @@
+export const endsWith = (str: string, suffix: string) =>
+  str.sub(str.size() - suffix.size()) === suffix
+
 export const getLastItem = <X>(array: X[]) => array[array.size() - 1]
 
 /**

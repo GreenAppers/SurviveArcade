@@ -4,7 +4,6 @@
       <string name="Name">FlipperRight</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-      <bool name="DefinesCapabilities">false</bool>
       <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -30,6 +29,7 @@
       <token name="ModelStreamingMode">0</token>
       <bool name="NeedsPivotMigration">false</bool>
       <Ref name="PrimaryPart">null</Ref>
+      <bool name="DefinesCapabilities">false</bool>
       <float name="ScaleFactor">2.3557177</float>
       <int64 name="SourceAssetId">9921532457</int64>
       <BinaryString name="Tags"></BinaryString>
@@ -90,7 +90,6 @@
         <PhysicalProperties name="CustomPhysicalProperties">
           <CustomPhysics>false</CustomPhysics>
         </PhysicalProperties>
-        <bool name="DefinesCapabilities">false</bool>
         <bool name="EnableFluidForces">true</bool>
         <token name="formFactorRaw">1</token>
         <float name="FrontParamA">-0.5</float>
@@ -131,6 +130,7 @@
           <Y>0</Y>
           <Z>0</Z>
         </Vector3>
+        <bool name="DefinesCapabilities">false</bool>
         <token name="shape">2</token>
         <Vector3 name="size">
           <X>1.4401754</X>
@@ -154,7 +154,7 @@
       <Item class="Attachment" referent="2">
         <Properties>
           <string name="Name">Attachment1</string>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQyMA==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAwZGE1NWFjNjdlOTM5MzkxMDZlN2QyMTQwMDAwMDg5Mw==</BinaryString>
           <CoordinateFrame name="CFrame">
             <X>0.7200877</X>
             <Y>0</Y>
@@ -170,8 +170,8 @@
             <R22>-1</R22>
           </CoordinateFrame>
           <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-          <bool name="DefinesCapabilities">false</bool>
           <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+          <bool name="DefinesCapabilities">false</bool>
           <int64 name="SourceAssetId">-1</int64>
           <BinaryString name="Tags"></BinaryString>
           <UniqueId name="UniqueId">0da55ac67e93939106e7d21400000893</UniqueId>
@@ -184,7 +184,6 @@
         <string name="Name">Flipper</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-        <bool name="DefinesCapabilities">false</bool>
         <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -210,6 +209,7 @@
         <token name="ModelStreamingMode">0</token>
         <bool name="NeedsPivotMigration">false</bool>
         <Ref name="PrimaryPart">null</Ref>
+        <bool name="DefinesCapabilities">false</bool>
         <float name="ScaleFactor">1.4401754</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
@@ -235,7 +235,7 @@
         <Properties>
           <string name="Name">Rotor</string>
           <bool name="Anchored">false</bool>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQyMg==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAwZGE1NWFjNjdlOTM5MzkxMDZlN2QyMTQwMDAwMDg5NA==</BinaryString>
           <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
@@ -270,7 +270,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">1</token>
           <float name="FrontParamA">-0.5</float>
@@ -311,6 +310,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">2</token>
           <Vector3 name="size">
             <X>2.8803508</X>
@@ -337,7 +337,7 @@
             <token name="AlignType">5</token>
             <Ref name="Attachment0">6</Ref>
             <Ref name="Attachment1">2</Ref>
-            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MjQXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDIw</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMGRhNTVhYzY3ZTkzOTM5MTA2ZTdkMjE0MDAwMDBmYjUXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADBkYTU1YWM2N2U5MzkzOTEwNmU3ZDIxNDAwMDAwODkz</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>0</X>
               <Y>0</Y>
@@ -354,7 +354,6 @@
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <int name="Color">23</int>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <float name="MaxAngularVelocity">INF</float>
@@ -364,6 +363,7 @@
             <bool name="ReactionTorqueEnabled">false</bool>
             <float name="Responsiveness">200</float>
             <bool name="RigidityEnabled">false</bool>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">0da55ac67e93939106e7d21400000fb4</UniqueId>
@@ -373,7 +373,7 @@
         <Item class="Attachment" referent="6">
           <Properties>
             <string name="Name">Attachment0</string>
-            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQyNA==</BinaryString>
+            <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAwZGE1NWFjNjdlOTM5MzkxMDZlN2QyMTQwMDAwMGZiNQ==</BinaryString>
             <CoordinateFrame name="CFrame">
               <X>-1.4401754</X>
               <Y>0</Y>
@@ -389,8 +389,8 @@
               <R22>-1</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">0da55ac67e93939106e7d21400000fb5</UniqueId>
@@ -406,10 +406,9 @@
             <float name="AngularVelocity">0</float>
             <Ref name="Attachment0">6</Ref>
             <Ref name="Attachment1">2</Ref>
-            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MjQXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDIw</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMGRhNTVhYzY3ZTkzOTM5MTA2ZTdkMjE0MDAwMDBmYjUXAAAAUm9qb19UYXJnZXRfQXR0YWNobWVudDECIAAAADBkYTU1YWM2N2U5MzkzOTEwNmU3ZDIxNDAwMDAwODkz</BinaryString>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <int name="Color">1009</int>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <bool name="LimitsEnabled">true</bool>
@@ -418,6 +417,7 @@
             <float name="MotorMaxTorque">59741.52</float>
             <float name="Radius">0.21602632</float>
             <float name="Restitution">0</float>
+            <bool name="DefinesCapabilities">false</bool>
             <float name="ServoMaxTorque">59741.52</float>
             <bool name="SoftlockServoUponReachingTarget">false</bool>
             <int64 name="SourceAssetId">-1</int64>
@@ -433,7 +433,7 @@
         <Properties>
           <string name="Name">End</string>
           <bool name="Anchored">false</bool>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQyNg==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAwZGE1NWFjNjdlOTM5MzkxMDZlN2QyMTQwMDAwMDg5NQ==</BinaryString>
           <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
@@ -468,7 +468,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">1</token>
           <float name="FrontParamA">-0.5</float>
@@ -509,6 +508,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">2</token>
           <Vector3 name="size">
             <X>2.8803508</X>
@@ -532,7 +532,7 @@
         <Item class="WeldConstraint" referent="9">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MjYRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDI4</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMGRhNTVhYzY3ZTkzOTM5MTA2ZTdkMjE0MDAwMDA4OTURAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADBkYTU1YWM2N2U5MzkzOTEwNmU3ZDIxNDAwMDAwODk2</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>-0.00015258789</X>
               <Y>8.051704</Y>
@@ -548,10 +548,10 @@
               <R22>0.99357045</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0Internal">8</Ref>
             <Ref name="Part1Internal">10</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <int name="State">3</int>
             <BinaryString name="Tags"></BinaryString>
@@ -563,7 +563,7 @@
         <Properties>
           <string name="Name">Wedge2</string>
           <bool name="Anchored">false</bool>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQyOA==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAwZGE1NWFjNjdlOTM5MzkxMDZlN2QyMTQwMDAwMDg5Ng==</BinaryString>
           <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
@@ -598,7 +598,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">1</token>
           <float name="FrontParamA">-0.5</float>
@@ -639,6 +638,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.88</X>
@@ -662,7 +662,7 @@
         <Item class="WeldConstraint" referent="11">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MjgRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDIy</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMGRhNTVhYzY3ZTkzOTM5MTA2ZTdkMjE0MDAwMDA4OTYRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADBkYTU1YWM2N2U5MzkzOTEwNmU3ZDIxNDAwMDAwODk0</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>0.00015330315</X>
               <Y>7.832161</Y>
@@ -678,10 +678,10 @@
               <R22>0.9935719</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0Internal">10</Ref>
             <Ref name="Part1Internal">4</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <int name="State">3</int>
             <BinaryString name="Tags"></BinaryString>
@@ -728,7 +728,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">1</token>
           <float name="FrontParamA">-0.5</float>
@@ -769,6 +768,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.8799999</X>
@@ -792,7 +792,7 @@
         <Item class="WeldConstraint" referent="13">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MmERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDIy</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MmERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADBkYTU1YWM2N2U5MzkzOTEwNmU3ZDIxNDAwMDAwODk0</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>0.00019788742</X>
               <Y>-8.123215</Y>
@@ -808,10 +808,10 @@
               <R22>-0.98510617</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0Internal">12</Ref>
             <Ref name="Part1Internal">4</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <int name="State">3</int>
             <BinaryString name="Tags"></BinaryString>
@@ -858,7 +858,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">1</token>
           <float name="FrontParamA">-0.5</float>
@@ -899,6 +898,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.8799999</X>
@@ -922,7 +922,7 @@
         <Item class="WeldConstraint" referent="15">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MmMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDIy</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MmMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADBkYTU1YWM2N2U5MzkzOTEwNmU3ZDIxNDAwMDAwODk0</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>0.00019776821</X>
               <Y>4.4145966</Y>
@@ -938,10 +938,10 @@
               <R22>0.99451816</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0Internal">14</Ref>
             <Ref name="Part1Internal">4</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <int name="State">3</int>
             <BinaryString name="Tags"></BinaryString>
@@ -954,9 +954,9 @@
           <string name="Name">FlipperTrack</string>
           <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
           <bool name="Anchored">false</bool>
-          <Content name="AssetId">
+          <ContentId name="AssetId">
             <url>https://www.roblox.com//asset/?id=15518286409</url>
-          </Content>
+          </ContentId>
           <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwMDQyZQ==</BinaryString>
           <bool name="AudioCanCollide">true</bool>
           <float name="BackParamA">-0.5</float>
@@ -995,7 +995,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="FluidFidelityInternal">0</token>
           <token name="FormFactor">3</token>
@@ -1049,6 +1048,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <Vector3 name="size">
             <X>16.977444</X>
             <Y>0.0144200325</Y>
@@ -1089,7 +1089,7 @@
         <Item class="WeldConstraint" referent="17">
           <Properties>
             <string name="Name">WeldConstraint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MmURAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDAwNDI2</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDA0MmURAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADBkYTU1YWM2N2U5MzkzOTEwNmU3ZDIxNDAwMDAwODk1</BinaryString>
             <CoordinateFrame name="CFrame0">
               <X>7.9304733</X>
               <Y>-1.4471362</Y>
@@ -1105,10 +1105,10 @@
               <R22>0.9945264</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0Internal">16</Ref>
             <Ref name="Part1Internal">8</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <int name="State">3</int>
             <BinaryString name="Tags"></BinaryString>

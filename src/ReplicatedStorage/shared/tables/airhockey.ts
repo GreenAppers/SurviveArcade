@@ -13,7 +13,7 @@ import {
 } from 'ReplicatedStorage/shared/utils/instance'
 
 export class AirHockeyMechanics implements ArcadeTableMechanics {
-  ballNumber = 1
+  puckNumber = 1
   pusherSpeed = 35
 
   onCreateTablePart(
@@ -31,44 +31,50 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
   ) {
     const arcadeTable =
       game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
-    const balls = arcadeTable?.FindFirstChild('Balls')
-    const ballTemplate = arcadeTable?.FindFirstChild<BasePart>('BallTemplate')
+    const pieces = arcadeTable?.FindFirstChild('Pieces')
+    const puckTemplate = arcadeTable?.FindFirstChild<BasePart>('PuckTemplate')
     const control = arcadeTable?.FindFirstChild('Control')
     const controlPlane = arcadeTable?.FindFirstChild('ControlPlane')
     const seat = control?.FindFirstChild('Seat')
     const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
-    const ball = ballTemplate?.Clone()
+    const puck = puckTemplate?.Clone()
     const player = Players.GetPlayerByUserId(userId)
     if (seat) {
-      if (!seat.FindFirstChild('PrismaticConstraint')) {
+      if (!seat.FindFirstChild('PlaneConstraint')) {
         if (control) weldAssemblage(control)
-        const constraint = new Instance('PrismaticConstraint')
-        constraint.Attachment0 = seat.FindFirstChild<Attachment>('Attachment')
-        constraint.Attachment1 =
+        const constraint = new Instance('PlaneConstraint')
+        constraint.Attachment1 = seat.FindFirstChild<Attachment>('Attachment')
+        constraint.Attachment0 =
           controlPlane?.FindFirstChild<Attachment>('Attachment')
         constraint.Parent = seat
+        const align = new Instance('AlignOrientation')
+        align.Attachment0 = constraint.Attachment1
+        align.Attachment1 = constraint.Attachment0
+        align.AlignType = Enum.AlignType.AllAxes
+        align.RigidityEnabled = true
+        align.Parent = seat
       }
     }
-    balls?.GetChildren()?.forEach((ball) => ball.Destroy())
-    if (ball) {
-      this.ballNumber = this.ballNumber + 1
-      weldAssemblage(ball)
-      ball.Name = `Puck${this.ballNumber}`
-      ball.Parent = balls
+    pieces?.GetChildren()?.forEach((piece) => piece.Destroy())
+    if (puck) {
+      this.puckNumber = this.puckNumber + 1
+      weldAssemblage(puck)
+      puck.Name = `Puck${this.puckNumber}`
+      puck.Parent = pieces
 
-      const sparks = ball.FindFirstChild<ParticleEmitter>('Sparks')
-      const light = ball.FindFirstChild<PointLight>('Light')
-      const gravity = ball.FindFirstChild<VectorForce>('VectorForce')
+      const sparks = puck.FindFirstChild<ParticleEmitter>('Sparks')
+      const light = puck.FindFirstChild<PointLight>('Light')
+      const gravity = puck.FindFirstChild<VectorForce>('VectorForce')
       if (sparks) sparks.Enabled = true
       if (light) light.Enabled = true
       if (gravity && ground) {
         gravity.Force = new Vector3(0, 1, 0)
           .sub(ground.CFrame.UpVector.Unit)
-          .mul(Workspace.Gravity * ball.Mass)
+          .mul(Workspace.Gravity * puck.Mass)
       }
       if (player) {
-        setNetworkOwner(ball, player)
-        network.arcadeTableNewBall.fire(player, tableName, ball.Name)
+        setNetworkOwner(puck, player)
+        network.arcadeTableNewPiece.fire(player, tableName, 'Puck', puck.Name)
       }
     }
     if (player) {
@@ -110,6 +116,16 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
           control,
           seat.CFrame.RightVector.mul(this.pusherSpeed),
         )
+      } else if (input.KeyCode === Enum.KeyCode.W) {
+        updateBodyVelocity(
+          control,
+          seat.CFrame.LookVector.mul(this.pusherSpeed),
+        )
+      } else if (input.KeyCode === Enum.KeyCode.S) {
+        updateBodyVelocity(
+          control,
+          seat.CFrame.LookVector.mul(-this.pusherSpeed),
+        )
       }
     }
   }
@@ -135,12 +151,16 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
     }
   }
 
-  onClientNewBall(tableName: ArcadeTableName, ballName: string) {
+  onClientNewPiece(
+    tableName: ArcadeTableName,
+    _pieceType: string,
+    pieceName: string,
+  ) {
     const arcadeTable =
       game.Workspace.ArcadeTables.FindFirstChild<AirHockeyTable>(tableName)
     const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
-    const balls = arcadeTable?.FindFirstChild('Balls')
-    const ball = balls?.FindFirstChild<BasePart>(ballName)
+    const pieces = arcadeTable?.FindFirstChild('Pieces')
+    const ball = pieces?.FindFirstChild<BasePart>(pieceName)
     if (!ball) return
 
     const ballAttachment = ball.FindFirstChild<Attachment>('Attachment')
@@ -151,6 +171,13 @@ export class AirHockeyMechanics implements ArcadeTableMechanics {
       constraint.Attachment1 = planeAttachment
       constraint.Attachment0 = ballAttachment
       constraint.Parent = ball
+
+      const align = new Instance('AlignOrientation')
+      align.Attachment0 = constraint.Attachment1
+      align.Attachment1 = constraint.Attachment0
+      align.AlignType = Enum.AlignType.AllAxes
+      align.RigidityEnabled = true
+      align.Parent = ball
     }
 
     randomKickInPlane(ball, ground?.CFrame || new CFrame(), 10000)

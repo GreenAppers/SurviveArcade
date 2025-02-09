@@ -4,7 +4,6 @@
       <string name="Name">HouseFloor1WindowRight</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-      <bool name="DefinesCapabilities">false</bool>
       <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <token name="LevelOfDetail">0</token>
       <CoordinateFrame name="ModelMeshCFrame">
@@ -30,6 +29,7 @@
       <token name="ModelStreamingMode">0</token>
       <bool name="NeedsPivotMigration">false</bool>
       <Ref name="PrimaryPart">null</Ref>
+      <bool name="DefinesCapabilities">false</bool>
       <float name="ScaleFactor">0.99999964</float>
       <int64 name="SourceAssetId">-1</int64>
       <BinaryString name="Tags"></BinaryString>
@@ -56,7 +56,6 @@
         <string name="Name">Model</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-        <bool name="DefinesCapabilities">false</bool>
         <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -82,6 +81,7 @@
         <token name="ModelStreamingMode">0</token>
         <bool name="NeedsPivotMigration">false</bool>
         <Ref name="PrimaryPart">null</Ref>
+        <bool name="DefinesCapabilities">false</bool>
         <float name="ScaleFactor">1.7755376</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
@@ -142,7 +142,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -183,6 +182,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>3.6220968</X>
@@ -208,7 +208,7 @@
         <Properties>
           <string name="Name">Part</string>
           <bool name="Anchored">true</bool>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwNzViZA==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAA2NGQ4Y2E2YzMzYjZhODIyMDdiOTMxZmQwMDAwMGIwYQ==</BinaryString>
           <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
@@ -243,7 +243,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -284,6 +283,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>1.7755376</X>
@@ -307,7 +307,7 @@
         <Item class="ManualWeld" referent="4">
           <Properties>
             <string name="Name">Part-to-Part Strong Joint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDc1YmQRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3NWQ0</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAANjRkOGNhNmMzM2I2YTgyMjA3YjkzMWZkMDAwMDBiMGERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADY0ZDhjYTZjMzNiNmE4MjIwN2I5MzFmZDAwMDAwYjIx</BinaryString>
             <CoordinateFrame name="C0">
               <X>-0.8877688</X>
               <Y>12.2068205</Y>
@@ -337,11 +337,11 @@
               <R22>-0.00000008974597</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0">3</Ref>
             <Ref name="Part1">5</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b0b</UniqueId>
@@ -387,7 +387,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -428,6 +427,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>4.332312</X>
@@ -481,11 +481,11 @@
               <R22>0.00000000000003271163</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0">6</Ref>
             <Ref name="Part1">8</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b0d</UniqueId>
@@ -531,7 +531,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -572,6 +571,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>1.7755376</X>
@@ -632,7 +632,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -673,6 +672,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>1.7755376</X>
@@ -733,7 +733,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -774,6 +773,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.166156</X>
@@ -834,7 +834,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -875,6 +874,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>1.7755376</X>
@@ -935,7 +935,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -976,6 +975,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>3.6220968</X>
@@ -1001,7 +1001,7 @@
         <Properties>
           <string name="Name">Part</string>
           <bool name="Anchored">true</bool>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwNzVjNg==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAA2NGQ4Y2E2YzMzYjZhODIyMDdiOTMxZmQwMDAwMGIxMw==</BinaryString>
           <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
@@ -1036,7 +1036,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -1077,6 +1076,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.166156</X>
@@ -1100,7 +1100,7 @@
         <Item class="ManualWeld" referent="15">
           <Properties>
             <string name="Name">Part-to-Part Strong Joint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDc1YzYRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3NWJk</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAANjRkOGNhNmMzM2I2YTgyMjA3YjkzMWZkMDAwMDBiMTMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADY0ZDhjYTZjMzNiNmE4MjIwN2I5MzFmZDAwMDAwYjBh</BinaryString>
             <CoordinateFrame name="C0">
               <X>1.083078</X>
               <Y>-7.8389974</Y>
@@ -1130,11 +1130,11 @@
               <R22>0</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0">14</Ref>
             <Ref name="Part1">3</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b14</UniqueId>
@@ -1143,7 +1143,7 @@
         <Item class="ManualWeld" referent="16">
           <Properties>
             <string name="Name">Part-to-Part Strong Joint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDc1YzYRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3NWM1</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAANjRkOGNhNmMzM2I2YTgyMjA3YjkzMWZkMDAwMDBiMTMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3NWM1</BinaryString>
             <CoordinateFrame name="C0">
               <X>1.083078</X>
               <Y>-7.8389974</Y>
@@ -1173,11 +1173,11 @@
               <R22>0</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0">14</Ref>
             <Ref name="Part1">13</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b15</UniqueId>
@@ -1186,7 +1186,7 @@
         <Item class="ManualWeld" referent="17">
           <Properties>
             <string name="Name">Part-to-Part Strong Joint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDc1YzYRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3NWNk</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAANjRkOGNhNmMzM2I2YTgyMjA3YjkzMWZkMDAwMDBiMTMRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADY0ZDhjYTZjMzNiNmE4MjIwN2I5MzFmZDAwMDAwYjFh</BinaryString>
             <CoordinateFrame name="C0">
               <X>1.083078</X>
               <Y>-7.8389974</Y>
@@ -1216,11 +1216,11 @@
               <R22>-0.000000014901165</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0">14</Ref>
             <Ref name="Part1">18</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b16</UniqueId>
@@ -1266,7 +1266,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -1307,6 +1306,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.166156</X>
@@ -1334,7 +1334,6 @@
         <string name="Name">Model</string>
         <BinaryString name="AttributesSerialize"></BinaryString>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-        <bool name="DefinesCapabilities">false</bool>
         <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <token name="LevelOfDetail">0</token>
         <CoordinateFrame name="ModelMeshCFrame">
@@ -1360,6 +1359,7 @@
         <token name="ModelStreamingMode">0</token>
         <bool name="NeedsPivotMigration">false</bool>
         <Ref name="PrimaryPart">null</Ref>
+        <bool name="DefinesCapabilities">false</bool>
         <float name="ScaleFactor">1.7755376</float>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
@@ -1420,7 +1420,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -1461,6 +1460,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>3.6220968</X>
@@ -1486,7 +1486,7 @@
         <Properties>
           <string name="Name">Part</string>
           <bool name="Anchored">true</bool>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwNzVjZA==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAA2NGQ4Y2E2YzMzYjZhODIyMDdiOTMxZmQwMDAwMGIxYQ==</BinaryString>
           <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
@@ -1521,7 +1521,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -1562,6 +1561,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>1.7755376</X>
@@ -1622,7 +1622,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -1663,6 +1662,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>4.332312</X>
@@ -1723,7 +1723,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -1764,6 +1763,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>1.7755376</X>
@@ -1824,7 +1824,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -1865,6 +1864,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>1.7755376</X>
@@ -1925,7 +1925,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -1966,6 +1965,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.166156</X>
@@ -2026,7 +2026,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -2067,6 +2066,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>1.7755376</X>
@@ -2127,7 +2127,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -2168,6 +2167,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>3.6220968</X>
@@ -2193,7 +2193,7 @@
         <Properties>
           <string name="Name">Part</string>
           <bool name="Anchored">true</bool>
-          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAAzNmI0OGVjMGMwNDAyOTllMDY1YzU2M2YwMDAwNzVkNA==</BinaryString>
+          <BinaryString name="AttributesSerialize">AQAAAAcAAABSb2pvX0lkAiAAAAA2NGQ4Y2E2YzMzYjZhODIyMDdiOTMxZmQwMDAwMGIyMQ==</BinaryString>
           <bool name="AudioCanCollide">false</bool>
           <float name="BackParamA">-0.5</float>
           <float name="BackParamB">0.5</float>
@@ -2228,7 +2228,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -2269,6 +2268,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.166156</X>
@@ -2292,7 +2292,7 @@
         <Item class="ManualWeld" referent="27">
           <Properties>
             <string name="Name">Part-to-Part Strong Joint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDc1ZDQRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3NWNk</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAANjRkOGNhNmMzM2I2YTgyMjA3YjkzMWZkMDAwMDBiMjERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADY0ZDhjYTZjMzNiNmE4MjIwN2I5MzFmZDAwMDAwYjFh</BinaryString>
             <CoordinateFrame name="C0">
               <X>1.083078</X>
               <Y>-7.8389974</Y>
@@ -2322,11 +2322,11 @@
               <R22>0</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0">5</Ref>
             <Ref name="Part1">18</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b22</UniqueId>
@@ -2335,7 +2335,7 @@
         <Item class="ManualWeld" referent="28">
           <Properties>
             <string name="Name">Part-to-Part Strong Joint</string>
-            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAAMzZiNDhlYzBjMDQwMjk5ZTA2NWM1NjNmMDAwMDc1ZDQRAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3NWQz</BinaryString>
+            <BinaryString name="AttributesSerialize">AgAAABEAAABSb2pvX1RhcmdldF9QYXJ0MAIgAAAANjRkOGNhNmMzM2I2YTgyMjA3YjkzMWZkMDAwMDBiMjERAAAAUm9qb19UYXJnZXRfUGFydDECIAAAADM2YjQ4ZWMwYzA0MDI5OWUwNjVjNTYzZjAwMDA3NWQz</BinaryString>
             <CoordinateFrame name="C0">
               <X>1.083078</X>
               <Y>-7.8389974</Y>
@@ -2365,11 +2365,11 @@
               <R22>0</R22>
             </CoordinateFrame>
             <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
             <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <Ref name="Part0">5</Ref>
             <Ref name="Part1">26</Ref>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <UniqueId name="UniqueId">64d8ca6c33b6a82207b931fd00000b23</UniqueId>
@@ -2415,7 +2415,6 @@
           <PhysicalProperties name="CustomPhysicalProperties">
             <CustomPhysics>false</CustomPhysics>
           </PhysicalProperties>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="EnableFluidForces">true</bool>
           <token name="formFactorRaw">0</token>
           <float name="FrontParamA">-0.5</float>
@@ -2456,6 +2455,7 @@
             <Y>0</Y>
             <Z>0</Z>
           </Vector3>
+          <bool name="DefinesCapabilities">false</bool>
           <token name="shape">1</token>
           <Vector3 name="size">
             <X>2.166156</X>

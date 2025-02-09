@@ -40,7 +40,7 @@ export class PinballMechanics implements ArcadeTableMechanics {
     _network: ServerNetworkEvents,
   ) {
     const arcadeTable = game.Workspace.ArcadeTables.FindFirstChild(tableName)
-    const balls = arcadeTable?.FindFirstChild('Balls')
+    const pieces = arcadeTable?.FindFirstChild('Pieces')
     const ballTemplate = arcadeTable?.FindFirstChild<BasePart>('BallTemplate')
     const ground = arcadeTable?.FindFirstChild<BasePart>('Ground')
     const ball = ballTemplate?.Clone()
@@ -51,7 +51,7 @@ export class PinballMechanics implements ArcadeTableMechanics {
       ball.Transparency = 0
       ball.CanCollide = true
       ball.Anchored = false
-      ball.Parent = balls
+      ball.Parent = pieces
       const sparks = ball.FindFirstChild<ParticleEmitter>('Sparks')
       const light = ball.FindFirstChild<PointLight>('Light')
       const gravity = ball.FindFirstChild<VectorForce>('VectorForce')
@@ -134,7 +134,11 @@ export class PinballMechanics implements ArcadeTableMechanics {
     _inputService?: UserInputService,
   ) {}
 
-  onClientNewBall(_tableName: ArcadeTableName, _ballName: string) {}
+  onClientNewPiece(
+    _tableName: ArcadeTableName,
+    _pieceType: string,
+    _ballName: string,
+  ) {}
 
   onNPCPlayingBehavior(
     tableName: ArcadeTableName,
@@ -152,7 +156,7 @@ export class PinballMechanics implements ArcadeTableMechanics {
       pinballTable.FlipperRight.Flipper.Wedge1.CFrame.ToWorldSpace(
         new CFrame(),
       ).Position
-    for (const ball of pinballTable.Balls.GetChildren<BasePart>()) {
+    for (const ball of pinballTable.Pieces.GetChildren<BasePart>()) {
       const ballPosition = ball.CFrame.ToWorldSpace(new CFrame()).Position
       const leftDistance = ballPosition.sub(leftFlipperPosition).Magnitude
       const rightDistance = ballPosition.sub(rightFlipperPosition).Magnitude

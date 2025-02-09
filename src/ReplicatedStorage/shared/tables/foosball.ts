@@ -43,7 +43,11 @@ export class FoosballMechanics implements ArcadeTableMechanics {
     _inputService?: UserInputService,
   ) {}
 
-  onClientNewBall(_tableName: ArcadeTableName, _ballName: string) {}
+  onClientNewPiece(
+    _tableName: ArcadeTableName,
+    _pieceType: string,
+    _ballName: string,
+  ) {}
 
   onNPCPlayingBehavior(
     _tableName: ArcadeTableName,

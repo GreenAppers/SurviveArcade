@@ -1,7 +1,7 @@
 import { CommandDefinition } from '@rbxts/cmdr'
 
 export = identity<CommandDefinition>({
-  Name: 'tp',
+  Name: 'go',
   Description: 'Teleport Player',
   Group: 'Admin',
   Args: [

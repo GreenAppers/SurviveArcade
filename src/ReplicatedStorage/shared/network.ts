@@ -18,9 +18,10 @@ interface ServerFunctions {}
 
 interface ClientEvents {
   arcadeTableMaterialize: (arcadeTableName: ArcadeTableName) => void
-  arcadeTableNewBall: (
+  arcadeTableNewPiece: (
     arcadeTableName: ArcadeTableName,
-    ballName: string,
+    pieceType: string,
+    pieceName: string,
   ) => void
   dispatch: (actions: Array<BroadcastAction>) => void
   message: (

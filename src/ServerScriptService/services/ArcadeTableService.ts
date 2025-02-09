@@ -272,11 +272,11 @@ export class ArcadeTableService implements OnStart {
     const box = arcadeTable.FindFirstChild('Box')
     box?.Destroy()
 
-    const balls = findDescendentsWithTag(
-      arcadeTable.FindFirstChild('Balls'),
+    const pieces = findDescendentsWithTag(
+      arcadeTable.FindFirstChild('Pieces'),
       BallTag,
     )
-    for (const ball of balls) ball.Destroy()
+    for (const piece of pieces) piece.Destroy()
 
     if (backbox) {
       task.wait(2.2)

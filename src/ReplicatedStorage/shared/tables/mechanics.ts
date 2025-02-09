@@ -39,7 +39,11 @@ export interface ArcadeTableMechanics {
     inputService?: UserInputService,
   ): void
 
-  onClientNewBall(tableName: ArcadeTableName, ballName: string): void
+  onClientNewPiece(
+    tableName: ArcadeTableName,
+    pieceType: string,
+    pieceName: string,
+  ): void
 
   onNPCPlayingBehavior(
     tableName: ArcadeTableName,

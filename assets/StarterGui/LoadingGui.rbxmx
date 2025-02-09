@@ -4,13 +4,15 @@
       <string name="Name">LoadingGui</string>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <bool name="AutoLocalize">true</bool>
+      <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="ClipToDeviceSafeArea">true</bool>
-      <bool name="DefinesCapabilities">false</bool>
       <int name="DisplayOrder">0</int>
       <bool name="Enabled">false</bool>
+      <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
       <bool name="ResetOnSpawn">false</bool>
       <Ref name="RootLocalizationTable">null</Ref>
       <token name="SafeAreaCompatibility">1</token>
+      <bool name="DefinesCapabilities">false</bool>
       <token name="ScreenInsets">1</token>
       <token name="SelectionBehaviorDown">0</token>
       <token name="SelectionBehaviorLeft">0</token>
@@ -19,6 +21,7 @@
       <bool name="SelectionGroup">false</bool>
       <int64 name="SourceAssetId">13266106284</int64>
       <BinaryString name="Tags"></BinaryString>
+      <UniqueId name="UniqueId">1c777724df4aaeee07b96bf900000605</UniqueId>
       <token name="ZIndexBehavior">1</token>
     </Properties>
     <Item class="Frame" referent="1">
@@ -45,9 +48,10 @@
         </Color3>
         <token name="BorderMode">0</token>
         <int name="BorderSizePixel">1</int>
+        <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <bool name="ClipsDescendants">false</bool>
-        <bool name="DefinesCapabilities">false</bool>
         <bool name="Draggable">false</bool>
+        <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <bool name="Interactable">true</bool>
         <int name="LayoutOrder">0</int>
         <Ref name="NextSelectionDown">null</Ref>
@@ -62,6 +66,7 @@
         </UDim2>
         <Ref name="RootLocalizationTable">null</Ref>
         <float name="Rotation">0</float>
+        <bool name="DefinesCapabilities">false</bool>
         <bool name="Selectable">false</bool>
         <token name="SelectionBehaviorDown">0</token>
         <token name="SelectionBehaviorLeft">0</token>
@@ -80,6 +85,7 @@
         <int64 name="SourceAssetId">-1</int64>
         <token name="Style">0</token>
         <BinaryString name="Tags"></BinaryString>
+        <UniqueId name="UniqueId">1c777724df4aaeee07b96bf900000606</UniqueId>
         <bool name="Visible">true</bool>
         <int name="ZIndex">1</int>
       </Properties>
@@ -107,9 +113,10 @@
           </Color3>
           <token name="BorderMode">0</token>
           <int name="BorderSizePixel">1</int>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <bool name="Interactable">true</bool>
           <int name="LayoutOrder">0</int>
           <Ref name="NextSelectionDown">null</Ref>
@@ -124,6 +131,7 @@
           </UDim2>
           <Ref name="RootLocalizationTable">null</Ref>
           <float name="Rotation">0</float>
+          <bool name="DefinesCapabilities">false</bool>
           <bool name="Selectable">false</bool>
           <token name="SelectionBehaviorDown">0</token>
           <token name="SelectionBehaviorLeft">0</token>
@@ -142,6 +150,7 @@
           <int64 name="SourceAssetId">-1</int64>
           <token name="Style">0</token>
           <BinaryString name="Tags"></BinaryString>
+          <UniqueId name="UniqueId">1c777724df4aaeee07b96bf900000607</UniqueId>
           <bool name="Visible">true</bool>
           <int name="ZIndex">1</int>
         </Properties>
@@ -169,9 +178,10 @@
             </Color3>
             <token name="BorderMode">0</token>
             <int name="BorderSizePixel">1</int>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <bool name="ClipsDescendants">false</bool>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Draggable">false</bool>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <bool name="Interactable">true</bool>
             <int name="LayoutOrder">0</int>
             <Ref name="NextSelectionDown">null</Ref>
@@ -186,6 +196,7 @@
             </UDim2>
             <Ref name="RootLocalizationTable">null</Ref>
             <float name="Rotation">0</float>
+            <bool name="DefinesCapabilities">false</bool>
             <bool name="Selectable">false</bool>
             <token name="SelectionBehaviorDown">0</token>
             <token name="SelectionBehaviorLeft">0</token>
@@ -204,6 +215,7 @@
             <int64 name="SourceAssetId">-1</int64>
             <token name="Style">0</token>
             <BinaryString name="Tags"></BinaryString>
+            <UniqueId name="UniqueId">1c777724df4aaeee07b96bf900000608</UniqueId>
             <bool name="Visible">true</bool>
             <int name="ZIndex">1</int>
           </Properties>
@@ -211,13 +223,16 @@
             <Properties>
               <string name="Name">UICorner</string>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <UDim name="CornerRadius">
                 <S>0.2</S>
                 <O>0</O>
               </UDim>
+              <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
               <bool name="DefinesCapabilities">false</bool>
               <int64 name="SourceAssetId">-1</int64>
               <BinaryString name="Tags"></BinaryString>
+              <UniqueId name="UniqueId">1c777724df4aaeee07b96bf900000609</UniqueId>
             </Properties>
           </Item>
           <Item class="UIStroke" referent="5">
@@ -225,18 +240,21 @@
               <string name="Name">UIStroke</string>
               <token name="ApplyStrokeMode">0</token>
               <BinaryString name="AttributesSerialize"></BinaryString>
+              <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
               <Color3 name="Color">
                 <R>1</R>
                 <G>1</G>
                 <B>1</B>
               </Color3>
-              <bool name="DefinesCapabilities">false</bool>
               <bool name="Enabled">true</bool>
+              <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
               <token name="LineJoinMode">0</token>
+              <bool name="DefinesCapabilities">false</bool>
               <int64 name="SourceAssetId">-1</int64>
               <BinaryString name="Tags"></BinaryString>
               <float name="Thickness">6</float>
               <float name="Transparency">0.8</float>
+              <UniqueId name="UniqueId">1c777724df4aaeee07b96bf90000060a</UniqueId>
             </Properties>
           </Item>
         </Item>
@@ -244,13 +262,16 @@
           <Properties>
             <string name="Name">UICorner</string>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <UDim name="CornerRadius">
               <S>0.2</S>
               <O>0</O>
             </UDim>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
+            <UniqueId name="UniqueId">1c777724df4aaeee07b96bf90000060b</UniqueId>
           </Properties>
         </Item>
         <Item class="UIStroke" referent="7">
@@ -258,18 +279,21 @@
             <string name="Name">UIStroke</string>
             <token name="ApplyStrokeMode">0</token>
             <BinaryString name="AttributesSerialize"></BinaryString>
+            <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
             <Color3 name="Color">
               <R>1</R>
               <G>1</G>
               <B>1</B>
             </Color3>
-            <bool name="DefinesCapabilities">false</bool>
             <bool name="Enabled">true</bool>
+            <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
             <token name="LineJoinMode">0</token>
+            <bool name="DefinesCapabilities">false</bool>
             <int64 name="SourceAssetId">-1</int64>
             <BinaryString name="Tags"></BinaryString>
             <float name="Thickness">6</float>
             <float name="Transparency">0.8</float>
+            <UniqueId name="UniqueId">1c777724df4aaeee07b96bf90000060c</UniqueId>
           </Properties>
         </Item>
       </Item>
@@ -297,8 +321,8 @@
           </Color3>
           <token name="BorderMode">0</token>
           <int name="BorderSizePixel">0</int>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
           <Font name="FontFace">
             <Family>
@@ -307,18 +331,18 @@
             <Weight>700</Weight>
             <Style>Normal</Style>
           </Font>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <bool name="Interactable">true</bool>
           <int name="LayoutOrder">0</int>
           <float name="LineHeight">1</float>
-          <BinaryString name="LocalizationMatchIdentifier">
-          </BinaryString>
-          <BinaryString name="LocalizationMatchedSourceText">
-          </BinaryString>
+          <string name="LocalizationMatchIdentifier"></string>
+          <string name="LocalizationMatchedSourceText"></string>
           <int name="MaxVisibleGraphemes">-1</int>
           <Ref name="NextSelectionDown">null</Ref>
           <Ref name="NextSelectionLeft">null</Ref>
           <Ref name="NextSelectionRight">null</Ref>
           <Ref name="NextSelectionUp">null</Ref>
+          <string name="OpenTypeFeatures"></string>
           <UDim2 name="Position">
             <XS>0.5</XS>
             <XO>0</XO>
@@ -328,6 +352,7 @@
           <bool name="RichText">true</bool>
           <Ref name="RootLocalizationTable">null</Ref>
           <float name="Rotation">0</float>
+          <bool name="DefinesCapabilities">false</bool>
           <bool name="Selectable">false</bool>
           <token name="SelectionBehaviorDown">0</token>
           <token name="SelectionBehaviorLeft">0</token>
@@ -365,6 +390,7 @@
           <bool name="TextWrapped">true</bool>
           <token name="TextXAlignment">2</token>
           <token name="TextYAlignment">1</token>
+          <UniqueId name="UniqueId">1c777724df4aaeee07b96bf90000060d</UniqueId>
           <bool name="Visible">true</bool>
           <int name="ZIndex">1</int>
         </Properties>
@@ -393,8 +419,8 @@
           </Color3>
           <token name="BorderMode">0</token>
           <int name="BorderSizePixel">0</int>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
           <Font name="FontFace">
             <Family>
@@ -403,18 +429,18 @@
             <Weight>400</Weight>
             <Style>Normal</Style>
           </Font>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <bool name="Interactable">true</bool>
           <int name="LayoutOrder">0</int>
           <float name="LineHeight">1</float>
-          <BinaryString name="LocalizationMatchIdentifier">
-          </BinaryString>
-          <BinaryString name="LocalizationMatchedSourceText">
-          </BinaryString>
+          <string name="LocalizationMatchIdentifier"></string>
+          <string name="LocalizationMatchedSourceText"></string>
           <int name="MaxVisibleGraphemes">-1</int>
           <Ref name="NextSelectionDown">null</Ref>
           <Ref name="NextSelectionLeft">null</Ref>
           <Ref name="NextSelectionRight">null</Ref>
           <Ref name="NextSelectionUp">null</Ref>
+          <string name="OpenTypeFeatures"></string>
           <UDim2 name="Position">
             <XS>0.5</XS>
             <XO>0</XO>
@@ -424,6 +450,7 @@
           <bool name="RichText">false</bool>
           <Ref name="RootLocalizationTable">null</Ref>
           <float name="Rotation">0</float>
+          <bool name="DefinesCapabilities">false</bool>
           <bool name="Selectable">false</bool>
           <token name="SelectionBehaviorDown">0</token>
           <token name="SelectionBehaviorLeft">0</token>
@@ -461,6 +488,7 @@
           <bool name="TextWrapped">true</bool>
           <token name="TextXAlignment">2</token>
           <token name="TextYAlignment">1</token>
+          <UniqueId name="UniqueId">1c777724df4aaeee07b96bf90000060e</UniqueId>
           <bool name="Visible">true</bool>
           <int name="ZIndex">1</int>
         </Properties>
@@ -489,8 +517,8 @@
           </Color3>
           <token name="BorderMode">0</token>
           <int name="BorderSizePixel">0</int>
+          <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
           <bool name="ClipsDescendants">false</bool>
-          <bool name="DefinesCapabilities">false</bool>
           <bool name="Draggable">false</bool>
           <Font name="FontFace">
             <Family>
@@ -499,18 +527,18 @@
             <Weight>700</Weight>
             <Style>Normal</Style>
           </Font>
+          <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
           <bool name="Interactable">true</bool>
           <int name="LayoutOrder">0</int>
           <float name="LineHeight">1</float>
-          <BinaryString name="LocalizationMatchIdentifier">
-          </BinaryString>
-          <BinaryString name="LocalizationMatchedSourceText">
-          </BinaryString>
+          <string name="LocalizationMatchIdentifier"></string>
+          <string name="LocalizationMatchedSourceText"></string>
           <int name="MaxVisibleGraphemes">-1</int>
           <Ref name="NextSelectionDown">null</Ref>
           <Ref name="NextSelectionLeft">null</Ref>
           <Ref name="NextSelectionRight">null</Ref>
           <Ref name="NextSelectionUp">null</Ref>
+          <string name="OpenTypeFeatures"></string>
           <UDim2 name="Position">
             <XS>0.5</XS>
             <XO>0</XO>
@@ -520,6 +548,7 @@
           <bool name="RichText">false</bool>
           <Ref name="RootLocalizationTable">null</Ref>
           <float name="Rotation">0</float>
+          <bool name="DefinesCapabilities">false</bool>
           <bool name="Selectable">false</bool>
           <token name="SelectionBehaviorDown">0</token>
           <token name="SelectionBehaviorLeft">0</token>
@@ -557,6 +586,7 @@
           <bool name="TextWrapped">true</bool>
           <token name="TextXAlignment">2</token>
           <token name="TextYAlignment">1</token>
+          <UniqueId name="UniqueId">1c777724df4aaeee07b96bf90000060f</UniqueId>
           <bool name="Visible">true</bool>
           <int name="ZIndex">1</int>
         </Properties>

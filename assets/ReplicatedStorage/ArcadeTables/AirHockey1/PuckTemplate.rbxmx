@@ -1,7 +1,7 @@
 <roblox version="4">
   <Item class="Part" referent="0">
     <Properties>
-      <string name="Name">BallTemplate</string>
+      <string name="Name">PuckTemplate</string>
       <bool name="Anchored">true</bool>
       <BinaryString name="AttributesSerialize"></BinaryString>
       <bool name="AudioCanCollide">false</bool>
@@ -32,8 +32,8 @@
       <bool name="CanTouch">true</bool>
       <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
       <bool name="CastShadow">true</bool>
-      <string name="CollisionGroup">Default</string>
-      <int name="CollisionGroupId">0</int>
+      <string name="CollisionGroup">Ball</string>
+      <int name="CollisionGroupId">1</int>
       <Color3uint8 name="Color3uint8">16711680</Color3uint8>
       <PhysicalProperties name="CustomPhysicalProperties">
         <CustomPhysics>true</CustomPhysics>
@@ -43,7 +43,6 @@
         <FrictionWeight>1</FrictionWeight>
         <ElasticityWeight>1</ElasticityWeight>
       </PhysicalProperties>
-      <bool name="DefinesCapabilities">false</bool>
       <bool name="EnableFluidForces">true</bool>
       <token name="formFactorRaw">1</token>
       <float name="FrontParamA">-0.5</float>
@@ -84,6 +83,7 @@
         <Y>0</Y>
         <Z>0</Z>
       </Vector3>
+      <bool name="DefinesCapabilities">false</bool>
       <token name="shape">2</token>
       <Vector3 name="size">
         <X>1.4161924</X>
@@ -109,9 +109,9 @@
         <string name="Name">Union</string>
         <SharedString name="AeroMeshData">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
         <bool name="Anchored">true</bool>
-        <Content name="AssetId">
+        <ContentId name="AssetId">
           <url>https://www.roblox.com//asset/?id=2284207114</url>
-        </Content>
+        </ContentId>
         <BinaryString name="AttributesSerialize"></BinaryString>
         <bool name="AudioCanCollide">true</bool>
         <float name="BackParamA">-0.5</float>
@@ -144,8 +144,8 @@
         <BinaryString name="ChildData">
         </BinaryString>
         <SharedString name="ChildData2">rxNJufX5oaagQE3qNtzJSQ==</SharedString>
-        <string name="CollisionGroup">Default</string>
-        <int name="CollisionGroupId">0</int>
+        <string name="CollisionGroup">Ball</string>
+        <int name="CollisionGroupId">1</int>
         <Color3uint8 name="Color3uint8">16711680</Color3uint8>
         <PhysicalProperties name="CustomPhysicalProperties">
           <CustomPhysics>true</CustomPhysics>
@@ -155,7 +155,6 @@
           <FrictionWeight>1</FrictionWeight>
           <ElasticityWeight>1</ElasticityWeight>
         </PhysicalProperties>
-        <bool name="DefinesCapabilities">false</bool>
         <bool name="EnableFluidForces">true</bool>
         <token name="FluidFidelityInternal">0</token>
         <token name="FormFactor">3</token>
@@ -209,6 +208,7 @@
           <Y>0</Y>
           <Z>0</Z>
         </Vector3>
+        <bool name="DefinesCapabilities">false</bool>
         <Vector3 name="size">
           <X>1.6994361</X>
           <Y>11.329421</Y>
@@ -256,18 +256,18 @@
           <Y>0</Y>
           <Z>0</Z>
           <R00>1</R00>
-          <R01>0</R01>
+          <R01>-0.00000004371139</R01>
           <R02>0</R02>
-          <R10>0</R10>
-          <R11>1</R11>
-          <R12>0</R12>
-          <R20>0</R20>
-          <R21>0</R21>
-          <R22>1</R22>
+          <R10>-0.0000000000000019106855</R10>
+          <R11>-0.00000004371139</R11>
+          <R12>1</R12>
+          <R20>-0.00000004371139</R20>
+          <R21>-1</R21>
+          <R22>-0.00000004371139</R22>
         </CoordinateFrame>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-        <bool name="DefinesCapabilities">false</bool>
         <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+        <bool name="DefinesCapabilities">false</bool>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <UniqueId name="UniqueId">0da55ac67e93939106e7d2140000051f</UniqueId>
@@ -285,10 +285,10 @@
           <G>1</G>
           <B>1</B>
         </Color3>
-        <bool name="DefinesCapabilities">false</bool>
         <bool name="Enabled">false</bool>
         <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <float name="Range">15</float>
+        <bool name="DefinesCapabilities">false</bool>
         <bool name="Shadows">true</bool>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
@@ -307,7 +307,6 @@
         <float name="Brightness">1</float>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <ColorSequence name="Color">0 1 1 0.498039 0 1 1 0.639216 0.054902 0 </ColorSequence>
-        <bool name="DefinesCapabilities">false</bool>
         <float name="Drag">0.75</float>
         <token name="EmissionDirection">1</token>
         <bool name="Enabled">false</bool>
@@ -325,6 +324,7 @@
         <float name="Rate">75</float>
         <NumberRange name="RotSpeed">0 0 </NumberRange>
         <NumberRange name="Rotation">90 90 </NumberRange>
+        <bool name="DefinesCapabilities">false</bool>
         <token name="Shape">1</token>
         <token name="ShapeInOut">0</token>
         <float name="ShapePartial">0.97</float>
@@ -338,9 +338,9 @@
         </Vector2>
         <NumberSequence name="Squash">0 0 0 1 3 0 </NumberSequence>
         <BinaryString name="Tags"></BinaryString>
-        <Content name="Texture">
+        <ContentId name="Texture">
           <url>rbxassetid://6763809313</url>
-        </Content>
+        </ContentId>
         <float name="TimeScale">1</float>
         <NumberSequence name="Transparency">0 0.05625 0 0.104478 0.06875 0 0.19977 0.59375 0 0.477612 0.34375 0 0.602755 0.675 0 0.726751 0.425 0 0.835821 0.69375 0 0.921929 0.525 0 1 1 0 </NumberSequence>
         <UniqueId name="UniqueId">0da55ac67e93939106e7d21400000521</UniqueId>
@@ -353,12 +353,11 @@
       <Properties>
         <string name="Name">VectorForce</string>
         <bool name="ApplyAtCenterOfMass">true</bool>
-        <Ref name="Attachment0">6</Ref>
+        <Ref name="Attachment0">null</Ref>
         <Ref name="Attachment1">null</Ref>
-        <BinaryString name="AttributesSerialize">AQAAABcAAABSb2pvX1RhcmdldF9BdHRhY2htZW50MAIgAAAAMDFiYTI3OTc4ZTZlMWEyYTA2OTg4Y2Q4MDAwMDYyYTk=</BinaryString>
+        <BinaryString name="AttributesSerialize"></BinaryString>
         <SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
         <int name="Color">23</int>
-        <bool name="DefinesCapabilities">false</bool>
         <bool name="Enabled">true</bool>
         <Vector3 name="Force">
           <X>0</X>
@@ -367,6 +366,7 @@
         </Vector3>
         <UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
         <token name="RelativeTo">2</token>
+        <bool name="DefinesCapabilities">false</bool>
         <int64 name="SourceAssetId">-1</int64>
         <BinaryString name="Tags"></BinaryString>
         <UniqueId name="UniqueId">0da55ac67e93939106e7d21400000522</UniqueId>

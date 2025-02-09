@@ -61,6 +61,6 @@ export function getArcadeTableFromDescendent(instance: Instance) {
 
 export function getArcadeTableSpawn(arcadeTable?: ArcadeTable) {
   return arcadeTable?.Control?.Seat?.CFrame?.ToWorldSpace(
-    new CFrame(new Vector3(0, 5, 5)),
+    new CFrame(new Vector3(0, 5, 3)),
   )
 }

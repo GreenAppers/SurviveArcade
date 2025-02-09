@@ -26,6 +26,7 @@ import {
 import { mechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import { firstArcadeTableMap } from 'ReplicatedStorage/shared/utils/arcade'
 import { findDescendentsWhichAre } from 'ReplicatedStorage/shared/utils/instance'
+import { endsWith } from 'ReplicatedStorage/shared/utils/object'
 import { Events } from 'ServerScriptService/network'
 import { store } from 'ServerScriptService/store'
 import { animateBuildingIn } from 'ServerScriptService/utils/buildin'
@@ -145,7 +146,7 @@ export class MapService implements OnStart {
     const groundTable = state.sequence % 8 === 0
     for (const part of parts) {
       arcadeTableMechanics.onCreateTablePart(arcadeTable, state, part)
-      if (part.Name === 'BallTemplate') continue
+      if (endsWith(part.Name, 'Template')) continue
       if (
         ((groundTable || !arcadeTable.PrimaryPart) && part.Name === 'Ground') ||
         (!groundTable && part.Name === 'Baseplate')

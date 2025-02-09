@@ -73,6 +73,7 @@ interface ArcadeTableBase extends Model {
   Name: ArcadeTableName
   NextBaseplate: BasePart
   PlayZone: BasePart
+  Pieces: Folder
   Control: Model & {
     Seat: Seat & {
       Attachment: Attachment
@@ -216,9 +217,7 @@ interface Flipper extends Model {
   }
 }
 
-interface FoosballTable extends ArcadeTableBase {
-  Balls: Folder
-}
+interface FoosballTable extends ArcadeTableBase {}
 
 interface Instance {
   FindFirstChild<X = Instance>(
@@ -266,7 +265,6 @@ interface LootBox extends Model {
 }
 
 interface PinballTable extends ArcadeTableBase {
-  Balls: Folder
   Baseplate: BasePart
   FlipperLeft: Flipper
   FlipperRight: Flipper

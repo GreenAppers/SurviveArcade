@@ -28,7 +28,7 @@ export class ArcadeController implements OnStart {
     this.startMyArcadeTableClaimHandler(player)
     this.startMyArcadeTableLoopHandler()
     this.startMyArcadeTableMaterializeHandler()
-    this.startMyArcadeTableNewBallHandler()
+    this.startMyArcadeTableNewPieceHandler()
     this.startMyArcadeTableWinHandler()
     this.startPlayerBounceHandler(player)
   }
@@ -135,10 +135,10 @@ export class ArcadeController implements OnStart {
     })
   }
 
-  startMyArcadeTableNewBallHandler() {
-    Events.arcadeTableNewBall.connect((tableName, ballName) => {
+  startMyArcadeTableNewPieceHandler() {
+    Events.arcadeTableNewPiece.connect((tableName, pieceType, pieceName) => {
       const tableType = store.getState(selectArcadeTableType(tableName))
-      mechanics[tableType].onClientNewBall(tableName, ballName)
+      mechanics[tableType].onClientNewPiece(tableName, pieceType, pieceName)
     })
   }
 
