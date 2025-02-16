@@ -3,7 +3,6 @@ import { Logger } from '@rbxts/log'
 import Object from '@rbxts/object-utils'
 import { playSoundId } from 'ReplicatedStorage/shared/assets/sounds/play-sound'
 import { CURRENCY_TYPES } from 'ReplicatedStorage/shared/constants/core'
-import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
 import { BallTag } from 'ReplicatedStorage/shared/constants/tags'
 import {
   selectArcadeTablesState,
@@ -16,13 +15,11 @@ import {
   ArcadeTableStatus,
 } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
 import { mechanics } from 'ReplicatedStorage/shared/tables/mechanics'
-import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
 import {
   findDescendentsWithTag,
   findDescendentWithPath,
 } from 'ReplicatedStorage/shared/utils/instance'
 import { getNameFromUserId } from 'ReplicatedStorage/shared/utils/player'
-import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 import { Events } from 'ServerScriptService/network'
 import { MapService } from 'ServerScriptService/services/MapService'
 import { store } from 'ServerScriptService/store'
@@ -31,8 +28,6 @@ import { logAndBroadcast } from 'ServerScriptService/utils/server'
 
 @Service()
 export class ArcadeTableService implements OnStart {
-  scoreboardCharacters = 14
-
   constructor(
     private readonly mapService: MapService,
     private readonly logger: Logger,
@@ -227,26 +222,8 @@ export class ArcadeTableService implements OnStart {
     tableName: ArcadeTableName,
     arcadeTableState: ArcadeTableState,
   ) {
-    // Find the scoreboard on the arcade table.
-    const arcadeTable =
-      game.Workspace.ArcadeTables.FindFirstChild<ArcadeTable>(tableName)
-    if (!arcadeTable?.FindFirstChild('Backbox')) return
-    const surfaceGuiFrame = arcadeTable.Backbox?.Scoreboard.SurfaceGui.Frame
-    if (!surfaceGuiFrame) return
-
-    // Determine the name and score to display on the scoreboard.
-    const score = abbreviator.numberToString(arcadeTableState.score)
-    const nameCharacters = this.scoreboardCharacters - score.size() - 1
-    let name = getNameFromUserId(arcadeTableState.owner, game.Workspace)
-    if (name.size() > nameCharacters) name = name.sub(0, nameCharacters)
-    else name = name += ' '.rep(nameCharacters - name.size())
-    const text = `${name} ${score}`.upper()
-
-    // Render the text on the scoreboard.
-    renderGlyphs(text, digitalFont, surfaceGuiFrame, {
-      existingGlyphsLength: this.scoreboardCharacters,
-      textScaled: true,
-    })
+    const tableType = store.getState(selectArcadeTableType(tableName))
+    mechanics[tableType].onScoreChanged(tableName, arcadeTableState)
   }
 
   async playWinningSequence(arcadeTable: ArcadeTable | undefined) {

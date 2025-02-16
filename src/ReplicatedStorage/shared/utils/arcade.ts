@@ -1,11 +1,13 @@
 import Object from '@rbxts/object-utils'
 import { CollectionService } from '@rbxts/services'
 import { ARCADE_TABLE_TYPES } from 'ReplicatedStorage/shared/constants/core'
+import { digitalFont } from 'ReplicatedStorage/shared/constants/digitalfont'
 import {
   ArcadeCabinetTag,
   ArcadeTableTag,
 } from 'ReplicatedStorage/shared/constants/tags'
 import { randomElement } from 'ReplicatedStorage/shared/utils/object'
+import { renderGlyphs } from 'ReplicatedStorage/shared/utils/sprite'
 
 export function firstArcadeTableMap(
   arcadeTableType: ArcadeTableType,
@@ -63,4 +65,22 @@ export function getArcadeTableSpawn(arcadeTable?: ArcadeTable) {
   return arcadeTable?.Control?.Seat?.CFrame?.ToWorldSpace(
     new CFrame(new Vector3(0, 5, 3)),
   )
+}
+export function updateScoreboard(
+  tableName: string,
+  text: string,
+  maxLength = 14,
+) {
+  // Find the scoreboard on the arcade table.
+  const arcadeTable =
+    game.Workspace.ArcadeTables.FindFirstChild<ArcadeTable>(tableName)
+  if (!arcadeTable?.FindFirstChild('Backbox')) return
+  const surfaceGuiFrame = arcadeTable.Backbox?.Scoreboard.SurfaceGui.Frame
+  if (!surfaceGuiFrame) return
+
+  // Render the text on the scoreboard.
+  renderGlyphs(text, digitalFont, surfaceGuiFrame, {
+    existingGlyphsLength: maxLength,
+    textScaled: true,
+  })
 }

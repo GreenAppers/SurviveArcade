@@ -1,6 +1,5 @@
 import Object from '@rbxts/object-utils'
 import { createProducer } from '@rbxts/reflex'
-import { ARCADE_TABLE_TYPES } from 'ReplicatedStorage/shared/constants/core'
 import {
   firstArcadeTableMap,
   nextArcadeTableType,
@@ -33,6 +32,8 @@ export interface ArcadeTableState {
   readonly baseColor: BrickColor
   readonly baseMaterial: Enum.Material
   readonly statorColor: BrickColor
+  readonly goalsHome: number
+  readonly goalsAway: number
   readonly score: number
   readonly scoreDomain: number
   readonly scoreStart: number
@@ -102,6 +103,8 @@ export const defaultArcadeTableArcadeTable: ArcadeTableArcadeTable = {
 
 export const defaultArcadeTableState = {
   owner: 0,
+  goalsHome: 0,
+  goalsAway: 0,
   score: 0,
   scoreDomain: ArcadeTableScoreDomain.Table,
   scoreStart: 0,
@@ -271,6 +274,28 @@ export const arcadeTablesSlice = createProducer(initialState, {
             highScore: math.max(tableState?.highScore || 0, newScore),
           },
         },
+      },
+    }
+  },
+
+  addArcadeTableGoals: (
+    state,
+    name: ArcadeTableName,
+    amount: number,
+    team?: string,
+  ) => {
+    const lastState = state[name]
+    if (!lastState) return state
+    const isTeamAway = team === 'Away'
+    const newScore =
+      ((isTeamAway ? lastState?.goalsAway : lastState?.goalsHome) || 0) +
+      (amount || 0)
+    return {
+      ...state,
+      [name]: {
+        ...lastState,
+        ...(isTeamAway ? { goalsAway: newScore } : { goalsHome: newScore }),
+        score: newScore,
       },
     }
   },

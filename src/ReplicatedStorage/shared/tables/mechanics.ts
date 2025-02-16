@@ -23,6 +23,11 @@ export interface ArcadeTableMechanics {
 
   onGameOver(tableName: ArcadeTableName, userId: number): void
 
+  onScoreChanged(
+    tableName: ArcadeTableName,
+    arcadeTableState: ArcadeTableState,
+  ): void
+
   onClientInputBegan(
     tableName: ArcadeTableName,
     userId: number,

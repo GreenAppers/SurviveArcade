@@ -4,15 +4,20 @@ import {
   ServerNetworkEvents,
 } from 'ReplicatedStorage/shared/network'
 import { ArcadeTableState } from 'ReplicatedStorage/shared/state/ArcadeTablesState'
-import type { ArcadeTableMechanics } from 'ReplicatedStorage/shared/tables/mechanics'
+import { type ArcadeTableMechanics } from 'ReplicatedStorage/shared/tables/mechanics'
 import {
   BehaviorObject,
   getBehaviorTime,
 } from 'ReplicatedStorage/shared/utils/behavior'
+import { abbreviator } from 'ReplicatedStorage/shared/utils/currency'
 import { setNetworkOwner } from 'ReplicatedStorage/shared/utils/instance'
+import { getNameFromUserId } from 'ReplicatedStorage/shared/utils/player'
+
+import { updateScoreboard } from '../utils/arcade'
 
 const flipperCooldown = 0.3
 const flipperFireDistance = 7
+const scoreboardCharacters = 14
 
 export class PinballMechanics implements ArcadeTableMechanics {
   ballNumber = 1
@@ -85,6 +90,20 @@ export class PinballMechanics implements ArcadeTableMechanics {
       if (spinnerLeft) setNetworkOwner(spinnerLeft, undefined)
       return
     }
+  }
+
+  onScoreChanged(
+    tableName: ArcadeTableName,
+    arcadeTableState: ArcadeTableState,
+  ) {
+    // Determine the name and score to display on the scoreboard.
+    const score = abbreviator.numberToString(arcadeTableState.score)
+    const nameCharacters = scoreboardCharacters - score.size() - 1
+    let name = getNameFromUserId(arcadeTableState.owner, game.Workspace)
+    if (name.size() > nameCharacters) name = name.sub(0, nameCharacters)
+    else name = name += ' '.rep(nameCharacters - name.size())
+    const text = `${name} ${score}`.upper()
+    updateScoreboard(tableName, text, scoreboardCharacters)
   }
 
   onClientInputBegan(

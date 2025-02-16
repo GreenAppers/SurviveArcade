@@ -131,7 +131,11 @@ export function weldAssemblage(instance: Instance) {
   }
 }
 
-export function updateBodyVelocity(instance: Instance, velocity?: Vector3) {
+export function updateBodyVelocity(
+  instance: Instance,
+  velocity?: Vector3,
+  additive = false,
+) {
   const parent = instance.IsA('Model') ? instance.PrimaryPart : instance
   if (!parent || !parent.IsA('BasePart'))
     throw "Instance doesn't have a PrimaryPart and is not a BasePart"
@@ -146,7 +150,14 @@ export function updateBodyVelocity(instance: Instance, velocity?: Vector3) {
   if (!existingBodyVelocity) {
     bodyVelocity.P = math.huge
     bodyVelocity.MaxForce = new Vector3(1000000, 1000000, 1000000)
+    bodyVelocity.Velocity = new Vector3(0, 0, 0)
   }
-  bodyVelocity.Velocity = velocity
+  bodyVelocity.Velocity = additive
+    ? bodyVelocity.Velocity.add(velocity).Max()
+    : velocity
+  if (bodyVelocity.Velocity.Magnitude < 0.01) {
+    bodyVelocity.Destroy()
+    return undefined
+  }
   return bodyVelocity
 }
